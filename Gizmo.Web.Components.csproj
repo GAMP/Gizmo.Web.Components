@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Authors>NETProjects</Authors>
+		<Product>Gizmo</Product>
+		<Description>Gizmo shared razor components library.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://www.gizmopowered.net/</PackageProjectUrl>
+		<PackageIcon>package_icon.png</PackageIcon>
+		<PackageIconUrl />
+		<RepositoryUrl>https://github.com/GAMP/Gizmo.Web.Components</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Resources\package_icon.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
