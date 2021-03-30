@@ -1,0 +1,24 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+@*<style>
+    .style-disabled
+    {
+        width:200px;
+        height:100px;
+    }
+</style>*@
+
+<button class="@ClassMapper.AsString()"
+        style="@StyleMapper.AsString()"
+        @onclick="@OnClickHandler"
+        aria-label="@Label"
+        disabled="@IsDisabled"
+        type="@Type"
+        name="@Name"
+        value="@Value"
+        @ref="@Ref"
+        @attributes="@Attributes"
+        id="@Id">
+    @ChildContent
+</button>

@@ -28,4 +28,9 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Components\Base\" />
+	  <Folder Include="wwwroot\" />
+	</ItemGroup>
+
 </Project>
