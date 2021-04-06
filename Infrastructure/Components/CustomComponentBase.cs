@@ -142,7 +142,7 @@ namespace Gizmo.Web.Components
         /// <remarks>
         /// <b>The method will not throw any exceptions in case of failure.</b>
         /// </remarks>
-        public void DispatchStateHasChnaged()
+        public void DispatchStateHasChanged()
         {
             InvokeAsync(() =>
             {
@@ -196,6 +196,17 @@ namespace Gizmo.Web.Components
         protected ValueTask<T> JsInvokeAsync<T>(string identifier, params object[] args)
         {
             return JsRuntime.InvokeAsync<T>(identifier, args);
+        }
+
+        /// <summary>
+        /// Invokes Javascript function without return parameters.
+        /// </summary>
+        /// <param name="identifier">Function identifier.</param>
+        /// <param name="args">Function arguments.</param>
+        /// <returns>Associated task.</returns>
+        protected ValueTask InvokeVoidAsync(string identifier,params object[] args)
+        {
+            return JsRuntime.InvokeVoidAsync(identifier, args);
         }
 
         #endregion

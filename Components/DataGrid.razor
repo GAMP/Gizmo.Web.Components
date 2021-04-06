@@ -1,0 +1,57 @@
+﻿@namespace Gizmo.Web.Components
+@inherits Gizmo.Web.Components.CustomDOMComponentBase
+@typeparam TItemType
+@*propogate this component as parent*@
+<CascadingValue Value="this" Name="@nameof(DataGridColumn<TItemType>.Parent)" IsFixed="true">
+
+    <table class="@ClassMapper.AsString()"
+           style="@StyleMapper.AsString()"
+           id="@Id"
+           @ref="@Ref"
+           @attributes="@Attributes">
+
+        @*table head*@
+        <thead>
+            @*header*@
+            <tr>
+                @ChildContent
+            </tr>
+        </thead>
+
+        @*table body*@
+        <tbody>
+            @if (@IsVirtualized)
+            {
+                @*virtualization enabled*@
+                <Virtualize TItem="@TItemType"
+                            Context="dataItem"
+                            Items="@ItemSource"
+                            ItemSize="@ItemSize"
+                            OverscanCount="@OverscanCount"
+                            ItemsProvider="@ItemsProvider">
+                    <ItemContent>
+                        <tr @key="dataItem.GetHashCode()" @onclick="@(async (e) => await OnDataRowMouseEvent(e,dataItem))">
+                            @foreach (var dataGridComumn in Columns)
+                            {
+                                if (dataGridComumn.CellTemplate != null)
+                                {
+                                    <td @onclick="@(async (e) => await OnDataCellMouseEvent(e,dataItem, dataGridComumn))">@dataGridComumn.CellTemplate(dataItem)</td>
+                                }
+                            }
+                        </tr>
+                    </ItemContent>
+                    <Placeholder>
+                        @PlaceHolderTemplate
+                    </Placeholder>
+                </Virtualize>
+            }
+            else
+            {
+                @*virtualization disabled*@
+
+            }
+        </tbody>
+
+    </table>
+
+</CascadingValue>

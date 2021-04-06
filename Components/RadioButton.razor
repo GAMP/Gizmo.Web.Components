@@ -1,0 +1,11 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<input type="radio" checked="@IsChecked"
+       disabled="@IsDisabled"
+       name="@GroupName"
+       class="@ClassMapper.AsString()"
+       style="@StyleMapper.AsString()" 
+       id="@Id"
+       @ref="Ref" />
+<label for="@Id"></label>

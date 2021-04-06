@@ -4,14 +4,35 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class Button: CustomDOMComponentBase
+    public partial class Button : CustomDOMComponentBase
     {
+        #region CONSTRUCTOR
         public Button()
         {
             ClassMapper
-                .Add("custom-button")
-                .If("style-disabled",()=> IsDisabled);
+                .Add("button")
+                .If("disabled", () => IsDisabled);
         }
+        #endregion
+
+        #region PRIVATE FIELDS
+        #endregion
+
+        #region PROPERTIES
+
+        #region PUBLIC
+
+        /// <summary>
+        /// Gets or sets if button is secondary.
+        /// </summary>
+        [Parameter()]
+        public bool IsSecondary { get; set; }
+
+        /// <summary>
+        /// Gets or sets button size.
+        /// </summary>
+        [Parameter()]
+        public ButtonSize Size { get; set; }
 
         /// <summary>
         /// Gets or sets element name.
@@ -37,6 +58,9 @@ namespace Gizmo.Web.Components
         [Parameter()]
         public string Value { get; set; }
 
+        /// <summary>
+        /// Gets or sets label.
+        /// </summary>
         [Parameter()]
         public string Label { get; set; }
 
@@ -46,16 +70,15 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        #endregion
+
+        #endregion
+
         #region DOM EVENT HANDLERS
 
-        protected async Task OnClickHandler(MouseEventArgs args)
+        protected Task OnClickHandler(MouseEventArgs args)
         {
-            IsDisabled = true;
-
-            await Task.Delay(1000);
-            IsDisabled = false;
-
-            
+            return Task.CompletedTask;
         }
 
         #endregion

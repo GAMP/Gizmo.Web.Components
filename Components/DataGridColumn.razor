@@ -1,0 +1,11 @@
+﻿@namespace Gizmo.Web.Components
+@inherits Gizmo.Web.Components.CustomDOMComponentBase
+@typeparam TItemType
+
+<th class="@ClassMapper.AsString()"
+    style="@StyleMapper.AsString()"
+    @ref="Ref"
+    @attributes="Attributes"
+    @onclick="(e=> OnHeaderMouseEvent(e))">
+    @HeaderTemplate
+</th>

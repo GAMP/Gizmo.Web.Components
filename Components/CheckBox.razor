@@ -1,0 +1,13 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<input class="@ClassMapper.AsString()"
+       type="checkbox"
+       checked="@IsChecked"
+       disabled="@IsDisabled"
+       @ref="@Ref"
+       @onchange="@OnChange"
+       id="@Id"
+       @onclick="@OnClickHandler">
+<label for="@Id">click</label>
+
