@@ -1,0 +1,16 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<span class="@ClassMapper.AsString()"
+      style="font-size: @Size; @StyleMapper.AsString()">
+    @if (BackgroundStyle == IconBackgroundStyles.Circle)
+    {
+        <i class="fas fa-circle fa-stack-2x" style="color: @BackgroundColor; font-size: 1em;"></i>
+    }
+    else if (BackgroundStyle == IconBackgroundStyles.Square)
+    {
+         <i class="fas fa-square fa-stack-2x" style="color: @BackgroundColor; font-size: 1em;"></i>
+    }
+
+    <i class="@Source @IconClassMapper.AsString()" style="color: @Color;"></i>
+</span>
