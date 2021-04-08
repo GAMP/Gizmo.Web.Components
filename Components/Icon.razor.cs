@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using System.Threading.Tasks;
+﻿using Gizmo.Web.Components.Extensions;
+using Microsoft.AspNetCore.Components;
+using System.ComponentModel;
 
 namespace Gizmo.Web.Components
 {
@@ -13,35 +13,29 @@ namespace Gizmo.Web.Components
             Square
         }
 
+        public enum IconSizes
+        {
+            [Description("xs")]
+            Small,
+
+            [Description("1x")]
+            Medium,
+
+            [Description("2x")]
+            Large
+        }
+
         #region CONSTRUCTOR
         public Icon()
         {
-            ClassMapper
-                .If("fa-stack", () => BackgroundStyle != IconBackgroundStyles.None);
-
-            IconClassMapper
-                .If("fa-stack-1x", () => BackgroundStyle != IconBackgroundStyles.None);
         }
         #endregion
-
-        private ClassMapper _iconClassMapper;
-
-        protected ClassMapper IconClassMapper
-        {
-            get
-            {
-                if (_iconClassMapper == null)
-                    _iconClassMapper = new ClassMapper();
-
-                return _iconClassMapper;
-            }
-        }
 
         [Parameter]
         public string Source { get; set; }
 
         [Parameter]
-        public string Size { get; set; }
+        public IconSizes Size { get; set; } = IconSizes.Medium;
 
         [Parameter]
         public string Color { get; set; }
@@ -51,5 +45,12 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string BackgroundColor { get; set; }
+
+        protected string ClassName => new ClassMapper()
+                 .Add($"fa-{Size.ToDescriptionString()}")
+                 .If("fa-stack", () => BackgroundStyle != IconBackgroundStyles.None).AsString();
+
+        protected string IconClassName => new ClassMapper()
+                 .If("fa-stack-1x", () => BackgroundStyle != IconBackgroundStyles.None).AsString();
     }
 }
