@@ -1,0 +1,29 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@ClassName"
+     style="@StyleMapper.AsString()"
+     @onclick="OnClickHandler"
+     @onclick:stopPropagation=" true">
+    @ChildContent
+
+    @if (NestedList != null)
+    {
+        @if (Expanded)
+        {
+            <Icon Source="fas fa-chevron-up" />
+        }
+        else
+        {
+            <Icon Source="fas fa-chevron-down" />
+        }
+    }
+</div>
+@if (NestedList != null)
+{
+    <Collapse Expanded="@Expanded">
+        <List Class="g-nested-list" Disabled="@Disabled">
+            @NestedList
+        </List>
+    </Collapse>
+}

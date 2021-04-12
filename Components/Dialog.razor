@@ -1,0 +1,8 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@ClassName"
+     style="@StyleMapper.AsString()"
+     @onclick="OnClickHandler">
+    @ChildContent
+</div>

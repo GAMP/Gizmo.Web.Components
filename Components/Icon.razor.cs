@@ -48,9 +48,11 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add($"fa-{Size.ToDescriptionString()}")
-                 .If("fa-stack", () => BackgroundStyle != IconBackgroundStyles.None).AsString();
+                 .If("fa-stack", () => BackgroundStyle != IconBackgroundStyles.None)
+                 .AsString();
 
         protected string IconClassName => new ClassMapper()
-                 .If("fa-stack-1x", () => BackgroundStyle != IconBackgroundStyles.None).AsString();
+                 .If("fa-stack-1x", () => BackgroundStyle != IconBackgroundStyles.None)
+                 .AsString();
     }
 }
