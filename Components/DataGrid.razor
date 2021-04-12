@@ -30,12 +30,14 @@
                             OverscanCount="@OverscanCount"
                             ItemsProvider="@ItemsProvider">
                     <ItemContent>
-                        <tr @key="dataItem.GetHashCode()" @onclick="@(async (e) => await OnDataRowMouseEvent(e,dataItem))">
+                        <tr @key="dataItem.GetHashCode()"
+                            
+                            @onclick="@(async (e) => await OnDataRowMouseEvent(e, dataItem))">
                             @foreach (var dataGridComumn in Columns)
                             {
                                 if (dataGridComumn.CellTemplate != null)
                                 {
-                                    <td @onclick="@(async (e) => await OnDataCellMouseEvent(e,dataItem, dataGridComumn))">@dataGridComumn.CellTemplate(dataItem)</td>
+                                    <td @onclick="@(async (e) => await OnDataCellMouseEvent(e, dataItem, dataGridComumn))">@dataGridComumn.CellTemplate(dataItem)</td>
                                 }
                             }
                         </tr>

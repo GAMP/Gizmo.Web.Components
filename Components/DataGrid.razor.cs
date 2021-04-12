@@ -16,7 +16,7 @@ namespace Gizmo.Web.Components
         #region CONSTRUCTOR
         public DataGrid()
         {
-            ClassMapper.Add("data-grid");
+            ClassMapper.Add("table");
         }
         #endregion
 
