@@ -39,7 +39,7 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets parent grid.
         /// </summary>
-        [CascadingParameter(Name = nameof(Parent))]
+        [CascadingParameter(Name = "Parent")]
         public DataGrid<TItemType> Parent
         {
             get; set;

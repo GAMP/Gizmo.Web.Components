@@ -22,7 +22,7 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
-        private readonly HashSet<DataGridColumn<TItemType>> _columns = new (Enumerable.Empty<DataGridColumn<TItemType>>());
+        private readonly HashSet<DataGridColumn<TItemType>> _columns = new(Enumerable.Empty<DataGridColumn<TItemType>>());
         private ICollection<TItemType> _selectedItems = new HashSet<TItemType>();
 
         #endregion
@@ -136,6 +136,12 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter()]
+        public RenderFragment DetailTemplate
+        {
+            get; set;
+        }
+
+        [Parameter()]
         public RenderFragment ChildContent
         {
             get; set;
@@ -174,9 +180,11 @@ namespace Gizmo.Web.Components
             return ValueTask.CompletedTask;
         }
 
-        internal async ValueTask OnDataRowMouseEvent(MouseEventArgs args, TItemType dataItem)
+        internal async Task SetSelectedItem(DataGridRow<TItemType> item)
         {
             //called once data row item is clicked
+
+            TItemType dataItem = item.Item;
 
             //no matter of selection the clicked item is always the selected one
             SelectedItem = dataItem;
@@ -185,38 +193,73 @@ namespace Gizmo.Web.Components
 
             if (SelectionMode == SelectionMode.Single)
             {
-                SelectedItems?.Clear();
-                if (!wasSelected && SelectedItems?.Contains(dataItem) == false)
+                //In single selection mode.
+
+                //If current row is already selected.
+                if (wasSelected)
                 {
+                    //Clear selected items list and set selected property to false.
+                    SelectedItems?.Clear();
+                    item.SetSelected(false);
+                }
+                else
+                {
+                    //Clear selected items list, add only this item in the list and set selected property to true.
+                    SelectedItems?.Clear();
                     SelectedItems?.Add(dataItem);
-                }             
+                    item.SetSelected(true);
+
+                    //Set all other items selected property to false.
+                    foreach (var row in _rows.Where(a => a.Value != item).ToArray())
+                    {
+                        row.Value.SetSelected(false);
+                    }
+                }
             }
             else if (SelectionMode == SelectionMode.Extended)
             {
-                if (SelectedItems?.Contains(dataItem) == false)
-                {
-                    SelectedItems.Add(dataItem);
-                }
-                else if(SelectedItems?.Contains(dataItem) == true)
-                {
-                    SelectedItems.Remove(dataItem);                   
-                }
-            }         
+                //In extended selection mode.
 
-            if(SelectedItems?.Count == 0)
+                //If current row is already selected.
+                if (wasSelected)
+                {
+                    //Remove current row from selected items list and set selected property to false.
+                    SelectedItems.Remove(dataItem);
+                    item.SetSelected(false);
+                }
+                else
+                {
+                    //Add current row in selected items list and set selected property to true.
+                    SelectedItems?.Add(dataItem);
+                    item.SetSelected(true);
+                }
+            }
+
+            if (SelectedItems?.Count == 0)
             {
                 SelectedItem = default;
             }
-            
+
             await SelectedItemChanged.InvokeAsync(dataItem);
             await SelectedItemsChanged.InvokeAsync();
         }
 
-        internal ValueTask OnDataCellMouseEvent(MouseEventArgs args, TItemType dataItem,DataGridColumn<TItemType> column)
-        {
-            //called once cell data item is clicked
+        internal Dictionary<TItemType, DataGridRow<TItemType>> _rows { get; set; } = new Dictionary<TItemType, DataGridRow<TItemType>>();
 
-            return ValueTask.CompletedTask;
+        internal void Register(DataGridRow<TItemType> row, TItemType item)
+        {
+            if (item == null)
+                return;
+
+            _rows[item] = row;
+        }
+
+        internal void Unregister(DataGridRow<TItemType> row, TItemType item)
+        {
+            if (item == null)
+                return;
+
+            _rows.Remove(item);
         }
 
         #endregion

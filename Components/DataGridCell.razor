@@ -1,0 +1,27 @@
+﻿@namespace Gizmo.Web.Components
+@inherits Gizmo.Web.Components.CustomDOMComponentBase
+
+@typeparam TItemType
+
+@*<td @onclick="@(async (e) => await OnDataCellMouseEvent(e, dataItem, dataGridComumn))">@dataGridComumn.CellTemplate(dataItem)</td>*@
+
+<td @onclick="@(async (e) => await OnDataCellMouseEvent(e, Item, Column))">
+    @Column.CellTemplate(Item)
+</td>
+
+@code {
+
+    [Parameter]
+    public DataGridColumn<TItemType> Column { get; set; }
+
+    [Parameter]
+    public TItemType Item { get; set; }
+
+    internal ValueTask OnDataCellMouseEvent(MouseEventArgs args, TItemType item, DataGridColumn<TItemType> column)
+    {
+        //called once cell data item is clicked
+
+        return ValueTask.CompletedTask;
+    }
+
+}

@@ -1,0 +1,27 @@
+﻿@namespace Gizmo.Web.Components
+@inherits Gizmo.Web.Components.CustomDOMComponentBase
+
+@typeparam TItemType
+
+<tr class="@ClassName"
+    @key="Item.GetHashCode()"
+    @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))">
+    @foreach (var column in Columns)
+    {
+        if (column.CellTemplate != null)
+        {
+            <DataGridCell TItemType="@TItemType" Column="column" Item="@Item" />
+        }
+    }
+</tr>
+
+@if (IsDropdown)
+{
+    <tr class="table__details">
+        <td colspan="@(Columns.Count())">
+            <div class="table__details-content">
+                @Parent.DetailTemplate
+            </div>
+        </td>
+    </tr>
+}

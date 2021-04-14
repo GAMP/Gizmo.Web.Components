@@ -2,7 +2,7 @@
 @inherits Gizmo.Web.Components.CustomDOMComponentBase
 @typeparam TItemType
 @*propogate this component as parent*@
-<CascadingValue Value="this" Name="@nameof(DataGridColumn<TItemType>.Parent)" IsFixed="true">
+<CascadingValue Value="this" Name="Parent" IsFixed="true">
 
     <table class="@ClassMapper.AsString()"
            style="@StyleMapper.AsString()"
@@ -30,17 +30,7 @@
                             OverscanCount="@OverscanCount"
                             ItemsProvider="@ItemsProvider">
                     <ItemContent>
-                        <tr @key="dataItem.GetHashCode()"
-                            
-                            @onclick="@(async (e) => await OnDataRowMouseEvent(e, dataItem))">
-                            @foreach (var dataGridComumn in Columns)
-                            {
-                                if (dataGridComumn.CellTemplate != null)
-                                {
-                                    <td @onclick="@(async (e) => await OnDataCellMouseEvent(e, dataItem, dataGridComumn))">@dataGridComumn.CellTemplate(dataItem)</td>
-                                }
-                            }
-                        </tr>
+                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                     </ItemContent>
                     <Placeholder>
                         @PlaceHolderTemplate
@@ -50,7 +40,13 @@
             else
             {
                 @*virtualization disabled*@
-
+                @if (ItemSource != null)
+                {
+                    @foreach (var dataItem in ItemSource)
+                    {
+                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                    }
+                }
             }
         </tbody>
 
