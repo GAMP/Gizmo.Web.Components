@@ -33,7 +33,7 @@ namespace Gizmo.Web.Components
             }
             else
             {
-                await Parent?.SetSelectedItem(this);
+                Parent?.SetSelectedItem(this);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Gizmo.Web.Components
         {
             if (Parent != null)
             {
-                Parent.Register(this, Item);
+                Parent.AddRow(this, Item);
             }
 
             return base.OnInitializedAsync();
@@ -64,14 +64,14 @@ namespace Gizmo.Web.Components
 
         public override void Dispose()
         {
-            if (Parent != null)
+            try
             {
-                try
+                if (Parent != null)
                 {
-                    Parent.Unregister(this, Item);
+                    Parent.RemoveRow(this, Item);
                 }
-                catch (Exception) { }
             }
+            catch (Exception) { }
 
             base.Dispose();
         }

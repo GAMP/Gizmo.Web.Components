@@ -4,7 +4,7 @@ using System;
 
 namespace Gizmo.Web.Components
 {
-    public partial class ListItem : CustomDOMComponentBase, IDisposable
+    public partial class ListItem : CustomDOMComponentBase
     {
         #region CONSTRUCTOR
         public ListItem()

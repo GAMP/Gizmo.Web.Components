@@ -24,6 +24,7 @@ namespace Gizmo.Web.Components
 
         private readonly HashSet<DataGridColumn<TItemType>> _columns = new(Enumerable.Empty<DataGridColumn<TItemType>>());
         private ICollection<TItemType> _selectedItems = new HashSet<TItemType>();
+        internal Dictionary<TItemType, DataGridRow<TItemType>> _rows = new Dictionary<TItemType, DataGridRow<TItemType>>();
 
         #endregion
 
@@ -175,6 +176,25 @@ namespace Gizmo.Web.Components
             _columns.Remove(column);
         }
 
+        internal void AddRow(DataGridRow<TItemType> row, TItemType item)
+        {
+            if (item == null)
+                return;
+
+            _rows[item] = row;
+
+            if (SelectedItems.Contains(item))
+                _rows[item].SetSelected(true);
+        }
+
+        internal void RemoveRow(DataGridRow<TItemType> row, TItemType item)
+        {
+            if (item == null)
+                return;
+
+            _rows.Remove(item);
+        }
+
         internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
         {
             return ValueTask.CompletedTask;
@@ -242,24 +262,6 @@ namespace Gizmo.Web.Components
 
             await SelectedItemChanged.InvokeAsync(dataItem);
             await SelectedItemsChanged.InvokeAsync();
-        }
-
-        internal Dictionary<TItemType, DataGridRow<TItemType>> _rows { get; set; } = new Dictionary<TItemType, DataGridRow<TItemType>>();
-
-        internal void Register(DataGridRow<TItemType> row, TItemType item)
-        {
-            if (item == null)
-                return;
-
-            _rows[item] = row;
-        }
-
-        internal void Unregister(DataGridRow<TItemType> row, TItemType item)
-        {
-            if (item == null)
-                return;
-
-            _rows.Remove(item);
         }
 
         #endregion
