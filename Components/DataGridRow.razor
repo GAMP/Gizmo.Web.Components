@@ -5,7 +5,16 @@
 
 <tr class="@ClassName"
     @key="Item.GetHashCode()"
-    @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))">
+    @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))"
+    @onclick:stopPropagation="true">
+
+    @if (IsSelectable)
+    {
+        <td>
+            <CheckBox IsCheckedChanged="@IsCheckedChangedHandler" />
+        </td>
+    }
+
     @foreach (var column in Columns)
     {
         if (column.CellTemplate != null)

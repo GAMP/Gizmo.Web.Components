@@ -6,8 +6,16 @@
        checked="@IsChecked"
        disabled="@IsDisabled"
        @ref="@Ref"
-       @onchange="@OnChange"
+       @onchange="OnChangeHandler"
        id="@Id"
-       @onclick="@OnClickHandler">
-<label for="@Id">click</label>
+       @attributes="Attributes"
+       @onclick="OnClickHandler"
+       @onclick:preventDefault="@PreventDefault"
+       />
+<label for="@Id">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        @Label
+    }
+</label>
 

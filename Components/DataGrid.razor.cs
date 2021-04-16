@@ -26,11 +26,17 @@ namespace Gizmo.Web.Components
         private ICollection<TItemType> _selectedItems = new HashSet<TItemType>();
         internal Dictionary<TItemType, DataGridRow<TItemType>> _rows = new Dictionary<TItemType, DataGridRow<TItemType>>();
 
+        private bool _hasSelectedItems;
+        private bool _hasSelectedAllItems;
+
         #endregion
 
         #region PROPERTIES
 
         #region PUBLIC
+
+        [Parameter]
+        public bool IsSelectable { get; set; }
 
         /// <summary>
         /// Gets or sets if virtualization enabled.
@@ -257,8 +263,23 @@ namespace Gizmo.Web.Components
 
             if (SelectedItems?.Count == 0)
             {
+                _hasSelectedItems = false;
                 SelectedItem = default;
             }
+            else
+            {
+                _hasSelectedItems = true;
+                if (SelectedItems?.Count == ItemSource.Count)
+                {
+                    _hasSelectedAllItems = true;
+                }
+                else
+                {
+                    _hasSelectedAllItems = false;
+                }
+            }
+
+            StateHasChanged();
 
             await SelectedItemChanged.InvokeAsync(dataItem);
             await SelectedItemsChanged.InvokeAsync();

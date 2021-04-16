@@ -11,19 +11,21 @@ namespace Gizmo.Web.Components
         {
             ClassMapper
                 .Add("checkbox")
-                .If("is-disabled", () => IsDisabled)
-                .If("indeterminate", () => IsIndeterminate);
-            
-        } 
+                .If("is-disabled", () => IsDisabled);
+        }
         #endregion
 
         #region FIELDS
-        private bool _isTriState;
         private bool _isChecked;
+        private bool _isTriState;
         private bool _isIndeterminate;
+        private bool nextIndeterminate = false;
         #endregion
 
         #region PROPERTIES
+
+        [Parameter]
+        public string Label { get; set; }
 
         /// <summary>
         /// Gets or sets if checkbox is checked.
@@ -35,10 +37,16 @@ namespace Gizmo.Web.Components
             set { _isChecked = value; }
         }
 
+        [Parameter]
+        public EventCallback<bool> IsCheckedChanged
+        {
+            get; set;
+        }
+
         [Parameter()]
         public bool IsDisabled
         {
-            get;set;
+            get; set;
         }
 
         /// <summary>
@@ -49,25 +57,36 @@ namespace Gizmo.Web.Components
         {
             get { return _isTriState; }
             set { _isTriState = value; }
-        } 
+        }
 
         [Parameter()]
         public bool IsIndeterminate
         {
             get { return _isIndeterminate; }
-            set { _isIndeterminate = value; }
+            set
+            {
+                if (_isIndeterminate != value)
+                {
+                    _isIndeterminate = value;
+                    StateHasChanged();
+
+                    Task.Run(async () =>
+                    {
+                        await TrySetIndeterminateAsync(_isIndeterminate);
+                    });
+                }
+            }
+        }
+
+        public bool PreventDefault
+        {
+            get
+            {
+                return _isIndeterminate;
+            }
         }
 
         #endregion
-
-        /// <summary>
-        /// Checkbox state change event callback.
-        /// </summary>
-        [Parameter()]
-        public EventCallback<bool?> IsCheckedChangeCallback
-        {
-            get;set;
-        }
 
         private async Task TrySetIndeterminateAsync(bool value)
         {
@@ -82,34 +101,36 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected  Task OnChange(ChangeEventArgs args)
+        protected Task OnChangeHandler(ChangeEventArgs args)
         {
+            var value = (bool)args.Value;
+
+            if (IsChecked != value)
+            {
+                nextIndeterminate = value;
+                IsChecked = value;
+                return IsCheckedChanged.InvokeAsync(IsChecked);
+            }
+
             return Task.CompletedTask;
         }
 
-        protected async Task OnClickHandler(MouseEventArgs args)
+        protected void OnClickHandler(MouseEventArgs args)
         {
-            if (!IsRendered)
-                return;
-
-            await Task.Delay(1000);
-            IsChecked = false;
-            StateHasChanged();
-            //bool? newCheckedState = !IsChecked;
-
-            //if(IsTriState)
-            //{
-            //    if (IsIndeterminate)
-            //        newCheckedState = false;
-            //    if (IsChecked)
-            //        IsIndeterminate = true;
-
-            //}
-
-            //if (CheckStateChangeCallback.HasDelegate)
-            //    await CheckStateChangeCallback.InvokeAsync(newCheckedState);
-
+            if (IsTriState)
+            {
+                if (IsIndeterminate)
+                {
+                    IsIndeterminate = false;
+                }
+                else
+                {
+                    if (nextIndeterminate)
+                    {
+                        IsIndeterminate = true;
+                    }
+                }
+            }
         }
-
     }
 }

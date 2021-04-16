@@ -14,6 +14,12 @@
         <thead>
             @*header*@
             <tr>
+                @if (IsSelectable)
+                {
+                    <td>
+                        <CheckBox IsDisabled="true" IsChecked="@(_hasSelectedAllItems)" IsTriState="true" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" />
+                    </td>
+                }
                 @ChildContent
             </tr>
         </thead>
@@ -27,10 +33,9 @@
                             Context="dataItem"
                             Items="@ItemSource"
                             ItemSize="@ItemSize"
-                            OverscanCount="@OverscanCount"
-                            ItemsProvider="@ItemsProvider">
+                            OverscanCount="@OverscanCount">
                     <ItemContent>
-                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                     </ItemContent>
                     <Placeholder>
                         @PlaceHolderTemplate

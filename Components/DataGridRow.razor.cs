@@ -20,12 +20,32 @@ namespace Gizmo.Web.Components
         public TItemType Item { get; set; }
 
         [Parameter]
+        public bool IsSelectable { get; set; }
+
+        [Parameter]
         public bool IsDropdown { get; set; }
 
         [Parameter]
         public bool Open { get; set; }
 
-        internal async ValueTask OnDataRowMouseEvent(MouseEventArgs args, TItemType item)
+        public bool Selected
+        {
+            get
+            {
+                return _selected;
+            }
+            set
+            {
+                _selected = value;
+            }
+        }
+
+        internal async Task IsCheckedChangedHandler(bool value)
+        {
+            await Parent?.SetSelectedItem(this);
+        }
+
+        internal async Task OnDataRowMouseEvent(MouseEventArgs args, TItemType item)
         {
             if (IsDropdown)
             {
@@ -33,22 +53,28 @@ namespace Gizmo.Web.Components
             }
             else
             {
-                Parent?.SetSelectedItem(this);
+                if (IsSelectable)
+                {
+                    //await Parent?.SetSelectedItem(this);
+                }
             }
         }
 
         internal void SetSelected(bool selected)
         {
-            if (_selected == selected)
+            if (!IsSelectable)
                 return;
 
-            _selected = selected;
+            if (Selected == selected)
+                return;
+
+            Selected = selected;
 
             StateHasChanged();
         }
 
         protected string ClassName => new ClassMapper()
-             .If("is-selected", () => _selected)
+             .If("is-selected", () => Selected)
              .If("table__row-dropdown", () => IsDropdown)
              .If("is-opened", () => Open).AsString();
 
