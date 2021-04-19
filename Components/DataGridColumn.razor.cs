@@ -95,7 +95,7 @@ namespace Gizmo.Web.Components
 
         #region PRIVATE
 
-        private ValueTask OnHeaderMouseEvent(MouseEventArgs args)
+        protected ValueTask OnHeaderMouseEvent(MouseEventArgs args)
         {
             if (Parent == null)
                 return ValueTask.CompletedTask;

@@ -11,7 +11,7 @@
     @if (IsSelectable)
     {
         <td>
-            <CheckBox IsCheckedChanged="@IsCheckedChangedHandler" />
+            <CheckBox IsChecked="@_selected" IsCheckedChanged="@IsCheckedChangedHandler" />
         </td>
     }
 

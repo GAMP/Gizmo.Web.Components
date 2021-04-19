@@ -12,7 +12,7 @@ namespace Gizmo.Web.Components
         [Parameter]
         public TItemType Item { get; set; }
 
-        internal ValueTask OnDataCellMouseEvent(MouseEventArgs args, TItemType item, DataGridColumn<TItemType> column)
+        protected ValueTask OnDataCellMouseEvent(MouseEventArgs args, TItemType item, DataGridColumn<TItemType> column)
         {
             //called once cell data item is clicked
 

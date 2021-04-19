@@ -28,6 +28,7 @@ namespace Gizmo.Web.Components
 
         private bool _hasSelectedItems;
         private bool _hasSelectedAllItems;
+        private int _providerTotalItems = 0;
 
         #endregion
 
@@ -75,10 +76,7 @@ namespace Gizmo.Web.Components
         /// Only applicable if virtualization is enabled.
         /// </remarks>
         [Parameter()]
-        public int OverscanCount
-        {
-            get; set;
-        }
+        public int OverscanCount { get; set; } = 3;
 
         /// <summary>
         /// Gets or sets items provider delegate.
@@ -170,6 +168,44 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        protected override async Task OnFirstAfterRenderAsync()
+        {
+            if (IsVirtualized && ItemsProvider != null)
+            {
+                var itemsProviderResult = await ItemsProvider.Invoke(new ItemsProviderRequest());
+                _providerTotalItems = itemsProviderResult.TotalItemCount;
+            }
+        }
+
+        protected void IsCheckedChangedHandler(bool value)
+        {
+            if (_hasSelectedAllItems)
+            {
+                SelectedItems?.Clear();
+
+                //Set all items selected property to false.
+                foreach (var row in _rows.ToArray())
+                {
+                    row.Value.SetSelected(false);
+                }
+
+                _hasSelectedItems = false;
+                _hasSelectedAllItems = false;
+            }
+            else
+            {
+                //Set all items selected property to true.
+                foreach (var row in _rows.ToArray())
+                {
+                    SelectedItems.Add(row.Key);
+                    row.Value.SetSelected(true);
+                }
+
+                _hasSelectedItems = true;
+                _hasSelectedAllItems = true;
+            }
+        }
+
         #region INTERNAL
 
         internal void AddColumn(DataGridColumn<TItemType> column)
@@ -201,12 +237,7 @@ namespace Gizmo.Web.Components
             _rows.Remove(item);
         }
 
-        internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
-        {
-            return ValueTask.CompletedTask;
-        }
-
-        internal async Task SetSelectedItem(DataGridRow<TItemType> item)
+        internal async Task SelectItem(DataGridRow<TItemType> item, bool selected)
         {
             //called once data row item is clicked
 
@@ -216,6 +247,9 @@ namespace Gizmo.Web.Components
             SelectedItem = dataItem;
 
             bool wasSelected = SelectedItems?.Contains(dataItem) == true;
+
+            if (wasSelected == selected)
+                return;
 
             if (SelectionMode == SelectionMode.Single)
             {
@@ -269,13 +303,27 @@ namespace Gizmo.Web.Components
             else
             {
                 _hasSelectedItems = true;
-                if (SelectedItems?.Count == ItemSource.Count)
+                if (ItemSource != null)
                 {
-                    _hasSelectedAllItems = true;
+                    if (SelectedItems?.Count == ItemSource.Count)
+                    {
+                        _hasSelectedAllItems = true;
+                    }
+                    else
+                    {
+                        _hasSelectedAllItems = false;
+                    }
                 }
                 else
                 {
-                    _hasSelectedAllItems = false;
+                    if (SelectedItems?.Count == _providerTotalItems)
+                    {
+                        _hasSelectedAllItems = true;
+                    }
+                    else
+                    {
+                        _hasSelectedAllItems = false;
+                    }
                 }
             }
 
@@ -283,6 +331,11 @@ namespace Gizmo.Web.Components
 
             await SelectedItemChanged.InvokeAsync(dataItem);
             await SelectedItemsChanged.InvokeAsync();
+        }
+
+        internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
+        {
+            return ValueTask.CompletedTask;
         }
 
         #endregion

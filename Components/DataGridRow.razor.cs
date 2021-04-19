@@ -28,24 +28,22 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool Open { get; set; }
 
-        public bool Selected
+        protected string ClassName => new ClassMapper()
+             .If("is-selected", () => _selected)
+             .If("table__row-dropdown", () => IsDropdown)
+             .If("is-opened", () => Open).AsString();
+
+        protected override Task OnInitializedAsync()
         {
-            get
+            if (Parent != null)
             {
-                return _selected;
+                Parent.AddRow(this, Item);
             }
-            set
-            {
-                _selected = value;
-            }
+
+            return base.OnInitializedAsync();
         }
 
-        internal async Task IsCheckedChangedHandler(bool value)
-        {
-            await Parent?.SetSelectedItem(this);
-        }
-
-        internal async Task OnDataRowMouseEvent(MouseEventArgs args, TItemType item)
+        protected async Task OnDataRowMouseEvent(MouseEventArgs args, TItemType item)
         {
             if (IsDropdown)
             {
@@ -60,32 +58,22 @@ namespace Gizmo.Web.Components
             }
         }
 
+        protected async Task IsCheckedChangedHandler(bool value)
+        {
+            await Parent?.SelectItem(this, value);
+        }
+
         internal void SetSelected(bool selected)
         {
             if (!IsSelectable)
                 return;
 
-            if (Selected == selected)
+            if (_selected == selected)
                 return;
 
-            Selected = selected;
+            _selected = selected;
 
             StateHasChanged();
-        }
-
-        protected string ClassName => new ClassMapper()
-             .If("is-selected", () => Selected)
-             .If("table__row-dropdown", () => IsDropdown)
-             .If("is-opened", () => Open).AsString();
-
-        protected override Task OnInitializedAsync()
-        {
-            if (Parent != null)
-            {
-                Parent.AddRow(this, Item);
-            }
-
-            return base.OnInitializedAsync();
         }
 
         public override void Dispose()

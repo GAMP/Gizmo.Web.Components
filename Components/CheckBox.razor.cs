@@ -19,7 +19,7 @@ namespace Gizmo.Web.Components
         private bool _isChecked;
         private bool _isTriState;
         private bool _isIndeterminate;
-        private bool nextIndeterminate = false;
+        private bool _nextIndeterminate = false;
         #endregion
 
         #region PROPERTIES
@@ -107,7 +107,7 @@ namespace Gizmo.Web.Components
 
             if (IsChecked != value)
             {
-                nextIndeterminate = value;
+                _nextIndeterminate = value;
                 IsChecked = value;
                 return IsCheckedChanged.InvokeAsync(IsChecked);
             }
@@ -125,7 +125,7 @@ namespace Gizmo.Web.Components
                 }
                 else
                 {
-                    if (nextIndeterminate)
+                    if (_nextIndeterminate)
                     {
                         IsIndeterminate = true;
                     }

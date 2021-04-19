@@ -17,7 +17,7 @@
                 @if (IsSelectable)
                 {
                     <td>
-                        <CheckBox IsDisabled="true" IsChecked="@(_hasSelectedAllItems)" IsTriState="true" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" />
+                        <CheckBox IsChecked="@(_hasSelectedAllItems)" IsTriState="@(_hasSelectedItems && !_hasSelectedAllItems)" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" IsCheckedChanged="@IsCheckedChangedHandler" />
                     </td>
                 }
                 @ChildContent
@@ -33,7 +33,8 @@
                             Context="dataItem"
                             Items="@ItemSource"
                             ItemSize="@ItemSize"
-                            OverscanCount="@OverscanCount">
+                            OverscanCount="@OverscanCount"
+                            ItemsProvider="@ItemsProvider">
                     <ItemContent>
                         <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                     </ItemContent>
