@@ -238,6 +238,19 @@ namespace Gizmo.Web.Components
                 _rows[item].SetSelected(true);
         }
 
+        internal void UpdateRow(DataGridRow<TItemType> row, TItemType item)
+        {
+            if (item == null)
+                return;
+
+            _rows[item] = row;
+
+            if (SelectedItems.Contains(item))
+                _rows[item].SetSelected(true);
+            else
+                _rows[item].SetSelected(false);
+        }
+
         internal void RemoveRow(DataGridRow<TItemType> row, TItemType item)
         {
             if (item == null)

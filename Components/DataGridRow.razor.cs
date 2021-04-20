@@ -10,6 +10,8 @@ namespace Gizmo.Web.Components
     {
         private bool _selected;
 
+        private TItemType _item;
+
         [CascadingParameter(Name = "Parent")]
         protected DataGrid<TItemType> Parent { get; set; }
 
@@ -17,7 +19,22 @@ namespace Gizmo.Web.Components
         public IEnumerable<DataGridColumn<TItemType>> Columns { get; set; }
 
         [Parameter]
-        public TItemType Item { get; set; }
+        public TItemType Item
+        {
+            get
+            {
+                return _item;
+            }
+            set
+            {
+                _item = value;
+
+                if (Parent != null)
+                {
+                    Parent.UpdateRow(this, _item);
+                }
+            }
+        }
 
         [Parameter]
         public bool IsSelectable { get; set; }
