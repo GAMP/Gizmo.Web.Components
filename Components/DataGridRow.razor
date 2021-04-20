@@ -3,7 +3,7 @@
 
 @typeparam TItemType
 
-<tr class="@ClassName"
+<tr class="@Class @ClassName"
     @key="Item.GetHashCode()"
     @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))"
     @onclick:stopPropagation="true"

@@ -50,16 +50,6 @@ namespace Gizmo.Web.Components
              .If("table__row-dropdown", () => IsDropdown)
              .If("is-opened", () => Open).AsString();
 
-        private Task OnMouseOver(MouseEventArgs args)
-        {
-            return Parent.HighlightItem(this, true);
-        }
-
-        private Task OnMouseOut(MouseEventArgs args)
-        {
-            return Parent.HighlightItem(this, false);
-        }
-
         protected override Task OnInitializedAsync()
         {
             if (Parent != null)

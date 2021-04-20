@@ -37,7 +37,7 @@
                                 OverscanCount="@OverscanCount"
                                 ItemsProvider="@ItemsProvider">
                         <ItemContent>
-                            <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                            <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                         </ItemContent>
                         <Placeholder>
                             @PlaceHolderTemplate
@@ -52,7 +52,7 @@
                                 OverscanCount="@OverscanCount"
                                 Items="@ItemSource">
                         <ItemContent>
-                            <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                            <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                         </ItemContent>
                         <Placeholder>
                             @PlaceHolderTemplate
@@ -67,7 +67,7 @@
                 {
                     @foreach (var dataItem in ItemSource)
                     {
-                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                        <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                     }
                 }
             }

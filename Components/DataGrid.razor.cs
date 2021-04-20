@@ -124,10 +124,7 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public TItemType HighlightedItem { get; set; }
-
-        [Parameter]
-        public EventCallback<TItemType> HighlightedItemChanged { get; set; }
+        public string RowClass { get; set; }
 
         /// <summary>
         /// Gets or sets selected items.
@@ -353,23 +350,6 @@ namespace Gizmo.Web.Components
 
             await SelectedItemChanged.InvokeAsync(dataItem);
             await SelectedItemsChanged.InvokeAsync();
-        }
-
-        internal async Task HighlightItem(DataGridRow<TItemType> item, bool highlighted)
-        {
-            if (highlighted)
-            {
-                HighlightedItem = item.Item;
-            }
-            else
-            {
-                //if (HighlightedItem == item.Item)
-                //{
-                HighlightedItem = default;
-                //}
-            }
-
-            await HighlightedItemChanged.InvokeAsync(HighlightedItem);
         }
 
         internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
