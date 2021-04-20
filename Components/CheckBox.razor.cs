@@ -60,6 +60,9 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter()]
+        public bool IsReadOnly { get; set; }
+
+        [Parameter()]
         public bool IsIndeterminate
         {
             get { return _isIndeterminate; }
@@ -82,7 +85,7 @@ namespace Gizmo.Web.Components
         {
             get
             {
-                return _isIndeterminate;
+                return IsReadOnly || _isIndeterminate;
             }
         }
 

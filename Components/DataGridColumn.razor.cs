@@ -13,8 +13,8 @@ namespace Gizmo.Web.Components
         #region CONSTRUCTOR
 
         #region PUBLIC
-        
-        public DataGridColumn():base()
+
+        public DataGridColumn() : base()
         {
             ClassMapper.Add(() => "data-grid-column");
         }

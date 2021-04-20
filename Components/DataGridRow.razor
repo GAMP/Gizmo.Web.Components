@@ -6,15 +6,12 @@
 <tr class="@ClassName"
     @key="Item.GetHashCode()"
     @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))"
-    @onclick:stopPropagation="true"
-    @onmouseover="@OnMouseOver"
-    @onmouseout="@OnMouseOut"
     >
 
     @if (IsSelectable)
     {
         <td>
-            <CheckBox IsChecked="@_selected" IsCheckedChanged="@IsCheckedChangedHandler" />
+            <CheckBox IsChecked="@_selected" IsCheckedChanged="@IsCheckedChangedHandler" IsReadOnly="@Parent.SelectOnClick" />
         </td>
     }
 
