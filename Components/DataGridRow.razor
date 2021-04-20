@@ -6,7 +6,10 @@
 <tr class="@ClassName"
     @key="Item.GetHashCode()"
     @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))"
-    @onclick:stopPropagation="true">
+    @onclick:stopPropagation="true"
+    @onmouseover="@OnMouseOver"
+    @onmouseout="@OnMouseOut"
+    >
 
     @if (IsSelectable)
     {
@@ -26,11 +29,7 @@
 
 @if (IsDropdown)
 {
-    <tr class="table__details">
-        <td colspan="@(Columns.Count())">
-            <div class="table__details-content">
-                @Parent.DetailTemplate
-            </div>
-        </td>
-    </tr>
+    <DataGridDetailTemplate Columns="@(Columns.Count())">
+        @Parent.DetailTemplate(Item)
+    </DataGridDetailTemplate>
 }
