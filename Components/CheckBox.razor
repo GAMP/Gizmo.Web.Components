@@ -11,6 +11,7 @@
        @attributes="Attributes"
        @onclick="OnClickHandler"
        @onclick:preventDefault="@PreventDefault"
+       @onclick:stopPropagation="true"
        />
 <label for="@Id">
     @if (!string.IsNullOrEmpty(Label))

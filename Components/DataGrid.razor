@@ -29,19 +29,36 @@
             @if (@IsVirtualized)
             {
                 @*virtualization enabled*@
-                <Virtualize TItem="@TItemType"
-                            Context="dataItem"
-                            Items="@ItemSource"
-                            ItemSize="@ItemSize"
-                            OverscanCount="@OverscanCount"
-                            ItemsProvider="@ItemsProvider">
-                    <ItemContent>
-                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
-                    </ItemContent>
-                    <Placeholder>
-                        @PlaceHolderTemplate
-                    </Placeholder>
-                </Virtualize>
+                @if (ItemsProvider != null)
+                {
+                    <Virtualize TItem="@TItemType"
+                                Context="dataItem"
+                                ItemSize="@ItemSize"
+                                OverscanCount="@OverscanCount"
+                                ItemsProvider="@ItemsProvider">
+                        <ItemContent>
+                            <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                        </ItemContent>
+                        <Placeholder>
+                            @PlaceHolderTemplate
+                        </Placeholder>
+                    </Virtualize>
+                }
+                else
+                {
+                    <Virtualize TItem="@TItemType"
+                                Context="dataItem"
+                                ItemSize="@ItemSize"
+                                OverscanCount="@OverscanCount"
+                                Items="@ItemSource">
+                        <ItemContent>
+                            <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                        </ItemContent>
+                        <Placeholder>
+                            @PlaceHolderTemplate
+                        </Placeholder>
+                    </Virtualize>
+                }
             }
             else
             {
@@ -50,7 +67,7 @@
                 {
                     @foreach (var dataItem in ItemSource)
                     {
-                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                        <DataGridRow TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                     }
                 }
             }
