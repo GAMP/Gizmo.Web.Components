@@ -4,7 +4,7 @@
 @*propogate this component as parent*@
 <CascadingValue Value="this" Name="Parent" IsFixed="true">
 
-    <table class="@ClassMapper.AsString()"
+    <table class="@Class @ClassMapper.AsString()"
            style="@StyleMapper.AsString()"
            id="@Id"
            @ref="@Ref"
