@@ -1,0 +1,35 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<CascadingValue Value="@this">
+
+    <div class="@Class @ClassName"
+         style="@StyleMapper.AsString()">
+
+        <Button Variant="Button.ButtonVariants.Outline"
+                @onclick="OnClickMenuHandler" Style="@Style">
+            @if (!string.IsNullOrEmpty(Label))
+            {
+                <div style="margin-right: auto">
+                    @Label
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Icon))
+            {
+                <Icon Source="@Icon" />
+            }
+        </Button>
+
+        <Popup Open="@Open" Class="@PopupClassName">
+            <List>
+                @ChildContent
+            </List>
+        </Popup>
+    </div>
+
+    <Overlay Visible="@Open"
+             @onclick="OnClickOverlayHandler">
+    </Overlay>
+
+</CascadingValue>

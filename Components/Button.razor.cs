@@ -1,17 +1,22 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Extensions;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
     public partial class Button : CustomDOMComponentBase
     {
+        public enum ButtonVariants
+        {
+            Fill,
+            Outline
+        }
+
         #region CONSTRUCTOR
         public Button()
         {
-            ClassMapper
-                .Add("button")
-                .If("disabled", () => IsDisabled);
         }
         #endregion
 
@@ -22,17 +27,14 @@ namespace Gizmo.Web.Components
 
         #region PUBLIC
 
-        /// <summary>
-        /// Gets or sets if button is secondary.
-        /// </summary>
         [Parameter()]
-        public bool IsSecondary { get; set; }
+        public ButtonVariants Variant { get; set; } = ButtonVariants.Fill;
 
         /// <summary>
         /// Gets or sets button size.
         /// </summary>
         [Parameter()]
-        public ButtonSize Size { get; set; }
+        public ButtonSize Size { get; set; } = ButtonSize.Medium;
 
         /// <summary>
         /// Gets or sets element name.
@@ -82,5 +84,13 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        protected string ClassName => new ClassMapper()
+                 .Add("button")
+                 .Add($"button--{Size.ToDescriptionString()}")
+                 .If("button--secondary", () => Variant == ButtonVariants.Outline)
+                 .If("disabled", () => IsDisabled)
+                 .AsString();
+
     }
 }

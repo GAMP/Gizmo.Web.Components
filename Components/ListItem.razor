@@ -5,6 +5,12 @@
      style="@StyleMapper.AsString()"
      @onclick="OnClickHandler"
      @onclick:stopPropagation=" true">
+    
+    @if (!string.IsNullOrEmpty(Icon))
+    {
+        <Icon Source="@Icon" />
+    }
+
     @ChildContent
 
     @if (NestedList != null)

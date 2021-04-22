@@ -1,8 +1,8 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<button class="@ClassMapper.AsString()"
-        style="@StyleMapper.AsString()"
+<button class="@Class @ClassName"
+        style="@Style @StyleMapper.AsString()"
         @onclick="@OnClickHandler"
         aria-label="@Label"
         disabled="@IsDisabled"

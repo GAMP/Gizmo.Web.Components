@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class Dialog : CustomDOMComponentBase
+    public partial class Popup : CustomDOMComponentBase
     {
         #region CONSTRUCTOR
-        public Dialog()
+        public Popup()
         {
         }
         #endregion
@@ -34,8 +34,8 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-dialog")
-                 .If("g-dialog-open", () => Open)
+                 .Add("g-popup")
+                 .If("g-popup-open", () => Open)
                  .AsString();
     }
 }

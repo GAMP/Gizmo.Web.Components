@@ -2,7 +2,8 @@
 @inherits CustomDOMComponentBase
 
 <div class="@Class @ClassName"
-     style="@StyleMapper.AsString()"
-     @onclick="OnClickHandler">
-    @ChildContent
+     @onclick="OnClickHandler"
+     @onclick:stopPropagation="true">
+
 </div>
+

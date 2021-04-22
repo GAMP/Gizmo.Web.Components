@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Components;
 
 namespace Gizmo.Web.Components
 {
-    public partial class CardContent : CustomDOMComponentBase
+    public partial class CardBody : CustomDOMComponentBase
     {
         #region CONSTRUCTOR
-        public CardContent()
+        public CardBody()
         {
         }
         #endregion
@@ -14,7 +14,7 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-card-content")
+                 .Add("g-card-body")
                  .AsString();
     }
 }

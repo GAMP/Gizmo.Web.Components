@@ -27,6 +27,9 @@ namespace Gizmo.Web.Components
         public bool Disabled { get; set; }
 
         [Parameter]
+        public string Icon { get; set; }
+
+        [Parameter]
         public string Href { get; set; }
 
         [Parameter]
