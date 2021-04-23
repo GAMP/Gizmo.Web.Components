@@ -15,7 +15,7 @@
 
     @if (NestedList != null)
     {
-        @if (Expanded)
+        @if (IsExpanded)
         {
             <Icon Source="fas fa-chevron-up" />
         }
@@ -27,8 +27,8 @@
 </div>
 @if (NestedList != null)
 {
-    <Collapse Expanded="@Expanded">
-        <List Class="g-nested-list" Disabled="@Disabled">
+    <Collapse Expanded="@IsExpanded">
+        <List Class="g-nested-list" Disabled="@IsDisabled">
             @NestedList
         </List>
     </Collapse>

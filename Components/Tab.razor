@@ -1,0 +1,13 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<h3>Tab</h3>
+<div>
+    <CascadingValue Value="@this" IsFixed="true">
+        @foreach (var item in _items)
+        {
+            <div>@item.Header</div>
+        }
+        @ChildContent
+    </CascadingValue>
+</div>

@@ -12,7 +12,7 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        private bool _selected;
+        private bool _isSelected;
 
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
@@ -24,7 +24,7 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool Disabled { get; set; }
+        public bool IsDisabled { get; set; }
 
         [Parameter]
         public string Icon { get; set; }
@@ -36,16 +36,16 @@ namespace Gizmo.Web.Components
         public RenderFragment NestedList { get; set; }
 
         [Parameter]
-        public bool Expanded { get; set; }
+        public bool IsExpanded { get; set; }
 
         protected void OnClickHandler(MouseEventArgs args)
         {
-            if (Disabled)
+            if (IsDisabled)
                 return;
 
             if (NestedList != null)
             {
-                Expanded = !Expanded;
+                IsExpanded = !IsExpanded;
             }
             else if (Href != null)
             {
@@ -60,21 +60,21 @@ namespace Gizmo.Web.Components
 
         internal void SetSelected(bool selected)
         {
-            if (Disabled)
+            if (IsDisabled)
                 return;
 
-            if (_selected == selected)
+            if (_isSelected == selected)
                 return;
 
-            _selected = selected;
+            _isSelected = selected;
 
             StateHasChanged();
         }
 
         protected string ClassName => new ClassMapper()
                  .Add("g-list-item")
-                 .If("g-list-item-disabled", () => Disabled)
-                 .If("g-list-item-selected", () => _selected).AsString();
+                 .If("g-list-item-disabled", () => IsDisabled)
+                 .If("g-list-item-selected", () => _isSelected).AsString();
 
         protected override void OnInitialized()
         {
@@ -82,17 +82,16 @@ namespace Gizmo.Web.Components
             {
                 Parent.Register(this);
             }
-
         }
 
         public override void Dispose()
         {
             try
             {
-                if (Parent == null)
-                    return;
-
-                Parent.Unregister(this);
+                if (Parent != null)
+                {
+                    Parent.Unregister(this);
+                }
             }
             catch (Exception) { }
 

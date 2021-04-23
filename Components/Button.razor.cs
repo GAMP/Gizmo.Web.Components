@@ -1,7 +1,7 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.ComponentModel;
+using System;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -21,11 +21,15 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region PRIVATE FIELDS
+        private bool _isSelected;
         #endregion
 
         #region PROPERTIES
 
         #region PUBLIC
+
+        [CascadingParameter]
+        protected ButtonGroup ButtonGroup { get; set; }
 
         [Parameter()]
         public ButtonVariants Variant { get; set; } = ButtonVariants.Fill;
@@ -72,6 +76,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        [Parameter]
+        public bool Selected { get; set; }
+
         #endregion
 
         #endregion
@@ -80,6 +87,11 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickHandler(MouseEventArgs args)
         {
+            if (ButtonGroup != null)
+            {
+                ButtonGroup.SetSelectedItem(this);
+            }
+
             return Task.CompletedTask;
         }
 
@@ -88,9 +100,51 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("button")
                  .Add($"button--{Size.ToDescriptionString()}")
-                 .If("button--secondary", () => Variant == ButtonVariants.Outline)
+                 .If("button--secondary", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
                  .If("disabled", () => IsDisabled)
+                 .If("selected", () => _isSelected)
                  .AsString();
 
+        protected override void OnInitialized()
+        {
+            _isSelected = Selected;
+
+            if (ButtonGroup != null)
+            {
+                ButtonGroup.Register(this);
+
+                if (_isSelected)
+                {
+                    ButtonGroup.SetSelectedItem(this);
+                }
+            }
+        }
+
+        public override void Dispose()
+        {
+            try
+            {
+                if (ButtonGroup != null)
+                {
+                    ButtonGroup.Unregister(this);
+                }
+            }
+            catch (Exception) { }
+
+            base.Dispose();
+        }
+
+        internal void SetSelected(bool selected)
+        {
+            if (IsDisabled)
+                return;
+
+            if (_isSelected == selected)
+                return;
+
+            _isSelected = selected;
+
+            StateHasChanged();
+        }
     }
 }

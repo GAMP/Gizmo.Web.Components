@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Gizmo.Web.Components
 {
-    public partial class List : CustomDOMComponentBase, IDisposable
+    public partial class List : CustomDOMComponentBase
     {
         #region CONSTRUCTOR
         public List()
@@ -23,7 +23,8 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-        [Parameter] public bool Disabled { get; set; }
+        [Parameter]
+        public bool IsDisabled { get; set; }
 
         [Parameter]
         public ListItem SelectedItem
@@ -40,7 +41,7 @@ namespace Gizmo.Web.Components
        
         internal void SetSelectedItem(ListItem item)
         {
-            if (Disabled)
+            if (IsDisabled)
                 return;
 
             if (_selectedItem == item)
@@ -88,7 +89,7 @@ namespace Gizmo.Web.Components
             if (ParentList != null)
             {
                 ParentList.Register(this);
-                Disabled = ParentList.Disabled;
+                IsDisabled = ParentList.IsDisabled;
             }
         }
 
@@ -98,6 +99,7 @@ namespace Gizmo.Web.Components
 
             base.Dispose();
         }
+        
         protected string ClassName => new ClassMapper()
                  .Add("g-list")
                  .AsString();
