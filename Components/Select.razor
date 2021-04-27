@@ -1,0 +1,28 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+@typeparam TItemType
+
+<CascadingValue Value="@this" IsFixed="true">
+
+    <div class="@Class @ClassName"
+         style="@StyleMapper.AsString()">
+
+        <TextInput RightIcon="fas fa-caret-down"
+                   Label="@Label"
+                   IsReadOnly="true"
+                   Value="@_text"
+                   @onclick="OnClickMenuHandler" />
+
+        <Popup IsOpen="@IsOpen" Class="@PopupClassName">
+            <List>
+                @ChildContent
+            </List>
+        </Popup>
+    </div>
+
+    <Overlay Visible="@IsOpen"
+             @onclick="OnClickOverlayHandler">
+    </Overlay>
+
+</CascadingValue>

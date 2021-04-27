@@ -2,7 +2,8 @@
 @inherits CustomDOMComponentBase
 
 <span class="@ClassName"
-      style="@StyleMapper.AsString()">
+      style="@StyleMapper.AsString()"
+      @onclick="OnClickHandler">
 
     @if (BackgroundStyle == IconBackgroundStyles.Circle)
     {

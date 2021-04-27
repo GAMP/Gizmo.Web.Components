@@ -13,8 +13,14 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region MEMBERS
+
         private HashSet<Button> _items = new HashSet<Button>();
         private Button _selectedItem;
+
+        #endregion
+
+        #region PROPERTIES
 
         /// <summary>
         /// Whether the button group is disabled.
@@ -55,6 +61,8 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
+
+        #endregion
 
         internal void SetSelectedItem(Button item)
         {

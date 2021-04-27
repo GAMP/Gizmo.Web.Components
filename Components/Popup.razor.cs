@@ -16,10 +16,10 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool Open { get; set; }
+        public bool IsOpen { get; set; }
 
         [Parameter]
-        public EventCallback<bool> OpenChanged { get; set; }
+        public EventCallback<bool> IsOpenChanged { get; set; }
 
         [Parameter]
         public bool Modal { get; set; }
@@ -29,13 +29,13 @@ namespace Gizmo.Web.Components
             if (Modal)
                 return Task.CompletedTask;
 
-            Open = false;
-            return OpenChanged.InvokeAsync(Open);
+            IsOpen = false;
+            return IsOpenChanged.InvokeAsync(IsOpen);
         }
 
         protected string ClassName => new ClassMapper()
                  .Add("g-popup")
-                 .If("g-popup-open", () => Open)
+                 .If("g-popup-open", () => IsOpen)
                  .AsString();
     }
 }

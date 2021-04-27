@@ -21,14 +21,14 @@
             }
         </Button>
 
-        <Popup Open="@Open" Class="@PopupClassName">
+        <Popup IsOpen="@IsOpen" Class="@PopupClassName">
             <List>
                 @ChildContent
             </List>
         </Popup>
     </div>
 
-    <Overlay Visible="@Open"
+    <Overlay Visible="@IsOpen"
              @onclick="OnClickOverlayHandler">
     </Overlay>
 

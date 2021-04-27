@@ -12,13 +12,19 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region MEMBERS
+
         private bool _isSelected;
+
+        #endregion
 
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
 
         [CascadingParameter]
         protected List Parent { get; set; }
+
+        #region PROPERTIES
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -37,6 +43,13 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsExpanded { get; set; }
+        
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+        #endregion
+
+        #region EVENTS
 
         protected void OnClickHandler(MouseEventArgs args)
         {
@@ -56,7 +69,11 @@ namespace Gizmo.Web.Components
             {
                 Parent?.SetSelectedItem(this);
             }
+
+            OnClick.InvokeAsync(args);
         }
+
+        #endregion
 
         internal void SetSelected(bool selected)
         {

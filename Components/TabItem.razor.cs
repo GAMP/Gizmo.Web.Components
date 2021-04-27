@@ -14,6 +14,8 @@ namespace Gizmo.Web.Components
         [CascadingParameter]
         protected Tab Parent { get; set; }
 
+        #region PROPERTIES
+
         [Parameter]
         public RenderFragment Header { get; set; }
 
@@ -25,6 +27,8 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool Selected { get; set; }
+
+        #endregion
 
         protected string ClassName => new ClassMapper()
                  .Add("tab-item")

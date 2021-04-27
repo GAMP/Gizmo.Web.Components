@@ -1,0 +1,15 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+@typeparam TItemType
+
+<ListItem @onclick="OnClickHandler">
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @Text
+    }
+</ListItem>

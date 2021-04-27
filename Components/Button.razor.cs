@@ -26,10 +26,10 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        #region PUBLIC
-
         [CascadingParameter]
         protected ButtonGroup ButtonGroup { get; set; }
+
+        #region PUBLIC
 
         [Parameter()]
         public ButtonVariants Variant { get; set; } = ButtonVariants.Fill;

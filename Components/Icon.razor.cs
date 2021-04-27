@@ -1,6 +1,8 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -31,6 +33,8 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region PROPERTIES
+
         [Parameter]
         public string Source { get; set; }
 
@@ -45,6 +49,20 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string BackgroundColor { get; set; }
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+        #endregion
+
+        #region EVENTS
+
+        protected Task OnClickHandler(MouseEventArgs args)
+        {
+            return OnClick.InvokeAsync(args);
+        }
+
+        #endregion
 
         protected string ClassName => new ClassMapper()
                  .Add($"fa-{Size.ToDescriptionString()}")

@@ -1,0 +1,31 @@
+﻿@namespace Gizmo.Web.Components
+@inherits InputBase<string>
+
+<div class="@ClassName">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@Id" style="display: inline-block;">@Label</label>
+    }
+    <div class="@FieldClassName">
+        @if (!string.IsNullOrEmpty(LeftIcon))
+        {
+            <Icon Source="@LeftIcon"
+                  @onclick="OnClickHandler" />
+        }
+        <input id="@Id"
+               type="text"
+               value="@_text"
+               readonly="@IsReadOnly"
+               disabled="@IsDisabled"
+               @onchange="OnChangeHandler"
+               @onclick="OnClickHandler" />
+        @if (!string.IsNullOrEmpty(RightIcon))
+        {
+            <Icon Source="@RightIcon"
+                  @onclick="OnClickHandler" />
+        }
+    </div>
+    <div class="@ValidationClassName">
+        @_validationMessage
+    </div>
+</div>

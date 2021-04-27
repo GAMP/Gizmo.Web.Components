@@ -43,12 +43,12 @@ namespace Gizmo.Web.Components
         public bool IsDropdown { get; set; }
 
         [Parameter]
-        public bool Open { get; set; }
+        public bool IsOpen { get; set; }
 
         protected string ClassName => new ClassMapper()
              .If("is-selected", () => _selected)
              .If("table__row-dropdown", () => IsDropdown)
-             .If("is-opened", () => Open).AsString();
+             .If("is-opened", () => IsOpen).AsString();
 
         protected override Task OnInitializedAsync()
         {
@@ -64,7 +64,7 @@ namespace Gizmo.Web.Components
         {
             if (IsDropdown)
             {
-                Open = !Open;
+                IsOpen = !IsOpen;
             }
             else
             {

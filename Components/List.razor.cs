@@ -13,12 +13,18 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region MEMBERS
+
         private HashSet<ListItem> _items = new HashSet<ListItem>();
         private HashSet<List> _childLists = new HashSet<List>();
         private ListItem _selectedItem;
 
+        #endregion
+
         [CascadingParameter]
         protected List ParentList { get; set; }
+
+        #region PROPERTIES
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -38,7 +44,12 @@ namespace Gizmo.Web.Components
                 SetSelectedItem(value);
             }
         }
-       
+
+        [Parameter]
+        public EventCallback<ListItem> SelectedItemChanged { get; set; }
+
+        #endregion
+
         internal void SetSelectedItem(ListItem item)
         {
             if (IsDisabled)
@@ -60,9 +71,6 @@ namespace Gizmo.Web.Components
 
             ParentList?.SetSelectedItem(item);
         }
-
-        [Parameter]
-        public EventCallback<ListItem> SelectedItemChanged { get; set; }
 
         internal void Register(ListItem item)
         {

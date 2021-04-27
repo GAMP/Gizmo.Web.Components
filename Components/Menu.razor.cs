@@ -18,7 +18,7 @@ namespace Gizmo.Web.Components
         public string Icon { get; set; }
 
         [Parameter]
-        public bool Open { get; set; }
+        public bool IsOpen { get; set; }
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -35,12 +35,12 @@ namespace Gizmo.Web.Components
 
         protected void OnClickMenuHandler(MouseEventArgs args)
         {
-            Open = true;
+            IsOpen = true;
         }
 
         protected void OnClickOverlayHandler(MouseEventArgs args)
         {
-            Open = false;
+            IsOpen = false;
         }
 
     }

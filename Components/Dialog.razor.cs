@@ -16,26 +16,26 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool Open { get; set; }
+        public bool IsOpen { get; set; }
 
         [Parameter]
-        public EventCallback<bool> OpenChanged { get; set; }
+        public EventCallback<bool> IsOpenChanged { get; set; }
 
         [Parameter]
-        public bool Modal { get; set; }
+        public bool IsModal { get; set; }
 
         protected Task OnClickHandler(MouseEventArgs args)
         {
-            if (Modal)
+            if (IsModal)
                 return Task.CompletedTask;
 
-            Open = false;
-            return OpenChanged.InvokeAsync(Open);
+            IsOpen = false;
+            return IsOpenChanged.InvokeAsync(IsOpen);
         }
 
         protected string ClassName => new ClassMapper()
                  .Add("g-dialog")
-                 .If("g-dialog-open", () => Open)
+                 .If("g-dialog-open", () => IsOpen)
                  .AsString();
     }
 }
