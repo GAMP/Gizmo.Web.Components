@@ -1,0 +1,67 @@
+
+//== declare common variable ==//
+
+//font family
+$gizmo-font-family: 'Montserrat', sans-serif;
+
+//common color
+$gizmo-white-color: #FFFFFF;
+$gizmo-dark-color: #171c28;
+$gizmo-dark-light: #1b212f;
+$gizmo-primary-color: #5A67F2;
+$gizmo-primary-light: #F6FAFF;
+$gizmo-secondary-color: #6E7689;
+$gizmo-danger-color: #F25A68;
+$gizmo-success-color: #32CF92;
+$gizmo-light-color: #eff0f2;
+$gizmo-gray-color: #E6E8ED;
+$gizmo-gray-light: #CFD2D8;
+$gizmo-black-color: #000000;
+$gizmo-blue-color: #68C9FF;
+//border color
+$gizmo-border-color: #3b4150;
+$gizmo-border-light: #c3c7ce;
+
+//font weight
+$gizmo-font-weight-500:500;
+$gizmo-font-weight-600: 600;
+$gizmo-font-weight-700: 700;
+$gizmo-font-weight-800: 800;
+$gizmo-font-weight-bold:bold;
+
+//font size
+$gizmo-font-15: 1.5rem;
+$gizmo-font-16: 1.6rem;
+$gizmo-font-17: 1.7rem;
+$gizmo-font-19: 1.9rem;
+
+//border radius
+$gizmo-border-radius-4: 0.4rem;
+$gizmo-border-radius-8: 0.8rem;
+
+//letter-spacing
+$gizmo-letter-spacing-4: -0.04rem;
+$gizmo-letter-spacing-8: -0.08rem;
+
+//line height
+$gizmo-line-height-24: 2.4rem;
+$gizmo-line-height-22: 2.2rem; 
+
+// @extend/inheritance (common style properties)
+%gizmo-font-19-normal {
+    font-size: $gizmo-font-19;
+    font-weight: $gizmo-font-weight-500;
+    line-height: $gizmo-line-height-24;
+    letter-spacing: $gizmo-letter-spacing-8;
+}
+
+%gizmo-font-19-bold {
+    font-size: $gizmo-font-19;
+    font-weight: $gizmo-font-weight-bold;
+    line-height: $gizmo-line-height-24;
+    letter-spacing: $gizmo-letter-spacing-8;
+}
+
+
+//gizmo-order-popup
+$gizmo-height-50:50rem;

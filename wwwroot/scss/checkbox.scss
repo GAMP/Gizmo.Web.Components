@@ -1,0 +1,85 @@
+.checkbox {
+    position: absolute;
+    left: -9999px;
+
+    & + label {
+        font-size: $gizmo-font-15;
+        color: $gizmo-secondary-color;
+        position: relative;
+        padding-left: 3.6rem;
+        display: flex;
+        align-items: center;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    &:checked + label {
+        overflow: visible;
+    }
+
+    & + label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2.4rem;
+        height: 2.4rem;
+        background: transparent;
+        border: 1px solid $gizmo-gray-color;
+        border-radius: $gizmo-border-radius-4;
+    }
+
+    &:checked + label:before {
+        content: '';
+        background: $gizmo-primary-color;
+        border-color: $gizmo-primary-color;
+    }
+
+    &.is-disabled + label:before, &[disabled] + label:before {
+        cursor: default;
+        background: $gizmo-gray-color;
+        border-color: $gizmo-gray-color;
+    }
+
+    &.is-disabled + label, &[disabled] + label {
+        cursor: default;
+    }
+
+    &:checked + label:after {
+        content: '';
+        position: absolute;
+        left: 0.7rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 6px;
+        background: url('/img/icons/tick.svg') no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+
+    &:indeterminate + label:before {
+        background: $gizmo-primary-color;
+        border-color: $gizmo-primary-color;
+    }
+
+    &:indeterminate.is-disabled + label:before, &:indeterminate[disabled] + label:before {
+        background: $gizmo-gray-color;
+        border-color: $gizmo-gray-color;
+    }
+
+    &:indeterminate + label:after {
+        content: '';
+        position: absolute;
+        left: 0.8rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0.8rem;
+        height: 2px;
+        background: $gizmo-white-color;
+    }
+}

@@ -1,0 +1,77 @@
+//default button primary color
+.button {
+    border: 0;
+    outline: 0;
+    color: $gizmo-white-color;
+    background: $gizmo-primary-color;
+    font-size: $gizmo-font-16;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 4.6rem;
+    padding: 0 3.4rem;
+    transition: all 0.3s ease;
+    font-weight: $gizmo-font-weight-600;
+    letter-spacing: 0.08rem;
+    white-space: nowrap;
+
+
+    &:hover {
+        background: #505DD5;
+    }
+
+    &:focus {
+        box-shadow: 0px 0px 9px #4891FF;
+    }
+
+    &--secondary {
+        background: $gizmo-white-color;
+        border: 1px solid $gizmo-gray-light;
+        color: $gizmo-secondary-color;
+
+        &:hover {
+            color: $gizmo-primary-color;
+            background: $gizmo-white-color;
+        }
+
+        &:focus {
+            box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+        }
+
+        &.is-disabled, &[disabled] {
+            color: #E7E9EE;
+            background: #FAFAFA !important;
+            border: 1px solid #E7E9EE;
+        }
+    }
+
+
+    &--large {
+        height: 4.8rem;
+        font-size: $gizmo-font-17;
+    }
+
+    &--medium {
+        height: 3.2rem;
+        font-size: $gizmo-font-15;
+        padding: 0 1.6rem;
+    }
+
+    &--small {
+        height: 2.4rem;
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+
+    &.is-disabled, &[disabled] {
+        background: $gizmo-gray-color;
+        cursor: default;
+
+        &:hover {
+            background: $gizmo-gray-color;
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
