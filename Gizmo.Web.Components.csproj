@@ -11,6 +11,9 @@
 		<PackageIconUrl />
 		<RepositoryUrl>https://github.com/GAMP/Gizmo.Web.Components</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		
+		<!--Fixes duplicate file error on publish (.NET6 BUG)-->
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 	</PropertyGroup>
 
 	<ItemGroup>
