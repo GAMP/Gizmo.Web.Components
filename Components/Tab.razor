@@ -1,13 +1,22 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<h3>Tab</h3>
-<div>
+<div class="@Class">
     <CascadingValue Value="@this" IsFixed="true">
-        @foreach (var item in _items)
-        {
-            <div>@item.Header</div>
-        }
+        <ul class="gizmo-tab">
+            @foreach (var item in _items)
+            {
+                <li class="gizmo-tab-item">
+                    <a class="gizmo-link @(item.Selected ? "gizmo-tab-active":"")">@item.Header</a>
+                </li>
+            }
+        </ul>
+        <div class="gizmo-tab-content">
+            @foreach (var item in _items)
+            {
+                @item.ChildContent
+            }
+        </div>
         @ChildContent
     </CascadingValue>
 </div>

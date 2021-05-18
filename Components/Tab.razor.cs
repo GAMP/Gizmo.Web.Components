@@ -13,7 +13,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         private HashSet<TabItem> _items = new HashSet<TabItem>();
-
+        
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
@@ -32,6 +32,7 @@ namespace Gizmo.Web.Components
         internal void Register(TabItem item)
         {
             _items.Add(item);
+            StateHasChanged();
         }
 
         internal void Unregister(TabItem item)
