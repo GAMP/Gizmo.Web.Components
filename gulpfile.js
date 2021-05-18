@@ -9,6 +9,7 @@ var connect = require('gulp-connect');
 var gcmq = require('gulp-group-css-media-queries');
 var cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
+var concat = require('gulp-concat');
 
 sass.compiler = require('node-sass');
 
@@ -26,6 +27,14 @@ function sassCompile() {
             level: 1
         }))
         .pipe(dest('wwwroot/css/min'))
+        .pipe(connect.reload());s
+}
+
+//js file concat function
+function scripts() {
+    return src(['wwwroot/js/*.js', 'wwwroot/fontawesome/js/all.js'])
+        .pipe(concat('all.js'))
+        .pipe(dest('wwwroot'))
         .pipe(connect.reload());
 }
 
@@ -33,6 +42,8 @@ function sassCompile() {
 function watchTask() {
     gulp.watch('wwwroot/scss/*.scss', sassCompile);
     gulp.watch('wwwroot/scss/*/*.scss', sassCompile);
+    gulp.watch('wwwroot/js/*.js', scripts);   
+    gulp.watch('wwwroot/fontawesome/js/all.js', scripts);
 }
 
 //define our default sass compilation task
