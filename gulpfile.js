@@ -32,7 +32,7 @@ function sassCompile() {
 
 //js file concat function
 function scripts() {
-    return src(['wwwroot/js/*.js', 'wwwroot/js/vendor/*.min.js', 'wwwroot/fontawesome/js/all.js'])
+    return src(['wwwroot/js/*.js', 'wwwroot/fontawesome/js/all.js'])
         .pipe(concat('all.js'))
         .pipe(dest('wwwroot'))
         .pipe(connect.reload());
@@ -42,8 +42,7 @@ function scripts() {
 function watchTask() {
     gulp.watch('wwwroot/scss/*.scss', sassCompile);
     gulp.watch('wwwroot/scss/*/*.scss', sassCompile);
-    gulp.watch('wwwroot/js/*.js', scripts);
-    gulp.watch('wwwroot/js/vendor/*.min.js', scripts);
+    gulp.watch('wwwroot/js/*.js', scripts);   
     gulp.watch('wwwroot/fontawesome/js/all.js', scripts);
 }
 
