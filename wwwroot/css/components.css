@@ -474,3 +474,29 @@
 [light-theme] .table__details-content {
   border-color: #dddfe4;
 }
+
+.gizmo-tab .gizmo-tab-active {
+  color: #000000;
+  border-bottom: 3px solid #5A67F2;
+}
+
+.gizmo-tab__ul {
+  list-style: none;
+  padding: 1.7rem 4.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0rem;
+  border-bottom: 1px solid #E7E9EE;
+  background: #eee;
+}
+
+.gizmo-tab__link {
+  font-weight: 600;
+  font-size: 1.7rem;
+  line-height: 2.2rem;
+  letter-spacing: -0.08rem;
+  color: #6E7689;
+  padding: 1.5rem;
+  cursor: pointer;
+}

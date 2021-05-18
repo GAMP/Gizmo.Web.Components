@@ -1,0 +1,28 @@
+
+//== tab.scss files == //
+
+.gizmo-tab {
+    .gizmo-tab-active {
+        color: $gizmo-black-color;
+        border-bottom: 3px solid $gizmo-primary-color;
+    }
+
+    &__ul {
+        list-style: none;
+        padding: 1.7rem 4.5rem;
+        display: flex;
+        margin: 0rem;
+        border-bottom: 1px solid #E7E9EE;
+        background: #eee;
+    }
+
+    &__link {
+        font-weight: $gizmo-font-weight-600;
+        font-size: $gizmo-font-17;
+        line-height: $gizmo-line-height-22;
+        letter-spacing: $gizmo-letter-spacing-8;
+        color: $gizmo-secondary-color;
+        padding: 1.5rem;
+        cursor: pointer;
+    }
+}

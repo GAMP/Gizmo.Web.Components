@@ -3,11 +3,11 @@
 
 <div class="@Class">
     <CascadingValue Value="@this" IsFixed="true">
-        <ul class="gizmo-tab">
+        <ul class="gizmo-tab__ul">
             @foreach (var item in _items)
             {
-                <li class="gizmo-tab-item">
-                    <a class="gizmo-link @(item.Selected ? "gizmo-tab-active":"")">@item.Header</a>
+                <li class="gizmo-tab__item">
+                    <a class="gizmo-tab__link @(item.Selected ? "gizmo-tab-active":"")">@item.Header</a>
                 </li>
             }
         </ul>
