@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 
 namespace Gizmo.Web.Components
@@ -27,6 +28,8 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool Selected { get; set; }
+        //[Parameter] public object ID { get; set; }
+        [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
 
@@ -34,6 +37,8 @@ namespace Gizmo.Web.Components
                  .Add("tab-item")
                  .If("disabled", () => Disabled)
                  .If("selected", () => Selected).AsString();
+
+
 
         protected override void OnInitialized()
         {

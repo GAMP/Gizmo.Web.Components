@@ -7,14 +7,16 @@
             @foreach (var item in _items)
             {
                 <li class="gizmo-tab__item">
-                    <a class="gizmo-tab__link @(item.Selected ? "gizmo-tab-active":"")">@item.Header</a>
+                    <a class="gizmo-tab__link @GetTabItemClass(item)"  @onclick=@( e => ActivateItem(item, e, false))>@item.Header</a>
                 </li>
             }
         </ul>
         <div class="gizmo-tab-content">
             @foreach (var item in _items)
             {
-                @item.ChildContent
+                <div class="@GetTabItemContentClass(item)">
+                    @item.ChildContent
+                </div>
             }
         </div>
         @ChildContent
