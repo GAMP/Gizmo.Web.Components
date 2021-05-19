@@ -12,13 +12,7 @@
             }
         </ul>
         <div class="gizmo-tab-content">
-            @foreach (var item in _items)
-            {
-                <div class="@GetTabItemContentClass(item)">
-                    @item.ChildContent
-                </div>
-            }
+            @ChildContent
         </div>
-        @ChildContent
     </CascadingValue>
 </div>

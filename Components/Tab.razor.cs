@@ -13,6 +13,7 @@ namespace Gizmo.Web.Components
         {
         }
         #endregion
+
         private int _activeItemIndex = 0;
         private List<TabItem> _items = new List<TabItem>();
 
@@ -42,12 +43,14 @@ namespace Gizmo.Web.Components
              .If("gizmo-tab-disabled", () => Disabled).AsString();
             return itemClassName;
         }
-        string GetTabItemContentClass(TabItem item)
-        {
-            var itemContentClassName = new ClassMapper()
-             .If("gizmo-tab-content-active", () => item == ActiveItem).AsString();
-            return itemContentClassName;
-        }
+
+        //You don't need this anymore.
+        //string GetTabItemContentClass(TabItem item)
+        //{
+        //    var itemContentClassName = new ClassMapper()
+        //     .If("gizmo-tab-content-active", () => item == ActiveItem).AsString();
+        //    return itemContentClassName;
+        //}
 
         [Parameter]
         public int ActiveItemIndex
@@ -55,17 +58,12 @@ namespace Gizmo.Web.Components
             get => _activeItemIndex;
             set
             {
-                if (_activeItemIndex != value)
-                {
-                    _activeItemIndex = value;
-                    ActiveItem = _items[_activeItemIndex];
-                    ActiveItemIndexChanged.InvokeAsync(value);
-                }
+                SetSelectedItem(value);
             }
         }
+
         [Parameter]
         public EventCallback<int> ActiveItemIndexChanged { get; set; }
-
 
         public void ActivateItem(TabItem item, bool ignoreDisabledState = false)
         {
@@ -91,6 +89,7 @@ namespace Gizmo.Web.Components
             {
                 ActiveItemIndex = _items.IndexOf(item);
 
+                //Here you assume that the ActiveItem is the clicked item, but if the clicked item is disabled for some reason then the clicked item must not become the ActiveItem.
                 if (ev != null)
                     ActiveItem.OnClick.InvokeAsync(ev);
                 StateHasChanged();
@@ -106,6 +105,38 @@ namespace Gizmo.Web.Components
         internal void Unregister(TabItem item)
         {
             _items.Remove(item);
+        }
+
+        internal void SetSelectedItem(int index)
+        {
+            //If the index is invalid the do nothing. (Just to be sure.)
+            if (index < 0 || index >= _items.Count)
+                return;
+
+            //If the whole tab component is disabled then do nothing.
+            if (Disabled)
+                return;
+
+            TabItem item = _items[index];
+
+            //If the clicked item is already the ActiveItem then do nothing.
+            if (ActiveItem == item)
+                return;
+
+            //If the clicked item is disabled then do nothing.
+            if (item.Disabled)
+                return;
+
+            //Change the active item.
+            _activeItemIndex = index;
+            ActiveItem = item;
+            _ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
+
+            //Change the selected flag in all items.
+            foreach (var tabItem in _items.ToArray())
+            {
+                tabItem.SetSelected(item == tabItem);
+            }
         }
     }
 }

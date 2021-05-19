@@ -12,6 +12,12 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region MEMBERS
+
+        private bool _isSelected;
+
+        #endregion
+
         [CascadingParameter]
         protected Tab Parent { get; set; }
 
@@ -27,18 +33,13 @@ namespace Gizmo.Web.Components
         public bool Disabled { get; set; }
 
         [Parameter]
-        public bool Selected { get; set; }
-        //[Parameter] public object ID { get; set; }
-        [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+        public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
 
         protected string ClassName => new ClassMapper()
-                 .Add("tab-item")
-                 .If("disabled", () => Disabled)
-                 .If("selected", () => Selected).AsString();
-
-
+                 .If("gizmo-tab-content-active", () => _isSelected)
+                 .AsString();
 
         protected override void OnInitialized()
         {
@@ -62,7 +63,15 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
+        internal void SetSelected(bool selected)
+        {
+            if (_isSelected == selected)
+                return;
 
+            _isSelected = selected;
+
+            StateHasChanged();
+        }
 
     }
 }
