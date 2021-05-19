@@ -45,7 +45,7 @@ namespace Gizmo.Web.Components
         string GetTabItemContentClass(TabItem item)
         {
             var itemContentClassName = new ClassMapper()
-             .If("gizmo-tab--content-active", () => item == ActiveItem).AsString();
+             .If("gizmo-tab-content-active", () => item == ActiveItem).AsString();
             return itemContentClassName;
         }
 

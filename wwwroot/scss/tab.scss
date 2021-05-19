@@ -7,6 +7,16 @@
         border-bottom: 3px solid $gizmo-primary-color;
     }
 
+    .gizmo-tab-content__items {
+        display: none;
+    }
+
+    .gizmo-tab-content-active {
+        .gizmo-tab-content__items {
+            display: block;
+        }
+    }
+
     &__ul {
         list-style: none;
         padding: 1.7rem 4.5rem;

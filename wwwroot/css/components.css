@@ -480,6 +480,14 @@
   border-bottom: 3px solid #5A67F2;
 }
 
+.gizmo-tab .gizmo-tab-content__items {
+  display: none;
+}
+
+.gizmo-tab .gizmo-tab-content-active .gizmo-tab-content__items {
+  display: block;
+}
+
 .gizmo-tab__ul {
   list-style: none;
   padding: 1.7rem 4.5rem;
