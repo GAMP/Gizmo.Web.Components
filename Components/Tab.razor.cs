@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Gizmo.Web.Components
 {
@@ -26,31 +24,17 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool CanChangeTabItem { get; set; }
 
-        //[Parameter]
-        //public TabItem SelectedItem { get; set; }
         public TabItem ActiveItem { get; private set; }
-
-        //[Parameter]
-        //public EventCallback<TabItem> SelectedItemChanged { get; set; }
 
         [Parameter] public string TabItemClass { get; set; }
 
         string GetTabItemClass(TabItem item)
         {
-            //item.Selected = true;
             var itemClassName = new ClassMapper()
              .If("gizmo-tab-active", () => item == ActiveItem)
              .If("gizmo-tab-disabled", () => Disabled).AsString();
             return itemClassName;
         }
-
-        //You don't need this anymore.
-        //string GetTabItemContentClass(TabItem item)
-        //{
-        //    var itemContentClassName = new ClassMapper()
-        //     .If("gizmo-tab-content-active", () => item == ActiveItem).AsString();
-        //    return itemContentClassName;
-        //}
 
         [Parameter]
         public int ActiveItemIndex
@@ -76,13 +60,6 @@ namespace Gizmo.Web.Components
             ActivateItem(item, null, ignoreDisabledState);
         }
 
-        //public void ActivateItem(object id, bool ignoreDisabledState = false)
-        //{
-        //    var item = _items.Where((p) => p.ID == id).FirstOrDefault();
-        //    if (item != null)
-        //        ActivateItem(item, null, ignoreDisabledState);
-        //}
-
         private void ActivateItem(TabItem item, MouseEventArgs ev, bool ignoreDisabledState = false)
         {
             if (!item.Disabled || ignoreDisabledState)
@@ -99,6 +76,10 @@ namespace Gizmo.Web.Components
         internal void Register(TabItem item)
         {
             _items.Add(item);
+            //Make first tab selected default
+            if (_items.Count == 1)
+                ActiveItem = item;
+
             StateHasChanged();
         }
 
@@ -132,11 +113,12 @@ namespace Gizmo.Web.Components
             ActiveItem = item;
             _ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
 
+            //Not needed
             //Change the selected flag in all items.
-            foreach (var tabItem in _items.ToArray())
-            {
-                tabItem.SetSelected(item == tabItem);
-            }
+            //foreach (var tabItem in _items.ToArray())
+            //{
+            //    tabItem.SetSelected(item == tabItem);
+            //}
         }
     }
 }

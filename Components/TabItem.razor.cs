@@ -13,8 +13,8 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region MEMBERS
-
-        private bool _isSelected;
+        //Not needed
+        //private bool _isSelected;
 
         #endregion
 
@@ -36,10 +36,10 @@ namespace Gizmo.Web.Components
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
-
-        protected string ClassName => new ClassMapper()
-                 .If("gizmo-tab-content-active", () => _isSelected)
-                 .AsString();
+        //Not needed
+        //protected string ClassName => new ClassMapper()
+        //         .If("gizmo-tab-content-active", () => _isSelected)
+        //         .AsString();
 
         protected override void OnInitialized()
         {
@@ -63,15 +63,16 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
-        internal void SetSelected(bool selected)
-        {
-            if (_isSelected == selected)
-                return;
+        //Not needed
+        //internal void SetSelected(bool selected)
+        //{
+        //    if (_isSelected == selected)
+        //        return;
 
-            _isSelected = selected;
+        //    _isSelected = selected;
 
-            StateHasChanged();
-        }
+        //    StateHasChanged();
+        //}
 
     }
 }
