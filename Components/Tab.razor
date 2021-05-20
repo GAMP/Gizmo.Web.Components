@@ -1,7 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="@Class @ClassName">
+<div class="@Class @ClassName()">
     <CascadingValue Value="@this" IsFixed="true">
         <ul class="gizmo-tab__ul">
             @foreach (var item in _items)

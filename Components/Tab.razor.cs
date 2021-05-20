@@ -22,9 +22,6 @@ namespace Gizmo.Web.Components
         public bool IsDisabled { get; set; }
         [Parameter]
         public bool IsVisible { get; set; } = true;
-        public string ClassName => new ClassMapper()
-                     .Add("gizmo-tab")
-                     .AsString();
 
         [Parameter]
         public bool CanChangeTabItem { get; set; }
@@ -40,6 +37,14 @@ namespace Gizmo.Web.Components
              .If("gizmo-tab-hidden", () => !item.IsVisible)
              .If("gizmo-tab-disabled", () => item.IsDisabled).AsString();
             return itemClassName;
+        }
+        string ClassName()
+        {
+            var className = new ClassMapper()
+              .Add("gizmo-tab")
+             .If("gizmo-tab-disabled", () => IsDisabled)
+             .If("gizmo-tab-hidden", () => !IsVisible).AsString();
+            return className;
         }
 
         [Parameter]
@@ -101,7 +106,7 @@ namespace Gizmo.Web.Components
                 return;
 
             //If the whole tab component is disabled then do nothing.
-            if (Disabled)
+            if (IsDisabled)
                 return;
 
             TabItem item = _items[index];
