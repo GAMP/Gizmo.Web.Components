@@ -19,7 +19,9 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool Disabled { get; set; }
+        public bool IsDisabled { get; set; }
+        [Parameter]
+        public bool IsVisible { get; set; } = true;
         public string ClassName => new ClassMapper()
                      .Add("gizmo-tab")
                      .AsString();

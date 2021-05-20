@@ -39,9 +39,9 @@ namespace Gizmo.Web.Components
 
         #endregion
         //Not needed
-        //protected string ClassName => new ClassMapper()
-        //         .If("gizmo-tab-content-active", () => _isSelected)
-        //         .AsString();
+        protected string ClassName => new ClassMapper()
+                 .Add("gizmo-tab-content-active")
+                 .AsString();
 
         protected override void OnInitialized()
         {

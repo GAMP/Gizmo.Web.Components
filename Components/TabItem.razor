@@ -1,6 +1,6 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="@(Parent?.ActiveItem == this ? "gizmo-tab-content-active" : "")">
+<div class="@Class @(Parent?.ActiveItem == this ? ClassName : "")">
     @ChildContent
 </div>
