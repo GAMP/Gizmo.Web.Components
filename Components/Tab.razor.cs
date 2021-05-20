@@ -20,6 +20,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool Disabled { get; set; }
+        public string ClassName => new ClassMapper()
+                     .Add("gizmo-tab")
+                     .AsString();
 
         [Parameter]
         public bool CanChangeTabItem { get; set; }
@@ -32,8 +35,8 @@ namespace Gizmo.Web.Components
         {
             var itemClassName = new ClassMapper()
              .If("gizmo-tab-active", () => item == ActiveItem)
-             .If("gizmo-tab-hidden", () => !item.Visible)
-             .If("gizmo-tab-disabled", () => item.Disabled).AsString();
+             .If("gizmo-tab-hidden", () => !item.IsVisible)
+             .If("gizmo-tab-disabled", () => item.IsDisabled).AsString();
             return itemClassName;
         }
 
@@ -63,7 +66,7 @@ namespace Gizmo.Web.Components
 
         private void ActivateItem(TabItem item, MouseEventArgs ev, bool ignoreDisabledState = false)
         {
-            if (!item.Disabled || ignoreDisabledState)
+            if (!item.IsDisabled || ignoreDisabledState)
             {
                 ActiveItemIndex = _items.IndexOf(item);
 
@@ -106,7 +109,7 @@ namespace Gizmo.Web.Components
                 return;
 
             //If the clicked item is disabled then do nothing.
-            if (item.Disabled)
+            if (item.IsDisabled)
                 return;
 
             //Change the active item.

@@ -30,9 +30,9 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool Disabled { get; set; }
+        public bool IsDisabled { get; set; }
         [Parameter]
-        public bool Visible { get; set; } = true;
+        public bool IsVisible { get; set; } = true;
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
