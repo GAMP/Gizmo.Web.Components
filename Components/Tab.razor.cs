@@ -32,7 +32,8 @@ namespace Gizmo.Web.Components
         {
             var itemClassName = new ClassMapper()
              .If("gizmo-tab-active", () => item == ActiveItem)
-             .If("gizmo-tab-disabled", () => Disabled).AsString();
+             .If("gizmo-tab-hidden", () => !item.Visible)
+             .If("gizmo-tab-disabled", () => item.Disabled).AsString();
             return itemClassName;
         }
 

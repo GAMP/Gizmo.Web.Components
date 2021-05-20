@@ -31,6 +31,8 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool Disabled { get; set; }
+        [Parameter]
+        public bool Visible { get; set; } = true;
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
