@@ -517,3 +517,7 @@
   padding: 1.5rem;
   cursor: pointer;
 }
+
+.gizmo-tab__link:hover {
+  background-color: #FFFFFF;
+}

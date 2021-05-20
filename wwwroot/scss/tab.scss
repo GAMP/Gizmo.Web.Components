@@ -43,5 +43,9 @@
         color: $gizmo-secondary-color;
         padding: 1.5rem;
         cursor: pointer;
+
+        &:hover {
+            background-color: $gizmo-white-color;
+        }
     }
 }
