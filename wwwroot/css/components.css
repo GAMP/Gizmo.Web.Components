@@ -488,6 +488,15 @@
   display: block;
 }
 
+.gizmo-tab .gizmo-tab-hidden {
+  display: none;
+}
+
+.gizmo-tab .gizmo-tab-disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
 .gizmo-tab__ul {
   list-style: none;
   padding: 1.7rem 4.5rem;
