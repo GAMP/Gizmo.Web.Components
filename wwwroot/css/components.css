@@ -475,9 +475,22 @@
   border-color: #dddfe4;
 }
 
+.gizmo-tab.gizmo-tab-hidden {
+  display: none;
+}
+
+.gizmo-tab.gizmo-tab-disabled .gizmo-tab__link {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
 .gizmo-tab .gizmo-tab-active {
-  color: #000000;
+  color: #FFFFFF;
   border-bottom: 3px solid #5A67F2;
+}
+
+[light-theme] .gizmo-tab .gizmo-tab-active {
+  color: #000000;
 }
 
 .gizmo-tab .gizmo-tab-content__items {
@@ -504,8 +517,13 @@
   display: -ms-flexbox;
   display: flex;
   margin: 0rem;
-  border-bottom: 1px solid #E7E9EE;
+  border-bottom: 1px solid #1f2637;
+  background: #171c28;
+}
+
+[light-theme] .gizmo-tab__ul {
   background: #eee;
+  border-bottom: 1px solid #E7E9EE;
 }
 
 .gizmo-tab__link {
@@ -519,5 +537,9 @@
 }
 
 .gizmo-tab__link:hover {
+  background-color: #2a3349;
+}
+
+[light-theme] .gizmo-tab__link:hover {
   background-color: #FFFFFF;
 }
