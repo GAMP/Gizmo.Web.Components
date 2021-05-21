@@ -87,8 +87,12 @@ namespace Gizmo.Web.Components
         internal void Register(TabItem item)
         {
             _items.Add(item);
+
             //Make first tab selected default
             if (_items.Count == 1)
+                ActiveItem = item;
+            //Check if user set active index 2 instead of 1 then make 2nd tab active.
+            if (_items.Count == ActiveItemIndex)
                 ActiveItem = item;
 
             StateHasChanged();
@@ -101,35 +105,43 @@ namespace Gizmo.Web.Components
 
         internal void SetSelectedItem(int index)
         {
-            //If the index is invalid the do nothing. (Just to be sure.)
-            if (index < 0 || index >= _items.Count)
-                return;
+            //If user set active item index 2 then keep it 2nd tab active instead of default 1st.
+            if (index > 0)
+                _activeItemIndex = index;
 
-            //If the whole tab component is disabled then do nothing.
-            if (IsDisabled)
-                return;
+            //first time items are empty so to avoid index out of range error.
+            if (_items.Count > 0)
+            {
+                //If the index is invalid the do nothing. (Just to be sure.)
+                if (index < 0 || index >= _items.Count)
+                    return;
 
-            TabItem item = _items[index];
+                //If the whole tab component is disabled then do nothing.
+                if (IsDisabled)
+                    return;
 
-            //If the clicked item is already the ActiveItem then do nothing.
-            if (ActiveItem == item)
-                return;
+                TabItem item = _items[index];
 
-            //If the clicked item is disabled then do nothing.
-            if (item.IsDisabled)
-                return;
+                //If the clicked item is already the ActiveItem then do nothing.
+                if (ActiveItem == item)
+                    return;
 
-            //Change the active item.
-            _activeItemIndex = index;
-            ActiveItem = item;
-            _ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
+                //If the clicked item is disabled then do nothing.
+                if (item.IsDisabled)
+                    return;
 
-            //Not needed
-            //Change the selected flag in all items.
-            //foreach (var tabItem in _items.ToArray())
-            //{
-            //    tabItem.SetSelected(item == tabItem);
-            //}
+                //Change the active item.
+                //_activeItemIndex = index;
+                ActiveItem = item;
+                //_ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
+
+                //Not needed
+                //Change the selected flag in all items.
+                //foreach (var tabItem in _items.ToArray())
+                //{
+                //    tabItem.SetSelected(item == tabItem);
+                //}
+            }
         }
     }
 }
