@@ -145,15 +145,11 @@ namespace Gizmo.Web.Components
             //If user set active index then don't whatever active index should marked as active
             if (_activeItemIndex == 0)
             {
-                //Check if first tab is disabled or visible false then make next tab as active
-                int index = 0;
-                foreach (var item in _items)
+                var firstAvailableItem = _items.Where(a => a.IsVisible && !a.IsDisabled).FirstOrDefault();
+                if (firstAvailableItem != null)
                 {
-                    index = index + 1;
-                    if (!item.IsVisible || item.IsDisabled)
-                    {
-                        SetSelectedItem(index);
-                    }
+                    int index = _items.IndexOf(firstAvailableItem);
+                    SetSelectedItem(index);
                 }
             }
 
