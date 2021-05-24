@@ -12,11 +12,9 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region PROPERTIES
         [CascadingParameter]
         protected Select<TItemType> Parent { get; set; }
-
-        #region PROPERTIES
-
         [Parameter]
         public TItemType Value { get; set; }
 

@@ -30,10 +30,10 @@ namespace Gizmo.Web.Components
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
-
         protected string ClassName => new ClassMapper()
                 .Add("gizmo-tab-content-active")
                 .AsString();
+
         #region METHODS
         protected override void OnInitialized()
         {

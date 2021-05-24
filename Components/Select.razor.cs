@@ -11,8 +11,10 @@ namespace Gizmo.Web.Components
         {
         }
         #endregion
-        
+
+        #region MEMBERS
         private string _text;
+        #endregion
 
         #region PROPERTIES
 
@@ -33,6 +35,7 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region METHODS
         internal Task SetSelectedItem(SelectItem<TItemType> item)
         {
             IsOpen = false;
@@ -59,6 +62,9 @@ namespace Gizmo.Web.Components
                  .Add("g-shadow-8")
                  .AsString();
 
+        #endregion
+
+        #region EVENTS
         protected void OnClickMenuHandler(MouseEventArgs args)
         {
             IsOpen = true;
@@ -68,5 +74,6 @@ namespace Gizmo.Web.Components
         {
             IsOpen = false;
         }
+        #endregion
     }
 }
