@@ -46,8 +46,8 @@ namespace Gizmo.Web.Components
             }
         }
 
-        [Parameter]
-        public EventCallback<int> ActiveItemIndexChanged { get; set; }
+        //[Parameter]
+        //public EventCallback<int> ActiveItemIndexChanged { get; set; }
         #endregion
 
         #region METHODS
@@ -140,7 +140,7 @@ namespace Gizmo.Web.Components
                 //Change the active item.
                 _activeItemIndex = index;
                 ActiveItem = item;
-                _ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
+                //_ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
 
                 StateHasChanged();
             }
