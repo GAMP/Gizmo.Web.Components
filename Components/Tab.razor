@@ -1,17 +1,15 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-@code{
-    int count = 0;
-}
+
 
 <div class="@Class @ClassName()">
     <CascadingValue Value="@this" IsFixed="true">
         <ul class="gizmo-tab__ul">
+            @{int count = 0;}
             @foreach (var item in _items)
             {
-               
-                count = count + 1;
+                { count = count + 1; }
                 <li class="gizmo-tab__item gizmo-tab-@count">
                     <a class="gizmo-tab__link  @GetTabItemClass(item)" @onclick=@( e => ActivateItem(item, e, false))>@item.Header</a>
                 </li>
