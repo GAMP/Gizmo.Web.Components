@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -131,17 +133,31 @@ namespace Gizmo.Web.Components
                     return;
 
                 //Change the active item.
-                //_activeItemIndex = index;
+                _activeItemIndex = index;
                 ActiveItem = item;
-                //_ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
+                _ = ActiveItemIndexChanged.InvokeAsync(_activeItemIndex);
 
-                //Not needed
-                //Change the selected flag in all items.
-                //foreach (var tabItem in _items.ToArray())
-                //{
-                //    tabItem.SetSelected(item == tabItem);
-                //}
+                StateHasChanged();
             }
+        }
+        protected override Task OnFirstAfterRenderAsync()
+        {
+            //If user set active index then don't whatever active index should marked as active
+            if (_activeItemIndex == 0)
+            {
+                //Check if first tab is disabled or visible false then make next tab as active
+                int index = 0;
+                foreach (var item in _items)
+                {
+                    index = index + 1;
+                    if (!item.IsVisible || item.IsDisabled)
+                    {
+                        SetSelectedItem(index);
+                    }
+                }
+            }
+
+            return base.OnFirstAfterRenderAsync();
         }
     }
 }
