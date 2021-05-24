@@ -14,9 +14,13 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region MEMBERS
         private int _activeItemIndex = 0;
-        private List<TabItem> _items = new List<TabItem>();
 
+        private List<TabItem> _items = new List<TabItem>();
+        #endregion
+
+        #region PROPERTIES
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
@@ -32,6 +36,21 @@ namespace Gizmo.Web.Components
 
         [Parameter] public string TabItemClass { get; set; }
 
+        [Parameter]
+        public int ActiveItemIndex
+        {
+            get => _activeItemIndex;
+            set
+            {
+                SetSelectedItem(value);
+            }
+        }
+
+        [Parameter]
+        public EventCallback<int> ActiveItemIndexChanged { get; set; }
+        #endregion
+
+        #region METHODS
         string GetTabItemClass(TabItem item)
         {
             var itemClassName = new ClassMapper()
@@ -48,20 +67,6 @@ namespace Gizmo.Web.Components
              .If("gizmo-tab-hidden", () => !IsVisible).AsString();
             return className;
         }
-
-        [Parameter]
-        public int ActiveItemIndex
-        {
-            get => _activeItemIndex;
-            set
-            {
-                SetSelectedItem(value);
-            }
-        }
-
-        [Parameter]
-        public EventCallback<int> ActiveItemIndexChanged { get; set; }
-
         public void ActivateItem(TabItem item, bool ignoreDisabledState = false)
         {
             ActivateItem(item, null, ignoreDisabledState);
@@ -155,5 +160,6 @@ namespace Gizmo.Web.Components
 
             return base.OnFirstAfterRenderAsync();
         }
+        #endregion
     }
 }

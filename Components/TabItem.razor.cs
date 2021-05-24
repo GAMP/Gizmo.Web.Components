@@ -12,17 +12,9 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
-        //Not needed
-        //private bool _isSelected;
-
-        #endregion
-
+        #region PROPERTIES
         [CascadingParameter]
         protected Tab Parent { get; set; }
-
-        #region PROPERTIES
-
         [Parameter]
         public RenderFragment Header { get; set; }
 
@@ -38,11 +30,11 @@ namespace Gizmo.Web.Components
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
-        //Not needed
-        protected string ClassName => new ClassMapper()
-                 .Add("gizmo-tab-content-active")
-                 .AsString();
 
+        protected string ClassName => new ClassMapper()
+                .Add("gizmo-tab-content-active")
+                .AsString();
+        #region METHODS
         protected override void OnInitialized()
         {
             if (Parent != null)
@@ -65,16 +57,6 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
-        //Not needed
-        //internal void SetSelected(bool selected)
-        //{
-        //    if (_isSelected == selected)
-        //        return;
-
-        //    _isSelected = selected;
-
-        //    StateHasChanged();
-        //}
-
+        #endregion     
     }
 }
