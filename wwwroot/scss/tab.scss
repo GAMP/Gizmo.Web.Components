@@ -15,7 +15,7 @@
 //gizmo-tab
 .gizmo-tab {
     .gizmo-tab-active {
-        color: $gizmo-white-color;       
+        color: $gizmo-white-color;
 
         [light-theme] & {
             color: $gizmo-black-color;
@@ -28,17 +28,9 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: $gizmo-primary-color;          
-        }
-    }
-
-    .gizmo-tab-content__items {
-        display: none;
-    }
-
-    .gizmo-tab-content-active {
-        .gizmo-tab-content__items {
-            display: block;
+            background-color: $gizmo-primary-color;
+            animation-duration: 1s;
+            animation-name: slideborder;
         }
     }
 
@@ -88,26 +80,57 @@
             }
         }
     }
-
-
 }
 
 //gizmo-tab-content
 .gizmo-tab-content {
 
-    .content-main {
-        overflow: hidden;
-        width: 100%;
+    .gizmo-tab-content-active {
+        .gizmo-tab-content__items {
+            display: block;
+        }
     }
 
     .gizmo-tab-content-active {
-        .content-list {
+        .gizmo-tab-content__list {
             animation-duration: 1s;
             animation-name: slidein;
         }
     }
+
+    &__items {
+        display: none;
+    }
+
+    &__main {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    &__list {
+        padding: 0 2.5rem;
+        font-size: $gizmo-font-16;
+        color: $gizmo-white-color;
+        
+        [light-theme] & {
+            color: $gizmo-secondary-color;
+        }
+    }
 }
 
+
+//key frame tabs border movement
+@keyframes slideborder {
+    from {
+        margin-left:-22%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: 2%;
+        width: 100%;
+    }
+}
 //keyframe for slide content-list text
 @keyframes slidein {
     from {
@@ -120,3 +143,5 @@
         width: 100%;
     }
 }
+
+

@@ -500,14 +500,10 @@
   width: 100%;
   height: 3px;
   background-color: #5A67F2;
-}
-
-.gizmo-tab .gizmo-tab-content__items {
-  display: none;
-}
-
-.gizmo-tab .gizmo-tab-content-active .gizmo-tab-content__items {
-  display: block;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: slideborder;
+  animation-name: slideborder;
 }
 
 .gizmo-tab .gizmo-tab-hidden {
@@ -559,16 +555,58 @@
   background-color: #FFFFFF;
 }
 
-.gizmo-tab-content .content-main {
-  overflow: hidden;
-  width: 100%;
+.gizmo-tab-content .gizmo-tab-content-active .gizmo-tab-content__items {
+  display: block;
 }
 
-.gizmo-tab-content .gizmo-tab-content-active .content-list {
+.gizmo-tab-content .gizmo-tab-content-active .gizmo-tab-content__list {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-name: slidein;
   animation-name: slidein;
+}
+
+.gizmo-tab-content__items {
+  display: none;
+}
+
+.gizmo-tab-content__main {
+  overflow: hidden;
+  width: 100%;
+}
+
+.gizmo-tab-content__list {
+  padding: 0 2.5rem;
+  font-size: 1.6rem;
+  color: #FFFFFF;
+}
+
+[light-theme] .gizmo-tab-content__list {
+  color: #6E7689;
+}
+
+@-webkit-keyframes slideborder {
+  from {
+    margin-left: -22%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 2%;
+    width: 100%;
+  }
+}
+
+@keyframes slideborder {
+  from {
+    margin-left: -22%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 2%;
+    width: 100%;
+  }
 }
 
 @-webkit-keyframes slidein {
