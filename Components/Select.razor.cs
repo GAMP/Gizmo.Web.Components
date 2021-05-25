@@ -53,11 +53,11 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-select")
+                 .Add("gizmo-select")
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("g-select-container")
+                 .Add("gizmo-select-container")
                  .Add("g-popup-bottom")
                  .Add("g-shadow-8")
                  .AsString();

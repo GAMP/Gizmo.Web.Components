@@ -632,3 +632,19 @@
     width: 100%;
   }
 }
+
+.gizmo-select {
+  position: relative;
+}
+
+.gizmo-select .g-select-container {
+  background-color: #FFFFFF;
+  border-radius: 0.8rem;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  position: absolute;
+}

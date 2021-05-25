@@ -17,6 +17,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="wwwroot\scss\select.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\_variables.scss" />
 	</ItemGroup>
@@ -35,6 +36,7 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="wwwroot\scripts.js" />
+		<None Include="wwwroot\scss\select.scss" />
 		<None Include="wwwroot\scss\tab.scss" />
 		<None Include="wwwroot\scss\components.scss" />
 		<None Include="wwwroot\scss\button.scss" />
