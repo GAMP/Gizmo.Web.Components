@@ -12,6 +12,17 @@
         @ref="@Ref"
         @attributes="@Attributes"
         id="@Id">
+
+    @if (!string.IsNullOrEmpty(LeftIcon))
+    {
+        <Icon Source="@LeftIcon" />
+    }
+
     @ChildContent
-    
+
+    @if (!string.IsNullOrEmpty(RightIcon))
+    {
+        <Icon Source="@RightIcon" />
+    }
+
 </button>

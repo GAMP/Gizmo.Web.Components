@@ -11,7 +11,9 @@ namespace Gizmo.Web.Components
         public enum ButtonVariants
         {
             Fill,
-            Outline
+            Outline,
+            Text,
+            Icon
         }
 
         #region CONSTRUCTOR
@@ -77,6 +79,12 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
+        public string LeftIcon { get; set; }
+
+        [Parameter]
+        public string RightIcon { get; set; }
+
+        [Parameter]
         public bool Selected { get; set; }
 
         #endregion
@@ -101,6 +109,7 @@ namespace Gizmo.Web.Components
                  .Add("button")
                  .Add($"button--{Size.ToDescriptionString()}")
                  .If("button--secondary", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
+                 .If("button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
                  .If("disabled", () => IsDisabled)
                  .If("selected", () => _isSelected)
                  .AsString();
