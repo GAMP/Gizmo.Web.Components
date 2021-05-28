@@ -65,7 +65,7 @@
 
     &__link {
         font-weight: $font-weight-600;
-        font-size: $gizmo-font-17;
+        font-size: $font-17;
         line-height: $gizmo-line-height-22;
         letter-spacing: $gizmo-letter-spacing-8;
         color: $secondary-color;
@@ -109,7 +109,7 @@
 
     &__list {
         padding: 0 2.5rem;
-        font-size: $gizmo-font-16;
+        font-size: $font-16;
         color: $white-color;
         
         [light-theme] & {

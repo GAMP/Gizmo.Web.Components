@@ -4,7 +4,7 @@
     outline: 0;
     color: $white-color;
     background: $primary-color;
-    font-size: $gizmo-font-16;
+    font-size: $font-16;
     cursor: pointer;
     border-radius: 5px;
     height: 4.6rem;
@@ -67,12 +67,12 @@
 
     &--large {
         height: 4.8rem;
-        font-size: $gizmo-font-17;
+        font-size: $font-17;
     }
 
     &--medium {
         height: 3.2rem;
-        font-size: $gizmo-font-15;
+        font-size: $font-15;
         padding: 0 1.6rem;
     }
 

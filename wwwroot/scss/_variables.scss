@@ -30,6 +30,17 @@ $border-light-color: #c3c7ce;
 
 //== typography
 
+//font
+$font-12: 1.2rem;
+$font-13: 1.3rem;
+$font-14: 1.4rem;
+$font-15: 1.5rem;
+$font-16: 1.6rem;
+$font-17: 1.7rem;
+$font-18: 1.8rem;
+$font-19: 1.9rem;
+$font-20: 2rem;
+
 //base font (body)
 $base-font-size: 1.9rem;
 $base-font-weight: 500;
@@ -116,6 +127,7 @@ $rounded-circle: 50%;
 $rounded-pill: 9999px;
 $rounded-0: 0rem;
 $rounded: 0.4rem;
+$rounded-lg:0.8rem;
 
 //== font weight
 
@@ -250,16 +262,6 @@ $spacer-n56: -5.6rem;
 $spacer-n60: -6rem;
 $spacer-n64: -6.4rem;
 
-//font size
-$gizmo-font-15: 1.5rem;
-$gizmo-font-16: 1.6rem;
-$gizmo-font-17: 1.7rem;
-$gizmo-font-19: 1.9rem;
-
-//border radius
-$gizmo-border-radius-4: 0.4rem;
-$gizmo-border-radius-8: 0.8rem;
-
 //letter-spacing
 $gizmo-letter-spacing-4: -0.04rem;
 $gizmo-letter-spacing-8: -0.08rem;
@@ -270,14 +272,14 @@ $gizmo-line-height-22: 2.2rem;
 
 // @extend/inheritance (common style properties)
 %gizmo-font-19-normal {
-    font-size: $gizmo-font-19;
+    font-size: $font-19;
     font-weight: $font-weight-500;
     line-height: $gizmo-line-height-24;
     letter-spacing: $gizmo-letter-spacing-8;
 }
 
 %gizmo-font-19-bold {
-    font-size: $gizmo-font-19;
+    font-size: $font-19;
     font-weight: $font-weight-bold;
     line-height: $gizmo-line-height-24;
     letter-spacing: $gizmo-letter-spacing-8;

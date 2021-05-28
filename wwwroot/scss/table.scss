@@ -7,7 +7,7 @@
     & > thead td, & > thead th {
         height: 5rem;
         text-transform: uppercase;
-        font-size: $gizmo-font-15;
+        font-size: $font-15;
         color: $secondary-color;
         font-weight: 400;
         padding: 0 1.7rem;
@@ -48,7 +48,7 @@
     & > tbody > tr {
         height: 4.8rem;
         background: transparent;
-        border-radius: $gizmo-border-radius-8;
+        border-radius: $rounded-lg;
         margin-bottom: 1.2rem;
 
         & > td {
@@ -196,7 +196,7 @@
     position: relative;
     width: 100%;
     border: 1px solid #292e39;
-    border-radius: $gizmo-border-radius-4;
+    border-radius: $rounded;
     display: flex;
     align-items: flex-start;
     box-sizing: border-box;

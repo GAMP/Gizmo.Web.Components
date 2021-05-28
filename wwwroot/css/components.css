@@ -147,6 +147,42 @@ a {
   color: transparent;
 }
 
+.font-12 {
+  font-size: 1.2rem;
+}
+
+.font-13 {
+  font-size: 1.3rem;
+}
+
+.font-14 {
+  font-size: 1.4rem;
+}
+
+.font-15 {
+  font-size: 1.5rem;
+}
+
+.font-16 {
+  font-size: 1.6rem;
+}
+
+.font-17 {
+  font-size: 1.7rem;
+}
+
+.font-18 {
+  font-size: 1.8rem;
+}
+
+.font-19 {
+  font-size: 1.9rem;
+}
+
+.font-20 {
+  font-size: 2rem;
+}
+
 h1,
 .giz-typography-h1 {
   color: #000000;
@@ -357,6 +393,10 @@ h6,
 
 .rounded {
   border-radius: 0.4rem;
+}
+
+.rounded-lg {
+  border-radius: 0.8rem;
 }
 
 .font-weight-normal {

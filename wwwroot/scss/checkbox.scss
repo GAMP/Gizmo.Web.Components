@@ -3,7 +3,7 @@
     left: -9999px;
 
     & + label {
-        font-size: $gizmo-font-15;
+        font-size: $font-15;
         color: $secondary-color;
         position: relative;
         padding-left: 3.6rem;
@@ -30,7 +30,7 @@
         height: 2.4rem;
         background: transparent;
         border: 1px solid $gray-color;
-        border-radius: $gizmo-border-radius-4;
+        border-radius: $rounded;
     }
 
     &:checked + label:before {
