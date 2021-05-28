@@ -1,7 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits InputBase<string>
 
-<div class="@ClassName">
+<div class="@Class @ClassName">
     @if (!string.IsNullOrEmpty(Label))
     {
         <label for="@Id">@Label</label>
