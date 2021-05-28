@@ -1,5 +1,7 @@
 //== @import _partial.scss files == //
+
 @import "_variables";
+@import "_typography";
 
 //== @import component.scss files == //
 
@@ -9,4 +11,5 @@
 @import "table";
 @import "tab";
 @import "select";
+
 

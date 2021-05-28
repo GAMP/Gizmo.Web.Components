@@ -8,7 +8,7 @@
         height: 5rem;
         text-transform: uppercase;
         font-size: $gizmo-font-15;
-        color: $gizmo-secondary-color;
+        color: $secondary-color;
         font-weight: 400;
         padding: 0 1.7rem;
         text-align: left;
@@ -76,15 +76,15 @@
             }
 
             & > td {
-                border-top: 1px solid $gizmo-gray-color;
-                border-bottom: 1px solid $gizmo-gray-color;
+                border-top: 1px solid $gray-color;
+                border-bottom: 1px solid $gray-color;
 
                 &:first-child {
-                    border-left: 1px solid $gizmo-gray-color;
+                    border-left: 1px solid $gray-color;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $gizmo-gray-color;
+                    border-right: 1px solid $gray-color;
                 }
             }
         }
@@ -92,25 +92,25 @@
 
         &.is-opened {
             border-color: #453855;
-            background: $gizmo-primary-color;
+            background: $primary-color;
             cursor: pointer;
-            color: $gizmo-white-color;
+            color: $white-color;
 
             [light-theme] & {
                 border-color: #dddfe4;
-                background: $gizmo-primary-color;
+                background: $primary-color;
             }
 
             & > td {
-                border-top: 1px solid $gizmo-primary-color;
-                border-bottom: 1px solid $gizmo-primary-color;
+                border-top: 1px solid $primary-color;
+                border-bottom: 1px solid $primary-color;
 
                 &:first-child {
-                    border-left: 1px solid $gizmo-primary-color;
+                    border-left: 1px solid $primary-color;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $gizmo-primary-color;
+                    border-right: 1px solid $primary-color;
                 }
             }
         }
@@ -120,40 +120,40 @@
             cursor: pointer;
 
             [light-theme] & {
-                background: $gizmo-primary-light;
+                background: $primary-light-color;
             }
 
             &:hover {
                 background: rgba(90,103,242,0.2);
 
                 [light-theme] & {
-                    background: $gizmo-primary-light;
+                    background: $primary-light-color;
                 }
             }
 
             & > td {
-                border-top: 1px solid $gizmo-primary-light;
-                border-bottom: 1px solid $gizmo-primary-light;
+                border-top: 1px solid $primary-light-color;
+                border-bottom: 1px solid $primary-light-color;
 
                 &:first-child {
-                    border-left: 1px solid $gizmo-primary-light;
+                    border-left: 1px solid $primary-light-color;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $gizmo-primary-light;
+                    border-right: 1px solid $primary-light-color;
                 }
             }
         }
 
         &.is-active {
             border-color: #453855;
-            background: $gizmo-dark-light;
+            background: $dark-light-color;
             border-radius: 4px 4px 0 0;
             margin-bottom: 0;
 
             [light-theme] & {
                 border-color: #dddfe4;
-                background: $gizmo-primary-light;
+                background: $primary-light-color;
             }
         }
 

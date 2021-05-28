@@ -2,15 +2,15 @@
 .button {
     border: 0;
     outline: 0;
-    color: $gizmo-white-color;
-    background: $gizmo-primary-color;
+    color: $white-color;
+    background: $primary-color;
     font-size: $gizmo-font-16;
     cursor: pointer;
     border-radius: 5px;
     height: 4.6rem;
     padding: 0 3.4rem;
     transition: all 0.3s ease;
-    font-weight: $gizmo-font-weight-600;
+    font-weight: $font-weight-600;
     letter-spacing: 0.08rem;
     white-space: nowrap;
 
@@ -24,13 +24,13 @@
     }
 
     &--secondary {
-        background: $gizmo-white-color;
-        border: 1px solid $gizmo-gray-light;
-        color: $gizmo-secondary-color;
+        background: $white-color;
+        border: 1px solid $gray-light-color;
+        color: $secondary-color;
 
         &:hover {
-            color: $gizmo-primary-color;
-            background: $gizmo-white-color;
+            color: $primary-color;
+            background: $white-color;
         }
 
         &:focus {
@@ -47,11 +47,11 @@
     &--text {
         background: none;
         border: none;
-        color: $gizmo-secondary-color;
+        color: $secondary-color;
 
         &:hover {
-            color: $gizmo-primary-color;
-            background: $gizmo-white-color;
+            color: $primary-color;
+            background: $white-color;
         }
 
         &:focus {
@@ -83,11 +83,11 @@
     }
 
     &.is-disabled, &[disabled] {
-        background: $gizmo-gray-color;
+        background: $gray-color;
         cursor: default;
 
         &:hover {
-            background: $gizmo-gray-color;
+            background: $gray-color;
         }
 
         &:focus {

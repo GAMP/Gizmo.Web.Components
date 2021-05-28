@@ -19,6 +19,7 @@
 	<ItemGroup>
 	  <Content Remove="wwwroot\scss\select.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
+	  <Content Remove="wwwroot\scss\_typography.scss" />
 	  <Content Remove="wwwroot\scss\_variables.scss" />
 	</ItemGroup>
 
@@ -43,6 +44,7 @@
 		<None Include="wwwroot\scss\checkbox.scss" />
 		<None Include="wwwroot\scss\radio.scss" />
 		<None Include="wwwroot\scss\table.scss" />
+		<None Include="wwwroot\scss\_typography.scss" />
 		<None Include="wwwroot\scss\_variables.scss" />
 	</ItemGroup>
 

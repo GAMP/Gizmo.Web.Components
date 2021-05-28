@@ -15,10 +15,10 @@
 //gizmo-tab
 .gizmo-tab {
     .gizmo-tab-active {
-        color: $gizmo-white-color;
+        color: $white-color;
 
         [light-theme] & {
-            color: $gizmo-black-color;
+            color: $black-color;
         }
 
         &::after {
@@ -28,7 +28,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: $gizmo-primary-color;
+            background-color: $primary-color;
             animation-duration: .3s;
             animation-name: slideborder;
         }
@@ -50,11 +50,11 @@
         margin: 0rem;
         padding: 0rem;
         border-bottom: 1px solid #1f2637;
-        background: $gizmo-dark-color;
+        background: $dark-color;
 
         [light-theme] & {
             background: #eee;
-            border-bottom: 1px solid $gizmo-white-color;
+            border-bottom: 1px solid $white-color;
         }
     }
 
@@ -64,11 +64,11 @@
     }
 
     &__link {
-        font-weight: $gizmo-font-weight-600;
+        font-weight: $font-weight-600;
         font-size: $gizmo-font-17;
         line-height: $gizmo-line-height-22;
         letter-spacing: $gizmo-letter-spacing-8;
-        color: $gizmo-secondary-color;
+        color: $secondary-color;
         padding: 1.5rem;
         cursor: pointer;
 
@@ -76,7 +76,7 @@
             background-color: #2a3349;
 
             [light-theme] & {
-                background-color: $gizmo-white-color;
+                background-color: $white-color;
             }
         }
     }
@@ -110,10 +110,10 @@
     &__list {
         padding: 0 2.5rem;
         font-size: $gizmo-font-16;
-        color: $gizmo-white-color;
+        color: $white-color;
         
         [light-theme] & {
-            color: $gizmo-secondary-color;
+            color: $secondary-color;
         }
     }
 }

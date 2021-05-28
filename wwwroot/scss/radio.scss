@@ -4,7 +4,7 @@
 
     & + label {
         font-size: $gizmo-font-15;
-        color: $gizmo-secondary-color;
+        color: $secondary-color;
         position: relative;
         padding-left: 3.6rem;
         display: flex;
@@ -29,19 +29,19 @@
         width: 2.4rem;
         height: 2.4rem;
         background: transparent;
-        border: 1px solid $gizmo-gray-color;
+        border: 1px solid $gray-color;
         border-radius: 100px;
     }
 
     &:checked + label:before {
         content: '';
-        background: $gizmo-primary-color;
-        border-color: $gizmo-primary-color;
+        background: $primary-color;
+        border-color: $primary-color;
     }
 
     &.is-disabled + label:before, &[disabled] + label:before {
         cursor: default;
-        background: $gizmo-gray-color;
+        background: $gray-color;
     }
 
     &.is-disabled + label, &[disabled] + label {
@@ -56,7 +56,7 @@
         transform: translateY(-50%);
         width: 1.4rem;
         height: 1.4rem;
-        background: $gizmo-white-color;
+        background: $white-color;
         border-radius: 100px;
     }
 }
