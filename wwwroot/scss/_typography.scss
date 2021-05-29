@@ -5,7 +5,7 @@
 
 * {
     box-sizing: border-box;
-   /* margin: 0;
+    /* margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;*/
@@ -157,44 +157,44 @@ a {
 
 //font
 .font-12 {
-    font-size: $font-12;
+    font-size: $font-12 !important;
 }
 
 .font-13 {
-    font-size: $font-13;
+    font-size: $font-13 !important;
 }
 
 .font-14 {
-    font-size: $font-14;
+    font-size: $font-14 !important;
 }
 
 .font-15 {
-    font-size: $font-15;
+    font-size: $font-15 !important;
 }
 
 .font-16 {
-    font-size: $font-16;
+    font-size: $font-16 !important;
 }
 
 .font-17 {
-    font-size: $font-17;
+    font-size: $font-17 !important;
 }
 
 .font-18 {
-    font-size: $font-18;
+    font-size: $font-18 !important;
 }
 
 .font-19 {
-    font-size: $font-19;
+    font-size: $font-19 !important;
 }
 
 .font-20 {
-    font-size: $font-20;
+    font-size: $font-20 !important;
 }
 
 //heading
 h1, .giz-typography-h1 {
-    color:$h-color;
+    color: $h-color;
     font-size: $h1-font-size;
     font-weight: $h1-font-weight;
     line-height: $h1-line-height;
@@ -256,7 +256,7 @@ h6, .giz-typography-h6 {
 }
 
 .giz-typography-subtitle1 {
-    font-size: $subtitle1-font-size;    
+    font-size: $subtitle1-font-size;
     font-weight: $subtitle1-font-weight;
     line-height: $subtitle1-line-height;
     letter-spacing: $subtitle1-letter-spacing;
@@ -399,12 +399,12 @@ h6, .giz-typography-h6 {
     border-radius: $rounded-0 !important;
 }
 
-.rounded{
-   border-radius:$rounded;
+.rounded {
+    border-radius: $rounded !important;
 }
 
-.rounded-lg{
-    border-radius:$rounded-lg;
+.rounded-lg {
+    border-radius: $rounded-lg !important;
 }
 
 //== theme font weight
@@ -548,7 +548,7 @@ h6, .giz-typography-h6 {
 
     .d-sm-table-cell {
         display: $display-table-cell !important;
-    }    
+    }
 }
 
 //== @media query for display (medium screen)
@@ -580,7 +580,7 @@ h6, .giz-typography-h6 {
 
     .d-md-table-cell {
         display: $display-table-cell !important;
-    }    
+    }
 }
 
 //== @media query for display (large screen)
@@ -644,7 +644,7 @@ h6, .giz-typography-h6 {
 
     .d-xl-table-cell {
         display: $display-table-cell !important;
-    }    
+    }
 }
 
 //== flex
