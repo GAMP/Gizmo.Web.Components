@@ -41,6 +41,14 @@ $font-18: 1.8rem;
 $font-19: 1.9rem;
 $font-20: 2rem;
 
+//letter-spacing
+$letter-spacing-4: -0.04rem;
+$letter-spacing-8: -0.08rem;
+
+//line height
+$line-height-24: 2.4rem;
+$line-height-22: 2.2rem; 
+
 //base font (body)
 $base-font-size: 1.9rem;
 $base-font-weight: 500;
@@ -262,30 +270,19 @@ $spacer-n56: -5.6rem;
 $spacer-n60: -6rem;
 $spacer-n64: -6.4rem;
 
-//letter-spacing
-$gizmo-letter-spacing-4: -0.04rem;
-$gizmo-letter-spacing-8: -0.08rem;
-
-//line height
-$gizmo-line-height-24: 2.4rem;
-$gizmo-line-height-22: 2.2rem; 
 
 // @extend/inheritance (common style properties)
 %gizmo-font-19-normal {
     font-size: $font-19;
     font-weight: $font-weight-500;
-    line-height: $gizmo-line-height-24;
-    letter-spacing: $gizmo-letter-spacing-8;
+    line-height: $line-height-24;
+    letter-spacing: $letter-spacing-8;
 }
 
 %gizmo-font-19-bold {
     font-size: $font-19;
     font-weight: $font-weight-bold;
-    line-height: $gizmo-line-height-24;
-    letter-spacing: $gizmo-letter-spacing-8;
+    line-height: $line-height-24;
+    letter-spacing: $letter-spacing-8;
 }
-
-
-//gizmo-order-popup
-$gizmo-height-50:50rem;
 
