@@ -10,7 +10,7 @@
 }
 
 body {
-  color: #000000;
+  color: #6E7689;
   font-family: "Montserrat", sans-serif;
   font-size: 1.9rem;
   font-weight: 500;
@@ -28,123 +28,123 @@ a {
 }
 
 .giz-primary {
-  background-color: #5A67F2;
+  background-color: #5A67F2 !important;
 }
 
 .giz-primary-text {
-  color: #5A67F2;
+  color: #5A67F2 !important;
 }
 
 .giz-primary-light {
-  background-color: #F6FAFF;
+  background-color: #F6FAFF !important;
 }
 
 .giz-primary-light-text {
-  color: #F6FAFF;
+  color: #F6FAFF !important;
 }
 
 .giz-secondary {
-  background-color: #6E7689;
+  background-color: #6E7689 !important;
 }
 
 .giz-secondary-text {
-  color: #6E7689;
+  color: #6E7689 !important;
 }
 
 .giz-secondary-light {
-  background-color: #FAFAFA;
+  background-color: #FAFAFA !important;
 }
 
 .giz-secondary-light-text {
-  color: #FAFAFA;
+  color: #FAFAFA !important;
 }
 
 .giz-info {
-  background-color: #68C9FF;
+  background-color: #68C9FF !important;
 }
 
 .giz-info-text {
-  color: #68C9FF;
+  color: #68C9FF !important;
 }
 
 .giz-success {
-  background-color: #32CF92;
+  background-color: #32CF92 !important;
 }
 
 .giz-success-text {
-  color: #32CF92;
+  color: #32CF92 !important;
 }
 
 .giz-danger {
-  background-color: #F25A68;
+  background-color: #F25A68 !important;
 }
 
 .giz-danger-text {
-  color: #F25A68;
+  color: #F25A68 !important;
 }
 
 .giz-light {
-  background-color: #eff0f2;
+  background-color: #eff0f2 !important;
 }
 
 .giz-light-text {
-  color: #eff0f2;
+  color: #eff0f2 !important;
 }
 
 .giz-dark {
-  background-color: #171c28;
+  background-color: #171c28 !important;
 }
 
 .giz-dark-text {
-  color: #171c28;
+  color: #171c28 !important;
 }
 
 .giz-dark-light {
-  background-color: #1b212f;
+  background-color: #1b212f !important;
 }
 
 .giz-dark-light-text {
-  color: #1b212f;
+  color: #1b212f !important;
 }
 
 .giz-black {
-  background-color: #000000;
+  background-color: #000000 !important;
 }
 
 .giz-black-text {
-  color: #000000;
+  color: #000000 !important;
 }
 
 .giz-white {
-  background-color: #FFFFFF;
+  background-color: #FFFFFF !important;
 }
 
 .giz-white-text {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 .giz-gray {
-  background-color: #E6E8ED;
+  background-color: #E6E8ED !important;
 }
 
 .giz-gray-text {
-  color: #E6E8ED;
+  color: #E6E8ED !important;
 }
 
 .giz-gray-light {
-  background-color: #CFD2D8;
+  background-color: #CFD2D8 !important;
 }
 
 .giz-gray-light-text {
-  color: #CFD2D8;
+  color: #CFD2D8 !important;
 }
 
 .giz-transparent {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .giz-transparent-text {
-  color: transparent;
+  color: transparent !important;
 }
 
 .font-12 {
@@ -197,6 +197,10 @@ a {
 
 .line-height-22 {
   line-height: 2.2rem !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 h1,
@@ -395,6 +399,14 @@ h6,
   height: 100% !important;
 }
 
+.giz-min-height {
+  min-height: 100vh !important;
+}
+
+.border-0 {
+  border-width: 0rem !important;
+}
+
 .rounded-circle {
   border-radius: 50% !important;
 }
@@ -413,6 +425,10 @@ h6,
 
 .rounded-lg {
   border-radius: 0.8rem !important;
+}
+
+.outline-0 {
+  outline-width: 0rem !important;
 }
 
 .font-weight-normal {

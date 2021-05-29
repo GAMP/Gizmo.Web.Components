@@ -30,7 +30,7 @@ $border-light-color: #c3c7ce;
 
 //== typography
 
-//font
+//font size
 $font-12: 1.2rem;
 $font-13: 1.3rem;
 $font-14: 1.4rem;
@@ -47,14 +47,17 @@ $letter-spacing-8: -0.08rem;
 
 //line height
 $line-height-24: 2.4rem;
-$line-height-22: 2.2rem; 
+$line-height-22: 2.2rem;
+
+//cursor
+$cursor-pointer: pointer;
 
 //base font (body)
 $base-font-size: 1.9rem;
 $base-font-weight: 500;
 $base-line-height: 2.4rem;
 $base-letter-spacing: -0.08rem;
-$base-color: #000000;
+$base-color: #6E7689;
 $base-background: #FAFAFA;
 //body1
 $body1-font-size: 1.9rem;
@@ -128,6 +131,11 @@ $elevation-3: 0 1rem 3rem rgba(0,0,0,.175);
 
 $width-full: 100%;
 $height-full: 100%;
+$min-height: 100vh;
+
+//== border size
+
+$border-0: 0rem;
 
 //== border radius
 
@@ -135,7 +143,11 @@ $rounded-circle: 50%;
 $rounded-pill: 9999px;
 $rounded-0: 0rem;
 $rounded: 0.4rem;
-$rounded-lg:0.8rem;
+$rounded-lg: 0.8rem;
+
+//==outline
+
+$outline-0: 0rem;
 
 //== font weight
 
@@ -270,7 +282,6 @@ $spacer-n56: -5.6rem;
 $spacer-n60: -6rem;
 $spacer-n64: -6.4rem;
 
-
 // @extend/inheritance (common style properties)
 %gizmo-font-19-normal {
     font-size: $font-19;
@@ -285,4 +296,3 @@ $spacer-n64: -6.4rem;
     line-height: $line-height-24;
     letter-spacing: $letter-spacing-8;
 }
-

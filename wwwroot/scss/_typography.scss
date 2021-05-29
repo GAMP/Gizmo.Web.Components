@@ -34,123 +34,123 @@ a {
 //== theme color
 
 .giz-primary {
-    background-color: $primary-color;
+    background-color: $primary-color !important;
 }
 
 .giz-primary-text {
-    color: $primary-color;
+    color: $primary-color !important;
 }
 
 .giz-primary-light {
-    background-color: $primary-light-color;
+    background-color: $primary-light-color !important;
 }
 
 .giz-primary-light-text {
-    color: $primary-light-color;
+    color: $primary-light-color !important;
 }
 
 .giz-secondary {
-    background-color: $secondary-color;
+    background-color: $secondary-color !important;
 }
 
 .giz-secondary-text {
-    color: $secondary-color;
+    color: $secondary-color !important;
 }
 
 .giz-secondary-light {
-    background-color: $secondary-light;
+    background-color: $secondary-light !important;
 }
 
 .giz-secondary-light-text {
-    color: $secondary-light;
+    color: $secondary-light !important;
 }
 
 .giz-info {
-    background-color: $info-color;
+    background-color: $info-color !important;
 }
 
 .giz-info-text {
-    color: $info-color;
+    color: $info-color !important;
 }
 
 .giz-success {
-    background-color: $success-color;
+    background-color: $success-color !important;
 }
 
 .giz-success-text {
-    color: $success-color;
+    color: $success-color !important;
 }
 
 .giz-danger {
-    background-color: $danger-color;
+    background-color: $danger-color !important;
 }
 
 .giz-danger-text {
-    color: $danger-color;
+    color: $danger-color !important;
 }
 
 .giz-light {
-    background-color: $light-color;
+    background-color: $light-color !important;
 }
 
 .giz-light-text {
-    color: $light-color;
+    color: $light-color !important;
 }
 
 .giz-dark {
-    background-color: $dark-color;
+    background-color: $dark-color !important;
 }
 
 .giz-dark-text {
-    color: $dark-color;
+    color: $dark-color !important;
 }
 
 .giz-dark-light {
-    background-color: $dark-light-color;
+    background-color: $dark-light-color !important;
 }
 
 .giz-dark-light-text {
-    color: $dark-light-color;
+    color: $dark-light-color !important;
 }
 
 .giz-black {
-    background-color: $black-color;
+    background-color: $black-color !important;
 }
 
 .giz-black-text {
-    color: $black-color;
+    color: $black-color !important;
 }
 
 .giz-white {
-    background-color: $white-color;
+    background-color: $white-color !important;
 }
 
 .giz-white-text {
-    color: $white-color;
+    color: $white-color !important;
 }
 
 .giz-gray {
-    background-color: $gray-color;
+    background-color: $gray-color !important;
 }
 
 .giz-gray-text {
-    color: $gray-color;
+    color: $gray-color !important;
 }
 
 .giz-gray-light {
-    background-color: $gray-light-color;
+    background-color: $gray-light-color !important;
 }
 
 .giz-gray-light-text {
-    color: $gray-light-color;
+    color: $gray-light-color !important;
 }
 
 .giz-transparent {
-    background-color: $transparent-color;
+    background-color: $transparent-color !important;
 }
 
 .giz-transparent-text {
-    color: $transparent-color;
+    color: $transparent-color !important;
 }
 
 //=typography
@@ -210,6 +210,12 @@ a {
 
 .line-height-22 {
     line-height: $line-height-22 !important;
+}
+
+//cursor
+
+.cursor-pointer {
+    cursor: $cursor-pointer;
 }
 
 //heading
@@ -405,6 +411,16 @@ h6, .giz-typography-h6 {
     height: $height-full !important;
 }
 
+.giz-min-height {
+    min-height: $min-height !important;
+}
+
+//==border width
+
+.border-0 {
+    border-width: $border-0 !important;
+}
+
 //==border radius
 
 .rounded-circle {
@@ -425,6 +441,12 @@ h6, .giz-typography-h6 {
 
 .rounded-lg {
     border-radius: $rounded-lg !important;
+}
+
+//== outline
+
+.outline-0 {
+    outline-width: $outline-0 !important;
 }
 
 //== theme font weight
