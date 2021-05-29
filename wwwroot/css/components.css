@@ -183,6 +183,22 @@ a {
   font-size: 2rem !important;
 }
 
+.letter-spacing-4 {
+  letter-spacing: -0.04rem !important;
+}
+
+.letter-spacing-8 {
+  letter-spacing: -0.08rem !important;
+}
+
+.line-height-24 {
+  line-height: 2.4rem !important;
+}
+
+.line-height-22 {
+  line-height: 2.2rem !important;
+}
+
 h1,
 .giz-typography-h1 {
   color: #000000;

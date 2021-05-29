@@ -192,6 +192,26 @@ a {
     font-size: $font-20 !important;
 }
 
+//letter spacing
+
+.letter-spacing-4 {
+    letter-spacing: $letter-spacing-4 !important;
+}
+
+.letter-spacing-8 {
+    letter-spacing: $letter-spacing-8 !important;
+}
+
+//line height
+
+.line-height-24 {
+    line-height: $line-height-24 !important;
+}
+
+.line-height-22 {
+    line-height: $line-height-22 !important;
+}
+
 //heading
 h1, .giz-typography-h1 {
     color: $h-color;
