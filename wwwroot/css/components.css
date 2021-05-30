@@ -395,6 +395,14 @@ h6,
   border-color: #CFD2D8 !important;
 }
 
+.border-dark-color {
+  border-color: #3b4150 !important;
+}
+
+.border-light-color {
+  border-color: #c3c7ce !important;
+}
+
 .giz-width-full {
   width: 100% !important;
 }

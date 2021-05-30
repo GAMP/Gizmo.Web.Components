@@ -405,6 +405,13 @@ h6, .giz-typography-h6 {
     border-color: $gray-light-color !important;
 }
 
+.border-dark-color {
+    border-color: $border-dark-color !important;
+}
+
+.border-light-color {
+    border-color: $border-light-color !important;
+}
 //== height / width
 
 .giz-width-full {
