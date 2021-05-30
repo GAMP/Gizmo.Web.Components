@@ -25,6 +25,7 @@ $light-color: #eff0f2;
 $gray-color: #E6E8ED;
 $gray-light-color: #CFD2D8;
 $transparent-color: transparent;
+$border: #1f2637;
 $border-dark-color: #3b4150;
 $border-light-color: #c3c7ce;
 
@@ -57,30 +58,8 @@ $base-font-size: 1.9rem;
 $base-font-weight: 500;
 $base-line-height: 2.4rem;
 $base-letter-spacing: -0.08rem;
-$base-color: #6E7689;
+$base-color: #000000;
 $base-background: #FAFAFA;
-//body1
-$body1-font-size: 1.9rem;
-$body1-font-weight: 500;
-$body1-line-height: 2.4rem;
-$body1-letter-spacing: -0.08rem;
-$body1-color: #000000;
-//body2
-$body2-font-size: 1.7rem;
-$body2-font-weight: 500;
-$body2-line-height: 2.2rem;
-$body2-letter-spacing: -0.08rem;
-$body2-color: #000000;
-//subtitle1
-$subtitle1-font-size: 1.5rem;
-$subtitle1-font-weight: 600;
-$subtitle1-line-height: 1.6rem;
-$subtitle1-letter-spacing: -0.08rem;
-//subtitle2
-$subtitle2-font-size: 1.2rem;
-$subtitle2-font-weight: 600;
-$subtitle2-line-height: 1.4rem;
-$subtitle2-letter-spacing: -0.08rem;
 
 //heading typography
 $h-color: #000000;
@@ -115,6 +94,29 @@ $h6-font-weight: bold;
 $h6-line-height: 2.2rem;
 $h6-letter-spacing: -0.08rem;
 
+//body1
+$body1-font-size: 1.9rem;
+$body1-font-weight: 500;
+$body1-line-height: 2.4rem;
+$body1-letter-spacing: -0.08rem;
+$body1-color: #000000;
+//body2
+$body2-font-size: 1.7rem;
+$body2-font-weight: 500;
+$body2-line-height: 2.2rem;
+$body2-letter-spacing: -0.08rem;
+$body2-color: #000000;
+//subtitle1
+$subtitle1-font-size: 1.5rem;
+$subtitle1-font-weight: 600;
+$subtitle1-line-height: 1.6rem;
+$subtitle1-letter-spacing: -0.08rem;
+//subtitle2
+$subtitle2-font-size: 1.2rem;
+$subtitle2-font-weight: 600;
+$subtitle2-line-height: 1.4rem;
+$subtitle2-letter-spacing: -0.08rem;
+
 //nowrap
 $nowrap-overflow: hidden;
 $nowrap-white-space: nowrap;
@@ -136,6 +138,11 @@ $min-height: 100vh;
 //== border size
 
 $border-0: 0rem;
+$border: 1px solid #1f2637;
+$border-top: 1px solid #1f2637;
+$border-bottom: 1px solid #1f2637;
+$border-start: 1px solid #1f2637;
+$border-end: 1px solid #1f2637;
 
 //== border radius
 

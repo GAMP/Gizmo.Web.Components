@@ -345,60 +345,64 @@ h6, .giz-typography-h6 {
 
 //== border
 
+.border {
+    border-color: $border !important;
+}
+
 .border-primary {
-    border-color: $primary-color;
+    border-color: $primary-color !important;
 }
 
 .border-primary-light {
-    border-color: $primary-light-color;
+    border-color: $primary-light-color !important;
 }
 
 .border-secondary {
-    border-color: $secondary-color;
+    border-color: $secondary-color !important;
 }
 
 .border-secondary-light {
-    border-color: $secondary-light;
+    border-color: $secondary-light !important;
 }
 
 .border-info {
-    border-color: $info-color;
+    border-color: $info-color !important;
 }
 
 .border-success {
-    border-color: $success-color;
+    border-color: $success-color !important;
 }
 
 .border-danger {
-    border-color: $danger-color;
+    border-color: $danger-color !important;
 }
 
 .border-light {
-    border-color: $light-color;
+    border-color: $light-color !important;
 }
 
 .border-dark {
-    border-color: $dark-color;
+    border-color: $dark-color !important;
 }
 
 .border-dark-light {
-    background-color: $dark-light-color;
+    background-color: $dark-light-color !important;
 }
 
 .border-black {
-    border-color: $black-color;
+    border-color: $black-color !important;
 }
 
 .border-white {
-    border-color: $white-color;
+    border-color: $white-color !important;
 }
 
 .border-gray {
-    border-color: $gray-color;
+    border-color: $gray-color !important;
 }
 
 .border-gray-light {
-    border-color: $gray-light-color;
+    border-color: $gray-light-color !important;
 }
 
 //== height / width
@@ -419,6 +423,26 @@ h6, .giz-typography-h6 {
 
 .border-0 {
     border-width: $border-0 !important;
+}
+
+.border {
+    border: $border;
+}
+
+.border-top {
+    border-top: $border;
+}
+
+.border-bottom {
+    border-bottom: $border;
+}
+
+.border-start {
+    border-start: $border;
+}
+
+.border-end {
+    border-end: $border;
 }
 
 //==border radius

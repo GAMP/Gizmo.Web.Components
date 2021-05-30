@@ -49,7 +49,7 @@
         display: flex;
         margin: 0rem;
         padding: 0rem;
-        border-bottom: 1px solid #1f2637;
+        border-bottom: 1px solid $border;
         background: $dark-color;
 
         [light-theme] & {

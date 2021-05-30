@@ -10,7 +10,7 @@
 }
 
 body {
-  color: #6E7689;
+  color: #000000;
   font-family: "Montserrat", sans-serif;
   font-size: 1.9rem;
   font-weight: 500;
@@ -335,60 +335,64 @@ h6,
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
 
+.border {
+  border-color: 1px solid #1f2637 !important;
+}
+
 .border-primary {
-  border-color: #5A67F2;
+  border-color: #5A67F2 !important;
 }
 
 .border-primary-light {
-  border-color: #F6FAFF;
+  border-color: #F6FAFF !important;
 }
 
 .border-secondary {
-  border-color: #6E7689;
+  border-color: #6E7689 !important;
 }
 
 .border-secondary-light {
-  border-color: #FAFAFA;
+  border-color: #FAFAFA !important;
 }
 
 .border-info {
-  border-color: #68C9FF;
+  border-color: #68C9FF !important;
 }
 
 .border-success {
-  border-color: #32CF92;
+  border-color: #32CF92 !important;
 }
 
 .border-danger {
-  border-color: #F25A68;
+  border-color: #F25A68 !important;
 }
 
 .border-light {
-  border-color: #eff0f2;
+  border-color: #eff0f2 !important;
 }
 
 .border-dark {
-  border-color: #171c28;
+  border-color: #171c28 !important;
 }
 
 .border-dark-light {
-  background-color: #1b212f;
+  background-color: #1b212f !important;
 }
 
 .border-black {
-  border-color: #000000;
+  border-color: #000000 !important;
 }
 
 .border-white {
-  border-color: #FFFFFF;
+  border-color: #FFFFFF !important;
 }
 
 .border-gray {
-  border-color: #E6E8ED;
+  border-color: #E6E8ED !important;
 }
 
 .border-gray-light {
-  border-color: #CFD2D8;
+  border-color: #CFD2D8 !important;
 }
 
 .giz-width-full {
@@ -405,6 +409,26 @@ h6,
 
 .border-0 {
   border-width: 0rem !important;
+}
+
+.border {
+  border: 1px solid #1f2637;
+}
+
+.border-top {
+  border-top: 1px solid #1f2637;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #1f2637;
+}
+
+.border-start {
+  border-start: 1px solid #1f2637;
+}
+
+.border-end {
+  border-end: 1px solid #1f2637;
 }
 
 .rounded-circle {
@@ -2760,7 +2784,7 @@ h6,
   display: flex;
   margin: 0rem;
   padding: 0rem;
-  border-bottom: 1px solid #1f2637;
+  border-bottom: 1px solid 1px solid #1f2637;
   background: #171c28;
 }
 
