@@ -335,8 +335,8 @@ h6,
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
 
-.border {
-  border-color: 1px solid #1f2637 !important;
+.border-color {
+  border-color: #1f2637 !important;
 }
 
 .border-primary {
@@ -432,11 +432,11 @@ h6,
 }
 
 .border-start {
-  border-start: 1px solid #1f2637;
+  border-left: 1px solid #1f2637;
 }
 
 .border-end {
-  border-end: 1px solid #1f2637;
+  border-right: 1px solid #1f2637;
 }
 
 .rounded-circle {
@@ -2792,7 +2792,7 @@ h6,
   display: flex;
   margin: 0rem;
   padding: 0rem;
-  border-bottom: 1px solid 1px solid #1f2637;
+  border-bottom: 1px solid #1f2637;
   background: #171c28;
 }
 

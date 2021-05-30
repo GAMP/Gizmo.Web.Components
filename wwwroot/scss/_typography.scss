@@ -345,8 +345,8 @@ h6, .giz-typography-h6 {
 
 //== border
 
-.border {
-    border-color: $border !important;
+.border-color {
+    border-color: $border-color !important;
 }
 
 .border-primary {
@@ -445,11 +445,11 @@ h6, .giz-typography-h6 {
 }
 
 .border-start {
-    border-start: $border;
+    border-left: $border;
 }
 
 .border-end {
-    border-end: $border;
+    border-right: $border;
 }
 
 //==border radius
