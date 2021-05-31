@@ -2521,6 +2521,12 @@ h6,
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 1.2rem;
+  color: #FFFFFF;
+  font-size: 1.6rem;
+}
+
+[light-theme] .table {
+  color: #6E7689;
 }
 
 .table > thead td,
