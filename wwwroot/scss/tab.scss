@@ -83,14 +83,12 @@
 }
 
 //gizmo-tab-content
-.gizmo-tab-content {
+.gizmo-tab-content {   
 
-    .gizmo-tab-content-active {
-        .gizmo-tab-content__items {
-            display: block;
-        }
+    .gizmo-tab-content-active > .gizmo-tab-content__items{
+        display:block;
     }
-
+    
     .gizmo-tab-content-active {
         .gizmo-tab-content__list {
             animation-duration: 1s;
@@ -111,7 +109,7 @@
         padding: 0 2.5rem;
         font-size: $font-16;
         color: $white-color;
-        
+
         [light-theme] & {
             color: $secondary-color;
         }

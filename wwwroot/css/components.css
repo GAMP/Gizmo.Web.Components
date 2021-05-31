@@ -2824,7 +2824,7 @@ h6,
   background-color: #FFFFFF;
 }
 
-.gizmo-tab-content .gizmo-tab-content-active .gizmo-tab-content__items {
+.gizmo-tab-content .gizmo-tab-content-active > .gizmo-tab-content__items {
   display: block;
 }
 
