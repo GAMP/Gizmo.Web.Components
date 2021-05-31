@@ -15,10 +15,10 @@
 //gizmo-tab
 .gizmo-tab {
     .gizmo-tab-active {
-        color: $white-color;
+        color: $white-color !important;
 
         [light-theme] & {
-            color: $black-color;
+            color: $black-color !important;
         }
 
         &::after {
@@ -45,33 +45,17 @@
 
     &__ul {
         list-style: none;
-        padding: 1.7rem 4.5rem;
-        display: flex;
-        margin: 0rem;
+        padding: 1.7rem 4.5rem;      
         padding: 0rem;
-        border-bottom: 1px solid $border-color;
-        background: $dark-color;
-
+     
         [light-theme] & {
-            background: #eee;
-            border-bottom: 1px solid $white-color;
+            background: #eee !important;
+            border-bottom: 1px solid $white-color !important;
         }
-    }
-
-    &__item {
-        position: relative;
-        padding: 1.5rem 0rem;
-    }
+    }  
 
     &__link {
-        font-weight: $font-weight-600;
-        font-size: $font-17;
-        line-height: $line-height-22;
-        letter-spacing: $letter-spacing-8;
-        color: $secondary-color;
-        padding: 1.5rem;
-        cursor: pointer;
-
+     
         &:hover {
             background-color: #2a3349;
 
@@ -86,7 +70,7 @@
 .gizmo-tab-content {   
 
     .gizmo-tab-content-active > .gizmo-tab-content__items{
-        display:block;
+        display:block !important;
     }
     
     .gizmo-tab-content-active {
@@ -96,22 +80,16 @@
         }
     }
 
-    &__items {
-        display: none;
-    }
+    
 
     &__main {
-        overflow: hidden;
-        width: 100%;
+       overflow: hidden;       
     }
 
-    &__list {
-        padding: 0 2.5rem;
-        font-size: $font-16;
-        color: $white-color;
+    &__list {     
 
         [light-theme] & {
-            color: $secondary-color;
+            color: $secondary-color !important;
         }
     }
 }

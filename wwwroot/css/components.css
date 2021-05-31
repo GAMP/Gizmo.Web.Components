@@ -2754,11 +2754,11 @@ h6,
 }
 
 .gizmo-tab .gizmo-tab-active {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 [light-theme] .gizmo-tab .gizmo-tab-active {
-  color: #000000;
+  color: #000000 !important;
 }
 
 .gizmo-tab .gizmo-tab-active::after {
@@ -2787,33 +2787,12 @@ h6,
 .gizmo-tab__ul {
   list-style: none;
   padding: 1.7rem 4.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0rem;
   padding: 0rem;
-  border-bottom: 1px solid #1f2637;
-  background: #171c28;
 }
 
 [light-theme] .gizmo-tab__ul {
-  background: #eee;
-  border-bottom: 1px solid #FFFFFF;
-}
-
-.gizmo-tab__item {
-  position: relative;
-  padding: 1.5rem 0rem;
-}
-
-.gizmo-tab__link {
-  font-weight: 600;
-  font-size: 1.7rem;
-  line-height: 2.2rem;
-  letter-spacing: -0.08rem;
-  color: #6E7689;
-  padding: 1.5rem;
-  cursor: pointer;
+  background: #eee !important;
+  border-bottom: 1px solid #FFFFFF !important;
 }
 
 .gizmo-tab__link:hover {
@@ -2825,7 +2804,7 @@ h6,
 }
 
 .gizmo-tab-content .gizmo-tab-content-active > .gizmo-tab-content__items {
-  display: block;
+  display: block !important;
 }
 
 .gizmo-tab-content .gizmo-tab-content-active .gizmo-tab-content__list {
@@ -2835,23 +2814,12 @@ h6,
   animation-name: slidein;
 }
 
-.gizmo-tab-content__items {
-  display: none;
-}
-
 .gizmo-tab-content__main {
   overflow: hidden;
-  width: 100%;
-}
-
-.gizmo-tab-content__list {
-  padding: 0 2.5rem;
-  font-size: 1.6rem;
-  color: #FFFFFF;
 }
 
 [light-theme] .gizmo-tab-content__list {
-  color: #6E7689;
+  color: #6E7689 !important;
 }
 
 @-webkit-keyframes slideborder {
