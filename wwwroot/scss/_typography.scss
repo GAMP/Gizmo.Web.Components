@@ -218,6 +218,12 @@ a {
     cursor: $cursor-pointer;
 }
 
+//list
+
+.list-unstyled {
+    list-style-type:$list-unstyled;
+}
+
 //heading
 h1, .giz-typography-h1 {
     color: $h-color;
@@ -530,6 +536,24 @@ h6, .giz-typography-h6 {
 
 .giz-text-align-right {
     text-align: $text-align-right;
+}
+
+//== overflow
+
+.overflow-hidden{
+ overflow: $overflow-hidden;
+}
+
+.overflow-auto{
+overflow:$overflow-auto;
+}
+
+.overflow-scroll{
+overflow:$overflow-scroll;
+}
+
+.overflow-visible{
+overflow:$overflow-visible;
 }
 
 //== position

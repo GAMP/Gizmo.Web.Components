@@ -53,6 +53,9 @@ $line-height-22: 2.2rem;
 //cursor
 $cursor-pointer: pointer;
 
+//list
+$list-unstyled: none;
+
 //base font (body)
 $base-font-size: 1.9rem;
 $base-font-weight: 500;
@@ -174,6 +177,13 @@ $text-align-center: center;
 $text-align-left: left;
 $text-align-right: right;
 $text-align-justify: justify;
+
+//== overflow
+
+$overflow-hidden: hidden;
+$overflow-auto: auto;
+$overflow-scroll: scroll;
+$overflow-visible: visible;
 
 //== position
 

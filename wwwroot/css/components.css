@@ -203,6 +203,10 @@ a {
   cursor: pointer;
 }
 
+.list-unstyled {
+  list-style-type: none;
+}
+
 h1,
 .giz-typography-h1 {
   color: #000000;
@@ -509,6 +513,22 @@ h6,
 
 .giz-text-align-right {
   text-align: right;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-visible {
+  overflow: visible;
 }
 
 .absolute {
