@@ -23,7 +23,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region PRIVATE FIELDS
-        private bool _isSelected;
+        private bool _selected;
         #endregion
 
         #region PROPERTIES
@@ -85,7 +85,7 @@ namespace Gizmo.Web.Components
         public string RightIcon { get; set; }
 
         [Parameter]
-        public bool Selected { get; set; }
+        public bool IsSelected { get; set; }
 
         #endregion
 
@@ -111,18 +111,18 @@ namespace Gizmo.Web.Components
                  .If("button--secondary", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
                  .If("button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
                  .If("disabled", () => IsDisabled)
-                 .If("selected", () => _isSelected)
+                 .If("selected", () => _selected)
                  .AsString();
 
         protected override void OnInitialized()
         {
-            _isSelected = Selected;
+            _selected = IsSelected;
 
             if (ButtonGroup != null)
             {
                 ButtonGroup.Register(this);
 
-                if (_isSelected)
+                if (_selected)
                 {
                     ButtonGroup.SetSelectedItem(this);
                 }
@@ -148,12 +148,17 @@ namespace Gizmo.Web.Components
             if (IsDisabled)
                 return;
 
-            if (_isSelected == selected)
+            if (_selected == selected)
                 return;
 
-            _isSelected = selected;
+            _selected = selected;
 
             StateHasChanged();
+        }
+
+        internal bool GetSelected()
+        {
+            return _selected;
         }
     }
 }
