@@ -3,6 +3,12 @@
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 1.2rem;
+    color: $white-color;
+    font-size: $font-16;
+
+    [light-theme] & {
+        color: $secondary-color;
+    }
 
     & > thead td, & > thead th {
         height: 5rem;

@@ -69,35 +69,91 @@ namespace Gizmo.Web.Components
             if (IsDisabled)
                 return;
 
-            if (IsMandatory)
-            {
-                if (_selectedItem == item || item == null)
-                {
-                    return;
-                }
-
-                _selectedItem = item;
-            }
-            else
-            {
-                if (_selectedItem == item)
-                {
-                    _selectedItem = null;
-                }
-                else
-                {
-                    _selectedItem = item;
-                }
-            }
-
-            _ = SelectedItemChanged.InvokeAsync(_selectedItem);
-
+            //In single selection mode
             if (SelectionMode == SelectionMode.Single)
             {
+                //If is mandatory
+                if (IsMandatory)
+                {
+                    //Ignore null and same button clicks.
+                    if (_selectedItem == item || item == null)
+                        return;
+
+                    //If button is different then set it as selected.
+                    _selectedItem = item;
+                }
+                else //If is not mandatory
+                {
+                    //If same button the set null as selected.
+                    if (_selectedItem == item)
+                    {
+                        _selectedItem = null;
+                    }
+                    else //If button is different then set it as selected.
+                    {
+                        _selectedItem = item;
+                    }
+                }
+
+                _ = SelectedItemChanged.InvokeAsync(_selectedItem);
+
+                //Update button states.
                 foreach (var button in _items.ToArray())
                 {
                     button.SetSelected(_selectedItem == button);
                 }
+            }
+            else //In extended selection mode
+            {
+                var firstSelected = _items.Where(a => a != item && a.GetSelected()).FirstOrDefault();
+
+                //If is mandatory
+                if (IsMandatory)
+                {
+                    //Ignore null.
+                    if (item == null)
+                        return;
+
+                    if (item.GetSelected())
+                    {
+                        //If the item is the only one selected then ignore.
+                        if (firstSelected == null)
+                            return;
+
+                        _selectedItem = firstSelected;
+
+                        //Update button state.
+                        item.SetSelected(false);
+                    }
+                    else
+                    {
+                        _selectedItem = item;
+
+                        //Update button state.
+                        item.SetSelected(true);
+                    }
+
+                }
+                else //If is not mandatory
+                {
+                    if (item.GetSelected())
+                    {
+                        //If same button the set the first available as selected.
+                        if (_selectedItem == item)
+                        {
+                            _selectedItem = firstSelected;
+                        }
+                    }
+                    else
+                    {
+                        _selectedItem = item;
+                    }
+
+                    //Toggle button state.
+                    item.SetSelected(!item.GetSelected());
+                }
+
+                _ = SelectedItemChanged.InvokeAsync(_selectedItem);
             }
         }
 
