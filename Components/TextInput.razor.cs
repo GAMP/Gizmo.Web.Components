@@ -63,11 +63,11 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-input")
+                 .Add("giz-input")
                  .AsString();
 
         protected string FieldClassName => new ClassMapper()
-                 .Add("g-input-field")
+                 .Add("giz-input-field")
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()

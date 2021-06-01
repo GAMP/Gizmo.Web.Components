@@ -2918,6 +2918,39 @@ h6,
   position: absolute;
 }
 
+.giz-input label {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 16px;
+  letter-spacing: -0.8px;
+  color: #939DB5;
+}
+
+.giz-input .giz-input-field input {
+  background: #FFFFFF;
+  border-radius: 4px;
+  padding: 2.8rem 3.2rem;
+  width: 100%;
+  color: #6E7689;
+  border: 0;
+  width: 100%;
+  outline: none;
+}
+
+.giz-input .giz-input-field input.is-disabled,
+.giz-input .giz-input-field input[disabled] {
+  background-color: #E7E9EE;
+}
+
+.giz-input .invalid {
+  color: #F25A68;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.8px;
+}
+
 @media (min-width: 600px) {
   .d-sm-none {
     display: none !important;

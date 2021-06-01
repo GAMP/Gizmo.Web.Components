@@ -1,0 +1,38 @@
+
+//== text-input.scss files == //
+
+.giz-input {
+    label {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 16px;     
+        letter-spacing: -0.8px;       
+        color: #939DB5;
+    }
+
+    .giz-input-field {
+        input {
+            background: $white-color;
+            border-radius: 4px;
+            padding: 2.8rem 3.2rem;
+            width: 100%;
+            color: $secondary-color;
+            border: 0;
+            width: 100%;
+            outline: none;
+
+            &.is-disabled, &[disabled] {
+                background-color: #E7E9EE;
+            }
+        }
+    }
+
+    .invalid {
+        color: #F25A68;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+        letter-spacing: -0.8px;
+    }
+}
