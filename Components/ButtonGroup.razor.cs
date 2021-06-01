@@ -17,6 +17,7 @@ namespace Gizmo.Web.Components
 
         private HashSet<Button> _items = new HashSet<Button>();
         private Button _selectedItem;
+        private ICollection<Button> _selectedItems = new HashSet<Button>();
 
         #endregion
 
@@ -52,7 +53,7 @@ namespace Gizmo.Web.Components
                 if (_selectedItem == value)
                     return;
 
-                SetSelectedItem(value);
+                SelectItem(value, true);
             }
         }
 
@@ -60,13 +61,28 @@ namespace Gizmo.Web.Components
         public EventCallback<Button> SelectedItemChanged { get; set; }
 
         [Parameter]
+        public EventCallback<ICollection<Button>> SelectedItemsChanged { get; set; }
+
+        [Parameter]
         public RenderFragment ChildContent { get; set; }
+
+        [Parameter()]
+        public ICollection<Button> SelectedItems
+        {
+            get { return _selectedItems; }
+            set { _selectedItems = value; }
+        }
 
         #endregion
 
-        internal void SetSelectedItem(Button item)
+        internal void SelectItem(Button item, bool selected)
         {
             if (IsDisabled)
+                return;
+
+            bool wasSelected = SelectedItems?.Contains(item) == true;
+
+            if (wasSelected == selected)
                 return;
 
             //In single selection mode
@@ -81,9 +97,15 @@ namespace Gizmo.Web.Components
 
                     //If button is different then set it as selected.
                     _selectedItem = item;
+
+                    SelectedItems?.Clear();
+                    SelectedItems?.Add(_selectedItem);
                 }
                 else //If is not mandatory
                 {
+                    //Clear selected items list.
+                    SelectedItems?.Clear();
+
                     //If same button the set null as selected.
                     if (_selectedItem == item)
                     {
@@ -92,10 +114,12 @@ namespace Gizmo.Web.Components
                     else //If button is different then set it as selected.
                     {
                         _selectedItem = item;
+                        SelectedItems?.Add(_selectedItem);
                     }
                 }
 
                 _ = SelectedItemChanged.InvokeAsync(_selectedItem);
+                _ = SelectedItemsChanged.InvokeAsync(_selectedItems);
 
                 //Update button states.
                 foreach (var button in _items.ToArray())
@@ -114,13 +138,15 @@ namespace Gizmo.Web.Components
                     if (item == null)
                         return;
 
-                    if (item.GetSelected())
+                    if (wasSelected)
                     {
                         //If the item is the only one selected then ignore.
                         if (firstSelected == null)
                             return;
 
                         _selectedItem = firstSelected;
+
+                        SelectedItems?.Remove(item);
 
                         //Update button state.
                         item.SetSelected(false);
@@ -129,14 +155,15 @@ namespace Gizmo.Web.Components
                     {
                         _selectedItem = item;
 
+                        SelectedItems?.Add(_selectedItem);
+
                         //Update button state.
                         item.SetSelected(true);
                     }
-
                 }
                 else //If is not mandatory
                 {
-                    if (item.GetSelected())
+                    if (wasSelected)
                     {
                         //If same button the set the first available as selected.
                         if (_selectedItem == item)
@@ -149,11 +176,12 @@ namespace Gizmo.Web.Components
                         _selectedItem = item;
                     }
 
-                    //Toggle button state.
-                    item.SetSelected(!item.GetSelected());
+                    //Set button state.
+                    item.SetSelected(selected);
                 }
 
                 _ = SelectedItemChanged.InvokeAsync(_selectedItem);
+                _ = SelectedItemsChanged.InvokeAsync(_selectedItems);
             }
         }
 
@@ -181,7 +209,7 @@ namespace Gizmo.Web.Components
 
                 if (firstItem != null)
                 {
-                    SetSelectedItem(firstItem);
+                    SelectItem(firstItem, true);
                 }
             }
 

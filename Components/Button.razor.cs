@@ -97,7 +97,7 @@ namespace Gizmo.Web.Components
         {
             if (ButtonGroup != null)
             {
-                ButtonGroup.SetSelectedItem(this);
+                ButtonGroup.SelectItem(this, !_selected);
             }
 
             return Task.CompletedTask;
@@ -124,7 +124,7 @@ namespace Gizmo.Web.Components
 
                 if (_selected)
                 {
-                    ButtonGroup.SetSelectedItem(this);
+                    ButtonGroup.SelectItem(this, true);
                 }
             }
         }
@@ -152,6 +152,7 @@ namespace Gizmo.Web.Components
                 return;
 
             _selected = selected;
+            IsSelected = _selected;
 
             StateHasChanged();
         }
