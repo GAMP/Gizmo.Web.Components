@@ -108,7 +108,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("button")
                  .Add($"button--{Size.ToDescriptionString()}")
-                 .If("button--secondary", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
+                 .If("button--secondary-outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
                  .If("button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
                  .If("disabled", () => IsDisabled)
                  .If("selected", () => _selected)
