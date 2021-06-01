@@ -2926,6 +2926,19 @@ h6,
   color: #939DB5;
 }
 
+.giz-input .giz-input-field.giz-input-full-width input {
+  width: 100%;
+}
+
+.giz-input .giz-input-field.giz-input-shadow input {
+  -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+  box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+}
+
+.giz-input .giz-input-field.giz-input-outline input {
+  outline: auto;
+}
+
 .giz-input .giz-input-field input {
   background: #FFFFFF;
   border-radius: 4px;
@@ -2933,7 +2946,7 @@ h6,
   width: 100%;
   color: #6E7689;
   border: 0;
-  width: 100%;
+  width: auto;
   outline: none;
 }
 
@@ -2947,7 +2960,6 @@ h6,
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
-  text-align: center;
   letter-spacing: -0.8px;
 }
 
