@@ -1,29 +1,33 @@
-//default button primary color
+//=============== gizmo button classes ================//
+
+//== button (default button primary)
 .button {
     border: 0;
     outline: 0;
     color: $white-color;
     background: $primary-color;
-    font-size: $font-16;
+    font-size: $font-17;
     cursor: pointer;
-    border-radius: 5px;
-    height: 4.6rem;
-    padding: 0 3.4rem;
+    border-radius: 4px;
+    height: 4.8rem;
+    padding: 0 3.6rem;
     transition: all 0.3s ease;
     font-weight: $font-weight-600;
     letter-spacing: 0.08rem;
     white-space: nowrap;
-
+    line-height: 22px;
+    text-align: center;
 
     &:hover {
-        background: #505DD5;
+        background: #4F5AD3;
     }
 
     &:focus {
+        background: $primary-color;
         box-shadow: 0px 0px 9px #4891FF;
     }
-
-    &--secondary {
+    //== button secondary outline
+    &--secondary-outline {
         background: $white-color;
         border: 1px solid $gray-light-color;
         color: $secondary-color;
@@ -34,16 +38,19 @@
         }
 
         &:focus {
+            color: $secondary-color;
+            background: $white-color;
+            border: 1px solid $secondary-color;
             box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
         }
 
         &.is-disabled, &[disabled] {
-            color: #E7E9EE;
-            background: #FAFAFA !important;
-            border: 1px solid #E7E9EE;
+            color: $gray-light-color;
+            background: $secondary-light !important;
+            border: 1px solid $gray-light-color;
         }
     }
-
+    //== button text
     &--text {
         background: none;
         border: none;
@@ -64,24 +71,24 @@
             border: none;
         }
     }
-
+    //== button large
     &--large {
         height: 4.8rem;
         font-size: $font-17;
     }
-
+    //== button medium
     &--medium {
         height: 3.2rem;
         font-size: $font-15;
         padding: 0 1.6rem;
     }
-
+    //== button small
     &--small {
         height: 2.4rem;
-        font-size: 1.2rem;
+        font-size: $font-12;
         padding: 0 1rem;
     }
-
+    //== buton disable
     &.is-disabled, &[disabled] {
         background: $gray-color;
         cursor: default;
