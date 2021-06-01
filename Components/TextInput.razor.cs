@@ -53,7 +53,7 @@ namespace Gizmo.Web.Components
         protected Task OnChangeHandler(ChangeEventArgs args)
         {
             var newValue = args?.Value as string;
-            
+
             if (Value != newValue)
             {
                 return SetValueAsync(newValue);
@@ -82,13 +82,13 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input")
-                 .If("giz-input-outline", () => HasOutline)
-                 .If("giz-input-shadow", () => HasShadow)
-                 .If("giz-input-full-width", () => IsFullWidth)
                  .AsString();
 
         protected string FieldClassName => new ClassMapper()
                  .Add("giz-input-field")
+                 .If("giz-input-outline", () => HasOutline)
+                 .If("giz-input-shadow", () => HasShadow)
+                 .If("giz-input-full-width", () => IsFullWidth)
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
