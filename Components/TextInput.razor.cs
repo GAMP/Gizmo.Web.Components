@@ -6,6 +6,12 @@ namespace Gizmo.Web.Components
 {
     public partial class TextInput : InputBase<string>
     {
+        public enum TextInputSize
+        {
+            Normal = 0,
+            Large = 1
+        }
+
         #region CONSTRUCTOR
         public TextInput()
         {
@@ -24,6 +30,18 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string RightIcon { get; set; }
+
+        [Parameter]
+        public TextInputSize Size { get; set; } = TextInputSize.Normal;
+
+        [Parameter]
+        public bool HasOutline { get; set; } = true;
+
+        [Parameter]
+        public bool HasShadow { get; set; }
+
+        [Parameter]
+        public bool IsFullWidth { get; set; }
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
