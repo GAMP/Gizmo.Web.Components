@@ -17,7 +17,7 @@
                value="@_text"
                readonly="@IsReadOnly"
                disabled="@IsDisabled"
-               class="@FieldClassName"
+               class="@FieldClassName @ValidationClassName"
                @onchange="OnChangeHandler"
                @onclick="OnClickHandler" />
         @if (!string.IsNullOrEmpty(RightIcon))
