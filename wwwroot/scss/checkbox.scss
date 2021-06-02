@@ -1,34 +1,34 @@
 .checkbox {
-    position: absolute;
+    position: $position-absolute;
     left: -9999px;
 
     & + label {
         font-size: $font-15;
         color: $secondary-color;
-        position: relative;
-        padding-left: 3.6rem;
-        display: flex;
-        align-items: center;
+        position: $position-relative;
+        padding-left: $spacer-36;
+        display: $display-flex;
+        align-items: $align-center;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        cursor: pointer;
+        cursor: $cursor-pointer;
     }
 
     &:checked + label {
-        overflow: visible;
+        overflow: $overflow-visible;
     }
 
     & + label:before {
         content: '';
-        position: absolute;
+        position: $position-absolute;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
         width: 2.4rem;
         height: 2.4rem;
-        background: transparent;
+        background: $transparent-color;
         border: 1px solid $gray-color;
         border-radius: $rounded;
     }
@@ -74,7 +74,7 @@
 
     &:indeterminate + label:after {
         content: '';
-        position: absolute;
+        position: $position-absolute;
         left: 0.8rem;
         top: 50%;
         transform: translateY(-50%);
