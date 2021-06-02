@@ -54,17 +54,17 @@ namespace Gizmo.Web.Components
         string GetTabItemClass(TabItem item)
         {
             var itemClassName = new ClassMapper()
-             .If("gizmo-tab-active", () => item == ActiveItem)
-             .If("gizmo-tab-hidden", () => !item.IsVisible)
-             .If("gizmo-tab-disabled", () => item.IsDisabled).AsString();
+             .If("giz-tab-active", () => item == ActiveItem)
+             .If("giz-tab-hidden", () => !item.IsVisible)
+             .If("giz-tab-disabled", () => item.IsDisabled).AsString();
             return itemClassName;
         }
         string ClassName()
         {
             var className = new ClassMapper()
-              .Add("gizmo-tab")
-             .If("gizmo-tab-disabled", () => IsDisabled)
-             .If("gizmo-tab-hidden", () => !IsVisible).AsString();
+              .Add("giz-tab")
+             .If("giz-tab-disabled", () => IsDisabled)
+             .If("giz-tab-hidden", () => !IsVisible).AsString();
             return className;
         }
         public void ActivateItem(TabItem item, bool ignoreDisabledState = false)

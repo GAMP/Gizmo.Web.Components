@@ -3,15 +3,15 @@
 
 <div class="@Class @ClassName()">
     <CascadingValue Value="@this" IsFixed="true">
-        <ul class="gizmo-tab__ul d-flex ma-0 border-bottom border-color">           
+        <ul class="giz-tab__ul d-flex ma-0 border-bottom border-color">           
             @foreach (var item in _items)
             {                
-                <li class="gizmo-tab__item relative py-4 px-0">
-                    <a class="gizmo-tab__link giz-typography-body2 cursor-pointer font-weight-600 giz-secondary-text pa-4  @GetTabItemClass(item)" @onclick=@( e => ActivateItem(item, e, false))>@item.Header</a>
+                <li class="giz-tab__item relative py-4 px-0">
+                    <a class="giz-tab__link giz-typography-body2 cursor-pointer font-weight-600 giz-secondary-text pa-4  @GetTabItemClass(item)" @onclick=@( e => ActivateItem(item, e, false))>@item.Header</a>
                 </li>
             }
         </ul>
-        <div class="gizmo-tab-content">
+        <div class="giz-tab-content">
             @ChildContent
         </div>
     </CascadingValue>

@@ -1,20 +1,20 @@
 
 //== tab.scss files == //
 
-.gizmo-tab.gizmo-tab-hidden{
+.giz-tab.giz-tab-hidden{
     display:none;
 }
 
-.gizmo-tab.gizmo-tab-disabled {
-    .gizmo-tab__link {
+.giz-tab.giz-tab-disabled {
+    .giz-tab__link {
         cursor: not-allowed;
         opacity: 0.4;
     }
 }
 
-//gizmo-tab
-.gizmo-tab {
-    .gizmo-tab-active {
+//giz-tab
+.giz-tab {
+    .giz-tab-active {
         color: $white-color !important;
 
         [light-theme] & {
@@ -34,11 +34,11 @@
         }
     }
 
-    .gizmo-tab-hidden {
+    .giz-tab-hidden {
         display: none;
     }
 
-    .gizmo-tab-disabled {
+    .giz-tab-disabled {
         cursor: not-allowed;
         opacity: 0.4;
     }
@@ -66,21 +66,19 @@
     }
 }
 
-//gizmo-tab-content
-.gizmo-tab-content {   
+//giz-tab-content
+.giz-tab-content {   
 
-    .gizmo-tab-content-active > .gizmo-tab-content__items{
+    .giz-tab-content-active > .giz-tab-content__items{
         display:block !important;
     }
     
-    .gizmo-tab-content-active {
-        .gizmo-tab-content__list {
+    .giz-tab-content-active {
+        .giz-tab-content__list {
             animation-duration: 1s;
             animation-name: slidein;
         }
-    }
-
-    
+    }    
 
     &__main {
        overflow: hidden;       

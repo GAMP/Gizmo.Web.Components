@@ -31,7 +31,7 @@ namespace Gizmo.Web.Components
 
         #endregion
         protected string ClassName => new ClassMapper()
-                .Add("gizmo-tab-content-active")
+                .Add("giz-tab-content-active")
                 .AsString();
 
         #region METHODS
