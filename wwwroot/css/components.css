@@ -2957,8 +2957,13 @@ h6,
 }
 
 .giz-input-root.is-disabled,
-.giz-input-root[disabled] .giz-input-root--full-width {
-  width: 100%;
+.giz-input-root[disabled] {
+  background: #E7E9EE;
+  border: 1px solid #E7E9EE;
+}
+
+.giz-input-root--full-width {
+  width: 100% !important;
 }
 
 .giz-input-root--large {
