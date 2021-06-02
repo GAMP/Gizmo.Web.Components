@@ -1,6 +1,6 @@
 //=============== gizmo button classes ================//
 
-//== button (default button primary)
+//button (default button primary)
 .button {
     border: 0;
     outline: 0;
@@ -27,7 +27,7 @@
         box-shadow: 0px 0px 9px #4891FF;
     }
 
-    //== button secondary outline
+    //button secondary outline
     &--secondary-outline {
         background: $white-color;
         border: 1px solid $gray-light-color;
@@ -52,7 +52,7 @@
         }
     }
 
-    //== button text
+    //button text
     &--text {
         background: none;
         border: none;
@@ -74,27 +74,27 @@
         }
     }
 
-    //== button large
+    //button large
     &--large {
         height: 4.8rem;
         font-size: $font-17;
     }
 
-    //== button medium
+    //button medium
     &--medium {
         height: 3.2rem;
         font-size: $font-15;
         padding: 0 1.6rem;
     }
 
-    //== button small
+    //button small
     &--small {
         height: 2.4rem;
         font-size: $font-12;
         padding: 0 1rem;
     }
 
-    //== buton disable
+    //buton disable
     &.is-disabled, &[disabled] {
         background: $gray-color;
         cursor: default;

@@ -81,20 +81,20 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input")
+                 .Add("giz-input-control")
                  .AsString();
 
-        protected string FieldClassName => new ClassMapper()
-                 .Add("giz-input-field")
-                 .If("giz-input-outline", () => HasOutline)
-                 .If("giz-input-shadow", () => HasShadow)
-                 .If("giz-input-full-width", () => IsFullWidth)
-                 .If("giz-input-large", () => Size== TextInputSize.Large)
+        protected string FieldClassName => new ClassMapper()                 
+                 .Add("giz-input-root")
+                 .If("giz-input-root--outline", () => HasOutline)
+                 .If("giz-input-root--shadow", () => HasShadow)
+                 .If("giz-input-root--full-width", () => IsFullWidth)
+                 .If("giz-input-root--large", () => Size== TextInputSize.Large)
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
-                 .If("valid", () => _isValid)
-                 .If("invalid", () => !_isValid)
+                 .If("giz-input-valid", () => _isValid)
+                 .If("giz-input-invalid", () => !_isValid)
                  .AsString();
     }
 }

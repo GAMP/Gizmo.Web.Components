@@ -2923,7 +2923,7 @@ h6,
   position: absolute;
 }
 
-.giz-input label {
+.giz-input-label {
   font-weight: 600;
   font-size: 15px;
   line-height: 16px;
@@ -2931,36 +2931,62 @@ h6,
   color: #939DB5;
 }
 
-.giz-input .giz-input-field.giz-input-full-width input {
-  width: 100%;
+.giz-input-root {
+  background: #FFFFFF;
+  border: 1px solid #E7E9EE;
+  border-radius: 4px;
+  height: 4.8rem;
+  padding: 1.6rem;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 16px;
+  letter-spacing: -0.8px;
+  color: #6E7689;
 }
 
-.giz-input .giz-input-field.giz-input-shadow input {
+.giz-input-root:hover {
+  border: 1px solid #939DB5;
+  color: #000000;
+}
+
+.giz-input-root:focus {
+  color: #000000;
+  border: 1px solid #5A67F2;
   -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
   box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
 }
 
-.giz-input .giz-input-field.giz-input-outline input {
+.giz-input-root.is-disabled,
+.giz-input-root[disabled] .giz-input-root--full-width {
+  width: 100%;
+}
+
+.giz-input-root--large {
+  padding: 2.8rem 3.2rem;
+  height: 8rem;
+  border: 0;
+  outline: none;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 24px;
+}
+
+.giz-input-root--large.is-disabled,
+.giz-input-root--large[disabled] {
+  background-color: #E7E9EE;
+  color: #939DB5;
+}
+
+.giz-input-root--outline {
   outline: auto;
 }
 
-.giz-input .giz-input-field input {
-  background: #FFFFFF;
-  border-radius: 4px;
-  padding: 2.8rem 3.2rem;
-  width: 100%;
-  color: #6E7689;
-  border: 0;
-  width: auto;
-  outline: none;
+.giz-input-root--shadow {
+  -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+  box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
 }
 
-.giz-input .giz-input-field input.is-disabled,
-.giz-input .giz-input-field input[disabled] {
-  background-color: #E7E9EE;
-}
-
-.giz-input .invalid {
+.giz-input-invalid {
   color: #F25A68;
   font-weight: 500;
   font-size: 14px;
