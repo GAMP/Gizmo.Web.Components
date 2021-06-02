@@ -1,6 +1,6 @@
 .table {
-    position: relative;
-    width: 100%;
+    position: $position-relative;
+    width: $width-full;
     border-collapse: separate;
     border-spacing: 0 1.2rem;
     color: $white-color;
@@ -12,24 +12,24 @@
 
     & > thead td, & > thead th {
         height: 5rem;
-        text-transform: uppercase;
+        text-transform: $text-uppercase;
         font-size: $font-15;
         color: $secondary-color;
-        font-weight: 400;
+        font-weight: $font-weight-400;
         padding: 0 1.7rem;
-        text-align: left;
+        text-align: $text-align-left;
 
         &.is-sorted-up {
-            position: relative;
+            position: $position-relative;
 
             &:after {
                 content: '\f0de';
-                position: absolute;
+                position: $position-absolute;
                 right: 1rem;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                height: $height-full;
+                display: $display-flex;
+                align-items: $align-center;
+                justify-content: $justify-center;
                 top: 0;
             }
         }
@@ -39,12 +39,12 @@
 
             &:after {
                 content: '\f0dd';
-                position: absolute;
+                position: $position-absolute;
                 right: 1rem;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                height: $height-full;
+                display: $display-flex;
+                align-items: $align-center;
+                justify-content: $justify-center;
                 top: 0;
             }
         }
@@ -53,32 +53,32 @@
 
     & > tbody > tr {
         height: 4.8rem;
-        background: transparent;
+        background: $transparent-color;
         border-radius: $rounded-lg;
-        margin-bottom: 1.2rem;
+        margin-bottom: $spacer-12;
 
         & > td {
-            border-top: 1px solid transparent;
-            border-bottom: 1px solid transparent;
+            border-top: 1px solid $transparent-color;
+            border-bottom: 1px solid $transparent-color;
 
             &:first-child {
-                border-left: 1px solid transparent;
+                border-left: 1px solid $transparent-color;
             }
 
             &:last-child {
-                border-right: 1px solid transparent;
+                border-right: 1px solid $transparent-color;
             }
         }
 
         [light-theme] & {
-            background: transparent;
+            background: $transparent-color;
         }
 
         &:hover {
-            background: transparent;
+            background: $transparent-color;
 
             [light-theme] & {
-                background: #fafafa;
+                background: $secondary-light;
             }
 
             & > td {
@@ -99,7 +99,7 @@
         &.is-opened {
             border-color: #453855;
             background: $primary-color;
-            cursor: pointer;
+            cursor: $cursor-pointer;
             color: $white-color;
 
             [light-theme] & {
@@ -123,7 +123,7 @@
 
         &.is-selected {
             background: rgba(90,103,242,0.2);
-            cursor: pointer;
+            cursor: $cursor-pointer;
 
             [light-theme] & {
                 background: $primary-light-color;
@@ -155,7 +155,7 @@
             border-color: #453855;
             background: $dark-light-color;
             border-radius: 4px 4px 0 0;
-            margin-bottom: 0;
+            margin-bottom: $spacer-0;
 
             [light-theme] & {
                 border-color: #dddfe4;
@@ -178,37 +178,37 @@
     }
 
     & > tbody > tr.table__details > td {
-        padding: 0;
+        padding: $spacer-0;
     }
 }
 
 
 .table__details {
-  display: none;
-  background: transparent !important;
+    display: $display-none;
+    background: $transparent-color !important;
 
-  &:hover {
-    & > td {
-      border-color: transparent !important;
+    &:hover {
+        & > td {
+            border-color: $transparent-color !important;
+        }
     }
-  }
 
-  .table__row-dropdown.is-opened + & {
-    display: table-row;
-  }
+    .table__row-dropdown.is-opened + & {
+        display: $display-table-row;
+    }
 }
 
 .table__details-content {
-    position: relative;
-    width: 100%;
+    position: $position-relative;
+    width: $width-full;
     border: 1px solid #292e39;
     border-radius: $rounded;
-    display: flex;
-    align-items: flex-start;
+    display: $display-flex;
+    align-items: $align-start;
     box-sizing: border-box;
-    border-top: 0;
+    border-top: $border-0;
     padding: 1.2rem 0;
-    margin-top: -1.2rem;
+    margin-top: $spacer-n12;
 
     [light-theme] & {
         border-color: #dddfe4;

@@ -2681,7 +2681,7 @@ h6,
 }
 
 [light-theme] .table > tbody > tr:hover {
-  background: #fafafa;
+  background: #FAFAFA;
 }
 
 .table > tbody > tr:hover > td {
@@ -2756,7 +2756,7 @@ h6,
   border-color: #453855;
   background: #1b212f;
   border-radius: 4px 4px 0 0;
-  margin-bottom: 0;
+  margin-bottom: 0rem;
 }
 
 [light-theme] .table > tbody > tr.is-active {
@@ -2778,7 +2778,7 @@ h6,
 }
 
 .table > tbody > tr.table__details > td {
-  padding: 0;
+  padding: 0rem;
 }
 
 .table__details {
@@ -2807,7 +2807,7 @@ h6,
   align-items: flex-start;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border-top: 0;
+  border-top: 0rem;
   padding: 1.2rem 0;
   margin-top: -1.2rem;
 }
