@@ -89,6 +89,7 @@ namespace Gizmo.Web.Components
                  .If("giz-input-outline", () => HasOutline)
                  .If("giz-input-shadow", () => HasShadow)
                  .If("giz-input-full-width", () => IsFullWidth)
+                 .If("giz-input-large", () => Size== TextInputSize.Large)
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
