@@ -2,59 +2,58 @@
 
 //input label
 .giz-input-label {
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: $font-weight-600;
+    font-size: $font-15;
     line-height: 16px;
-    letter-spacing: -0.8px;
-    color: #939DB5;
+    letter-spacing: $letter-spacing-8;
+    color: $dim-light;
 }
 
 //Input default size (normal)
 .giz-input-root {
     background: $white-color;
-    border: 1px solid #E7E9EE;
+    border: 1px solid $gray-dark;
     border-radius: 4px;
     height: 4.8rem;
-    padding: 1.6rem;
-    font-weight: 600;
-    font-size: 15px;
+    padding: $spacer-16;
+    font-weight: $font-weight-600;
+    font-size: $font-15;
     line-height: 16px;
-    letter-spacing: -0.8px;
-    color: #6E7689;
+    letter-spacing: $letter-spacing-8;
+    color: $secondary-color;
 
     &:hover {
-        border: 1px solid #939DB5;
-        color: #000000;
+        border: 1px solid $dim-light;
+        color: $black-color;
     }
 
     &:focus {
-        color: #000000;
-        border: 1px solid #5A67F2;
+        color: $black-color;
+        border: 1px solid $primary-color;
         box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
     }
 
     &.is-disabled, &[disabled] {
-        background: #E7E9EE;       
-        border: 1px solid #E7E9EE;        
+        background: $gray-dark;
+        border: 1px solid $gray-dark;
     }
-
     //full width
     &--full-width {
-        width: 100% !important;
+        width: $width-full !important;
     }
     //input large
     &--large {
         padding: 2.8rem 3.2rem;
         height: 8rem;
-        border: 0;
+        border: $border-0;
         outline: none;
-        font-weight: 500;
-        font-size: 19px;
-        line-height: 24px;
+        font-weight: $font-weight-500;
+        font-size: $font-19;
+        line-height: $line-height-24;
 
         &.is-disabled, &[disabled] {
-            background-color: #E7E9EE;
-            color: #939DB5;
+            background-color: $gray-dark;
+            color: $dim-light;
         }
     }
     //input outline
@@ -68,11 +67,11 @@
 }
 
 .giz-input-invalid {
-    color: #F25A68;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.8px;
+    color: $danger-color;
+    font-weight: $font-weight-500;
+    font-size: $font-14;
+    line-height: $line-height-22;
+    letter-spacing: $letter-spacing-8;
 }
 
 //=============== gizmo textInput custom .scss ================//

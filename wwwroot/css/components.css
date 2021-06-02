@@ -2961,9 +2961,9 @@ h6,
 
 .giz-input-label {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 16px;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.08rem;
   color: #939DB5;
 }
 
@@ -2974,9 +2974,9 @@ h6,
   height: 4.8rem;
   padding: 1.6rem;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 16px;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.08rem;
   color: #6E7689;
 }
 
@@ -3005,11 +3005,11 @@ h6,
 .giz-input-root--large {
   padding: 2.8rem 3.2rem;
   height: 8rem;
-  border: 0;
+  border: 0rem;
   outline: none;
   font-weight: 500;
-  font-size: 19px;
-  line-height: 24px;
+  font-size: 1.9rem;
+  line-height: 2.4rem;
 }
 
 .giz-input-root--large.is-disabled,
@@ -3030,9 +3030,9 @@ h6,
 .giz-input-invalid {
   color: #F25A68;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: -0.8px;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  letter-spacing: -0.08rem;
 }
 
 @media (min-width: 600px) {
