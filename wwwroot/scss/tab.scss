@@ -1,8 +1,8 @@
 
 //== tab.scss files == //
 
-.giz-tab.giz-tab-hidden{
-    display:none;
+.giz-tab.giz-tab-hidden {
+    display: none;
 }
 
 .giz-tab.giz-tab-disabled {
@@ -45,17 +45,17 @@
 
     &__ul {
         list-style: none;
-        padding: 1.7rem 4.5rem;      
+        padding: 1.7rem 4.5rem;
         padding: 0rem;
-     
+
         [light-theme] & {
             background: #eee !important;
             border-bottom: 1px solid $white-color !important;
         }
-    }  
+    }
 
     &__link {
-     
+
         &:hover {
             background-color: #2a3349;
 
@@ -67,35 +67,31 @@
 }
 
 //giz-tab-content
-.giz-tab-content {   
+.giz-tab-content {
 
-    .giz-tab-content-active > .giz-tab-content__items{
-        display:block !important;
+    > div {
+        display: none;
     }
-    
+
+    [light-theme] & {
+        color: $secondary-color !important;
+    }
+
     .giz-tab-content-active {
-        .giz-tab-content__list {
-            animation-duration: 1s;
-            animation-name: slidein;
-        }
-    }    
-
-    &__main {
-       overflow: hidden;       
+        display: block !important;
+        padding: $spacer-20;
     }
 
-    &__list {     
-
-        [light-theme] & {
-            color: $secondary-color !important;
-        }
+    .giz-tab-content-active {
+        animation-duration: 1s;
+        animation-name: slidein;
     }
 }
 
 //key frame tabs border movement
 @keyframes slideborder {
     from {
-        margin-left:-22%;
+        margin-left: -22%;
         width: 100%;
     }
 
@@ -116,5 +112,3 @@
         width: 100%;
     }
 }
-
-

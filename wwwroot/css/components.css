@@ -2839,23 +2839,24 @@ h6,
   background-color: #FFFFFF;
 }
 
-.giz-tab-content .giz-tab-content-active > .giz-tab-content__items {
-  display: block !important;
+.giz-tab-content > div {
+  display: none;
 }
 
-.giz-tab-content .giz-tab-content-active .giz-tab-content__list {
+[light-theme] .giz-tab-content {
+  color: #6E7689 !important;
+}
+
+.giz-tab-content .giz-tab-content-active {
+  display: block !important;
+  padding: 2rem;
+}
+
+.giz-tab-content .giz-tab-content-active {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-name: slidein;
   animation-name: slidein;
-}
-
-.giz-tab-content__main {
-  overflow: hidden;
-}
-
-[light-theme] .giz-tab-content__list {
-  color: #6E7689 !important;
 }
 
 @-webkit-keyframes slideborder {
