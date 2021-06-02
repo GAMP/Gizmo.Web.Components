@@ -2,13 +2,13 @@
 //== select.scss files == //
 
 .gizmo-select {
-    position: relative;
+    position: $position-relative;
 
     .g-select-container {
         background-color: $white-color;
         border-radius: $rounded-lg;
         max-width: max-content;
         width: max-content !important;
-        position: absolute;
+        position: $position-absolute;
     }
 }
