@@ -1,0 +1,19 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<span class="@Class @ClassName">
+
+    <span>
+        @ChildContent
+    </span>
+
+    <span class="g-badge__wrapper">
+        <span class="g-badge__badge" style="color: @Color; background-color: @BackgroundColor; border-color: @BackgroundColor">
+            @if (!string.IsNullOrEmpty(Label))
+            {
+                @Label
+            }
+        </span>
+    </span>
+
+</span>
