@@ -24,6 +24,8 @@ $white-color: #FFFFFF;
 $light-color: #eff0f2;
 $gray-color: #E6E8ED;
 $gray-light-color: #CFD2D8;
+$gray-dark:#E7E9EE;
+$dim-light: #939DB5; 
 $transparent-color: transparent;
 $border-color: #1f2637;
 $border-dark-color: #3b4150;
@@ -180,6 +182,12 @@ $text-align-center: center;
 $text-align-left: left;
 $text-align-right: right;
 $text-align-justify: justify;
+
+//== text transform
+
+$text-lowercase:lowercase;
+$text-uppercase:uppercase;
+$text-capitalize:capitalize;
 
 //== overflow
 

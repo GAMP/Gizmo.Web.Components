@@ -139,6 +139,22 @@ a {
   color: #CFD2D8 !important;
 }
 
+.giz-gray-dark {
+  background-color: #E7E9EE !important;
+}
+
+.giz-gray-dark-text {
+  color: #E7E9EE !important;
+}
+
+.giz-dim-light {
+  background-color: #939DB5 !important;
+}
+
+.giz-dim-light-text {
+  color: #939DB5 !important;
+}
+
 .giz-transparent {
   background-color: transparent !important;
 }
@@ -411,6 +427,14 @@ h6,
   border-color: #c3c7ce !important;
 }
 
+.border-gray-dark {
+  border-color: #E7E9EE !important;
+}
+
+.border-dim-light {
+  border-color: #939DB5 !important;
+}
+
 .giz-width-full {
   width: 100% !important;
 }
@@ -517,6 +541,18 @@ h6,
 
 .giz-text-align-right {
   text-align: right;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
 }
 
 .overflow-hidden {

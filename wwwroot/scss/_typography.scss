@@ -145,6 +145,22 @@ a {
     color: $gray-light-color !important;
 }
 
+.giz-gray-dark {
+    background-color: $gray-dark !important;
+}
+
+.giz-gray-dark-text {
+    color: $gray-dark !important;
+}
+
+.giz-dim-light {
+    background-color: $dim-light !important;
+}
+
+.giz-dim-light-text {
+    color: $dim-light !important;
+}
+
 .giz-transparent {
     background-color: $transparent-color !important;
 }
@@ -424,6 +440,15 @@ h6, .giz-typography-h6 {
 .border-light-color {
     border-color: $border-light-color !important;
 }
+
+.border-gray-dark {
+    border-color: $gray-dark !important;
+}
+
+.border-dim-light {
+    border-color: $dim-light !important;
+}
+
 //== height / width
 
 .giz-width-full {
@@ -542,6 +567,20 @@ h6, .giz-typography-h6 {
 
 .giz-text-align-right {
     text-align: $text-align-right;
+}
+
+//== text transform
+
+.text-lowercase {
+    text-transform: $text-lowercase;
+}
+
+.text-uppercase {
+    text-transform: $text-uppercase;
+}
+
+.text-capitalize {
+    text-transform: $text-capitalize;
 }
 
 //== overflow
