@@ -5,9 +5,27 @@
     label {
         font-weight: 600;
         font-size: 15px;
-        line-height: 16px;     
-        letter-spacing: -0.8px;       
+        line-height: 16px;
+        letter-spacing: -0.8px;
         color: #939DB5;
+    }
+
+    .giz-input-field.giz-input-full-width {
+        input {
+            width: 100%;
+        }
+    }
+
+    .giz-input-field.giz-input-shadow {
+        input {
+            box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+        }
+    }
+
+    .giz-input-field.giz-input-outline {
+        input {
+            outline: auto;
+        }
     }
 
     .giz-input-field {
@@ -18,21 +36,20 @@
             width: 100%;
             color: $secondary-color;
             border: 0;
-            width: 100%;
+            width: auto;
             outline: none;
 
             &.is-disabled, &[disabled] {
                 background-color: #E7E9EE;
             }
-        }
+        }       
     }
 
     .invalid {
         color: #F25A68;
         font-weight: 500;
         font-size: 14px;
-        line-height: 22px;
-        text-align: center;
+        line-height: 22px;        
         letter-spacing: -0.8px;
     }
 }

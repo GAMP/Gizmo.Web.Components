@@ -224,6 +224,12 @@ a {
     list-style-type:$list-unstyled;
 }
 
+//text decoration
+
+.text-decoration {
+    text-decoration: $text-decoration;
+}
+
 //heading
 h1, .giz-typography-h1 {
     color: $h-color;
