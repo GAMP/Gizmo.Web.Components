@@ -2,7 +2,7 @@
 //== tab.scss files == //
 
 .giz-tab.giz-tab-hidden {
-    display: none;
+    display: $display-none;
 }
 
 .giz-tab.giz-tab-disabled {
@@ -23,10 +23,10 @@
 
         &::after {
             content: "";
-            position: absolute;
+            position: $position-absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
+            width: $width-full;
             height: 3px;
             background-color: $primary-color;
             animation-duration: .3s;
@@ -35,7 +35,7 @@
     }
 
     .giz-tab-hidden {
-        display: none;
+        display: $display-none;
     }
 
     .giz-tab-disabled {
@@ -44,9 +44,9 @@
     }
 
     &__ul {
-        list-style: none;
+        list-style: $list-unstyled;
         padding: 1.7rem 4.5rem;
-        padding: 0rem;
+        padding: $spacer-0;
 
         [light-theme] & {
             background: #eee !important;
@@ -70,7 +70,7 @@
 .giz-tab-content {
 
     > div {
-        display: none;
+        display: $display-none;
     }
 
     [light-theme] & {
@@ -78,7 +78,7 @@
     }
 
     .giz-tab-content-active {
-        display: block !important;
+        display: $display-block !important;
         padding: $spacer-20;
     }
 
@@ -92,23 +92,23 @@
 @keyframes slideborder {
     from {
         margin-left: -22%;
-        width: 100%;
+        width: $width-full;
     }
 
     to {
         margin-left: 2%;
-        width: 100%;
+        width: $width-full;
     }
 }
 //keyframe for slide content-list text
 @keyframes slidein {
     from {
         margin-left: 100%;
-        width: 100%;
+        width: $width-full;
     }
 
     to {
         margin-left: 0%;
-        width: 100%;
+        width: $width-full;
     }
 }
