@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Gizmo.Web.Components.GizInput;
 
@@ -14,6 +15,8 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region MEMBERS
+        private Dictionary<TItemType, SelectItem<TItemType>> _items = new Dictionary<TItemType, SelectItem<TItemType>>();
+        private TItemType _value;
         private SelectItem<TItemType> _selectedItem;
         #endregion
 
@@ -23,7 +26,20 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public TItemType Value { get; set; }
+        public TItemType Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+
+                if (_items.ContainsKey(_value))
+                    SetSelectedItem(_items[_value]);
+            }
+        }
 
         [Parameter]
         public string Label { get; set; }
@@ -48,7 +64,7 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsFullWidth { get; set; }
-        
+
         [Parameter]
         public string Placeholder { get; set; }
 
@@ -58,20 +74,31 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
         internal Task SetSelectedItem(SelectItem<TItemType> item)
         {
             IsOpen = false;
 
-            _selectedItem = item;
+            if (_selectedItem != item)
+            {
+                _selectedItem = item;
+                StateHasChanged();
+            }
 
             return SetSelectedValue(item.Value);
         }
 
         internal Task SetSelectedValue(TItemType value)
         {
-            Value = value;
-
-            return ValueChanged.InvokeAsync(Value);
+            if (!EqualityComparer<TItemType>.Default.Equals(_value, value))
+            {
+                _value = value;
+                return ValueChanged.InvokeAsync(_value);
+            }
+            else
+            {
+                return Task.CompletedTask;
+            }
         }
 
         #endregion
@@ -88,6 +115,26 @@ namespace Gizmo.Web.Components
             IsOpen = false;
         }
         #endregion
+
+        internal void Register(SelectItem<TItemType> item)
+        {
+            _items[item.Value] = item;
+        }
+
+        internal void Unregister(SelectItem<TItemType> item)
+        {
+            _items.Remove(item.Value);
+        }
+        protected override Task OnFirstAfterRenderAsync()
+        {
+            if (_value != null)
+            {
+                if (_items.ContainsKey(_value))
+                    SetSelectedItem(_items[_value]);
+            }
+
+            return base.OnFirstAfterRenderAsync();
+        }
 
         protected string ClassName => new ClassMapper()
                  .Add("gizmo-select")

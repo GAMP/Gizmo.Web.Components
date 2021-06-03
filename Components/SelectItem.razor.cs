@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -13,8 +14,10 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region PROPERTIES
+
         [CascadingParameter]
         protected Select<TItemType> Parent { get; set; }
+
         [Parameter]
         public TItemType Value { get; set; }
 
@@ -40,5 +43,26 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        protected override void OnInitialized()
+        {
+            if (Parent != null)
+            {
+                Parent.Register(this);
+            }
+        }
+
+        public override void Dispose()
+        {
+            try
+            {
+                if (Parent != null)
+                {
+                    Parent.Unregister(this);
+                }
+            }
+            catch (Exception) { }
+
+            base.Dispose();
+        }
     }
 }
