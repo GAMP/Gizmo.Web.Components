@@ -49,7 +49,7 @@
         padding: $spacer-0;
 
         [light-theme] & {
-            background: #eee !important;
+            background: $secondary-dark !important;
             border-bottom: 1px solid $white-color !important;
         }
     }

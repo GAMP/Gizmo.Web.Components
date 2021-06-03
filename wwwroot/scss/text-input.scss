@@ -4,7 +4,7 @@
 .giz-input-label {
     font-weight: $font-weight-600;
     font-size: $font-15;
-    line-height: 16px;
+    line-height: $line-height-16;
     letter-spacing: $letter-spacing-8;
     color: $dim-light;
 }
@@ -13,12 +13,12 @@
 .giz-input-root {
     background: $white-color;
     border: 1px solid $gray-dark;
-    border-radius: 4px;
+    border-radius: $rounded;
     height: 4.8rem;
     padding: $spacer-16;
     font-weight: $font-weight-600;
     font-size: $font-15;
-    line-height: 16px;
+    line-height: $line-height-16;
     letter-spacing: $letter-spacing-8;
     color: $secondary-color;
 
@@ -30,7 +30,7 @@
     &:focus {
         color: $black-color;
         border: 1px solid $primary-color;
-        box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+        box-shadow: $elevation-1;
     }
 
     &.is-disabled, &[disabled] {
@@ -62,7 +62,7 @@
     }
     //input shadow
     &--shadow {
-        box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+        box-shadow: $elevation-1;
     }
 }
 
