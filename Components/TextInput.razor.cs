@@ -94,7 +94,6 @@ namespace Gizmo.Web.Components
 
         protected string FieldClassName => new ClassMapper()                 
                  .Add("giz-input-root")
-                 .If("giz-input-root--disabled", () => IsDisabled)
                  .If("giz-input-root--outline", () => HasOutline)
                  .If("giz-input-root--shadow", () => HasShadow)
                  .If("giz-input-root--full-width", () => IsFullWidth)
