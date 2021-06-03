@@ -6,6 +6,12 @@ namespace Gizmo.Web.Components
 {
     public partial class Select<TItemType> : CustomDOMComponentBase
     {
+        public enum SelectSize
+        {
+            Normal = 0,
+            Large = 1
+        }
+
         #region CONSTRUCTOR
         public Select()
         {
@@ -31,6 +37,24 @@ namespace Gizmo.Web.Components
         public bool IsOpen { get; set; }
 
         [Parameter]
+        public bool IsDisabled { get; set; }
+
+        [Parameter]
+        public bool OffsetY { get; set; }
+
+        [Parameter]
+        public SelectSize Size { get; set; } = SelectSize.Normal;
+
+        [Parameter]
+        public bool HasOutline { get; set; } = true;
+
+        [Parameter]
+        public bool HasShadow { get; set; }
+
+        [Parameter]
+        public bool IsFullWidth { get; set; }
+
+        [Parameter]
         public EventCallback<TItemType> ValueChanged { get; set; }
 
         #endregion
@@ -52,16 +76,6 @@ namespace Gizmo.Web.Components
             return ValueChanged.InvokeAsync(Value);
         }
 
-        protected string ClassName => new ClassMapper()
-                 .Add("gizmo-select")
-                 .AsString();
-
-        protected string PopupClassName => new ClassMapper()
-                 .Add("gizmo-select-container")
-                 .Add("g-popup-bottom")
-                 .Add("g-shadow-8")
-                 .AsString();
-
         #endregion
 
         #region EVENTS
@@ -75,5 +89,21 @@ namespace Gizmo.Web.Components
             IsOpen = false;
         }
         #endregion
+
+        protected string ClassName => new ClassMapper()
+                 .Add("gizmo-select")
+                 .If("giz-select-root--disabled", () => IsDisabled)
+                 .If("giz-select-root--offset", () => OffsetY)
+                 .If("giz-select-root--outline", () => HasOutline)
+                 .If("giz-select-root--shadow", () => HasShadow)
+                 .If("giz-select-root--full-width", () => IsFullWidth)
+                 .If("giz-select-root--large", () => Size == SelectSize.Large)
+                 .AsString();
+
+        protected string PopupClassName => new ClassMapper()
+                 .Add("gizmo-select-container")
+                 .Add("g-popup-bottom")
+                 .Add("g-shadow-8")
+                 .AsString();
     }
 }
