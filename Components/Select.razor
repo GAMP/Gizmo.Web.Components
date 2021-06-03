@@ -8,8 +8,31 @@
     <div class="@Class @ClassName"
          style="@StyleMapper.AsString()">
 
-        <GizInput @onclick="OnClickMenuHandler" RightIcon="fas fa-caret-down">
-            Selected Value
+        <GizInput Label="@Label"
+                  IsDisabled="@IsDisabled"
+                  IsFullWidth="@IsFullWidth"
+                  HasOutline="@HasOutline"
+                  HasShadow="@HasShadow"
+                  Size="@Size"
+                  RightIcon="fas fa-caret-down"
+                  @onclick="OnClickMenuHandler">
+
+            @if (_selectedItem != null)
+            {
+                @if (!string.IsNullOrEmpty(_selectedItem.Text))
+                {
+                    @_selectedItem.Text
+                }
+                else
+                {
+                    @_selectedItem.ChildContent
+                }
+            }
+            else
+            {
+                @Placeholder
+            }
+
         </GizInput>
 
         <Popup IsOpen="@IsOpen" Class="@PopupClassName">

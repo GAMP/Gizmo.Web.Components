@@ -1,17 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
+using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
     public partial class TextInput : InputBase<string>
     {
-        public enum TextInputSize
-        {
-            Normal = 0,
-            Large = 1
-        }
-
         #region CONSTRUCTOR
         public TextInput()
         {
@@ -32,7 +27,7 @@ namespace Gizmo.Web.Components
         public string RightIcon { get; set; }
 
         [Parameter]
-        public TextInputSize Size { get; set; } = TextInputSize.Normal;
+        public InputSize Size { get; set; } = InputSize.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -79,30 +74,5 @@ namespace Gizmo.Web.Components
                 _text = Value;
             }
         }
-
-        protected string ClassName => new ClassMapper()
-                 .Add("giz-input-control")
-                 .AsString();
-
-        protected string IconLeft => new ClassMapper()
-                .Add("giz-input-icon-left")
-                .AsString();
-
-        protected string IconRight => new ClassMapper()
-                .Add("giz-input-icon-right")
-                .AsString();
-
-        protected string FieldClassName => new ClassMapper()                 
-                 .Add("giz-input-root")
-                 .If("giz-input-root--outline", () => HasOutline)
-                 .If("giz-input-root--shadow", () => HasShadow)
-                 .If("giz-input-root--full-width", () => IsFullWidth)
-                 .If("giz-input-root--large", () => Size== TextInputSize.Large)
-                 .AsString();
-
-        protected string ValidationClassName => new ClassMapper()
-                 .If("giz-input-valid", () => _isValid)
-                 .If("giz-input-invalid", () => !_isValid)
-                 .AsString();
     }
 }

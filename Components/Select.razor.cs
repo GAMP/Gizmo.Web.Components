@@ -1,17 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
+using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
     public partial class Select<TItemType> : CustomDOMComponentBase
     {
-        public enum SelectSize
-        {
-            Normal = 0,
-            Large = 1
-        }
-
         #region CONSTRUCTOR
         public Select()
         {
@@ -19,7 +14,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region MEMBERS
-        private string _text;
+        private SelectItem<TItemType> _selectedItem;
         #endregion
 
         #region PROPERTIES
@@ -43,7 +38,7 @@ namespace Gizmo.Web.Components
         public bool OffsetY { get; set; }
 
         [Parameter]
-        public SelectSize Size { get; set; } = SelectSize.Normal;
+        public InputSize Size { get; set; } = InputSize.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -53,6 +48,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsFullWidth { get; set; }
+        
+        [Parameter]
+        public string Placeholder { get; set; }
 
         [Parameter]
         public EventCallback<TItemType> ValueChanged { get; set; }
@@ -64,7 +62,7 @@ namespace Gizmo.Web.Components
         {
             IsOpen = false;
 
-            _text = item.Text;
+            _selectedItem = item;
 
             return SetSelectedValue(item.Value);
         }
@@ -95,10 +93,6 @@ namespace Gizmo.Web.Components
                  .Add("gizmo-select")
                  .If("giz-select-root--disabled", () => IsDisabled)
                  .If("giz-select-root--offset", () => OffsetY)
-                 .If("giz-select-root--outline", () => HasOutline)
-                 .If("giz-select-root--shadow", () => HasShadow)
-                 .If("giz-select-root--full-width", () => IsFullWidth)
-                 .If("giz-select-root--large", () => Size == SelectSize.Large)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
