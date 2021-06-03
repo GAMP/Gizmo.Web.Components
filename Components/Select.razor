@@ -8,11 +8,9 @@
     <div class="@Class @ClassName"
          style="@StyleMapper.AsString()">
 
-        <TextInput RightIcon="fas fa-caret-down"
-                   Label="@Label"
-                   IsReadOnly="true"
-                   Value="@_text"
-                   @onclick="OnClickMenuHandler" />
+        <GizInput @onclick="OnClickMenuHandler" RightIcon="fas fa-caret-down">
+            Selected Value
+        </GizInput>
 
         <Popup IsOpen="@IsOpen" Class="@PopupClassName">
             <List>

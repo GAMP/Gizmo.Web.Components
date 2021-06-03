@@ -79,6 +79,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region EVENTS
+
         protected void OnClickMenuHandler(MouseEventArgs args)
         {
             IsOpen = true;

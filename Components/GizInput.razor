@@ -1,0 +1,28 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@Class @ClassName">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@Id" class="giz-input-label">@Label</label>
+    }
+    <div class="@FieldClassName" readonly="@IsReadOnly" disabled="@IsDisabled">
+        @if (!string.IsNullOrEmpty(LeftIcon))
+        {
+            <Icon Source="@LeftIcon"
+                  @onclick="OnClickHandler" Class="@IconLeft" />
+        }
+        
+        @ChildContent
+
+        @if (!string.IsNullOrEmpty(RightIcon))
+        {
+            <Icon Source="@RightIcon"
+                  @onclick="OnClickHandler" Class="@IconRight" />
+        }
+
+    </div>
+    <div class="@ValidationClassName">
+        @*@_validationMessage*@
+    </div>
+</div>
