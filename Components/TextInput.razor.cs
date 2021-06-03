@@ -84,6 +84,14 @@ namespace Gizmo.Web.Components
                  .Add("giz-input-control")
                  .AsString();
 
+        protected string IconLeft => new ClassMapper()
+                .Add("giz-input-icon-left")
+                .AsString();
+
+        protected string IconRight => new ClassMapper()
+                .Add("giz-input-icon-right")
+                .AsString();
+
         protected string FieldClassName => new ClassMapper()                 
                  .Add("giz-input-root")
                  .If("giz-input-root--outline", () => HasOutline)

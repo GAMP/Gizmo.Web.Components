@@ -6,24 +6,23 @@
     {
         <label for="@Id" class="giz-input-label">@Label</label>
     }
-    <div>
+    <div class="@FieldClassName" readonly="@IsReadOnly" disabled="@IsDisabled"  >
         @if (!string.IsNullOrEmpty(LeftIcon))
         {
             <Icon Source="@LeftIcon"
-                  @onclick="OnClickHandler" />
+                  @onclick="OnClickHandler" Class="@IconLeft" />
         }
         <input id="@Id"
                type="text"
                value="@_text"
                readonly="@IsReadOnly"
-               disabled="@IsDisabled"
-               class="@FieldClassName @ValidationClassName"
+               disabled="@IsDisabled"               
                @onchange="OnChangeHandler"
                @onclick="OnClickHandler" />
         @if (!string.IsNullOrEmpty(RightIcon))
         {
             <Icon Source="@RightIcon"
-                  @onclick="OnClickHandler" />
+                  @onclick="OnClickHandler" Class="@IconRight" />
         }
 
     </div>

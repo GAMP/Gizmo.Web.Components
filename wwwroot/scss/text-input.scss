@@ -12,7 +12,7 @@
 //Input default size (normal)
 .giz-input-root {
     background: $white-color;
-    border: 1px solid $gray-dark;
+    border: 1px solid $dim-light;
     border-radius: $rounded;
     height: 4.8rem;
     padding: $spacer-16;
@@ -21,26 +21,38 @@
     line-height: $line-height-16;
     letter-spacing: $letter-spacing-8;
     color: $secondary-color;
+    width: fit-content;
 
     &:hover {
-        border: 1px solid $dim-light;
+        border: 1px solid $primary-color;
+        box-shadow: $elevation-1;
         color: $black-color;
     }
 
     &:focus {
         color: $black-color;
-        border: 1px solid $primary-color;
-        box-shadow: $elevation-1;
+        border: 1px solid $primary-color !important;
+        box-shadow: $elevation-1 !important;
     }
 
     &.is-disabled, &[disabled] {
         background: $gray-dark;
         border: 1px solid $gray-dark;
     }
+
+    .giz-input-icon-left {
+        margin-right: $spacer-12;
+    }
+
+    .giz-input-icon-right {
+        margin-left: $spacer-12;
+    }
+
     //full width
     &--full-width {
         width: $width-full !important;
     }
+
     //input large
     &--large {
         padding: 2.8rem 3.2rem;
@@ -51,18 +63,34 @@
         font-size: $font-19;
         line-height: $line-height-24;
 
+        &:hover {
+            border: $border-0 !important;
+            box-shadow:none !important;
+        }
+
         &.is-disabled, &[disabled] {
             background-color: $gray-dark;
             color: $dim-light;
         }
+
+        .giz-input-icon-left {
+            margin-right: $spacer-24 !important;
+        }
+
+        .giz-input-icon-right {
+            margin-left: $spacer-24 !important;
+        }
     }
+
     //input outline
     &--outline {
-        outline: auto;
+        outline: auto !important;
     }
+
     //input shadow
     &--shadow {
         box-shadow: $elevation-1;
+        border: 1px solid $primary-color;
     }
 }
 
@@ -75,3 +103,14 @@
 }
 
 //=============== gizmo textInput custom .scss ================//
+
+.giz-input-control {
+    .giz-input-root {
+        display:flex;
+        input {
+            width: 100%;
+            border: none;
+            outline: none;
+        }
+    }
+}

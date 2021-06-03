@@ -2981,7 +2981,7 @@ h6,
 
 .giz-input-root {
   background: #FFFFFF;
-  border: 1px solid #E7E9EE;
+  border: 1px solid #939DB5;
   border-radius: 0.4rem;
   height: 4.8rem;
   padding: 1.6rem;
@@ -2990,24 +2990,37 @@ h6,
   line-height: 1.6rem;
   letter-spacing: -0.08rem;
   color: #6E7689;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .giz-input-root:hover {
-  border: 1px solid #939DB5;
+  border: 1px solid #5A67F2;
+  -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+  box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
   color: #000000;
 }
 
 .giz-input-root:focus {
   color: #000000;
-  border: 1px solid #5A67F2;
-  -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
-  box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+  border: 1px solid #5A67F2 !important;
+  -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5) !important;
+  box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5) !important;
 }
 
 .giz-input-root.is-disabled,
 .giz-input-root[disabled] {
   background: #E7E9EE;
   border: 1px solid #E7E9EE;
+}
+
+.giz-input-root .giz-input-icon-left {
+  margin-right: 1.2rem;
+}
+
+.giz-input-root .giz-input-icon-right {
+  margin-left: 1.2rem;
 }
 
 .giz-input-root--full-width {
@@ -3024,19 +3037,34 @@ h6,
   line-height: 2.4rem;
 }
 
+.giz-input-root--large:hover {
+  border: 0rem !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
 .giz-input-root--large.is-disabled,
 .giz-input-root--large[disabled] {
   background-color: #E7E9EE;
   color: #939DB5;
 }
 
+.giz-input-root--large .giz-input-icon-left {
+  margin-right: 2.4rem !important;
+}
+
+.giz-input-root--large .giz-input-icon-right {
+  margin-left: 2.4rem !important;
+}
+
 .giz-input-root--outline {
-  outline: auto;
+  outline: auto !important;
 }
 
 .giz-input-root--shadow {
   -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
   box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
+  border: 1px solid #5A67F2;
 }
 
 .giz-input-invalid {
@@ -3045,6 +3073,18 @@ h6,
   font-size: 1.4rem;
   line-height: 2.2rem;
   letter-spacing: -0.08rem;
+}
+
+.giz-input-control .giz-input-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.giz-input-control .giz-input-root input {
+  width: 100%;
+  border: none;
+  outline: none;
 }
 
 @media (min-width: 600px) {
