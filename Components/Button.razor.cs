@@ -58,7 +58,7 @@ namespace Gizmo.Web.Components
         /// Gets or sets element type.
         /// </summary>
         [Parameter()]
-        public string Type { get; set; }
+        public string Type { get; set; } = "button";
 
         /// <summary>
         /// Gets or sets value.

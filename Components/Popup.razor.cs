@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
@@ -17,8 +18,10 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsOpen { get; set; }
+
         [Parameter]
-        public string MaximumHeight { get; set; }
+        public int MaximumHeight { get; set; }
+
         [Parameter]
         public EventCallback<bool> IsOpenChanged { get; set; }
 
@@ -38,5 +41,10 @@ namespace Gizmo.Web.Components
                  .Add("g-popup")
                  .If("g-popup-open", () => IsOpen)
                  .AsString();
+
+        protected string StyleValue => new StyleMapper()
+                 .If($"max-height: {@MaximumHeight}px", () => MaximumHeight > 0)
+                 .AsString();
+
     }
 }

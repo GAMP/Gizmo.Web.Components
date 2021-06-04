@@ -55,6 +55,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        [Parameter]
+        public bool IsValid { get; set; }
+
+        [Parameter]
+        public string ValidationMessage { get; set; }
+
         #region EVENTS
 
         protected Task OnChangeHandler(ChangeEventArgs args)
@@ -90,8 +96,8 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
-                 //.If("giz-input-valid", () => _isValid)
-                 //.If("giz-input-invalid", () => !_isValid)
+                 .If("giz-input-valid", () => IsValid)
+                 .If("giz-input-invalid", () => !IsValid)
                  .AsString();
     }
 }
