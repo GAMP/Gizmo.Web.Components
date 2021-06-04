@@ -3092,6 +3092,9 @@ h6,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .giz-input-control .giz-input-root input {
@@ -3118,7 +3121,6 @@ h6,
 }
 
 .giz-input-select .giz-input-control .giz-input-root .giz-input-icon-right {
-  width: 100%;
   text-align: right;
   display: block;
 }
