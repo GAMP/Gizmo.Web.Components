@@ -102,11 +102,11 @@
     letter-spacing: $letter-spacing-8;
 }
 
-//=============== gizmo textInput custom .scss ================//
-
+//== giz input control
 .giz-input-control {
     .giz-input-root {
-        display:flex;
+        display: flex;
+
         input {
             width: 100%;
             border: none;
@@ -114,3 +114,31 @@
         }
     }
 }
+
+//=============== gizmo textInput select classes ================//
+
+//== giz-input select
+.giz-input-select {
+    position: $position-relative;
+
+    .giz-input-select-dropdown-menu {
+        background-color: $white-color;
+        border: 1px solid $gray-dark;
+        border-radius: $rounded;
+        max-width: max-content;
+        width: max-content !important;
+        position: $position-absolute;
+    }
+
+    .giz-input-control {
+        .giz-input-root {
+            .giz-input-icon-right {
+                width: 100%;
+                text-align: right;
+                display: block;
+            }
+        }
+    }
+}
+
+

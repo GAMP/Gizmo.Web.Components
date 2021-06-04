@@ -137,15 +137,15 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("gizmo-select")
-                 .If("giz-select-root--disabled", () => IsDisabled)
-                 .If("giz-select-root--offset", () => OffsetY)
+                 .Add("giz-input-select")
+                 //.If("giz-select-root--disabled", () => IsDisabled)
+                 //.If("giz-select-root--offset", () => OffsetY)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("gizmo-select-container")
+                 .Add("giz-input-select-dropdown-menu")
                  .Add("g-popup-bottom")
-                 .Add("g-shadow-8")
+                 .Add("giz-elevation-2")
                  .AsString();
     }
 }

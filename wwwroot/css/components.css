@@ -358,8 +358,8 @@ h6,
 }
 
 .giz-elevation-2 {
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  -webkit-box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1) !important;
 }
 
 .giz-elevation-3 {
@@ -2955,20 +2955,33 @@ h6,
   }
 }
 
-.gizmo-select {
+.g-list {
   position: relative;
+  min-width: 12rem;
 }
 
-.gizmo-select .g-select-container {
-  background-color: #FFFFFF;
-  border-radius: 0.8rem;
-  max-width: -webkit-max-content;
-  max-width: -moz-max-content;
-  max-width: max-content;
-  width: -webkit-max-content !important;
-  width: -moz-max-content !important;
-  width: max-content !important;
-  position: absolute;
+.g-list .g-list-item {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.6rem;
+  letter-spacing: -0.08rem;
+  color: #6E7689;
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-decoration: none;
+}
+
+.g-list .g-list-item.g-list-item-disabled {
+  color: #e6e6e6 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+.g-list .g-list-item.g-list-item-selected {
+  background-color: #5A67F2;
+  color: #FFFFFF;
 }
 
 .giz-input-label {
@@ -3085,6 +3098,29 @@ h6,
   width: 100%;
   border: none;
   outline: none;
+}
+
+.giz-input-select {
+  position: relative;
+}
+
+.giz-input-select .giz-input-select-dropdown-menu {
+  background-color: #FFFFFF;
+  border: 1px solid #E7E9EE;
+  border-radius: 0.4rem;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  position: absolute;
+}
+
+.giz-input-select .giz-input-control .giz-input-root .giz-input-icon-right {
+  width: 100%;
+  text-align: right;
+  display: block;
 }
 
 @media (min-width: 600px) {

@@ -1,0 +1,32 @@
+
+//== list.scss files == //
+
+.g-list {
+    position: $position-relative;
+    min-width: 12rem;
+
+    .g-list-item {
+        font-weight: $font-weight-600;
+        font-size: $font-15;
+        line-height: $line-height-16;
+        letter-spacing: $letter-spacing-8;
+        color: $secondary-color;
+        padding-top: $spacer-16;
+        padding-bottom: $spacer-16;
+        padding-left: $spacer-20;
+        padding-right: $spacer-20;
+        text-decoration: $text-decoration;
+
+        &.g-list-item-disabled {
+            color: rgb(230, 230, 230) !important;
+            cursor: default !important;
+            pointer-events: none !important;
+        }
+
+        &.g-list-item-selected {
+            background-color: $primary-color;
+            color:$white-color;
+        }
+    }
+}
+
