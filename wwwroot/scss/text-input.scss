@@ -106,7 +106,6 @@
 .giz-input-control {
     .giz-input-root {
         display: flex;
-        justify-content:space-between;
         input {
             width: 100%;
             border: none;
@@ -132,7 +131,8 @@
 
     .giz-input-control {
         .giz-input-root {
-            .giz-input-icon-right {
+            justify-content:space-between;
+            .giz-input-icon-right {               
                 text-align: right;
                 display: block;
             }
