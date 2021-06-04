@@ -3112,13 +3112,11 @@ h6,
   background-color: #FFFFFF;
   border: 1px solid #E7E9EE;
   border-radius: 0.4rem;
-  max-width: -webkit-max-content;
-  max-width: -moz-max-content;
-  max-width: max-content;
-  width: -webkit-max-content !important;
-  width: -moz-max-content !important;
-  width: max-content !important;
   position: absolute;
+}
+
+.giz-input-select .giz-input-select-dropdown-menu-full-width {
+  width: 100% !important;
 }
 
 .giz-input-select .giz-input-control .giz-input-root {
