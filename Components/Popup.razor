@@ -2,7 +2,7 @@
 @inherits CustomDOMComponentBase
 
 <div class="@Class @ClassName"
-     style="@StyleMapper.AsString()"
+     style="max-height:@MaximumHeight; @StyleMapper.AsString()"
      @onclick="OnClickHandler">
     @ChildContent
 </div>

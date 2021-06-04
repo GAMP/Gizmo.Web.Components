@@ -17,7 +17,8 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsOpen { get; set; }
-
+        [Parameter]
+        public string MaximumHeight { get; set; }
         [Parameter]
         public EventCallback<bool> IsOpenChanged { get; set; }
 
