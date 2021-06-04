@@ -2989,6 +2989,10 @@ h6,
   font-size: 1.5rem;
   line-height: 1.6rem;
   letter-spacing: -0.08rem;
+  color: #FFFFFF;
+}
+
+[light-theme] .giz-input-label {
   color: #939DB5;
 }
 

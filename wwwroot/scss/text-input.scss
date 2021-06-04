@@ -6,7 +6,11 @@
     font-size: $font-15;
     line-height: $line-height-16;
     letter-spacing: $letter-spacing-8;
-    color: $dim-light;
+    color: $white-color;
+
+    [light-theme] & {
+        color: $dim-light;
+    }
 }
 
 //Input default size (normal)
@@ -47,12 +51,10 @@
     .giz-input-icon-right {
         margin-left: $spacer-12;
     }
-
     //full width
     &--full-width {
         width: $width-full !important;
     }
-
     //input large
     &--large {
         padding: 2.8rem 3.2rem;
@@ -65,7 +67,7 @@
 
         &:hover {
             border: $border-0 !important;
-            box-shadow:none !important;
+            box-shadow: $elevation-0 !important;
         }
 
         &.is-disabled, &[disabled] {
@@ -81,12 +83,10 @@
             margin-left: $spacer-24 !important;
         }
     }
-
     //input outline
     &--outline {
         outline: auto !important;
     }
-
     //input shadow
     &--shadow {
         box-shadow: $elevation-1;
@@ -105,9 +105,10 @@
 //== giz input control
 .giz-input-control {
     .giz-input-root {
-        display: flex;
+        display: $display-flex;
+
         input {
-            width: 100%;
+            width: $width-full;
             border: none;
             outline: none;
         }
@@ -131,10 +132,11 @@
 
     .giz-input-control {
         .giz-input-root {
-            justify-content:space-between;
-            .giz-input-icon-right {               
-                text-align: right;
-                display: block;
+            justify-content: $justify-space-between;
+
+            .giz-input-icon-right {
+                text-align: $text-align-right;
+                display: $display-block;
             }
         }
     }
