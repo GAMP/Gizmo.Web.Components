@@ -1,0 +1,14 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="d-flex flex-column">
+    <label for="@Id" class="control-label">@Label</label>
+
+    <label class="g-switch">
+        <input type="checkbox"
+               id="@Id"
+               checked="@IsChecked"
+               @onchange="OnChangeHandler">
+        <span class="slider round"></span>
+    </label>
+</div>
