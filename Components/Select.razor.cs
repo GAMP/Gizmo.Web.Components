@@ -36,8 +36,15 @@ namespace Gizmo.Web.Components
             {
                 _value = value;
 
-                if (_items.ContainsKey(_value))
-                    SetSelectedItem(_items[_value]);
+                if (_value != null)
+                {
+                    if (_items.ContainsKey(_value))
+                        SetSelectedItem(_items[_value]);
+                }
+                else
+                {
+                    SetSelectedItem(null);
+                }
             }
         }
 
@@ -88,7 +95,10 @@ namespace Gizmo.Web.Components
                 StateHasChanged();
             }
 
-            return SetSelectedValue(item.Value);
+            if (item != null)
+                return SetSelectedValue(item.Value);
+            else
+                return SetSelectedValue(default(TItemType));
         }
 
         internal Task SetSelectedValue(TItemType value)
