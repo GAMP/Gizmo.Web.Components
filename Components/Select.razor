@@ -1,5 +1,5 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits CustomDOMComponentBase
+@inherits InputBase<TItemType>
 
 @typeparam TItemType
 
@@ -14,6 +14,8 @@
                   HasOutline="@HasOutline"
                   HasShadow="@HasShadow"
                   Size="@Size"
+                  IsValid="@_isValid"
+                  ValidationMessage="@_validationMessage"
                   RightIcon="fas fa-caret-down"
                   @onclick="OnClickMenuHandler">
 

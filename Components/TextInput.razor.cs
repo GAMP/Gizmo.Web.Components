@@ -39,6 +39,9 @@ namespace Gizmo.Web.Components
         public bool IsFullWidth { get; set; }
 
         [Parameter]
+        public string Value { get; set; }
+
+        [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
@@ -63,6 +66,12 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        protected async Task SetValueAsync(string value)
+        {
+            Value = value;
+            await ValueChanged.InvokeAsync(Value);
+        }
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {

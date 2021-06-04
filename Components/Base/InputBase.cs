@@ -28,9 +28,6 @@ namespace Gizmo.Web.Components
         public Expression<Func<TValue>> ValueExpression { get; set; }
 
         [Parameter]
-        public TValue Value { get; set; }
-
-        [Parameter]
         public EventCallback<TValue> ValueChanged { get; set; }
 
         [Parameter]
@@ -43,12 +40,6 @@ namespace Gizmo.Web.Components
         public bool IsHidden { get; set; }
 
         #endregion
-
-        protected async Task SetValueAsync(TValue value)
-        {
-            Value = value;
-            await ValueChanged.InvokeAsync(Value);
-        }
 
         protected override void OnParametersSet()
         {

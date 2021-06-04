@@ -6,7 +6,7 @@ using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
-    public partial class Select<TItemType> : CustomDOMComponentBase
+    public partial class Select<TItemType> : InputBase<TItemType>
     {
         #region CONSTRUCTOR
         public Select()
@@ -58,9 +58,6 @@ namespace Gizmo.Web.Components
         public bool IsOpen { get; set; }
 
         [Parameter]
-        public bool IsDisabled { get; set; }
-
-        [Parameter]
         public bool OffsetY { get; set; }
 
         [Parameter]
@@ -77,9 +74,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Placeholder { get; set; }
-
-        [Parameter]
-        public EventCallback<TItemType> ValueChanged { get; set; }
 
         #endregion
 
