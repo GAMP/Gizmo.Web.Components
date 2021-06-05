@@ -10,7 +10,7 @@ namespace Gizmo.Web.Components
         public CheckBox()
         {
             ClassMapper
-                .Add("checkbox")
+                .Add("giz-checkbox")
                 .If("is-disabled", () => IsDisabled);
         }
         #endregion

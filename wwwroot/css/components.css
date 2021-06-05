@@ -2428,12 +2428,12 @@ h6,
   box-shadow: none;
 }
 
-.checkbox {
+.giz-checkbox {
   position: absolute;
   left: -9999px;
 }
 
-.checkbox + label {
+.giz-checkbox + label {
   font-size: 1.5rem;
   color: #6E7689;
   position: relative;
@@ -2451,11 +2451,11 @@ h6,
   cursor: pointer;
 }
 
-.checkbox:checked + label {
+.giz-checkbox:checked + label {
   overflow: visible;
 }
 
-.checkbox + label:before {
+.giz-checkbox + label:before {
   content: '';
   position: absolute;
   left: 0;
@@ -2469,25 +2469,25 @@ h6,
   border-radius: 0.4rem;
 }
 
-.checkbox:checked + label:before {
+.giz-checkbox:checked + label:before {
   content: '';
   background: #5A67F2;
   border-color: #5A67F2;
 }
 
-.checkbox.is-disabled + label:before,
-.checkbox[disabled] + label:before {
+.giz-checkbox.is-disabled + label:before,
+.giz-checkbox[disabled] + label:before {
   cursor: default;
   background: #E6E8ED;
   border-color: #E6E8ED;
 }
 
-.checkbox.is-disabled + label,
-.checkbox[disabled] + label {
+.giz-checkbox.is-disabled + label,
+.giz-checkbox[disabled] + label {
   cursor: default;
 }
 
-.checkbox:checked + label:after {
+.giz-checkbox:checked + label:after {
   content: '';
   position: absolute;
   left: 0.7rem;
@@ -2500,18 +2500,18 @@ h6,
   background-size: cover;
 }
 
-.checkbox:indeterminate + label:before {
+.giz-checkbox:indeterminate + label:before {
   background: #5A67F2;
   border-color: #5A67F2;
 }
 
-.checkbox:indeterminate.is-disabled + label:before,
-.checkbox:indeterminate[disabled] + label:before {
+.giz-checkbox:indeterminate.is-disabled + label:before,
+.giz-checkbox:indeterminate[disabled] + label:before {
   background: #E6E8ED;
   border-color: #E6E8ED;
 }
 
-.checkbox:indeterminate + label:after {
+.giz-checkbox:indeterminate + label:after {
   content: '';
   position: absolute;
   left: 0.8rem;
