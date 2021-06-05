@@ -106,10 +106,10 @@ namespace Gizmo.Web.Components
         #endregion
 
         protected string ClassName => new ClassMapper()
-                 .Add("button")
-                 .Add($"button--{Size.ToDescriptionString()}")
-                 .If("button--secondary-outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
-                 .If("button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
+                 .Add("giz-button")
+                 .Add($"giz-button--{Size.ToDescriptionString()}")
+                 .If("giz-button--secondary-outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
+                 .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
                  .If("disabled", () => IsDisabled)
                  .If("selected", () => _selected)
                  .AsString();

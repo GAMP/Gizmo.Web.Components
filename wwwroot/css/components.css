@@ -2316,7 +2316,7 @@ h6,
   flex-basis: 100%;
 }
 
-.button {
+.giz-button {
   border: 0rem;
   outline: 0rem;
   color: #FFFFFF;
@@ -2335,28 +2335,28 @@ h6,
   text-align: center;
 }
 
-.button:hover {
+.giz-button:hover {
   background: #4F5AD3;
 }
 
-.button:focus {
+.giz-button:focus {
   background: #5A67F2;
   -webkit-box-shadow: 0px 0px 9px #4891FF;
   box-shadow: 0px 0px 9px #4891FF;
 }
 
-.button--secondary-outline {
+.giz-button--secondary-outline {
   background: #FFFFFF;
   border: 1px solid #CFD2D8;
   color: #6E7689;
 }
 
-.button--secondary-outline:hover {
+.giz-button--secondary-outline:hover {
   color: #5A67F2;
   background: #FFFFFF;
 }
 
-.button--secondary-outline:focus {
+.giz-button--secondary-outline:focus {
   color: #6E7689;
   background: #FFFFFF;
   border: 1px solid #6E7689;
@@ -2364,66 +2364,66 @@ h6,
   box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
 }
 
-.button--secondary-outline.is-disabled,
-.button--secondary-outline[disabled] {
+.giz-button--secondary-outline.is-disabled,
+.giz-button--secondary-outline[disabled] {
   color: #CFD2D8;
   background: #FAFAFA !important;
   border: 1px solid #CFD2D8;
 }
 
-.button--text {
+.giz-button--text {
   background: none;
   border: none;
   color: #6E7689;
 }
 
-.button--text:hover {
+.giz-button--text:hover {
   color: #5A67F2;
   background: #FFFFFF;
 }
 
-.button--text:focus {
+.giz-button--text:focus {
   -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
   box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
 }
 
-.button--text.is-disabled,
-.button--text[disabled] {
+.giz-button--text.is-disabled,
+.giz-button--text[disabled] {
   color: #E7E9EE;
   background: #FAFAFA !important;
   border: none;
 }
 
-.button--large {
+.giz-button--large {
   height: 4.8rem;
   font-size: 1.7rem;
 }
 
-.button--medium {
+.giz-button--medium {
   height: 3.2rem;
   font-size: 1.5rem;
   padding: 0 1.6rem;
 }
 
-.button--small {
+.giz-button--small {
   height: 2.4rem;
   font-size: 1.2rem;
   padding: 0 1rem;
 }
 
-.button.is-disabled,
-.button[disabled] {
+.giz-button.is-disabled,
+.giz-button[disabled] {
   background: #E6E8ED;
   cursor: default;
 }
 
-.button.is-disabled:hover,
-.button[disabled]:hover {
+.giz-button.is-disabled:hover,
+.giz-button[disabled]:hover {
   background: #E6E8ED;
 }
 
-.button.is-disabled:focus,
-.button[disabled]:focus {
+.giz-button.is-disabled:focus,
+.giz-button[disabled]:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
