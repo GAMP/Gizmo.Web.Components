@@ -7,7 +7,7 @@ namespace Gizmo.Web.Components
         #region CONSTRUCTOR
         public RadioButton()
         {
-            ClassMapper.Add("radio")
+            ClassMapper.Add("giz-radio")
                 .If("disabled", () => IsDisabled);
         } 
         #endregion

@@ -2523,12 +2523,12 @@ h6,
   background: #FFFFFF;
 }
 
-.radio {
+.giz-radio {
   position: absolute;
   left: -9999px;
 }
 
-.radio + label {
+.giz-radio + label {
   font-size: 1.5rem;
   color: #6E7689;
   position: relative;
@@ -2546,11 +2546,11 @@ h6,
   cursor: pointer;
 }
 
-.radio:checked + label {
+.giz-radio:checked + label {
   overflow: visible;
 }
 
-.radio + label:before {
+.giz-radio + label:before {
   content: '';
   position: absolute;
   left: 0;
@@ -2564,24 +2564,24 @@ h6,
   border-radius: 100px;
 }
 
-.radio:checked + label:before {
+.giz-radio:checked + label:before {
   content: '';
   background: #5A67F2;
   border-color: #5A67F2;
 }
 
-.radio.is-disabled + label:before,
-.radio[disabled] + label:before {
+.giz-radio.is-disabled + label:before,
+.giz-radio[disabled] + label:before {
   cursor: default;
   background: #E6E8ED;
 }
 
-.radio.is-disabled + label,
-.radio[disabled] + label {
+.giz-radio.is-disabled + label,
+.giz-radio[disabled] + label {
   cursor: default;
 }
 
-.radio:checked + label:after {
+.giz-radio:checked + label:after {
   content: '';
   position: absolute;
   left: 0.6rem;
