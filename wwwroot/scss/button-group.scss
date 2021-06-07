@@ -1,0 +1,21 @@
+//=============== gizmo button group classes ================//
+
+.giz-button-group {
+    display: $display-inline-block;
+    background-color: $secondary-light;
+    padding: $spacer-4;
+    border-radius: $rounded;
+
+    .giz-button {
+        color: $dim-light;
+        background-color: $secondary-light;
+
+        &.selected {
+            color: $primary-color;
+            background-color: $white-color;
+            box-shadow: $elevation-4;
+        }
+    }
+}
+
+

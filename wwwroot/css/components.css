@@ -367,6 +367,11 @@ h6,
   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12) !important;
 }
 
+.giz-elevation-4 {
+  -webkit-box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
 .border-color {
   border-color: #1f2637 !important;
 }
@@ -2426,6 +2431,25 @@ h6,
 .giz-button[disabled]:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.giz-button-group {
+  display: inline-block;
+  background-color: #FAFAFA;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+}
+
+.giz-button-group .giz-button {
+  color: #939DB5;
+  background-color: #FAFAFA;
+}
+
+.giz-button-group .giz-button.selected {
+  color: #5A67F2;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .giz-checkbox {
