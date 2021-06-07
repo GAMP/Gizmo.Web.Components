@@ -89,9 +89,9 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-list-item")
-                 .If("g-list-item-disabled", () => IsDisabled)
-                 .If("g-list-item-selected", () => _isSelected).AsString();
+                 .Add("giz-list-item")
+                 .If("giz-list-item-disabled", () => IsDisabled)
+                 .If("giz-list-item-selected", () => _isSelected).AsString();
 
         protected override void OnInitialized()
         {

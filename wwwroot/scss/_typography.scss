@@ -239,19 +239,19 @@ a {
 //cursor
 
 .cursor-pointer {
-    cursor: $cursor-pointer;
+    cursor: $cursor-pointer !important;
 }
 
 //list
 
 .list-unstyled {
-    list-style-type:$list-unstyled;
+    list-style-type: $list-unstyled !important;
 }
 
 //text decoration
 
 .text-decoration {
-    text-decoration: $text-decoration;
+    text-decoration: $text-decoration !important;
 }
 
 //heading
@@ -332,19 +332,19 @@ h6, .giz-typography-h6 {
 }
 
 .giz-typography-align-left {
-    text-align: $text-align-left;
+    text-align: $text-align-left !important;
 }
 
 .giz-typography-align-center {
-    text-align: $text-align-center;
+    text-align: $text-align-center !important;
 }
 
 .giz-typography-align-right {
-    text-align: $text-align-right;
+    text-align: $text-align-right !important;
 }
 
 .giz-typography-align-justify {
-    text-align: $text-align-justify;
+    text-align: $text-align-justify !important;
 }
 
 .giz-typography-nowrap {
@@ -354,11 +354,11 @@ h6, .giz-typography-h6 {
 }
 
 .giz-typography-display-inline {
-    display: $display-inline;
+    display: $display-inline !important;
 }
 
 .giz-typography-display-block {
-    display: $display-block;
+    display: $display-block !important;
 }
 
 //== box shadow
@@ -490,19 +490,19 @@ h6, .giz-typography-h6 {
 }
 
 .border-top {
-    border-top: $border;
+    border-top: $border !important;
 }
 
 .border-bottom {
-    border-bottom: $border;
+    border-bottom: $border !important;
 }
 
 .border-start {
-    border-left: $border;
+    border-left: $border !important;
 }
 
 .border-end {
-    border-right: $border;
+    border-right: $border !important;
 }
 
 //==border radius
@@ -566,85 +566,85 @@ h6, .giz-typography-h6 {
 //== alignment
 
 .giz-float-left {
-    float: $float-left;
+    float: $float-left !important;
 }
 
 .giz-float-right {
-    float: $float-right;
+    float: $float-right !important;
 }
 
 .giz-text-align-center {
-    text-align: $text-align-center;
+    text-align: $text-align-center !important;
 }
 
 .giz-text-align-left {
-    text-align: $text-align-left;
+    text-align: $text-align-left !important;
 }
 
 .giz-text-align-right {
-    text-align: $text-align-right;
+    text-align: $text-align-right !important;
 }
 
 //== text transform
 
 .text-lowercase {
-    text-transform: $text-lowercase;
+    text-transform: $text-lowercase !important;
 }
 
 .text-uppercase {
-    text-transform: $text-uppercase;
+    text-transform: $text-uppercase !important;
 }
 
 .text-capitalize {
-    text-transform: $text-capitalize;
+    text-transform: $text-capitalize !important;
 }
 
 //== overflow
 
-.overflow-hidden{
- overflow: $overflow-hidden;
+.overflow-hidden {
+    overflow: $overflow-hidden !important;
 }
 
-.overflow-auto{
-overflow:$overflow-auto;
+.overflow-auto {
+    overflow: $overflow-auto !important;
 }
 
-.overflow-scroll{
-overflow:$overflow-scroll;
+.overflow-scroll {
+    overflow: $overflow-scroll !important;
 }
 
-.overflow-visible{
-overflow:$overflow-visible;
+.overflow-visible {
+    overflow: $overflow-visible !important;
 }
 
 //== position
 
 .absolute {
-    position: $position-absolute;
+    position: $position-absolute !important;
 }
 
 .fixed {
-    position: $position-fixed;
+    position: $position-fixed !important;
 }
 
 .relative {
-    position: $position-relative;
+    position: $position-relative !important;
 }
 
 .static {
-    position: $position-static;
+    position: $position-static !important;
 }
 
 .sticky {
-    position: $position-sticky;
+    position: $position-sticky !important;
 }
 
 .visible {
-    visibility: $visibility-visible;
+    visibility: $visibility-visible !important;
 }
 
 .invisible {
-    visibility: $visibility-invisible;
+    visibility: $visibility-invisible !important;
 }
 
 //== display
