@@ -3057,7 +3057,7 @@ h6,
 .giz-input-root--large {
   padding: 2.8rem 3.2rem;
   height: 8rem;
-  border: 0rem;
+  border: 0rem !important;
   outline: none;
   font-weight: 500;
   font-size: 1.9rem;
@@ -3072,6 +3072,12 @@ h6,
 
 .giz-input-root--large.is-disabled,
 .giz-input-root--large[disabled] {
+  background-color: #E7E9EE;
+  color: #FFFFFF;
+}
+
+[light-theme] .giz-input-root--large.is-disabled,
+[light-theme] .giz-input-root--large[disabled] {
   background-color: #E7E9EE;
   color: #939DB5;
 }
