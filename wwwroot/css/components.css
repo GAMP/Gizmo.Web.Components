@@ -2997,8 +2997,8 @@ h6,
 }
 
 .giz-input-root {
-  background: #FFFFFF;
-  border: 1px solid #939DB5;
+  background: #171c28;
+  border: 1px solid #1f2637;
   border-radius: 0.4rem;
   height: 4.8rem;
   padding: 1.6rem;
@@ -3006,17 +3006,27 @@ h6,
   font-size: 1.5rem;
   line-height: 1.6rem;
   letter-spacing: -0.08rem;
-  color: #6E7689;
+  color: #FFFFFF;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+[light-theme] .giz-input-root {
+  background: #FFFFFF;
+  color: #6E7689;
+  border: 1px solid #939DB5;
+}
+
+[light-theme] .giz-input-root:hover {
+  color: #000000;
 }
 
 .giz-input-root:hover {
   border: 1px solid #5A67F2;
   -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
   box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
-  color: #000000;
+  color: #FFFFFF;
 }
 
 .giz-input-root:focus {
@@ -3102,6 +3112,19 @@ h6,
   width: 100%;
   border: none;
   outline: none;
+  background: #171c28;
+  color: #FFFFFF;
+}
+
+[light-theme] .giz-input-control .giz-input-root input {
+  background: #FFFFFF;
+  color: #6E7689;
+}
+
+.giz-input-control .giz-input-root input.is-disabled,
+.giz-input-control .giz-input-root input[disabled] {
+  background: #E7E9EE;
+  color: #939DB5;
 }
 
 .giz-input-select {
@@ -3109,10 +3132,15 @@ h6,
 }
 
 .giz-input-select .giz-input-select-dropdown-menu {
-  background-color: #FFFFFF;
-  border: 1px solid #E7E9EE;
+  background-color: #171c28;
+  border: 1px solid #1f2637;
   border-radius: 0.4rem;
   position: absolute;
+}
+
+[light-theme] .giz-input-select .giz-input-select-dropdown-menu {
+  background-color: #FFFFFF;
+  border: 1px solid #E7E9EE;
 }
 
 .giz-input-select .giz-select-dropdown-full-width {

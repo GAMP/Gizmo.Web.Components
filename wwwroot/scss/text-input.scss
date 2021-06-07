@@ -15,8 +15,8 @@
 
 //Input default size (normal)
 .giz-input-root {
-    background: $white-color;
-    border: 1px solid $dim-light;
+    background: $dark-color;
+    border: 1px solid $border-color;
     border-radius: $rounded;
     height: 4.8rem;
     padding: $spacer-16;
@@ -24,13 +24,23 @@
     font-size: $font-15;
     line-height: $line-height-16;
     letter-spacing: $letter-spacing-8;
-    color: $secondary-color;
+    color: $white-color;
     width: fit-content;
+
+    [light-theme] & {
+        background: $white-color;
+        color: $secondary-color;
+        border: 1px solid $dim-light;
+
+        &:hover {           
+            color: $black-color;
+        }
+    }
 
     &:hover {
         border: 1px solid $primary-color;
         box-shadow: $elevation-1;
-        color: $black-color;
+        color: $white-color;
     }
 
     &:focus {
@@ -111,6 +121,18 @@
             width: $width-full;
             border: none;
             outline: none;
+            background: $dark-color;
+            color: $white-color;
+
+            [light-theme] & {
+                background: $white-color;
+                color: $secondary-color;
+            }
+
+            &.is-disabled, &[disabled] {
+                background: $gray-dark;
+                color: $dim-light;
+            }
         }
     }
 }
@@ -122,10 +144,15 @@
     position: $position-relative;
 
     .giz-input-select-dropdown-menu {
-        background-color: $white-color;
-        border: 1px solid $gray-dark;
+        background-color: $dark-color;
+        border: 1px solid $border-color;
         border-radius: $rounded;
         position: $position-absolute;
+
+        [light-theme] & {
+            background-color: $white-color;
+            border: 1px solid $gray-dark;
+        }
     }
 
     .giz-select-dropdown-full-width {
