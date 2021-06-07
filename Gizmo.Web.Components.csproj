@@ -17,6 +17,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="wwwroot\scss\button-group.scss" />
 	  <Content Remove="wwwroot\scss\list.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\text-input.scss" />
@@ -38,6 +39,7 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="wwwroot\scripts.js" />
+		<None Include="wwwroot\scss\button-group.scss" />
 		<None Include="wwwroot\scss\text-input.scss" />
 		<None Include="wwwroot\scss\list.scss" />
 		<None Include="wwwroot\scss\tab.scss" />

@@ -196,7 +196,7 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-button-group")
+                 .Add("giz-button-group")
                  .If("disabled", () => IsDisabled)
                  .AsString();
 
