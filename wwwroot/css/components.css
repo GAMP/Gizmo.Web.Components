@@ -224,15 +224,15 @@ a {
 }
 
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .list-unstyled {
-  list-style-type: none;
+  list-style-type: none !important;
 }
 
 .text-decoration {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 h1,
@@ -318,19 +318,19 @@ h6,
 }
 
 .giz-typography-align-left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .giz-typography-align-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .giz-typography-align-right {
-  text-align: right;
+  text-align: right !important;
 }
 
 .giz-typography-align-justify {
-  text-align: justify;
+  text-align: justify !important;
 }
 
 .giz-typography-nowrap {
@@ -340,11 +340,11 @@ h6,
 }
 
 .giz-typography-display-inline {
-  display: inline;
+  display: inline !important;
 }
 
 .giz-typography-display-block {
-  display: block;
+  display: block !important;
 }
 
 .giz-elevation-0 {
@@ -473,19 +473,19 @@ h6,
 }
 
 .border-top {
-  border-top: 1px solid #1f2637;
+  border-top: 1px solid #1f2637 !important;
 }
 
 .border-bottom {
-  border-bottom: 1px solid #1f2637;
+  border-bottom: 1px solid #1f2637 !important;
 }
 
 .border-start {
-  border-left: 1px solid #1f2637;
+  border-left: 1px solid #1f2637 !important;
 }
 
 .border-end {
-  border-right: 1px solid #1f2637;
+  border-right: 1px solid #1f2637 !important;
 }
 
 .rounded-circle {
@@ -541,79 +541,79 @@ h6,
 }
 
 .giz-float-left {
-  float: left;
+  float: left !important;
 }
 
 .giz-float-right {
-  float: right;
+  float: right !important;
 }
 
 .giz-text-align-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .giz-text-align-left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .giz-text-align-right {
-  text-align: right;
+  text-align: right !important;
 }
 
 .text-lowercase {
-  text-transform: lowercase;
+  text-transform: lowercase !important;
 }
 
 .text-uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 .text-capitalize {
-  text-transform: capitalize;
+  text-transform: capitalize !important;
 }
 
 .overflow-hidden {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .overflow-auto {
-  overflow: auto;
+  overflow: auto !important;
 }
 
 .overflow-scroll {
-  overflow: scroll;
+  overflow: scroll !important;
 }
 
 .overflow-visible {
-  overflow: visible;
+  overflow: visible !important;
 }
 
 .absolute {
-  position: absolute;
+  position: absolute !important;
 }
 
 .fixed {
-  position: fixed;
+  position: fixed !important;
 }
 
 .relative {
-  position: relative;
+  position: relative !important;
 }
 
 .static {
-  position: static;
+  position: static !important;
 }
 
 .sticky {
-  position: sticky;
+  position: sticky !important;
 }
 
 .visible {
-  visibility: visible;
+  visibility: visible !important;
 }
 
 .invisible {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .d-none {
