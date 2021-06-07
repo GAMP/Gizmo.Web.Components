@@ -34,13 +34,16 @@
             <List>
                 @if (ItemSource != null)
                 {
-                    @foreach (var item in ItemSource)
+                    @foreach (var item in GetFiltered(_text))
                     {
-                        @Item(item);
-                        /*if (string.IsNullOrEmpty(_text) || item.Value.Text.StartsWith(_text))
+                        if (ItemTemplate != null)
                         {
-                            <SelectItem @key="item" TItemType="@TItemType" Value="@item.Value.Value" Text="@item.Value.Text" />
-                        }*/
+                            @ItemTemplate(item);
+                        }
+                        else
+                        {
+                            <SelectItem TValue="@TValue" Value="@GetItemValue(item)" Text="@GetItemString(item)" />
+                        }
                     }
                 }
             </List>

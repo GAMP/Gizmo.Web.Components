@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static Gizmo.Web.Components.GizInput;
 
@@ -24,7 +26,7 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
-        public RenderFragment<TItemType> Item { get; set; }
+        public RenderFragment<TItemType> ItemTemplate { get; set; }
 
         [Parameter]
         public ICollection<TItemType> ItemSource
@@ -184,5 +186,39 @@ namespace Gizmo.Web.Components
                  .Add("g-popup-bottom")
                  .Add("giz-elevation-2")
                  .AsString();
+
+        [Parameter]
+        public Func<TItemType, TValue> ItemValueSelector { get; set; }
+
+        [Parameter]
+        public Func<TItemType, string> ItemStringSelector { get; set; }
+
+        private TValue GetItemValue(TItemType item)
+        {
+            if (ItemValueSelector != null)
+            {
+                return ItemValueSelector.Invoke(item);
+            }
+
+            return default(TValue);
+        }
+
+        private string GetItemString(TItemType item)
+        {
+            if (ItemStringSelector != null)
+            {
+                return ItemStringSelector.Invoke(item);
+            }
+
+            return item?.ToString();
+        }
+
+        protected IEnumerable<TItemType> GetFiltered(string text)
+        {
+            var result = ItemSource.Where(a => string.IsNullOrEmpty(text) || GetItemString(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true)
+                        .ToList();
+                        
+            return result;
+        }
     }
 }
