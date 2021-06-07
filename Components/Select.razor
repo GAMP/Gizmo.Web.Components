@@ -1,9 +1,9 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits InputBase<TItemType>
+@inherits InputBase<TValue>
 
-@typeparam TItemType
+@typeparam TValue
 
-<CascadingValue Value="@this" IsFixed="true">
+<CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
 
     <div class="@Class @ClassName"
          style="@StyleMapper.AsString()">

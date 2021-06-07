@@ -6,7 +6,7 @@ using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
-    public partial class Select<TItemType> : InputBase<TItemType>
+    public partial class Select<TValue> : InputBase<TValue>, ISelect<TValue>
     {
         #region CONSTRUCTOR
         public Select()
@@ -15,9 +15,9 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region MEMBERS
-        private Dictionary<TItemType, SelectItem<TItemType>> _items = new Dictionary<TItemType, SelectItem<TItemType>>();
-        private TItemType _value;
-        private SelectItem<TItemType> _selectedItem;
+        private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
+        private TValue _value;
+        private SelectItem<TValue> _selectedItem;
         #endregion
 
         #region PROPERTIES
@@ -26,7 +26,7 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public TItemType Value
+        public TValue Value
         {
             get
             {
@@ -79,25 +79,9 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        internal Task SetSelectedItem(SelectItem<TItemType> item)
+        internal Task SetSelectedValue(TValue value)
         {
-            IsOpen = false;
-
-            if (_selectedItem != item)
-            {
-                _selectedItem = item;
-                StateHasChanged();
-            }
-
-            if (item != null)
-                return SetSelectedValue(item.Value);
-            else
-                return SetSelectedValue(default(TItemType));
-        }
-
-        internal Task SetSelectedValue(TItemType value)
-        {
-            if (!EqualityComparer<TItemType>.Default.Equals(_value, value))
+            if (!EqualityComparer<TValue>.Default.Equals(_value, value))
             {
                 _value = value;
                 return ValueChanged.InvokeAsync(_value);
@@ -114,6 +98,9 @@ namespace Gizmo.Web.Components
 
         protected void OnClickMenuHandler(MouseEventArgs args)
         {
+            if (IsDisabled)
+                return;
+
             IsOpen = true;
         }
 
@@ -123,15 +110,6 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        internal void Register(SelectItem<TItemType> item)
-        {
-            _items[item.Value] = item;
-        }
-
-        internal void Unregister(SelectItem<TItemType> item)
-        {
-            _items.Remove(item.Value);
-        }
         protected override Task OnFirstAfterRenderAsync()
         {
             if (_value != null)
@@ -141,6 +119,32 @@ namespace Gizmo.Web.Components
             }
 
             return base.OnFirstAfterRenderAsync();
+        }
+
+        public void Register(SelectItem<TValue> selectItem)
+        {
+            _items[selectItem.Value] = selectItem;
+        }
+
+        public void Unregister(SelectItem<TValue> selectItem)
+        {
+            _items.Remove(selectItem.Value);
+        }
+
+        public Task SetSelectedItem(SelectItem<TValue> selectItem)
+        {
+            IsOpen = false;
+
+            if (_selectedItem != selectItem)
+            {
+                _selectedItem = selectItem;
+                StateHasChanged();
+            }
+
+            if (selectItem != null)
+                return SetSelectedValue(selectItem.Value);
+            else
+                return SetSelectedValue(default(TValue));
         }
 
         protected string ClassName => new ClassMapper()
