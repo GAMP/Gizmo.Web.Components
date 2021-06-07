@@ -2979,12 +2979,12 @@ h6,
   }
 }
 
-.g-list {
+.giz-list {
   position: relative;
   min-width: 12rem;
 }
 
-.g-list .g-list-item {
+.giz-list .giz-list-item {
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 1.6rem;
@@ -2997,13 +2997,13 @@ h6,
   text-decoration: none;
 }
 
-.g-list .g-list-item.g-list-item-disabled {
+.giz-list .giz-list-item.giz-list-item-disabled {
   color: #e6e6e6 !important;
   cursor: default !important;
   pointer-events: none !important;
 }
 
-.g-list .g-list-item.g-list-item-selected {
+.giz-list .giz-list-item.giz-list-item-selected {
   background-color: #5A67F2;
   color: #FFFFFF;
 }
