@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class SelectItem<TItemType> : CustomDOMComponentBase
+    public partial class SelectItem<TValue> : CustomDOMComponentBase
     {
         #region CONSTRUCTOR
         public SelectItem()
@@ -16,10 +16,10 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [CascadingParameter]
-        protected Select<TItemType> Parent { get; set; }
+        protected ISelect<TValue> Parent { get; set; }
 
         [Parameter]
-        public TItemType Value { get; set; }
+        public TValue Value { get; set; }
 
         [Parameter]
         public string Text { get; set; }

@@ -1,4 +1,54 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits ComponentBase
+@inherits InputBase<TValue>
 
+@typeparam TItemType
+@typeparam TValue
 
+<CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
+
+    <div class="@Class @ClassName"
+         style="@StyleMapper.AsString()">
+
+        <GizInput Label="@Label"
+                  IsDisabled="@IsDisabled"
+                  IsFullWidth="@IsFullWidth"
+                  HasOutline="@HasOutline"
+                  HasShadow="@HasShadow"
+                  Size="@Size"
+                  IsValid="@_isValid"
+                  ValidationMessage="@_validationMessage"
+                  RightIcon="fas fa-caret-down"
+                  @onclick="OnClickMenuHandler">
+
+            <input id="@Id"
+                   type="text"
+                   @bind-value="_text"
+                   readonly="@IsReadOnly"
+                   disabled="@IsDisabled"
+                   @onkeydown="OnInputKeyDown"
+                   @onclick="OnClickHandler" />
+
+        </GizInput>
+
+        <Popup MaximumHeight="@MaximumHeight" IsOpen="@IsOpen" Class="@PopupClassName">
+            <List>
+                @if (ItemSource != null)
+                {
+                    @foreach (var item in ItemSource)
+                    {
+                        @Item(item);
+                        /*if (string.IsNullOrEmpty(_text) || item.Value.Text.StartsWith(_text))
+                        {
+                            <SelectItem @key="item" TItemType="@TItemType" Value="@item.Value.Value" Text="@item.Value.Text" />
+                        }*/
+                    }
+                }
+            </List>
+        </Popup>
+    </div>
+
+    <Overlay Visible="@IsOpen"
+             @onclick="OnClickOverlayHandler">
+    </Overlay>
+
+</CascadingValue>
