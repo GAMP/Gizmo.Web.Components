@@ -10,8 +10,8 @@ namespace Gizmo.Web.Components
     {
         public enum ListDirection
         {
-            Left,
-            Right
+            left,
+            right
         }
 
         #region CONSTRUCTOR
@@ -57,7 +57,7 @@ namespace Gizmo.Web.Components
         public EventCallback<ListItem> SelectedItemChanged { get; set; }
 
         [Parameter()]
-        public ListDirection Direction { get; set; } = ListDirection.Right;
+        public ListDirection Direction { get; set; } = ListDirection.right;
 
         #endregion
 

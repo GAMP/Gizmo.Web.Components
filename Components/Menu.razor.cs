@@ -27,13 +27,13 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-menu")
+                 .Add("giz-menu")
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("g-menu-container")
+                 .Add("giz-menu-dropdown")
                  .Add("g-popup-bottom")
-                 .Add("giz-elevation-3")
+                 .Add("giz-elevation-2")
                  .AsString();
 
         protected void OnClickMenuHandler(MouseEventArgs args)

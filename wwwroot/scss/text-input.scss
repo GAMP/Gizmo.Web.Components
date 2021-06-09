@@ -176,6 +176,11 @@
             }
         }
     }
+
+    .g-popup {
+        overflow-x: $overflow-hidden;
+        overflow-y: $overflow-auto;
+    }
 }
 
 
