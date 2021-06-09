@@ -2435,21 +2435,36 @@ h6,
 
 .giz-button-group {
   display: inline-block;
-  background-color: #FAFAFA;
+  background-color: #171c28;
+  border: 2px solid #1f2637;
   padding: 0.4rem;
   border-radius: 0.4rem;
 }
 
+[light-theme] .giz-button-group {
+  background-color: #FAFAFA;
+  border: 2px solid #FAFAFA;
+}
+
 .giz-button-group .giz-button {
+  color: #939DB5;
+  background-color: #171c28;
+}
+
+[light-theme] .giz-button-group .giz-button {
   color: #939DB5;
   background-color: #FAFAFA;
 }
 
 .giz-button-group .giz-button.selected {
   color: #5A67F2;
-  background-color: #FFFFFF;
+  background-color: #1f2637;
   -webkit-box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[light-theme] .giz-button-group .giz-button.selected {
+  background-color: #FFFFFF;
 }
 
 .giz-checkbox {
