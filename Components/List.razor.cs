@@ -5,8 +5,15 @@ using System.Linq;
 
 namespace Gizmo.Web.Components
 {
+
     public partial class List : CustomDOMComponentBase
     {
+        public enum ListDirection
+        {
+            Left,
+            Right
+        }
+
         #region CONSTRUCTOR
         public List()
         {
@@ -23,6 +30,7 @@ namespace Gizmo.Web.Components
 
         [CascadingParameter]
         protected List ParentList { get; set; }
+
 
         #region PROPERTIES
 
@@ -47,6 +55,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public EventCallback<ListItem> SelectedItemChanged { get; set; }
+
+        [Parameter()]
+        public ListDirection Direction { get; set; } = ListDirection.Right;
 
         #endregion
 
@@ -110,6 +121,7 @@ namespace Gizmo.Web.Components
         
         protected string ClassName => new ClassMapper()
                  .Add("giz-list")
+                 .Add($"giz-list--{Direction}")
                  .AsString();
     }
 }
