@@ -46,7 +46,7 @@ namespace Gizmo.Web.Components
         
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
-
+               
         #endregion
 
         #region EVENTS
@@ -89,7 +89,7 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-list-item")
+                 .Add("giz-list-item")                
                  .If("giz-list-item-disabled", () => IsDisabled)
                  .If("giz-list-item-selected", () => _isSelected).AsString();
 
