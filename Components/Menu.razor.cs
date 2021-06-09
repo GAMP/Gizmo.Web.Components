@@ -21,6 +21,9 @@ namespace Gizmo.Web.Components
         public bool IsOpen { get; set; }
 
         [Parameter]
+        public bool IsDisabled { get; set; }
+
+        [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         protected string ClassName => new ClassMapper()
@@ -35,6 +38,9 @@ namespace Gizmo.Web.Components
 
         protected void OnClickMenuHandler(MouseEventArgs args)
         {
+            if (IsDisabled)
+                return;
+
             IsOpen = true;
         }
 

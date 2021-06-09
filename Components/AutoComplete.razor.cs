@@ -17,10 +17,11 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region MEMBERS
-        private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
-        private string _text;
         private TValue _value;
-        private SelectItem<TValue> _selectedItem;
+        private string _text;
+
+        private List _itemsList;
+        private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
         #endregion
 
         #region PROPERTIES
@@ -45,13 +46,20 @@ namespace Gizmo.Web.Components
             {
                 _value = value;
 
-                if (_value != null)
+                //Find the item with this value.
+                var item = ItemSource.Where(a => GetItemValue(a)?.Equals(_value) == true).FirstOrDefault();
+
+                //If the item exists in the ItemSource.
+                if (item != null)
                 {
-                    if (_items.ContainsKey(_value))
-                        SetSelectedItem(_items[_value]);
+                    //Update the component's text.
+                    _text = GetItemText(item);
+
+                    StateHasChanged();
                 }
                 else
                 {
+                    //If the item does not exist then clear the value.
                     SetSelectedItem(null);
                 }
             }
@@ -107,17 +115,65 @@ namespace Gizmo.Web.Components
 
         protected Task OnInputKeyDown(KeyboardEventArgs args)
         {
+            if (IsDisabled)
+                return Task.CompletedTask;
+
+            if (args.Key == null || args.Key == "Tab")
+                return Task.CompletedTask;
+
             if (!IsOpen)
                 IsOpen = true;
+
+            //If list has items.
+            //Get the index of the selected item.
+            
+            int selectedItemIndex = -1;
+            int listSize = 0;
+
+            switch (args.Key)
+            {
+                case "Enter":
+
+                    if (selectedItemIndex == -1) //If not item was selected.
+                    {
+                        selectedItemIndex = 0; //Select the first item.
+                    }
+                    else
+                    {
+                        //Set the value of the AutoComplete based on the selected item.
+
+                        //Close the popup.
+                        IsOpen = false;
+
+                        return Task.CompletedTask;
+                    }
+
+                    break;
+
+                case "ArrowDown":
+
+                    if (selectedItemIndex == -1) //If not item was selected.
+                        selectedItemIndex = 0; //Select the first item.
+
+                    break;
+                case "ArrowUp":
+
+                    if (selectedItemIndex == -1) //If not item was selected.
+                        selectedItemIndex = listSize - 1; //Select the last item.
+
+                    break;
+            }
+
+            //Update the selected item in the list.
 
             return Task.CompletedTask;
         }
 
-        protected Task OnChangeHandler(ChangeEventArgs args)
+        public void OnInput(ChangeEventArgs args)
         {
-            var newValue = args?.Value as string;
+            _text = (string)args.Value;
 
-            return Task.CompletedTask;
+            StateHasChanged();
         }
 
         protected Task OnClickHandler(MouseEventArgs args)
@@ -137,15 +193,30 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        protected override Task OnFirstAfterRenderAsync()
+        protected override async Task OnFirstAfterRenderAsync()
         {
+            //If the component initialized with a value.
             if (_value != null)
             {
-                if (_items.ContainsKey(_value))
-                    SetSelectedItem(_items[_value]);
+                //Find the item with this value.
+                var item = ItemSource.Where(a => GetItemValue(a)?.Equals(_value) == true).FirstOrDefault();
+
+                //If the item exists in the ItemSource.
+                if (item != null)
+                {
+                    //Update the component's text.
+                    _text = GetItemText(item);
+
+                    StateHasChanged();
+                }
+                else
+                {
+                    //If the item does not exist then clear the value.
+                    await SetSelectedValue(default(TValue));
+                }
             }
 
-            return base.OnFirstAfterRenderAsync();
+            await base.OnFirstAfterRenderAsync();
         }
 
         public void Register(SelectItem<TValue> selectItem)
@@ -162,16 +233,20 @@ namespace Gizmo.Web.Components
         {
             IsOpen = false;
 
-            if (_selectedItem != selectItem)
-            {
-                _selectedItem = selectItem;
-                StateHasChanged();
-            }
-
             if (selectItem != null)
+            {
+                _text = selectItem.Text;
+                StateHasChanged();
+                
                 return SetSelectedValue(selectItem.Value);
+            }
             else
+            {
+                _text = string.Empty;
+                StateHasChanged();
+
                 return SetSelectedValue(default(TValue));
+            }
         }
 
         protected string ClassName => new ClassMapper()
@@ -203,7 +278,7 @@ namespace Gizmo.Web.Components
             return default(TValue);
         }
 
-        private string GetItemString(TItemType item)
+        private string GetItemText(TItemType item)
         {
             if (ItemStringSelector != null)
             {
@@ -215,10 +290,11 @@ namespace Gizmo.Web.Components
 
         protected IEnumerable<TItemType> GetFiltered(string text)
         {
-            var result = ItemSource.Where(a => string.IsNullOrEmpty(text) || GetItemString(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true)
+            var result = ItemSource.Where(a => string.IsNullOrEmpty(text) || GetItemText(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true)
                         .ToList();
                         
             return result;
         }
+
     }
 }

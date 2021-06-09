@@ -22,16 +22,17 @@
 
             <input id="@Id"
                    type="text"
-                   @bind-value="_text"
+                   value="@_text"
                    readonly="@IsReadOnly"
                    disabled="@IsDisabled"
+                   @oninput="OnInput"
                    @onkeydown="OnInputKeyDown"
                    @onclick="OnClickHandler" />
 
         </GizInput>
 
         <Popup MaximumHeight="@MaximumHeight" IsOpen="@IsOpen" Class="@PopupClassName">
-            <List>
+            <List @ref="_itemsList">
                 @if (ItemSource != null)
                 {
                     @foreach (var item in GetFiltered(_text))
@@ -42,7 +43,7 @@
                         }
                         else
                         {
-                            <SelectItem TValue="@TValue" Value="@GetItemValue(item)" Text="@GetItemString(item)" />
+                            <SelectItem TValue="@TValue" Value="@GetItemValue(item)" Text="@GetItemText(item)" />
                         }
                     }
                 }
