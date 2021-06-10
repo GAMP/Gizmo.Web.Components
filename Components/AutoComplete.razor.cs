@@ -127,8 +127,8 @@ namespace Gizmo.Web.Components
             //If list has items.
             //Get the index of the selected item.
             
-            int selectedItemIndex = -1;
-            int listSize = 0;
+            int selectedItemIndex = _itemsList.GetSelectedItemIndex();
+            int listSize = _itemsList.GetListSize();
 
             switch (args.Key)
             {
@@ -152,19 +152,36 @@ namespace Gizmo.Web.Components
 
                 case "ArrowDown":
 
-                    if (selectedItemIndex == -1) //If not item was selected.
-                        selectedItemIndex = 0; //Select the first item.
+                    if (selectedItemIndex == -1 || selectedItemIndex == listSize - 1) //If not item was selected or the last item was selected.
+                    {
+                        //Select the first item.
+                        selectedItemIndex = 0;
+                    }
+                    else
+                    {
+                        //Select the next item.
+                        selectedItemIndex += 1;
+                    }
 
                     break;
                 case "ArrowUp":
 
-                    if (selectedItemIndex == -1) //If not item was selected.
-                        selectedItemIndex = listSize - 1; //Select the last item.
+                    if (selectedItemIndex == -1 || selectedItemIndex == 0) //If not item was selected or the first item was selected.
+                    {
+                        //Select the last item.
+                        selectedItemIndex = listSize - 1;
+                    }
+                    else
+                    {
+                        //Select the previous item.
+                        selectedItemIndex -= 1;
+                    }
 
                     break;
             }
 
             //Update the selected item in the list.
+            _itemsList.SetSelectedItemIndex(selectedItemIndex);
 
             return Task.CompletedTask;
         }

@@ -22,7 +22,7 @@ namespace Gizmo.Web.Components
 
         #region MEMBERS
 
-        private HashSet<ListItem> _items = new HashSet<ListItem>();
+        private List<ListItem> _items = new List<ListItem>();
         private HashSet<List> _childLists = new HashSet<List>();
         private ListItem _selectedItem;
 
@@ -118,10 +118,29 @@ namespace Gizmo.Web.Components
 
             base.Dispose();
         }
-        
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-list")
                  .Add($"giz-list--{Direction}")
                  .AsString();
+
+        internal int GetSelectedItemIndex()
+        {
+            if (_selectedItem != null)
+                return _items.IndexOf(_selectedItem);
+            else
+                return -1;
+        }
+
+        internal void SetSelectedItemIndex(int index)
+        {
+            if (index >= 0 && index < _items.Count)
+                SetSelectedItem(_items[index]);
+        }
+
+        internal int GetListSize()
+        {
+            return _items.Count;
+        }
     }
 }
