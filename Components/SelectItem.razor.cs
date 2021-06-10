@@ -15,6 +15,8 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
+        internal ListItem ListItem { get; set; }
+
         [CascadingParameter]
         protected ISelect<TValue> Parent { get; set; }
 
@@ -31,7 +33,7 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task OnClickHandler(MouseEventArgs args)
+        protected Task OnListItemClickHandler(MouseEventArgs args)
         {
             if (Parent != null)
             {

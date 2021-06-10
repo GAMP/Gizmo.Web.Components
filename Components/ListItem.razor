@@ -3,6 +3,8 @@
 
 <div class="@ClassName"
      style="@StyleMapper.AsString()"
+     id="@Id"
+     @ref="@Ref"
      @onclick="OnClickHandler"
      @onclick:stopPropagation=" true">
     
@@ -28,7 +30,7 @@
 @if (NestedList != null)
 {
     <Collapse Expanded="@IsExpanded">
-        <List Class="giz-nested-list" Disabled="@IsDisabled">
+        <List Class="giz-nested-list" IsDisabled="@IsDisabled">
             @NestedList
         </List>
     </Collapse>
