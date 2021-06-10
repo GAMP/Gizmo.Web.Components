@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-
     public partial class List : CustomDOMComponentBase
     {
         public enum ListDirection
@@ -58,6 +59,9 @@ namespace Gizmo.Web.Components
 
         [Parameter()]
         public ListDirection Direction { get; set; } = ListDirection.right;
+
+        [Parameter]
+        public int MaximumHeight { get; set; }
 
         #endregion
 
@@ -132,15 +136,23 @@ namespace Gizmo.Web.Components
                 return -1;
         }
 
-        internal void SetSelectedItemIndex(int index)
+        internal async Task SetSelectedItemIndex(int index)
         {
             if (index >= 0 && index < _items.Count)
-                SetSelectedItem(_items[index]);
+            {
+                var item = _items[index];
+                SetSelectedItem(item);
+                await InvokeVoidAsync("scrollListItemIntoView", item.Ref);
+            }
         }
 
         internal int GetListSize()
         {
             return _items.Count;
         }
+
+        protected string StyleValue => new StyleMapper()
+                 .If($"max-height: {@MaximumHeight}px", () => MaximumHeight > 0)
+                 .AsString();
     }
 }

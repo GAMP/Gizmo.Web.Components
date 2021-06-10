@@ -27,13 +27,16 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
-        public RenderFragment<TItemType> ItemTemplate { get; set; }
+        public ICollection<TItemType> ItemSource { get; set; }
 
         [Parameter]
-        public ICollection<TItemType> ItemSource
-        {
-            get; set;
-        }
+        public Func<TItemType, TValue> ItemValueSelector { get; set; }
+
+        [Parameter]
+        public Func<TItemType, string> ItemStringSelector { get; set; }
+
+        [Parameter]
+        public RenderFragment<TItemType> ItemTemplate { get; set; }
 
         [Parameter]
         public TValue Value
@@ -113,20 +116,20 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task OnInputKeyDown(KeyboardEventArgs args)
+        protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
             if (IsDisabled)
-                return Task.CompletedTask;
+                return;
 
             if (args.Key == null || args.Key == "Tab")
-                return Task.CompletedTask;
+                return;
 
             if (!IsOpen)
                 IsOpen = true;
 
             //If list has items.
             //Get the index of the selected item.
-            
+
             int selectedItemIndex = _itemsList.GetSelectedItemIndex();
             int listSize = _itemsList.GetListSize();
 
@@ -141,11 +144,13 @@ namespace Gizmo.Web.Components
                     else
                     {
                         //Set the value of the AutoComplete based on the selected item.
-
+                        var selectItem = _items.Where(a => a.Value.ListItem == _itemsList.SelectedItem).Select(a => a.Value).FirstOrDefault();
+                        await SetSelectedItem(selectItem);
+                        
                         //Close the popup.
                         IsOpen = false;
 
-                        return Task.CompletedTask;
+                        return;
                     }
 
                     break;
@@ -178,32 +183,33 @@ namespace Gizmo.Web.Components
                     }
 
                     break;
+
+                default:
+                    return;
             }
 
             //Update the selected item in the list.
-            _itemsList.SetSelectedItemIndex(selectedItemIndex);
-
-            return Task.CompletedTask;
+            await _itemsList.SetSelectedItemIndex(selectedItemIndex);
         }
 
-        public void OnInput(ChangeEventArgs args)
+        public void OnInputHandler(ChangeEventArgs args)
         {
             _text = (string)args.Value;
 
             StateHasChanged();
         }
 
-        protected Task OnClickHandler(MouseEventArgs args)
+        protected Task OnInputClickHandler(MouseEventArgs args)
         {
             return Task.CompletedTask;
         }
 
-        protected void OnClickMenuHandler(MouseEventArgs args)
+        protected void OnMenuClickHandler(MouseEventArgs args)
         {
             IsOpen = true;
         }
 
-        protected void OnClickOverlayHandler(MouseEventArgs args)
+        protected void OnOverlayClickHandler(MouseEventArgs args)
         {
             IsOpen = false;
         }
@@ -236,6 +242,8 @@ namespace Gizmo.Web.Components
             await base.OnFirstAfterRenderAsync();
         }
 
+        #region ISelect
+
         public void Register(SelectItem<TValue> selectItem)
         {
             _items[selectItem.Value] = selectItem;
@@ -254,7 +262,7 @@ namespace Gizmo.Web.Components
             {
                 _text = selectItem.Text;
                 StateHasChanged();
-                
+
                 return SetSelectedValue(selectItem.Value);
             }
             else
@@ -266,6 +274,8 @@ namespace Gizmo.Web.Components
             }
         }
 
+        #endregion
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-select")
                  //.If("giz-select-root--disabled", () => IsDisabled)
@@ -275,14 +285,8 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-select-dropdown-menu")
                  .Add("giz-select-dropdown-full-width")
-                 .Add("g-popup-bottom")                 
+                 .Add("g-popup-bottom")
                  .AsString();
-
-        [Parameter]
-        public Func<TItemType, TValue> ItemValueSelector { get; set; }
-
-        [Parameter]
-        public Func<TItemType, string> ItemStringSelector { get; set; }
 
         private TValue GetItemValue(TItemType item)
         {
@@ -308,7 +312,7 @@ namespace Gizmo.Web.Components
         {
             var result = ItemSource.Where(a => string.IsNullOrEmpty(text) || GetItemText(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true)
                         .ToList();
-                        
+
             return result;
         }
 

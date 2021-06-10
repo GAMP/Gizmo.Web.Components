@@ -18,21 +18,22 @@
                   IsValid="@_isValid"
                   ValidationMessage="@_validationMessage"
                   RightIcon="fas fa-caret-down"
-                  @onclick="OnClickMenuHandler">
+                  @onclick="OnMenuClickHandler">
 
             <input id="@Id"
                    type="text"
                    value="@_text"
                    readonly="@IsReadOnly"
                    disabled="@IsDisabled"
-                   @oninput="OnInput"
-                   @onkeydown="OnInputKeyDown"
-                   @onclick="OnClickHandler" />
+                   @oninput="OnInputHandler"
+                   @onkeydown="OnInputKeyDownHandler"
+                   @onclick="OnInputClickHandler"
+                   />
 
         </GizInput>
 
-        <Popup MaximumHeight="@MaximumHeight" IsOpen="@IsOpen" Class="@PopupClassName">
-            <List @ref="_itemsList">
+        <Popup IsOpen="@IsOpen" Class="@PopupClassName">
+            <List @ref="_itemsList" MaximumHeight="@MaximumHeight">
                 @if (ItemSource != null)
                 {
                     @foreach (var item in GetFiltered(_text))
@@ -52,7 +53,7 @@
     </div>
 
     <Overlay Visible="@IsOpen"
-             @onclick="OnClickOverlayHandler">
+             @onclick="OnOverlayClickHandler">
     </Overlay>
 
 </CascadingValue>
