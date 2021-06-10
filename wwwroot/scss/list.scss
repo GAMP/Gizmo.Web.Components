@@ -31,8 +31,8 @@
             color: $primary-color;
         }
 
-        [light-theme] &:hover {             
-                background-color: $secondary-light;           
+        [light-theme] &:hover {
+            background-color: $secondary-light;
         }
 
         &.giz-list-item-disabled {
@@ -44,15 +44,16 @@
         &.giz-list-item-selected {
             background-color: $primary-color !important;
             color: $white-color;
-        }
+        }        
     }
 }
 
 //== nested list
 
-.giz-nested-list { 
-    position: $position-absolute;    
+.giz-nested-list {
+    position: $position-absolute;
     margin-top: -50px;
+    width: max-content;
 
     &.giz-list--right {
         left: 100%;

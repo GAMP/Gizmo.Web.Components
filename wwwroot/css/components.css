@@ -3045,6 +3045,9 @@ h6,
 .giz-nested-list {
   position: absolute;
   margin-top: -50px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .giz-nested-list.giz-list--right {
@@ -3230,6 +3233,8 @@ h6,
 
 .giz-menu {
   position: relative;
+  width: 20rem;
+  margin-left: 40rem;
 }
 
 .giz-menu button {
@@ -3240,6 +3245,27 @@ h6,
   -ms-flex-align: center;
   align-items: center;
   width: 20rem;
+}
+
+.giz-menu .giz-menu-dropdown {
+  right: 0;
+  left: 0;
+}
+
+.giz-menu .giz-menu-dropdown > .giz-list.giz-list--right {
+  position: absolute;
+  left: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.giz-menu .giz-menu-dropdown > .giz-list.giz-list--left {
+  position: absolute;
+  right: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 @media (min-width: 600px) {
