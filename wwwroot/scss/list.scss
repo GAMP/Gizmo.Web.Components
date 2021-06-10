@@ -2,9 +2,17 @@
 //== list.scss files == //
 
 .giz-list {
+    background-color: $dark-color;
+    border-radius: $rounded;
     position: $position-relative;
     min-width: 15rem;
-    border: 1px solid $gray-dark;
+    border: 1px solid $border-color;
+    box-shadow: $elevation-2;
+
+    [light-theme] & {
+        border: 1px solid $gray-dark;
+        background-color: $white-color;
+    }
 
     .giz-list-item {
         font-weight: $font-weight-600;
@@ -19,8 +27,12 @@
         text-decoration: $text-decoration;
 
         &:hover {
-            background-color: $secondary-light;
+            background-color: $border-color;
             color: $primary-color;
+        }
+
+        [light-theme] &:hover {             
+                background-color: $secondary-light;           
         }
 
         &.giz-list-item-disabled {
@@ -30,7 +42,7 @@
         }
 
         &.giz-list-item-selected {
-            background-color: $primary-color;
+            background-color: $primary-color !important;
             color: $white-color;
         }
     }
@@ -38,13 +50,8 @@
 
 //== nested list
 
-.giz-nested-list {
-    background: $white-color;
-    border: 1px solid $gray-dark;
-    box-shadow: $elevation-2;
-    border-radius: $rounded;
-    position: $position-absolute;
-    z-index: 9999;
+.giz-nested-list { 
+    position: $position-absolute;    
     margin-top: -50px;
 
     &.giz-list--right {

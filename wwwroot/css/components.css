@@ -2995,9 +2995,18 @@ h6,
 }
 
 .giz-list {
+  background-color: #171c28;
+  border-radius: 0.4rem;
   position: relative;
   min-width: 15rem;
+  border: 1px solid #1f2637;
+  -webkit-box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
+}
+
+[light-theme] .giz-list {
   border: 1px solid #E7E9EE;
+  background-color: #FFFFFF;
 }
 
 .giz-list .giz-list-item {
@@ -3014,8 +3023,12 @@ h6,
 }
 
 .giz-list .giz-list-item:hover {
-  background-color: #FAFAFA;
+  background-color: #1f2637;
   color: #5A67F2;
+}
+
+[light-theme] .giz-list .giz-list-item:hover {
+  background-color: #FAFAFA;
 }
 
 .giz-list .giz-list-item.giz-list-item-disabled {
@@ -3025,18 +3038,12 @@ h6,
 }
 
 .giz-list .giz-list-item.giz-list-item-selected {
-  background-color: #5A67F2;
+  background-color: #5A67F2 !important;
   color: #FFFFFF;
 }
 
 .giz-nested-list {
-  background: #FFFFFF;
-  border: 1px solid #E7E9EE;
-  -webkit-box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
-  border-radius: 0.4rem;
   position: absolute;
-  z-index: 9999;
   margin-top: -50px;
 }
 
@@ -3201,18 +3208,6 @@ h6,
   position: relative;
 }
 
-.giz-input-select .giz-input-select-dropdown-menu {
-  background-color: #171c28;
-  border: 1px solid #1f2637;
-  border-radius: 0.4rem;
-  position: absolute;
-}
-
-[light-theme] .giz-input-select .giz-input-select-dropdown-menu {
-  background-color: #FFFFFF;
-  border: 1px solid #E7E9EE;
-}
-
 .giz-input-select .giz-select-dropdown-full-width {
   width: 100% !important;
 }
@@ -3245,11 +3240,6 @@ h6,
   -ms-flex-align: center;
   align-items: center;
   width: 20rem;
-}
-
-.giz-menu .giz-menu-dropdown {
-  background-color: #FFFFFF;
-  border-radius: 0.4rem;
 }
 
 @media (min-width: 600px) {
