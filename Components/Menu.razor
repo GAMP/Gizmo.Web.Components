@@ -6,23 +6,24 @@
     <div class="@Class @ClassName"
          style="@StyleMapper.AsString()">
 
-        <Button Variant="Button.ButtonVariants.Outline"
-                @onclick="OnClickMenuHandler">
-            @if (!string.IsNullOrEmpty(Label))
-            {
-                <div class="mr-auto">
-                    @Label
-                </div>
-            }
-
-            @if (!string.IsNullOrEmpty(Icon))
-            {
-                <Icon Source="@Icon" />
-            }
-        </Button>
+        @if (Activator != null)
+        {
+            <div @onclick="OnClickMenuHandler">
+                @Activator
+            </div>
+        }
+        else
+        {
+            <Button Variant="Button.ButtonVariants.Outline"
+                    Size="@Size"
+                    RightIcon="@Icon"
+                    @onclick="OnClickMenuHandler">
+                @Label
+            </Button>
+        }
 
         <Popup IsOpen="@IsOpen" Class="@PopupClassName">
-            <List>
+            <List Direction="@Direction">
                 @ChildContent
             </List>
         </Popup>

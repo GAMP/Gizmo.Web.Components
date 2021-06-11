@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using static Gizmo.Web.Components.List;
 
 namespace Gizmo.Web.Components
 {
@@ -25,6 +26,15 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
+        public RenderFragment Activator { get; set; }
+
+        [Parameter]
+        public ListDirection Direction { get; set; } = ListDirection.Right;
+
+        [Parameter]
+        public ButtonSize Size { get; set; } = ButtonSize.Medium;
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-menu")

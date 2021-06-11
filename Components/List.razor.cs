@@ -1,7 +1,9 @@
-﻿using Gizmo.Web.Components.Infrastructure;
+﻿using Gizmo.Web.Components.Extensions;
+using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,8 +13,10 @@ namespace Gizmo.Web.Components
     {
         public enum ListDirection
         {
-            left,
-            right
+            [Description("left")]
+            Left,
+            [Description("right")]
+            Right
         }
 
         #region CONSTRUCTOR
@@ -31,7 +35,6 @@ namespace Gizmo.Web.Components
 
         [CascadingParameter]
         protected List ParentList { get; set; }
-
 
         #region PROPERTIES
 
@@ -58,7 +61,7 @@ namespace Gizmo.Web.Components
         public EventCallback<ListItem> SelectedItemChanged { get; set; }
 
         [Parameter()]
-        public ListDirection Direction { get; set; } = ListDirection.right;
+        public ListDirection Direction { get; set; } = ListDirection.Right;
 
         [Parameter]
         public int MaximumHeight { get; set; }
@@ -113,6 +116,7 @@ namespace Gizmo.Web.Components
             {
                 ParentList.Register(this);
                 IsDisabled = ParentList.IsDisabled;
+                Direction = ParentList.Direction;
             }
         }
 
@@ -125,7 +129,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-list")
-                 .Add($"giz-list--{Direction}")
+                 .Add($"giz-list--{Direction.ToDescriptionString()}")
                  .AsString();
 
         internal int GetSelectedItemIndex()

@@ -2,18 +2,16 @@
 
 .giz-menu {
     position: $position-relative;
-    width: 20rem;
-    margin-left:40rem; //this is for testing we can remove it when we want. 
 
-    button {
+    & > button {
         display: $display-flex;
         align-items: $align-center;
-        width: 20rem;
+        width: 100%;
     }
 
-    .giz-menu-dropdown{
-        right:0;
-        left:0;
+    .giz-menu-dropdown {
+        right: 0;
+        left: 0;
     }
 
     .giz-menu-dropdown > .giz-list.giz-list--right {
@@ -27,5 +25,4 @@
         right: 0;
         width: max-content;
     }
-
 }
