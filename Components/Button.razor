@@ -15,14 +15,14 @@
 
     @if (!string.IsNullOrEmpty(LeftIcon))
     {
-        <Icon Source="@LeftIcon" />
+        <Icon Source="@LeftIcon" Class="@ButtonIconLeft"/>
     }
 
     @ChildContent
 
     @if (!string.IsNullOrEmpty(RightIcon))
     {
-        <Icon Source="@RightIcon" />
+        <Icon Source="@RightIcon" Class="@ButtonIconRight" />
     }
 
 </button>

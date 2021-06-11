@@ -7,6 +7,13 @@
         display: $display-flex;
         align-items: $align-center;
         width: 100%;
+
+        .giz-button-icon-right {
+            position:absolute;
+            right:18px;
+            float: none;
+            padding-left: 6px;
+        }
     }
 
     .giz-menu-dropdown {

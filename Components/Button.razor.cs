@@ -105,6 +105,14 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        protected string ButtonIconLeft => new ClassMapper()
+                .Add("giz-button-icon-left")
+                .AsString();
+
+        protected string ButtonIconRight => new ClassMapper()
+                .Add("giz-button-icon-right")
+                .AsString();
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-button")
                  .Add($"giz-button--{Size.ToDescriptionString()}")
