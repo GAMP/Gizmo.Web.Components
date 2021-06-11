@@ -39,7 +39,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-badge")
+                 .Add("giz-badge")
                  .If("corner", () => !IsInline)
                  .If("small", () => Size == BadgeSize.Small)
                  .AsString();
