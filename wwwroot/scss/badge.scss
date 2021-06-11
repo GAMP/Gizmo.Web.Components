@@ -1,0 +1,52 @@
+//=============== gizmo badge classes ================//
+
+.giz-badge {
+    .giz-badge__wrapper {
+        .giz-badge__badge {
+            border-radius: 10px;
+            white-space: nowrap;
+            padding: 0px 9px;
+        }
+    }
+
+    &.corner {
+        position: relative;
+        margin-right: 20px;
+
+        .giz-badge__wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            .giz-badge__badge {
+                padding: unset;
+                height: 20px;
+                min-width: 20px;
+                position: absolute;
+                inset: auto auto calc(100% - 5px) calc(100% - 5px);
+            }
+        }
+
+        &.small {
+            .giz-badge__wrapper {
+                .giz-badge__badge {
+                    padding: unset;
+                }
+            }
+        }
+    }
+
+    &.small {
+        .giz-badge__wrapper {
+            .giz-badge__badge {
+                display: inline-block;
+                line-height: 1;
+                height: 10px;
+                min-width: 10px;
+                border-radius: 5px;
+                padding: 0;
+            }
+        }
+    }
+}
