@@ -54,6 +54,9 @@ namespace Gizmo.Web.Components
         [Parameter()]
         public bool IsDisabled { get; set; }
 
+        [Parameter]
+        public bool IsFullWidth { get; set; }
+
         /// <summary>
         /// Gets or sets element type.
         /// </summary>
@@ -118,6 +121,7 @@ namespace Gizmo.Web.Components
                  .Add($"giz-button--{Size.ToDescriptionString()}")
                  .If("giz-button--secondary-outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
                  .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
+                 .If("giz-button-full-width", () => IsFullWidth)
                  .If("disabled", () => IsDisabled)
                  .If("selected", () => _selected)
                  .AsString();
