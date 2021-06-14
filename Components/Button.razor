@@ -1,7 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<button class="@Class @ClassName"
+<button class="@Class @ClassName @(!string.IsNullOrEmpty(RightIcon) ? ButtonIconRight : "")"
         style="@Style @StyleMapper.AsString()"
         @onclick="@OnClickHandler"
         aria-label="@Label"
