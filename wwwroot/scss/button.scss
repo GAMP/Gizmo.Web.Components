@@ -17,7 +17,7 @@
     white-space: $nowrap-white-space;
     line-height: $line-height-22;
     text-align: $text-align-center;
-    position: relative;
+    position: $position-relative;
 
     &:hover {
         background: #4F5AD3;
@@ -29,16 +29,20 @@
     }
 
     .giz-button-icon-left {
-        margin-right: 0.6rem;
+        margin-right: $spacer-8;
     }
 
     .giz-button-icon-right {
-        float: right;
-        margin-left: 6px;
+        float: $float-right;
+        margin-left: $spacer-8;
+    }
+
+    &.giz-button-icon-right {
+        text-align: $text-align-left;
     }
 
     &.giz-button-full-width {
-      width: $width-full !important;
+        width: $width-full !important;
     }
 
     //button secondary outline

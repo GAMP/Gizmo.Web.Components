@@ -2352,12 +2352,16 @@ h6,
 }
 
 .giz-button .giz-button-icon-left {
-  margin-right: 0.6rem;
+  margin-right: 0.8rem;
 }
 
 .giz-button .giz-button-icon-right {
   float: right;
-  margin-left: 6px;
+  margin-left: 0.8rem;
+}
+
+.giz-button.giz-button-icon-right {
+  text-align: left;
 }
 
 .giz-button.giz-button-full-width {
