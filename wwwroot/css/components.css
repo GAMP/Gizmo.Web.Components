@@ -237,56 +237,86 @@ a {
 
 h1,
 .giz-typography-h1 {
-  color: #000000;
+  color: #FFFFFF;
   font-size: 4.8rem;
   font-weight: 600;
   line-height: 5.9rem;
   letter-spacing: -0.04rem;
 }
 
+[light-theme] h1,
+[light-theme] .giz-typography-h1 {
+  color: #000000;
+}
+
 h2,
 .giz-typography-h2 {
-  color: #000000;
+  color: #FFFFFF;
   font-size: 3.7rem;
   font-weight: 600;
   line-height: 4.5rem;
   letter-spacing: -0.04rem;
 }
 
+[light-theme] h2,
+[light-theme] .giz-typography-h2 {
+  color: #000000;
+}
+
 h3,
 .giz-typography-h3 {
-  color: #000000;
+  color: #FFFFFF;
   font-size: 3.2rem;
   font-weight: 600;
   line-height: 3.9rem;
   letter-spacing: -0.04rem;
 }
 
+[light-theme] h3,
+[light-theme] .giz-typography-h3 {
+  color: #000000;
+}
+
 h4,
 .giz-typography-h4 {
-  color: #000000;
+  color: #FFFFFF;
   font-size: 2.4rem;
   font-weight: 600;
   line-height: 2.9rem;
   letter-spacing: -0.04rem;
 }
 
+[light-theme] h4,
+[light-theme] .giz-typography-h4 {
+  color: #000000;
+}
+
 h5,
 .giz-typography-h5 {
-  color: #000000;
+  color: #FFFFFF;
   font-size: 1.9rem;
   font-weight: bold;
   line-height: 2.4rem;
   letter-spacing: -0.08rem;
 }
 
+[light-theme] h5,
+[light-theme] .giz-typography-h5 {
+  color: #000000;
+}
+
 h6,
 .giz-typography-h6 {
-  color: #000000;
+  color: #FFFFFF;
   font-size: 1.7rem;
   font-weight: bold;
   line-height: 2.2rem;
   letter-spacing: -0.08rem;
+}
+
+[light-theme] h6,
+[light-theme] .giz-typography-h6 {
+  color: #000000;
 }
 
 .giz-typography-body1 {
@@ -2658,10 +2688,12 @@ h6,
   border-spacing: 0 1.2rem;
   color: #FFFFFF;
   font-size: 1.6rem;
+  background: #171c28;
 }
 
 [light-theme] .table {
   color: #6E7689;
+  background: #FFFFFF;
 }
 
 .table > thead td,

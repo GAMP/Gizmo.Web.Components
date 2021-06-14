@@ -256,51 +256,75 @@ a {
 
 //heading
 h1, .giz-typography-h1 {
-    color: $h-color;
+    color: $white-color;
     font-size: $h1-font-size;
     font-weight: $h1-font-weight;
     line-height: $h1-line-height;
     letter-spacing: $h1-letter-spacing;
+
+    [light-theme] & {
+        color: $h-color;
+    }
 }
 
 h2, .giz-typography-h2 {
-    color: $h-color;
+    color: $white-color;
     font-size: $h2-font-size;
     font-weight: $h2-font-weight;
     line-height: $h2-line-height;
     letter-spacing: $h2-letter-spacing;
+
+    [light-theme] & {
+       color: $h-color;
+    }
 }
 
 h3, .giz-typography-h3 {
-    color: $h-color;
+    color: $white-color;
     font-size: $h3-font-size;
     font-weight: $h3-font-weight;
     line-height: $h3-line-height;
     letter-spacing: $h3-letter-spacing;
+
+    [light-theme] & {
+        color: $h-color;
+    }
 }
 
 h4, .giz-typography-h4 {
-    color: $h-color;
+    color: $white-color;
     font-size: $h4-font-size;
     font-weight: $h4-font-weight;
     line-height: $h4-line-height;
     letter-spacing: $h4-letter-spacing;
+
+    [light-theme] & {
+        color: $h-color;
+    }
 }
 
 h5, .giz-typography-h5 {
-    color: $h-color;
+    color: $white-color;
     font-size: $h5-font-size;
     font-weight: $h5-font-weight;
     line-height: $h5-line-height;
     letter-spacing: $h5-letter-spacing;
+
+    [light-theme] & {
+        color: $h-color;
+    }
 }
 
 h6, .giz-typography-h6 {
-    color: $h-color;
+    color: $white-color;
     font-size: $h6-font-size;
     font-weight: $h6-font-weight;
     line-height: $h6-line-height;
     letter-spacing: $h6-letter-spacing;
+
+    [light-theme] & {
+        color: $h-color;
+    }
 }
 
 .giz-typography-body1 {
