@@ -5,9 +5,11 @@
     border-spacing: 0 1.2rem;
     color: $white-color;
     font-size: $font-16;
+    background: $dark-color;
 
     [light-theme] & {
         color: $secondary-color;
+        background: $white-color;
     }
 
     & > thead td, & > thead th {
