@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using static Gizmo.Web.Components.Button;
 using static Gizmo.Web.Components.List;
 
 namespace Gizmo.Web.Components
@@ -14,6 +15,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Label { get; set; }
+
+        [Parameter]
+        public ButtonVariants Variant { get; set; } = ButtonVariants.Outline;
 
         [Parameter]
         public string Icon { get; set; }

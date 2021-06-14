@@ -14,12 +14,36 @@
         }
         else
         {
-            <Button Variant="Button.ButtonVariants.Outline"
-                    Size="@Size"
-                    RightIcon="@Icon"
-                    @onclick="OnClickMenuHandler">
-                @Label
-            </Button>
+            @if (Icon != null)
+            {
+                <Button Variant="@Variant"
+                        Size="@Size"
+                        RightIcon="@Icon"
+                        @onclick="OnClickMenuHandler">
+                    @Label
+                </Button>
+            }
+            else
+            {
+                @if (IsOpen)
+                {
+                    <Button Variant="@Variant"
+                            Size="@Size"
+                            RightIcon="fas fa-chevron-up"
+                            @onclick="OnClickMenuHandler">
+                        @Label
+                    </Button>
+                }
+                else
+                {
+                    <Button Variant="@Variant"
+                            Size="@Size"
+                            RightIcon="fas fa-chevron-down"
+                            @onclick="OnClickMenuHandler">
+                        @Label
+                    </Button>
+                }
+            }
         }
 
         <Popup IsOpen="@IsOpen" Class="@PopupClassName">
