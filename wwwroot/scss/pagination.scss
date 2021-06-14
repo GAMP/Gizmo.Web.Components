@@ -1,0 +1,41 @@
+//=============== gizmo pagination classes ================//
+
+.giz-pagination {
+    position: relative;
+    display: flex;
+    list-style-type: none;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+
+    & li {
+        padding: 0 1.4rem;
+        margin: 0 0.6rem;
+        color: $secondary-color;
+        cursor: pointer;
+        border-radius: $rounded;
+        border: 1px solid $border-dark-color;
+        font-weight: $font-weight-600;
+        height: 3.2rem;
+        display: flex;
+        align-items: center;
+
+        &:hover, &.is-active {
+            background: #5a7ff2;
+            border-color: #5a7ff2;
+            color: $white-color;
+        }
+
+        [light-theme] & {
+            color: $secondary-color;
+            border-color: #d4d6db;
+
+            &:hover, &.is-active {
+                background: #5a7ff2;
+                border-color: #5a7ff2;
+                color: $white-color;
+            }
+        }
+    }
+}
