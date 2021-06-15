@@ -27,6 +27,46 @@ a {
     font-family: $font-family !important;
 }
 
+//== theme
+
+//theme background
+.giz-theme-background {
+    background: $dark-color !important;
+    color: $white-color !important;
+
+    [light-theme] & {
+        background: $white-color !important;
+        color: $black-color !important;
+    }
+}
+
+.giz-theme-on-background {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
+}
+
+//theme surface
+.giz-theme-surface {
+    background: $dark-light-color !important;
+    color: $white-color !important;
+
+    [light-theme] & {
+        background: $secondary-light !important;
+        color: $black-color !important;
+    }
+}
+
+.giz-theme-on-surface {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
+}
+
 //== theme color
 
 .giz-primary {
@@ -35,6 +75,14 @@ a {
 
 .giz-primary-text {
     color: $primary-color !important;
+}
+
+.giz-theme-on-primary {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
 }
 
 .giz-primary-light {
