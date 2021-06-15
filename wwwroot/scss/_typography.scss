@@ -93,12 +93,28 @@ a {
     color: $primary-light-color !important;
 }
 
+.giz-theme-on-primary-light {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
+}
+
 .giz-secondary {
     background-color: $secondary-color !important;
 }
 
 .giz-secondary-text {
     color: $secondary-color !important;
+}
+
+.giz-theme-on-secondary {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
 }
 
 .giz-secondary-light {
@@ -109,12 +125,28 @@ a {
     color: $secondary-light !important;
 }
 
+.giz-theme-on-secondary-light {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
+}
+
 .giz-secondary-dark {
     background-color: $secondary-dark !important;
 }
 
 .giz-secondary-dark-text {
     color: $secondary-dark !important;
+}
+
+.giz-theme-on-secondary-dark {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
 }
 
 .giz-info {
@@ -125,12 +157,28 @@ a {
     color: $info-color !important;
 }
 
+.giz-theme-on-info {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
+}
+
 .giz-success {
     background-color: $success-color !important;
 }
 
 .giz-success-text {
     color: $success-color !important;
+}
+
+.giz-theme-on-success {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
 }
 
 .giz-danger {
@@ -141,12 +189,28 @@ a {
     color: $danger-color !important;
 }
 
+.giz-theme-on-danger {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
+}
+
 .giz-light {
     background-color: $light-color !important;
 }
 
 .giz-light-text {
     color: $light-color !important;
+}
+
+.giz-theme-on-light {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
 }
 
 .giz-dark {
@@ -157,12 +221,27 @@ a {
     color: $dark-color !important;
 }
 
+.giz-theme-on-dark {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
+}
 .giz-dark-light {
     background-color: $dark-light-color !important;
 }
 
 .giz-dark-light-text {
     color: $dark-light-color !important;
+}
+
+.giz-theme-on-dark-light {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
 }
 
 .giz-black {
@@ -173,12 +252,28 @@ a {
     color: $black-color !important;
 }
 
+.giz-theme-on-black {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
+}
+
 .giz-white {
     background-color: $white-color !important;
 }
 
 .giz-white-text {
     color: $white-color !important;
+}
+
+.giz-theme-on-white {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
 }
 
 .giz-gray {
@@ -189,12 +284,28 @@ a {
     color: $gray-color !important;
 }
 
+.giz-theme-on-gray {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
+}
+
 .giz-gray-light {
     background-color: $gray-light-color !important;
 }
 
 .giz-gray-light-text {
     color: $gray-light-color !important;
+}
+
+.giz-theme-on-gray-light {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
 }
 
 .giz-gray-dark {
@@ -205,12 +316,28 @@ a {
     color: $gray-dark !important;
 }
 
+.giz-theme-on-gray-dark {
+    color: $black-color !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
+}
+
 .giz-dim-light {
     background-color: $dim-light !important;
 }
 
 .giz-dim-light-text {
     color: $dim-light !important;
+}
+
+.giz-theme-on-dim-light {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
 }
 
 .giz-transparent {

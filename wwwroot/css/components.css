@@ -83,12 +83,28 @@ a {
   color: #F6FAFF !important;
 }
 
+.giz-theme-on-primary-light {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-primary-light {
+  color: #000000 !important;
+}
+
 .giz-secondary {
   background-color: #6E7689 !important;
 }
 
 .giz-secondary-text {
   color: #6E7689 !important;
+}
+
+.giz-theme-on-secondary {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-secondary {
+  color: #FFFFFF !important;
 }
 
 .giz-secondary-light {
@@ -99,12 +115,28 @@ a {
   color: #FAFAFA !important;
 }
 
+.giz-theme-on-secondary-light {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-secondary-light {
+  color: #000000 !important;
+}
+
 .giz-secondary-dark {
   background-color: #eee !important;
 }
 
 .giz-secondary-dark-text {
   color: #eee !important;
+}
+
+.giz-theme-on-secondary-dark {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-secondary-dark {
+  color: #000000 !important;
 }
 
 .giz-info {
@@ -115,12 +147,28 @@ a {
   color: #68C9FF !important;
 }
 
+.giz-theme-on-info {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-info {
+  color: #FFFFFF !important;
+}
+
 .giz-success {
   background-color: #32CF92 !important;
 }
 
 .giz-success-text {
   color: #32CF92 !important;
+}
+
+.giz-theme-on-success {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-success {
+  color: #FFFFFF !important;
 }
 
 .giz-danger {
@@ -131,12 +179,28 @@ a {
   color: #F25A68 !important;
 }
 
+.giz-theme-on-danger {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-danger {
+  color: #FFFFFF !important;
+}
+
 .giz-light {
   background-color: #eff0f2 !important;
 }
 
 .giz-light-text {
   color: #eff0f2 !important;
+}
+
+.giz-theme-on-light {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-light {
+  color: #000000 !important;
 }
 
 .giz-dark {
@@ -147,12 +211,28 @@ a {
   color: #171c28 !important;
 }
 
+.giz-theme-on-dark {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-dark {
+  color: #FFFFFF !important;
+}
+
 .giz-dark-light {
   background-color: #1b212f !important;
 }
 
 .giz-dark-light-text {
   color: #1b212f !important;
+}
+
+.giz-theme-on-dark-light {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-dark-light {
+  color: #FFFFFF !important;
 }
 
 .giz-black {
@@ -163,12 +243,28 @@ a {
   color: #000000 !important;
 }
 
+.giz-theme-on-black {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-black {
+  color: #FFFFFF !important;
+}
+
 .giz-white {
   background-color: #FFFFFF !important;
 }
 
 .giz-white-text {
   color: #FFFFFF !important;
+}
+
+.giz-theme-on-white {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-white {
+  color: #000000 !important;
 }
 
 .giz-gray {
@@ -179,12 +275,28 @@ a {
   color: #E6E8ED !important;
 }
 
+.giz-theme-on-gray {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-gray {
+  color: #000000 !important;
+}
+
 .giz-gray-light {
   background-color: #CFD2D8 !important;
 }
 
 .giz-gray-light-text {
   color: #CFD2D8 !important;
+}
+
+.giz-theme-on-gray-light {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-gray-light {
+  color: #000000 !important;
 }
 
 .giz-gray-dark {
@@ -195,12 +307,28 @@ a {
   color: #E7E9EE !important;
 }
 
+.giz-theme-on-gray-dark {
+  color: #000000 !important;
+}
+
+[light-theme] .giz-theme-on-gray-dark {
+  color: #000000 !important;
+}
+
 .giz-dim-light {
   background-color: #939DB5 !important;
 }
 
 .giz-dim-light-text {
   color: #939DB5 !important;
+}
+
+.giz-theme-on-dim-light {
+  color: #FFFFFF !important;
+}
+
+[light-theme] .giz-theme-on-dim-light {
+  color: #FFFFFF !important;
 }
 
 .giz-transparent {
