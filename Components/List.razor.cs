@@ -45,6 +45,9 @@ namespace Gizmo.Web.Components
         public bool IsDisabled { get; set; }
 
         [Parameter]
+        public bool CanClick { get; set; }
+
+        [Parameter]
         public ListItem SelectedItem
         {
             get => _selectedItem;
@@ -130,6 +133,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-list")
                  .Add($"giz-list--{Direction.ToDescriptionString()}")
+                 .If("giz-list--clickable", () => CanClick)
                  .AsString();
 
         internal int GetSelectedItemIndex()

@@ -38,8 +38,8 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-popup")
-                 .If("g-popup-open", () => IsOpen)
+                 .Add("giz-popup")
+                 .If("giz-popup-open", () => IsOpen)
                  .AsString();
 
         protected string StyleValue => new StyleMapper()

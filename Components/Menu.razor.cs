@@ -46,7 +46,7 @@ namespace Gizmo.Web.Components
 
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-menu-dropdown")
-                 .Add("g-popup-bottom")                
+                 .Add("giz-popup-bottom")                
                  .AsString();
 
         protected void OnClickMenuHandler(MouseEventArgs args)

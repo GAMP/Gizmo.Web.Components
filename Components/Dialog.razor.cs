@@ -13,7 +13,13 @@ namespace Gizmo.Web.Components
         #endregion
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        public RenderFragment DialogHeader { get; set; }
+
+        [Parameter]
+        public RenderFragment DialogBody { get; set; }
+
+        [Parameter]
+        public RenderFragment DialogFooter { get; set; }
 
         [Parameter]
         public bool IsOpen { get; set; }
@@ -24,11 +30,17 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsModal { get; set; }
 
-        protected Task OnClickHandler(MouseEventArgs args)
+        protected Task OnClickDialogHandler(MouseEventArgs args)
         {
             if (IsModal)
                 return Task.CompletedTask;
 
+            IsOpen = false;
+            return IsOpenChanged.InvokeAsync(IsOpen);
+        }
+
+        protected Task OnClickCloseButtonHandler(MouseEventArgs args)
+        {
             IsOpen = false;
             return IsOpenChanged.InvokeAsync(IsOpen);
         }

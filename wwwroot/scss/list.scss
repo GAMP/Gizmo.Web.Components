@@ -6,11 +6,8 @@
     border-radius: $rounded;
     position: $position-relative;
     min-width: 15rem;
-    border: 1px solid $border-color;
-    box-shadow: $elevation-2;
 
     [light-theme] & {
-        border: 1px solid $gray-dark;
         background-color: $white-color;
     }
 
@@ -26,25 +23,33 @@
         padding-right: $spacer-20;
         text-decoration: $text-decoration;
 
-        &:hover {
-            background-color: $border-color;
-            color: $primary-color;
-        }
-
-        [light-theme] &:hover {
-            background-color: $secondary-light;
-        }
-
         &.giz-list-item-disabled {
             color: rgb(230, 230, 230) !important;
             cursor: default !important;
             pointer-events: none !important;
         }
+    }
 
-        &.giz-list-item-selected {
-            background-color: $primary-color !important;
-            color: $white-color;
-        }        
+    &.giz-list--clickable {
+        .giz-list-item {
+            &:hover {
+                background-color: $border-color;
+                color: $primary-color;
+            }
+
+            [light-theme] &:hover {
+                background-color: $secondary-light;
+            }
+        }
+    }
+
+    &.giz-list--selectable {
+        .giz-list-item {
+            &.giz-list-item-selected {
+                background-color: $primary-color !important;
+                color: $white-color;
+            }
+        }
     }
 }
 

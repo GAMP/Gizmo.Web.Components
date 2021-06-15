@@ -44,7 +44,6 @@
     &.giz-button-full-width {
         width: $width-full !important;
     }
-
     //button secondary outline
     &--secondary-outline {
         background: $white-color;
@@ -81,6 +80,7 @@
         }
 
         &:focus {
+            background: $white-color;
             box-shadow: $elevation-1;
         }
 

@@ -18,10 +18,13 @@ namespace Gizmo.Web.Components
         public string BackgroundColor { get; set; }
 
         [Parameter]
-        public int ShadowLevel { get; set; } = 8;
+        public bool HasShadow { get; set; }
 
         [Parameter]
         public int CornerRadius { get; set; } = 4;
+
+        [Parameter]
+        public int MaximumWidth { get; set; }
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -31,11 +34,12 @@ namespace Gizmo.Web.Components
             {
                 ClassMapper
                    .Add("g-card")
-                   .Add($"g-shadow-{ShadowLevel}");
+                   .If($"g-shadow-8", () => HasShadow);
 
                 StyleMapper
                    .Add($"background-color: {BackgroundColor}")
-                   .Add($"border-radius: {CornerRadius}px");
+                   .Add($"border-radius: {CornerRadius}px")
+                   .If($"max-width: {MaximumWidth}px", () => MaximumWidth > 0);
 
                 StateHasChanged();
             }

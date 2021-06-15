@@ -148,7 +148,7 @@
 
 //== giz-input select
 .giz-input-select {
-    position: $position-relative;    
+    position: $position-relative;
 
     .giz-select-dropdown-full-width {
         width: $width-full !important;
@@ -165,7 +165,7 @@
         }
     }
 
-    .g-popup {
+    .giz-popup {
         overflow-x: $overflow-hidden;
         overflow-y: $overflow-auto;
     }

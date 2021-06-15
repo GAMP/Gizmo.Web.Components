@@ -3,6 +3,25 @@
 
 <div class="@Class @ClassName"
      style="@StyleMapper.AsString()"
-     @onclick="OnClickHandler">
-    @ChildContent
+     @onclick="OnClickDialogHandler">
+
+    <Card>
+        <CardHeader>
+            <div class="d-flex flex-grow-1">
+                <div class="flex-grow-1">
+                    @DialogHeader
+                </div>
+                <div>
+                    <Button Size="ButtonSize.Large" Variant="Button.ButtonVariants.Text" LeftIcon="fas fa-times" @onclick="OnClickCloseButtonHandler" />
+                </div>
+            </div>
+        </CardHeader>
+        <CardBody>
+            @DialogBody
+        </CardBody>
+        <CardFooter>
+            @DialogFooter
+        </CardFooter>
+    </Card>
+
 </div>

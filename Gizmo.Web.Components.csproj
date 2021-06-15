@@ -22,6 +22,7 @@
 	  <Content Remove="wwwroot\scss\list.scss" />
 	  <Content Remove="wwwroot\scss\menu.scss" />
 	  <Content Remove="wwwroot\scss\pagination.scss" />
+	  <Content Remove="wwwroot\scss\popup.scss" />
 	  <Content Remove="wwwroot\scss\switch.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\text-input.scss" />
@@ -45,6 +46,7 @@
 		<None Include="wwwroot\scripts.js" />
 		<None Include="wwwroot\scss\button-group.scss" />
 		<None Include="wwwroot\scss\badge.scss" />
+		<None Include="wwwroot\scss\popup.scss" />
 		<None Include="wwwroot\scss\pagination.scss" />
 		<None Include="wwwroot\scss\switch.scss" />
 		<None Include="wwwroot\scss\menu.scss" />
