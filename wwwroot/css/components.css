@@ -3616,6 +3616,143 @@ h6,
   bottom: auto;
 }
 
+.giz-picker-container {
+  border-radius: 0.4rem;
+  max-width: 32rem;
+  min-height: 1.6rem;
+  color: #FFFFFF;
+  -webkit-box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  margin: auto;
+  margin-bottom: 6.4rem;
+}
+
+.giz-picker-container .giz-picker-header {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: #594ae2;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+}
+
+.giz-picker-container button {
+  font-size: 2.56rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: .00938em;
+  color: inherit;
+  border: 0rem;
+  cursor: pointer;
+  margin: 0rem;
+  background-color: transparent;
+  padding: 6px 8px;
+}
+
+.giz-picker-container button > span {
+  font-size: 2.56rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: .00938em;
+}
+
+button > .date {
+  font-size: 3.3rem !important;
+}
+
+.giz-picker-body {
+  color: #000000;
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+.giz-picker-scroll {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.giz-picker-day {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  color: rgba(0, 0, 0, 0.54);
+  place-items: center;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  margin-left: 1.2rem;
+  margin-right: 1.2rem;
+}
+
+.giz-picker-count {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  grid-template-rows: repeat(6, 1fr);
+  place-items: center;
+  margin: 0 10px;
+}
+
+.count {
+  font-size: 1.2rem !important;
+}
+
+.month:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.giz-picker-scroll .giz-button-rounded,
+.giz-picker-body button {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 1.4rem;
+  display: 50%;
+  border-radius: 50%;
+  background: transparent;
+  margin: 0 10px;
+}
+
+.giz-picker-scroll button:hover {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.giz-picker-count button {
+  margin: 0rem;
+}
+
+.giz-picker-body button:hover:not(.active) {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.giz-picker-body .active {
+  background-color: #594ae2 !important;
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  border-radius: 50%;
+  color: #FFFFFF;
+}
+
 @media (min-width: 600px) {
   .d-sm-none {
     display: none !important;
