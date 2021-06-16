@@ -3440,9 +3440,14 @@ h6,
   justify-content: space-between;
 }
 
+.giz-input-select .giz-input-control .giz-input-root input {
+  cursor: pointer;
+}
+
 .giz-input-select .giz-input-control .giz-input-root .giz-input-icon-right {
   text-align: right;
   display: block;
+  cursor: pointer;
 }
 
 .giz-input-select .giz-popup {
