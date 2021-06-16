@@ -19,20 +19,18 @@
                   RightIcon="fas fa-caret-down"
                   @onclick="OnClickMenuHandler">
 
-            @if (_selectedItem != null)
+            @if (@_selectedItem?.ChildContent != null)
             {
-                @if (!string.IsNullOrEmpty(_selectedItem.Text))
-                {
-                    @_selectedItem.Text
-                }
-                else
-                {
+                <div>
                     @_selectedItem.ChildContent
-                }
+                </div>
             }
             else
             {
-                @Placeholder
+                <input type="text"
+                       value="@_selectedItem?.Text"
+                       readonly
+                       @onclick="OnClickMenuHandler" />
             }
 
         </GizInput>
