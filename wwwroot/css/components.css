@@ -3621,7 +3621,7 @@ h6,
   bottom: auto;
 }
 
-.giz-picker-container {
+.giz-calendar {
   border-radius: 0.4rem;
   max-width: 32rem;
   min-height: 1.6rem;
@@ -3631,19 +3631,7 @@ h6,
   margin-bottom: 6.4rem;
 }
 
-.giz-picker-container .giz-picker-header {
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  background-color: #5A67F2;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-}
-
-.giz-picker-container .giz-picker-header button {
-  color: #FFFFFF;
-}
-
-.giz-picker-container button {
+.giz-calendar button {
   border: 0rem;
   cursor: pointer;
   margin: 0rem;
@@ -3651,23 +3639,44 @@ h6,
   padding: 0.6rem 0.8rem;
 }
 
-.giz-picker-container button > span {
+.giz-calendar button > span {
   font-size: 2.56rem;
   font-weight: 400;
   line-height: 1.75;
   letter-spacing: -0.04rem;
 }
 
-button > .date {
+.giz-calendar .giz-calendar-header {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: #5A67F2;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+}
+
+.giz-calendar .giz-calendar-header button {
+  color: #FFFFFF;
+}
+
+.giz-calendar .giz-calendar-header .giz-calendar-title {
   font-size: 3.3rem !important;
 }
 
-.giz-picker-body {
-  color: #000000;
+.giz-calendar .giz-calendar-content {
   background: #FFFFFF;
 }
 
-.giz-picker-scroll {
+.giz-calendar .giz-calendar-content button {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  border-radius: 50%;
+  background: transparent;
+  margin: 0 10px;
+}
+
+.giz-calendar .giz-calendar-content .giz-calendar-title-switch {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -3681,7 +3690,16 @@ button > .date {
   justify-content: space-between;
 }
 
-.giz-picker-day {
+.giz-calendar .giz-calendar-content .giz-calendar-title-switch .giz-calendar-title-slide:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.giz-calendar .giz-calendar-content .giz-calendar-title-switch button:hover {
+  background: #FAFAFA;
+}
+
+.giz-calendar .giz-calendar-content .giz-calendar-weekday {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   color: #939DB5;
@@ -3692,7 +3710,7 @@ button > .date {
   margin-right: 1.2rem;
 }
 
-.giz-picker-count {
+.giz-calendar .giz-calendar-content .giz-calendar-day {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   -webkit-box-align: center;
@@ -3703,41 +3721,21 @@ button > .date {
   margin: 0 1rem;
 }
 
-.count {
-  font-size: 1.2rem !important;
+.giz-calendar .giz-calendar-content .giz-calendar-day .active {
+  background-color: #5A67F2;
+  color: #FFFFFF;
 }
 
-.month:hover {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.giz-picker-scroll .giz-button-rounded,
-.giz-picker-body button {
-  height: 3.5rem;
-  width: 3.5rem;
-  font-size: 1.4rem;
-  display: inline-block;
-  border-radius: 50%;
-  background: transparent;
-  margin: 0 10px;
-}
-
-.giz-picker-scroll button:hover {
+.giz-calendar .giz-calendar-content .giz-calendar-day button:hover:not(.active) {
   background: #FAFAFA;
 }
 
-.giz-picker-count button {
+.giz-calendar .giz-calendar-content .giz-calendar-day button {
   margin: 0rem;
 }
 
-.giz-picker-body button:hover:not(.active) {
-  background: #FAFAFA;
-}
-
-.giz-picker-body .active {
-  background-color: #5A67F2;
-  color: #FFFFFF;
+.giz-calendar .giz-calendar-content .giz-calendar-day .giz-calendar-day-count {
+  font-size: 1.2rem !important;
 }
 
 @media (min-width: 600px) {
