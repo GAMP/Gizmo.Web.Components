@@ -158,9 +158,14 @@
         .giz-input-root {
             justify-content: $justify-space-between;
 
+            input {
+                cursor: pointer;
+            }
+
             .giz-input-icon-right {
                 text-align: $text-align-right;
                 display: $display-block;
+                cursor: pointer;
             }
         }
     }
