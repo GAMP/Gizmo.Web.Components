@@ -13,12 +13,11 @@
                   HasShadow="@HasShadow"
                   Size="@Size"
                   IsValid="@_isValid"
-                  ValidationMessage="@_validationMessage"
-                  RightIcon="fas fa-calendar"
+                  ValidationMessage="@_validationMessage"                 
                   @onclick="OnMenuClickHandler">
 
             <input id="@Id"
-                   type="text"
+                   type="date"
                    value="@_text"
                    readonly="@IsReadOnly"
                    disabled="@IsDisabled"
