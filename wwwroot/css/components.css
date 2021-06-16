@@ -3620,7 +3620,6 @@ h6,
   border-radius: 0.4rem;
   max-width: 32rem;
   min-height: 1.6rem;
-  color: #FFFFFF;
   -webkit-box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   margin: auto;
@@ -3630,29 +3629,28 @@ h6,
 .giz-picker-container .giz-picker-header {
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
-  background-color: #594ae2;
+  background-color: #5A67F2;
   padding-left: 2.4rem;
   padding-right: 2.4rem;
 }
 
+.giz-picker-container .giz-picker-header button {
+  color: #FFFFFF;
+}
+
 .giz-picker-container button {
-  font-size: 2.56rem;
-  font-weight: 400;
-  line-height: 1.75;
-  letter-spacing: .00938em;
-  color: inherit;
   border: 0rem;
   cursor: pointer;
   margin: 0rem;
   background-color: transparent;
-  padding: 6px 8px;
+  padding: 0.6rem 0.8rem;
 }
 
 .giz-picker-container button > span {
   font-size: 2.56rem;
   font-weight: 400;
   line-height: 1.75;
-  letter-spacing: .00938em;
+  letter-spacing: -0.04rem;
 }
 
 button > .date {
@@ -3662,7 +3660,6 @@ button > .date {
 .giz-picker-body {
   color: #000000;
   background: #FFFFFF;
-  border: 1px solid #FFFFFF;
 }
 
 .giz-picker-scroll {
@@ -3682,9 +3679,9 @@ button > .date {
 .giz-picker-day {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  color: rgba(0, 0, 0, 0.54);
+  color: #939DB5;
   place-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-size: 1.2rem;
   margin-left: 1.2rem;
   margin-right: 1.2rem;
@@ -3698,7 +3695,7 @@ button > .date {
   align-items: center;
   grid-template-rows: repeat(6, 1fr);
   place-items: center;
-  margin: 0 10px;
+  margin: 0 1rem;
 }
 
 .count {
@@ -3715,19 +3712,14 @@ button > .date {
   height: 3.5rem;
   width: 3.5rem;
   font-size: 1.4rem;
-  display: 50%;
+  display: inline-block;
   border-radius: 50%;
   background: transparent;
   margin: 0 10px;
 }
 
 .giz-picker-scroll button:hover {
-  height: 3.5rem;
-  width: 3.5rem;
-  font-size: 1.4rem;
-  display: inline-block;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  background: #FAFAFA;
 }
 
 .giz-picker-count button {
@@ -3735,21 +3727,11 @@ button > .date {
 }
 
 .giz-picker-body button:hover:not(.active) {
-  height: 3.5rem;
-  width: 3.5rem;
-  font-size: 1.4rem;
-  display: inline-block;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  background: #FAFAFA;
 }
 
 .giz-picker-body .active {
-  background-color: #594ae2 !important;
-  height: 3.5rem;
-  width: 3.5rem;
-  font-size: 1.4rem;
-  display: inline-block;
-  border-radius: 50%;
+  background-color: #5A67F2;
   color: #FFFFFF;
 }
 
