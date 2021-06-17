@@ -3,37 +3,44 @@
 
 <CascadingValue Value="@this" IsFixed="true">
 
-    <div class="@Class @ClassName"
-         style="@StyleMapper.AsString()">
+    @if (Variant == PickerVariants.Dialog)
+    {
+        <div class="@Class @ClassName"
+             style="@StyleMapper.AsString()">
 
-        <GizInput Label="@Label"
-                  IsDisabled="@IsDisabled"
-                  IsFullWidth="@IsFullWidth"
-                  HasOutline="@HasOutline"
-                  HasShadow="@HasShadow"
-                  Size="@Size"
-                  IsValid="@_isValid"
-                  ValidationMessage="@_validationMessage"                 
-                  @onclick="OnMenuClickHandler">
+            <GizInput Label="@Label"
+                      IsDisabled="@IsDisabled"
+                      IsFullWidth="@IsFullWidth"
+                      HasOutline="@HasOutline"
+                      HasShadow="@HasShadow"
+                      Size="@Size"
+                      IsValid="@_isValid"
+                      ValidationMessage="@_validationMessage"
+                      RightIcon="fas fa-calendar"
+                      @onclick="OnMenuClickHandler">
 
-            <input id="@Id"
-                   type="date"
-                   value="@_text"
-                   readonly="@IsReadOnly"
-                   disabled="@IsDisabled"
-                   @oninput="OnInputHandler"
-                   @onclick="OnInputClickHandler"
-                   />
+                <input id="@Id"
+                       type="text"
+                       value="@_text"
+                       readonly="@IsReadOnly"
+                       disabled="@IsDisabled"
+                       @oninput="OnInputHandler"
+                       @onclick="OnInputClickHandler" />
 
-        </GizInput>
+            </GizInput>
 
-        <Popup MaximumHeight="@MaximumHeight" IsOpen="@IsOpen" Class="@PopupClassName">
-            
-        </Popup>
-    </div>
+            <Popup IsOpen="@IsOpen" Class="@PopupClassName">
+                <DatePickerBase @bind-Value="Value" IsFullWidth="@IsFullWidth" />
+            </Popup>
+        </div>
 
-    <Overlay Visible="@IsOpen"
-             @onclick="OnOverlayClickHandler">
-    </Overlay>
+        <Overlay Visible="@IsOpen"
+                 @onclick="OnOverlayClickHandler">
+        </Overlay>
+    }
+    else
+    {
+        <DatePickerBase @bind-Value="Value" IsFullWidth="@IsFullWidth" />
+    }
 
 </CascadingValue>

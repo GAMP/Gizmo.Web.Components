@@ -8,6 +8,12 @@ namespace Gizmo.Web.Components
 {
     public partial class DatePicker : InputBase<DateTime?>
     {
+        public enum PickerVariants
+        {
+            Dialog,
+            Static
+        }
+
         #region CONSTRUCTOR
         public DatePicker()
         {
@@ -20,6 +26,9 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region PROPERTIES
+
+        [Parameter]
+        public PickerVariants Variant { get; set; } = PickerVariants.Dialog;
 
         [Parameter]
         public DateTime? Value
@@ -48,9 +57,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Label { get; set; }
-
-        [Parameter]
-        public int MaximumHeight { get; set; }
 
         [Parameter]
         public bool IsOpen { get; set; }
