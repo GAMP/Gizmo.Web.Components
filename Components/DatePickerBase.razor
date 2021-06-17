@@ -3,7 +3,7 @@
 
 <div class="giz-calendar">
     <div class="giz-calendar-header">
-        <div><button @onclick="OnClickYearHandler"><span>@CurrentVisibleMonth.ToString("yyyy")</span></button></div>
+        <div><button @onclick="OnClickYearHandler"><span class="giz-calendar-year-title">@CurrentVisibleMonth.ToString("yyyy")</span></button></div>
         <div><button><span class="giz-calendar-title">@(Value?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</span></button></div>
     </div>
     <div class="giz-calendar-content">
