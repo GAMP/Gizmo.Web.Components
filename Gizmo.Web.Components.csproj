@@ -17,6 +17,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="wwwroot\scss\autocomplete.scss" />
 	  <Content Remove="wwwroot\scss\badge.scss" />
 	  <Content Remove="wwwroot\scss\button-group.scss" />
 	  <Content Remove="wwwroot\scss\date-picker.scss" />
@@ -24,6 +25,7 @@
 	  <Content Remove="wwwroot\scss\menu.scss" />
 	  <Content Remove="wwwroot\scss\pagination.scss" />
 	  <Content Remove="wwwroot\scss\popup.scss" />
+	  <Content Remove="wwwroot\scss\select.scss" />
 	  <Content Remove="wwwroot\scss\switch.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\text-input.scss" />
@@ -49,9 +51,11 @@
 		<None Include="wwwroot\scss\badge.scss" />
 		<None Include="wwwroot\scss\popup.scss" />
 		<None Include="wwwroot\scss\pagination.scss" />
+		<None Include="wwwroot\scss\autocomplete.scss" />
 		<None Include="wwwroot\scss\switch.scss" />
 		<None Include="wwwroot\scss\menu.scss" />
 		<None Include="wwwroot\scss\date-picker.scss" />
+		<None Include="wwwroot\scss\select.scss" />
 		<None Include="wwwroot\scss\text-input.scss" />
 		<None Include="wwwroot\scss\list.scss" />
 		<None Include="wwwroot\scss\tab.scss" />

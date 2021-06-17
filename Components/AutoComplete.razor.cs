@@ -277,14 +277,14 @@ namespace Gizmo.Web.Components
         #endregion
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-select")
+                 .Add("giz-input-autocomplete")
                  //.If("giz-select-root--disabled", () => IsDisabled)
                  //.If("giz-select-root--offset", () => OffsetY)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-select-dropdown-menu")
-                 .Add("giz-select-dropdown-full-width")
+                 .Add("giz-input-autocomplete-dropdown-menu")
+                 .Add("giz-autocomplete-dropdown-full-width")
                  .Add("giz-popup-bottom")
                  .AsString();
 

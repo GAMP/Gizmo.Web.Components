@@ -143,37 +143,3 @@
         }
     }
 }
-
-//=============== gizmo textInput select classes ================//
-
-//== giz-input select
-.giz-input-select {
-    position: $position-relative;
-
-    .giz-select-dropdown-full-width {
-        width: $width-full !important;
-    }
-
-    .giz-input-control {
-        .giz-input-root {
-            justify-content: $justify-space-between;
-
-            input {
-                cursor: pointer;
-            }
-
-            .giz-input-icon-right {
-                text-align: $text-align-right;
-                display: $display-block;
-                cursor: pointer;
-            }
-        }
-    }
-
-    .giz-popup {
-        overflow-x: $overflow-hidden;
-        overflow-y: $overflow-auto;
-    }
-}
-
-

@@ -1,0 +1,31 @@
+//=============== gizmo autoComplete select classes ================//
+
+//== giz-input autoComplete
+.giz-input-autocomplete {
+    position: $position-relative;
+
+    .giz-autocomplete-dropdown-full-width {
+        width: $width-full !important;
+    }
+
+    .giz-input-control {
+        .giz-input-root {
+            justify-content: $justify-space-between;
+
+            input {
+                cursor: pointer;
+            }
+
+            .giz-input-icon-right {
+                text-align: $text-align-right;
+                display: $display-block;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .giz-popup {
+        overflow-x: $overflow-hidden;
+        overflow-y: $overflow-auto;
+    }
+}
