@@ -14,6 +14,9 @@ namespace Gizmo.Web.Components
         Medium = 1,
 
         [Description("large")]
-        Large = 2
+        Large = 2,
+
+        [Description("extra-large")]
+        ExtraLarge = 3
     }
 }

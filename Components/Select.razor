@@ -21,7 +21,7 @@
 
             @if (@_selectedItem?.ChildContent != null)
             {
-                <div>
+                <div @onclick="OnClickMenuHandler" style="cursor: pointer;">
                     @_selectedItem.ChildContent
                 </div>
             }

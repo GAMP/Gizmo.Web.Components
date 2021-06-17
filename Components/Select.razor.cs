@@ -138,8 +138,9 @@ namespace Gizmo.Web.Components
             if (_selectedItem != selectItem)
             {
                 _selectedItem = selectItem;
-                StateHasChanged();
             }
+
+            StateHasChanged();
 
             if (selectItem != null)
                 return SetSelectedValue(selectItem.Value);

@@ -22,6 +22,7 @@
         padding-left: $spacer-20;
         padding-right: $spacer-20;
         text-decoration: $text-decoration;
+        cursor: pointer;
 
         &.giz-list-item-disabled {
             color: rgb(230, 230, 230) !important;
