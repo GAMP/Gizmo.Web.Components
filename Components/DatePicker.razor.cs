@@ -10,6 +10,7 @@ namespace Gizmo.Web.Components
     {
         public enum PickerVariants
         {
+            Inline,
             Dialog,
             Static
         }
@@ -124,12 +125,14 @@ namespace Gizmo.Web.Components
         }
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-datepicker")
+                 .If("giz-input-datepicker--dialog", () => Variant == PickerVariants.Dialog)
+                 .If("giz-input-datepicker--popup", () => Variant == PickerVariants.Inline)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-datepicker-dropdown-menu")
                  .Add("giz-datepicker-dropdown-full-width")
+                 .If("giz-popup-bottom", () => Variant == PickerVariants.Inline)
                  .AsString();
 
     }
