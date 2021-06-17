@@ -45,6 +45,9 @@ namespace Gizmo.Web.Components
         public string Placeholder { get; set; }
 
         [Parameter]
+        public string Type { get; set; } = "text";
+
+        [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion

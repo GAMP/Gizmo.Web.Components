@@ -14,10 +14,11 @@
           RightIcon="@RightIcon">
 
     <input id="@Id"
-           type="text"
+           type="@Type"
            value="@_text"
            readonly="@IsReadOnly"
            disabled="@IsDisabled"
+           placeholder="@Placeholder"
            @onchange="OnChangeHandler"
            @onclick="OnClickHandler" />
 
