@@ -1,7 +1,16 @@
 //=============== gizmo date picker classes ================//
 
-// data picker
-.giz-input-datepicker {
+// date picker
+.giz-input-datepicker--popup {
+    position: $position-relative;
+
+    .giz-popup {
+        overflow-x: $overflow-hidden;
+        overflow-y: $overflow-auto;
+    }
+}
+
+.giz-input-datepicker--dialog {
 
     .giz-input-datepicker-dropdown-menu {
         top: 50%;

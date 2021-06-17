@@ -7,33 +7,64 @@
         <div><button><span class="giz-calendar-title">@(Value?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</span></button></div>
     </div>
     <div class="giz-calendar-content">
-        <div class="giz-calendar-title-switch">
-            <div><button @onclick="OnClickPreviousMonthHandler"><i class="fas fa-chevron-left"></i></button></div>
-            <div class="giz-calendar-title-slide">@CurrentVisibleMonth.ToString("MMM yyyy")</div>
-            <div>
-                <button @onclick="OnClickNextMonthHandler"><i class="fas fa-chevron-right"></i></button>
+        @if (_showMonthPicker)
+        {
+            <div class="giz-calendar-title-switch">
+                <div><button><i class="fas fa-chevron-left"></i></button></div>
+                <div class="giz-calendar-title-slide">2021</div>
+                <div>
+                    <button><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
-        </div>
-        <div class="giz-calendar-weekday">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-        </div>
-        <div class="giz-calendar-day">
-            @for (int i = 0; i < _whiteSpaces; i++)
-            {
-                <div></div>
-            }
-            @for (int i = 1; i <= _monthDays; i++)
-            {
-                var local_i = i;
-                <div><button @onclick="@(() => OnClickDay(local_i))" class="@(IsCurrentDay(@CurrentVisibleMonth.Year , @CurrentVisibleMonth.Month , local_i) ? "active": "")"><span class="giz-calendar-day-count">@i</span></button></div>
-            }
-        </div>
+            <div class="giz-calendar-month">
+                <div><button class="active" @onclick="@(() => OnClickMonth(1))"><span class="giz-calendar-month-count">Jan</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(2))"><span class="giz-calendar-month-count">Feb</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(3))"><span class="giz-calendar-month-count">Mar</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(4))"><span class="giz-calendar-month-count">Apr</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(5))"><span class="giz-calendar-month-count">May</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(6))"><span class="giz-calendar-month-count">Jun</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(7))"><span class="giz-calendar-month-count">Jul</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(8))"><span class="giz-calendar-month-count">Aug</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(9))"><span class="giz-calendar-month-count">Sep</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(10))"><span class="giz-calendar-month-count">Oct</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(11))"><span class="giz-calendar-month-count">Nov</span></button></div>
+                <div><button @onclick="@(() => OnClickMonth(12))"><span class="giz-calendar-month-count">Dec</span></button></div>
+            </div>
+            <div class="giz-calendar-action">
+                <div><button>CANCEL</button> </div>
+                <div><button>OK</button>  </div>
+            </div>
+        }
+        else
+        {
+            <div class="giz-calendar-title-switch">
+                <div><button @onclick="OnClickPreviousMonthHandler"><i class="fas fa-chevron-left"></i></button></div>
+                <div class="giz-calendar-title-slide" @onclick="OnClickMonthHandler">@CurrentVisibleMonth.ToString("MMM yyyy")</div>
+                <div>
+                    <button @onclick="OnClickNextMonthHandler"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="giz-calendar-weekday">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="giz-calendar-day">
+                @for (int i = 0; i < _whiteSpaces; i++)
+                {
+                    <div></div>
+                }
+                @for (int i = 1; i <= _monthDays; i++)
+                {
+                    var local_i = i;
+                    <div><button @onclick="@(() => OnClickDay(local_i))" class="@(IsCurrentDay(@CurrentVisibleMonth.Year , @CurrentVisibleMonth.Month , local_i) ? "active": "")"><span class="giz-calendar-day-count">@i</span></button></div>
+                }
+            </div>
+        }
 
     </div>
 </div>

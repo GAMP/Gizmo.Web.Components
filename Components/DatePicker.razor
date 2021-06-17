@@ -3,7 +3,7 @@
 
 <CascadingValue Value="@this" IsFixed="true">
 
-    @if (Variant == PickerVariants.Dialog)
+    @if (Variant != PickerVariants.Static)
     {
         <div class="@Class @ClassName"
              style="@StyleMapper.AsString()">
