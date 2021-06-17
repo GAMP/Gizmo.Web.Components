@@ -15,8 +15,6 @@
         padding: 0.6rem 0.8rem;
 
         > span {
-            font-size: 2.56rem;
-            font-weight: $font-weight-400;
             line-height: 1.75;
             letter-spacing: $letter-spacing-4;
         }
@@ -30,20 +28,29 @@
 
         button {
             color: $white-color;
-        }
 
-        button:hover {
-            background-color: #0000000d;
-        }
+            &:hover {
+                background-color: #0000000d;
+            }
 
-        .giz-calendar-title {
-            font-size: 3.3rem !important;
+            .giz-calendar-year-title {
+                font-size: 2.56rem;
+            }
+
+            .giz-calendar-title {
+                font-size: 3.3rem;
+            }
         }
     }
 
     .giz-calendar-content {
         background: $white-color;
         padding: 0.8rem 1rem;
+
+        .active {
+            background-color: $primary-color;
+            color: $white-color;
+        }
 
         button {
             height: 3.5rem;
@@ -52,6 +59,10 @@
             display: $display-inline-block;
             border-radius: $rounded-circle;
             background: $transparent-color;
+
+            &:hover:not(.active) {
+                background: $light-color;
+            }
         }
 
         .giz-calendar-title-switch {
@@ -86,19 +97,6 @@
             grid-template-rows: repeat(6, 1fr);
             place-items: center;
 
-            .active {
-                background-color: $primary-color;
-                color: $white-color;
-            }
-
-            button:hover:not(.active) {
-                background: $light-color;
-            }
-
-            button {
-                margin: $spacer-0;
-            }
-
             .giz-calendar-day-count {
                 font-size: $font-12 !important;
             }
@@ -108,43 +106,34 @@
             display: grid;
             grid-template-columns: repeat(3,1fr);
             place-items: center;
-            grid-row-gap: 8px;
+            grid-row-gap: 0.8rem;
             grid-template-rows: auto;
-            margin-bottom: 8px;
+            margin-bottom: $spacer-8;
 
             .giz-calendar-month-count {
-                font-size: 16px;
+                font-size: $font-16;
             }
 
             button {
                 width: auto;
-                border-radius: 4px;
-                padding: 3px 25px;
-            }
-
-            .active {
-                background-color: $primary-color;
-                color: $white-color;
-            }
-
-            button:hover:not(.active) {
-                background-color: $light-color;
+                border-radius: $rounded;
+                padding: 0.3rem 2.5rem;
             }
         }
 
         .giz-calendar-action {
-            display: flex;
-            justify-content: flex-end;
+            display: $display-flex;
+            justify-content: $justify-end;
 
             button {
                 width: auto;
-                border-radius: 4px;
-                padding: 3px 25px;
+                border-radius: $rounded;
+                padding: 0.3rem 2.5rem;
                 color: $primary-color;
 
-                &:hover {
-                    color: $white-color;
-                    background-color: $primary-color;
+                &:hover{
+                    background-color:$primary-color;
+                    color:$white-color;
                 }
             }
         }

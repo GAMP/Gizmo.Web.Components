@@ -3638,8 +3638,6 @@ h6,
 }
 
 .giz-calendar button > span {
-  font-size: 2.56rem;
-  font-weight: 400;
   line-height: 1.75;
   letter-spacing: -0.04rem;
 }
@@ -3659,13 +3657,22 @@ h6,
   background-color: #0000000d;
 }
 
-.giz-calendar .giz-calendar-header .giz-calendar-title {
-  font-size: 3.3rem !important;
+.giz-calendar .giz-calendar-header button .giz-calendar-year-title {
+  font-size: 2.56rem;
+}
+
+.giz-calendar .giz-calendar-header button .giz-calendar-title {
+  font-size: 3.3rem;
 }
 
 .giz-calendar .giz-calendar-content {
   background: #FFFFFF;
   padding: 0.8rem 1rem;
+}
+
+.giz-calendar .giz-calendar-content .active {
+  background-color: #5A67F2;
+  color: #FFFFFF;
 }
 
 .giz-calendar .giz-calendar-content button {
@@ -3675,6 +3682,10 @@ h6,
   display: inline-block;
   border-radius: 50%;
   background: transparent;
+}
+
+.giz-calendar .giz-calendar-content button:hover:not(.active) {
+  background: #eff0f2;
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-title-switch {
@@ -3718,19 +3729,6 @@ h6,
   place-items: center;
 }
 
-.giz-calendar .giz-calendar-content .giz-calendar-day .active {
-  background-color: #5A67F2;
-  color: #FFFFFF;
-}
-
-.giz-calendar .giz-calendar-content .giz-calendar-day button:hover:not(.active) {
-  background: #eff0f2;
-}
-
-.giz-calendar .giz-calendar-content .giz-calendar-day button {
-  margin: 0rem;
-}
-
 .giz-calendar .giz-calendar-content .giz-calendar-day .giz-calendar-day-count {
   font-size: 1.2rem !important;
 }
@@ -3739,28 +3737,19 @@ h6,
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
-  grid-row-gap: 8px;
+  grid-row-gap: 0.8rem;
   grid-template-rows: auto;
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-month .giz-calendar-month-count {
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-month button {
   width: auto;
-  border-radius: 4px;
-  padding: 3px 25px;
-}
-
-.giz-calendar .giz-calendar-content .giz-calendar-month .active {
-  background-color: #5A67F2;
-  color: #FFFFFF;
-}
-
-.giz-calendar .giz-calendar-content .giz-calendar-month button:hover:not(.active) {
-  background-color: #eff0f2;
+  border-radius: 0.4rem;
+  padding: 0.3rem 2.5rem;
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-action {
@@ -3774,14 +3763,14 @@ h6,
 
 .giz-calendar .giz-calendar-content .giz-calendar-action button {
   width: auto;
-  border-radius: 4px;
-  padding: 3px 25px;
+  border-radius: 0.4rem;
+  padding: 0.3rem 2.5rem;
   color: #5A67F2;
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-action button:hover {
-  color: #FFFFFF;
   background-color: #5A67F2;
+  color: #FFFFFF;
 }
 
 @media (min-width: 600px) {
