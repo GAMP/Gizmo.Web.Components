@@ -1,14 +1,23 @@
 //=============== gizmo date picker classes ================//
 
 // data picker
-.giz-input-datepicker{
+.giz-input-datepicker {
 
-.giz-input-datepicker-dropdown-menu{
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-}
+    .giz-input-datepicker-dropdown-menu {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height: $height-full;
+        width: $width-full;
+        background: #21212199;
+    }
 
+    .giz-calendar {
+        position: $position-absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 // giz calendar (static/dialog)
