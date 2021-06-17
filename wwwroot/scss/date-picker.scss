@@ -1,6 +1,17 @@
 //=============== gizmo date picker classes ================//
 
 // data picker
+.giz-input-datepicker{
+
+.giz-input-datepicker-dropdown-menu{
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+}
+
+// giz calendar (static/dialog)
 .giz-calendar {
     border-radius: $rounded;
     max-width: 32rem;
@@ -131,9 +142,9 @@
                 padding: 0.3rem 2.5rem;
                 color: $primary-color;
 
-                &:hover{
-                    background-color:$primary-color;
-                    color:$white-color;
+                &:hover {
+                    background-color: $primary-color;
+                    color: $white-color;
                 }
             }
         }

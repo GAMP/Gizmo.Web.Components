@@ -3621,6 +3621,13 @@ h6,
   bottom: auto;
 }
 
+.giz-input-datepicker .giz-input-datepicker-dropdown-menu {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .giz-calendar {
   border-radius: 0.4rem;
   max-width: 32rem;

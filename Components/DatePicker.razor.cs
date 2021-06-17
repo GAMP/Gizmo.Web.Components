@@ -130,7 +130,6 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-datepicker-dropdown-menu")
                  .Add("giz-datepicker-dropdown-full-width")
-                 .Add("giz-popup-bottom")
                  .AsString();
 
     }
