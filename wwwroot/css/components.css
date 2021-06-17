@@ -2594,6 +2594,7 @@ h6,
   color: #CFD2D8;
   background: #FAFAFA !important;
   border: 1px solid #CFD2D8;
+  pointer-events: none;
 }
 
 .giz-button--text {
@@ -2618,6 +2619,7 @@ h6,
   color: #E7E9EE;
   background: #FAFAFA !important;
   border: none;
+  pointer-events: none;
 }
 
 .giz-button--large {
@@ -2641,6 +2643,7 @@ h6,
 .giz-button[disabled] {
   background: #E6E8ED;
   cursor: default;
+  pointer-events: none;
 }
 
 .giz-button.is-disabled:hover,
@@ -3095,7 +3098,7 @@ h6,
 }
 
 .giz-tab.giz-tab-disabled .giz-tab__link {
-  cursor: not-allowed;
+  pointer-events: none;
   opacity: 0.4;
 }
 
@@ -3126,7 +3129,7 @@ h6,
 }
 
 .giz-tab .giz-tab-disabled {
-  cursor: not-allowed;
+  pointer-events: none;
   opacity: 0.4;
 }
 
@@ -3334,6 +3337,7 @@ h6,
 .giz-input-root[disabled] {
   background: #E7E9EE;
   border: 1px solid #E7E9EE;
+  pointer-events: none;
 }
 
 .giz-input-root .giz-input-icon-left {
@@ -3368,12 +3372,14 @@ h6,
 .giz-input-root--large[disabled] {
   background-color: #E7E9EE;
   color: #FFFFFF;
+  pointer-events: none;
 }
 
 [light-theme] .giz-input-root--large.is-disabled,
 [light-theme] .giz-input-root--large[disabled] {
   background-color: #E7E9EE;
   color: #939DB5;
+  pointer-events: none;
 }
 
 .giz-input-root--large .giz-input-icon-left {
@@ -3425,35 +3431,7 @@ h6,
 .giz-input-control .giz-input-root input[disabled] {
   background: #E7E9EE;
   color: #939DB5;
-}
-
-.giz-input-select {
-  position: relative;
-}
-
-.giz-input-select .giz-select-dropdown-full-width {
-  width: 100% !important;
-}
-
-.giz-input-select .giz-input-control .giz-input-root {
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.giz-input-select .giz-input-control .giz-input-root input {
-  cursor: pointer;
-}
-
-.giz-input-select .giz-input-control .giz-input-root .giz-input-icon-right {
-  text-align: right;
-  display: block;
-  cursor: pointer;
-}
-
-.giz-input-select .giz-popup {
-  overflow-x: hidden;
-  overflow-y: auto;
+  pointer-events: none;
 }
 
 .giz-menu {
@@ -3790,6 +3768,35 @@ h6,
 .giz-calendar .giz-calendar-content .giz-calendar-action button:hover {
   background-color: #5A67F2;
   color: #FFFFFF;
+}
+
+.giz-input-select {
+  position: relative;
+}
+
+.giz-input-select .giz-select-dropdown-full-width {
+  width: 100% !important;
+}
+
+.giz-input-select .giz-input-control .giz-input-root {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.giz-input-select .giz-input-control .giz-input-root input {
+  cursor: pointer;
+}
+
+.giz-input-select .giz-input-control .giz-input-root .giz-input-icon-right {
+  text-align: right;
+  display: block;
+  cursor: pointer;
+}
+
+.giz-input-select .giz-popup {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media (min-width: 600px) {

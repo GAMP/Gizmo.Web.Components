@@ -7,7 +7,7 @@
 
 .giz-tab.giz-tab-disabled {
     .giz-tab__link {
-        cursor: not-allowed;
+        pointer-events: none;
         opacity: 0.4;
     }
 }
@@ -39,7 +39,7 @@
     }
 
     .giz-tab-disabled {
-        cursor: not-allowed;
+        pointer-events: none;
         opacity: 0.4;
     }
 

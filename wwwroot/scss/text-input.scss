@@ -52,6 +52,7 @@
     &.is-disabled, &[disabled] {
         background: $gray-dark;
         border: 1px solid $gray-dark;
+        pointer-events: none;
     }
 
     .giz-input-icon-left {
@@ -83,12 +84,14 @@
         &.is-disabled, &[disabled] {
             background-color: $gray-dark;
             color: $white-color;
+            pointer-events: none;
         }
 
         [light-theme] & {
             &.is-disabled, &[disabled] {
                 background-color: $gray-dark;
                 color: $dim-light;
+                pointer-events: none;
             }
         }
 
@@ -139,6 +142,7 @@
             &.is-disabled, &[disabled] {
                 background: $gray-dark;
                 color: $dim-light;
+                pointer-events: none;
             }
         }
     }
