@@ -2622,6 +2622,12 @@ h6,
   pointer-events: none;
 }
 
+.giz-button--extra-large {
+  font-size: 1.9rem;
+  height: 8rem;
+  font-weight: 700;
+}
+
 .giz-button--large {
   height: 4.8rem;
   font-size: 1.7rem;
@@ -3600,7 +3606,16 @@ h6,
   bottom: auto;
 }
 
-.giz-input-datepicker .giz-input-datepicker-dropdown-menu {
+.giz-input-datepicker--popup {
+  position: relative;
+}
+
+.giz-input-datepicker--popup .giz-popup {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.giz-input-datepicker--dialog .giz-input-datepicker-dropdown-menu {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -3610,7 +3625,7 @@ h6,
   background: #21212199;
 }
 
-.giz-input-datepicker .giz-calendar {
+.giz-input-datepicker--dialog .giz-calendar {
   position: absolute;
   top: 50%;
   left: 50%;

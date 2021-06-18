@@ -92,6 +92,13 @@
             pointer-events: none;
         }
     }
+
+    // button extra large
+    &--extra-large {
+        font-size: $font-19;
+        height: 8rem;
+        font-weight: $font-weight-700;
+    }
     //button large
     &--large {
         height: 4.8rem;
