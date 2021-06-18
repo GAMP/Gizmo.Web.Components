@@ -3370,8 +3370,6 @@ h6,
 
 .giz-input-root--large:hover {
   border: 0rem !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
 }
 
 .giz-input-root--large.is-disabled,
