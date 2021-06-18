@@ -3399,7 +3399,9 @@ h6,
 }
 
 .giz-input-root--outline {
-  outline: auto !important;
+  outline-offset: -0.2rem;
+  outline-width: 0.1rem;
+  outline-style: groove;
 }
 
 .giz-input-root--shadow {
