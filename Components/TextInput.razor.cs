@@ -30,7 +30,7 @@ namespace Gizmo.Web.Components
         public InputSize Size { get; set; } = InputSize.Normal;
 
         [Parameter]
-        public bool HasOutline { get; set; } = true;
+        public bool HasOutline { get; set; }
 
         [Parameter]
         public bool HasShadow { get; set; }
