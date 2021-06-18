@@ -3231,9 +3231,6 @@ h6,
   border-radius: 0.4rem;
   position: relative;
   min-width: 15rem;
-  border: 1px solid #E7E9EE;
-  -webkit-box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
 }
 
 [light-theme] .giz-list {
@@ -3818,6 +3815,54 @@ h6,
 .giz-input-select .giz-popup {
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.giz-pagination {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+
+.giz-pagination li {
+  padding: 0 1.4rem;
+  margin: 0 0.6rem;
+  color: #6E7689;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  border: 1px solid #3b4150;
+  font-weight: 600;
+  height: 3.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.giz-pagination li:hover,
+.giz-pagination li.is-active {
+  background: #5a7ff2;
+  border-color: #5a7ff2;
+  color: #FFFFFF;
+}
+
+[light-theme] .giz-pagination li {
+  color: #6E7689;
+  border-color: #d4d6db;
+}
+
+[light-theme] .giz-pagination li:hover,
+[light-theme] .giz-pagination li.is-active {
+  background: #5a7ff2;
+  border-color: #5a7ff2;
+  color: #FFFFFF;
 }
 
 @media (min-width: 600px) {
