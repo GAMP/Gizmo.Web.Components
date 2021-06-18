@@ -6,11 +6,12 @@
     border-radius: $rounded;
     position: $position-relative;
     min-width: 15rem;
-    border: 1px solid $gray-dark;
+    border: 1px solid $border-dark-color;
     box-shadow: $elevation-2;
 
     [light-theme] & {
         background-color: $white-color;
+        border: 1px solid $gray-dark;
     }
 
     .giz-list-item {

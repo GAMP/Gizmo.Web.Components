@@ -21,15 +21,6 @@
         left: 0;
     }
 
-    .giz-menu-dropdown .giz-list {
-        border: 1px solid $border-color;
-        /*box-shadow: $elevation-2;*/
-
-        [light-theme] & {
-            border: 1px solid $gray-dark;
-        }
-    }
-
     .giz-menu-dropdown > .giz-list.giz-list--right {
         position: absolute;
         left: 0;
