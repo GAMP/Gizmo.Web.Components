@@ -2594,6 +2594,7 @@ h6,
   color: #CFD2D8;
   background: #FAFAFA !important;
   border: 1px solid #CFD2D8;
+  pointer-events: none;
 }
 
 .giz-button--text {
@@ -2618,6 +2619,13 @@ h6,
   color: #E7E9EE;
   background: #FAFAFA !important;
   border: none;
+  pointer-events: none;
+}
+
+.giz-button--extra-large {
+  font-size: 1.9rem;
+  height: 8rem;
+  font-weight: 700;
 }
 
 .giz-button--large {
@@ -2641,6 +2649,7 @@ h6,
 .giz-button[disabled] {
   background: #E6E8ED;
   cursor: default;
+  pointer-events: none;
 }
 
 .giz-button.is-disabled:hover,
@@ -3095,7 +3104,7 @@ h6,
 }
 
 .giz-tab.giz-tab-disabled .giz-tab__link {
-  cursor: not-allowed;
+  pointer-events: none;
   opacity: 0.4;
 }
 
@@ -3126,7 +3135,7 @@ h6,
 }
 
 .giz-tab .giz-tab-disabled {
-  cursor: not-allowed;
+  pointer-events: none;
   opacity: 0.4;
 }
 
@@ -3222,6 +3231,9 @@ h6,
   border-radius: 0.4rem;
   position: relative;
   min-width: 15rem;
+  border: 1px solid #E7E9EE;
+  -webkit-box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
 }
 
 [light-theme] .giz-list {
@@ -3334,6 +3346,7 @@ h6,
 .giz-input-root[disabled] {
   background: #E7E9EE;
   border: 1px solid #E7E9EE;
+  pointer-events: none;
 }
 
 .giz-input-root .giz-input-icon-left {
@@ -3368,12 +3381,14 @@ h6,
 .giz-input-root--large[disabled] {
   background-color: #E7E9EE;
   color: #FFFFFF;
+  pointer-events: none;
 }
 
 [light-theme] .giz-input-root--large.is-disabled,
 [light-theme] .giz-input-root--large[disabled] {
   background-color: #E7E9EE;
   color: #939DB5;
+  pointer-events: none;
 }
 
 .giz-input-root--large .giz-input-icon-left {
@@ -3425,35 +3440,7 @@ h6,
 .giz-input-control .giz-input-root input[disabled] {
   background: #E7E9EE;
   color: #939DB5;
-}
-
-.giz-input-select {
-  position: relative;
-}
-
-.giz-input-select .giz-select-dropdown-full-width {
-  width: 100% !important;
-}
-
-.giz-input-select .giz-input-control .giz-input-root {
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.giz-input-select .giz-input-control .giz-input-root input {
-  cursor: pointer;
-}
-
-.giz-input-select .giz-input-control .giz-input-root .giz-input-icon-right {
-  text-align: right;
-  display: block;
-  cursor: pointer;
-}
-
-.giz-input-select .giz-popup {
-  overflow-x: hidden;
-  overflow-y: auto;
+  pointer-events: none;
 }
 
 .giz-menu {
@@ -3622,7 +3609,16 @@ h6,
   bottom: auto;
 }
 
-.giz-input-datepicker .giz-input-datepicker-dropdown-menu {
+.giz-input-datepicker--popup {
+  position: relative;
+}
+
+.giz-input-datepicker--popup .giz-popup {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.giz-input-datepicker--dialog .giz-input-datepicker-dropdown-menu {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -3632,7 +3628,7 @@ h6,
   background: #21212199;
 }
 
-.giz-input-datepicker .giz-calendar {
+.giz-input-datepicker--dialog .giz-calendar {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3790,6 +3786,38 @@ h6,
 .giz-calendar .giz-calendar-content .giz-calendar-action button:hover {
   background-color: #5A67F2;
   color: #FFFFFF;
+}
+
+.giz-input-select {
+  position: relative;
+}
+
+.giz-input-select .giz-select-dropdown-full-width {
+  width: 100% !important;
+}
+
+.giz-input-select .giz-input-control .giz-input-root {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.giz-input-select .giz-input-control .giz-input-root input {
+  cursor: pointer;
+}
+
+.giz-input-select .giz-input-control .giz-input-root .giz-input-icon-right {
+  text-align: right;
+  display: block;
+  cursor: pointer;
+}
+
+.giz-input-select .giz-popup {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media (min-width: 600px) {

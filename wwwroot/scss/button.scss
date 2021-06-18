@@ -66,6 +66,7 @@
             color: $gray-light-color;
             background: $secondary-light !important;
             border: 1px solid $gray-light-color;
+            pointer-events: none;
         }
     }
     //button text
@@ -88,7 +89,15 @@
             color: $gray-dark;
             background: $secondary-light !important;
             border: none;
+            pointer-events: none;
         }
+    }
+
+    // button extra large
+    &--extra-large {
+        font-size: $font-19;
+        height: 8rem;
+        font-weight: $font-weight-700;
     }
     //button large
     &--large {
@@ -111,6 +120,7 @@
     &.is-disabled, &[disabled] {
         background: $gray-color;
         cursor: default;
+        pointer-events: none;
 
         &:hover {
             background: $gray-color;
