@@ -17,23 +17,17 @@
                 </div>
             </div>
             <div class="giz-calendar-month">
-                <div><button class="active" @onclick="@(() => OnClickMonth(1))"><span class="giz-calendar-month-count">Jan</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(2))"><span class="giz-calendar-month-count">Feb</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(3))"><span class="giz-calendar-month-count">Mar</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(4))"><span class="giz-calendar-month-count">Apr</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(5))"><span class="giz-calendar-month-count">May</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(6))"><span class="giz-calendar-month-count">Jun</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(7))"><span class="giz-calendar-month-count">Jul</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(8))"><span class="giz-calendar-month-count">Aug</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(9))"><span class="giz-calendar-month-count">Sep</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(10))"><span class="giz-calendar-month-count">Oct</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(11))"><span class="giz-calendar-month-count">Nov</span></button></div>
-                <div><button @onclick="@(() => OnClickMonth(12))"><span class="giz-calendar-month-count">Dec</span></button></div>
+                @for (int i = 1; i <= 12; i++)
+                {
+                    var local_i = i;
+                    var monthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(local_i);
+                    <div><button @onclick="@(() => OnClickMonth(local_i))"><span class="giz-calendar-month-count">@monthName</span></button></div>
+                }
             </div>
-            <div class="giz-calendar-action">
+            @*<div class="giz-calendar-action">
                 <div><button>CANCEL</button> </div>
                 <div><button>OK</button>  </div>
-            </div>
+            </div>*@
         }
         else
         {

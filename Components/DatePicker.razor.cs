@@ -29,7 +29,7 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
-        public PickerVariants Variant { get; set; } = PickerVariants.Dialog;
+        public PickerVariants Variant { get; set; } = PickerVariants.Inline;
 
         [Parameter]
         public DateTime? Value
@@ -84,6 +84,12 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        private void DatePickerValueChanged(DateTime? value)
+        {
+            IsOpen = false;
+            Value = value;
+        }
+
         #endregion
 
         #region EVENTS
@@ -94,11 +100,6 @@ namespace Gizmo.Web.Components
             _text = (string)args.Value;
 
             StateHasChanged();
-        }
-
-        protected Task OnInputClickHandler(MouseEventArgs args)
-        {
-            return Task.CompletedTask;
         }
 
         protected void OnMenuClickHandler(MouseEventArgs args)

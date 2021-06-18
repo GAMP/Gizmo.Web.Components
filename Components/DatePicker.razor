@@ -24,13 +24,14 @@
                        value="@_text"
                        readonly="@IsReadOnly"
                        disabled="@IsDisabled"
+                       style="cursor: pointer;"
                        @oninput="OnInputHandler"
-                       @onclick="OnInputClickHandler" />
+                       @onclick="OnMenuClickHandler" />
 
             </GizInput>
 
-            <Popup IsOpen="@IsOpen" Class="@PopupClassName">
-                <DatePickerBase @bind-Value="Value" IsFullWidth="@IsFullWidth" />
+            <Popup Modal="true" IsOpen="@IsOpen" Class="@PopupClassName">
+                <DatePickerBase Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" />
             </Popup>
         </div>
 
