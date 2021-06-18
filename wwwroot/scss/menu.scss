@@ -23,7 +23,7 @@
 
     .giz-menu-dropdown .giz-list {
         border: 1px solid $border-color;
-        box-shadow: $elevation-2;
+        /*box-shadow: $elevation-2;*/
 
         [light-theme] & {
             border: 1px solid $gray-dark;
