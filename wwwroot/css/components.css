@@ -3874,6 +3874,76 @@ h6,
   color: #FFFFFF;
 }
 
+.giz-input-autocomplete {
+  position: relative;
+}
+
+.giz-input-autocomplete .giz-autocomplete-dropdown-full-width {
+  width: 100% !important;
+}
+
+.giz-input-autocomplete .giz-input-autocomplete-dropdown-menu {
+  -webkit-box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
+  border: 1px solid #1f2637;
+}
+
+[light-theme] .giz-input-autocomplete .giz-input-autocomplete-dropdown-menu {
+  border: 1px solid #E7E9EE;
+}
+
+.giz-input-autocomplete .giz-input-control .giz-input-root {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.giz-input-autocomplete .giz-input-control .giz-input-root input {
+  cursor: pointer;
+}
+
+.giz-input-autocomplete .giz-input-control .giz-input-root .giz-input-icon-right {
+  text-align: right;
+  display: block;
+  cursor: pointer;
+}
+
+.giz-input-autocomplete .giz-popup {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.giz-avatar {
+  overflow: hidden;
+}
+
+.giz-avatar img {
+  width: 100% !important;
+}
+
+.giz-avatar.giz-avatar--small {
+  width: 32px;
+  height: 32px;
+}
+
+.giz-avatar.giz-avatar--medium {
+  width: 72px;
+  height: 72px;
+}
+
+.giz-avatar.giz-avatar--large {
+  width: 104px;
+  height: 104px;
+}
+
+.giz-avatar.giz-avatar--rounded {
+  border-radius: 0.4rem;
+}
+
+.giz-avatar.giz-avatar--circle {
+  border-radius: 50%;
+}
+
 @media (min-width: 600px) {
   .d-sm-none {
     display: none !important;
