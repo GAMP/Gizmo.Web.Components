@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 	  <Content Remove="wwwroot\scss\autocomplete.scss" />
+	  <Content Remove="wwwroot\scss\avatar.scss" />
 	  <Content Remove="wwwroot\scss\badge.scss" />
 	  <Content Remove="wwwroot\scss\button-group.scss" />
 	  <Content Remove="wwwroot\scss\date-picker.scss" />
@@ -47,6 +48,7 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="wwwroot\scripts.js" />
+		<None Include="wwwroot\scss\avatar.scss" />
 		<None Include="wwwroot\scss\button-group.scss" />
 		<None Include="wwwroot\scss\badge.scss" />
 		<None Include="wwwroot\scss\popup.scss" />

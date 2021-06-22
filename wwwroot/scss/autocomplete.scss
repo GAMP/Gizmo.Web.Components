@@ -8,6 +8,15 @@
         width: $width-full !important;
     }
 
+    .giz-input-autocomplete-dropdown-menu {
+        box-shadow: $elevation-2;
+        border: 1px solid $border-color;
+
+        [light-theme] & {
+            border: 1px solid $gray-dark;
+        }
+    }
+
     .giz-input-control {
         .giz-input-root {
             justify-content: $justify-space-between;
