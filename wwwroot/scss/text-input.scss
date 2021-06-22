@@ -16,7 +16,7 @@
 //Input default size (normal)
 .giz-input-root {
     background: $dark-color;
-    border: 1px solid $border-color;
+    /*border: 1px solid $border-color;*/
     border-radius: $rounded;
     height: 4.8rem;
     padding: $spacer-16;
@@ -102,27 +102,32 @@
     &--outline {
         outline-offset: -0.2rem;
         outline-width: 0.1rem;
-        outline-style: groove;
-        border: 1px solid $primary-color;
+        /*outline-style: groove;*/
+        border: 1px solid $gray-light-color;
 
-        &:hover {
-            border: 1px solid $primary-color;
+        [light-theme] & {
+            border: 1px solid $gray-light-color;
         }
 
-        &:focus {
+        &:hover {
+            border: 1px solid $dim-light;
+        }
+
+        &:focus-within {
             border: 1px solid $primary-color !important;
+            box-shadow: 0px 0px 9px rgba($primary-color, 0.5);
         }
     }
     //input shadow
     &--shadow {
-        box-shadow: $elevation-1;
+        box-shadow: 0px 0px 9px rgba($dim-light, 0.5);
 
         &:hover {
-            box-shadow: $elevation-1;
+            box-shadow: 0px 0px 9px rgba($primary-color, 0.5);
         }
 
-        &:focus {
-            box-shadow: $elevation-1 !important;
+        &:focus-within {
+            box-shadow: 0px 0px 9px rgba($primary-color, 0.5) !important;
         }
     }
 }

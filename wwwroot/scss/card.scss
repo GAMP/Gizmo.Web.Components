@@ -1,0 +1,43 @@
+//=============== gizmo card classes ================//
+
+.giz-card {
+    background-color: $dark-color;
+    border-radius: $rounded;
+    color: $secondary-color;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    [light-theme] & {
+        background-color: $white-color;
+    }
+
+    &.giz-card-outlined {
+        border: 1px solid $gray-light-color;
+    }
+
+    .giz-card-header {
+        display: $display-flex;
+        padding: $spacer-16;
+        align-items: $align-center;
+
+        .giz-card-header-content {
+            flex: $flex-fill;
+        }
+
+        .giz-card-header-actions {
+            flex: 0 0 auto;
+            align-self: $align-self-start;
+            margin-top: $spacer-n8;
+            margin-right: $spacer-n8;
+        }
+    }
+
+    .giz-card-body {
+        padding: $spacer-16;
+    }
+
+    .giz-card-footer {
+        display: $display-flex;
+        padding: $spacer-16;
+        align-items: $align-center;
+    }
+}

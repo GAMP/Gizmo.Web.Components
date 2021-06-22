@@ -14,7 +14,7 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-card-body")
+                 .Add("giz-card-body")
                  .AsString();
     }
 }

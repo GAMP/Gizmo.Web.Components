@@ -33,7 +33,7 @@ namespace Gizmo.Web.Components
             if (firstRender)
             {
                 ClassMapper
-                   .Add("g-card")
+                   .Add("giz-card")
                    .If($"g-shadow-8", () => HasShadow);
 
                 StyleMapper
