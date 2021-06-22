@@ -10,6 +10,15 @@
     .giz-menu-dropdown {
         right: 0;
         left: 0;
+
+        .giz-list {
+            border: 1px solid $border-color;
+            box-shadow: $elevation-2;
+
+            [light-theme] & {
+                border: 1px solid $gray-dark;
+            }
+        }
     }
 
     .giz-menu-dropdown > .giz-list.giz-list--right {
