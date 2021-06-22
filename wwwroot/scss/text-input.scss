@@ -26,11 +26,11 @@
     letter-spacing: $letter-spacing-8;
     color: $white-color;
     width: fit-content;
+    border: $border-0;
 
     [light-theme] & {
         background: $white-color;
         color: $secondary-color;
-        border: 1px solid $dim-light;
 
         &:hover {
             color: $black-color;
@@ -38,15 +38,11 @@
     }
 
     &:hover {
-        border: 1px solid $primary-color;
-        box-shadow: $elevation-1;
         color: $white-color;
     }
 
     &:focus {
         color: $black-color;
-        border: 1px solid $primary-color !important;
-        box-shadow: $elevation-1 !important;
     }
 
     &.is-disabled, &[disabled] {
@@ -107,11 +103,27 @@
         outline-offset: -0.2rem;
         outline-width: 0.1rem;
         outline-style: groove;
+        border: 1px solid $primary-color;
+
+        &:hover {
+            border: 1px solid $primary-color;
+        }
+
+        &:focus {
+            border: 1px solid $primary-color !important;
+        }
     }
     //input shadow
     &--shadow {
         box-shadow: $elevation-1;
-        border: 1px solid $primary-color;
+
+        &:hover {
+            box-shadow: $elevation-1;
+        }
+
+        &:focus {
+            box-shadow: $elevation-1 !important;
+        }
     }
 }
 
