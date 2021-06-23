@@ -16,7 +16,6 @@ namespace Gizmo.Web.Components
 
         public DataGridColumn() : base()
         {
-            ClassMapper.Add(() => "data-grid-column");
         }
 
         #endregion
@@ -106,5 +105,10 @@ namespace Gizmo.Web.Components
         #endregion
 
         #endregion
+
+        protected string ClassName => new ClassMapper()
+                 .Add("data-grid-column")
+                 .AsString();
+
     }
 }

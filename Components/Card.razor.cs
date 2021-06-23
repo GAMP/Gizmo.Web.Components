@@ -26,23 +26,27 @@ namespace Gizmo.Web.Components
         [Parameter]
         public int MaximumWidth { get; set; }
 
-        protected override void OnAfterRender(bool firstRender)
-        {
-            base.OnAfterRender(firstRender);
+        //protected override void OnAfterRender(bool firstRender)
+        //{
+        //    base.OnAfterRender(firstRender);
 
-            if (firstRender)
-            {
-                ClassMapper
-                   .Add("giz-card")
-                   .If($"g-shadow-8", () => HasShadow);
+        //    if (firstRender)
+        //    {
+        //        StateHasChanged();
+        //    }
+        //}
 
-                StyleMapper
-                   .Add($"background-color: {BackgroundColor}")
-                   .Add($"border-radius: {CornerRadius}px")
-                   .If($"max-width: {MaximumWidth}px", () => MaximumWidth > 0);
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-card")
+                 .If($"g-shadow-8", () => HasShadow)
+                 .AsString();
 
-                StateHasChanged();
-            }
-        }
+        protected string StyleValue => new StyleMapper()
+                 .Add($"background-color: {BackgroundColor}")
+                 .Add($"border-radius: {CornerRadius}px")
+                 .If($"max-width: {MaximumWidth}px", () => MaximumWidth > 0)
+                 .AsString();
+
+
     }
 }

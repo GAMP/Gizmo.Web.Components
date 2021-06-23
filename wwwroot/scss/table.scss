@@ -216,3 +216,21 @@
         border-color: #dddfe4;
     }
 }
+
+.table-sticky-header {
+    max-height: 100%;
+
+    .table {
+        
+        & > thead td, & > thead th {
+            position: sticky;
+            top: 0;
+            background: $dark-color;
+
+            [light-theme] & {
+                color: $secondary-color;
+                background: $white-color;
+            }
+        }
+    }
+}

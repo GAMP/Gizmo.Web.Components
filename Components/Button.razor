@@ -2,7 +2,7 @@
 @inherits CustomDOMComponentBase
 
 <button class="@Class @ClassName @(!string.IsNullOrEmpty(RightIcon) ? ButtonIconRight : "")"
-        style="@Style @StyleMapper.AsString()"
+        style="@Style"
         @onclick="@OnClickHandler"
         aria-label="@Label"
         disabled="@IsDisabled"

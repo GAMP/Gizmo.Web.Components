@@ -1,7 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+<div class="@Class @ClassName"
+     style="@StyleValue">
     @ChildContent
 </div>

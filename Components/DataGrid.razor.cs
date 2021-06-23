@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using System;
@@ -34,6 +35,12 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         #region PUBLIC
+
+        [Parameter]
+        public DataGridVariants Variant { get; set; } = DataGridVariants.Default;
+
+        [Parameter]
+        public bool HasStickyHeader { get; set; }
 
         [Parameter]
         public bool IsSelectable { get; set; }
@@ -357,5 +364,18 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        protected string StyleValue => new StyleMapper()
+                 .If($"max-height: 100%", () => HasStickyHeader)
+                 .AsString();
+
+        protected string TableContainerClassName => new ClassMapper()
+                 .If("table-sticky-header", () => HasStickyHeader)
+                 .AsString();
+
+        protected string TableClassName => new ClassMapper()
+                 .If("table", () => Variant == DataGridVariants.Default)
+                 .AsString();
+
     }
 }

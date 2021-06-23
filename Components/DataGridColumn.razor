@@ -2,8 +2,7 @@
 @inherits Gizmo.Web.Components.CustomDOMComponentBase
 @typeparam TItemType
 
-<th class="@ClassMapper.AsString()"
-    style="@StyleMapper.AsString()"
+<th class="@Class @ClassName"
     @ref="Ref"
     @attributes="Attributes"
     @onclick="(e=> OnHeaderMouseEvent(e))">

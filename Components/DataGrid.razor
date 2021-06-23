@@ -4,75 +4,81 @@
 @*propogate this component as parent*@
 <CascadingValue Value="this" Name="Parent" IsFixed="true">
 
-    <table class="@Class @ClassMapper.AsString()"
-           style="@StyleMapper.AsString()"
-           id="@Id"
-           @ref="@Ref"
-           @attributes="@Attributes">
+    <div class="@Class"
+         style="@StyleValue">
+       
+        <div class="@TableContainerClassName">
+            <table class="@TableClassName"
+                   id="@Id"
+                   @ref="@Ref"
+                   @attributes="@Attributes">
 
-        @*table head*@
-        <thead>
-            @*header*@
-            <tr>
-                @if (IsSelectable)
-                {
-                    <td>
-                        <CheckBox IsChecked="@(_hasSelectedAllItems)" IsTriState="@(_hasSelectedItems && !_hasSelectedAllItems)" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" IsCheckedChanged="@IsCheckedChangedHandler" />
-                    </td>
-                }
-                @ChildContent
-            </tr>
-        </thead>
+                @*table head*@
+                <thead>
+                    @*header*@
+                    <tr>
+                        @if (IsSelectable)
+                        {
+                            <th>
+                                <CheckBox IsChecked="@(_hasSelectedAllItems)" IsTriState="@(_hasSelectedItems && !_hasSelectedAllItems)" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" IsCheckedChanged="@IsCheckedChangedHandler" />
+                            </th>
+                        }
+                        @ChildContent
+                    </tr>
+                </thead>
 
-        @*table body*@
-        <tbody>
-            @if (@IsVirtualized)
-            {
-                @*virtualization enabled*@
-                @if (ItemsProvider != null)
-                {
-                    <Virtualize TItem="@TItemType"
-                                Context="dataItem"
-                                ItemSize="@ItemSize"
-                                OverscanCount="@OverscanCount"
-                                ItemsProvider="@ItemsProvider">
-                        <ItemContent>
-                            <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
-                        </ItemContent>
-                        <Placeholder>
-                            @PlaceHolderTemplate
-                        </Placeholder>
-                    </Virtualize>
-                }
-                else
-                {
-                    <Virtualize TItem="@TItemType"
-                                Context="dataItem"
-                                ItemSize="@ItemSize"
-                                OverscanCount="@OverscanCount"
-                                Items="@ItemSource">
-                        <ItemContent>
-                            <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
-                        </ItemContent>
-                        <Placeholder>
-                            @PlaceHolderTemplate
-                        </Placeholder>
-                    </Virtualize>
-                }
-            }
-            else
-            {
-                @*virtualization disabled*@
-                @if (ItemSource != null)
-                {
-                    @foreach (var dataItem in ItemSource)
+                @*table body*@
+                <tbody>
+                    @if (@IsVirtualized)
                     {
-                        <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                        @*virtualization enabled*@
+                        @if (ItemsProvider != null)
+                        {
+                            <Virtualize TItem="@TItemType"
+                                        Context="dataItem"
+                                        ItemSize="@ItemSize"
+                                        OverscanCount="@OverscanCount"
+                                        ItemsProvider="@ItemsProvider">
+                                <ItemContent>
+                                    <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                                </ItemContent>
+                                <Placeholder>
+                                    @PlaceHolderTemplate
+                                </Placeholder>
+                            </Virtualize>
+                        }
+                        else
+                        {
+                            <Virtualize TItem="@TItemType"
+                                        Context="dataItem"
+                                        ItemSize="@ItemSize"
+                                        OverscanCount="@OverscanCount"
+                                        Items="@ItemSource">
+                                <ItemContent>
+                                    <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                                </ItemContent>
+                                <Placeholder>
+                                    @PlaceHolderTemplate
+                                </Placeholder>
+                            </Virtualize>
+                        }
                     }
-                }
-            }
-        </tbody>
+                    else
+                    {
+                        @*virtualization disabled*@
+                        @if (ItemSource != null)
+                        {
+                            @foreach (var dataItem in ItemSource)
+                            {
+                                <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                            }
+                        }
+                    }
+                </tbody>
 
-    </table>
+            </table>
+        </div>
+
+    </div>
 
 </CascadingValue>

@@ -9,9 +9,6 @@ namespace Gizmo.Web.Components
         #region CONSTRUCTOR
         public CheckBox()
         {
-            ClassMapper
-                .Add("giz-checkbox")
-                .If("is-disabled", () => IsDisabled);
         }
         #endregion
 
@@ -135,5 +132,11 @@ namespace Gizmo.Web.Components
                 }
             }
         }
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-checkbox")
+                 .If("is-disabled", () => IsDisabled)
+                 .AsString();
+
     }
 }
