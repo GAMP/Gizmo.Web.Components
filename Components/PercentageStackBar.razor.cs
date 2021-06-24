@@ -6,7 +6,11 @@ namespace Gizmo.Web.Components
 {
     public partial class PercentageStackBar
     {
-
+        #region CONSTRUCTOR
+        public PercentageStackBar()
+        {
+        }
+        #endregion
 
         private List<decimal> _values;
         private decimal _total;

@@ -2,5 +2,17 @@
 @inherits CustomDOMComponentBase
 
 <div class="@Class @ClassName">
-    @ChildContent
+    <span class="circle-progress-right">
+        <!--if need to set value 0deg to 180deg then change the value top to bottom circle-->
+        <span class="circle-progress-bar" style="border-color: @Color; transform: rotate(@(_left)deg)"></span>
+    </span>
+    <span class="circle-progress-left">
+        <!--if need to set value 180deg to 360deg then change the value bottom to top circle-->
+        <span class="circle-progress-bar" style="border-color: @Color; transform: rotate(@(_right)deg)"></span>
+    </span>
+    <div class="circle-progress-value">
+        <div>
+            @ChildContent
+        </div>
+    </div>
 </div>
