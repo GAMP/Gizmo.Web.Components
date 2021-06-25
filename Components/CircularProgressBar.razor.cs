@@ -45,7 +45,7 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         protected string ClassName => new ClassMapper()
-                 .Add("circle-progress")
+                 .Add("giz-circle-progress")
                  .AsString();
 
     }

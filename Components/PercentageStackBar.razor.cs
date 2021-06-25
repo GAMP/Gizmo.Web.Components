@@ -48,7 +48,7 @@ namespace Gizmo.Web.Components
         public List<string> Colors { get; set; }
 
         protected string ClassName => new ClassMapper()
-                 .Add("stacked-progress")
+                 .Add("giz-stacked-progress")
                  .AsString();
 
     }

@@ -4041,6 +4041,97 @@ h6,
   align-items: center;
 }
 
+.giz-stacked-progress {
+  height: 1rem;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+}
+
+.giz-stacked-progress .giz-stacked-bar {
+  float: left;
+  width: 0;
+  height: 100%;
+  background-color: #428bca;
+}
+
+.giz-circle-progress {
+  width: 15rem;
+  height: 15rem;
+  position: relative;
+}
+
+.giz-circle-progress::after {
+  content: "";
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: 0.7rem solid #ddd;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.giz-circle-progress > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.giz-circle-progress .giz-circle-progress-bar {
+  width: 100%;
+  height: 100%;
+  border-width: 0.7rem;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.giz-circle-progress--left {
+  left: 0;
+}
+
+.giz-circle-progress--left .giz-circle-progress-bar {
+  left: 100%;
+  border-top-right-radius: 7.5rem;
+  border-bottom-right-radius: 7.5rem;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.giz-circle-progress--right {
+  right: 0;
+}
+
+.giz-circle-progress--right .giz-circle-progress-bar {
+  left: -100%;
+  border-top-left-radius: 7.5rem;
+  border-bottom-left-radius: 7.5rem;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+}
+
+.giz-circle-progress--value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 50%;
+  font-size: 3.6rem;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: 400;
+}
+
 @media (min-width: 600px) {
   .d-sm-none {
     display: none !important;
