@@ -2734,6 +2734,7 @@ h6,
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
+  margin: 4px 0;
 }
 
 .giz-checkbox:checked + label {
@@ -2829,6 +2830,7 @@ h6,
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
+  margin: 5px 0;
 }
 
 .giz-radio:checked + label {
