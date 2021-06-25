@@ -1,9 +1,23 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Extensions;
+using Microsoft.AspNetCore.Components;
+using System.ComponentModel;
 
 namespace Gizmo.Web.Components
 {
     public partial class CircularProgressBar
     {
+        public enum CircularProgressBarSizes
+        {
+            [Description("small")]
+            Small,
+
+            [Description("medium")]
+            Medium,
+
+            [Description("large")]
+            Large
+        }
+
         #region CONSTRUCTOR
         public CircularProgressBar()
         {
@@ -42,10 +56,14 @@ namespace Gizmo.Web.Components
         public string Color { get; set; }
 
         [Parameter]
+        public CircularProgressBarSizes Size { get; set; } = CircularProgressBarSizes.Medium;
+
+        [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-circle-progress")
+                 .Add($"giz-circle-progress--{Size.ToDescriptionString()}")
                  .AsString();
 
     }

@@ -21,20 +21,7 @@
 //== giz circle progress bar ====//
 
 .giz-circle-progress {
-    width: 15rem;
-    height: 15rem;
     position: $position-relative;
-
-    &::after {
-        content: "";
-        width: 90%;
-        height: 90%;
-        border-radius: $rounded-circle;
-        border: 0.7rem solid #ddd;
-        position: $position-absolute;
-        top: 0;
-        left: 0;
-    }
 
     > span {
         width: 50%;
@@ -48,7 +35,6 @@
     .giz-circle-progress-bar {
         width: $width-full;
         height: $height-full;
-        border-width: 0.7rem;
         border-style: solid;
         position: $position-absolute;
         top: 0;
@@ -62,8 +48,6 @@
 
         .giz-circle-progress-bar {
             left: 100%;
-            border-top-right-radius: 7.5rem;
-            border-bottom-right-radius: 7.5rem;
             border-left: 0;
             -webkit-transform-origin: center left;
             transform-origin: center left;
@@ -78,8 +62,6 @@
 
         .giz-circle-progress-bar {
             left: -100%;
-            border-top-left-radius: 7.5rem;
-            border-bottom-left-radius: 7.5rem;
             border-right: 0;
             -webkit-transform-origin: center right;
             transform-origin: center right;
@@ -89,16 +71,129 @@
     &--value {
         display: $display-flex;
         border-radius: $rounded-circle;
-        font-size: 3.6rem;
         align-items: $align-center;
         justify-content: $justify-center;
         height: $height-full;
         font-weight: $font-weight-400;
     }
+
+    &.giz-circle-progress--small {
+        width: 3.2rem;
+        height: 3.2rem;
+
+        &::after {
+            content: "";
+            width: 88%;
+            height: 88%;
+            border-radius: $rounded-circle;
+            position: $position-absolute;
+            top: 0;
+            left: 0;
+            border-width: 0.2rem;
+            border-style: solid;
+            border-color: #ddd;
+        }
+
+        & > .giz-circle-progress--left {
+
+            & > .giz-circle-progress-bar {
+                border-top-right-radius: 1.6rem;
+                border-bottom-right-radius: 1.6rem;
+                border-width: 0.2rem;
+            }
+        }
+
+        & > .giz-circle-progress--right {
+
+            & > .giz-circle-progress-bar {
+                border-top-left-radius: 1.6rem;
+                border-bottom-left-radius: 1.6rem;
+                border-width: 0.2rem;
+            }
+        }
+
+        & > .giz-circle-progress--value {
+            font-size: 1.6rem;
+        }
+    }
+
+    &.giz-circle-progress--medium {
+        width: 5.6rem;
+        height: 5.6rem;
+
+        &::after {
+            content: "";
+            width: 86%;
+            height: 86%;
+            border-radius: $rounded-circle;
+            position: $position-absolute;
+            top: 0;
+            left: 0;
+            border-width: 0.4rem;
+            border-style: solid;
+            border-color: #ddd;
+        }
+
+        & > .giz-circle-progress--left {
+
+            & > .giz-circle-progress-bar {
+                border-top-right-radius: 2.8rem;
+                border-bottom-right-radius: 2.8rem;
+                border-width: 0.4rem;
+            }
+        }
+
+        & > .giz-circle-progress--right {
+
+            & > .giz-circle-progress-bar {
+                border-top-left-radius: 2.8rem;
+                border-bottom-left-radius: 2.8rem;
+                border-width: 0.4rem;
+            }
+        }
+
+        & > .giz-circle-progress--value {
+            font-size: 2.8rem;
+        }
+    }
+
+    &.giz-circle-progress--large {
+        width: 15rem;
+        height: 15rem;
+
+        &::after {
+            content: "";
+            width: 90%;
+            height: 90%;
+            border-radius: $rounded-circle;
+            position: $position-absolute;
+            top: 0;
+            left: 0;
+            border-width: 0.7rem;
+            border-style: solid;
+            border-color: #ddd;
+        }
+
+        & > .giz-circle-progress--left {
+
+            & > .giz-circle-progress-bar {
+                border-top-right-radius: 7.5rem;
+                border-bottom-right-radius: 7.5rem;
+                border-width: 0.7rem;
+            }
+        }
+
+        & > .giz-circle-progress--right {
+
+            & > .giz-circle-progress-bar {
+                border-top-left-radius: 7.5rem;
+                border-bottom-left-radius: 7.5rem;
+                border-width: 0.7rem;
+            }
+        }
+
+        & > .giz-circle-progress--value {
+            font-size: 3.6rem;
+        }
+    }
 }
-
-
-
-
-
-

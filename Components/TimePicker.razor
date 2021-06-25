@@ -1,0 +1,39 @@
+﻿@namespace Gizmo.Web.Components
+@inherits InputBase<TimeSpan?>
+
+<CascadingValue Value="@this" IsFixed="true">
+
+    <div class="@Class @ClassName">
+
+        <GizInput Label="@Label"
+                  IsDisabled="@IsDisabled"
+                  IsFullWidth="@IsFullWidth"
+                  HasOutline="@HasOutline"
+                  HasShadow="@HasShadow"
+                  Size="@Size"
+                  IsValid="@_isValid"
+                  ValidationMessage="@_validationMessage"
+                  RightIcon="fas fa-clock"
+                  @onclick="OnMenuClickHandler">
+
+            <input id="@Id"
+                   type="text"
+                   value="@_text"
+                   readonly="@IsReadOnly"
+                   disabled="@IsDisabled"
+                   style="cursor: pointer;"
+                   @oninput="OnInputHandler"
+                   @onclick="OnMenuClickHandler" />
+
+        </GizInput>
+
+        <Popup Modal="true" IsOpen="@IsOpen" Class="@PopupClassName">
+            Test
+        </Popup>
+    </div>
+
+    <Overlay Visible="@IsOpen"
+             @onclick="OnOverlayClickHandler">
+    </Overlay>
+
+</CascadingValue>
