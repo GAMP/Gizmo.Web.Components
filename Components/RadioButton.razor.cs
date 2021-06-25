@@ -7,8 +7,11 @@ namespace Gizmo.Web.Components
         #region CONSTRUCTOR
         public RadioButton()
         {
-        } 
+        }
         #endregion
+
+        [Parameter]
+        public string Label { get; set; }
 
         /// <summary>
         /// Gets or sets if element is disabled.

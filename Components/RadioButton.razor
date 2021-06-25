@@ -7,4 +7,9 @@
        name="@GroupName"
        id="@Id"
        @ref="Ref" />
-<label for="@Id"></label>
+<label for="@Id">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        @Label
+    }
+</label>
