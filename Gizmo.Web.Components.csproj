@@ -32,6 +32,7 @@
 	  <Content Remove="wwwroot\scss\switch.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\text-input.scss" />
+	  <Content Remove="wwwroot\scss\time-picker.scss" />
 	  <Content Remove="wwwroot\scss\_typography.scss" />
 	  <Content Remove="wwwroot\scss\_variables.scss" />
 	</ItemGroup>
@@ -54,6 +55,7 @@
 		<None Include="wwwroot\scss\avatar.scss" />
 		<None Include="wwwroot\scss\button-group.scss" />
 		<None Include="wwwroot\scss\badge.scss" />
+		<None Include="wwwroot\scss\time-picker.scss" />
 		<None Include="wwwroot\scss\progress-bar.scss" />
 		<None Include="wwwroot\scss\popup.scss" />
 		<None Include="wwwroot\scss\pagination.scss" />

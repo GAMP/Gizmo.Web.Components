@@ -1,0 +1,20 @@
+//=============== gizmo time picker classes ================//
+
+// date picker
+.giz-input-timepicker {
+    position: $position-relative;
+
+    .giz-input-timepicker-dropdown-menu {
+        box-shadow: $elevation-2;
+        border: 1px solid $border-color;
+
+        [light-theme] & {
+            border: 1px solid $gray-dark;
+        }
+    }
+
+    .giz-popup {
+        overflow-x: $overflow-hidden;
+        overflow-y: $overflow-auto;
+    }
+}

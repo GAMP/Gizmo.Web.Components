@@ -28,7 +28,44 @@
         </GizInput>
 
         <Popup Modal="true" IsOpen="@IsOpen" Class="@PopupClassName">
-            Test
+
+            <div class="time-picker">
+                <div class="time-picker-header">
+                    <div class="header-content">
+                        <button><span class="time-picker-title">10</span></button>
+                        <div class="timer"><span class="time-picker-title">:</span></div>
+                        <button><span class="time-picker-title">10</span></button>
+                    </div>
+                    <div class="timer">
+                        <button>AM</button>
+                        <button>PM</button>
+                    </div>
+                </div>
+                <div class="time-picker-content">
+                    <div class="timer shade">
+                        <button> <i class="fas fa-angle-up icon-size"></i></button>
+                        <input type="text" value="10" min="1" max="12" maxlength="2">
+                        <button><i class="fas fa-angle-down icon-size"></i></button>
+                    </div>
+                    <div class="timer">
+                        <span>:</span>
+                    </div>
+                    <div class="timer shade">
+                        <button> <i class="fas fa-angle-up icon-size"></i></button>
+                        <input type="text" value="10" min="0" max="59" maxlength="2">
+                        <button><i class="fas fa-angle-down icon-size"></i></button>
+                    </div>
+                    <div class="timer-action timer">
+                        <button>OK</button>
+                        <button>CANCEL</button>
+                    </div>
+                </div>
+                <div class="time-picker-footer">
+                    <button class="active">12H Format</button>
+                    <button>24H Format</button>
+                </div>
+            </div>
+
         </Popup>
     </div>
 
