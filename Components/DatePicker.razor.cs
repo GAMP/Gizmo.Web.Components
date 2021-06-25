@@ -99,6 +99,13 @@ namespace Gizmo.Web.Components
             //TODO: TRY PARSE
             _text = (string)args.Value;
 
+            DateTime date;
+
+            if (DateTime.TryParse(_text, out date))
+            {
+                Value = date;
+            }
+
             StateHasChanged();
         }
 

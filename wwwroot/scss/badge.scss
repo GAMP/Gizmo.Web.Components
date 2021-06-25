@@ -1,17 +1,19 @@
 //=============== gizmo badge classes ================//
 
 .giz-badge {
+    display: inline-block;
+
     .giz-badge__wrapper {
         .giz-badge__badge {
-            border-radius: 10px;
+            border-radius: 1rem;
             white-space: nowrap;
-            padding: 0px 9px;
+            padding: 0 1rem;
         }
     }
 
     &.corner {
         position: relative;
-        margin-right: 20px;
+        /*margin-right: 20px;*/
 
         .giz-badge__wrapper {
             position: absolute;
@@ -21,10 +23,10 @@
 
             .giz-badge__badge {
                 padding: unset;
-                height: 20px;
-                min-width: 20px;
+                height: 2.0rem;
+                min-width: 2.0rem;
                 position: absolute;
-                inset: auto auto calc(100% - 5px) calc(100% - 5px);
+                inset: auto auto calc(100% - 0.5rem) calc(100% - 0.5rem);
             }
         }
 
@@ -42,9 +44,9 @@
             .giz-badge__badge {
                 display: inline-block;
                 line-height: 1;
-                height: 10px;
-                min-width: 10px;
-                border-radius: 5px;
+                height: 1rem;
+                min-width: 1rem;
+                border-radius: 0.5rem;
                 padding: 0;
             }
         }

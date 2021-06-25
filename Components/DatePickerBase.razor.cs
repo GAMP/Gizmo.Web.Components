@@ -20,6 +20,7 @@ namespace Gizmo.Web.Components
         private int _whiteSpaces = 0;
         private DateTime? _value;
         private bool _showMonthPicker;
+        private bool _showYearPicker;
         #endregion
 
         #region PROPERTIES
@@ -88,7 +89,8 @@ namespace Gizmo.Web.Components
 
         private void OnClickYearHandler(MouseEventArgs args)
         {
-            //TODO: Switch to year picker.
+            _showMonthPicker = false;
+            _showYearPicker = true;
         }
 
         private void OnClickMonthHandler(MouseEventArgs args)
@@ -115,6 +117,13 @@ namespace Gizmo.Web.Components
         {
             CurrentVisibleMonth = new DateTime(CurrentVisibleMonth.Year, month, 1);
             _showMonthPicker = false;
+        }
+
+        private void OnClickYear(int year)
+        {
+            CurrentVisibleMonth = new DateTime(year, CurrentVisibleMonth.Month, 1);
+            _showYearPicker = false;
+            _showMonthPicker = true;
         }
 
         #endregion

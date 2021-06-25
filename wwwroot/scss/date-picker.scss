@@ -31,6 +31,7 @@
 
 // giz calendar (static/dialog)
 .giz-calendar {
+    background: $white-color;
     border-radius: $rounded;
     max-width: 32rem;
     min-height: 1.6rem;
@@ -74,7 +75,7 @@
 
     .giz-calendar-content {
         background: $white-color;
-        padding: 0.8rem 1rem;
+        /*padding: 0.8rem 1rem;*/
 
         .active {
             background-color: $primary-color;
@@ -147,6 +148,20 @@
                 width: auto;
                 border-radius: $rounded;
                 padding: 0.3rem 2.5rem;
+            }
+        }
+
+        .giz-calendar-year {
+            height: 30rem;
+            overflow: auto;
+            font-size: $font-16;
+
+            .giz-calendar-year-count {
+                text-align: center;
+
+                &:hover:not(.active) {
+                    background: $light-color;
+                }
             }
         }
 
