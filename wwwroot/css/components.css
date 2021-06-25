@@ -3532,15 +3532,19 @@ h6,
   width: max-content;
 }
 
+.giz-badge {
+  display: inline-block;
+}
+
 .giz-badge .giz-badge__wrapper .giz-badge__badge {
-  border-radius: 10px;
+  border-radius: 1rem;
   white-space: nowrap;
-  padding: 0px 9px;
+  padding: 0 1rem;
 }
 
 .giz-badge.corner {
   position: relative;
-  margin-right: 20px;
+  /*margin-right: 20px;*/
 }
 
 .giz-badge.corner .giz-badge__wrapper {
@@ -3552,10 +3556,10 @@ h6,
 
 .giz-badge.corner .giz-badge__wrapper .giz-badge__badge {
   padding: unset;
-  height: 20px;
-  min-width: 20px;
+  height: 2.0rem;
+  min-width: 2.0rem;
   position: absolute;
-  inset: auto auto calc(100% - 5px) calc(100% - 5px);
+  inset: auto auto calc(100% - 0.5rem) calc(100% - 0.5rem);
 }
 
 .giz-badge.corner.small .giz-badge__wrapper .giz-badge__badge {
@@ -3565,9 +3569,9 @@ h6,
 .giz-badge.small .giz-badge__wrapper .giz-badge__badge {
   display: inline-block;
   line-height: 1;
-  height: 10px;
-  min-width: 10px;
-  border-radius: 5px;
+  height: 1rem;
+  min-width: 1rem;
+  border-radius: 0.5rem;
   padding: 0;
 }
 
@@ -3674,6 +3678,7 @@ h6,
 }
 
 .giz-calendar {
+  background: #FFFFFF;
   border-radius: 0.4rem;
   max-width: 32rem;
   min-height: 1.6rem;
@@ -3719,7 +3724,7 @@ h6,
 
 .giz-calendar .giz-calendar-content {
   background: #FFFFFF;
-  padding: 0.8rem 1rem;
+  /*padding: 0.8rem 1rem;*/
 }
 
 .giz-calendar .giz-calendar-content .active {
@@ -3802,6 +3807,20 @@ h6,
   width: auto;
   border-radius: 0.4rem;
   padding: 0.3rem 2.5rem;
+}
+
+.giz-calendar .giz-calendar-content .giz-calendar-year {
+  height: 30rem;
+  overflow: auto;
+  font-size: 1.6rem;
+}
+
+.giz-calendar .giz-calendar-content .giz-calendar-year .giz-calendar-year-count {
+  text-align: center;
+}
+
+.giz-calendar .giz-calendar-content .giz-calendar-year .giz-calendar-year-count:hover:not(.active) {
+  background: #eff0f2;
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-action {
@@ -4058,20 +4077,7 @@ h6,
 }
 
 .giz-circle-progress {
-  width: 15rem;
-  height: 15rem;
   position: relative;
-}
-
-.giz-circle-progress::after {
-  content: "";
-  width: 90%;
-  height: 90%;
-  border-radius: 50%;
-  border: 0.7rem solid #ddd;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .giz-circle-progress > span {
@@ -4086,7 +4092,6 @@ h6,
 .giz-circle-progress .giz-circle-progress-bar {
   width: 100%;
   height: 100%;
-  border-width: 0.7rem;
   border-style: solid;
   position: absolute;
   top: 0;
@@ -4098,8 +4103,6 @@ h6,
 
 .giz-circle-progress--left .giz-circle-progress-bar {
   left: 100%;
-  border-top-right-radius: 7.5rem;
-  border-bottom-right-radius: 7.5rem;
   border-left: 0;
   -webkit-transform-origin: center left;
   transform-origin: center left;
@@ -4111,8 +4114,6 @@ h6,
 
 .giz-circle-progress--right .giz-circle-progress-bar {
   left: -100%;
-  border-top-left-radius: 7.5rem;
-  border-bottom-left-radius: 7.5rem;
   border-right: 0;
   -webkit-transform-origin: center right;
   transform-origin: center right;
@@ -4123,7 +4124,6 @@ h6,
   display: -ms-flexbox;
   display: flex;
   border-radius: 50%;
-  font-size: 3.6rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -4132,6 +4132,279 @@ h6,
   justify-content: center;
   height: 100%;
   font-weight: 400;
+}
+
+.giz-circle-progress.giz-circle-progress--small {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.giz-circle-progress.giz-circle-progress--small::after {
+  content: "";
+  width: 88%;
+  height: 88%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-width: 0.2rem;
+  border-style: solid;
+  border-color: #ddd;
+}
+
+.giz-circle-progress.giz-circle-progress--small > .giz-circle-progress--left > .giz-circle-progress-bar {
+  border-top-right-radius: 1.6rem;
+  border-bottom-right-radius: 1.6rem;
+  border-width: 0.2rem;
+}
+
+.giz-circle-progress.giz-circle-progress--small > .giz-circle-progress--right > .giz-circle-progress-bar {
+  border-top-left-radius: 1.6rem;
+  border-bottom-left-radius: 1.6rem;
+  border-width: 0.2rem;
+}
+
+.giz-circle-progress.giz-circle-progress--small > .giz-circle-progress--value {
+  font-size: 1.6rem;
+}
+
+.giz-circle-progress.giz-circle-progress--medium {
+  width: 5.6rem;
+  height: 5.6rem;
+}
+
+.giz-circle-progress.giz-circle-progress--medium::after {
+  content: "";
+  width: 86%;
+  height: 86%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: #ddd;
+}
+
+.giz-circle-progress.giz-circle-progress--medium > .giz-circle-progress--left > .giz-circle-progress-bar {
+  border-top-right-radius: 2.8rem;
+  border-bottom-right-radius: 2.8rem;
+  border-width: 0.4rem;
+}
+
+.giz-circle-progress.giz-circle-progress--medium > .giz-circle-progress--right > .giz-circle-progress-bar {
+  border-top-left-radius: 2.8rem;
+  border-bottom-left-radius: 2.8rem;
+  border-width: 0.4rem;
+}
+
+.giz-circle-progress.giz-circle-progress--medium > .giz-circle-progress--value {
+  font-size: 2.8rem;
+}
+
+.giz-circle-progress.giz-circle-progress--large {
+  width: 15rem;
+  height: 15rem;
+}
+
+.giz-circle-progress.giz-circle-progress--large::after {
+  content: "";
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-width: 0.7rem;
+  border-style: solid;
+  border-color: #ddd;
+}
+
+.giz-circle-progress.giz-circle-progress--large > .giz-circle-progress--left > .giz-circle-progress-bar {
+  border-top-right-radius: 7.5rem;
+  border-bottom-right-radius: 7.5rem;
+  border-width: 0.7rem;
+}
+
+.giz-circle-progress.giz-circle-progress--large > .giz-circle-progress--right > .giz-circle-progress-bar {
+  border-top-left-radius: 7.5rem;
+  border-bottom-left-radius: 7.5rem;
+  border-width: 0.7rem;
+}
+
+.giz-circle-progress.giz-circle-progress--large > .giz-circle-progress--value {
+  font-size: 3.6rem;
+}
+
+.giz-input-timepicker {
+  position: relative;
+}
+
+.giz-input-timepicker .giz-input-timepicker-dropdown-menu {
+  -webkit-box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.1);
+  border: 1px solid #1f2637;
+}
+
+[light-theme] .giz-input-timepicker .giz-input-timepicker-dropdown-menu {
+  border: 1px solid #E7E9EE;
+}
+
+.giz-input-timepicker .giz-popup {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.time-picker {
+  border-radius: 4px;
+  max-width: 28rem;
+  min-height: 1.6rem;
+  -webkit-box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.time-picker .time-picker-header {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: blue;
+  padding: 0.8rem 2.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.time-picker .time-picker-header button {
+  color: #fff;
+}
+
+.time-picker .time-picker-header .header-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.time-picker .timer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.time-picker .timer .icon-size {
+  font-size: 16px;
+}
+
+.time-picker .timer input {
+  width: 100%;
+  text-align: center;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px;
+}
+
+.time-picker .timer input:focus {
+  outline: none;
+  border: none;
+}
+
+.time-picker button {
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  background-color: transparent;
+  padding: 0.2rem 0.5rem;
+}
+
+.time-picker button span {
+  line-height: 1.75;
+  letter-spacing: -0.08rem;
+  font-size: 5.8rem;
+}
+
+.time-picker .time-picker-content {
+  padding: 1.2rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: white;
+}
+
+.time-picker .time-picker-content .shade button {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.time-picker .time-picker-content .shade button:hover {
+  background-color: #0000000d;
+}
+
+.time-picker .timer-action button {
+  padding: 0.6rem 0.9rem;
+  color: blue;
+  font-size: 14px;
+}
+
+.time-picker .timer-action button:hover {
+  background-color: blue;
+  color: white;
+}
+
+.time-picker .time-picker-header .timer button {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.time-picker .time-picker-header .time-picker-title {
+  font-size: 5.8rem;
+  color: white;
+}
+
+.time-picker .time-picker-footer {
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+.time-picker .time-picker-footer button {
+  padding: 1.2rem 1.5rem;
+  color: blue;
+  font-size: 14px;
+}
+
+.time-picker .time-picker-footer button:hover {
+  background-color: blue;
+  color: white;
+}
+
+.time-picker .time-picker-footer .active {
+  background-color: blue !important;
+  color: white !important;
 }
 
 @media (min-width: 600px) {

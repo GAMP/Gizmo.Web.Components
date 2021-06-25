@@ -1,6 +1,6 @@
 //=============== gizmo time picker classes ================//
 
-// date picker
+// time picker
 .giz-input-timepicker {
     position: $position-relative;
 
@@ -16,5 +16,146 @@
     .giz-popup {
         overflow-x: $overflow-hidden;
         overflow-y: $overflow-auto;
+    }
+}
+
+// timer picker 
+.time-picker {
+    border-radius: 4px;
+    max-width: 28rem;
+    min-height: 1.6rem;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+    .time-picker-header {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        background-color: blue;
+        padding: 0.8rem 2.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            color: #fff;
+        }
+
+        .header-content {
+            display: flex;
+        }
+    }
+
+    .timer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+
+        .icon-size {
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            text-align: center;
+            border: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            border: none;
+        }
+    }
+
+    button {
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+        background-color: transparent;
+        padding: 0.2rem 0.5rem;
+
+        span {
+            line-height: 1.75;
+            letter-spacing: -0.08rem;
+            font-size: 5.8rem;
+        }
+    }
+
+    .time-picker-content {
+        padding: 1.2rem 1rem;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background: white;
+
+        .shade {
+
+            button {
+                height: 3.5rem;
+                width: 3.5rem;
+                font-size: 1.4rem;
+                display: inline-block;
+                border-radius: 50%;
+
+                &:hover {
+                    background-color: #0000000d;
+                }
+            }
+        }
+    }
+
+    .timer-action {
+
+        button {
+            padding: 0.6rem 0.9rem;
+            color: blue;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: blue;
+            color: white;
+        }
+    }
+
+    .time-picker-header {
+
+        .timer {
+
+            button {
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
+        }
+
+        .time-picker-title {
+            font-size: 5.8rem;
+            color: white;
+        }
+    }
+
+    .time-picker-footer {
+        border-top: 1px solid #ddd;
+        background: white;
+
+        button {
+            padding: 1.2rem 1.5rem;
+            color: blue;
+            font-size: 14px;
+
+            &:hover {
+                background-color: blue;
+                color: white;
+            }
+        }
+
+        .active {
+            background-color: blue !important;
+            color: white !important;
+        }
     }
 }
