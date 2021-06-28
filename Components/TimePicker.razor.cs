@@ -6,7 +6,7 @@ using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
-    public partial class TimePicker : InputBase<TimeSpan?>
+    public partial class TimePicker : InputBase<DateTime?>
     {
         #region CONSTRUCTOR
         public TimePicker()
@@ -15,14 +15,17 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region MEMBERS
-        private TimeSpan? _value;
+        private DateTime? _value;
+        private int _hours;
+        private int _minutes;
+        private bool _am = true;
         private string _text;
         #endregion
 
         #region PROPERTIES
 
         [Parameter]
-        public TimeSpan? Value
+        public DateTime? Value
         {
             get
             {
@@ -35,7 +38,7 @@ namespace Gizmo.Web.Components
                 //Update the component's text.
                 if (_value != null)
                 {
-                    _text = _value.ToString();
+                    _text = _value.Value.ToString("hh:mm tt");
                 }
                 else
                 {
@@ -74,7 +77,7 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        private void TimePickerValueChanged(TimeSpan? value)
+        private void TimePickerValueChanged(DateTime? value)
         {
             IsOpen = false;
             Value = value;
@@ -83,6 +86,52 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region EVENTS
+
+        private void OnClickIncreaseHourHandler(MouseEventArgs args)
+        {
+            if (_hours < 11)
+                _hours += 1;
+            else
+                _hours = 0;
+
+            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+        }
+
+        private void OnClickDecreaseHourHandler(MouseEventArgs args)
+        {
+            if (_hours > 0)
+                _hours -= 1;
+            else
+                _hours = 11;
+
+            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+        }
+
+        private void OnClickIncreaseMinuteHandler(MouseEventArgs args)
+        {
+            if (_minutes < 59)
+                _minutes += 1;
+            else
+                _minutes = 0;
+
+            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+        }
+
+        private void OnClickDecreaseMinuteHandler(MouseEventArgs args)
+        {
+            if (_minutes > 0)
+                _minutes -= 1;
+            else
+                _minutes = 59;
+
+            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+        }
+
+        private void OnClickSwitchAMPMHandler(MouseEventArgs args)
+        {
+            _am = !_am;
+            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+        }
 
         public void OnInputHandler(ChangeEventArgs args)
         {

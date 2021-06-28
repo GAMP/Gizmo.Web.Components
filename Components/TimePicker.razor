@@ -1,5 +1,5 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits InputBase<TimeSpan?>
+@inherits InputBase<DateTime?>
 
 <CascadingValue Value="@this" IsFixed="true">
 
@@ -31,36 +31,42 @@
 
             <div class="giz-time-picker">
                 <div class="giz-time-picker-header">
-                    <button><span class="giz-time-picker-header--title">10</span></button>
+                    <button><span class="giz-time-picker-header--title">@(_hours.ToString().PadLeft(2, '0') ?? "00")</span></button>
                     <div><span class="giz-time-picker-header--title">:</span></div>
-                    <button><span class="giz-time-picker-header--title">10</span></button>
+                    <button><span class="giz-time-picker-header--title">@(_minutes.ToString().PadLeft(2, '0') ?? "00")</span></button>
                     <div class="giz-time-picker-header--ampm">
-                        <button><span class="giz-time-picker-header--label">AM</span></button>
-                        <button><span class="giz-time-picker-header--label">PM</span></button>
+                        <button><span class="giz-time-picker-header--label">@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))</span></button>
                     </div>
                 </div>
                 <div class="giz-time-picker-content">
                     <div class="giz-time-picker-content--timer">
-                        <button> <i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
-                        <input type="text" value="10" min="1" max="12" maxlength="2">
-                        <button> <i class="fas fa-angle-down giz-time-picker-content--icon-size"></i> </button>
+                        <button @onclick="OnClickIncreaseHourHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
+                        <input type="text" value="@_hours" min="0" max="11" maxlength="2">
+                        <button @onclick="OnClickDecreaseHourHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
                     </div>
                     <div>
                         <span class="giz-time-picker-content--separator">:</span>
                     </div>
                     <div class="giz-time-picker-content--timer">
-                        <button> <i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
-                        <input type="text" value="10" min="0" max="59" maxlength="2">
-                        <button> <i class="fas fa-angle-down giz-time-picker-content--icon-size"></i> </button>
+                        <button @onclick="OnClickIncreaseMinuteHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
+                        <input type="text" value="@_minutes" min="0" max="59" maxlength="2">
+                        <button @onclick="OnClickDecreaseMinuteHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
                     </div>
-                    <div class="giz-time-picker-content--timer-action">
+                    <div class="giz-time-picker-content--timer">
+                        <button @onclick="OnClickSwitchAMPMHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
+                        <input type="text" value="@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))" readonly maxlength="2">
+                        <button @onclick="OnClickSwitchAMPMHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
+                    </div>
+                    @*<div class="giz-time-picker-content--timer-action">
                         <button>OK</button>
                         <button>CANCEL</button>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="giz-time-picker-footer">
-                    <button class="active">12H Format</button>
-                    <button>24H Format</button>
+                    @*<button class="active">12H Format</button>
+                    <button>24H Format</button>*@
+                    <div><button>OK</button></div>
+                    <div><button>CANCEL</button></div>
                 </div>
             </div>
 
