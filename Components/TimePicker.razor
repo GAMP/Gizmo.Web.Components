@@ -29,36 +29,36 @@
 
         <Popup Modal="true" IsOpen="@IsOpen" Class="@PopupClassName">
 
-            <div class="time-picker">
-                <div class="time-picker-header">
-                    <button><span class="time-picker-title">10</span></button>
-                    <div><span class="time-picker-title">:</span></div>
-                    <button><span class="time-picker-title">10</span></button>
-                    <div class="time-picker-ampm">
-                        <button><span class="time-picker-label">AM</span></button>
-                        <button><span class="time-picker-label">PM</span></button>
+            <div class="giz-time-picker">
+                <div class="giz-time-picker-header">
+                    <button><span class="giz-time-picker-header--title">10</span></button>
+                    <div><span class="giz-time-picker-header--title">:</span></div>
+                    <button><span class="giz-time-picker-header--title">10</span></button>
+                    <div class="giz-time-picker-header--ampm">
+                        <button><span class="giz-time-picker-header--label">AM</span></button>
+                        <button><span class="giz-time-picker-header--label">PM</span></button>
                     </div>
                 </div>
-                <div class="time-picker-content">
-                    <div class="time-picker-timer">
-                        <button> <i class="fas fa-angle-up icon-size"></i></button>
+                <div class="giz-time-picker-content">
+                    <div class="giz-time-picker-content--timer">
+                        <button> <i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
                         <input type="text" value="10" min="1" max="12" maxlength="2">
-                        <button>    <i class="fas fa-angle-down icon-size"></i> </button>
+                        <button> <i class="fas fa-angle-down giz-time-picker-content--icon-size"></i> </button>
                     </div>
                     <div>
-                        <span class="time-picker-separator">:</span>
+                        <span class="giz-time-picker-content--separator">:</span>
                     </div>
-                    <div class="time-picker-timer">
-                        <button> <i class="fas fa-angle-up icon-size"></i></button>
+                    <div class="giz-time-picker-content--timer">
+                        <button> <i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
                         <input type="text" value="10" min="0" max="59" maxlength="2">
-                        <button><i class="fas fa-angle-down icon-size"></i> </button>
+                        <button> <i class="fas fa-angle-down giz-time-picker-content--icon-size"></i> </button>
                     </div>
-                    <div class="timer-action">
+                    <div class="giz-time-picker-content--timer-action">
                         <button>OK</button>
                         <button>CANCEL</button>
                     </div>
                 </div>
-                <div class="time-picker-footer">
+                <div class="giz-time-picker-footer">
                     <button class="active">12H Format</button>
                     <button>24H Format</button>
                 </div>
