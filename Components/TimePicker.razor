@@ -31,31 +31,29 @@
 
             <div class="time-picker">
                 <div class="time-picker-header">
-                    <div class="header-content">
-                        <button><span class="time-picker-title">10</span></button>
-                        <div class="timer"><span class="time-picker-title">:</span></div>
-                        <button><span class="time-picker-title">10</span></button>
-                    </div>
-                    <div class="timer">
-                        <button>AM</button>
-                        <button>PM</button>
+                    <button><span class="time-picker-title">10</span></button>
+                    <div><span class="time-picker-title">:</span></div>
+                    <button><span class="time-picker-title">10</span></button>
+                    <div class="time-picker-ampm">
+                        <button><span class="time-picker-label">AM</span></button>
+                        <button><span class="time-picker-label">PM</span></button>
                     </div>
                 </div>
                 <div class="time-picker-content">
-                    <div class="timer shade">
+                    <div class="time-picker-timer">
                         <button> <i class="fas fa-angle-up icon-size"></i></button>
                         <input type="text" value="10" min="1" max="12" maxlength="2">
-                        <button><i class="fas fa-angle-down icon-size"></i></button>
+                        <button>    <i class="fas fa-angle-down icon-size"></i> </button>
                     </div>
-                    <div class="timer">
-                        <span>:</span>
+                    <div>
+                        <span class="time-picker-separator">:</span>
                     </div>
-                    <div class="timer shade">
+                    <div class="time-picker-timer">
                         <button> <i class="fas fa-angle-up icon-size"></i></button>
                         <input type="text" value="10" min="0" max="59" maxlength="2">
-                        <button><i class="fas fa-angle-down icon-size"></i></button>
+                        <button><i class="fas fa-angle-down icon-size"></i> </button>
                     </div>
-                    <div class="timer-action timer">
+                    <div class="timer-action">
                         <button>OK</button>
                         <button>CANCEL</button>
                     </div>
