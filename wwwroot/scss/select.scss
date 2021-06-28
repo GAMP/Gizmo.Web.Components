@@ -12,6 +12,12 @@
         box-shadow: $elevation-2;
         border: 1px solid $border-color;
 
+        // demo for fixed position in center
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
         [light-theme] & {
             border: 1px solid $gray-dark;
         }
