@@ -9,7 +9,7 @@
     
     @if (!string.IsNullOrEmpty(Icon))
     {
-        <Icon Source="@Icon" />
+        <Icon Source="@Icon" Class="giz-list-item-icon" />
     }
 
     @ChildContent
@@ -18,11 +18,11 @@
     {
         @if (IsExpanded)
         {
-            <Icon Source="fas fa-chevron-up" />
+            <Icon Source="fas fa-chevron-up" Class="giz-nested-list-expand-icon" />
         }
         else
         {
-            <Icon Source="fas fa-chevron-down" />
+            <Icon Source="fas fa-chevron-down" Class="giz-nested-list-expand-icon" />
         }
     }
 </div>

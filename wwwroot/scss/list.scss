@@ -6,7 +6,7 @@
     border-radius: $rounded;
     position: $position-relative;
     min-width: 15rem;
-  
+
     [light-theme] & {
         background-color: $white-color;
     }
@@ -28,6 +28,10 @@
             color: rgb(230, 230, 230) !important;
             cursor: default !important;
             pointer-events: none !important;
+        }
+
+        .giz-list-item-icon {
+            margin-right: $spacer-8;
         }
     }
 
@@ -70,3 +74,6 @@
     }
 }
 
+.giz-nested-list-expand-icon {
+    float: right;
+}

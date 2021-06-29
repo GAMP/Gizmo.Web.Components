@@ -3,7 +3,9 @@
 
 @typeparam TValue
 
-<ListItem @ref="ListItem" @onclick="OnListItemClickHandler">
+<ListItem @key="Value"
+          @ref="ListItem"
+          @onclick="OnListItemClickHandler">
     @if (ChildContent != null)
     {
         @ChildContent
