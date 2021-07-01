@@ -12,6 +12,8 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region PROPERTIES
+
         [Parameter]
         public RenderFragment DialogHeader { get; set; }
 
@@ -30,6 +32,10 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsModal { get; set; }
 
+        #endregion
+
+        #region EVENTS
+
         protected Task OnClickDialogHandler(MouseEventArgs args)
         {
             if (IsModal)
@@ -39,15 +45,22 @@ namespace Gizmo.Web.Components
             return IsOpenChanged.InvokeAsync(IsOpen);
         }
 
-        protected Task OnClickCloseButtonHandler(MouseEventArgs args)
+        protected Task OnClickButtonCloseHandler(MouseEventArgs args)
         {
             IsOpen = false;
             return IsOpenChanged.InvokeAsync(IsOpen);
         }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("g-dialog")
                  .If("g-dialog-open", () => IsOpen)
                  .AsString();
+
+        #endregion
+
     }
 }

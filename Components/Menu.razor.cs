@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using static Gizmo.Web.Components.Button;
-using static Gizmo.Web.Components.List;
+using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -12,6 +11,8 @@ namespace Gizmo.Web.Components
         {
         }
         #endregion
+
+        #region PROPERTIES
 
         [Parameter]
         public string Label { get; set; }
@@ -35,10 +36,42 @@ namespace Gizmo.Web.Components
         public RenderFragment Activator { get; set; }
 
         [Parameter]
-        public ListDirection Direction { get; set; } = ListDirection.Right;
+        public ListDirections Direction { get; set; } = ListDirections.Right;
 
         [Parameter]
-        public ButtonSize Size { get; set; } = ButtonSize.Medium;
+        public ButtonSizes Size { get; set; } = ButtonSizes.Medium;
+
+        #endregion
+
+        #region EVENTS
+
+        protected Task OnClickMenuHandler(MouseEventArgs args)
+        {
+            if (!IsDisabled)
+                IsOpen = true;
+
+            return Task.CompletedTask;
+        }
+
+        protected Task OnClickOverlayHandler(MouseEventArgs args)
+        {
+            IsOpen = false;
+
+            return Task.CompletedTask;
+        }
+
+        #endregion
+
+        #region METHODS
+
+        internal void Close()
+        {
+            IsOpen = false;
+        }
+
+        #endregion
+
+        #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-menu")
@@ -46,21 +79,10 @@ namespace Gizmo.Web.Components
 
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-menu-dropdown")
-                 .Add("giz-popup-bottom")                
+                 .Add("giz-popup-bottom")
                  .AsString();
 
-        protected void OnClickMenuHandler(MouseEventArgs args)
-        {
-            if (IsDisabled)
-                return;
-
-            IsOpen = true;
-        }
-
-        protected void OnClickOverlayHandler(MouseEventArgs args)
-        {
-            IsOpen = false;
-        }
+        #endregion
 
     }
 }

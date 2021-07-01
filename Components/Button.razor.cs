@@ -8,22 +8,16 @@ namespace Gizmo.Web.Components
 {
     public partial class Button : CustomDOMComponentBase
     {
-        public enum ButtonVariants
-        {
-            Fill,
-            Outline,
-            Text,
-            Icon
-        }
-
         #region CONSTRUCTOR
         public Button()
         {
         }
         #endregion
 
-        #region PRIVATE FIELDS
+        #region FIELDS
+
         private bool _selected;
+
         #endregion
 
         #region PROPERTIES
@@ -40,7 +34,7 @@ namespace Gizmo.Web.Components
         /// Gets or sets button size.
         /// </summary>
         [Parameter()]
-        public ButtonSize Size { get; set; } = ButtonSize.Medium;
+        public ButtonSizes Size { get; set; } = ButtonSizes.Medium;
 
         /// <summary>
         /// Gets or sets element name.
@@ -94,9 +88,9 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        #region DOM EVENT HANDLERS
+        #region EVENTS
 
-        protected Task OnClickHandler(MouseEventArgs args)
+        protected Task OnClickButtonHandler(MouseEventArgs args)
         {
             if (ButtonGroup != null)
             {
@@ -108,23 +102,7 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        protected string ButtonIconLeft => new ClassMapper()
-                .If("giz-button-icon-left", () => ChildContent != null || !string.IsNullOrEmpty(RightIcon))
-                .AsString();
-
-        protected string ButtonIconRight => new ClassMapper()
-                .Add("giz-button-icon-right")
-                .AsString();
-
-        protected string ClassName => new ClassMapper()
-                 .Add("giz-button")
-                 .Add($"giz-button--{Size.ToDescriptionString()}")
-                 .If("giz-button--secondary-outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
-                 .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
-                 .If("giz-button-full-width", () => IsFullWidth)
-                 .If("disabled", () => IsDisabled)
-                 .If("selected", () => _selected)
-                 .AsString();
+        #region OVERRIDES
 
         protected override void OnInitialized()
         {
@@ -155,6 +133,10 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
+        #endregion
+
+        #region METHODS
+
         internal void SetSelected(bool selected)
         {
             if (IsDisabled)
@@ -173,5 +155,30 @@ namespace Gizmo.Web.Components
         {
             return _selected;
         }
+
+        #endregion
+
+        #region CLASSMAPPERS
+
+        protected string ButtonIconLeft => new ClassMapper()
+                .If("giz-button-icon-left", () => ChildContent != null || !string.IsNullOrEmpty(RightIcon))
+                .AsString();
+
+        protected string ButtonIconRight => new ClassMapper()
+                .Add("giz-button-icon-right")
+                .AsString();
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-button")
+                 .Add($"giz-button--{Size.ToDescriptionString()}")
+                 .If("giz-button--secondary-outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
+                 .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
+                 .If("giz-button-full-width", () => IsFullWidth)
+                 .If("disabled", () => IsDisabled)
+                 .If("selected", () => _selected)
+                 .AsString();
+
+        #endregion
+
     }
 }

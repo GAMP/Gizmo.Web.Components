@@ -1,29 +1,11 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
-using System.ComponentModel;
 
 namespace Gizmo.Web.Components
 {
     public partial class Avatar : CustomDOMComponentBase
     {
-        public enum AvatarSizes
-        {
-            [Description("small")]
-            Small,
-
-            [Description("medium")]
-            Medium,
-
-            [Description("large")]
-            Large
-        }
-
-        public enum AvatarVariants
-        {
-            None,
-            Rounded,
-            Circle
-        }
+        #region PROPERTIES
 
         [Parameter]
         public string Image { get; set; }
@@ -34,12 +16,18 @@ namespace Gizmo.Web.Components
         [Parameter]
         public AvatarVariants Variant { get; set; } = AvatarVariants.None;
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-avatar")
                  .Add($"giz-avatar--{Size.ToDescriptionString()}")
                  .If($"giz-avatar--rounded", () => Variant == AvatarVariants.Rounded)
                  .If($"giz-avatar--circle", () => Variant == AvatarVariants.Circle)
                  .AsString();
+        
+        #endregion
 
     }
 }

@@ -12,19 +12,19 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
 
         private bool _isSelected;
 
         #endregion
+
+        #region PROPERTIES
 
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
 
         [CascadingParameter]
         protected List Parent { get; set; }
-
-        #region PROPERTIES
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -43,10 +43,10 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsExpanded { get; set; }
-        
+
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
-               
+
         #endregion
 
         #region EVENTS
@@ -75,6 +75,8 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region METHODS
+
         internal void SetSelected(bool selected)
         {
             if (IsDisabled)
@@ -88,10 +90,9 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
-        protected string ClassName => new ClassMapper()
-                 .Add("giz-list-item")                
-                 .If("giz-list-item-disabled", () => IsDisabled)
-                 .If("giz-list-item-selected", () => _isSelected).AsString();
+        #endregion
+
+        #region OVERRIDE
 
         protected override void OnInitialized()
         {
@@ -114,5 +115,17 @@ namespace Gizmo.Web.Components
 
             base.Dispose();
         }
+
+        #endregion
+
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-list-item")
+                 .If("giz-list-item-disabled", () => IsDisabled)
+                 .If("giz-list-item-selected", () => _isSelected).AsString();
+
+        #endregion
+
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,8 +32,6 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region PROPERTIES
-
-        #region PUBLIC
 
         [Parameter]
         public DataGridVariants Variant { get; set; } = DataGridVariants.Default;
@@ -178,7 +175,7 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        #endregion
+        #region OVERRIDE
 
         protected override async Task OnFirstAfterRenderAsync()
         {
@@ -189,7 +186,11 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected void IsCheckedChangedHandler(bool value)
+        #endregion
+
+        #region EVENTS
+
+        protected Task IsCheckedChangedHandler(bool value)
         {
             if (_hasSelectedAllItems)
             {
@@ -216,9 +217,18 @@ namespace Gizmo.Web.Components
                 _hasSelectedItems = true;
                 _hasSelectedAllItems = true;
             }
+
+            return Task.CompletedTask;
         }
 
-        #region INTERNAL
+        internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
+        {
+            return ValueTask.CompletedTask;
+        }
+
+        #endregion
+
+        #region METHODS
 
         internal void AddColumn(DataGridColumn<TItemType> column)
         {
@@ -358,12 +368,9 @@ namespace Gizmo.Web.Components
             await SelectedItemsChanged.InvokeAsync();
         }
 
-        internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
-        {
-            return ValueTask.CompletedTask;
-        }
-
         #endregion
+
+        #region CLASSMAPPERS
 
         protected string StyleValue => new StyleMapper()
                  .If($"max-height: 100%", () => HasStickyHeader)
@@ -376,6 +383,8 @@ namespace Gizmo.Web.Components
         protected string TableClassName => new ClassMapper()
                  .If("table", () => Variant == DataGridVariants.Default)
                  .AsString();
+
+        #endregion
 
     }
 }

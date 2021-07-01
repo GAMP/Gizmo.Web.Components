@@ -13,8 +13,13 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-card-body")
                  .AsString();
+
+        #endregion
+
     }
 }

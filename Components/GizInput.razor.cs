@@ -7,17 +7,13 @@ namespace Gizmo.Web.Components
 
     public partial class GizInput : CustomDOMComponentBase
     {
-        public enum InputSize
-        {
-            Normal = 0,
-            Large = 1
-        }
-
         #region CONSTRUCTOR
         public GizInput()
         {
         }
         #endregion
+
+        #region PROPERTIES
 
         [Parameter]
         public bool IsDisabled { get; set; }
@@ -38,7 +34,7 @@ namespace Gizmo.Web.Components
         public string RightIcon { get; set; }
 
         [Parameter]
-        public InputSize Size { get; set; } = InputSize.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -61,6 +57,8 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string ValidationMessage { get; set; }
 
+        #endregion
+
         #region EVENTS
 
         protected Task OnChangeHandler(ChangeEventArgs args)
@@ -74,6 +72,8 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-control")
@@ -92,12 +92,15 @@ namespace Gizmo.Web.Components
                  .If("giz-input-root--outline", () => HasOutline)
                  .If("giz-input-root--shadow", () => HasShadow)
                  .If("giz-input-root--full-width", () => IsFullWidth)
-                 .If("giz-input-root--large", () => Size == InputSize.Large)
+                 .If("giz-input-root--large", () => Size == InputSizes.Large)
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
                  .If("giz-input-valid", () => IsValid)
                  .If("giz-input-invalid", () => !IsValid)
                  .AsString();
+
+        #endregion
+
     }
 }

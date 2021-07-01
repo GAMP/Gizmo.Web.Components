@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
     public class InputBase<TValue> : CustomDOMComponentBase
     {
-        #region MEMBERS
+        #region FIELDS
 
         private Expression<Func<TValue>> _lastValueExpression;
         private FieldIdentifier _fieldIdentifier;

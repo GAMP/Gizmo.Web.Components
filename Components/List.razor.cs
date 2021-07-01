@@ -1,9 +1,7 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,21 +9,13 @@ namespace Gizmo.Web.Components
 {
     public partial class List : CustomDOMComponentBase
     {
-        public enum ListDirection
-        {
-            [Description("left")]
-            Left,
-            [Description("right")]
-            Right
-        }
-
         #region CONSTRUCTOR
         public List()
         {
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
 
         private List<ListItem> _items = new List<ListItem>();
         private HashSet<List> _childLists = new HashSet<List>();
@@ -33,10 +23,10 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region PROPERTIES
+
         [CascadingParameter]
         protected List ParentList { get; set; }
-
-        #region PROPERTIES
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -64,12 +54,14 @@ namespace Gizmo.Web.Components
         public EventCallback<ListItem> SelectedItemChanged { get; set; }
 
         [Parameter()]
-        public ListDirection Direction { get; set; } = ListDirection.Right;
+        public ListDirections Direction { get; set; } = ListDirections.Right;
 
         [Parameter]
         public int MaximumHeight { get; set; }
 
         #endregion
+
+        #region METHODS
 
         internal void SetSelectedItem(ListItem item)
         {
@@ -113,29 +105,6 @@ namespace Gizmo.Web.Components
             _childLists.Remove(child);
         }
 
-        protected override void OnInitialized()
-        {
-            if (ParentList != null)
-            {
-                ParentList.Register(this);
-                IsDisabled = ParentList.IsDisabled;
-                Direction = ParentList.Direction;
-            }
-        }
-
-        public override void Dispose()
-        {
-            ParentList?.Unregister(this);
-
-            base.Dispose();
-        }
-
-        protected string ClassName => new ClassMapper()
-                 .Add("giz-list")
-                 .Add($"giz-list--{Direction.ToDescriptionString()}")
-                 .If("giz-list--clickable", () => CanClick)
-                 .AsString();
-
         internal int GetSelectedItemIndex()
         {
             if (_selectedItem != null)
@@ -159,8 +128,41 @@ namespace Gizmo.Web.Components
             return _items.Count;
         }
 
+        #endregion
+
+        #region OVERRIDES
+
+        protected override void OnInitialized()
+        {
+            if (ParentList != null)
+            {
+                ParentList.Register(this);
+                IsDisabled = ParentList.IsDisabled;
+                Direction = ParentList.Direction;
+            }
+        }
+
+        public override void Dispose()
+        {
+            ParentList?.Unregister(this);
+
+            base.Dispose();
+        }
+
+        #endregion
+
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-list")
+                 .Add($"giz-list--{Direction.ToDescriptionString()}")
+                 .If("giz-list--clickable", () => CanClick)
+                 .AsString();
+
         protected string StyleValue => new StyleMapper()
                  .If($"max-height: {@MaximumHeight}px", () => MaximumHeight > 0)
                  .AsString();
+
+        #endregion
     }
 }

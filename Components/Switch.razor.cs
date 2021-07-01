@@ -12,7 +12,9 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
         private bool _isChecked;
+
         #endregion
 
         #region PROPERTIES
@@ -41,10 +43,15 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region EVENTS
+
         protected Task OnChangeHandler(ChangeEventArgs args)
         {
             IsChecked = (bool)args.Value;
             return IsCheckedChanged.InvokeAsync(IsChecked);
         }
+
+        #endregion
+
     }
 }

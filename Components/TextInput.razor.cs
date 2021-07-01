@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
-using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
@@ -13,7 +12,11 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region FIELDS
+
         private string _text;
+
+        #endregion
 
         #region PROPERTIES
 
@@ -27,7 +30,7 @@ namespace Gizmo.Web.Components
         public string RightIcon { get; set; }
 
         [Parameter]
-        public InputSize Size { get; set; } = InputSize.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -73,11 +76,17 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region METHODS
+
         protected async Task SetValueAsync(string value)
         {
             Value = value;
             await ValueChanged.InvokeAsync(Value);
         }
+
+        #endregion
+
+        #region OVERRIDE
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
@@ -89,5 +98,8 @@ namespace Gizmo.Web.Components
                 _text = Value;
             }
         }
+
+        #endregion
+
     }
 }

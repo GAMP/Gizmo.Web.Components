@@ -4,12 +4,6 @@ namespace Gizmo.Web.Components
 {
     public partial class Badge : CustomDOMComponentBase
     {
-        public enum BadgeSize
-        {
-            Small = 0,
-            Normal = 1
-        }
-
         #region CONSTRUCTOR
         public Badge()
         {
@@ -38,10 +32,15 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-badge")
                  .If("corner", () => !IsInline)
                  .If("small", () => Size == BadgeSize.Small)
                  .AsString();
+
+        #endregion
+
     }
 }

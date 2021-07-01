@@ -3292,6 +3292,10 @@ h6,
   pointer-events: none !important;
 }
 
+.giz-list .giz-list-item .giz-list-item-icon {
+  margin-right: 0.8rem;
+}
+
 .giz-list.giz-list--clickable .giz-list-item:hover {
   background-color: #1f2637;
   color: #5A67F2;
@@ -3320,6 +3324,10 @@ h6,
 
 .giz-nested-list.giz-list--left {
   right: 100%;
+}
+
+.giz-nested-list-expand-icon {
+  float: right;
 }
 
 .giz-input-label {
@@ -4375,24 +4383,44 @@ h6,
 }
 
 .giz-time-picker .giz-time-picker-footer {
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd;
+        background-color: $white-color;
+
+        button {
+            padding: 1.2rem 1.5rem;
+            color: $primary-color;
+            font-size: $font-14;
+
+            &:hover {
+                background-color: $primary-color;
+                color: $white-color;
+            }
+        }
+
+        .active {
+            background-color: $primary-color !important;
+            color: $white-color !important;
+        }*/
   background-color: #FFFFFF;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
 .giz-time-picker .giz-time-picker-footer button {
-  padding: 1.2rem 1.5rem;
+  width: auto;
+  border-radius: 0.4rem;
+  padding: 0.3rem 2.5rem;
   color: #5A67F2;
-  font-size: 1.4rem;
 }
 
 .giz-time-picker .giz-time-picker-footer button:hover {
   background-color: #5A67F2;
   color: #FFFFFF;
-}
-
-.giz-time-picker .giz-time-picker-footer .active {
-  background-color: #5A67F2 !important;
-  color: #FFFFFF !important;
 }
 
 @media (min-width: 600px) {

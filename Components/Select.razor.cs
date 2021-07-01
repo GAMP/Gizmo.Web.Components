@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
@@ -14,7 +13,7 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
         private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
         private TValue _value;
         private SelectItem<TValue> _selectedItem;
@@ -61,7 +60,7 @@ namespace Gizmo.Web.Components
         public bool OffsetY { get; set; }
 
         [Parameter]
-        public InputSize Size { get; set; } = InputSize.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -96,19 +95,24 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected void OnClickMenuHandler(MouseEventArgs args)
+        protected Task OnClickInputHandler(MouseEventArgs args)
         {
-            if (IsDisabled)
-                return;
+            if (!IsDisabled)
+                IsOpen = true;
 
-            IsOpen = true;
+            return Task.CompletedTask;
         }
 
-        protected void OnClickOverlayHandler(MouseEventArgs args)
+        protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
             IsOpen = false;
+
+            return Task.CompletedTask;
         }
+
         #endregion
+
+        #region OVERRIDES
 
         protected override Task OnFirstAfterRenderAsync()
         {
@@ -120,6 +124,10 @@ namespace Gizmo.Web.Components
 
             return base.OnFirstAfterRenderAsync();
         }
+
+        #endregion
+
+        #region METHODS
 
         public void Register(SelectItem<TValue> selectItem)
         {
@@ -148,6 +156,10 @@ namespace Gizmo.Web.Components
                 return SetSelectedValue(default(TValue));
         }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-select")
                  //.If("giz-select-root--disabled", () => IsDisabled)
@@ -159,5 +171,8 @@ namespace Gizmo.Web.Components
                  .Add("giz-select-dropdown-full-width")
                  .Add("giz-popup-bottom")
                  .AsString();
+
+        #endregion
+
     }
 }

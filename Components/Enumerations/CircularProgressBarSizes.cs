@@ -3,20 +3,17 @@
 namespace Gizmo.Web.Components
 {
     /// <summary>
-    /// Button size.
+    /// CircularProgressBar sizes.
     /// </summary>
-    public enum ButtonSize
+    public enum CircularProgressBarSizes
     {
         [Description("small")]
-        Small = 0,
+        Small,
 
         [Description("medium")]
-        Medium = 1,
+        Medium,
 
         [Description("large")]
-        Large = 2,
-
-        [Description("extra-large")]
-        ExtraLarge = 3
+        Large
     }
 }

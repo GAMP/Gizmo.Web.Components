@@ -13,8 +13,10 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region PROPERTIES
+
         [CascadingParameter]
         protected Tab Parent { get; set; }
+
         [Parameter]
         public RenderFragment Header { get; set; }
 
@@ -23,6 +25,7 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsDisabled { get; set; }
+
         [Parameter]
         public bool IsVisible { get; set; } = true;
 
@@ -30,11 +33,9 @@ namespace Gizmo.Web.Components
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
-        protected string ClassName => new ClassMapper()
-                .Add("giz-tab-content-active")
-                .AsString();
 
         #region METHODS
+
         protected override void OnInitialized()
         {
             if (Parent != null)
@@ -57,6 +58,15 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
-        #endregion     
+        #endregion
+
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                .Add("giz-tab-content-active")
+                .AsString();
+
+        #endregion
+
     }
 }

@@ -13,10 +13,12 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
         private bool _isChecked;
         private bool _isTriState;
         private bool _isIndeterminate;
         private bool _nextIndeterminate = false;
+
         #endregion
 
         #region PROPERTIES
@@ -88,10 +90,16 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region METHODS
+
         private async Task TrySetIndeterminateAsync(bool value)
         {
             await InvokeVoidAsync("window.jsinterop.setPropByElement", Ref, "indeterminate", value);
         }
+
+        #endregion
+
+        #region EVENTS
 
         protected override async Task OnFirstAfterRenderAsync()
         {
@@ -101,7 +109,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected Task OnChangeHandler(ChangeEventArgs args)
+        protected Task OnChangeCheckBoxHandler(ChangeEventArgs args)
         {
             var value = (bool)args.Value;
 
@@ -115,7 +123,7 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        protected void OnClickHandler(MouseEventArgs args)
+        protected Task OnClickCheckBoxHandler(MouseEventArgs args)
         {
             if (IsTriState)
             {
@@ -131,12 +139,20 @@ namespace Gizmo.Web.Components
                     }
                 }
             }
+
+            return Task.CompletedTask;
         }
+
+        #endregion
+
+        #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-checkbox")
                  .If("is-disabled", () => IsDisabled)
                  .AsString();
+
+        #endregion
 
     }
 }

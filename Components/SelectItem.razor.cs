@@ -33,7 +33,7 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task OnListItemClickHandler(MouseEventArgs args)
+        protected Task OnClickListItemHandler(MouseEventArgs args)
         {
             if (Parent != null)
             {
@@ -44,6 +44,8 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        #region OVERRIDE
 
         protected override void OnInitialized()
         {
@@ -66,5 +68,8 @@ namespace Gizmo.Web.Components
 
             base.Dispose();
         }
+
+        #endregion
+
     }
 }

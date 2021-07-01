@@ -11,6 +11,8 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region PROPERTIES
+
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
@@ -26,15 +28,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public int MaximumWidth { get; set; }
 
-        //protected override void OnAfterRender(bool firstRender)
-        //{
-        //    base.OnAfterRender(firstRender);
+        #endregion
 
-        //    if (firstRender)
-        //    {
-        //        StateHasChanged();
-        //    }
-        //}
+        #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-card")
@@ -47,6 +43,7 @@ namespace Gizmo.Web.Components
                  .If($"max-width: {MaximumWidth}px", () => MaximumWidth > 0)
                  .AsString();
 
+        #endregion
 
     }
 }

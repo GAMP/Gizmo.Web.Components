@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
-using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
@@ -14,7 +13,7 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
         private DateTime? _value;
         private int _hours;
         private int _minutes;
@@ -59,7 +58,7 @@ namespace Gizmo.Web.Components
         public bool OffsetY { get; set; }
 
         [Parameter]
-        public InputSize Size { get; set; } = InputSize.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -77,17 +76,19 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        private void TimePickerValueChanged(DateTime? value)
+        private Task TimePickerValueChanged(DateTime? value)
         {
             IsOpen = false;
             Value = value;
+
+            return Task.CompletedTask;
         }
 
         #endregion
 
         #region EVENTS
 
-        private void OnClickIncreaseHourHandler(MouseEventArgs args)
+        private Task OnClickButtonIncreaseHourHandler(MouseEventArgs args)
         {
             if (_hours < 11)
                 _hours += 1;
@@ -95,9 +96,11 @@ namespace Gizmo.Web.Components
                 _hours = 0;
 
             Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickDecreaseHourHandler(MouseEventArgs args)
+        private Task OnClickButtonDecreaseHourHandler(MouseEventArgs args)
         {
             if (_hours > 0)
                 _hours -= 1;
@@ -105,9 +108,11 @@ namespace Gizmo.Web.Components
                 _hours = 11;
 
             Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickIncreaseMinuteHandler(MouseEventArgs args)
+        private Task OnClickButtonIncreaseMinuteHandler(MouseEventArgs args)
         {
             if (_minutes < 59)
                 _minutes += 1;
@@ -115,9 +120,11 @@ namespace Gizmo.Web.Components
                 _minutes = 0;
 
             Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickDecreaseMinuteHandler(MouseEventArgs args)
+        private Task OnClickButtonDecreaseMinuteHandler(MouseEventArgs args)
         {
             if (_minutes > 0)
                 _minutes -= 1;
@@ -125,33 +132,45 @@ namespace Gizmo.Web.Components
                 _minutes = 59;
 
             Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickSwitchAMPMHandler(MouseEventArgs args)
+        private Task OnClickButtonSwitchAMPMHandler(MouseEventArgs args)
         {
             _am = !_am;
             Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+
+            return Task.CompletedTask;
         }
 
-        public void OnInputHandler(ChangeEventArgs args)
+        public Task OnInputHandler(ChangeEventArgs args)
         {
             //TODO: TRY PARSE
             _text = (string)args.Value;
 
             StateHasChanged();
+
+            return Task.CompletedTask;
         }
 
-        protected void OnMenuClickHandler(MouseEventArgs args)
+        protected Task OnClickInputHandler(MouseEventArgs args)
         {
             IsOpen = true;
+
+            return Task.CompletedTask;
         }
 
-        protected void OnOverlayClickHandler(MouseEventArgs args)
+        protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
             IsOpen = false;
+
+            return Task.CompletedTask;
         }
 
         #endregion
+
+        #region OVERRIDE
 
         protected override async Task OnFirstAfterRenderAsync()
         {
@@ -164,6 +183,10 @@ namespace Gizmo.Web.Components
             await base.OnFirstAfterRenderAsync();
         }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-timepicker")
                  .AsString();
@@ -173,6 +196,8 @@ namespace Gizmo.Web.Components
                  .Add("giz-timepicker-dropdown-full-width")
                  .Add("giz-popup-bottom")
                  .AsString();
+
+        #endregion
 
     }
 }

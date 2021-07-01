@@ -16,11 +16,11 @@
                   IsValid="@_isValid"
                   ValidationMessage="@_validationMessage"
                   RightIcon="fas fa-caret-down"
-                  @onclick="OnClickMenuHandler">
+                  @onclick="OnClickInputHandler">
 
             @if (@_selectedItem?.ChildContent != null)
             {
-                <div @onclick="OnClickMenuHandler" style="cursor: pointer;">
+                <div @onclick="OnClickInputHandler" style="cursor: pointer;">
                     @_selectedItem.ChildContent
                 </div>
             }
@@ -30,7 +30,7 @@
                        type="text"
                        value="@_selectedItem?.Text"
                        readonly
-                       @onclick="OnClickMenuHandler" />
+                       @onclick="OnClickInputHandler" />
             }
 
         </GizInput>

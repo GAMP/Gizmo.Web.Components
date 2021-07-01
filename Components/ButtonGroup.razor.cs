@@ -13,7 +13,7 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
 
         private HashSet<Button> _items = new HashSet<Button>();
         private Button _selectedItem;
@@ -74,6 +74,8 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        #region METHODS
 
         internal void SelectItem(Button item, bool selected)
         {
@@ -195,10 +197,9 @@ namespace Gizmo.Web.Components
             _items.Remove(item);
         }
 
-        protected string ClassName => new ClassMapper()
-                 .Add("giz-button-group")
-                 .If("disabled", () => IsDisabled)
-                 .AsString();
+        #endregion
+
+        #region OVERRIDES
 
         protected override Task OnFirstAfterRenderAsync()
         {
@@ -215,5 +216,17 @@ namespace Gizmo.Web.Components
 
             return base.OnFirstAfterRenderAsync();
         }
+
+        #endregion
+
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-button-group")
+                 .If("disabled", () => IsDisabled)
+                 .AsString();
+
+        #endregion
+
     }
 }

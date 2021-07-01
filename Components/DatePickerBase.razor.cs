@@ -14,7 +14,7 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
         private DateTime _currentVisibleMonth;
         private int _monthDays = 0;
         private int _whiteSpaces = 0;
@@ -87,46 +87,62 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        private void OnClickYearHandler(MouseEventArgs args)
+        private Task OnClickButtonYearHandler(MouseEventArgs args)
         {
             _showMonthPicker = false;
             _showYearPicker = true;
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickMonthHandler(MouseEventArgs args)
+        private Task OnClickButtonMonthHandler(MouseEventArgs args)
         {
             _showMonthPicker = true;
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickPreviousMonthHandler(MouseEventArgs args)
+        private Task OnClickButtonPreviousMonthHandler(MouseEventArgs args)
         {
             CurrentVisibleMonth = CurrentVisibleMonth.AddMonths(-1);
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickNextMonthHandler(MouseEventArgs args)
+        private Task OnClickButtonNextMonthHandler(MouseEventArgs args)
         {
             CurrentVisibleMonth = CurrentVisibleMonth.AddMonths(1);
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickDay(int day)
+        private Task OnClickButtonDay(int day)
         {
             Value = new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day);
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickMonth(int month)
+        private Task OnClickButtonMonth(int month)
         {
             CurrentVisibleMonth = new DateTime(CurrentVisibleMonth.Year, month, 1);
             _showMonthPicker = false;
+
+            return Task.CompletedTask;
         }
 
-        private void OnClickYear(int year)
+        private Task OnClickButtonYear(int year)
         {
             CurrentVisibleMonth = new DateTime(year, CurrentVisibleMonth.Month, 1);
             _showYearPicker = false;
             _showMonthPicker = true;
+
+            return Task.CompletedTask;
         }
 
         #endregion
+
+        #region OVERRIDES
 
         protected override async Task OnFirstAfterRenderAsync()
         {
@@ -139,8 +155,14 @@ namespace Gizmo.Web.Components
             await base.OnFirstAfterRenderAsync();
         }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .AsString();
+
+        #endregion
 
     }
 }

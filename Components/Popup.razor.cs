@@ -13,6 +13,8 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region PROPERTIES
+
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
@@ -28,7 +30,11 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool Modal { get; set; }
 
-        protected Task OnClickHandler(MouseEventArgs args)
+        #endregion
+
+        #region EVENTS
+
+        protected Task OnClickPopupHandler(MouseEventArgs args)
         {
             if (Modal)
                 return Task.CompletedTask;
@@ -36,6 +42,10 @@ namespace Gizmo.Web.Components
             IsOpen = false;
             return IsOpenChanged.InvokeAsync(IsOpen);
         }
+
+        #endregion
+
+        #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-popup")
@@ -45,6 +55,8 @@ namespace Gizmo.Web.Components
         protected string StyleValue => new StyleMapper()
                  .If($"max-height: {@MaximumHeight}px", () => MaximumHeight > 0)
                  .AsString();
+
+        #endregion
 
     }
 }

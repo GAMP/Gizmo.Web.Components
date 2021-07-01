@@ -8,9 +8,15 @@ namespace Gizmo.Web.Components
 {
     public partial class DataGridRow<TItemType> : CustomDOMComponentBase
     {
+        #region FIELDS
+
         private bool _selected;
 
         private TItemType _item;
+
+        #endregion
+
+        #region PROPERTIES
 
         [CascadingParameter(Name = "Parent")]
         protected DataGrid<TItemType> Parent { get; set; }
@@ -45,10 +51,18 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsOpen { get; set; }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
              .If("is-selected", () => _selected)
              .If("table__row-dropdown", () => IsDropdown)
              .If("is-opened", () => IsOpen).AsString();
+
+        #endregion
+
+        #region OVERRIDES
 
         protected override Task OnInitializedAsync()
         {
@@ -59,6 +73,24 @@ namespace Gizmo.Web.Components
 
             return base.OnInitializedAsync();
         }
+
+        public override void Dispose()
+        {
+            try
+            {
+                if (Parent != null)
+                {
+                    Parent.RemoveRow(this, Item);
+                }
+            }
+            catch (Exception) { }
+
+            base.Dispose();
+        }
+
+        #endregion
+
+        #region EVENTS
 
         protected async Task OnDataRowMouseEvent(MouseEventArgs args, TItemType item)
         {
@@ -80,6 +112,10 @@ namespace Gizmo.Web.Components
             await Parent?.SelectItem(this, value);
         }
 
+        #endregion
+
+        #region METHODS
+
         internal void SetSelected(bool selected)
         {
             if (!IsSelectable)
@@ -93,19 +129,7 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
-        public override void Dispose()
-        {
-            try
-            {
-                if (Parent != null)
-                {
-                    Parent.RemoveRow(this, Item);
-                }
-            }
-            catch (Exception) { }
-
-            base.Dispose();
-        }
+        #endregion
 
     }
 }

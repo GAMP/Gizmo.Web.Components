@@ -2,26 +2,18 @@
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
-using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
     public partial class DatePicker : InputBase<DateTime?>
     {
-        public enum PickerVariants
-        {
-            Inline,
-            Dialog,
-            Static
-        }
-
         #region CONSTRUCTOR
         public DatePicker()
         {
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
         private DateTime? _value;
         private string _text;
         #endregion
@@ -66,7 +58,7 @@ namespace Gizmo.Web.Components
         public bool OffsetY { get; set; }
 
         [Parameter]
-        public InputSize Size { get; set; } = InputSize.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -84,17 +76,19 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        private void DatePickerValueChanged(DateTime? value)
+        private Task DatePickerValueChanged(DateTime? value)
         {
             IsOpen = false;
             Value = value;
+
+            return Task.CompletedTask;
         }
 
         #endregion
 
         #region EVENTS
 
-        public void OnInputHandler(ChangeEventArgs args)
+        public Task OnInputHandler(ChangeEventArgs args)
         {
             //TODO: TRY PARSE
             _text = (string)args.Value;
@@ -107,19 +101,27 @@ namespace Gizmo.Web.Components
             }
 
             StateHasChanged();
+
+            return Task.CompletedTask;
         }
 
-        protected void OnMenuClickHandler(MouseEventArgs args)
+        protected Task OnClickInputHandler(MouseEventArgs args)
         {
             IsOpen = true;
+
+            return Task.CompletedTask;
         }
 
-        protected void OnOverlayClickHandler(MouseEventArgs args)
+        protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
             IsOpen = false;
+
+            return Task.CompletedTask;
         }
 
         #endregion
+
+        #region OVERRIDE
 
         protected override async Task OnFirstAfterRenderAsync()
         {
@@ -132,6 +134,10 @@ namespace Gizmo.Web.Components
             await base.OnFirstAfterRenderAsync();
         }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .If("giz-input-datepicker--dialog", () => Variant == PickerVariants.Dialog)
                  .If("giz-input-datepicker--popup", () => Variant == PickerVariants.Inline)
@@ -142,6 +148,8 @@ namespace Gizmo.Web.Components
                  .Add("giz-datepicker-dropdown-full-width")
                  .If("giz-popup-bottom", () => Variant == PickerVariants.Inline)
                  .AsString();
+
+        #endregion
 
     }
 }

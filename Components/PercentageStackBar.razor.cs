@@ -12,9 +12,15 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region FIELDS
+
         private List<decimal> _values;
         private decimal _total;
         private List<decimal> _percentValues = new List<decimal>();
+
+        #endregion
+
+        #region PROPERTIES
 
         [Parameter]
         public List<decimal> Values
@@ -47,9 +53,15 @@ namespace Gizmo.Web.Components
         [Parameter]
         public List<string> Colors { get; set; }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-stacked-progress")
                  .AsString();
+
+        #endregion
 
     }
 }

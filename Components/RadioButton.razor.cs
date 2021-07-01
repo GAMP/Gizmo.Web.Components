@@ -10,6 +10,8 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region PROPERTIES
+
         [Parameter]
         public string Label { get; set; }
 
@@ -19,7 +21,7 @@ namespace Gizmo.Web.Components
         [Parameter()]
         public bool IsDisabled
         {
-            get;set;
+            get; set;
         }
 
         /// <summary>
@@ -28,7 +30,7 @@ namespace Gizmo.Web.Components
         [Parameter()]
         public bool IsChecked
         {
-            get;set;
+            get; set;
         }
 
         /// <summary>
@@ -37,13 +39,19 @@ namespace Gizmo.Web.Components
         [Parameter()]
         public string GroupName
         {
-            get;set;
+            get; set;
         }
+
+        #endregion
+
+        #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-radio")
                  .If("disabled", () => IsDisabled)
                  .AsString();
+
+        #endregion
 
     }
 }

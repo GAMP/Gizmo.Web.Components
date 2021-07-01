@@ -14,18 +14,21 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
-        private int _activeItemIndex = 0;
+        #region FIELDS
 
+        private int _activeItemIndex = 0;
         private List<TabItem> _items = new List<TabItem>();
+
         #endregion
 
         #region PROPERTIES
+
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
         public bool IsDisabled { get; set; }
+
         [Parameter]
         public bool IsVisible { get; set; } = true;
 
@@ -48,9 +51,11 @@ namespace Gizmo.Web.Components
 
         //[Parameter]
         //public EventCallback<int> ActiveItemIndexChanged { get; set; }
+
         #endregion
 
         #region METHODS
+
         string GetTabItemClass(TabItem item)
         {
             var itemClassName = new ClassMapper()
@@ -59,6 +64,7 @@ namespace Gizmo.Web.Components
              .If("giz-tab-disabled", () => item.IsDisabled).AsString();
             return itemClassName;
         }
+
         string ClassName()
         {
             var className = new ClassMapper()
@@ -67,18 +73,19 @@ namespace Gizmo.Web.Components
              .If("giz-tab-hidden", () => !IsVisible).AsString();
             return className;
         }
-        public void ActivateItem(TabItem item, bool ignoreDisabledState = false)
+
+        public Task ActivateItem(TabItem item, bool ignoreDisabledState = false)
         {
-            ActivateItem(item, null, ignoreDisabledState);
+            return ActivateItem(item, null, ignoreDisabledState);
         }
 
-        public void ActivateItem(int index, bool ignoreDisabledState = false)
+        public Task ActivateItem(int index, bool ignoreDisabledState = false)
         {
             var item = _items[index];
-            ActivateItem(item, null, ignoreDisabledState);
+            return ActivateItem(item, null, ignoreDisabledState);
         }
 
-        private void ActivateItem(TabItem item, MouseEventArgs ev, bool ignoreDisabledState = false)
+        private async Task ActivateItem(TabItem item, MouseEventArgs ev, bool ignoreDisabledState = false)
         {
             if (!item.IsDisabled || ignoreDisabledState)
             {
@@ -86,7 +93,8 @@ namespace Gizmo.Web.Components
 
                 //Here you assume that the ActiveItem is the clicked item, but if the clicked item is disabled for some reason then the clicked item must not become the ActiveItem.
                 if (ev != null)
-                    ActiveItem.OnClick.InvokeAsync(ev);
+                    await ActiveItem.OnClick.InvokeAsync(ev);
+
                 StateHasChanged();
             }
         }
@@ -160,6 +168,7 @@ namespace Gizmo.Web.Components
 
             return base.OnFirstAfterRenderAsync();
         }
+
         #endregion
     }
 }

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Gizmo.Web.Components.GizInput;
 
 namespace Gizmo.Web.Components
 {
@@ -16,12 +15,14 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        #region MEMBERS
+        #region FIELDS
+
         private TValue _value;
         private string _text;
 
         private List _itemsList;
         private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
+
         #endregion
 
         #region PROPERTIES
@@ -81,7 +82,7 @@ namespace Gizmo.Web.Components
         public bool OffsetY { get; set; }
 
         [Parameter]
-        public InputSize Size { get; set; } = InputSize.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Normal;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -110,6 +111,34 @@ namespace Gizmo.Web.Components
             {
                 return Task.CompletedTask;
             }
+        }
+
+        private TValue GetItemValue(TItemType item)
+        {
+            if (ItemValueSelector != null)
+            {
+                return ItemValueSelector.Invoke(item);
+            }
+
+            return default(TValue);
+        }
+
+        private string GetItemText(TItemType item)
+        {
+            if (ItemStringSelector != null)
+            {
+                return ItemStringSelector.Invoke(item);
+            }
+
+            return item?.ToString();
+        }
+
+        protected IEnumerable<TItemType> GetFiltered(string text)
+        {
+            var result = ItemSource.Where(a => string.IsNullOrEmpty(text) || GetItemText(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true)
+                        .ToList();
+
+            return result;
         }
 
         #endregion
@@ -146,7 +175,7 @@ namespace Gizmo.Web.Components
                         //Set the value of the AutoComplete based on the selected item.
                         var selectItem = _items.Where(a => a.Value.ListItem == _itemsList.SelectedItem).Select(a => a.Value).FirstOrDefault();
                         await SetSelectedItem(selectItem);
-                        
+
                         //Close the popup.
                         IsOpen = false;
 
@@ -192,11 +221,13 @@ namespace Gizmo.Web.Components
             await _itemsList.SetSelectedItemIndex(selectedItemIndex);
         }
 
-        public void OnInputHandler(ChangeEventArgs args)
+        public Task OnInputHandler(ChangeEventArgs args)
         {
             _text = (string)args.Value;
 
             StateHasChanged();
+
+            return Task.CompletedTask;
         }
 
         protected Task OnInputClickHandler(MouseEventArgs args)
@@ -204,17 +235,23 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        protected void OnMenuClickHandler(MouseEventArgs args)
+        protected Task OnMenuClickHandler(MouseEventArgs args)
         {
             IsOpen = true;
+
+            return Task.CompletedTask;
         }
 
-        protected void OnOverlayClickHandler(MouseEventArgs args)
+        protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
             IsOpen = false;
+
+            return Task.CompletedTask;
         }
 
         #endregion
+
+        #region OVERRIDES
 
         protected override async Task OnFirstAfterRenderAsync()
         {
@@ -241,6 +278,8 @@ namespace Gizmo.Web.Components
 
             await base.OnFirstAfterRenderAsync();
         }
+
+        #endregion
 
         #region ISelect
 
@@ -276,6 +315,8 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-autocomplete")
                  //.If("giz-select-root--disabled", () => IsDisabled)
@@ -288,33 +329,7 @@ namespace Gizmo.Web.Components
                  .Add("giz-popup-bottom")
                  .AsString();
 
-        private TValue GetItemValue(TItemType item)
-        {
-            if (ItemValueSelector != null)
-            {
-                return ItemValueSelector.Invoke(item);
-            }
-
-            return default(TValue);
-        }
-
-        private string GetItemText(TItemType item)
-        {
-            if (ItemStringSelector != null)
-            {
-                return ItemStringSelector.Invoke(item);
-            }
-
-            return item?.ToString();
-        }
-
-        protected IEnumerable<TItemType> GetFiltered(string text)
-        {
-            var result = ItemSource.Where(a => string.IsNullOrEmpty(text) || GetItemText(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true)
-                        .ToList();
-
-            return result;
-        }
+        #endregion
 
     }
 }

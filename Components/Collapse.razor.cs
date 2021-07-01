@@ -10,15 +10,24 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region PROPERTIES
+
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
         public bool Expanded { get; set; }
 
+        #endregion
+
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add("g-collapse")
                  .If("g-collapse-expanded", () => Expanded)
                  .AsString();
+
+        #endregion
+
     }
 }

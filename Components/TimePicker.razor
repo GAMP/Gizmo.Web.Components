@@ -14,7 +14,7 @@
                   IsValid="@_isValid"
                   ValidationMessage="@_validationMessage"
                   RightIcon="fas fa-clock"
-                  @onclick="OnMenuClickHandler">
+                  @onclick="OnClickInputHandler">
 
             <input id="@Id"
                    type="text"
@@ -23,7 +23,7 @@
                    disabled="@IsDisabled"
                    style="cursor: pointer;"
                    @oninput="OnInputHandler"
-                   @onclick="OnMenuClickHandler" />
+                   @onclick="OnClickInputHandler" />
 
         </GizInput>
 
@@ -40,22 +40,22 @@
                 </div>
                 <div class="giz-time-picker-content">
                     <div class="giz-time-picker-content--timer">
-                        <button @onclick="OnClickIncreaseHourHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
+                        <button @onclick="OnClickButtonIncreaseHourHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
                         <input type="text" value="@_hours" min="0" max="11" maxlength="2">
-                        <button @onclick="OnClickDecreaseHourHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
+                        <button @onclick="OnClickButtonDecreaseHourHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
                     </div>
                     <div>
                         <span class="giz-time-picker-content--separator">:</span>
                     </div>
                     <div class="giz-time-picker-content--timer">
-                        <button @onclick="OnClickIncreaseMinuteHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
+                        <button @onclick="OnClickButtonIncreaseMinuteHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
                         <input type="text" value="@_minutes" min="0" max="59" maxlength="2">
-                        <button @onclick="OnClickDecreaseMinuteHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
+                        <button @onclick="OnClickButtonDecreaseMinuteHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
                     </div>
                     <div class="giz-time-picker-content--timer">
-                        <button @onclick="OnClickSwitchAMPMHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
+                        <button @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
                         <input type="text" value="@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))" readonly maxlength="2">
-                        <button @onclick="OnClickSwitchAMPMHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
+                        <button @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
                     </div>
                     @*<div class="giz-time-picker-content--timer-action">
                         <button>OK</button>
@@ -74,7 +74,7 @@
     </div>
 
     <Overlay Visible="@IsOpen"
-             @onclick="OnOverlayClickHandler">
+             @onclick="OnClickOverlayHandler">
     </Overlay>
 
 </CascadingValue>

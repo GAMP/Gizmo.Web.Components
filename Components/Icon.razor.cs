@@ -1,32 +1,12 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
     public partial class Icon : CustomDOMComponentBase
     {
-        public enum IconBackgroundStyles
-        {
-            None,
-            Circle,
-            Square
-        }
-
-        public enum IconSizes
-        {
-            [Description("xs")]
-            Small,
-
-            [Description("1x")]
-            Medium,
-
-            [Description("2x")]
-            Large
-        }
-
         #region CONSTRUCTOR
         public Icon()
         {
@@ -64,6 +44,8 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region CLASSMAPPERS
+
         protected string ClassName => new ClassMapper()
                  .Add($"fa-{Size.ToDescriptionString()}")
                  .If("fa-stack", () => BackgroundStyle != IconBackgroundStyles.None)
@@ -72,5 +54,8 @@ namespace Gizmo.Web.Components
         protected string IconClassName => new ClassMapper()
                  .If("fa-stack-1x", () => BackgroundStyle != IconBackgroundStyles.None)
                  .AsString();
+
+        #endregion
+
     }
 }
