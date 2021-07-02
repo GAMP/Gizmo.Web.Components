@@ -1,0 +1,16 @@
+//=============== gizmo overlay classes ================//
+
+.giz-overlay {
+    width: $width-full;
+    height: $height-full;
+    outline: $outline-0;
+    z-index: 50;
+    display: $display-none;
+    position: $position-fixed;
+    left: 0;
+    top: 0;
+
+    &.giz-overlay-visible {
+        display: $display-flex;
+    }
+}

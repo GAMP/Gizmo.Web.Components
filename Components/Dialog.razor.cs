@@ -56,8 +56,8 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-dialog")
-                 .If("g-dialog-open", () => IsOpen)
+                 .Add("giz-dialog")
+                 .If("giz-dialog-open", () => IsOpen)
                  .AsString();
 
         #endregion

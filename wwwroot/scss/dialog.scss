@@ -1,0 +1,22 @@
+//=============== gizmo dialog classes ================//
+
+.giz-dialog {
+    background-color: rgba(230, 230, 230, 0.3);
+    width: $width-full;
+    height: $height-full;
+    outline: $outline-0;
+    z-index: 1;
+    display: $display-none;
+    position: $position-fixed;
+    left: 0;
+    top: 0;
+    overflow-x: $overflow-hidden;
+    overflow-y: $overflow-auto;
+    justify-content: $justify-center;
+    align-items: $align-center;
+    padding: 1rem;
+
+    &.giz-dialog-open {
+        display: $display-flex;
+    }
+}

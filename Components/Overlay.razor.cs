@@ -36,8 +36,8 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-overlay")
-                 .If("g-overlay-visible", () => Visible)
+                 .Add("giz-overlay")
+                 .If("giz-overlay-visible", () => Visible)
                  .AsString();
 
         #endregion

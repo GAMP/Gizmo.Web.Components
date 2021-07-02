@@ -4423,6 +4423,50 @@ h6,
   color: #FFFFFF;
 }
 
+.giz-dialog {
+  background-color: rgba(230, 230, 230, 0.3);
+  width: 100%;
+  height: 100%;
+  outline: 0rem;
+  z-index: 1;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.giz-dialog.giz-dialog-open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.giz-overlay {
+  width: 100%;
+  height: 100%;
+  outline: 0rem;
+  z-index: 50;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.giz-overlay.giz-overlay-visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 @media (min-width: 600px) {
   .d-sm-none {
     display: none !important;

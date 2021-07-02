@@ -23,8 +23,10 @@
 	  <Content Remove="wwwroot\scss\button-group.scss" />
 	  <Content Remove="wwwroot\scss\card.scss" />
 	  <Content Remove="wwwroot\scss\date-picker.scss" />
+	  <Content Remove="wwwroot\scss\dialog.scss" />
 	  <Content Remove="wwwroot\scss\list.scss" />
 	  <Content Remove="wwwroot\scss\menu.scss" />
+	  <Content Remove="wwwroot\scss\overlay.scss" />
 	  <Content Remove="wwwroot\scss\pagination.scss" />
 	  <Content Remove="wwwroot\scss\popup.scss" />
 	  <Content Remove="wwwroot\scss\progress-bar.scss" />
@@ -51,6 +53,8 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="wwwroot\scripts.js" />
+		<None Include="wwwroot\scss\overlay.scss" />
+		<None Include="wwwroot\scss\dialog.scss" />
 		<None Include="wwwroot\scss\card.scss" />
 		<None Include="wwwroot\scss\avatar.scss" />
 		<None Include="wwwroot\scss\button-group.scss" />
