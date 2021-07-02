@@ -3,5 +3,22 @@
 
 <div class="@Class @ClassName"
      style="@StyleValue">
-    @ChildContent
+    @if (CardHeader != null)
+    {
+        <div class="giz-card-header">
+            @CardHeader
+        </div>
+    }
+    @if (CardBody != null)
+    {
+        <div class="giz-card-body">
+            @CardBody
+        </div>
+    }
+    @if (CardFooter != null)
+    {
+        <div class="giz-card-footer">
+            @CardFooter
+        </div>
+    }
 </div>
