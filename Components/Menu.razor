@@ -34,7 +34,7 @@
         }
 
         <Popup IsOpen="@IsOpen" Class="@PopupClassName">
-            <List Direction="@Direction" CanClick="true">
+            <List Direction="@Direction" CanClick="true" OnClickItem="@(() => OnClickMenuItemHandler())">
                 @ChildContent
             </List>
         </Popup>

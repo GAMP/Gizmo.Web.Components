@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -51,7 +52,7 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected void OnClickHandler(MouseEventArgs args)
+        protected async Task OnClickHandler(MouseEventArgs args)
         {
             if (IsDisabled)
                 return;
@@ -62,15 +63,16 @@ namespace Gizmo.Web.Components
             }
             else if (Href != null)
             {
-                Parent?.SetSelectedItem(this);
+                await Parent?.SetClickedItem(this);
                 NavigationManager.NavigateTo(Href);
             }
             else
             {
-                Parent?.SetSelectedItem(this);
+                if (Parent != null)
+                    await Parent.SetClickedItem(this);
             }
 
-            OnClick.InvokeAsync(args);
+            await OnClick.InvokeAsync(args);
         }
 
         #endregion

@@ -46,12 +46,15 @@ namespace Gizmo.Web.Components
                 if (_selectedItem == value)
                     return;
 
-                SetSelectedItem(value);
+                _ = SetSelectedItem(value);
             }
         }
 
         [Parameter]
         public EventCallback<ListItem> SelectedItemChanged { get; set; }
+
+        [Parameter]
+        public EventCallback<ListItem> OnClickItem { get; set; }
 
         [Parameter()]
         public ListDirections Direction { get; set; } = ListDirections.Right;
@@ -63,7 +66,7 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        internal void SetSelectedItem(ListItem item)
+        internal async Task SetSelectedItem(ListItem item)
         {
             if (IsDisabled)
                 return;
@@ -72,17 +75,26 @@ namespace Gizmo.Web.Components
                 return;
 
             _selectedItem = item;
-            _ = SelectedItemChanged.InvokeAsync(item);
+            await SelectedItemChanged.InvokeAsync(item);
 
             foreach (var listItem in _items.ToArray())
-            {
                 listItem.SetSelected(item == listItem);
-            }
 
             foreach (var childList in _childLists.ToArray())
-                childList.SetSelectedItem(item);
+                await childList.SetSelectedItem(item);
 
-            ParentList?.SetSelectedItem(item);
+            if (ParentList != null)
+                await ParentList.SetSelectedItem(item);
+        }
+
+        internal async Task SetClickedItem(ListItem item)
+        {
+            if (ParentList != null)
+                await ParentList.SetClickedItem(item);
+
+            await OnClickItem.InvokeAsync(item);
+
+            await SetSelectedItem(item);
         }
 
         internal void Register(ListItem item)
@@ -118,7 +130,7 @@ namespace Gizmo.Web.Components
             if (index >= 0 && index < _items.Count)
             {
                 var item = _items[index];
-                SetSelectedItem(item);
+                await SetSelectedItem(item);
                 await InvokeVoidAsync("scrollListItemIntoView", item.Ref);
             }
         }

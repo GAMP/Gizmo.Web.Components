@@ -53,6 +53,14 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        protected Task OnClickMenuItemHandler()
+        {
+            if (!IsDisabled)
+                IsOpen = false;
+
+            return Task.CompletedTask;
+        }
+
         protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
             IsOpen = false;
