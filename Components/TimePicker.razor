@@ -31,42 +31,36 @@
 
             <div class="giz-time-picker">
                 <div class="giz-time-picker-header">
-                    <button><span class="giz-time-picker-header--title">@(_hours.ToString().PadLeft(2, '0') ?? "00")</span></button>
+                    <span class="giz-time-picker-header--title">@(_hours.ToString().PadLeft(2, '0') ?? "00")</span>
                     <div><span class="giz-time-picker-header--title">:</span></div>
-                    <button><span class="giz-time-picker-header--title">@(_minutes.ToString().PadLeft(2, '0') ?? "00")</span></button>
-                    <div class="giz-time-picker-header--ampm">
-                        <button><span class="giz-time-picker-header--label">@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))</span></button>
+                    <span class="giz-time-picker-header--title">@(_minutes.ToString().PadLeft(2, '0') ?? "00")</span>
+                    <div class="giz-time-picker-header--ampm ml-3">
+                        <span class="giz-time-picker-header--label">@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))</span>
                     </div>
                 </div>
                 <div class="giz-time-picker-content">
                     <div class="giz-time-picker-content--timer">
-                        <button @onclick="OnClickButtonIncreaseHourHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
-                        <input type="text" value="@_hours" min="0" max="11" maxlength="2">
-                        <button @onclick="OnClickButtonDecreaseHourHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
+                        <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonIncreaseHourHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></Button>
+                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@_hours.ToString()" Min="0" Max="59" MaxLength="2" />
+                        <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonDecreaseHourHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></Button>
                     </div>
                     <div>
                         <span class="giz-time-picker-content--separator">:</span>
                     </div>
                     <div class="giz-time-picker-content--timer">
-                        <button @onclick="OnClickButtonIncreaseMinuteHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
-                        <input type="text" value="@_minutes" min="0" max="59" maxlength="2">
-                        <button @onclick="OnClickButtonDecreaseMinuteHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
+                        <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonIncreaseMinuteHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></Button>
+                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@_minutes.ToString()" Min="0" Max="59" MaxLength="2" />
+                        <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonDecreaseMinuteHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></Button>
                     </div>
                     <div class="giz-time-picker-content--timer">
-                        <button @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></button>
-                        <input type="text" value="@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))" readonly maxlength="2">
-                        <button @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></button>
+                        <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></Button>
+                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))" IsReadOnly="true" MaxLength="2" />
+                        <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></Button>
                     </div>
-                    @*<div class="giz-time-picker-content--timer-action">
-                        <button>OK</button>
-                        <button>CANCEL</button>
-                    </div>*@
                 </div>
                 <div class="giz-time-picker-footer">
-                    @*<button class="active">12H Format</button>
-                    <button>24H Format</button>*@
-                    <div><button>OK</button></div>
-                    <div><button>CANCEL</button></div>
+                    <div><Button>OK</Button></div>
+                    <div><Button Class="ml-3" Variant="ButtonVariants.Outline">CANCEL</Button></div>
                 </div>
             </div>
 

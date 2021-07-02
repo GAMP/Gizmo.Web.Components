@@ -160,6 +160,19 @@ namespace Gizmo.Web.Components
 
         #region CLASSMAPPERS
 
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-button")
+                 .Add($"giz-button--{Size.ToDescriptionString()}")
+                 .If("giz-button--group-button", () => ButtonGroup != null)
+                 .If("giz-button--fill", () => ButtonGroup == null && Variant == ButtonVariants.Fill)
+                 .If("giz-button--outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
+                 .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
+                 .If("giz-button--icon", () => ButtonGroup == null && Variant == ButtonVariants.Icon)
+                 .If("giz-button-full-width", () => IsFullWidth)
+                 .If("disabled", () => IsDisabled)
+                 .If("selected", () => _selected)
+                 .AsString();
+
         protected string ButtonIconLeft => new ClassMapper()
                 .If("giz-button-icon-left", () => ChildContent != null || !string.IsNullOrEmpty(RightIcon))
                 .AsString();
@@ -167,16 +180,6 @@ namespace Gizmo.Web.Components
         protected string ButtonIconRight => new ClassMapper()
                 .Add("giz-button-icon-right")
                 .AsString();
-
-        protected string ClassName => new ClassMapper()
-                 .Add("giz-button")
-                 .Add($"giz-button--{Size.ToDescriptionString()}")
-                 .If("giz-button--secondary-outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
-                 .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
-                 .If("giz-button-full-width", () => IsFullWidth)
-                 .If("disabled", () => IsDisabled)
-                 .If("selected", () => _selected)
-                 .AsString();
 
         #endregion
 

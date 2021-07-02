@@ -189,6 +189,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-timepicker")
+                 .Add("giz-input-timepicker--popup")
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()

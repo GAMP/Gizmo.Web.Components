@@ -139,6 +139,7 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
+                 .Add("giz-input-datepicker")
                  .If("giz-input-datepicker--dialog", () => Variant == PickerVariants.Dialog)
                  .If("giz-input-datepicker--popup", () => Variant == PickerVariants.Inline)
                  .AsString();

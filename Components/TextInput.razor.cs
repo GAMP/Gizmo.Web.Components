@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -53,6 +54,15 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
+        [Parameter]
+        public int Min { get; set; }
+
+        [Parameter]
+        public int Max { get; set; }
+
+        [Parameter]
+        public int MaxLength { get; set; }
+
         #endregion
 
         #region EVENTS
@@ -87,6 +97,22 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region OVERRIDE
+
+        protected override Task OnFirstAfterRenderAsync()
+        {
+            Attributes = new Dictionary<string, object>();
+
+            if (Min > 0)
+                Attributes["min"] = Min;
+
+            if (Max > 0)
+                Attributes["max"] = Max;
+
+            if (MaxLength > 0)
+                Attributes["maxlength"] = MaxLength;
+
+            return base.OnFirstAfterRenderAsync();
+        }
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {

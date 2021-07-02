@@ -2,15 +2,18 @@
 
 // time picker
 .giz-input-timepicker {
+    .giz-input-control {
+        .giz-input-root {
+            cursor: pointer;
+        }
+    }
+}
+
+.giz-input-timepicker--popup {
     position: $position-relative;
 
     .giz-input-timepicker-dropdown-menu {
-        box-shadow: $elevation-2;
-        border: 1px solid $border-color;
-
-        [light-theme] & {
-            border: 1px solid $gray-dark;
-        }
+        box-shadow: $elevation-3;
     }
 
     .giz-popup {
@@ -24,30 +27,16 @@
     border-radius: $rounded;
     max-width: 28rem;
     min-height: 1.6rem;
-    box-shadow: $elevation-3;
-
-    button {
-        border-radius: $rounded;
-        border: none;
-        cursor: $cursor-pointer;
-        margin: $spacer-0;
-        background-color: $transparent-color;
-        padding: 0.2rem 0.5rem;
-
-        > span {
-            line-height: 1.75;
-            letter-spacing: $letter-spacing-8;
-        }
-    }
     // giz time picker header
     .giz-time-picker-header {
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
         background-color: $primary-color;
-        padding: 0.8rem 2.4rem;
+        padding: 3rem 0;
         display: $display-flex;
         justify-content: $justify-center;
         align-items: $align-center;
+        cursor: default;
 
         &--title {
             font-size: 5.8rem;
@@ -72,25 +61,19 @@
         justify-content: space-evenly;
         align-items: $align-center;
         text-align: $text-align-center;
-        background-color: $white-color;
+        color: $white-color;
+        background-color: $dark-color;
+
+        [light-theme] & {
+            color: $black-color;
+            background-color: $white-color;
+        }
 
         &--icon-size {
             font-size: $font-16;
         }
 
         &--timer {
-            button {
-                height: 3.5rem;
-                width: 3.5rem;
-                font-size: $font-14;
-                display: $display-inline-block;
-                border-radius: $rounded-circle;
-
-                &:hover {
-                    background-color: #0000000d;
-                }
-            }
-
             input {
                 width: $width-full;
                 text-align: $text-align-center;
@@ -109,57 +92,18 @@
         &--separator {
             font-size: 2.4rem;
         }
-
-        &--timer-action {
-            button {
-                padding: 0.6rem 0.9rem;
-                color: $primary-color;
-                font-size: $font-14;
-
-                &:hover {
-                    background-color: $primary-color;
-                    color: $white-color;
-                }
-            }
-        }
     }
     // giz time picker footer
     .giz-time-picker-footer {
-        /*border-top: 1px solid #ddd;
-        background-color: $white-color;
+        background-color: $dark-color;
 
-        button {
-            padding: 1.2rem 1.5rem;
-            color: $primary-color;
-            font-size: $font-14;
-
-            &:hover {
-                background-color: $primary-color;
-                color: $white-color;
-            }
+        [light-theme] & {
+            background-color: $white-color;
         }
 
-        .active {
-            background-color: $primary-color !important;
-            color: $white-color !important;
-        }*/
-
-        background-color: $white-color;
         padding: 1rem;
         display: $display-flex;
         justify-content: $justify-end;
-
-        button {
-            width: auto;
-            border-radius: $rounded;
-            padding: 0.3rem 2.5rem;
-            color: $primary-color;
-
-            &:hover {
-                background-color: $primary-color;
-                color: $white-color;
-            }
-        }
     }
 }
 

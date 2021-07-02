@@ -2,15 +2,9 @@
 
 //button (default button primary)
 .giz-button {
-    border: $border-0;
-    outline: $outline-0;
-    color: $white-color;
-    background: $primary-color;
     font-size: $font-17;
     cursor: $cursor-pointer;
     border-radius: $rounded;
-    height: 4.8rem;
-    padding: 0 3.6rem;
     transition: all 0.3s ease;
     font-weight: $font-weight-600;
     letter-spacing: $letter-spacing-8;
@@ -18,15 +12,6 @@
     line-height: $line-height-22;
     text-align: $text-align-center;
     position: $position-relative;
-
-    &:hover {
-        background: #4F5AD3;
-    }
-
-    &:focus {
-        background: $primary-color;
-        box-shadow: 0px 0px 9px #4891FF;
-    }
 
     .giz-button-icon-left {
         margin-right: $spacer-8;
@@ -44,8 +29,54 @@
     &.giz-button-full-width {
         width: $width-full !important;
     }
-    //button secondary outline
-    &--secondary-outline {
+    //group button
+    &--group-button {
+        border: $border-0;
+        outline: $outline-0;
+        color: $white-color;
+        background: $primary-color;
+
+        &:hover {
+            background: #4F5AD3;
+        }
+
+        &:focus {
+            background: $primary-color;
+            box-shadow: 0px 0px 9px #4891FF;
+        }
+
+        &.is-disabled, &[disabled] {
+            color: $gray-light-color;
+            background: $secondary-light !important;
+            border: 1px solid $gray-light-color;
+            pointer-events: none;
+        }
+    }
+    //button fill variant
+    &--fill {
+        border: $border-0;
+        outline: $outline-0;
+        color: $white-color;
+        background: $primary-color;
+
+        &:hover {
+            background: #4F5AD3;
+        }
+
+        &:focus {
+            background: $primary-color;
+            box-shadow: 0px 0px 9px #4891FF;
+        }
+
+        &.is-disabled, &[disabled] {
+            color: $gray-light-color;
+            background: $secondary-light !important;
+            border: 1px solid $gray-light-color;
+            pointer-events: none;
+        }
+    }
+    //button outline variant
+    &--outline {
         color: $secondary-color;
         background-color: $border-color;
         border: 1px solid $gray-light-color;
@@ -85,11 +116,35 @@
             pointer-events: none;
         }
     }
-    //button text
+    //button text variant
     &--text {
         background: none;
         border: none;
         color: $secondary-color;
+
+        &:hover {
+            color: $primary-color;
+            background: $white-color;
+        }
+
+        &:focus {
+            background: $white-color;
+            box-shadow: $elevation-1;
+        }
+
+        &.is-disabled, &[disabled] {
+            color: $gray-dark;
+            background: $secondary-light !important;
+            border: none;
+            pointer-events: none;
+        }
+    }
+    //button icon variant
+    &--icon {
+        background: none;
+        border: none;
+        color: $secondary-color;
+        border-radius: $rounded-circle;
 
         &:hover {
             color: $primary-color;
@@ -113,11 +168,13 @@
         font-size: $font-19;
         height: 8rem;
         font-weight: $font-weight-700;
+        padding: 0 4rem;
     }
     //button large
     &--large {
         height: 4.8rem;
         font-size: $font-17;
+        padding: 0 2.4rem;
     }
     //button medium
     &--medium {
@@ -129,7 +186,7 @@
     &--small {
         height: 2.4rem;
         font-size: $font-12;
-        padding: 0 1rem;
+        padding: 0 1.2rem;
     }
     //buton disable
     &.is-disabled, &[disabled] {
@@ -145,4 +202,24 @@
             box-shadow: $elevation-0;
         }
     }
+}
+
+.giz-button--icon.giz-button--small {
+    width: 2.4rem;
+    padding: unset;
+}
+
+.giz-button--icon.giz-button--medium {
+    width: 3.2rem;
+    padding: unset;
+}
+
+.giz-button--icon.giz-button--large {
+    width: 4.8rem;
+    padding: unset;
+}
+
+.giz-button--icon.giz-button--extra-large {
+    width: 8rem;
+    padding: unset;
 }

@@ -3,17 +3,19 @@
 
 <div class="giz-calendar">
     <div class="giz-calendar-header">
-        <div><button @onclick="OnClickButtonYearHandler"><span class="giz-calendar-year-title">@CurrentVisibleMonth.ToString("yyyy")</span></button></div>
-        <div><button><span class="giz-calendar-title">@(Value?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</span></button></div>
+        <div @onclick="OnClickButtonYearHandler"><span class="giz-calendar-year-title">@CurrentVisibleMonth.ToString("yyyy")</span></div>
+        <div class="giz-calendar-title mt-3">@(Value?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>
     </div>
     <div class="giz-calendar-content">
         @if (_showMonthPicker)
         {
             <div class="giz-calendar-title-switch">
-                <div><button><i class="fas fa-chevron-left"></i></button></div>
+                <div>
+                    <Button Variant="ButtonVariants.Icon"><i class="fas fa-chevron-left"></i></Button>
+                </div>
                 <div class="giz-calendar-title-slide" @onclick="OnClickButtonYearHandler">@CurrentVisibleMonth.ToString("yyyy")</div>
                 <div>
-                    <button><i class="fas fa-chevron-right"></i></button>
+                    <Button Variant="ButtonVariants.Icon"><i class="fas fa-chevron-right"></i></Button>
                 </div>
             </div>
             <div class="giz-calendar-month">
@@ -21,13 +23,11 @@
                 {
                     var local_i = i;
                     var monthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(local_i);
-                    <div><button @onclick="@(() => OnClickButtonMonth(local_i))" class="@(local_i == CurrentVisibleMonth.Month ? "active" : "")"><span class="giz-calendar-month-count">@monthName</span></button></div>
+                    <div>
+                        <Button Variant="ButtonVariants.Text" @onclick="@(() => OnClickButtonMonth(local_i))" class="@(local_i == CurrentVisibleMonth.Month ? "active" : "")"><span class="giz-calendar-month-count">@monthName</span></Button>
+                    </div>
                 }
             </div>
-            @*<div class="giz-calendar-action">
-                <div><button>CANCEL</button> </div>
-                <div><button>OK</button>  </div>
-            </div>*@
         }
         else if (_showYearPicker)
         {
@@ -42,10 +42,12 @@
         else
         {
             <div class="giz-calendar-title-switch">
-                <div><button @onclick="OnClickButtonPreviousMonthHandler"><i class="fas fa-chevron-left"></i></button></div>
+                <div>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonPreviousMonthHandler"><i class="fas fa-chevron-left"></i></Button>
+                </div>
                 <div class="giz-calendar-title-slide" @onclick="OnClickButtonMonthHandler">@CurrentVisibleMonth.ToString("MMM yyyy")</div>
                 <div>
-                    <button @onclick="OnClickButtonNextMonthHandler"><i class="fas fa-chevron-right"></i></button>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonNextMonthHandler"><i class="fas fa-chevron-right"></i></Button>
                 </div>
             </div>
             <div class="giz-calendar-weekday">
@@ -65,7 +67,9 @@
                 @for (int i = 1; i <= _monthDays; i++)
                 {
                     var local_i = i;
-                    <div><button @onclick="@(() => OnClickButtonDay(local_i))" class="@(IsCurrentDay(@CurrentVisibleMonth.Year, @CurrentVisibleMonth.Month, local_i) ? "active" : "")"><span class="giz-calendar-day-count">@i</span></button></div>
+                    <div>
+                        <Button Variant="ButtonVariants.Icon" @onclick="@(() => OnClickButtonDay(local_i))" class="@(IsCurrentDay(@CurrentVisibleMonth.Year, @CurrentVisibleMonth.Month, local_i) ? "active" : "")"><span class="giz-calendar-day-count">@local_i</span></Button>
+                    </div>
                 }
             </div>
         }
