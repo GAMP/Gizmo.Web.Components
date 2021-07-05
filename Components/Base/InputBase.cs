@@ -13,7 +13,7 @@ namespace Gizmo.Web.Components
         private Expression<Func<TValue>> _lastValueExpression;
         private FieldIdentifier _fieldIdentifier;
         private EditContext _lastEditContext;
-        protected bool _isValid;
+        protected bool _isValid = true;
         protected string _validationMessage;
 
         #endregion

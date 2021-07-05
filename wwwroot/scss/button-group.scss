@@ -31,6 +31,17 @@
             }
         }
     }
+
+    &.disabled {
+        .giz-button {
+            &.selected {
+                color: $dim-light;
+            }
+
+            &:focus:not(.selected) {
+                background: unset;
+                box-shadow: unset;
+            }
+        }
+    }
 }
-
-

@@ -2795,6 +2795,16 @@ h6,
   background-color: #FFFFFF;
 }
 
+.giz-button-group.disabled .giz-button.selected {
+  color: #939DB5;
+}
+
+.giz-button-group.disabled .giz-button:focus:not(.selected) {
+  background: unset;
+  -webkit-box-shadow: unset;
+  box-shadow: unset;
+}
+
 .giz-checkbox {
   position: absolute;
   left: -9999px;
@@ -3548,12 +3558,38 @@ h6,
   box-shadow: 0px 0px 9px rgba(90, 103, 242, 0.5) !important;
 }
 
-.giz-input-invalid {
-  color: #F25A68;
+.giz-input-validation {
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 2.2rem;
   letter-spacing: -0.08rem;
+}
+
+.giz-input-invalid {
+  color: #F25A68 !important;
+}
+
+.giz-input-invalid input {
+  color: #F25A68 !important;
+}
+
+.giz-input-invalid .giz-input-root--outline {
+  border: 1px solid #F25A68 !important;
+}
+
+.giz-input-invalid .giz-input-root--shadow {
+  -webkit-box-shadow: 0px 0px 9px rgba(242, 90, 104, 0.4);
+  box-shadow: 0px 0px 9px rgba(242, 90, 104, 0.4);
+}
+
+.giz-input-invalid .giz-input-root--shadow:hover {
+  -webkit-box-shadow: 0px 0px 9px rgba(242, 90, 104, 0.5);
+  box-shadow: 0px 0px 9px rgba(242, 90, 104, 0.5);
+}
+
+.giz-input-invalid .giz-input-root--shadow:focus-within {
+  -webkit-box-shadow: 0px 0px 9px rgba(242, 90, 104, 0.6) !important;
+  box-shadow: 0px 0px 9px rgba(242, 90, 104, 0.6) !important;
 }
 
 .giz-input-control .giz-input-root {

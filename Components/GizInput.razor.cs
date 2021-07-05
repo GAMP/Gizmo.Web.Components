@@ -77,6 +77,8 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-control")
+                 .If("giz-input-valid", () => IsValid)
+                 .If("giz-input-invalid", () => !IsValid)
                  .AsString();
 
         protected string IconLeft => new ClassMapper()
@@ -96,8 +98,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
-                 .If("giz-input-valid", () => IsValid)
-                 .If("giz-input-invalid", () => !IsValid)
+                 .Add("giz-input-validation")
                  .AsString();
 
         #endregion
