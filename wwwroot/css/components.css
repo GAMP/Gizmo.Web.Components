@@ -3482,15 +3482,10 @@ h6,
 .giz-input-root--large {
   padding: 2.8rem 3.2rem;
   height: 8rem;
-  border: 0rem !important;
   outline: none;
   font-weight: 500;
   font-size: 1.9rem;
   line-height: 2.4rem;
-}
-
-.giz-input-root--large:hover {
-  border: 0rem !important;
 }
 
 .giz-input-root--large.is-disabled,

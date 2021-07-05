@@ -29,6 +29,7 @@
                 <input id="@Id"
                        type="text"
                        value="@_selectedItem?.Text"
+                       disabled="@IsDisabled"
                        readonly
                        @onclick="OnClickInputHandler" />
             }

@@ -68,15 +68,10 @@
     &--large {
         padding: 2.8rem 3.2rem;
         height: 8rem;
-        border: $border-0 !important;
         outline: none;
         font-weight: $font-weight-500;
         font-size: $font-19;
         line-height: $line-height-24;
-
-        &:hover {
-            border: $border-0 !important;
-        }
 
         &.is-disabled, &[disabled] {
             background-color: $gray-dark;
