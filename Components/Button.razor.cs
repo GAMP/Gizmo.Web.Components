@@ -17,6 +17,7 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private bool _selected;
+        private bool _isSelected;
 
         #endregion
 
@@ -82,7 +83,25 @@ namespace Gizmo.Web.Components
         public string RightIcon { get; set; }
 
         [Parameter]
-        public bool IsSelected { get; set; }
+        public bool IsSelected
+        {
+            get
+            {
+                return _isSelected;
+            }
+            set
+            {
+                if (_isSelected == value)
+                    return;
+
+                _isSelected = value;
+
+                if (ButtonGroup != null)
+                {
+                    ButtonGroup.SelectItem(this, _isSelected);
+                }
+            }
+        }
 
         #endregion
 
@@ -92,7 +111,7 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickButtonHandler(MouseEventArgs args)
         {
-            if (ButtonGroup != null)
+            if (ButtonGroup != null && !ButtonGroup.IsDisabled)
             {
                 ButtonGroup.SelectItem(this, !_selected);
             }

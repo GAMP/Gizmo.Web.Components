@@ -79,9 +79,6 @@ namespace Gizmo.Web.Components
 
         internal void SelectItem(Button item, bool selected)
         {
-            if (IsDisabled)
-                return;
-
             bool wasSelected = SelectedItems?.Contains(item) == true;
 
             if (wasSelected == selected)
