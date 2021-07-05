@@ -28,7 +28,7 @@ namespace Gizmo.Web.Components
         public EventCallback<bool> IsOpenChanged { get; set; }
 
         [Parameter]
-        public bool Modal { get; set; }
+        public bool IsModal { get; set; }
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickPopupHandler(MouseEventArgs args)
         {
-            if (Modal)
+            if (IsModal)
                 return Task.CompletedTask;
 
             IsOpen = false;

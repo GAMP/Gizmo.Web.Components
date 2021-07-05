@@ -3471,6 +3471,8 @@ h6,
 
 .giz-input-root .giz-input-icon-right {
   margin-left: 1.2rem;
+  width: 1.4rem;
+  height: 1.4rem;
 }
 
 .giz-input-root--full-width {
@@ -3511,6 +3513,8 @@ h6,
 
 .giz-input-root--large .giz-input-icon-right {
   margin-left: 2.4rem !important;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .giz-input-root--outline {

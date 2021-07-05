@@ -33,7 +33,7 @@
             }
         }
 
-        <Popup IsOpen="@IsOpen" Class="@PopupClassName">
+        <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName">
             <List Direction="@Direction" CanClick="true" OnClickItem="@(() => OnClickMenuItemHandler())">
                 @ChildContent
             </List>
