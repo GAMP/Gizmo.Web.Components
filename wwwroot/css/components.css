@@ -3370,10 +3370,6 @@ h6,
   line-height: 1.6rem;
   letter-spacing: -0.08rem;
   color: #6E7689;
-  padding-top: 1.6rem;
-  padding-bottom: 1.6rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -3639,6 +3635,13 @@ h6,
 
 [light-theme] .giz-menu .giz-menu-dropdown .giz-list {
   border: 1px solid #E7E9EE;
+}
+
+.giz-menu .giz-menu-dropdown .giz-list .giz-list-item {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .giz-menu .giz-menu-dropdown > .giz-list.giz-list--right {
@@ -3953,6 +3956,13 @@ h6,
   border: 1px solid #E7E9EE;
 }
 
+.giz-input-select .giz-input-select-dropdown-menu .giz-list .giz-list-item {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .giz-input-select .giz-input-control .giz-input-root {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -4041,6 +4051,13 @@ h6,
 
 [light-theme] .giz-input-autocomplete .giz-input-autocomplete-dropdown-menu {
   border: 1px solid #E7E9EE;
+}
+
+.giz-input-autocomplete .giz-input-autocomplete-dropdown-menu .giz-list .giz-list-item {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .giz-input-autocomplete .giz-input-control .giz-input-root {

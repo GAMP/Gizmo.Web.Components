@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Gizmo.Web.Components
 {
@@ -46,7 +48,19 @@ namespace Gizmo.Web.Components
         public bool IsExpanded { get; set; }
 
         [Parameter]
+        public bool HasBorder { get; set; }
+
+        [Parameter]
+        public string BorderColor { get; set; } = "#edeef2";
+
+        [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
+        
+        [Parameter]
+        public ICommand Command { get; set; }
+
+        [Parameter]
+        public object CommandParameter { get; set; }
 
         #endregion
 
@@ -70,6 +84,11 @@ namespace Gizmo.Web.Components
             {
                 if (Parent != null)
                     await Parent.SetClickedItem(this);
+            }
+
+            if (Command?.CanExecute(CommandParameter) ?? false)
+            {
+                Command.Execute(CommandParameter);
             }
 
             await OnClick.InvokeAsync(args);
@@ -126,6 +145,10 @@ namespace Gizmo.Web.Components
                  .Add("giz-list-item")
                  .If("giz-list-item-disabled", () => IsDisabled)
                  .If("giz-list-item-selected", () => _isSelected).AsString();
+
+        protected string StyleValue => new StyleMapper()
+                 .If($"border: 1px solid {BorderColor}; border-radius: 0.4rem", () => HasBorder)
+                 .AsString();
 
         #endregion
 

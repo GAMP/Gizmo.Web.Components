@@ -21,8 +21,6 @@ namespace Gizmo.Web.Components
         #region PRIVATE FIELDS
 
         private ElementReference _ref;
-        private ClassMapper _classMapper;
-        private StyleMapper _styleMapper;
 
         #endregion
 

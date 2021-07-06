@@ -319,8 +319,6 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-autocomplete")
-                 //.If("giz-select-root--disabled", () => IsDisabled)
-                 //.If("giz-select-root--offset", () => OffsetY)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()

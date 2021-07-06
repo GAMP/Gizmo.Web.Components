@@ -18,6 +18,13 @@
             [light-theme] & {
                 border: 1px solid $gray-dark;
             }
+
+            .giz-list-item {
+                padding-top: $spacer-16;
+                padding-bottom: $spacer-16;
+                padding-left: $spacer-20;
+                padding-right: $spacer-20;
+            }
         }
     }
 
