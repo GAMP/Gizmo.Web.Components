@@ -32,11 +32,11 @@ a {
 //theme background
 .giz-theme-background {
     background: $dark-color !important;
-    color: $white-color !important;
+    color: $white-color;
 
     [light-theme] & {
         background: $white-color !important;
-        color: $black-color !important;
+        color: $black-color;
     }
 }
 

@@ -25,12 +25,12 @@ a {
 
 .giz-theme-background {
   background: #171c28 !important;
-  color: #FFFFFF !important;
+  color: #FFFFFF;
 }
 
 [light-theme] .giz-theme-background {
   background: #FFFFFF !important;
-  color: #000000 !important;
+  color: #000000;
 }
 
 .giz-theme-on-background {
