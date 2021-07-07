@@ -75,7 +75,7 @@
 		<None Include="wwwroot\scss\button.scss" />
 		<None Include="wwwroot\scss\checkbox.scss" />
 		<None Include="wwwroot\scss\radio.scss" />
-		<None Include="wwwroot\scss\table.scss" />
+		<None Include="wwwroot\scss\data-grid.scss" />
 		<None Include="wwwroot\scss\_typography.scss" />
 		<None Include="wwwroot\scss\_variables.scss" />
 	</ItemGroup>

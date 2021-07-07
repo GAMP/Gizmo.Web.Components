@@ -1,4 +1,4 @@
-.table {
+.giz-data-grid {
     position: $position-relative;
     width: $width-full;
     border-collapse: separate;
@@ -200,7 +200,7 @@
     }
 }
 
-.table__details-content {
+.giz-data-grid__details-content {
     position: $position-relative;
     width: $width-full;
     border: 1px solid #292e39;
@@ -217,7 +217,7 @@
     }
 }
 
-.table-sticky-header {
+.giz-data-grid-sticky-header {
     max-height: 100%;
 
     .table {

@@ -38,6 +38,9 @@ namespace Gizmo.Web.Components
         public bool CanClick { get; set; }
 
         [Parameter]
+        public bool CanSelect { get; set; }
+
+        [Parameter]
         public ListItem SelectedItem
         {
             get => _selectedItem;
@@ -169,6 +172,7 @@ namespace Gizmo.Web.Components
                  .Add("giz-list")
                  .Add($"giz-list--{Direction.ToDescriptionString()}")
                  .If("giz-list--clickable", () => CanClick)
+                 .If("giz-list--selectable", () => CanSelect)
                  .AsString();
 
         protected string StyleValue => new StyleMapper()

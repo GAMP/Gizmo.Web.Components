@@ -32,7 +32,7 @@
         </GizInput>
 
         <Popup MaximumHeight="@MaximumHeight" IsOpen="@IsOpen" Class="@PopupClassName">
-            <List @ref="_itemsList">
+            <List @ref="_itemsList" CanSelect="true">
                 @if (ItemSource != null)
                 {
                     @foreach (var item in GetFiltered(_text))

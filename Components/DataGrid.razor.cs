@@ -377,11 +377,11 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string TableContainerClassName => new ClassMapper()
-                 .If("table-sticky-header", () => HasStickyHeader)
+                 .If("giz-data-grid-sticky-header", () => HasStickyHeader)
                  .AsString();
 
         protected string TableClassName => new ClassMapper()
-                 .If("table", () => Variant == DataGridVariants.Default)
+                 .If("giz-data-grid", () => Variant == DataGridVariants.Default)
                  .AsString();
 
         #endregion
