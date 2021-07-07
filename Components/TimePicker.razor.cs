@@ -14,6 +14,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+        private DateTime? _previewValue;
         private DateTime? _value;
         private int _hours;
         private int _minutes;
@@ -32,6 +33,9 @@ namespace Gizmo.Web.Components
             }
             set
             {
+                if (_value == value)
+                    return;
+
                 _value = value;
 
                 //Update the component's text.
@@ -44,7 +48,9 @@ namespace Gizmo.Web.Components
                     _text = string.Empty;
                 }
 
-                StateHasChanged();
+                ReloadValue();
+
+                ValueChanged.InvokeAsync(Value);
             }
         }
 
@@ -76,12 +82,31 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        private Task TimePickerValueChanged(DateTime? value)
+        private void ReloadValue()
         {
-            IsOpen = false;
-            Value = value;
+            if (Value.HasValue)
+            {
+                if (Value.Value.Hour < 12)
+                {
+                    _hours = Value.Value.Hour;
+                    _am = true;
+                }
+                else
+                {
+                    _hours = Value.Value.Hour - 12;
+                    _am = false;
+                }
 
-            return Task.CompletedTask;
+                _minutes = Value.Value.Minute;
+            }
+            else
+            {
+                _hours = 0;
+                _minutes = 0;
+                _am = true;
+            }
+
+            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
         }
 
         #endregion
@@ -95,7 +120,7 @@ namespace Gizmo.Web.Components
             else
                 _hours = 0;
 
-            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
 
             return Task.CompletedTask;
         }
@@ -107,7 +132,7 @@ namespace Gizmo.Web.Components
             else
                 _hours = 11;
 
-            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
 
             return Task.CompletedTask;
         }
@@ -119,7 +144,7 @@ namespace Gizmo.Web.Components
             else
                 _minutes = 0;
 
-            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
 
             return Task.CompletedTask;
         }
@@ -131,7 +156,7 @@ namespace Gizmo.Web.Components
             else
                 _minutes = 59;
 
-            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
 
             return Task.CompletedTask;
         }
@@ -139,7 +164,7 @@ namespace Gizmo.Web.Components
         private Task OnClickButtonSwitchAMPMHandler(MouseEventArgs args)
         {
             _am = !_am;
-            Value = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
 
             return Task.CompletedTask;
         }
@@ -163,24 +188,29 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
+            ReloadValue();
+
             IsOpen = false;
 
             return Task.CompletedTask;
         }
 
-        #endregion
-
-        #region OVERRIDE
-
-        protected override async Task OnFirstAfterRenderAsync()
+        protected Task OnClickOKButtonHandler(MouseEventArgs args)
         {
-            //If the component initialized with a value.
-            if (_value != null)
-            {
+            Value = _previewValue;
 
-            }
+            IsOpen = false;
 
-            await base.OnFirstAfterRenderAsync();
+            return Task.CompletedTask;
+        }
+
+        protected Task OnClickCancelButtonHandler(MouseEventArgs args)
+        {
+            ReloadValue();
+
+            IsOpen = false;
+
+            return Task.CompletedTask;
         }
 
         #endregion

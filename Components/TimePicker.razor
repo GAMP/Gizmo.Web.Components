@@ -35,7 +35,7 @@
                     <div><span class="giz-time-picker-header--title">:</span></div>
                     <span class="giz-time-picker-header--title">@(_minutes.ToString().PadLeft(2, '0') ?? "00")</span>
                     <div class="giz-time-picker-header--ampm ml-3">
-                        <span class="giz-time-picker-header--label">@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))</span>
+                        <span class="giz-time-picker-header--label">@(_previewValue.HasValue ? _previewValue.Value.ToString("tt") : DateTime.Now.ToString("tt"))</span>
                     </div>
                 </div>
                 <div class="giz-time-picker-content">
@@ -54,13 +54,13 @@
                     </div>
                     <div class="giz-time-picker-content--timer">
                         <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-up giz-time-picker-content--icon-size"></i></Button>
-                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@(Value.HasValue ? Value.Value.ToString("tt") : DateTime.Now.ToString("tt"))" IsReadOnly="true" MaxLength="2" />
+                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@(_previewValue.HasValue ? _previewValue.Value.ToString("tt") : DateTime.Now.ToString("tt"))" IsReadOnly="true" MaxLength="2" />
                         <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonSwitchAMPMHandler"><i class="fas fa-angle-down giz-time-picker-content--icon-size"></i></Button>
                     </div>
                 </div>
                 <div class="giz-time-picker-footer">
-                    <div><Button>OK</Button></div>
-                    <div><Button Class="ml-3" Variant="ButtonVariants.Outline">CANCEL</Button></div>
+                    <div><Button @onclick="OnClickOKButtonHandler">OK</Button></div>
+                    <div><Button Class="ml-3" Variant="ButtonVariants.Outline" @onclick="OnClickCancelButtonHandler">CANCEL</Button></div>
                 </div>
             </div>
 

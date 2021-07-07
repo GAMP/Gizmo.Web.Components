@@ -11,11 +11,11 @@
         {
             <div class="giz-calendar-title-switch">
                 <div>
-                    <Button Variant="ButtonVariants.Icon"><i class="fas fa-chevron-left"></i></Button>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonPreviousYearHandler"><i class="fas fa-chevron-left"></i></Button>
                 </div>
                 <div class="giz-calendar-title-slide" @onclick="OnClickButtonYearHandler">@CurrentVisibleMonth.ToString("yyyy")</div>
                 <div>
-                    <Button Variant="ButtonVariants.Icon"><i class="fas fa-chevron-right"></i></Button>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonNextYearHandler"><i class="fas fa-chevron-right"></i></Button>
                 </div>
             </div>
             <div class="giz-calendar-month">

@@ -22,10 +22,10 @@ namespace Gizmo.Web.Components
         public bool IsOpen { get; set; }
 
         [Parameter]
-        public int MaximumHeight { get; set; }
+        public EventCallback<bool> IsOpenChanged { get; set; }
 
         [Parameter]
-        public EventCallback<bool> IsOpenChanged { get; set; }
+        public int MaximumHeight { get; set; }
 
         [Parameter]
         public bool IsModal { get; set; }

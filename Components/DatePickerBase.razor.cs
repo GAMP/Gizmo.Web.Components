@@ -116,6 +116,20 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        private Task OnClickButtonPreviousYearHandler(MouseEventArgs args)
+        {
+            CurrentVisibleMonth = CurrentVisibleMonth.AddYears(-1);
+
+            return Task.CompletedTask;
+        }
+
+        private Task OnClickButtonNextYearHandler(MouseEventArgs args)
+        {
+            CurrentVisibleMonth = CurrentVisibleMonth.AddYears(1);
+
+            return Task.CompletedTask;
+        }
+
         private Task OnClickButtonDay(int day)
         {
             Value = new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day);

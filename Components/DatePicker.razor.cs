@@ -32,19 +32,22 @@ namespace Gizmo.Web.Components
             }
             set
             {
+                if (_value == value)
+                    return;
+
                 _value = value;
 
                 //Update the component's text.
                 if (_value != null)
                 {
-                    _text = _value.ToString();
+                    _text = _value.Value.ToShortDateString();
                 }
                 else
                 {
                     _text = string.Empty;
                 }
 
-                StateHasChanged();
+                ValueChanged.InvokeAsync(Value);
             }
         }
 
@@ -117,21 +120,6 @@ namespace Gizmo.Web.Components
             IsOpen = false;
 
             return Task.CompletedTask;
-        }
-
-        #endregion
-
-        #region OVERRIDE
-
-        protected override async Task OnFirstAfterRenderAsync()
-        {
-            //If the component initialized with a value.
-            if (_value != null)
-            {
-
-            }
-
-            await base.OnFirstAfterRenderAsync();
         }
 
         #endregion
