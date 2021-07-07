@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Gizmo.Web.Components
 {
@@ -103,6 +104,12 @@ namespace Gizmo.Web.Components
             }
         }
 
+        [Parameter]
+        public ICommand Command { get; set; }
+
+        [Parameter]
+        public object CommandParameter { get; set; }
+
         #endregion
 
         #endregion
@@ -114,6 +121,11 @@ namespace Gizmo.Web.Components
             if (ButtonGroup != null && !ButtonGroup.IsDisabled)
             {
                 ButtonGroup.SelectItem(this, !_selected);
+            }
+
+            if (Command?.CanExecute(CommandParameter) ?? false)
+            {
+                Command.Execute(CommandParameter);
             }
 
             return Task.CompletedTask;
