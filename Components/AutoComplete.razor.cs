@@ -9,9 +9,13 @@ namespace Gizmo.Web.Components
 {
     public partial class AutoComplete<TItemType, TValue> : InputBase<TValue>, ISelect<TValue>
     {
+        const int DEFAULT_DELAY = 500;
+
         #region CONSTRUCTOR
         public AutoComplete()
         {
+            _deferredAction = new DeferredAction(Search);
+            _delayTimeSpan = new TimeSpan(0, 0, 0, 0, _delay);
         }
         #endregion
 
@@ -20,15 +24,31 @@ namespace Gizmo.Web.Components
         private TValue _value;
         private string _text;
 
+        private IEnumerable<TItemType> _items;
         private List _itemsList;
-        private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
-
+        private Dictionary<TValue, SelectItem<TValue>> _selectItems = new Dictionary<TValue, SelectItem<TValue>>();
+        private DeferredAction _deferredAction;
+        private int _delay = DEFAULT_DELAY;
+        private TimeSpan _delayTimeSpan;
         #endregion
 
         #region PROPERTIES
 
         [Parameter]
-        public ICollection<TItemType> ItemSource { get; set; }
+        public IEnumerable<TItemType> ItemSource
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                if (SearchFunction == null)
+                {
+                    _items = value;
+                }
+            }
+        }
 
         [Parameter]
         public Func<TItemType, TValue> ItemValueSelector { get; set; }
@@ -51,9 +71,14 @@ namespace Gizmo.Web.Components
                 _value = value;
 
                 //Find the item with this value.
-                var item = ItemSource.Where(a => GetItemValue(a)?.Equals(_value) == true).FirstOrDefault();
+                TItemType item = default(TItemType);
 
-                //If the item exists in the ItemSource.
+                if (_items != null)
+                {
+                    item = _items.Where(a => GetItemValue(a)?.Equals(_value) == true).FirstOrDefault();
+                }
+
+                //If the item exists in the _items.
                 if (item != null)
                 {
                     //Update the component's text.
@@ -96,6 +121,27 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Placeholder { get; set; }
 
+        [Parameter]
+        public int MinimumCharacters { get; set; } = 3;
+
+        [Parameter]
+        public int Delay
+        {
+            get
+            {
+                return _delay;
+            }
+            set
+            {
+                _delay = value;
+
+                _delayTimeSpan = new TimeSpan(0, 0, 0, 0, _delay);
+            }
+        }
+
+        [Parameter]
+        public Func<string, Task<IEnumerable<TItemType>>> SearchFunction { get; set; }
+
         #endregion
 
         #region METHODS
@@ -135,8 +181,12 @@ namespace Gizmo.Web.Components
 
         protected IEnumerable<TItemType> GetFiltered(string text)
         {
-            var result = ItemSource.Where(a => string.IsNullOrEmpty(text) || GetItemText(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true)
-                        .ToList();
+            IEnumerable<TItemType> result = null;
+
+            if (_items != null)
+            {
+                result = _items.Where(a => string.IsNullOrEmpty(text) || GetItemText(a)?.ToLowerInvariant().Contains(text?.ToLowerInvariant()) == true).ToList();
+            }
 
             return result;
         }
@@ -159,21 +209,21 @@ namespace Gizmo.Web.Components
             //If list has items.
             //Get the index of the selected item.
 
-            int selectedItemIndex = _itemsList.GetSelectedItemIndex();
+            int activeItemIndex = _itemsList.GetSelectedItemIndex();
             int listSize = _itemsList.GetListSize();
 
             switch (args.Key)
             {
                 case "Enter":
 
-                    if (selectedItemIndex == -1) //If not item was selected.
+                    if (activeItemIndex == -1) //If not item was selected.
                     {
-                        selectedItemIndex = 0; //Select the first item.
+                        activeItemIndex = 0; //Select the first item.
                     }
                     else
                     {
                         //Set the value of the AutoComplete based on the selected item.
-                        var selectItem = _items.Where(a => a.Value.ListItem == _itemsList.SelectedItem).Select(a => a.Value).FirstOrDefault();
+                        var selectItem = _selectItems.Where(a => a.Value.ListItem == _itemsList.SelectedItem).Select(a => a.Value).FirstOrDefault();
                         await SetSelectedItem(selectItem);
 
                         //Close the popup.
@@ -186,29 +236,29 @@ namespace Gizmo.Web.Components
 
                 case "ArrowDown":
 
-                    if (selectedItemIndex == -1 || selectedItemIndex == listSize - 1) //If not item was selected or the last item was selected.
+                    if (activeItemIndex == -1 || activeItemIndex == listSize - 1) //If not item was selected or the last item was selected.
                     {
                         //Select the first item.
-                        selectedItemIndex = 0;
+                        activeItemIndex = 0;
                     }
                     else
                     {
                         //Select the next item.
-                        selectedItemIndex += 1;
+                        activeItemIndex += 1;
                     }
 
                     break;
                 case "ArrowUp":
 
-                    if (selectedItemIndex == -1 || selectedItemIndex == 0) //If not item was selected or the first item was selected.
+                    if (activeItemIndex == -1 || activeItemIndex == 0) //If not item was selected or the first item was selected.
                     {
                         //Select the last item.
-                        selectedItemIndex = listSize - 1;
+                        activeItemIndex = listSize - 1;
                     }
                     else
                     {
                         //Select the previous item.
-                        selectedItemIndex -= 1;
+                        activeItemIndex -= 1;
                     }
 
                     break;
@@ -218,16 +268,30 @@ namespace Gizmo.Web.Components
             }
 
             //Update the selected item in the list.
-            await _itemsList.SetSelectedItemIndex(selectedItemIndex);
+            await _itemsList.SetSelectedItemIndex(activeItemIndex);
         }
 
         public Task OnInputHandler(ChangeEventArgs args)
         {
             _text = (string)args.Value;
 
-            StateHasChanged();
+            if (SearchFunction != null)
+            {
+                if (MinimumCharacters > 0 && _text.Length >= MinimumCharacters)
+                {
+                    _deferredAction.Defer(_delayTimeSpan);
+                }
+            }
 
+            //StateHasChanged();
             return Task.CompletedTask;
+        }
+
+        private async Task Search()
+        {
+            _items = await SearchFunction(_text);
+
+            StateHasChanged();
         }
 
         protected Task OnInputClickHandler(MouseEventArgs args)
@@ -259,9 +323,14 @@ namespace Gizmo.Web.Components
             if (_value != null)
             {
                 //Find the item with this value.
-                var item = ItemSource.Where(a => GetItemValue(a)?.Equals(_value) == true).FirstOrDefault();
+                TItemType item = default(TItemType);
 
-                //If the item exists in the ItemSource.
+                if (_items != null)
+                {
+                    item = _items.Where(a => GetItemValue(a)?.Equals(_value) == true).FirstOrDefault();
+                }
+
+                //If the item exists in the _items.
                 if (item != null)
                 {
                     //Update the component's text.
@@ -285,12 +354,12 @@ namespace Gizmo.Web.Components
 
         public void Register(SelectItem<TValue> selectItem)
         {
-            _items[selectItem.Value] = selectItem;
+            _selectItems[selectItem.Value] = selectItem;
         }
 
         public void Unregister(SelectItem<TValue> selectItem)
         {
-            _items.Remove(selectItem.Value);
+            _selectItems.Remove(selectItem.Value);
         }
 
         public Task SetSelectedItem(SelectItem<TValue> selectItem)
