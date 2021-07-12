@@ -53,14 +53,17 @@
     &:checked + label:after {
         content: '';
         position: $position-absolute;
-        left: 0.7rem;
+        left: 0.6rem;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-35%);
+        -moz-transform: translateY(-35%);
+        -webkit-transform: translateY(-35%);
         width: 8px;
         height: 6px;
         background: url('/img/icons/tick.svg') no-repeat;
-        -webkit-background-size: cover;
-        background-size: cover;
+        height: 1.6rem;
+        width: 1.6rem;
+        background-size: 1.4rem;
     }
 
     &:indeterminate + label:before {
@@ -79,6 +82,8 @@
         left: 0.8rem;
         top: 50%;
         transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
         width: 0.8rem;
         height: 2px;
         background: $white-color;
