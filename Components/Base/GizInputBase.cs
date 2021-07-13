@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Gizmo.Web.Components
 {
-    public class InputBase<TValue> : CustomDOMComponentBase
+    public class GizInputBase<TValue> : CustomDOMComponentBase
     {
         #region FIELDS
 

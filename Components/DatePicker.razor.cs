@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class DatePicker : InputBase<DateTime?>
+    public partial class DatePicker : GizInputBase<DateTime?>
     {
         #region CONSTRUCTOR
         public DatePicker()

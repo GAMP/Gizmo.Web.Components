@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class TextInput : InputBase<string>
+    public partial class TextInput : GizInputBase<string>
     {
         #region CONSTRUCTOR
         public TextInput()
@@ -100,16 +100,18 @@ namespace Gizmo.Web.Components
 
         protected override Task OnFirstAfterRenderAsync()
         {
-            Attributes = new Dictionary<string, object>();
+            var attributes = new Dictionary<string, object>();
 
             if (Min > 0)
-                Attributes["min"] = Min;
+                attributes["min"] = Min;
 
             if (Max > 0)
-                Attributes["max"] = Max;
+                attributes["max"] = Max;
 
             if (MaxLength > 0)
-                Attributes["maxlength"] = MaxLength;
+                attributes["maxlength"] = MaxLength;
+
+            Attributes = attributes;
 
             return base.OnFirstAfterRenderAsync();
         }

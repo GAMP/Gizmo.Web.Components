@@ -12,9 +12,6 @@ namespace Gizmo.Web.Components
         #region CONSTRUCTOR
         protected CustomDOMComponentBase()
         {
-            //ClassMapper
-            //    .Get(() => Class);
-            //StyleMapper.Get(() => Style);
         } 
         #endregion
 
@@ -64,36 +61,6 @@ namespace Gizmo.Web.Components
         /// </summary>
         [Parameter()]
         public string Style { get; set; }
-
-        #endregion
-
-        #region PROTECTED
-
-        ///// <summary>
-        ///// Gets class mapper.
-        ///// </summary>
-        //protected ClassMapper ClassMapper
-        //{
-        //    get
-        //    {
-        //        if (_classMapper == null)
-        //            _classMapper = new ClassMapper();
-        //        return _classMapper;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Gets style mapper.
-        ///// </summary>
-        //protected StyleMapper StyleMapper
-        //{
-        //    get
-        //    {
-        //        if (_styleMapper == null)
-        //            _styleMapper = new StyleMapper();
-        //        return _styleMapper;
-        //    }
-        //}
 
         #endregion
 

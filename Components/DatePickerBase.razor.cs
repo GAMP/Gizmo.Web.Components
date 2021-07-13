@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class DatePickerBase : InputBase<DateTime?>
+    public partial class DatePickerBase : GizInputBase<DateTime?>
     {
         #region CONSTRUCTOR
         public DatePickerBase()
@@ -21,6 +21,7 @@ namespace Gizmo.Web.Components
         private DateTime? _value;
         private bool _showMonthPicker;
         private bool _showYearPicker;
+        private bool _requiresScrolling;
         #endregion
 
         #region PROPERTIES
@@ -83,6 +84,11 @@ namespace Gizmo.Web.Components
             return false;
         }
 
+        private async Task ScrollDatePickerYearIntoView()
+        {
+            await InvokeVoidAsync("scrollDatePickerYear");
+        }
+
         #endregion
 
         #region EVENTS
@@ -91,6 +97,8 @@ namespace Gizmo.Web.Components
         {
             _showMonthPicker = false;
             _showYearPicker = true;
+
+            _requiresScrolling = true;
 
             return Task.CompletedTask;
         }
@@ -167,6 +175,15 @@ namespace Gizmo.Web.Components
             }
 
             await base.OnFirstAfterRenderAsync();
+        }
+        
+        protected async override Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender && _requiresScrolling)
+            {
+                await ScrollDatePickerYearIntoView();
+                _requiresScrolling = false;
+            }
         }
 
         #endregion

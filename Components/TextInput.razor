@@ -1,5 +1,5 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits InputBase<string>
+@inherits GizInputBase<string>
 
 <GizInput Class="@Class"
           Label="@Label"
@@ -21,7 +21,7 @@
            disabled="@IsDisabled"
            placeholder="@Placeholder"
            @onchange="OnChangeHandler"
-           @onclick="OnClickHandler"           
+           @onclick="OnClickHandler"
            @attributes="Attributes" />
 
 </GizInput>
