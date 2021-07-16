@@ -26,7 +26,7 @@ namespace Gizmo.Web.Components
         public IconSizes Size { get; set; } = IconSizes.Medium;
 
         [Parameter]
-        public string Color { get; set; } = "#6E7689";
+        public string Color { get; set; }
 
         [Parameter]
         public IconBackgroundStyles BackgroundStyle { get; set; } = IconBackgroundStyles.None;
@@ -108,6 +108,7 @@ namespace Gizmo.Web.Components
                  .Add($"height: { Height.ToString(System.Globalization.CultureInfo.InvariantCulture) }em")
                  .Add($"border-radius: { (BackgroundStyle == IconBackgroundStyles.Circle ? "50%" : "0") }")
                  .If($"background-color: { BackgroundColor }", () => BackgroundStyle != IconBackgroundStyles.None)
+                 .If($"color: { Color }", () => !string.IsNullOrEmpty(Color))
                  .AsString();
 
         #endregion

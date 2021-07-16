@@ -13,11 +13,12 @@
         }
         else
         {
-            @if (Icon != null || SVGIcon.HasValue)
+            @if (!string.IsNullOrEmpty(Icon) || SVGIcon.HasValue)
             {
                 <Button Variant="@Variant"
                         Size="@Size"
                         RightIcon="@Icon"
+                        RightSVGIcon="SVGIcon"
                         @onclick="OnClickMenuHandler">
                     @Label
                 </Button>
@@ -26,7 +27,7 @@
             {
                 <Button Variant="@Variant"
                         Size="@Size"
-                        RightIcon="@(IsOpen ? "fas fa-chevron-up" : "fas fa-chevron-down")"
+                        RightSVGIcon="@(IsOpen ? Icons.TriangleUp : Icons.TriangleDown)"
                         @onclick="OnClickMenuHandler">
                     @Label
                 </Button>

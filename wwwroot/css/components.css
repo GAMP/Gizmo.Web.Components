@@ -2535,6 +2535,12 @@ h6,
   line-height: 2.2rem;
   text-align: center;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .giz-button .giz-button-icon-left {
@@ -3435,6 +3441,9 @@ h6,
 }
 
 .giz-input-root {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   background: #171c28;
   /*border: 1px solid $border-color;*/
   border-radius: 0.4rem;

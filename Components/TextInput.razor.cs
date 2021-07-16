@@ -31,6 +31,12 @@ namespace Gizmo.Web.Components
         public string RightIcon { get; set; }
 
         [Parameter]
+        public Icons? LeftSVGIcon { get; set; }
+
+        [Parameter]
+        public Icons? RightSVGIcon { get; set; }
+
+        [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Normal;
 
         [Parameter]
