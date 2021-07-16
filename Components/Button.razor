@@ -13,16 +13,20 @@
         @attributes="@Attributes"
         id="@Id">
 
-    @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
-    {
-        <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft"/>
-    }
+    <div style="display: flex; align-items: center; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "" : "justify-content: center")">
+        @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
+        {
+            <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" />
+        }
 
-    @ChildContent
+        <div style="display: inline-block; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
+            @ChildContent
+        </div>
 
-    @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
-    {
-        <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" />
-    }
+        @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
+        {
+            <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" />
+        }
+    </div>
 
 </button>
