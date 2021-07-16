@@ -13,16 +13,16 @@
         @attributes="@Attributes"
         id="@Id">
 
-    @if (!string.IsNullOrEmpty(LeftIcon))
+    @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
     {
-        <Icon Source="@LeftIcon" Class="@ButtonIconLeft"/>
+        <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft"/>
     }
 
     @ChildContent
 
-    @if (!string.IsNullOrEmpty(RightIcon))
+    @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
     {
-        <Icon Source="@RightIcon" Class="@ButtonIconRight" />
+        <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" />
     }
 
 </button>

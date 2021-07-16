@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-
     public partial class GizInput : CustomDOMComponentBase
     {
         #region CONSTRUCTOR
@@ -32,6 +31,12 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string RightIcon { get; set; }
+
+        [Parameter]
+        public Icons? LeftSVGIcon { get; set; }
+
+        [Parameter]
+        public Icons? RightSVGIcon { get; set; }
 
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Normal;

@@ -13,7 +13,7 @@
         }
         else
         {
-            @if (Icon != null)
+            @if (Icon != null || SVGIcon.HasValue)
             {
                 <Button Variant="@Variant"
                         Size="@Size"

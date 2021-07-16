@@ -7,17 +7,19 @@
         <label for="@Id" class="giz-input-label">@Label</label>
     }
     <div class="@FieldClassName" readonly="@IsReadOnly" disabled="@IsDisabled">
-        @if (!string.IsNullOrEmpty(LeftIcon))
+        @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
         {
             <Icon Source="@LeftIcon"
+                  SVGIcon="@LeftSVGIcon"
                   @onclick="OnClickHandler" Class="@IconLeft" />
         }
         
         @ChildContent
 
-        @if (!string.IsNullOrEmpty(RightIcon))
+        @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
             <Icon Source="@RightIcon"
+                  SVGIcon="@RightSVGIcon"
                   @onclick="OnClickHandler" Class="@IconRight" />
         }
 

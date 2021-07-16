@@ -1,4 +1,5 @@
 ﻿using Gizmo.Web.Components.Extensions;
+using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
@@ -19,10 +20,13 @@ namespace Gizmo.Web.Components
         public string Source { get; set; }
 
         [Parameter]
+        public Icons? SVGIcon { get; set; }
+
+        [Parameter]
         public IconSizes Size { get; set; } = IconSizes.Medium;
 
         [Parameter]
-        public string Color { get; set; }
+        public string Color { get; set; } = "#6E7689";
 
         [Parameter]
         public IconBackgroundStyles BackgroundStyle { get; set; } = IconBackgroundStyles.None;
@@ -32,6 +36,48 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+        public decimal Width
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case IconSizes.Small:
+                        return 1.6m;
+
+                    case IconSizes.Medium:
+                        return 2.2m;
+
+                    case IconSizes.Large:
+                        return 3.4m;
+
+                    default:
+                        return 2.2m;
+                }
+            }
+        }
+
+        public decimal Height
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case IconSizes.Small:
+                        return 1.6m;
+
+                    case IconSizes.Medium:
+                        return 2.2m;
+
+                    case IconSizes.Large:
+                        return 3.4m;
+
+                    default:
+                        return 2.2m;
+                }
+            }
+        }
 
         #endregion
 
@@ -53,6 +99,15 @@ namespace Gizmo.Web.Components
 
         protected string IconClassName => new ClassMapper()
                  .If("fa-stack-1x", () => BackgroundStyle != IconBackgroundStyles.None)
+                 .AsString();
+
+        protected string StyleValue => new StyleMapper()
+                 .Add($"padding: 0.2em")
+                 .Add($"display: inline-block")
+                 .Add($"width: { Width.ToString(System.Globalization.CultureInfo.InvariantCulture) }em")
+                 .Add($"height: { Height.ToString(System.Globalization.CultureInfo.InvariantCulture) }em")
+                 .Add($"border-radius: { (BackgroundStyle == IconBackgroundStyles.Circle ? "50%" : "0") }")
+                 .If($"background-color: { BackgroundColor }", () => BackgroundStyle != IconBackgroundStyles.None)
                  .AsString();
 
         #endregion

@@ -24,6 +24,9 @@ namespace Gizmo.Web.Components
         public string Icon { get; set; }
 
         [Parameter]
+        public Icons? SVGIcon { get; set; }
+
+        [Parameter]
         public bool IsOpen { get; set; }
 
         [Parameter]
