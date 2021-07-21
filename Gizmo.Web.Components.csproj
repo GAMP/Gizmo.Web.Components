@@ -71,7 +71,7 @@
 		<None Include="wwwroot\scss\text-input.scss" />
 		<None Include="wwwroot\scss\list.scss" />
 		<None Include="wwwroot\scss\tab.scss" />
-		<None Include="wwwroot\scss\components.scss" />
+		<None Include="wwwroot\scss\main.scss" />
 		<None Include="wwwroot\scss\button.scss" />
 		<None Include="wwwroot\scss\checkbox.scss" />
 		<None Include="wwwroot\scss\radio.scss" />
