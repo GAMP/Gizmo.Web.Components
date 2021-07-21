@@ -15,7 +15,7 @@ sass.compiler = require('node-sass');
 
 //sass compilation function
 function sassCompile() {
-    return src('wwwroot/scss/components.scss')
+    return src('wwwroot/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             cascade: false,
