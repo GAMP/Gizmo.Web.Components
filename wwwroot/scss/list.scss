@@ -21,9 +21,9 @@
         cursor: pointer;
 
         &.giz-list-item-disabled {
-            color: rgb(230, 230, 230) !important;
-            cursor: default !important;
-            pointer-events: none !important;
+            color: rgb(230, 230, 230);
+            cursor: default;
+            pointer-events: none;
         }
 
         .giz-list-item-icon {
@@ -47,7 +47,7 @@
     &.giz-list--selectable {
         .giz-list-item {
             &.giz-list-item-selected {
-                background-color: $primary-color !important;
+                background-color: $primary-color;
                 color: $white-color;
             }
         }

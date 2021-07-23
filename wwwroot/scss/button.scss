@@ -28,7 +28,7 @@
     }
 
     &.giz-button-full-width {
-        width: $width-full !important;
+        width: $width-full;
     }
     //group button
     &--group-button {
@@ -48,7 +48,7 @@
 
         &.is-disabled, &[disabled] {
             color: $gray-light-color;
-            background: $secondary-light !important;
+            background: $secondary-light;
             border: 1px solid $gray-light-color;
             pointer-events: none;
         }
@@ -71,7 +71,7 @@
 
         &.is-disabled, &[disabled] {
             color: $gray-light-color;
-            background: $secondary-light !important;
+            background: $secondary-light;
             border: 1px solid $gray-light-color;
             pointer-events: none;
         }
@@ -112,7 +112,7 @@
 
         &.is-disabled, &[disabled] {
             color: $gray-light-color;
-            background: $secondary-light !important;
+            background: $secondary-light;
             border: 1px solid $gray-light-color;
             pointer-events: none;
         }
@@ -135,7 +135,7 @@
 
         &.is-disabled, &[disabled] {
             color: $gray-dark;
-            background: $secondary-light !important;
+            background: $secondary-light;
             border: none;
             pointer-events: none;
         }
@@ -159,7 +159,7 @@
 
         &.is-disabled, &[disabled] {
             color: $gray-dark;
-            background: $secondary-light !important;
+            background: $secondary-light;
             border: none;
             pointer-events: none;
         }

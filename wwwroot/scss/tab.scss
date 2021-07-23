@@ -15,10 +15,10 @@
 //giz-tab
 .giz-tab {
     .giz-tab-active {
-        color: $white-color !important;
+        color: $white-color;
 
         [light-theme] & {
-            color: $black-color !important;
+            color: $black-color;
         }
 
         &::after {
@@ -49,8 +49,8 @@
         padding: $spacer-0;
 
         [light-theme] & {
-            background: $secondary-light !important;
-            border-bottom: 1px solid $white-color !important;
+            background: $secondary-light;
+            border-bottom: 1px solid $white-color;
         }
     }
 
@@ -74,11 +74,11 @@
     }
 
     [light-theme] & {
-        color: $secondary-color !important;
+        color: $secondary-color;
     }
 
     .giz-tab-content-active {
-        display: $display-block !important;
+        display: $display-block;
         padding: $spacer-20;
     }
 
