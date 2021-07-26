@@ -16,7 +16,10 @@
     <div style="display: flex; align-items: center; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "" : "justify-content: center")">
         @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
         {
-            <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" />
+            <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" Size="@(Size == ButtonSizes.Small ? IconSizes.Small : 
+                  (Size == ButtonSizes.Medium ? IconSizes.Medium :
+                  (Size == ButtonSizes.Large ? IconSizes.Large :
+                  IconSizes.ExtraLarge)))" />
         }
 
         <div style="display: inline-block; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
@@ -25,7 +28,10 @@
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
-            <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" />
+            <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" Size="@(Size == ButtonSizes.Small ? IconSizes.Small : 
+                  (Size == ButtonSizes.Medium ? IconSizes.Medium :
+                  (Size == ButtonSizes.Large ? IconSizes.Large :
+                  IconSizes.ExtraLarge)))" />
         }
     </div>
 

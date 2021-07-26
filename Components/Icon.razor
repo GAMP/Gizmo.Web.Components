@@ -3,7 +3,7 @@
 
 @if (!string.IsNullOrEmpty(Source))
 {
-    <span class="@Class @ClassName"
+    <span class="@Class @FAClassName"
           style="@Style"
           @onclick="OnClickHandler">
 
@@ -16,507 +16,475 @@
             <i class="fas fa-square fa-stack-2x" style="color: @BackgroundColor;"></i>
         }
 
-        <i class="@Source @IconClassName" style="color: @Color;"></i>
+        <i class="@Source @FAIconClassName" style="color: @Color;"></i>
     </span>
 }
 else
 {
     @if (SVGIcon.HasValue)
     {
-        <div class="@Class"
+        <div class="@Class @ClassName"
              style="@Style @StyleValue"
              @onclick="OnClickHandler">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                @switch (SVGIcon.Value)
+                {
+                    case Icons.ArrowCircle:
 
-            @switch (SVGIcon.Value)
-            {
-                case Icons.ArrowCircle:
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C9.2076 5 6.7971 6.63505 5.67363 9H3.51212C4.74763 5.50442 8.08134 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C8.08134 21 4.74763 18.4956 3.51212 15H5.67363C6.7971 17.3649 9.2076 19 12 19ZM3 12L3.00004 11.9735V11H12.1416L9.83158 8.40121L11.3264 7.07248L15.1159 11.3356L15.7064 12L15.1159 12.6644L11.3264 16.9275L9.83158 15.5988L12.1416 13H3.00004V12.0265L3 12Z" fill="currentColor" />
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C9.2076 5 6.7971 6.63505 5.67363 9H3.51212C4.74763 5.50442 8.08134 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C8.08134 21 4.74763 18.4956 3.51212 15H5.67363C6.7971 17.3649 9.2076 19 12 19ZM3 12L3.00004 11.9735V11H12.1416L9.83158 8.40121L11.3264 7.07248L15.1159 11.3356L15.7064 12L15.1159 12.6644L11.3264 16.9275L9.83158 15.5988L12.1416 13H3.00004V12.0265L3 12Z" fill="currentColor"  />
-                    </svg>
+                        break;
 
-                    break;
+                    case Icons.ArrowDown:
 
-                case Icons.ArrowLeft:
+                        <path d="m 7,10 4,4 4,-4"
+                              stroke="#6e7689"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              id="path2" />
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        break;
+
+                    case Icons.ArrowLeft:
+
                         <path d="M13 8L9 12L13 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.ArrowRight:
+                    case Icons.ArrowLeftLong:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 12H4M4 12L8 8M4 12L8 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                        break;
+
+                    case Icons.ArrowRight:
+
                         <path d="M11 8L15 12L11 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Arrows:
+                    case Icons.ArrowRightLong:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12H20M20 12L16 8M20 12L16 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        break;
+
+                    case Icons.Arrows:
+
                         <path d="M9 11H20M20 11L16.8571 8M20 11L16.8571 14" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
                         <path d="M20 17H9M9 17L12.1429 14M9 17L12.1429 20" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Backspace:
+                    case Icons.ArrowUp:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 15,14 11,10 7,14"
+                              stroke="#6e7689"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              id="path2" />
+
+                        break;
+
+                    case Icons.Backspace:
+
                         <path d="M6.71208 5.50386C6.89012 5.19229 7.22147 5 7.58032 5H19C19.5523 5 20 5.44772 20 6V18C20 18.5523 19.5523 19 19 19H7.58032C7.22147 19 6.89012 18.8077 6.71208 18.4961L3.28351 12.4961C3.10783 12.1887 3.10783 11.8113 3.28351 11.5039L6.71208 5.50386Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.80298 14.1365C9.51009 14.4294 9.51009 14.9043 9.80298 15.1972C10.0959 15.4901 10.5707 15.4901 10.8636 15.1972L13 13.0608L15.1363 15.1972C15.4292 15.4901 15.9041 15.4901 16.197 15.1972C16.4899 14.9043 16.4899 14.4294 16.197 14.1365L14.0606 12.0002L16.197 9.86383C16.4899 9.57093 16.4899 9.09606 16.197 8.80317C15.9041 8.51027 15.4292 8.51027 15.1363 8.80317L13 10.9395L10.8636 8.80317C10.5707 8.51028 10.0959 8.51028 9.80298 8.80317C9.51009 9.09606 9.51009 9.57094 9.80298 9.86383L11.9393 12.0002L9.80298 14.1365Z" fill="currentColor" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Balance:
+                    case Icons.Balance:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="7" y="10" width="14" height="10" rx="2" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
                         <rect x="7" y="14" width="3" height="2" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
                         <path d="M9 9C9 7.89543 9.89543 7 11 7H19C20.1046 7 21 7.89543 21 9V10H9V9Z" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Ban:
+                    case Icons.Ban:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58173 4 4 7.58172 4 12C4 16.4183 7.58173 20 12 20Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <rect x="8" y="11" width="8" height="2" fill="currentColor"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+                        <rect x="8" y="11" width="8" height="2" fill="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 
-                    break;
+                        break;
 
-                case Icons.Bell:
+                    case Icons.Bell:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.9999 11V16C17.9999 17 18.4999 17.5 19.0001 17.5V19.0003H5.00012V17.5C5.49988 17.5 5.99988 17 5.99988 16V11C5.99988 7 8.99988 5 11.9999 5C14.9999 5 17.9999 7 17.9999 11Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12.0001 22C12.5524 22 13.0001 21.5523 13.0001 21H11.0001C11.0001 21.5523 11.4478 22 12.0001 22Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 3L12 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Calendar:
+                    case Icons.Calendar:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.9231 19H6.07692C5.48462 19 5 18.4857 5 17.8571V8.14286C5 7.51429 5.48462 7 6.07692 7H17.9231C18.5154 7 19 7.51429 19 8.14286V17.8571C19 18.4857 18.5154 19 17.9231 19Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 5V7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17 11L7 11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 5V7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 5V7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Check:
+                    case Icons.Cash:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="4" width="16" height="10" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5 17H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M6 20H18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                        break;
+
+                    case Icons.Check:
+
                         <path d="M18 8L10.2 16L6 11.6923" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Close:
+                    case Icons.Close:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.46967 17.4697C5.17678 17.7626 5.17678 18.2374 5.46967 18.5303C5.76256 18.8232 6.23744 18.8232 6.53033 18.5303L12 13.0607L17.4697 18.5304C17.7626 18.8232 18.2374 18.8232 18.5303 18.5304C18.8232 18.2375 18.8232 17.7626 18.5303 17.4697L13.0607 12L18.5303 6.53033C18.8232 6.23744 18.8232 5.76256 18.5303 5.46967C18.2374 5.17678 17.7626 5.17678 17.4697 5.46967L12 10.9394L6.53033 5.46968C6.23744 5.17679 5.76256 5.17679 5.46967 5.46968C5.17678 5.76258 5.17678 6.23745 5.46967 6.53034L10.9393 12L5.46967 17.4697Z" fill="currentColor"  />
-                    </svg>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.46967 17.4697C5.17678 17.7626 5.17678 18.2374 5.46967 18.5303C5.76256 18.8232 6.23744 18.8232 6.53033 18.5303L12 13.0607L17.4697 18.5304C17.7626 18.8232 18.2374 18.8232 18.5303 18.5304C18.8232 18.2375 18.8232 17.7626 18.5303 17.4697L13.0607 12L18.5303 6.53033C18.8232 6.23744 18.8232 5.76256 18.5303 5.46967C18.2374 5.17678 17.7626 5.17678 17.4697 5.46967L12 10.9394L6.53033 5.46968C6.23744 5.17679 5.76256 5.17679 5.46967 5.46968C5.17678 5.76258 5.17678 6.23745 5.46967 6.53034L10.9393 12L5.46967 17.4697Z" fill="currentColor" />
 
-                    break;
+                        break;
 
-                case Icons.Coffee:
+                    case Icons.Coffee:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.1905 9.6001H17.9524C18.7607 9.6001 19.5358 9.93724 20.1074 10.5374C20.6789 11.1375 21 11.9514 21 12.8001C21 13.6488 20.6789 14.4627 20.1074 15.0628C19.5358 15.663 18.7607 16.0001 17.9524 16.0001H17.1905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 9.6001H17.1905V16.8001C17.1905 17.6488 16.8694 18.4627 16.2978 19.0628C15.7263 19.663 14.9511 20.0001 14.1429 20.0001H8.04762C7.23934 20.0001 6.46417 19.663 5.89263 19.0628C5.32109 18.4627 5 17.6488 5 16.8001V9.6001Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8.04762 4V6.4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M11.0952 4V6.4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14.1429 4V6.4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Collapse:
+                    case Icons.Collapse:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="4" y="4" width="16" height="16" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10 4L10 20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17 12L13 12M13 12L15 10M13 12L15 14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Copy:
+                    case Icons.Copy:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="4" y="4" width="12" height="12" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <rect x="8" y="8" width="12" height="12" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.CreditCard:
+                    case Icons.CreditCard:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="3" y="6" width="18" height="12" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <line x1="3.75" y1="9.25" x2="20.25" y2="9.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <line x1="5.75" y1="15.25" x2="9.25" y2="15.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Cube:
+                    case Icons.Cube:
 
-                    <svg viewBox="0 0 14 16" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 4.65217L7 1L13 4.65217L7 8.30435L1 4.65217Z" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
-                        <path d="M7 8.30452L13 4.65234V11.348L7 15.0002V8.30452Z" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
-                        <path d="M7 8.30452L1 4.65234V11.348L7 15.0002V8.30452Z" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
-                    </svg>
+                        <path d="M8 10.6522L14 7L20 10.6522L14 14.3043L8 10.6522Z" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
+                        <path d="M14 14.3045L20 10.6523V17.348L14 21.0002V14.3045Z" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
+                        <path d="M14 14.3045L8 10.6523V17.348L14 21.0002V14.3045Z" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
 
-                    break;
+                        break;
 
-                case Icons.Deployment:
+                    case Icons.Deployment:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="2" y="2" width="20" height="20" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M2 8H22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 5H5.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 5H8.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M11 5H11.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Dessert:
+                    case Icons.Dessert:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20 10H3V19H20V10Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17 5C18.9839 5.9375 20 7.32143 20 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 5L3 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M3 14C4.7 14 4.7 16 6.4 16C8.1 16 8.1 14 9.8 14C11.5 14 11.5 16 13.2 16C14.9 16 14.9 14 16.6 14C18.3 14 18.3 16 20 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14 8C14.5523 8 15 7.55228 15 7C15 6.44772 14.5523 6 14 6C13.4477 6 13 6.44772 13 7C13 7.55228 13.4477 8 14 8Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16.3739 3C15.3848 3 14.2473 3.89022 14 5.37391" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Dollar:
+                    case Icons.Dollar:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 22.0002V19.3335" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
                         <path d="M14 6V8.66667" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
                         <path d="M18.4444 11.7141V10.9522C18.4444 9.65698 17.4815 8.6665 16.2222 8.6665H11.7778C10.5185 8.6665 9.55554 9.65698 9.55554 10.9522V11.7141C9.55554 13.0094 10.5185 13.9998 11.7778 13.9998H16.2222C17.4815 13.9998 18.4444 14.9903 18.4444 16.2856V17.0475C18.4444 18.3427 17.4815 19.3332 16.2222 19.3332H11.7778C10.5185 19.3332 9.55554 18.3427 9.55554 17.0475V16.2856" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Drink:
+                    case Icons.Drink:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 6H6C5.44772 6 5 6.44772 5 7V8C5 8.55228 5.44772 9 6 9H18C18.5523 9 19 8.55228 19 8V7C19 6.44772 18.5523 6 18 6Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17 6H7L7.625 3.5625C7.72115 3.23438 8.00962 3 8.34615 3H15.6058C15.9423 3 16.2788 3.23438 16.375 3.5625L17 6Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16.5157 20.1322C16.4495 20.629 16.0257 21 15.5245 21H8.47552C7.97431 21 7.55053 20.629 7.48429 20.1322L6 9H18L16.5157 20.1322Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 17C13.6569 17 15 15.6569 15 14C15 12.3431 13.6569 11 12 11C10.3431 11 9 12.3431 9 14C9 15.6569 10.3431 17 12 17Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Edit:
+                    case Icons.Edit:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.0001 17.996L20.0001 8.00009L16.0001 4.00009L6.00009 13.9999M10.0001 17.996L4.5 19.5L6.00009 13.9999M10.0001 17.996L6.00009 13.9999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Error:
+                    case Icons.Error:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.13633 16.8029C5.84343 17.0957 5.84343 17.5706 6.13633 17.8635C6.42922 18.1564 6.90409 18.1564 7.19699 17.8635L12 13.0605L16.803 17.8635C17.0959 18.1564 17.5708 18.1564 17.8637 17.8635C18.1566 17.5706 18.1566 17.0958 17.8637 16.8029L13.0607 11.9999L17.8637 7.19683C18.1566 6.90394 18.1566 6.42907 17.8637 6.13617C17.5708 5.84328 17.0959 5.84328 16.803 6.13617L12 10.9392L7.19699 6.13619C6.90409 5.84329 6.42922 5.84329 6.13633 6.13619C5.84343 6.42908 5.84343 6.90395 6.13633 7.19685L10.9393 11.9999L6.13633 16.8029Z" fill="currentColor"  />
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.13633 16.8029C5.84343 17.0957 5.84343 17.5706 6.13633 17.8635C6.42922 18.1564 6.90409 18.1564 7.19699 17.8635L12 13.0605L16.803 17.8635C17.0959 18.1564 17.5708 18.1564 17.8637 17.8635C18.1566 17.5706 18.1566 17.0958 17.8637 16.8029L13.0607 11.9999L17.8637 7.19683C18.1566 6.90394 18.1566 6.42907 17.8637 6.13617C17.5708 5.84328 17.0959 5.84328 16.803 6.13617L12 10.9392L7.19699 6.13619C6.90409 5.84329 6.42922 5.84329 6.13633 6.13619C5.84343 6.42908 5.84343 6.90395 6.13633 7.19685L10.9393 11.9999L6.13633 16.8029Z" fill="currentColor" />
                         <circle cx="12" cy="12" r="8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Expand:
+                    case Icons.Expand:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="4" y="4" width="16" height="16" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M7 4L7 20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10 12L17 12M17 12L15 14M17 12L15 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.EyeClose:
+                    case Icons.EyeClose:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 9C21 9 17.8696 14.5 12 14.5C6.13043 14.5 3 9 3 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M9.49994 14.4999L8.49988 17.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5.5 12L3.5 14.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14.4999 14.4999L15.4999 17.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M18.5 12L20.5 14.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.EyeOpen:
+                    case Icons.EyeOpen:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M23 12C23 12 19.1739 19 12 19C4.82609 19 1 12 1 12C1 12 4.82609 5 12 5C19.1739 5 23 12 23 12Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.File:
+                    case Icons.File:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.59997 20H17.4C17.4788 20 17.5568 19.9828 17.6296 19.9493C17.7024 19.9158 17.7686 19.8666 17.8243 19.8047C17.88 19.7428 17.9242 19.6693 17.9543 19.5885C17.9845 19.5076 18 19.4209 18 19.3333V8.66667L17.4 8H14V4.22201L13.8002 4H6.59997C6.44085 4 6.28824 4.07024 6.17573 4.19526C6.06321 4.32029 6 4.48986 6 4.66667V19.3333C6 19.5101 6.06321 19.6797 6.17573 19.8047C6.28824 19.9298 6.44085 20 6.59997 20Z" fill="currentColor"  />
-                        <path d="M17.6296 19.9493L17.3161 19.268L17.3161 19.268L17.6296 19.9493ZM17.8243 19.8047L17.2668 19.303L17.2668 19.303L17.8243 19.8047ZM17.9543 19.5885L18.6571 19.8504L18.6571 19.8504L17.9543 19.5885ZM18 8.66667H18.75C18.75 8.48139 18.6814 8.30267 18.5575 8.16496L18 8.66667ZM17.4 8L17.9575 7.49829C17.8153 7.34025 17.6127 7.25 17.4 7.25V8ZM14 8H13.25C13.25 8.41421 13.5858 8.75 14 8.75V8ZM14 4.22201H14.75C14.75 4.03673 14.6814 3.85801 14.5575 3.7203L14 4.22201ZM13.8002 4L14.3577 3.49829C14.2155 3.34025 14.0128 3.25 13.8002 3.25V4ZM6.17573 19.8047L5.61824 20.3065L5.61825 20.3065L6.17573 19.8047ZM17.4 19.25H6.59997V20.75H17.4V19.25ZM17.3161 19.268C17.3399 19.257 17.3687 19.25 17.4 19.25V20.75C17.589 20.75 17.7738 20.7085 17.9432 20.6306L17.3161 19.268ZM17.2668 19.303C17.2766 19.2922 17.2925 19.2788 17.3161 19.268L17.9432 20.6306C18.1123 20.5527 18.2605 20.4411 18.3818 20.3064L17.2668 19.303ZM17.2516 19.3265C17.2531 19.3223 17.2571 19.3138 17.2668 19.303L18.3818 20.3065C18.5028 20.1719 18.5952 20.0164 18.6571 19.8504L17.2516 19.3265ZM17.25 19.3333C17.25 19.3327 17.25 19.3306 17.2516 19.3265L18.6571 19.8504C18.7189 19.6845 18.75 19.509 18.75 19.3333H17.25ZM17.25 8.66667V19.3333H18.75V8.66667H17.25ZM16.8425 8.50171L17.4425 9.16838L18.5575 8.16496L17.9575 7.49829L16.8425 8.50171ZM14 8.75H17.4V7.25H14V8.75ZM13.25 4.22201V8H14.75V4.22201H13.25ZM13.2427 4.50171L13.4425 4.72372L14.5575 3.7203L14.3577 3.49829L13.2427 4.50171ZM6.59997 4.75H13.8002V3.25H6.59997V4.75ZM6.73321 4.69697C6.71266 4.7198 6.6668 4.75 6.59997 4.75V3.25C6.2149 3.25 5.86382 3.42067 5.61824 3.69355L6.73321 4.69697ZM6.75 4.66667C6.75 4.66728 6.74995 4.66943 6.74843 4.67351C6.74692 4.67757 6.74291 4.68619 6.73321 4.69697L5.61824 3.69355C5.37501 3.96382 5.25 4.31497 5.25 4.66667H6.75ZM6.75 19.3333V4.66667H5.25V19.3333H6.75ZM6.73321 19.303C6.74291 19.3138 6.74692 19.3224 6.74843 19.3265C6.74995 19.3306 6.75 19.3327 6.75 19.3333H5.25C5.25 19.685 5.37501 20.0362 5.61824 20.3065L6.73321 19.303ZM6.59997 19.25C6.6668 19.25 6.71266 19.2802 6.73321 19.303L5.61825 20.3065C5.86383 20.5793 6.2149 20.75 6.59997 20.75V19.25Z" fill="currentColor"  />
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.59997 20H17.4C17.4788 20 17.5568 19.9828 17.6296 19.9493C17.7024 19.9158 17.7686 19.8666 17.8243 19.8047C17.88 19.7428 17.9242 19.6693 17.9543 19.5885C17.9845 19.5076 18 19.4209 18 19.3333V8.66667L17.4 8H14V4.22201L13.8002 4H6.59997C6.44085 4 6.28824 4.07024 6.17573 4.19526C6.06321 4.32029 6 4.48986 6 4.66667V19.3333C6 19.5101 6.06321 19.6797 6.17573 19.8047C6.28824 19.9298 6.44085 20 6.59997 20Z" fill="currentColor" />
+                        <path d="M17.6296 19.9493L17.3161 19.268L17.3161 19.268L17.6296 19.9493ZM17.8243 19.8047L17.2668 19.303L17.2668 19.303L17.8243 19.8047ZM17.9543 19.5885L18.6571 19.8504L18.6571 19.8504L17.9543 19.5885ZM18 8.66667H18.75C18.75 8.48139 18.6814 8.30267 18.5575 8.16496L18 8.66667ZM17.4 8L17.9575 7.49829C17.8153 7.34025 17.6127 7.25 17.4 7.25V8ZM14 8H13.25C13.25 8.41421 13.5858 8.75 14 8.75V8ZM14 4.22201H14.75C14.75 4.03673 14.6814 3.85801 14.5575 3.7203L14 4.22201ZM13.8002 4L14.3577 3.49829C14.2155 3.34025 14.0128 3.25 13.8002 3.25V4ZM6.17573 19.8047L5.61824 20.3065L5.61825 20.3065L6.17573 19.8047ZM17.4 19.25H6.59997V20.75H17.4V19.25ZM17.3161 19.268C17.3399 19.257 17.3687 19.25 17.4 19.25V20.75C17.589 20.75 17.7738 20.7085 17.9432 20.6306L17.3161 19.268ZM17.2668 19.303C17.2766 19.2922 17.2925 19.2788 17.3161 19.268L17.9432 20.6306C18.1123 20.5527 18.2605 20.4411 18.3818 20.3064L17.2668 19.303ZM17.2516 19.3265C17.2531 19.3223 17.2571 19.3138 17.2668 19.303L18.3818 20.3065C18.5028 20.1719 18.5952 20.0164 18.6571 19.8504L17.2516 19.3265ZM17.25 19.3333C17.25 19.3327 17.25 19.3306 17.2516 19.3265L18.6571 19.8504C18.7189 19.6845 18.75 19.509 18.75 19.3333H17.25ZM17.25 8.66667V19.3333H18.75V8.66667H17.25ZM16.8425 8.50171L17.4425 9.16838L18.5575 8.16496L17.9575 7.49829L16.8425 8.50171ZM14 8.75H17.4V7.25H14V8.75ZM13.25 4.22201V8H14.75V4.22201H13.25ZM13.2427 4.50171L13.4425 4.72372L14.5575 3.7203L14.3577 3.49829L13.2427 4.50171ZM6.59997 4.75H13.8002V3.25H6.59997V4.75ZM6.73321 4.69697C6.71266 4.7198 6.6668 4.75 6.59997 4.75V3.25C6.2149 3.25 5.86382 3.42067 5.61824 3.69355L6.73321 4.69697ZM6.75 4.66667C6.75 4.66728 6.74995 4.66943 6.74843 4.67351C6.74692 4.67757 6.74291 4.68619 6.73321 4.69697L5.61824 3.69355C5.37501 3.96382 5.25 4.31497 5.25 4.66667H6.75ZM6.75 19.3333V4.66667H5.25V19.3333H6.75ZM6.73321 19.303C6.74291 19.3138 6.74692 19.3224 6.74843 19.3265C6.74995 19.3306 6.75 19.3327 6.75 19.3333H5.25C5.25 19.685 5.37501 20.0362 5.61824 20.3065L6.73321 19.303ZM6.59997 19.25C6.6668 19.25 6.71266 19.2802 6.73321 19.303L5.61825 20.3065C5.86383 20.5793 6.2149 20.75 6.59997 20.75V19.25Z" fill="currentColor" />
                         <path d="M9 12.75H15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M9 15.75H15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Filters:
+                    case Icons.Filters:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 8H20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M6 12H18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 16H16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Fire:
+                    case Icons.Fire:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.6905 3C14.041 5.30978 23.0061 16.3043 14.3127 20C15.7163 18.4755 16.2597 17.1821 15.8975 15.1495C15.3541 12.9783 14.1316 11.4076 12.6827 9.92935C12.8638 12.4701 12.4563 14.3641 11.4602 15.519C11.2791 14.5027 10.8263 13.7174 10.1018 13.1168C9.37739 14.6875 8.60766 16.3505 8.74349 17.1821C8.78877 18.3832 9.83017 19.0299 10.781 20C9.10572 19.5842 7.29459 19.1223 6.4343 17.0435C4.30622 12.1467 10.6905 6.69565 10.6905 3Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Flash:
+                    case Icons.Flash:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.6 20L10.8 14.2857L6 12.5714L14.4 4L13.2 9.71429L18 11.4286L9.6 20Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Folder:
+                    case Icons.Folder:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 19V6.68421C3 6.50275 3.07183 6.32872 3.1997 6.2004C3.32757 6.07209 3.50099 6 3.68182 6H8.22727C8.3748 6 8.51834 6.04802 8.63636 6.13684L11 7.91579C11.118 8.00462 11.2616 8.05263 11.4091 8.05263H17.3182C17.499 8.05263 17.6724 8.12472 17.8003 8.25303C17.9282 8.38135 18 8.55538 18 8.73684V10.7895" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M3 19L5.63441 12.7524C5.68657 12.6287 5.77662 12.5227 5.89293 12.448C6.00923 12.3733 6.14647 12.3333 6.28692 12.3333H10.5178C10.6565 12.3333 10.7922 12.2944 10.9076 12.2214L12.6619 11.112C12.7773 11.039 12.913 11 13.0517 11H20.2972C20.4086 11 20.5183 11.0251 20.6175 11.0732C20.7166 11.1214 20.8022 11.1912 20.8673 11.2769C20.9325 11.3626 20.9752 11.4617 20.992 11.5661C21.0088 11.6706 20.9992 11.7773 20.9639 11.8775L18.4612 19H3Z" fill="currentColor"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+                        <path d="M3 19L5.63441 12.7524C5.68657 12.6287 5.77662 12.5227 5.89293 12.448C6.00923 12.3733 6.14647 12.3333 6.28692 12.3333H10.5178C10.6565 12.3333 10.7922 12.2944 10.9076 12.2214L12.6619 11.112C12.7773 11.039 12.913 11 13.0517 11H20.2972C20.4086 11 20.5183 11.0251 20.6175 11.0732C20.7166 11.1214 20.8022 11.1912 20.8673 11.2769C20.9325 11.3626 20.9752 11.4617 20.992 11.5661C21.0088 11.6706 20.9992 11.7773 20.9639 11.8775L18.4612 19H3Z" fill="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 
-                    break;
+                        break;
 
-                case Icons.Food:
+                    case Icons.Food:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.9544 9.48907C21.0105 10.0385 20.5523 10.4865 20 10.4865H4C3.44772 10.4865 2.99275 10.0368 3.08829 9.49285C3.47693 7.28022 5.34364 4 12.3913 4C19.435 4 20.7285 7.27649 20.9544 9.48907Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17.087 15.3516H20C20.5523 15.3516 21.032 15.8081 20.8995 16.3442C20.5191 17.8831 18.8205 19.0002 12 19.0002C5.17954 19.0002 3.48094 17.8831 3.10053 16.3442C2.96799 15.8081 3.44772 15.3516 4 15.3516H12.3913" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M3 12.9189H13.1739" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17.0869 12.9189L15.7313 14.8501C15.2897 15.4792 14.3329 15.3956 14.0071 14.6994L13.1739 12.9189" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M21 12.9189H17.0869" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Gamepad:
+                    case Icons.Gamepad:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 11H10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 9V13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M15 12H15.01" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M18 10H18.01" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17.32 5H6.68C5.69028 5.00023 4.73579 5.36738 4.00103 6.03046C3.26628 6.69355 2.80345 7.60549 2.702 8.59C2.696 8.642 2.692 8.691 2.685 8.742C2.604 9.416 2 14.456 2 16C2 16.7956 2.31607 17.5587 2.87868 18.1213C3.44129 18.6839 4.20435 19 5 19C6 19 6.5 18.5 7 18L8.414 16.586C8.78899 16.2109 9.29761 16.0001 9.828 16H14.172C14.7024 16.0001 15.211 16.2109 15.586 16.586L17 18C17.5 18.5 18 19 19 19C19.7956 19 20.5587 18.6839 21.1213 18.1213C21.6839 17.5587 22 16.7956 22 16C22 14.455 21.396 9.416 21.315 8.742C21.308 8.692 21.304 8.642 21.298 8.591C21.1968 7.60631 20.7341 6.69413 19.9993 6.03083C19.2645 5.36754 18.3099 5.00026 17.32 5V5Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Gear:
+                    case Icons.Gear:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.19318 13.7847H2V10.1586H3.19318C3.93182 10.1586 4.61364 9.70538 4.89773 9.0255V8.96884C5.18182 8.28895 5.01136 7.49575 4.5 6.98584L3.64773 6.19263L6.20455 3.64306L7 4.43626C7.51136 4.94618 8.30682 5.11615 8.98864 4.83286C9.67045 4.54958 10.125 3.86969 10.125 3.13314V2H13.7614V3.1898C13.7614 3.92635 14.2159 4.60623 14.8977 4.88952H14.9545C15.6364 5.1728 16.4318 5.00283 16.9432 4.49292L17.7955 3.64306L20.3523 6.19263L19.5 7.04249C18.9886 7.55241 18.8182 8.34561 19.1023 9.0255C19.3864 9.70538 20.0682 10.1586 20.8068 10.1586H22V13.7847H20.8068C20.0682 13.7847 19.3864 14.238 19.1023 14.9178V14.9745C18.8182 15.6544 18.9886 16.4476 19.5 16.9575L20.3523 17.8074L17.7955 20.3569L16.9432 19.5071C16.4318 18.9972 15.6364 18.8272 14.9545 19.1105H14.8977C14.2159 19.3938 13.7614 20.0737 13.7614 20.8102V22H10.125V20.8102C10.125 20.0737 9.67045 19.3938 8.98864 19.1105H8.93182C8.25 18.8272 7.45455 18.9972 6.94318 19.5071L6.09091 20.3569L3.53409 17.8074L4.38636 16.9575C4.89773 16.4476 5.06818 15.6544 4.78409 14.9745C4.55682 14.238 3.93182 13.7847 3.19318 13.7847Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 12C16 12.3571 15.9286 12.7143 15.8571 13C15.7857 13.3571 15.6429 13.6429 15.4286 14C15.0714 14.6429 14.5714 15.1429 14 15.4286C13.7143 15.6429 13.3571 15.7143 13 15.8571C12.6429 15.9286 12.3571 16 12 16C11.6429 16 11.2857 15.9286 11 15.8571C10.6429 15.7857 10.3571 15.6429 10 15.4286C9.35714 15.0714 8.85714 14.5714 8.57143 14C8.35714 13.7143 8.28571 13.3571 8.14286 13C8.07143 12.6429 8 12.3571 8 12C8 11.6429 8.07143 11.2857 8.14286 11C8.21429 10.6429 8.35714 10.3571 8.57143 10C8.92857 9.35714 9.42857 8.85714 10 8.57143C10.2857 8.35714 10.6429 8.28571 11 8.14286C11.3571 8.07143 11.6429 8 12 8C12.3571 8 12.7143 8.07143 13 8.14286C13.3571 8.21429 13.6429 8.35714 14 8.57143C14.6429 8.92857 15.1429 9.42857 15.4286 10C15.6429 10.2857 15.7143 10.6429 15.8571 11C15.9286 11.2857 16 11.6429 16 12Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Globe:
+                    case Icons.Globe:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M4 12H20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 4C14.001 6.19068 15.1382 9.03363 15.2 12C15.1382 14.9664 14.001 17.8093 12 20C9.99898 17.8093 8.8618 14.9664 8.8 12C8.8618 9.03363 9.99898 6.19068 12 4V4Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Grid:
+                    case Icons.Grid:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="5" y="5" width="14" height="14" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M19 12L5 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 19L12 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Guest:
+                    case Icons.Guest:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 5.75463C8.3696 4.65672 10.1081 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C10.1081 20 8.3696 19.3433 7 18.2454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8.31623 14.0513C8.72457 12.8263 9.87099 12 11.1623 12H12.8377C14.129 12 15.2754 12.8263 15.6838 14.0513L16 15H8L8.31623 14.0513Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10.2911 9.2534C10.4116 8.53012 11.0374 8 11.7707 8H12.2293C12.9626 8 13.5884 8.53012 13.7089 9.2534V9.2534C13.8613 10.1677 13.1562 11 12.2293 11H11.7707C10.8438 11 10.1387 10.1677 10.2911 9.2534V9.2534Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Headphones:
+                    case Icons.Headphones:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 17.3333V12C4 9.87827 4.84285 7.84344 6.34315 6.34315C7.84344 4.84285 9.87827 4 12 4C14.1217 4 16.1566 4.84285 17.6569 6.34315C19.1571 7.84344 20 9.87827 20 12V17.3333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M20 18.2223C20 18.6938 19.8127 19.146 19.4793 19.4794C19.1459 19.8128 18.6937 20.0001 18.2222 20.0001H17.3333C16.8618 20.0001 16.4097 19.8128 16.0763 19.4794C15.7429 19.146 15.5556 18.6938 15.5556 18.2223V15.5556C15.5556 15.0841 15.7429 14.6319 16.0763 14.2985C16.4097 13.9651 16.8618 13.7778 17.3333 13.7778H20V18.2223ZM4 18.2223C4 18.6938 4.1873 19.146 4.5207 19.4794C4.8541 19.8128 5.30628 20.0001 5.77778 20.0001H6.66667C7.13816 20.0001 7.59035 19.8128 7.92375 19.4794C8.25714 19.146 8.44444 18.6938 8.44444 18.2223V15.5556C8.44444 15.0841 8.25714 14.6319 7.92375 14.2985C7.59035 13.9651 7.13816 13.7778 6.66667 13.7778H4V18.2223Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Image:
+                    case Icons.Help:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 15.1998C13.7673 15.1998 15.2 13.7671 15.2 11.9998C15.2 10.2325 13.7673 8.7998 12 8.7998C10.2327 8.7998 8.8 10.2325 8.8 11.9998C8.8 13.7671 10.2327 15.1998 12 15.1998Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M6.34399 6.34375L9.73599 9.73575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14.264 14.2642L17.656 17.6562" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14.264 9.73575L17.656 6.34375" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14.264 9.73611L17.088 6.91211" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M6.34399 17.6562L9.73599 14.2642" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                        break;
+
+                    case Icons.Image:
+
                         <rect x="3" y="5" width="18" height="14" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M3 15.7499L7.71966 11.0302C7.7893 10.9606 7.87198 10.9053 7.96297 10.8676C8.05397 10.8299 8.15149 10.8105 8.24999 10.8105C8.34848 10.8105 8.44601 10.8299 8.537 10.8676C8.62799 10.9053 8.71067 10.9606 8.78032 11.0302L12.9697 15.2196C13.0393 15.2892 13.122 15.3444 13.213 15.3821C13.304 15.4198 13.4015 15.4392 13.5 15.4392C13.5985 15.4392 13.696 15.4198 13.787 15.3821C13.878 15.3444 13.9607 15.2892 14.0303 15.2196L15.9697 13.2802C16.0393 13.2106 16.122 13.1553 16.213 13.1176C16.304 13.0799 16.4015 13.0605 16.5 13.0605C16.5985 13.0605 16.696 13.0799 16.787 13.1176C16.878 13.1553 16.9607 13.2106 17.0303 13.2802L21 17.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M15 10C15.5523 10 16 9.55228 16 9C16 8.44772 15.5523 8 15 8C14.4477 8 14 8.44772 14 9C14 9.55228 14.4477 10 15 10Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Info:
+                    case Icons.Info:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12.008 15.2002L12.008 12.0002" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12.008 8.7998L12 8.7998" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Key:
+                    case Icons.Key:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 5L16 7M16 7L19 10L16 13L13 10M16 7L13 10M10 13L13 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="7.5" cy="15.5" r="3.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Lock:
+                    case Icons.Lock:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="5" y="10" width="14" height="10" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 10V6C16 3.79086 14.2091 2 12 2V2C9.79086 2 8 3.79086 8 6V10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="12" cy="15" r="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Logout:
+                    case Icons.Login:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12H15M15 12L12 9M15 12L12 15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M7 5.75463C8.3696 4.65672 10.1081 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C10.1081 20 8.3696 19.3433 7 18.2454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                        break;
+
+                    case Icons.Logout:
+
                         <path d="M15 12H4M4 12L7 9M4 12L7 15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M7 5.75463C8.3696 4.65672 10.1081 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C10.1081 20 8.3696 19.3433 7 18.2454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Member:
+                    case Icons.Logs:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L22 8L12 14L2 8L12 2Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M22 12L12 18L2 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M22 16L12 22L2 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                        break;
+
+                    case Icons.Member:
+
                         <path d="M14 21H9.51868C8.95422 21 8.38177 20.7717 8.17325 20.2472C7.9463 19.6763 7.87828 18.923 8.37079 18.1773C8.52523 17.9434 8.76477 17.7836 9.02117 17.6705L11.7839 16.4515C12.0434 16.337 12.2107 16.0802 12.2107 15.7966V15.7966C12.2107 15.5913 12.1207 15.3982 11.9815 15.2473C11.3532 14.5661 10.4215 13.0852 10.4215 11.1316C10.4215 8.36842 11.1372 6 14 6" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
                         <path d="M14 21H18.4813C19.0458 21 19.6182 20.7717 19.8267 20.2472C20.0537 19.6763 20.1217 18.923 19.6292 18.1773C19.4748 17.9434 19.2352 17.7836 18.9788 17.6705L16.2161 16.4515C15.9566 16.337 15.7893 16.0802 15.7893 15.7966V15.7966C15.7893 15.5913 15.8793 15.3982 16.0185 15.2473C16.6468 14.5661 17.5785 13.0852 17.5785 11.1316C17.5785 8.36842 16.8628 6 14 6" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Menu:
+                    case Icons.Menu:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="19" cy="12" r="2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="5" cy="12" r="2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Minus:
+                    case Icons.Minus:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.99554 12.002C3.99554 11.5877 4.33133 11.252 4.74554 11.252L19.2504 11.252C19.6646 11.252 20.0004 11.5877 20.0004 12.002C20.0004 12.4162 19.6646 12.752 19.2504 12.752L4.74554 12.752C4.33133 12.752 3.99554 12.4162 3.99554 12.002Z" fill="currentColor"  />
-                    </svg>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.99554 12.002C3.99554 11.5877 4.33133 11.252 4.74554 11.252L19.2504 11.252C19.6646 11.252 20.0004 11.5877 20.0004 12.002C20.0004 12.4162 19.6646 12.752 19.2504 12.752L4.74554 12.752C4.33133 12.752 3.99554 12.4162 3.99554 12.002Z" fill="currentColor" />
 
-                    break;
+                        break;
 
-                case Icons.Monitor:
+                    case Icons.Monitor:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="2" y="3" width="20" height="14" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M7 21H17" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 21L12 17" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Move:
+                    case Icons.Move:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.2618 10.2618L6 6M6 6L9.43916 6.00012M6 6L6 9.43906M10.2618 13.7382L6.00003 18M6.00003 18L9.43919 17.9999M6.00003 18L6.00003 14.5609M13.7382 10.262L18 6.00021M18 6.00021L14.5608 6.00033M18 6.00021L18 9.43927M13.7382 13.738L18 17.9998M18 17.9998L14.5608 17.9997M18 17.9998V14.5607" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.News:
+                    case Icons.News:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 5H8.4C9.35478 5 10.2705 5.35119 10.9456 5.97631C11.6207 6.60143 12 7.44928 12 8.33333V20C12 19.337 11.7155 18.7011 11.2092 18.2322C10.7028 17.7634 10.0161 17.5 9.3 17.5H3V5Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M21 5H15.6C14.6452 5 13.7295 5.35119 13.0544 5.97631C12.3793 6.60143 12 7.44928 12 8.33333V20C12 19.337 12.2845 18.7011 12.7908 18.2322C13.2972 17.7634 13.9839 17.5 14.7 17.5H21V5Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Note:
+                    case Icons.Note:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 9H15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M9 12H15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M9 15H12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <rect x="5" y="6" width="14" height="12" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.OpenDrawer:
+                    case Icons.OpenDrawer:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="4" y="14" width="10" height="16" rx="1" transform="rotate(-90 4 14)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <rect x="6" y="20" width="6" height="12" rx="1" transform="rotate(-90 6 20)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 7L12 11M12 11L10 9M12 11L14 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Password:
+                    case Icons.Password:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13 9V16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10 10.75L16 14.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10 14.25L16 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -524,73 +492,59 @@ else
                         <path d="M1 10.75L7 14.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M1 14.25L7 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="21.5" cy="12.5" r="1.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Pay:
+                    case Icons.Pay:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 7H19L17.5 19H6.5L5 7Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 7H16L14.7826 4H9.21739L8 7Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10 10L10 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14 10L14 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Photo:
+                    case Icons.Photo:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20 16.4444C20 16.857 19.8468 17.2527 19.574 17.5444C19.3012 17.8361 18.9312 18 18.5455 18H5.45455C5.06878 18 4.69881 17.8361 4.42603 17.5444C4.15325 17.2527 4 16.857 4 16.4444V7.88889C4 7.47633 4.15325 7.08067 4.42603 6.78894C4.69881 6.49722 5.06878 6.33333 5.45455 6.33333H7.80862C8.15383 6.33333 8.47463 6.15529 8.65724 5.86234L9.52458 4.47099C9.70719 4.17804 10.028 4 10.3732 4H13.6268C13.972 4 14.2928 4.17804 14.4754 4.47099L15.3428 5.86234C15.5254 6.15529 15.8462 6.33333 16.1914 6.33333H18.5455C18.9312 6.33333 19.3012 6.49722 19.574 6.78894C19.8468 7.08067 20 7.47633 20 7.88889V16.4444Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Plus:
+                    case Icons.Plus:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.748 4.74951C12.748 4.3353 12.4123 3.99951 11.998 3.99951C11.5838 3.99951 11.248 4.3353 11.248 4.74951L11.248 11.252H4.74554C4.33133 11.252 3.99554 11.5878 3.99554 12.002C3.99554 12.4162 4.33133 12.752 4.74554 12.752H11.248L11.248 19.2543C11.248 19.6685 11.5838 20.0043 11.998 20.0043C12.4123 20.0043 12.748 19.6685 12.748 19.2543L12.748 12.752H19.2504C19.6646 12.752 20.0004 12.4162 20.0004 12.002C20.0004 11.5878 19.6646 11.252 19.2504 11.252H12.748L12.748 4.74951Z" fill="currentColor"  />
-                    </svg>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.748 4.74951C12.748 4.3353 12.4123 3.99951 11.998 3.99951C11.5838 3.99951 11.248 4.3353 11.248 4.74951L11.248 11.252H4.74554C4.33133 11.252 3.99554 11.5878 3.99554 12.002C3.99554 12.4162 4.33133 12.752 4.74554 12.752H11.248L11.248 19.2543C11.248 19.6685 11.5838 20.0043 11.998 20.0043C12.4123 20.0043 12.748 19.6685 12.748 19.2543L12.748 12.752H19.2504C19.6646 12.752 20.0004 12.4162 20.0004 12.002C20.0004 11.5878 19.6646 11.252 19.2504 11.252H12.748L12.748 4.74951Z" fill="currentColor" />
 
-                    break;
+                        break;
 
-                case Icons.Power:
+                    case Icons.Power:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.4647 8C18.4254 9.15889 19 10.6299 19 12.2308C19 15.9693 15.866 19 12 19C8.13401 19 5 15.9693 5 12.2308C5 10.6299 5.57463 9.15889 6.5353 8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 5L12 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Refresh:
+                    case Icons.Refresh:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5703 11.063C18.6198 11.3842 18.6198 11.7054 18.6198 12.0266C18.6198 15.9879 15.6446 19.1998 11.9752 19.1998C9.64464 19.1998 7.562 17.8615 6.37192 15.8808" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5.42977 13.0436C5.38019 12.7224 5.38019 12.3477 5.38019 11.973C5.38019 8.01169 8.35539 4.7998 12.0248 4.7998C14.4546 4.7998 16.5868 6.24515 17.7769 8.33287" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M3 10.7417L5.33058 13.3112" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5.33058 13.3112L7.71075 10.7417" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M21 13.3112L18.6199 10.7417" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M18.6198 10.7417L16.2893 13.3112" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Reports:
+                    case Icons.Reports:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 11C21 9.35549 20.5944 7.73636 19.8192 6.28603C19.044 4.8357 17.9231 3.59894 16.5557 2.6853C15.1883 1.77166 13.6168 1.20934 11.9802 1.04815C10.3436 0.886963 8.69249 1.13188 7.17317 1.7612C5.65384 2.39053 4.31316 3.38484 3.2699 4.65607C2.22663 5.92729 1.51298 7.43619 1.19215 9.0491C0.871319 10.662 0.953221 12.3291 1.4306 13.9028C1.90797 15.4765 2.76609 16.9082 3.92893 18.0711L11 11H21Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M3.92893 18.0711C4.85752 18.9997 5.95991 19.7362 7.17317 20.2388C8.38642 20.7413 9.68678 21 11 21L11 11L3.92893 18.0711Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14.5 22C15.4849 22 16.4602 21.806 17.3701 21.4291C18.2801 21.0522 19.1069 20.4997 19.8033 19.8033C20.4997 19.1069 21.0522 18.2801 21.4291 17.3701C21.806 16.4602 22 15.4849 22 14.5H14.5L14.5 22Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Reservations:
+                    case Icons.Reservations:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="2" y="2" width="18" height="20" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <rect x="6" y="6" width="10" height="6" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M6 16H16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -598,195 +552,157 @@ else
                         <rect x="20" y="5" width="3" height="4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <rect x="20" y="12" width="2" height="2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <rect x="20" y="17" width="2" height="2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.RFID:
+                    case Icons.RFID:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 8.6582C14.8951 8.6582 15.7536 9.01825 16.3865 9.65915C17.0194 10.3 17.375 11.1693 17.375 12.0756" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14 6C15.5913 6 17.1174 6.64009 18.2426 7.77946C19.3679 8.91882 20 10.4641 20 12.0754" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14.375 12.0753C14.5821 12.0753 14.75 11.9053 14.75 11.6956C14.75 11.4859 14.5821 11.3159 14.375 11.3159C14.1679 11.3159 14 11.4859 14 11.6956C14 11.9053 14.1679 12.0753 14.375 12.0753Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M20 14.5V16C20 16.5523 19.5523 17 19 17H5C4.44772 17 4 16.5523 4 16V7C4 6.44771 4.44772 6 5 6H11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M7 10L7 13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Sales:
+                    case Icons.Sales:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+
                         <path d="M1 2H23" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <rect x="2" y="2" width="20" height="15" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 22L12 17L16 22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 14L9 9L14 12L19 7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Search:
+                    case Icons.Search:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="11" cy="11" r="6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M15 16L19 20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Sleep:
+                    case Icons.Sleep:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.1448 5C9.93225 5.65 9.82599 6.33611 9.82599 7.05833C9.82599 10.6333 12.6597 13.5222 16.1663 13.5222C17.1935 13.5222 18.1499 13.2694 19 12.8361C18.327 15.7972 15.7059 18 12.5888 18C8.94047 18 6.00053 15.0028 6.00053 11.2833C5.96511 8.43056 7.70074 5.975 10.1448 5Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Show:
+                    case Icons.Show:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 9H12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17 13L17 7M17 7L19 9M17 7L15 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 13H12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 17H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Sort:
+                    case Icons.Sort:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 9H12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17 13L17 7M17 7L19 9M17 7L15 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 13H12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 17H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Star:
+                    case Icons.Star:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4117 16.4377L7.46743 19L8.4117 13.5729L4.4117 9.72949L9.93956 8.93769L12.4117 4L14.8838 8.93769L20.4117 9.72949L16.4117 13.5729L17.356 19L12.4117 16.4377Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Text:
+                    case Icons.Text:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.4764 14.03C16.4764 14.84 16.1764 15.53 15.5764 16.1C14.9864 16.66 14.1264 17 12.9964 17.12V18.8H11.7664V17.135C11.0264 17.085 10.3264 16.95 9.66641 16.73C9.00641 16.51 8.48141 16.23 8.09141 15.89L8.76641 14.375C9.13641 14.675 9.58641 14.93 10.1164 15.14C10.6464 15.34 11.1964 15.465 11.7664 15.515V12.515C11.0564 12.345 10.4614 12.16 9.98141 11.96C9.51141 11.75 9.11641 11.45 8.79641 11.06C8.47641 10.66 8.31641 10.135 8.31641 9.485C8.31641 8.675 8.61141 7.985 9.20141 7.415C9.79141 6.845 10.6464 6.505 11.7664 6.395V4.7H12.9964V6.365C13.5564 6.395 14.1014 6.49 14.6314 6.65C15.1714 6.81 15.6414 7.02 16.0414 7.28L15.4264 8.795C14.6664 8.355 13.8564 8.085 12.9964 7.985V11.015C13.7164 11.185 14.3114 11.37 14.7814 11.57C15.2614 11.77 15.6614 12.07 15.9814 12.47C16.3114 12.86 16.4764 13.38 16.4764 14.03ZM10.2514 9.395C10.2514 9.725 10.3814 9.99 10.6414 10.19C10.9014 10.39 11.2764 10.56 11.7664 10.7V8.03C11.2564 8.11 10.8764 8.27 10.6264 8.51C10.3764 8.75 10.2514 9.045 10.2514 9.395ZM12.9964 15.485C13.5264 15.405 13.9164 15.25 14.1664 15.02C14.4264 14.79 14.5564 14.505 14.5564 14.165C14.5564 13.825 14.4214 13.555 14.1514 13.355C13.8814 13.145 13.4964 12.97 12.9964 12.83V15.485Z" fill="currentColor"  />
-                    </svg>
+                        <path d="M16.4764 14.03C16.4764 14.84 16.1764 15.53 15.5764 16.1C14.9864 16.66 14.1264 17 12.9964 17.12V18.8H11.7664V17.135C11.0264 17.085 10.3264 16.95 9.66641 16.73C9.00641 16.51 8.48141 16.23 8.09141 15.89L8.76641 14.375C9.13641 14.675 9.58641 14.93 10.1164 15.14C10.6464 15.34 11.1964 15.465 11.7664 15.515V12.515C11.0564 12.345 10.4614 12.16 9.98141 11.96C9.51141 11.75 9.11641 11.45 8.79641 11.06C8.47641 10.66 8.31641 10.135 8.31641 9.485C8.31641 8.675 8.61141 7.985 9.20141 7.415C9.79141 6.845 10.6464 6.505 11.7664 6.395V4.7H12.9964V6.365C13.5564 6.395 14.1014 6.49 14.6314 6.65C15.1714 6.81 15.6414 7.02 16.0414 7.28L15.4264 8.795C14.6664 8.355 13.8564 8.085 12.9964 7.985V11.015C13.7164 11.185 14.3114 11.37 14.7814 11.57C15.2614 11.77 15.6614 12.07 15.9814 12.47C16.3114 12.86 16.4764 13.38 16.4764 14.03ZM10.2514 9.395C10.2514 9.725 10.3814 9.99 10.6414 10.19C10.9014 10.39 11.2764 10.56 11.7664 10.7V8.03C11.2564 8.11 10.8764 8.27 10.6264 8.51C10.3764 8.75 10.2514 9.045 10.2514 9.395ZM12.9964 15.485C13.5264 15.405 13.9164 15.25 14.1664 15.02C14.4264 14.79 14.5564 14.505 14.5564 14.165C14.5564 13.825 14.4214 13.555 14.1514 13.355C13.8814 13.145 13.4964 12.97 12.9964 12.83V15.485Z" fill="currentColor" />
 
-                    break;
+                        break;
 
-                case Icons.Time:
+                    case Icons.Time:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13 6V15H20" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Time2:
+                    case Icons.Time2:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11 7V13H16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="12" cy="12" r="9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Time3:
+                    case Icons.Time3:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.5014 19.2175C7.00578 20.6963 8.96453 21.6457 11.0739 21.9187C13.1832 22.1917 15.3252 21.7729 17.1677 20.7272C19.0102 19.6816 20.4502 18.0676 21.2643 16.1355C22.0785 14.2034 22.2213 12.0612 21.6707 10.0412C21.12 8.0212 19.9067 6.23623 18.2188 4.96314C16.5309 3.69005 14.4629 3 12.3353 3C10.2078 3 8.13975 3.69005 6.45187 4.96314C4.76399 6.23623 3.55064 8.0212 3 10.0412" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M3 4V10H9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 7V13H18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Trash:
+                    case Icons.Trash:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 7H19L17.5 19H6.5L5 7Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 7H16L14.7826 4H9.21739L8 7Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10 10L10 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M14 10L14 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.TriangleDown:
+                    case Icons.TriangleDown:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 15L6 9H18L12 15Z" fill="currentColor"  />
-                    </svg>
+                        <path d="M12 15L6 9H18L12 15Z" fill="currentColor" />
 
-                    break;
+                        break;
 
-                case Icons.TriangleUp:
+                    case Icons.TriangleUp:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 9L6 15H18L12 9Z" fill="currentColor"  />
-                    </svg>
+                        <path d="M12 9L6 15H18L12 9Z" fill="currentColor" />
 
-                    break;
+                        break;
 
-                case Icons.Trophy:
+                    case Icons.Trophy:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.8 8.6V7H9.2V8.6H6V10.52C6 12.6 7.36 14.28 9.28 14.84C9.52 16.92 11.12 18.6 13.2 18.92V21.4H11.76C11.68 21.4 11.52 21.48 11.44 21.48L10.64 22.28C10.4 22.6 10.64 23 10.96 23H17.04C17.36 23 17.6 22.6 17.36 22.28L16.56 21.48C16.48 21.4 16.4 21.4 16.24 21.4H14.8V18.92C16.88 18.52 18.48 16.92 18.72 14.84C20.64 14.28 22 12.52 22 10.52V8.6H18.8ZM9.2 13.08C7.36 12.2 7.6 10.2 7.6 10.2H9.2V13.08ZM18.8 13.08V10.2H20.4C20.4 10.2 20.64 12.12 18.8 13.08Z" fill="currentColor"  />
-                    </svg>
+                        <path d="M18.8 8.6V7H9.2V8.6H6V10.52C6 12.6 7.36 14.28 9.28 14.84C9.52 16.92 11.12 18.6 13.2 18.92V21.4H11.76C11.68 21.4 11.52 21.48 11.44 21.48L10.64 22.28C10.4 22.6 10.64 23 10.96 23H17.04C17.36 23 17.6 22.6 17.36 22.28L16.56 21.48C16.48 21.4 16.4 21.4 16.24 21.4H14.8V18.92C16.88 18.52 18.48 16.92 18.72 14.84C20.64 14.28 22 12.52 22 10.52V8.6H18.8ZM9.2 13.08C7.36 12.2 7.6 10.2 7.6 10.2H9.2V13.08ZM18.8 13.08V10.2H20.4C20.4 10.2 20.64 12.12 18.8 13.08Z" fill="currentColor" />
 
-                    break;
+                        break;
 
-                case Icons.Unlock:
+                    case Icons.Unlock:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <rect x="5" y="10" width="14" height="10" rx="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 6.5V6C16 3.79086 14.2091 2 12 2V2C9.79086 2 8 3.79086 8 6V10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="12" cy="15" r="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.User:
+                    case Icons.User:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 20H5.73766C5.181 19.4386 4.40169 17.9789 5.73766 16.6316L9.91254 14.9474V14.1053C9.21672 13.5439 7.82509 11.8316 7.82509 9.47368C7.82509 6.52632 8.6601 4 12 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M12 20H18.2623C18.819 19.4386 19.5983 17.9789 18.2623 16.6316L14.0875 14.9474V14.1053C14.7833 13.5439 16.1749 11.8316 16.1749 9.47368C16.1749 6.52632 15.3399 4 12 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.Users:
+                    case Icons.Users:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 22H2.84304C2.20686 21.2982 1.31622 19.4737 2.84304 17.7895L7.61433 15.6842V14.6316C6.81911 13.9298 5.22867 11.7895 5.22867 8.84211C5.22867 5.15789 6.18297 2 10 2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10 22H17.157C17.7931 21.2982 18.6838 19.4737 17.157 17.7895L12.3857 15.6842V14.6316C13.1809 13.9298 14.7713 11.7895 14.7713 8.84211C14.7713 5.15789 13.817 2 10 2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M20.2485 19H22.157C22.7931 18.3684 23.6838 16.7263 22.157 15.2105L17.3857 13.3158V12.3684C18.1809 11.7368 19.7713 9.81053 19.7713 7.15789C19.7713 3.84211 18.817 1 15 1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                case Icons.WaitingLines:
+                    case Icons.WaitingLines:
 
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 2H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M5 22H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M7 2V9L17 15V22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M17 2V9L7 15V22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
 
-                    break;
+                        break;
 
-                default:
+                    default:
 
-                    break;
-            }
-
+                        break;
+                }
+            </svg>
         </div>
     }
 }

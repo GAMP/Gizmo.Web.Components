@@ -7,10 +7,10 @@
      @ref="@Ref"
      @onclick="OnClickHandler"
      @onclick:stopPropagation=" true">
-    
-    @if (!string.IsNullOrEmpty(Icon))
+
+    @if (!string.IsNullOrEmpty(Icon) || SVGIcon.HasValue)
     {
-        <Icon Source="@Icon" Class="giz-list-item-icon" />
+        <Icon Source="@Icon" SVGIcon="SVGIcon" Class="giz-list-item-icon" />
     }
 
     @ChildContent
@@ -19,11 +19,11 @@
     {
         @if (IsExpanded)
         {
-            <Icon Source="fas fa-chevron-up" Class="giz-nested-list-expand-icon" />
+            <Icon SVGIcon="Icons.TriangleUp" Class="giz-nested-list-expand-icon" />
         }
         else
         {
-            <Icon Source="fas fa-chevron-down" Class="giz-nested-list-expand-icon" />
+            <Icon SVGIcon="Icons.TriangleDown" Class="giz-nested-list-expand-icon" />
         }
     }
 </div>

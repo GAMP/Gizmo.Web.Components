@@ -11,11 +11,11 @@
         {
             <div class="giz-calendar-title-switch">
                 <div>
-                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonPreviousYearHandler"><i class="fas fa-chevron-left"></i></Button>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonPreviousYearHandler" LeftSVGIcon="Icons.ArrowLeft" />
                 </div>
                 <div class="giz-calendar-title-slide" @onclick="OnClickButtonYearHandler">@CurrentVisibleMonth.ToString("yyyy")</div>
                 <div>
-                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonNextYearHandler"><i class="fas fa-chevron-right"></i></Button>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonNextYearHandler" LeftSVGIcon="Icons.ArrowRight" />
                 </div>
             </div>
             <div class="giz-calendar-month">
@@ -43,11 +43,11 @@
         {
             <div class="giz-calendar-title-switch">
                 <div>
-                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonPreviousMonthHandler"><i class="fas fa-chevron-left"></i></Button>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonPreviousMonthHandler" LeftSVGIcon="Icons.ArrowLeft" />
                 </div>
                 <div class="giz-calendar-title-slide" @onclick="OnClickButtonMonthHandler">@CurrentVisibleMonth.ToString("MMM yyyy")</div>
                 <div>
-                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonNextMonthHandler"><i class="fas fa-chevron-right"></i></Button>
+                    <Button Variant="ButtonVariants.Icon" @onclick="OnClickButtonNextMonthHandler" LeftSVGIcon="Icons.ArrowRight" />
                 </div>
             </div>
             <div class="giz-calendar-weekday">

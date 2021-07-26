@@ -37,48 +37,6 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
-        public decimal Width
-        {
-            get
-            {
-                switch (Size)
-                {
-                    case IconSizes.Small:
-                        return 1.6m;
-
-                    case IconSizes.Medium:
-                        return 2.2m;
-
-                    case IconSizes.Large:
-                        return 3.4m;
-
-                    default:
-                        return 2.2m;
-                }
-            }
-        }
-
-        public decimal Height
-        {
-            get
-            {
-                switch (Size)
-                {
-                    case IconSizes.Small:
-                        return 1.6m;
-
-                    case IconSizes.Medium:
-                        return 2.2m;
-
-                    case IconSizes.Large:
-                        return 3.4m;
-
-                    default:
-                        return 2.2m;
-                }
-            }
-        }
-
         #endregion
 
         #region EVENTS
@@ -92,23 +50,28 @@ namespace Gizmo.Web.Components
 
         #region CLASSMAPPERS
 
-        protected string ClassName => new ClassMapper()
-                 .Add($"fa-{Size.ToDescriptionString()}")
+        protected string FAClassName => new ClassMapper()
+                 .If("fa-xs", () => Size == IconSizes.Small)
+                 .If("fa-1x", () => Size == IconSizes.Medium)
+                 .If("fa-2x", () => Size == IconSizes.Large)
+                 .If("fa-3x", () => Size == IconSizes.ExtraLarge)
                  .If("fa-stack", () => BackgroundStyle != IconBackgroundStyles.None)
                  .AsString();
 
-        protected string IconClassName => new ClassMapper()
+        protected string FAIconClassName => new ClassMapper()
                  .If("fa-stack-1x", () => BackgroundStyle != IconBackgroundStyles.None)
                  .AsString();
 
+        protected string ClassName => new ClassMapper()
+                 .Add($"giz-icon")
+                 .Add($"giz-icon--{Size.ToDescriptionString()}")
+                 .If("giz-icon--circle", () => BackgroundStyle == IconBackgroundStyles.Circle)
+                 .If("giz-icon--background", () => BackgroundStyle != IconBackgroundStyles.None)
+                 .AsString();
+
         protected string StyleValue => new StyleMapper()
-                 .Add($"padding: 0.2em")
-                 .Add($"display: inline-block")
-                 .Add($"width: { Width.ToString(System.Globalization.CultureInfo.InvariantCulture) }em")
-                 .Add($"height: { Height.ToString(System.Globalization.CultureInfo.InvariantCulture) }em")
-                 .Add($"border-radius: { (BackgroundStyle == IconBackgroundStyles.Circle ? "50%" : "0") }")
-                 .If($"background-color: { BackgroundColor }", () => BackgroundStyle != IconBackgroundStyles.None)
                  .If($"color: { Color }", () => !string.IsNullOrEmpty(Color))
+                 .If($"background-color: { BackgroundColor }", () => BackgroundStyle != IconBackgroundStyles.None)
                  .AsString();
 
         #endregion

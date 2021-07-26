@@ -39,6 +39,9 @@ namespace Gizmo.Web.Components
         public string Icon { get; set; }
 
         [Parameter]
+        public Icons? SVGIcon { get; set; }
+
+        [Parameter]
         public string Href { get; set; }
 
         [Parameter]

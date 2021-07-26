@@ -7,13 +7,16 @@ namespace Gizmo.Web.Components
     /// </summary>
     public enum IconSizes
     {
-        [Description("xs")]
+        [Description("small")]
         Small,
 
-        [Description("1x")]
+        [Description("medium")]
         Medium,
 
-        [Description("2x")]
-        Large
+        [Description("large")]
+        Large,
+
+        [Description("extra-large")]
+        ExtraLarge
     }
 }
