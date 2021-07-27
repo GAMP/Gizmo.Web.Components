@@ -47,6 +47,7 @@
         list-style: $list-unstyled;
         padding: 1.7rem 4.5rem;
         padding: $spacer-0;
+        border-bottom: 1px solid $gray-dim;
 
         [light-theme] & {
             background: $secondary-light;
@@ -55,12 +56,14 @@
     }
 
     &__link {
+        color: $gray-black;
 
         &:hover {
             background-color: #2a3349;
 
             [light-theme] & {
                 background-color: $white-color;
+                color: $dim-color;
             }
         }
     }
@@ -68,6 +71,7 @@
 
 //giz-tab-content
 .giz-tab-content {
+    background: $dark-gray;
 
     > div {
         display: $display-none;
@@ -75,6 +79,7 @@
 
     [light-theme] & {
         color: $secondary-color;
+        background:$white-color;
     }
 
     .giz-tab-content-active {

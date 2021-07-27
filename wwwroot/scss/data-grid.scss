@@ -5,7 +5,7 @@
     border-spacing: 0 1.2rem;
     color: $white-color;
     font-size: $font-16;
-    background: $dark-color;
+    background: $dark-gray;
 
     [light-theme] & {
         color: $secondary-color;
@@ -77,22 +77,22 @@
         }
 
         &:hover {
-            background: $transparent-color;
+            background: rgba(90, 103, 242, 0.2);
 
             [light-theme] & {
                 background: $secondary-light;
             }
 
             & > td {
-                border-top: 1px solid $gray-color;
-                border-bottom: 1px solid $gray-color;
+                border-top: 1px solid $border-gray-fade;
+                border-bottom: 1px solid $border-gray-fade;
 
                 &:first-child {
-                    border-left: 1px solid $gray-color;
+                    border-left: 1px solid $border-gray-fade;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $gray-color;
+                    border-right: 1px solid $border-gray-fade;
                 }
             }
         }
@@ -110,15 +110,15 @@
             }
 
             & > td {
-                border-top: 1px solid $primary-color;
-                border-bottom: 1px solid $primary-color;
+                border-top: 1px solid $border-gray-fade;
+                border-bottom: 1px solid $border-gray-fade;
 
                 &:first-child {
-                    border-left: 1px solid $primary-color;
+                    border-left: 1px solid $border-gray-fade;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $primary-color;
+                    border-right: 1px solid $border-gray-fade;
                 }
             }
         }
@@ -140,15 +140,15 @@
             }
 
             & > td {
-                border-top: 1px solid $primary-light-color;
-                border-bottom: 1px solid $primary-light-color;
+                border-top: 1px solid $border-gray-fade;
+                border-bottom: 1px solid $border-gray-fade;
 
                 &:first-child {
-                    border-left: 1px solid $primary-light-color;
+                    border-left: 1px solid $border-gray-fade;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $primary-light-color;
+                    border-right: 1px solid $border-gray-fade;
                 }
             }
         }
@@ -221,7 +221,7 @@
     max-height: 100%;
 
     .table {
-        
+
         & > thead td, & > thead th {
             position: sticky;
             top: 0;

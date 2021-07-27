@@ -29,6 +29,12 @@
     width: fit-content;
     border: $border-0;
 
+
+        svg {
+            color: $primary-color;
+        }
+
+
     [light-theme] & {
         background: $white-color;
         color: $secondary-color;
@@ -103,19 +109,23 @@
         outline-offset: -0.2rem;
         outline-width: 0.1rem;
         /*outline-style: groove;*/
-        border: 1px solid $gray-light-color;
+        border: 1px solid $gray-dim;
 
         [light-theme] & {
-            border: 1px solid $gray-light-color;
+            border: 1px solid $gray-dark;
+
+            &:hover {
+                border: 1px solid $gray-dark;
+            }
         }
 
         &:hover {
-            border: 1px solid $dim-light;
+            border: 1px solid $gray-dim;
         }
 
         &:focus-within {
-            border: 1px solid $primary-color;
-            box-shadow: 0px 0px 9px rgba($primary-color, 0.5);
+            /*      border: 1px solid $primary-color;*/
+            /*    box-shadow: 0px 0px 9px rgba($primary-color, 0.5);*/
         }
     }
     //input shadow
@@ -175,6 +185,7 @@
             background: $dark-gray;
             color: $gray-black;
 
+
             &::placeholder {
                 color: $gray-dim;
             }
@@ -182,6 +193,10 @@
             [light-theme] & {
                 background: $white-color;
                 color: $secondary-color;
+
+                &::placeholder {
+                    color: $gray-light-color;
+                }
             }
 
             &.is-disabled, &[disabled] {

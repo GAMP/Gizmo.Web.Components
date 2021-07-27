@@ -5,7 +5,7 @@
     border-radius: $rounded;
     position: $position-relative;
     min-width: 15rem;
-    background: #25282D;
+    background: $dark-gray;
 
     [light-theme] & {
         background-color: $white-color;

@@ -341,6 +341,22 @@ a {
     }
 }
 
+.giz-dim-white {
+    background-color: $dim-white !important;
+}
+
+.giz-dim-white-text {
+    color: $dim-white !important;
+}
+
+.giz-theme-on-dim-white {
+    color: $dim-white !important;
+
+    [light-theme] & {
+        color: $black-color !important;
+    }
+}
+
 .giz-gray {
     background-color: $gray-color !important;
 }
