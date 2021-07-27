@@ -260,6 +260,71 @@ a {
     }
 }
 
+.giz-black-light {
+    background-color: $black-light !important;
+}
+
+.giz-black-light-text {
+    color: $black-light !important;
+}
+
+.giz-theme-on-black-light {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
+}
+
+.giz-dark-gray {
+    background-color: $dark-gray !important;
+}
+
+.giz-dark-gray-text {
+    color: $dark-gray !important;
+}
+
+.giz-theme-on-dark-gray {
+    color: $dark-gray !important;
+
+    [light-theme] & {
+        color: $dark-gray !important;
+    }
+}
+
+.giz-grey-black {
+    background-color: $gray-black !important;
+}
+
+.giz-grey-black-text {
+    color: $gray-black !important;
+}
+
+.giz-theme-on-grey-black {
+    color: $gray-black !important;
+
+    [light-theme] & {
+        color: $gray-black !important;
+    }
+}
+
+.giz-grey-dim {
+    background-color: $gray-dim !important;
+}
+
+.giz-grey-dim-text {
+    color: $gray-dim !important;
+}
+
+.giz-theme-on-grey-dim {
+    color: $gray-dim !important;
+
+    [light-theme] & {
+        color: $gray-dim !important;
+    }
+}
+
+
 .giz-white {
     background-color: $white-color !important;
 }
@@ -333,6 +398,22 @@ a {
 }
 
 .giz-theme-on-dim-light {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
+}
+
+.giz-dim-color {
+    background-color: $dim-color !important;
+}
+
+.giz-dim-color-text {
+    color: $dim-color !important;
+}
+
+.giz-theme-on-dim-color {
     color: $white-color !important;
 
     [light-theme] & {
@@ -636,6 +717,10 @@ h6, .giz-typography-h6 {
     border-color: $black-color !important;
 }
 
+.border-black-light {
+    border-color: $black-light !important;
+}
+
 .border-white {
     border-color: $white-color !important;
 }
@@ -648,22 +733,42 @@ h6, .giz-typography-h6 {
     border-color: $gray-light-color !important;
 }
 
+.border-gray-black {
+    border-color: $gray-black !important;
+}
+
 .border-dark-color {
     border-color: $border-dark-color !important;
+}
+
+.border-dark-grey{
+    border-color:$dark-gray !important;
+}
+
+.border-dark-gray {
+    border-color: $dark-gray !important;
+}
+
+.border-gray-dim {
+    border-color: $gray-dim !important;
 }
 
 .border-light-color {
     border-color: $border-light-color !important;
 }
 
-.border-gray-dark {
-    border-color: $gray-dark !important;
+.border-dim-color {
+    border-color: $dim-color !important;
 }
 
 .border-dim-light {
     border-color: $dim-light !important;
 }
 
+.border-grey-fade {
+    border-color: $border-gray-fade !important;
+  
+}
 //== height / width
 
 .giz-width-full {

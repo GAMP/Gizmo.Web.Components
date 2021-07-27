@@ -16,7 +16,7 @@
 //Input default size (normal)
 .giz-input-root {
     align-items: center;
-    background: $dark-color;
+    background: $dark-gray;
     /*border: 1px solid $border-color;*/
     border-radius: $rounded;
     height: 4.8rem;
@@ -167,13 +167,17 @@
 .giz-input-control {
     .giz-input-root {
         display: $display-flex;
-        
+
         input {
             width: $width-full;
             border: none;
             outline: none;
-            background: $dark-color;
-            color: $white-color;
+            background: $dark-gray;
+            color: $gray-black;
+
+            &::placeholder {
+                color: $gray-dim;
+            }
 
             [light-theme] & {
                 background: $white-color;

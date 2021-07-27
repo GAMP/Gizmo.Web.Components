@@ -2,10 +2,10 @@
 //== list.scss files == //
 
 .giz-list {
-    background-color: $dark-color;
     border-radius: $rounded;
     position: $position-relative;
     min-width: 15rem;
+    background: #25282D;
 
     [light-theme] & {
         background-color: $white-color;
@@ -34,7 +34,11 @@
     &.giz-list--clickable {
         .giz-list-item {
             &:hover {
-                background-color: $border-color;
+                background-color: $black-light;
+                color: $primary-color;
+            }
+
+            &:hover svg {
                 color: $primary-color;
             }
 

@@ -23,8 +23,8 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("g-collapse")
-                 .If("g-collapse-expanded", () => Expanded)
+                 .Add("giz-collapse")
+                 .If("giz-collapse-expanded", () => Expanded)
                  .AsString();
 
         #endregion
