@@ -75,6 +75,29 @@
             border: 1px solid $gray-light-color;
             pointer-events: none;
         }
+
+        &.warning {
+            border: $border-0;
+            outline: $outline-0;
+            color: $white-color;
+            background: $warning-color;
+
+            &:hover {
+                background: #e98950;
+            }
+
+            &:focus {
+                background: $warning-color;
+                box-shadow: 0px 0px 9px #e98950;
+            }
+
+            &.is-disabled, &[disabled] {
+                color: $gray-light-color;
+                background: $secondary-light;
+                border: 1px solid $gray-light-color;
+                pointer-events: none;
+            }
+        }
     }
     //button outline variant
     &--outline {
