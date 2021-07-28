@@ -29,9 +29,14 @@
         transform: translateY(-50%);
         width: 2.4rem;
         height: 2.4rem;
-        background: $transparent-color;
-        border: 1px solid $gray-color;
+        background: $dark-gray;
+        border: 1px solid $border-gray-fade;
         border-radius: $rounded;
+
+        [light-theme] & {
+            background: $transparent-color;
+            border: 1px solid $gray-color;
+        }
     }
 
     &:checked + label:before {

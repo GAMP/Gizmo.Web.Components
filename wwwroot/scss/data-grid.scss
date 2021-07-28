@@ -77,10 +77,23 @@
         }
 
         &:hover {
-            background: rgba(90, 103, 242, 0.2);
+            background: #1E2023;
 
             [light-theme] & {
                 background: $secondary-light;
+
+                & > td {
+                    border-top: 1px solid $gray-dark;
+                    border-bottom: 1px solid $gray-dark;
+
+                    &:first-child {
+                        border-left: 1px solid $gray-dark;
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid $gray-dark;
+                    }
+                }
             }
 
             & > td {
@@ -127,17 +140,6 @@
             background: rgba(90,103,242,0.2);
             cursor: $cursor-pointer;
 
-            [light-theme] & {
-                background: $primary-light-color;
-            }
-
-            &:hover {
-                background: rgba(90,103,242,0.2);
-
-                [light-theme] & {
-                    background: $primary-light-color;
-                }
-            }
 
             & > td {
                 border-top: 1px solid $border-gray-fade;
@@ -149,6 +151,58 @@
 
                 &:last-child {
                     border-right: 1px solid $border-gray-fade;
+                }
+            }
+
+            [light-theme] & {
+                background: $primary-light-color;
+
+
+                & > td {
+                    border-top: 1px solid $gray-dark;
+                    border-bottom: 1px solid $gray-dark;
+
+                    &:first-child {
+                        border-left: 1px solid $gray-dark;
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid $gray-dark;
+                    }
+                }
+            }
+
+            &:hover {
+                background: rgba(90,103,242,0.2);
+
+                [light-theme] & {
+                    background: $primary-light-color;
+
+                    & > td {
+                        border-top: 1px solid $gray-dark;
+                        border-bottom: 1px solid $gray-dark;
+
+                        &:first-child {
+                            border-left: 1px solid $gray-dark;
+                        }
+
+                        &:last-child {
+                            border-right: 1px solid $gray-dark;
+                        }
+                    }
+                }
+
+                & > td {
+                    border-top: 1px solid $border-gray-fade;
+                    border-bottom: 1px solid $border-gray-fade;
+
+                    &:first-child {
+                        border-left: 1px solid $border-gray-fade;
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid $border-gray-fade;
+                    }
                 }
             }
         }
