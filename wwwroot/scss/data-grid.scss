@@ -3,7 +3,7 @@
     width: $width-full;
     border-collapse: separate;
     border-spacing: 0 1.2rem;
-    color: $white-color;
+    color: $gray-black;
     font-size: $font-16;
     background: $dark-gray;
 
@@ -70,6 +70,7 @@
             &:last-child {
                 border-right: 1px solid $transparent-color;
             }
+
         }
 
         [light-theme] & {
@@ -78,9 +79,11 @@
 
         &:hover {
             background: #1E2023;
+            color: $white-color;
 
             [light-theme] & {
                 background: $secondary-light;
+                color: $black-color;
 
                 & > td {
                     border-top: 1px solid $gray-dark;
@@ -99,7 +102,7 @@
             & > td {
                 border-top: 1px solid $border-gray-fade;
                 border-bottom: 1px solid $border-gray-fade;
-
+              
                 &:first-child {
                     border-left: 1px solid $border-gray-fade;
                 }
