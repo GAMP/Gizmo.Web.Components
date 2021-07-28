@@ -228,6 +228,7 @@ a {
         color: $white-color !important;
     }
 }
+
 .giz-dark-light {
     background-color: $dark-light-color !important;
 }
@@ -243,6 +244,23 @@ a {
         color: $white-color !important;
     }
 }
+
+.giz-dark-jungle {
+    background-color: $dark-jungle !important;
+}
+
+.giz-dark-jungle-text {
+    color: $dark-jungle !important;
+}
+
+.giz-theme-on-dark-jungle {
+    color: $dark-jungle !important;
+
+    [light-theme] & {
+        color: $white-color !important;
+    }
+}
+
 
 .giz-black {
     background-color: $black-color !important;
@@ -273,6 +291,22 @@ a {
 
     [light-theme] & {
         color: $white-color !important;
+    }
+}
+
+.giz-mid-gray {
+    background-color: $mid-gray !important;
+}
+
+.giz-mid-gray-text {
+    color: $mid-gray !important;
+}
+
+.giz-theme-on-mid-gray {
+    color: $mid-gray !important;
+
+    [light-theme] & {
+        color: $mid-gray !important;
     }
 }
 
@@ -765,6 +799,14 @@ h6, .giz-typography-h6 {
     border-color: $dark-gray !important;
 }
 
+.border-mid-gray {
+    border-color: $mid-gray !important;
+}
+
+.border-dark-jungle {
+    border-color: $dark-jungle !important;
+}
+
 .border-gray-dim {
     border-color: $gray-dim !important;
 }
@@ -783,7 +825,6 @@ h6, .giz-typography-h6 {
 
 .border-grey-fade {
     border-color: $border-gray-fade !important;
-  
 }
 //== height / width
 

@@ -70,7 +70,6 @@
             &:last-child {
                 border-right: 1px solid $transparent-color;
             }
-
         }
 
         [light-theme] & {
@@ -78,7 +77,7 @@
         }
 
         &:hover {
-            background: #1E2023;
+            background: $dark-jungle;
             color: $white-color;
 
             [light-theme] & {
@@ -102,7 +101,7 @@
             & > td {
                 border-top: 1px solid $border-gray-fade;
                 border-bottom: 1px solid $border-gray-fade;
-              
+
                 &:first-child {
                     border-left: 1px solid $border-gray-fade;
                 }

@@ -2,7 +2,7 @@
 
 .giz-button-group {
     display: $display-inline-block;
-    background-color: #1E2023;
+    background-color: $dark-jungle;
     padding: $spacer-4;
     border-radius: $rounded;
 
@@ -13,7 +13,7 @@
 
     .giz-button {
         color: $gray-black;
-        background-color: #1E2023;
+        background-color: $dark-jungle;
 
         [light-theme] & {
             color: $dim-light;

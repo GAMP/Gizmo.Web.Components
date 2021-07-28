@@ -16,9 +16,13 @@
         font-size: $font-15;
         line-height: $line-height-16;
         letter-spacing: $letter-spacing-8;
-        color: $secondary-color;
+        color: $gray-black;
         text-decoration: $text-decoration;
         cursor: pointer;
+
+        [light-theme] & {
+            color: $secondary-color;
+        }
 
         &.giz-list-item-disabled {
             color: rgb(230, 230, 230);
