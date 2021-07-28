@@ -16,10 +16,14 @@
         height: 5rem;
         text-transform: $text-uppercase;
         font-size: $font-15;
-        color: $secondary-color;
+        color: $gray-black;
         font-weight: $font-weight-400;
         padding: 0 1.7rem;
         text-align: $text-align-left;
+
+        [light-theme] & {
+            color: $dim-color;
+        }
 
         &.is-sorted-up {
             position: $position-relative;
@@ -122,6 +126,19 @@
             [light-theme] & {
                 border-color: #dddfe4;
                 background: $primary-color;
+
+                & > td {
+                    border-top: 1px solid $gray-dark;
+                    border-bottom: 1px solid $gray-dark;
+
+                    &:first-child {
+                        border-left: 1px solid $gray-dark;
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid $gray-dark;
+                    }
+                }
             }
 
             & > td {
@@ -158,7 +175,6 @@
 
             [light-theme] & {
                 background: $primary-light-color;
-
 
                 & > td {
                     border-top: 1px solid $gray-dark;
