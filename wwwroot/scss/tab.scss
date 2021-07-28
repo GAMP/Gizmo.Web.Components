@@ -58,8 +58,12 @@
     &__link {
         color: $gray-black;
 
+        [light-theme] & {
+            color: $dim-color;
+        }
+
         &:hover {
-        color:$white-color;
+            color: $white-color;
 
             [light-theme] & {
                 background-color: $white-color;
