@@ -53,8 +53,11 @@
     }
 
     &.giz-list--selectable {
+
         .giz-list-item {
+
             &.giz-list-item-selected {
+
                 background-color: $primary-color;
                 color: $white-color;
             }
