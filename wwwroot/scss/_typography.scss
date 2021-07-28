@@ -278,22 +278,6 @@ a {
     }
 }
 
-.giz-black-light {
-    background-color: $black-light !important;
-}
-
-.giz-black-light-text {
-    color: $black-light !important;
-}
-
-.giz-theme-on-black-light {
-    color: $white-color !important;
-
-    [light-theme] & {
-        color: $white-color !important;
-    }
-}
-
 .giz-mid-gray {
     background-color: $mid-gray !important;
 }
@@ -765,10 +749,6 @@ h6, .giz-typography-h6 {
 
 .border-black {
     border-color: $black-color !important;
-}
-
-.border-black-light {
-    border-color: $black-light !important;
 }
 
 .border-white {
