@@ -4,7 +4,7 @@
 //== body base
 
 * {
-    box-sizing: border-box;   
+    box-sizing: border-box;
 }
 
 body {
@@ -275,6 +275,22 @@ a {
 
     [light-theme] & {
         color: $white-color !important;
+    }
+}
+
+.giz-onyx-black {
+    background-color: $onyx-black !important;
+}
+
+.giz-onyx-black-text {
+    color: $onyx-black !important;
+}
+
+.giz-theme-on-onyx-black {
+    color: $white-color !important;
+
+    [light-theme] & {
+        color: $onyx-black !important;
     }
 }
 
@@ -565,7 +581,7 @@ h2, .giz-typography-h2 {
     letter-spacing: $h2-letter-spacing;
 
     [light-theme] & {
-       color: $h-color;
+        color: $h-color;
     }
 }
 
@@ -771,8 +787,8 @@ h6, .giz-typography-h6 {
     border-color: $border-dark-color !important;
 }
 
-.border-dark-grey{
-    border-color:$dark-gray !important;
+.border-dark-grey {
+    border-color: $dark-gray !important;
 }
 
 .border-dark-gray {
@@ -803,8 +819,8 @@ h6, .giz-typography-h6 {
     border-color: $dim-light !important;
 }
 
-.border-grey-fade {
-    border-color: $border-gray-fade !important;
+.border-dark-navy {
+    border-color: $border-dark-navy !important;
 }
 //== height / width
 
