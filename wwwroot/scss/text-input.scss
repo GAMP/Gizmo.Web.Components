@@ -30,9 +30,9 @@
     border: $border-0;
 
 
-        svg {
-            color: $primary-color;
-        }
+    svg {
+        color: $primary-color;
+    }
 
 
     [light-theme] & {
@@ -109,7 +109,7 @@
         outline-offset: -0.2rem;
         outline-width: 0.1rem;
         /*outline-style: groove;*/
-        border: 1px solid $gray-dim;
+        border: 1px solid $onyx-black;
 
         [light-theme] & {
             border: 1px solid $gray-dark;
@@ -120,7 +120,7 @@
         }
 
         &:hover {
-            border: 1px solid $gray-dim;
+            border: 1px solid $onyx-black;
         }
 
         &:focus-within {
