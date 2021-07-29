@@ -53,9 +53,16 @@
     }
 
     &.is-disabled, &[disabled] {
-        background: $gray-dark;
-        border: 1px solid $gray-dark;
+        background: $onyx-black;
+        border: 1px solid $onyx-black;
         pointer-events: none;
+        color: $mid-gray;
+
+        [light-theme] & {
+            background: $gray-dark;
+            border: 1px solid $gray-dark;
+            color: $dim-light;
+        }
     }
 
     .giz-input-icon-left {
@@ -142,68 +149,67 @@
     }
 }
 
-.giz-input-validation {
-    font-weight: $font-weight-500;
-    font-size: $font-14;
-    line-height: $line-height-22;
-    letter-spacing: $letter-spacing-8;
-}
+    .giz-input-validation {
+        font-weight: $font-weight-500;
+        font-size: $font-14;
+        line-height: $line-height-22;
+        letter-spacing: $letter-spacing-8;
+    }
 
-.giz-input-invalid {
-    color: $danger-color;
-
-    input {
+    .giz-input-invalid {
         color: $danger-color;
-    }
-
-    .giz-input-root--outline {
-        border: 1px solid $danger-color;
-    }
-
-    .giz-input-root--shadow {
-        box-shadow: 0px 0px 9px rgba($danger-color, 0.4);
-
-        &:hover {
-            box-shadow: 0px 0px 9px rgba($danger-color, 0.5);
-        }
-
-        &:focus-within {
-            box-shadow: 0px 0px 9px rgba($danger-color, 0.6);
-        }
-    }
-}
-
-//== giz input control
-.giz-input-control {
-    .giz-input-root {
-        display: $display-flex;
 
         input {
-            width: $width-full;
-            border: none;
-            outline: none;
-            background: $dark-gray;
-            color: $gray-black;
+            color: $danger-color;
+        }
 
+        .giz-input-root--outline {
+            border: 1px solid $danger-color;
+        }
 
-            &::placeholder {
-                color: $gray-dim;
+        .giz-input-root--shadow {
+            box-shadow: 0px 0px 9px rgba($danger-color, 0.4);
+
+            &:hover {
+                box-shadow: 0px 0px 9px rgba($danger-color, 0.5);
             }
 
-            [light-theme] & {
-                background: $white-color;
-                color: $secondary-color;
-
-                &::placeholder {
-                    color: $gray-light-color;
-                }
-            }
-
-            &.is-disabled, &[disabled] {
-                background: $gray-dark;
-                color: $dim-light;
-                pointer-events: none;
+            &:focus-within {
+                box-shadow: 0px 0px 9px rgba($danger-color, 0.6);
             }
         }
     }
-}
+    //== giz input control
+    .giz-input-control {
+        .giz-input-root {
+            display: $display-flex;
+
+            input {
+                width: $width-full;
+                border: none;
+                outline: none;
+                background: inherit;
+                color: $gray-black;
+
+
+                &::placeholder {
+                    color: $gray-dim;
+                }
+
+                [light-theme] & {
+                    background: inherit;
+                    color: $secondary-color;
+
+                    &::placeholder {
+                        color: $gray-light-color;
+                    }
+                }
+
+                &.is-disabled, &[disabled] {
+                    background: $gray-dark;
+                    color: $dim-light;
+                    pointer-events: none;
+                }
+            }
+        }
+    }

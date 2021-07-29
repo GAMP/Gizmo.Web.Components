@@ -29,12 +29,35 @@
                 background-color: $white-color;
             }
         }
+
+        &:hover:not(.selected) {
+            background: $dark-gray;
+            color: $dim-white;
+
+            [light-theme] & {
+                background: $dim-white;
+                color: $dim-color;
+            }
+        }
     }
 
     &.disabled {
+        color: $gray-dim;
+        pointer-events: none;
+
+        [light-theme] & {
+            color: $dim-white;
+        }
+
         .giz-button {
             &.selected {
-                color: $dim-light;
+                color: $mid-gray;
+                background: $onyx-black;
+
+                [light-theme] & {
+                    color: $dim-light;
+                    background: $white-color;
+                }
             }
 
             &:focus:not(.selected) {

@@ -47,10 +47,24 @@
         }
 
         &.is-disabled, &[disabled] {
-            color: $gray-light-color;
-            background: $secondary-light;
-            border: 1px solid $gray-light-color;
+            color: $dark-gray;
+            background: $onyx-black;
             pointer-events: none;
+            border: none;
+
+            svg {
+                color: $dark-gray;
+            }
+        }
+
+        [light-theme] & {
+            color: $gray-dark;
+            background: $white-color;
+            border: 1px solid $gray-dark;
+
+            svg {
+                color: $gray-dark;
+            }
         }
     }
     //button fill variant
@@ -70,10 +84,24 @@
         }
 
         &.is-disabled, &[disabled] {
-            color: $gray-light-color;
-            background: $secondary-light;
-            border: 1px solid $gray-light-color;
+            color: $dark-gray;
+            background: $onyx-black;
             pointer-events: none;
+
+
+            svg {
+                color: $dark-gray;
+            }
+
+            [light-theme] & {
+                color: $white-color;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
+            }
         }
 
         &.warning {
@@ -92,51 +120,79 @@
             }
 
             &.is-disabled, &[disabled] {
-                color: $gray-light-color;
-                background: $secondary-light;
-                border: 1px solid $gray-light-color;
+                color: $dark-gray;
+                background: $onyx-black;
                 pointer-events: none;
+            }
+
+            svg {
+                color: $dark-gray;
+            }
+
+            [light-theme] & {
+                color: $gray-dark;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
             }
         }
     }
     //button outline variant
     &--outline {
-        color: $gray-black;
+        color: $dim-white;
         background-color: $dark-gray;
         border: 1px solid $onyx-black;
 
         [light-theme] & {
-            color: $dim-color;
+            color: $gray-black;
             background: $white-color;
             border: 1px solid $gray-light-color;
         }
 
         &:hover {
-            color: $primary-color;
-            background: $white-color;
+            color: $dim-white;
 
             [light-theme] & {
                 background: $white-color;
+                color: $primary-color;
             }
         }
 
         &:focus {
-            color: $secondary-color;
-            background: $white-color;
             border: 1px solid $primary-color;
             box-shadow: 0px 0px 9px rgba($primary-color, 0.5);
+            color: $dim-white;
 
             [light-theme] & {
                 background: $white-color;
                 border: 1px solid $primary-color;
+                color: $secondary-color;
+                background: $white-color;
             }
         }
 
         &.is-disabled, &[disabled] {
-            color: $gray-light-color;
-            background: $secondary-light;
-            border: 1px solid $gray-light-color;
+            color: $dark-gray;
+            background: $onyx-black;
+            border: none;
             pointer-events: none;
+
+            svg {
+                color: $dark-gray;
+            }
+
+            [light-theme] & {
+                color: $gray-dark;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
+            }
         }
     }
     //button text variant
@@ -145,21 +201,45 @@
         border: none;
         color: $gray-black;
 
+        [light-theme] & {
+            color: $dim-white;
+        }
+
         &:hover {
-            color: $primary-color;
-            background: $white-color;
+
+            [light-theme] & {
+                color: $primary-color;
+                background: $white-color;
+            }
         }
 
         &:focus {
-            background: $white-color;
-            box-shadow: $elevation-1;
+
+            [light-theme] & {
+                background: $white-color;
+                box-shadow: $elevation-1;
+            }
         }
 
         &.is-disabled, &[disabled] {
-            color: $gray-dark;
-            background: $secondary-light;
+            color: $dark-gray;
+            background: $onyx-black;
             border: none;
             pointer-events: none;
+
+            svg {
+                color: $dark-gray;
+            }
+
+            [light-theme] & {
+                color: $gray-dark;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
+            }
         }
     }
     //button icon variant
@@ -180,10 +260,12 @@
         }
 
         &.is-disabled, &[disabled] {
-            color: $gray-dark;
-            background: $secondary-light;
-            border: none;
+            color: $dark-gray;
             pointer-events: none;
+
+            [light-theme] & {
+                color: $gray-dark;
+            }
         }
     }
     // button extra large
@@ -213,16 +295,23 @@
     }
     //buton disable
     &.is-disabled, &[disabled] {
-        background: $gray-color;
-        cursor: default;
+        color: $dark-gray;
+        background: $onyx-black;
+        border: none;
         pointer-events: none;
 
-        &:hover {
-            background: $gray-color;
+        svg {
+            color: $dark-gray;
         }
 
-        &:focus {
-            box-shadow: $elevation-0;
+        [light-theme] & {
+            color: $gray-dark;
+            background: $white-color;
+            border: 1px solid $gray-dark;
+
+            svg {
+                color: $gray-dark;
+            }
         }
     }
 }

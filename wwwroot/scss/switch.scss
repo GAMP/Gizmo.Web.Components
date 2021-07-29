@@ -22,6 +22,7 @@
         &:checked + .slider:before {
             transform: translateX(15px);
         }
+
     }
 
     .slider {
@@ -42,13 +43,18 @@
             width: 28px;
             left: 2px;
             bottom: 2px;
-            background-color: white;
+            background-color: $gray-dim;
             -webkit-transition: .4s;
             transition: .4s;
+
+            [light-theme] & {
+                background-color: $white-color;
+            }
         }
 
         &.round {
             border-radius: 34px;
+            background: $gray-dark;
 
             &:before {
                 border-radius: 50%;

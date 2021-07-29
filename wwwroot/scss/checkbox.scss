@@ -47,8 +47,14 @@
 
     &.is-disabled + label:before, &[disabled] + label:before {
         cursor: default;
-        background: $gray-color;
-        border-color: $gray-color;
+        background: $gray-dim;
+        border-color: $gray-dim;
+        pointer-events: none;
+
+        [light-theme] & {
+            background: $gray-dark;
+            border-color: $gray-dark;
+        }
     }
 
     &.is-disabled + label, &[disabled] + label {
