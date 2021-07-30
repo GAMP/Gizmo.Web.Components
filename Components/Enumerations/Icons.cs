@@ -81,6 +81,8 @@
         Time3,
         Trash,
         TriangleDown,
+        TriangleLeft,
+        TriangleRight,
         TriangleUp,
         Trophy,
         Unlock,
