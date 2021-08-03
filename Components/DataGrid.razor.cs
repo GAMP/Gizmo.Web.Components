@@ -190,7 +190,7 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task IsCheckedChangedHandler(bool value)
+        protected async Task IsCheckedChangedHandler(bool value)
         {
             if (_hasSelectedAllItems)
             {
@@ -218,7 +218,8 @@ namespace Gizmo.Web.Components
                 _hasSelectedAllItems = true;
             }
 
-            return Task.CompletedTask;
+            await SelectedItemChanged.InvokeAsync(SelectedItems.FirstOrDefault());
+            await SelectedItemsChanged.InvokeAsync();
         }
 
         internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)

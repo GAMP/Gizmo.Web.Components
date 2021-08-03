@@ -1,0 +1,16 @@
+//=============== gizmo divider classes ================//
+
+.giz-divider {
+    background: $onyx-black;
+
+    [light-theme] & {
+        background: $gray-dark;
+    }
+}
+
+.giz-divider-vertical {
+    width: 1px;
+    height: auto;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
