@@ -15,6 +15,7 @@
         user-select: none;
         cursor: $cursor-pointer;
         margin: 4px 0;
+        font-weight: $font-weight-600;
     }
 
     &:checked + label {

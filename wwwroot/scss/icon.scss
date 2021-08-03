@@ -1,7 +1,7 @@
 //=============== gizmo icon classes ================//
 
 .giz-icon {
-    display: inline-block;
+    display: inline-flex;
     color: $gray-black;
 
     [light-theme] & {
