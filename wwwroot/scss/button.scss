@@ -5,7 +5,10 @@
     font-size: $font-17;
     cursor: $cursor-pointer;
     border-radius: $rounded;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
+    transition: background 0.3s ease;
+    transition: border 0.3s ease;
+    transition: box-shadow 0.3s ease;
     font-weight: $font-weight-600;
     letter-spacing: $letter-spacing-8;
     white-space: $nowrap-white-space;
@@ -170,7 +173,6 @@
                 background: $white-color;
                 border: 1px solid $primary-color;
                 color: $secondary-color;
-                background: $white-color;
             }
         }
 

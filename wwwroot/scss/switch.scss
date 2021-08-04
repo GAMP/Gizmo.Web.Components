@@ -33,8 +33,7 @@
         right: 0;
         bottom: 0;
         background-color: $gray-color;
-        -webkit-transition: .4s;
-        transition: .4s;
+        transition: 0.4s;
 
         &:before {
             position: absolute;
@@ -44,8 +43,7 @@
             left: 2px;
             bottom: 2px;
             background-color: $gray-dim;
-            -webkit-transition: .4s;
-            transition: .4s;
+            transition: 0.4s;
 
             [light-theme] & {
                 background-color: $white-color;
