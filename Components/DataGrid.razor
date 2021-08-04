@@ -17,7 +17,7 @@
                 <thead>
                     @*header*@
                     <tr>
-                        @if (IsSelectable)
+                        @if (IsSelectable && (ShowCheckBoxes || !SelectOnClick))
                         {
                             <th>
                                 <CheckBox IsChecked="@(_hasSelectedAllItems)" IsTriState="@(_hasSelectedItems && !_hasSelectedAllItems)" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" IsCheckedChanged="@IsCheckedChangedHandler" />
@@ -77,6 +77,13 @@
                 </tbody>
 
             </table>
+
+            @if (ContextMenu != null)
+            {
+                <Menu IsContextMenu="true" @bind-IsOpen="_isContextMenuOpen" ClientX="@_clientX" ClientY="@_clientY">
+                    @ContextMenu
+                </Menu>
+            }
         </div>
 
     </div>

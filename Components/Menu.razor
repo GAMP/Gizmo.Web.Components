@@ -5,7 +5,11 @@
 
     <div class="@Class @ClassName">
 
-        @if (Activator != null)
+        @if (IsContextMenu)
+        {
+
+        }
+        else if (Activator != null)
         {
             <div @onclick="OnClickMenuHandler">
                 @Activator
@@ -34,7 +38,7 @@
             }
         }
 
-        <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName">
+        <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName" Style="@PopupStyleValue">
             <List Direction="@Direction" CanClick="true" OnClickItem="@(() => OnClickMenuItemHandler())">
                 @ChildContent
             </List>

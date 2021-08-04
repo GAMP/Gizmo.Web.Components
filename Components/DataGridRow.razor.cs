@@ -112,6 +112,19 @@ namespace Gizmo.Web.Components
             await Parent?.SelectItem(this, value);
         }
 
+        protected async Task ContextMenuHandler(MouseEventArgs args)
+        {
+            if (IsSelectable && Parent.SelectOnClick)
+            {
+                await Parent?.SelectItem(this, !_selected);
+            }
+
+            if (args.Button == 2 && Parent.ContextMenu != null)
+            {
+                Parent.OpenContextMenu(args.ClientX, args.ClientY);
+            }
+        }
+
         #endregion
 
         #region METHODS

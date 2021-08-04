@@ -28,7 +28,9 @@ namespace Gizmo.Web.Components
         private bool _hasSelectedItems;
         private bool _hasSelectedAllItems;
         private int _providerTotalItems = 0;
-
+        private bool _isContextMenuOpen;
+        private double _clientX;
+        private double _clientY;
         #endregion
 
         #region PROPERTIES
@@ -41,6 +43,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsSelectable { get; set; }
+
+        [Parameter]
+        public bool ShowCheckBoxes { get; set; }
 
         [Parameter]
         public bool SelectOnClick { get; set; }
@@ -173,6 +178,9 @@ namespace Gizmo.Web.Components
             get; set;
         }
 
+        [Parameter]
+        public RenderFragment ContextMenu { get; set; }
+
         #endregion
 
         #region OVERRIDE
@@ -230,6 +238,14 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
+        internal void OpenContextMenu(double clientX, double clientY)
+        {
+            _clientX = clientX;
+            _clientY = clientY;
+            _isContextMenuOpen = true;
+            StateHasChanged();
+        }
 
         internal void AddColumn(DataGridColumn<TItemType> column)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
@@ -12,7 +13,22 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region FIELDS
+
+        private bool _isOpen;
+
+        #endregion
+
         #region PROPERTIES
+
+        [Parameter]
+        public double ClientX { get; set; }
+
+        [Parameter]
+        public double ClientY { get; set; }
+
+        [Parameter]
+        public bool IsContextMenu { get; set; }
 
         [Parameter]
         public string Label { get; set; }
@@ -27,7 +43,24 @@ namespace Gizmo.Web.Components
         public Icons? SVGIcon { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
+        public bool IsOpen
+        {
+            get
+            {
+                return _isOpen;
+            }
+            set
+            {
+                if (_isOpen == value)
+                    return;
+
+                _isOpen = value;
+                IsOpenChanged.InvokeAsync(_isOpen);
+            }
+        }
+
+        [Parameter]
+        public EventCallback<bool> IsOpenChanged { get; set; }
 
         [Parameter]
         public bool IsDisabled { get; set; }
@@ -91,6 +124,12 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-menu-dropdown")
                  .Add("giz-popup-bottom")
+                 .AsString();
+
+        protected string PopupStyleValue => new StyleMapper()
+                 .If($"position: fixed", () => IsContextMenu)
+                 .If($"top: {ClientY}px", () => IsContextMenu)
+                 .If($"left: {ClientX}px", () => IsContextMenu)
                  .AsString();
 
         #endregion

@@ -7,9 +7,11 @@
     @key="Item.GetHashCode()"
     @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))"
     @onclick:stopPropagation="true"
+    @oncontextmenu:preventDefault="@(Parent.ContextMenu != null )"
+    @oncontextmenu="ContextMenuHandler"
     >
 
-    @if (IsSelectable)
+    @if (IsSelectable && (Parent.ShowCheckBoxes || !Parent.SelectOnClick))
     {
         <td>
             <CheckBox IsChecked="@_selected" IsCheckedChanged="@IsCheckedChangedHandler" IsReadOnly="@Parent.SelectOnClick" />
