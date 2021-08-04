@@ -3,11 +3,11 @@
 .giz-popup {
     /*background-color: rgba(230, 230, 230, 0.3);*/
     z-index: 100;
-    display: $display-none;
+    visibility: collapse;
     position: $position-absolute;
 
     &.giz-popup-open {
-        display: $display-block;
+        visibility: visible;
     }
 
     &.giz-popup-bottom {

@@ -31,6 +31,8 @@ namespace Gizmo.Web.Components
         private bool _isContextMenuOpen;
         private double _clientX;
         private double _clientY;
+        private Menu _contextMenu;
+
         #endregion
 
         #region PROPERTIES
@@ -239,11 +241,23 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        internal void OpenContextMenu(double clientX, double clientY)
+        internal async Task OpenContextMenu(double clientX, double clientY)
         {
-            _clientX = clientX;
-            _clientY = clientY;
+            var gridPosition = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+
+            var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+            var contextMenuSize = await _contextMenu.GetListBoundingClientRect();
+
+            _clientX = clientX - gridPosition.Left;
+            if (gridPosition.Left + _clientX + contextMenuSize.Width > windowSize.Width)
+            {
+                _clientX = windowSize.Width - gridPosition.Left - contextMenuSize.Width - 40;
+            }
+
+            _clientY = clientY - gridPosition.Top;
+
             _isContextMenuOpen = true;
+
             StateHasChanged();
         }
 
@@ -402,6 +416,5 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
-
     }
 }

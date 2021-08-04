@@ -15,6 +15,7 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
+        private List _itemsList;
         private bool _isOpen;
 
         #endregion
@@ -113,6 +114,11 @@ namespace Gizmo.Web.Components
             IsOpen = false;
         }
 
+        internal async Task<BoundingClientRect> GetListBoundingClientRect()
+        {
+            return await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _itemsList.Ref);
+        }
+
         #endregion
 
         #region CLASSMAPPERS
@@ -127,7 +133,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()
-                 .If($"position: fixed", () => IsContextMenu)
+                 .If($"position: absolute", () => IsContextMenu)
                  .If($"top: {ClientY}px", () => IsContextMenu)
                  .If($"left: {ClientX}px", () => IsContextMenu)
                  .AsString();

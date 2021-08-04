@@ -121,7 +121,7 @@ namespace Gizmo.Web.Components
 
             if (args.Button == 2 && Parent.ContextMenu != null)
             {
-                Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                await Parent.OpenContextMenu(args.ClientX, args.ClientY);
             }
         }
 

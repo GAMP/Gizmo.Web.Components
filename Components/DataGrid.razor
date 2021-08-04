@@ -8,10 +8,19 @@
          style="@StyleValue">
        
         <div class="@TableContainerClassName">
+
+            @if (ContextMenu != null)
+            {
+                <Menu @ref="_contextMenu" IsContextMenu="true" @bind-IsOpen="_isContextMenuOpen" ClientX="@_clientX" ClientY="@_clientY">
+                    @ContextMenu
+                </Menu>
+            }
+
             <table class="@TableClassName"
                    id="@Id"
                    @ref="@Ref"
-                   @attributes="@Attributes">
+                   @attributes="@Attributes"
+                   >
 
                 @*table head*@
                 <thead>
@@ -78,12 +87,6 @@
 
             </table>
 
-            @if (ContextMenu != null)
-            {
-                <Menu IsContextMenu="true" @bind-IsOpen="_isContextMenuOpen" ClientX="@_clientX" ClientY="@_clientY">
-                    @ContextMenu
-                </Menu>
-            }
         </div>
 
     </div>

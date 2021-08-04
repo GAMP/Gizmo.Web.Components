@@ -2,7 +2,8 @@
 @inherits CustomDOMComponentBase
 
 <div class="@Class @ClassName"
-     style="@Style @StyleValue">
+     style="@Style @StyleValue"
+     @ref="@Ref">
     <CascadingValue Value="@this" IsFixed="true">
         @ChildContent
     </CascadingValue>
