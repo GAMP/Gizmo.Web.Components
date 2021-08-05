@@ -3,7 +3,8 @@
 
 <CascadingValue Value="@this">
 
-    <div class="@Class @ClassName">
+    <div class="@Class @ClassName"
+         style="@Style">
 
         @if (IsContextMenu)
         {
@@ -38,15 +39,18 @@
             }
         }
 
-        <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName" Style="@PopupStyleValue">
+        <Popup @bind-IsOpen="IsOpen" Class="@PopupClassName" Style="@PopupStyleValue" IsModal="@(!CloseOnItemClick)">
             <List @ref="_itemsList" Direction="@Direction" CanClick="true" OnClickItem="@(() => OnClickMenuItemHandler())">
                 @ChildContent
             </List>
         </Popup>
     </div>
 
-    <Overlay Visible="@IsOpen"
-             @onclick="OnClickOverlayHandler">
-    </Overlay>
+    @if (!IsContextMenu)
+    {
+        <Overlay Visible="@IsOpen"
+                 @onclick="OnClickOverlayHandler">
+        </Overlay>
+    }
 
 </CascadingValue>

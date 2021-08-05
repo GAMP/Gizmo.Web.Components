@@ -13,13 +13,37 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        private bool _isOpen;
+
         #region PROPERTIES
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
+        public bool IsOpen
+        {
+            get
+            {
+                return _isOpen;
+            }
+            set
+            {
+                if (_isOpen == value)
+                    return;
+
+                _isOpen = value;
+                IsOpenChanged.InvokeAsync(_isOpen);
+
+                if (_isOpen)
+                {
+                    Task.Run(async () =>
+                    {
+                        await Focus();
+                    });
+                }
+            }
+        }
 
         [Parameter]
         public EventCallback<bool> IsOpenChanged { get; set; }
@@ -32,15 +56,31 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region METHODS
+
+        private async Task Focus()
+        {
+            await InvokeVoidAsync("focusElement", Ref);
+        }
+
+        #endregion
+
         #region EVENTS
 
         protected Task OnClickPopupHandler(MouseEventArgs args)
         {
-            if (IsModal)
-                return Task.CompletedTask;
+            if (!IsModal)
+                IsOpen = false;
 
-            IsOpen = false;
-            return IsOpenChanged.InvokeAsync(IsOpen);
+            return Task.CompletedTask;
+        }
+
+        protected Task OnFocusOutHandler()
+        {
+            if (!IsModal)
+                IsOpen = false;
+
+            return Task.CompletedTask;
         }
 
         #endregion

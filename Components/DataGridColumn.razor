@@ -2,9 +2,12 @@
 @inherits Gizmo.Web.Components.CustomDOMComponentBase
 @typeparam TItemType
 
-<th class="@Class @ClassName"
-    @ref="Ref"
-    @attributes="Attributes"
-    @onclick="(e=> OnHeaderMouseEvent(e))">
-    @HeaderTemplate
-</th>
+@if (IsVisible)
+{
+    <th class="@Class @ClassName"
+        @ref="Ref"
+        @attributes="Attributes"
+        @onclick="(e => OnHeaderMouseEvent(e))">
+        @HeaderTemplate
+    </th>
+}

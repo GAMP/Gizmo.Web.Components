@@ -62,6 +62,12 @@ namespace Gizmo.Web.Components
             get; set;
         }
 
+        [Parameter]
+        public bool IsVisible { get; set; } = true;
+
+        [Parameter]
+        public bool CanChangeVisibility { get; set; } = true;
+
         #endregion
 
         #endregion

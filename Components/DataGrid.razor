@@ -7,7 +7,7 @@
     <div class="@Class"
          style="@StyleValue">
        
-        <div class="@TableContainerClassName">
+        <div class="@TableContainerClassName" style="position: relative">
 
             @if (ContextMenu != null)
             {
@@ -15,6 +15,25 @@
                     @ContextMenu
                 </Menu>
             }
+
+            <Menu CloseOnItemClick="false" Style="position: absolute; top: 2.2rem; right: 0; z-index: 100" Direction="ListDirections.Left">
+                <Activator>
+                    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Show"></Button>
+                </Activator>
+                <ChildContent>
+                    @foreach (var column in Columns)
+                    {
+                        if (column.CanChangeVisibility)
+                        {
+                            <ListItem>
+                                <CheckBox @bind-IsChecked="column.IsVisible">
+                                    @column.HeaderTemplate
+                                </CheckBox>
+                            </ListItem>
+                        }
+                    }
+                </ChildContent>
+            </Menu>
 
             <table class="@TableClassName"
                    id="@Id"

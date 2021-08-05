@@ -14,7 +14,11 @@
        @onclick:stopPropagation="true"
        />
 <label for="@Id">
-    @if (!string.IsNullOrEmpty(Label))
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
     {
         @Label
     }

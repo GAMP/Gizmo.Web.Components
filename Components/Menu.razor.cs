@@ -23,6 +23,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public bool CloseOnItemClick { get; set; } = true;
+
+        [Parameter]
         public double ClientX { get; set; }
 
         [Parameter]
@@ -92,7 +95,7 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickMenuItemHandler()
         {
-            if (!IsDisabled)
+            if (!IsDisabled && CloseOnItemClick)
                 IsOpen = false;
 
             return Task.CompletedTask;

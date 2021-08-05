@@ -20,7 +20,7 @@
 
     @foreach (var column in Columns)
     {
-        if (column.CellTemplate != null)
+        if (column.IsVisible && column.CellTemplate != null)
         {
             <DataGridCell TItemType="@TItemType" Column="column" Item="@Item" />
         }

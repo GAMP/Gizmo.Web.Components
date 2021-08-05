@@ -3,6 +3,9 @@
 
 <div class="@Class @ClassName"
      style="@Style @StyleValue"
-     @onclick="OnClickPopupHandler">
+     @ref="@Ref"
+     @onclick="OnClickPopupHandler"
+     @onfocusout="OnFocusOutHandler"
+     tabindex="-1">
     @ChildContent
 </div>
