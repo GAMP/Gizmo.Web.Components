@@ -88,7 +88,7 @@
         line-height: $line-height-24;
 
         &.is-disabled, &[disabled] {
-            background-color: $gray-dark;
+            background: $onyx-black;
             color: $white-color;
             pointer-events: none;
         }
@@ -149,67 +149,72 @@
     }
 }
 
-    .giz-input-validation {
-        font-weight: $font-weight-500;
-        font-size: $font-14;
-        line-height: $line-height-22;
-        letter-spacing: $letter-spacing-8;
+.giz-input-validation {
+    font-weight: $font-weight-500;
+    font-size: $font-14;
+    line-height: $line-height-22;
+    letter-spacing: $letter-spacing-8;
+}
+
+.giz-input-invalid {
+    color: $danger-color;
+
+    input {
+        color: $danger-color;
     }
 
-    .giz-input-invalid {
-        color: $danger-color;
+    .giz-input-root--outline {
+        border: 1px solid $danger-color;
+    }
+
+    .giz-input-root--shadow {
+        box-shadow: 0px 0px 9px rgba($danger-color, 0.4);
+
+        &:hover {
+            box-shadow: 0px 0px 9px rgba($danger-color, 0.5);
+        }
+
+        &:focus-within {
+            box-shadow: 0px 0px 9px rgba($danger-color, 0.6);
+        }
+    }
+}
+
+//== giz input control
+.giz-input-control {
+    .giz-input-root {
+        display: $display-flex;
 
         input {
-            color: $danger-color;
-        }
+            width: $width-full;
+            border: none;
+            outline: none;
+            background: inherit;
+            color: $gray-black;
 
-        .giz-input-root--outline {
-            border: 1px solid $danger-color;
-        }
 
-        .giz-input-root--shadow {
-            box-shadow: 0px 0px 9px rgba($danger-color, 0.4);
-
-            &:hover {
-                box-shadow: 0px 0px 9px rgba($danger-color, 0.5);
+            &::placeholder {
+                color: $gray-dim;
             }
 
-            &:focus-within {
-                box-shadow: 0px 0px 9px rgba($danger-color, 0.6);
-            }
-        }
-    }
-    //== giz input control
-    .giz-input-control {
-        .giz-input-root {
-            display: $display-flex;
-
-            input {
-                width: $width-full;
-                border: none;
-                outline: none;
+            [light-theme] & {
                 background: inherit;
-                color: $gray-black;
-
+                color: $secondary-color;
 
                 &::placeholder {
-                    color: $gray-dim;
+                    color: $gray-light-color;
                 }
+            }
+
+            &.is-disabled, &[disabled] {
+                background: $onyx-black;
+                color: $dim-light;
+                pointer-events: none;
 
                 [light-theme] & {
-                    background: inherit;
-                    color: $secondary-color;
-
-                    &::placeholder {
-                        color: $gray-light-color;
-                    }
-                }
-
-                &.is-disabled, &[disabled] {
                     background: $gray-dark;
-                    color: $dim-light;
-                    pointer-events: none;
                 }
             }
         }
     }
+}
