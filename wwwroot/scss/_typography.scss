@@ -101,6 +101,14 @@ a {
     }
 }
 
+.giz-warning {
+    background-color: $warning-color !important;
+}
+
+.giz-warning-text {
+    color: $warning-color !important;
+}
+
 .giz-secondary {
     background-color: $secondary-color !important;
 }
