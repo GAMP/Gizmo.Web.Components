@@ -26,10 +26,10 @@ namespace Gizmo.Web.Components
         public bool CloseOnItemClick { get; set; } = true;
 
         [Parameter]
-        public double ClientX { get; set; }
+        public double OffsetX { get; set; }
 
         [Parameter]
-        public double ClientY { get; set; }
+        public double OffsetY { get; set; }
 
         [Parameter]
         public bool IsContextMenu { get; set; }
@@ -137,8 +137,8 @@ namespace Gizmo.Web.Components
 
         protected string PopupStyleValue => new StyleMapper()
                  .If($"position: absolute", () => IsContextMenu)
-                 .If($"top: {ClientY}px", () => IsContextMenu)
-                 .If($"left: {ClientX}px", () => IsContextMenu)
+                 .If($"top: {OffsetY}px", () => IsContextMenu)
+                 .If($"left: {OffsetX}px", () => IsContextMenu)
                  .AsString();
 
         #endregion

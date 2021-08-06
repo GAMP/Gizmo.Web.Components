@@ -11,35 +11,37 @@
 
             @if (ContextMenu != null)
             {
-                <Menu @ref="_contextMenu" IsContextMenu="true" @bind-IsOpen="_isContextMenuOpen" ClientX="@_clientX" ClientY="@_clientY">
+                <Menu @ref="_contextMenu" IsContextMenu="true" @bind-IsOpen="_isContextMenuOpen" OffsetX="@_clientX" OffsetY="@_clientY">
                     @ContextMenu
                 </Menu>
             }
 
-            <Menu CloseOnItemClick="false" Style="position: absolute; top: 2.2rem; right: 0; z-index: 100" Direction="ListDirections.Left">
-                <Activator>
-                    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Show"></Button>
-                </Activator>
-                <ChildContent>
-                    @foreach (var column in Columns)
-                    {
-                        if (column.CanChangeVisibility)
+            @if (ShowColumnSelector)
+            {
+                <Menu CloseOnItemClick="false" Style="position: absolute; top: 2.2rem; right: 0; z-index: 100" Direction="ListDirections.Left">
+                    <Activator>
+                        <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Show"></Button>
+                    </Activator>
+                    <ChildContent>
+                        @foreach (var column in Columns)
                         {
-                            <ListItem>
-                                <CheckBox @bind-IsChecked="column.IsVisible">
-                                    @column.HeaderTemplate
-                                </CheckBox>
-                            </ListItem>
+                            if (column.CanChangeVisibility)
+                            {
+                                <ListItem>
+                                    <CheckBox @bind-IsChecked="column.IsVisible">
+                                        @column.HeaderTemplate
+                                    </CheckBox>
+                                </ListItem>
+                            }
                         }
-                    }
-                </ChildContent>
-            </Menu>
+                    </ChildContent>
+                </Menu>
+            }
 
-            <table class="@TableClassName"
+            <table class="@TableClass @TableClassName"
                    id="@Id"
                    @ref="@Ref"
-                   @attributes="@Attributes"
-                   >
+                   @attributes="@Attributes">
 
                 @*table head*@
                 <thead>

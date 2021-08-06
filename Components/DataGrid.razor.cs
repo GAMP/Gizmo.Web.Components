@@ -183,6 +183,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ContextMenu { get; set; }
 
+        [Parameter]
+        public bool ShowColumnSelector { get; set; }    
+        
+        [Parameter]
+        public string TableClass { get; set; }
+
         #endregion
 
         #region OVERRIDE
