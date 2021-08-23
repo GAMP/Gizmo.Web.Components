@@ -747,6 +747,10 @@ h6, .giz-typography-h6 {
     border-color: $secondary-dark !important;
 }
 
+.border-gray-dark {
+    border-color: $gray-dark !important;
+}
+
 .border-info {
     border-color: $info-color !important;
 }
@@ -859,19 +863,19 @@ h6, .giz-typography-h6 {
 }
 
 .border-top {
-    border-top: $border !important;
+    border-top: $border;
 }
 
 .border-bottom {
-    border-bottom: $border !important;
+    border-bottom: $border;
 }
 
 .border-start {
-    border-left: $border !important;
+    border-left: $border;
 }
 
 .border-end {
-    border-right: $border !important;
+    border-right: $border
 }
 
 //==border radius
