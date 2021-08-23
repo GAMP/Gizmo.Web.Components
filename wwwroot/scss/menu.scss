@@ -14,16 +14,14 @@
         .giz-list {
             border: 1px solid $onyx-black;
             box-shadow: $elevation-2;
+            padding: 1.2rem 0.8rem;
 
             [light-theme] & {
                 border: 1px solid $gray-dark;
             }
 
             .giz-list-item {
-                padding-top: $spacer-16;
-                padding-bottom: $spacer-16;
-                padding-left: $spacer-20;
-                padding-right: $spacer-20;
+                padding: $spacer-8;
             }
         }
     }

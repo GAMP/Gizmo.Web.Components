@@ -81,6 +81,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public ButtonSizes Size { get; set; } = ButtonSizes.Medium;
 
+        [Parameter]
+        public bool PreserveIconSpace { get; set; }
+
         #endregion
 
         #region EVENTS

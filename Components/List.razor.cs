@@ -41,6 +41,9 @@ namespace Gizmo.Web.Components
         public bool CanSelect { get; set; }
 
         [Parameter]
+        public bool PreserveIconSpace { get; set; }
+
+        [Parameter]
         public ListItem SelectedItem
         {
             get => _selectedItem;

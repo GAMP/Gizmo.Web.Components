@@ -40,7 +40,7 @@
         }
 
         <Popup @bind-IsOpen="IsOpen" Class="@PopupClassName" Style="@PopupStyleValue" IsModal="@(!CloseOnItemClick)">
-            <List @ref="_itemsList" Direction="@Direction" CanClick="true" OnClickItem="@(() => OnClickMenuItemHandler())">
+            <List @ref="_itemsList" Direction="@Direction" CanClick="true" OnClickItem="@(() => OnClickMenuItemHandler())" PreserveIconSpace="@PreserveIconSpace">
                 @ChildContent
             </List>
         </Popup>

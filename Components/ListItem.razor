@@ -12,8 +12,17 @@
     {
         <Icon Source="@Icon" SVGIcon="SVGIcon" Class="giz-list-item-icon" />
     }
+    else
+    {
+        if (Parent.PreserveIconSpace)
+        {
+            <div style="width: 2.4rem; height: 2.4rem; margin-right: 1.7rem"></div>
+        }
+    }
 
-    @ChildContent
+    <div class="mr-auto my-1">
+        @ChildContent
+    </div>
 
     @if (NestedList != null)
     {

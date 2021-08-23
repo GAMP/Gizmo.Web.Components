@@ -1,4 +1,5 @@
 ﻿using Gizmo.Web.Components.Extensions;
+using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
@@ -208,6 +209,10 @@ namespace Gizmo.Web.Components
                  .If("giz-button-full-width", () => IsFullWidth)
                  .If("disabled", () => IsDisabled)
                  .If("selected", () => _selected)
+                 .AsString();
+
+        protected string StyleValue => new StyleMapper()
+                 .If($"padding: 0 0.6rem;", () => string.IsNullOrEmpty(RightIcon) && !RightSVGIcon.HasValue && ChildContent == null)
                  .AsString();
 
         protected string ButtonIconLeft => new ClassMapper()
