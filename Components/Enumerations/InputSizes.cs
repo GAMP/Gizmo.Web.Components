@@ -5,7 +5,8 @@
     /// </summary>
     public enum InputSizes
     {
-        Normal = 0,
-        Large = 1
+        Small = 0,
+        Normal = 1,
+        Large = 2
     }
 }

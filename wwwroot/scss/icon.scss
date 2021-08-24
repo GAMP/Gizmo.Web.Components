@@ -2,11 +2,6 @@
 
 .giz-icon {
     display: inline-flex;
-    color: $gray-black;
-
-    [light-theme] & {
-        color: $dim-color;
-    }
 }
 
 .giz-icon--circle {

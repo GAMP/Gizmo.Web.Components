@@ -78,6 +78,21 @@
     &--full-width {
         width: $width-full;
     }
+    //input small
+    &--small {
+        padding: $spacer-8;
+        height: 3.2rem;
+
+        .giz-input-icon-left {
+            margin-right: $spacer-6;
+        }
+
+        .giz-input-icon-right {
+            margin-left: $spacer-6;
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+    }
     //input large
     &--large {
         padding: 2.8rem 3.2rem;

@@ -99,6 +99,7 @@ namespace Gizmo.Web.Components
                  .If("giz-input-root--outline", () => HasOutline)
                  .If("giz-input-root--shadow", () => HasShadow)
                  .If("giz-input-root--full-width", () => IsFullWidth)
+                 .If("giz-input-root--small", () => Size == InputSizes.Small)
                  .If("giz-input-root--large", () => Size == InputSizes.Large)
                  .AsString();
 
