@@ -1,6 +1,8 @@
 ﻿using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -71,6 +73,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool CanSort { get; set; }
+
+        [Parameter]
+        public Func<SortDirections, IEnumerable<TItemType>> SortFunction { get; set; }
 
         public bool IsSorted { get; set; }
 

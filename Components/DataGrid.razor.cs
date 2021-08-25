@@ -34,7 +34,7 @@ namespace Gizmo.Web.Components
         private double _clientX;
         private double _clientY;
         private Menu _contextMenu;
-        private string _sortColumn;
+        private DataGridColumn<TItemType> _sortColumn;
         private SortDirections _sortDirection;
 
         #endregion
@@ -254,9 +254,9 @@ namespace Gizmo.Web.Components
                     }
                 }
 
-                if (_sortColumn != column.Field)
+                if (_sortColumn != column)
                 {
-                    _sortColumn = column.Field;
+                    _sortColumn = column;
                     _sortDirection = SortDirections.Ascending;
                     column.SortDirection = _sortDirection;
 
@@ -465,13 +465,20 @@ namespace Gizmo.Web.Components
 
         private IEnumerable<TItemType> GetSortedData()
         {
-            if (string.IsNullOrEmpty(_sortColumn))
+            if (_sortColumn == null)
                 return ItemSource;
 
-            Comparer comparer = new Comparer(_sortColumn, _sortDirection);
-            List<TItemType> tmp = ItemSource.ToList();
-            tmp.Sort(comparer);
-            return tmp;
+            if (_sortColumn.SortFunction != null)
+            {
+                return _sortColumn.SortFunction.Invoke(_sortDirection);
+            }
+            else
+            {
+                Comparer comparer = new Comparer(_sortColumn.Field, _sortDirection);
+                List<TItemType> tmp = ItemSource.ToList();
+                tmp.Sort(comparer);
+                return tmp;
+            }
         }
 
         public class Comparer : IComparer<TItemType>
