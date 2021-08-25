@@ -98,7 +98,7 @@
                         @*virtualization disabled*@
                         @if (ItemSource != null)
                         {
-                            @foreach (var dataItem in ItemSource)
+                            @foreach (var dataItem in GetSortedData())
                             {
                                 <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                             }

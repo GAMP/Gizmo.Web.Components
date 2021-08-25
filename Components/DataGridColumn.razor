@@ -5,9 +5,21 @@
 @if (IsVisible)
 {
     <th class="@Class @ClassName"
+        style="@Style @StyleValue"
         @ref="Ref"
         @attributes="Attributes"
         @onclick="(e => OnHeaderMouseEvent(e))">
-        @HeaderTemplate
+        <div class="d-flex">
+            <div class="mr-auto">
+                @HeaderTemplate
+            </div>
+            @if (CanSort && IsSorted)
+            {
+                <div class="ml-1">
+                    <Icon SVGIcon="@(SortDirection == SortDirections.Ascending ? Icons.ArrowUp : Icons.ArrowDown)" />
+                </div>
+            }
+        </div>
+
     </th>
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
@@ -68,6 +69,13 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool CanChangeVisibility { get; set; } = true;
 
+        [Parameter]
+        public bool CanSort { get; set; }
+
+        public bool IsSorted { get; set; }
+
+        public SortDirections SortDirection { get; set; }
+
         #endregion
 
         #endregion
@@ -114,6 +122,9 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("data-grid-column")
+                 .AsString();
+        protected string StyleValue => new StyleMapper()
+                 .If($"cursor: pointer;", () => CanSort)
                  .AsString();
 
     }

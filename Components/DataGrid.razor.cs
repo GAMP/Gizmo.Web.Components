@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -32,6 +34,8 @@ namespace Gizmo.Web.Components
         private double _clientX;
         private double _clientY;
         private Menu _contextMenu;
+        private string _sortColumn;
+        private SortDirections _sortDirection;
 
         #endregion
 
@@ -184,8 +188,8 @@ namespace Gizmo.Web.Components
         public RenderFragment ContextMenu { get; set; }
 
         [Parameter]
-        public bool ShowColumnSelector { get; set; }    
-        
+        public bool ShowColumnSelector { get; set; }
+
         [Parameter]
         public string TableClass { get; set; }
 
@@ -240,6 +244,42 @@ namespace Gizmo.Web.Components
 
         internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
         {
+            if (column.CanSort)
+            {
+                foreach (var item in Columns)
+                {
+                    if (item != column)
+                    {
+                        item.IsSorted = false;
+                    }
+                }
+
+                if (_sortColumn != column.Field)
+                {
+                    _sortColumn = column.Field;
+                    _sortDirection = SortDirections.Ascending;
+                    column.SortDirection = _sortDirection;
+
+                    column.IsSorted = true;
+                }
+                else
+                {
+                    if (_sortDirection == SortDirections.Ascending)
+                    {
+                        _sortDirection = SortDirections.Descending;
+                    }
+                    else
+                    {
+                        _sortDirection = SortDirections.Ascending;
+                    }
+                    column.SortDirection = _sortDirection;
+
+                    column.IsSorted = true;
+                }
+
+                StateHasChanged();
+            }
+
             return ValueTask.CompletedTask;
         }
 
@@ -422,5 +462,90 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
+
+        private IEnumerable<TItemType> GetSortedData()
+        {
+            if (string.IsNullOrEmpty(_sortColumn))
+                return ItemSource;
+
+            Comparer comparer = new Comparer(_sortColumn, _sortDirection);
+            List<TItemType> tmp = ItemSource.ToList();
+            tmp.Sort(comparer);
+            return tmp;
+        }
+
+        public class Comparer : IComparer<TItemType>
+        {
+            private string _sortColumn;
+            private SortDirections _sortDirection;
+
+            public Comparer(string sortColumn, SortDirections sortDirections)
+            {
+                _sortColumn = sortColumn;
+                _sortDirection = sortDirections;
+            }
+
+            public int Compare(TItemType? x, TItemType? y)
+            {
+                var property = typeof(TItemType).GetProperty(_sortColumn);
+
+                var xValue = property.GetValue(x);
+                var yValue = property.GetValue(y);
+
+                int result = 0;
+
+                if (property.PropertyType == typeof(decimal))
+                {
+                    result = decimal.Compare((decimal)xValue, (decimal)yValue);
+                }
+
+                if (property.PropertyType == typeof(string))
+                {
+                    result = string.Compare((string)xValue, (string)yValue);
+                }
+
+                if (property.PropertyType == typeof(DateTime))
+                {
+                    result = DateTime.Compare((DateTime)xValue, (DateTime)yValue);
+                }
+
+                if (property.PropertyType == typeof(TimeSpan))
+                {
+                    result = TimeSpan.Compare((TimeSpan)xValue, (TimeSpan)yValue);
+                }
+
+                if (property.PropertyType == typeof(short))
+                {
+                    if ((short)xValue > (short)yValue)
+                        result = 1;
+
+                    if ((short)xValue < (short)yValue)
+                        result = -1;
+                }
+
+                if (property.PropertyType == typeof(int))
+                {
+                    if ((int)xValue > (int)yValue)
+                        result = 1;
+
+                    if ((int)xValue < (int)yValue)
+                        result = -1;
+                }
+
+                if (property.PropertyType == typeof(long))
+                {
+                    if ((long)xValue > (long)yValue)
+                        result = 1;
+
+                    if ((long)xValue < (long)yValue)
+                        result = -1;
+                }
+
+                if (_sortDirection == SortDirections.Descending)
+                    result *= -1;
+
+                return result;
+            }
+        }
     }
 }
