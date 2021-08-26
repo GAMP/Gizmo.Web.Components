@@ -40,7 +40,14 @@ namespace Gizmo.Web.Components
                     _percentValues.Clear();
                     foreach (var val in _values)
                     {
-                        _percentValues.Add(val / _total * 100);
+                        if (_total == 0)
+                        {
+                            _percentValues.Add(0);
+                        }
+                        else
+                        {
+                            _percentValues.Add(val / _total * 100);
+                        }
                     }
                 }
                 else
