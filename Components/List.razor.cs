@@ -66,7 +66,7 @@ namespace Gizmo.Web.Components
         public ListDirections Direction { get; set; } = ListDirections.Right;
 
         [Parameter]
-        public int MaximumHeight { get; set; }
+        public string MaximumHeight { get; set; }
 
         #endregion
 
@@ -179,7 +179,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string StyleValue => new StyleMapper()
-                 .If($"max-height: {@MaximumHeight}px", () => MaximumHeight > 0)
+                 .If($"max-height: {MaximumHeight}", () => !string.IsNullOrEmpty(MaximumHeight))
                  .AsString();
 
         #endregion

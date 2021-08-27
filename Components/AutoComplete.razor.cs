@@ -98,7 +98,7 @@ namespace Gizmo.Web.Components
         public string Label { get; set; }
 
         [Parameter]
-        public int MaximumHeight { get; set; }
+        public string MaximumHeight { get; set; }
 
         [Parameter]
         public bool IsOpen { get; set; }

@@ -49,7 +49,7 @@ namespace Gizmo.Web.Components
         public EventCallback<bool> IsOpenChanged { get; set; }
 
         [Parameter]
-        public int MaximumHeight { get; set; }
+        public string MaximumHeight { get; set; }
 
         [Parameter]
         public bool IsModal { get; set; }
@@ -93,7 +93,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string StyleValue => new StyleMapper()
-                 .If($"max-height: {@MaximumHeight}px", () => MaximumHeight > 0)
+                 .If($"max-height: {MaximumHeight}", () => !string.IsNullOrEmpty(MaximumHeight))
                  .AsString();
 
         #endregion

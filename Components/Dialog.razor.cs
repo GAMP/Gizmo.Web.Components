@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
@@ -32,6 +33,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsModal { get; set; }
 
+        [Parameter]
+        public string MaximumWidth { get; set; }
+
+        [Parameter]
+        public string MaximumHeight { get; set; }
+
         #endregion
 
         #region EVENTS
@@ -58,6 +65,12 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-dialog")
                  .If("giz-dialog-open", () => IsOpen)
+                 .AsString();
+        protected string DialogStyleValue => new StyleMapper()
+                 .If($"max-width: 100%;", () => string.IsNullOrEmpty(MaximumWidth))
+                 .If($"max-width: {MaximumWidth};", () => !string.IsNullOrEmpty(MaximumWidth))
+                 .If($"max-height: 100%;", () => string.IsNullOrEmpty(MaximumHeight))
+                 .If($"max-height: {MaximumHeight};", () => !string.IsNullOrEmpty(MaximumHeight))
                  .AsString();
 
         #endregion

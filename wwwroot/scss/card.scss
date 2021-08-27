@@ -1,6 +1,9 @@
 //=============== gizmo card classes ================//
 
 .giz-card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
     background-color: $dark-color;
     border-radius: $rounded;
     color: $secondary-color;
@@ -33,6 +36,7 @@
 
     .giz-card-body {
         padding: $spacer-16;
+        overflow: auto;
     }
 
     .giz-card-footer {
