@@ -91,7 +91,6 @@
             background: $onyx-black;
             pointer-events: none;
 
-
             svg {
                 color: $dark-gray;
             }
@@ -139,6 +138,42 @@
 
                 svg {
                     color: $gray-dark;
+                }
+            }
+        }
+
+        &.danger {
+            border: $border-0;
+            outline: $outline-0;
+            color: $white-color;
+            background: $danger-color;
+
+            &:hover {
+                background: #e94554;
+            }
+
+            &:focus {
+                background: $danger-color;
+                box-shadow: 0px 0px 9px #e98950;
+            }
+
+            &.is-disabled, &[disabled] {
+                color: $dark-gray;
+                background: $onyx-black;
+                pointer-events: none;
+
+                svg {
+                    color: $dark-gray;
+                }
+
+                [light-theme] & {
+                    color: $white-color;
+                    background: $white-color;
+                    border: 1px solid $gray-dark;
+
+                    svg {
+                        color: $gray-dark;
+                    }
                 }
             }
         }
