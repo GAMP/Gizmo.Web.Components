@@ -69,17 +69,37 @@ namespace Gizmo.Web.Components
         [Parameter]
         public int MaxLength { get; set; }
 
+        [Parameter]
+        public bool UpdateOnInput { get; set; }
+
         #endregion
 
         #region EVENTS
+        protected Task OnInputHandler(ChangeEventArgs args)
+        {
+            if (UpdateOnInput)
+            {
+                var newValue = args?.Value as string;
+
+                if (Value != newValue)
+                {
+                    return SetValueAsync(newValue);
+                }
+            }
+
+            return Task.CompletedTask;
+        }
 
         protected Task OnChangeHandler(ChangeEventArgs args)
         {
-            var newValue = args?.Value as string;
-
-            if (Value != newValue)
+            if (!UpdateOnInput)
             {
-                return SetValueAsync(newValue);
+                var newValue = args?.Value as string;
+
+                if (Value != newValue)
+                {
+                    return SetValueAsync(newValue);
+                }
             }
 
             return Task.CompletedTask;

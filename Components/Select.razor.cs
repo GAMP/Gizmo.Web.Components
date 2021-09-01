@@ -33,6 +33,9 @@ namespace Gizmo.Web.Components
             }
             set
             {
+                if (EqualityComparer<TValue>.Default.Equals(_value, value))
+                    return;
+
                 _value = value;
 
                 if (_value != null)
