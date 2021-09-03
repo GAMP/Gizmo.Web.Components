@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class TextInput : GizInputBase<string>
+    public partial class TextInput<TValue> : GizInputBase<TValue>
     {
         #region CONSTRUCTOR
         public TextInput()
@@ -15,6 +15,7 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
+        private StringConverter<TValue> _converter = new StringConverter<TValue>();
         private string _text;
 
         #endregion
@@ -49,7 +50,7 @@ namespace Gizmo.Web.Components
         public bool IsFullWidth { get; set; }
 
         [Parameter]
-        public string Value { get; set; }
+        public TValue Value { get; set; }
 
         [Parameter]
         public string Placeholder { get; set; }
@@ -72,6 +73,10 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool UpdateOnInput { get; set; }
 
+        public bool IsValid => _isValid && !_converter.HasGetError;
+
+        public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
+
         #endregion
 
         #region EVENTS
@@ -79,9 +84,11 @@ namespace Gizmo.Web.Components
         {
             if (UpdateOnInput)
             {
-                var newValue = args?.Value as string;
+                var newText = args?.Value as string;
 
-                if (Value != newValue)
+                TValue newValue = _converter.GetValue(newText);
+
+                if (!EqualityComparer<TValue>.Default.Equals(Value, newValue))
                 {
                     return SetValueAsync(newValue);
                 }
@@ -94,9 +101,11 @@ namespace Gizmo.Web.Components
         {
             if (!UpdateOnInput)
             {
-                var newValue = args?.Value as string;
+                var newText = args?.Value as string;
 
-                if (Value != newValue)
+                TValue newValue = _converter.GetValue(newText);
+
+                if (!EqualityComparer<TValue>.Default.Equals(Value, newValue))
                 {
                     return SetValueAsync(newValue);
                 }
@@ -114,7 +123,7 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        protected async Task SetValueAsync(string value)
+        protected async Task SetValueAsync(TValue value)
         {
             Value = value;
             await ValueChanged.InvokeAsync(Value);
@@ -146,10 +155,10 @@ namespace Gizmo.Web.Components
         {
             await base.SetParametersAsync(parameters);
 
-            var valueChanged = parameters.TryGetValue<string>(nameof(Value), out var newValue);
+            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
             if (valueChanged)
             {
-                _text = Value;
+                _text = _converter.SetValue(Value);
             }
         }
 

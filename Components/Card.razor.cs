@@ -29,9 +29,6 @@ namespace Gizmo.Web.Components
         public bool HasShadow { get; set; }
 
         [Parameter]
-        public int CornerRadius { get; set; } = 4;
-
-        [Parameter]
         public int MaximumWidth { get; set; }
 
         #endregion
@@ -44,8 +41,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string StyleValue => new StyleMapper()
-                 .Add($"background-color: {BackgroundColor}")
-                 .Add($"border-radius: {CornerRadius}px")
+                 .If($"background-color: {BackgroundColor}", () => !string.IsNullOrEmpty(BackgroundColor))
                  .If($"max-width: {MaximumWidth}px", () => MaximumWidth > 0)
                  .AsString();
 

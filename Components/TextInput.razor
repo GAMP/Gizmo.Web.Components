@@ -1,5 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits GizInputBase<string>
+@inherits GizInputBase<TValue>
+
+@typeparam TValue
 
 <GizInput Class="@Class"
           Label="@Label"
@@ -9,8 +11,8 @@
           HasOutline="@HasOutline"
           HasShadow="@HasShadow"
           Size="@Size"
-          IsValid="@_isValid"
-          ValidationMessage="@_validationMessage"
+          IsValid="@IsValid"
+          ValidationMessage="@ValidationMessage"
           LeftIcon="@LeftIcon"
           RightIcon="@RightIcon"
           LeftSVGIcon="@LeftSVGIcon"
@@ -25,7 +27,6 @@
            @oninput="OnInputHandler"
            @onchange="OnChangeHandler"
            @onclick="OnClickHandler"
-           @attributes="Attributes"
-           />
+           @attributes="Attributes" />
 
 </GizInput>
