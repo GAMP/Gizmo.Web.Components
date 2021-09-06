@@ -21,9 +21,9 @@
         }
 
         &.selected {
-            color: $primary-color;
+            color: $primary-color-theme-light;
             background-color: $dark-gray;
-            box-shadow: $elevation-4;
+            box-shadow: $elevation-4-theme-light;
 
             [light-theme] & {
                 background-color: $white-color;

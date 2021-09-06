@@ -1,6 +1,10 @@
 //== @import _partial.scss files == //
 
 @import "_variables";
+
+@import "theme_light";
+@import "theme_client";
+
 @import "_typography";
 
 //== @import component.scss files == //

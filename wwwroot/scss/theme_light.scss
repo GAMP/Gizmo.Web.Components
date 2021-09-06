@@ -1,0 +1,165 @@
+// == theme light == //
+
+// == variables == //
+
+//== common color
+
+$primary-color-theme-light: #5A67F2;
+
+//== box shadow (elevation)
+
+$elevation-0: none;
+$elevation-1-theme-light: 0px 0px 9px rgba(72, 145, 255, 0.5);
+$elevation-2-theme-light: 0px 8px 56px rgba(0, 0, 0, 0.1);
+$elevation-3-theme-light: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+$elevation-4-theme-light: 0px 4px 16px rgba(0, 0, 0, 0.08);
+
+// == button == //
+
+.giz-button {
+    //group button
+    &--group-button {
+        [light-theme] & {
+            color: $gray-dark;
+            background: $white-color;
+            border: 1px solid $gray-dark;
+
+            svg {
+                color: $gray-dark;
+            }
+        }
+    }
+    //button fill variant
+    &--fill {
+        [light-theme] & {
+            background: $primary-color-theme-light;
+            color: $white-color;
+        }
+
+        &.is-disabled, &[disabled] {
+            [light-theme] & {
+                color: $white-color;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
+            }
+        }
+
+        &.warning {
+            [light-theme] & {
+                color: $gray-dark;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
+            }
+        }
+
+        &.danger {
+            &.is-disabled, &[disabled] {
+                [light-theme] & {
+                    color: $white-color;
+                    background: $white-color;
+                    border: 1px solid $gray-dark;
+
+                    svg {
+                        color: $gray-dark;
+                    }
+                }
+            }
+        }
+    }
+    //button outline variant
+    &--outline {
+        [light-theme] & {
+            color: $gray-black;
+            background: $white-color;
+            border: 1px solid $gray-light-color;
+        }
+
+        &:hover {
+            [light-theme] & {
+                background: $white-color;
+                color: $primary-color-theme-light;
+            }
+        }
+
+        &:focus {
+            [light-theme] & {
+                background: $white-color;
+                border: 1px solid $primary-color-theme-light;
+                color: $secondary-color;
+            }
+        }
+
+        &.is-disabled, &[disabled] {
+            [light-theme] & {
+                color: $gray-dark;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
+            }
+        }
+    }
+    //button text variant
+    &--text {
+        [light-theme] & {
+            color: $secondary-color;
+        }
+
+        &:hover {
+            [light-theme] & {
+                color: $primary-color-theme-light;
+                background: $white-color;
+            }
+        }
+
+        &:focus {
+            [light-theme] & {
+                background: $white-color;
+                box-shadow: $elevation-1-theme-light;
+            }
+        }
+
+        &.is-disabled, &[disabled] {
+            [light-theme] & {
+                color: $gray-dark;
+                background: $white-color;
+                border: 1px solid $gray-dark;
+
+                svg {
+                    color: $gray-dark;
+                }
+            }
+        }
+    }
+    //button icon variant
+    &--icon {
+        &.is-disabled, &[disabled] {
+            [light-theme] & {
+                color: $gray-dark;
+            }
+        }
+    }
+    //buton disable
+    &.is-disabled, &[disabled] {
+
+        [light-theme] & {
+            color: $gray-dark;
+            background: $white-color;
+            border: 1px solid $gray-dark;
+
+            svg {
+                color: $gray-dark;
+            }
+        }
+    }
+}

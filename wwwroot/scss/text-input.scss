@@ -41,7 +41,7 @@
         }
 
         svg {
-            color: $primary-color;
+            color: $primary-color-theme-light;
         }
 
         input {
@@ -179,8 +179,8 @@
             }
 
             &:focus-within {
-                /*      border: 1px solid $primary-color;*/
-                /*    box-shadow: 0px 0px 9px rgba($primary-color, 0.5);*/
+                /*      border: 1px solid $primary-color-theme-light;*/
+                /*    box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);*/
             }
         }
         //input shadow
@@ -188,11 +188,11 @@
             box-shadow: 0px 0px 9px rgba($dim-light, 0.5);
 
             &:hover {
-                box-shadow: 0px 0px 9px rgba($primary-color, 0.5);
+                box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);
             }
 
             &:focus-within {
-                box-shadow: 0px 0px 9px rgba($primary-color, 0.5);
+                box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);
             }
         }
     }

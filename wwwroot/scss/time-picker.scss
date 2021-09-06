@@ -13,7 +13,7 @@
     position: $position-relative;
 
     .giz-input-timepicker-dropdown-menu {
-        box-shadow: $elevation-3;
+        box-shadow: $elevation-3-theme-light;
     }
 
     .giz-popup {
@@ -31,7 +31,7 @@
     .giz-time-picker-header {
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
-        background-color: $primary-color;
+        background-color: $primary-color-theme-light;
         padding: 3rem 0;
         display: $display-flex;
         justify-content: $justify-center;

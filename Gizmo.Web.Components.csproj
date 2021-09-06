@@ -37,6 +37,8 @@
 	  <Content Remove="wwwroot\scss\switch.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\text-input.scss" />
+	  <Content Remove="wwwroot\scss\theme_client.scss" />
+	  <Content Remove="wwwroot\scss\theme_light.scss" />
 	  <Content Remove="wwwroot\scss\time-picker.scss" />
 	  <Content Remove="wwwroot\scss\_typography.scss" />
 	  <Content Remove="wwwroot\scss\_variables.scss" />
@@ -59,6 +61,8 @@
 		<None Include="wwwroot\scss\divider.scss" />
 		<None Include="wwwroot\scss\collapse.scss" />
 		<None Include="wwwroot\scss\icon.scss" />
+		<None Include="wwwroot\scss\theme_light.scss" />
+		<None Include="wwwroot\scss\theme_client.scss" />
 		<None Include="wwwroot\scss\overlay.scss" />
 		<None Include="wwwroot\scss\dialog.scss" />
 		<None Include="wwwroot\scss\card.scss" />

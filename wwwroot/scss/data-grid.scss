@@ -119,13 +119,13 @@
 
         &.is-opened {
             border-color: #453855;
-            background: $primary-color;
+            background: $primary-color-theme-light;
             cursor: $cursor-pointer;
             color: $white-color;
 
             [light-theme] & {
                 border-color: #dddfe4;
-                background: $primary-color;
+                background: $primary-color-theme-light;
 
                 & > td {
                     border-top: 1px solid $gray-dark;

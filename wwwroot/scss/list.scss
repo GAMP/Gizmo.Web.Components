@@ -41,11 +41,11 @@
         .giz-list-item {
             &:hover {
                 background-color: $dark-jungle;
-                color: $primary-color;
+                color: $primary-color-theme-light;
             }
 
             &:hover svg {
-                color: $primary-color;
+                color: $primary-color-theme-light;
             }
 
             [light-theme] &:hover {
@@ -59,7 +59,7 @@
         .giz-list-item {
 
             &.giz-list-item-selected {
-                background-color: $primary-color;
+                background-color: $primary-color-theme-light;
                 color: $white-color;
             }
         }

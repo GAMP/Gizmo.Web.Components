@@ -7,7 +7,7 @@
     background-color: $dark-color;
     border-radius: $rounded;
     color: $secondary-color;
-    box-shadow: $elevation-2;
+    box-shadow: $elevation-2-theme-light;
 
     [light-theme] & {
         background-color: $white-color;

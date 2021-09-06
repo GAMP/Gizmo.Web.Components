@@ -38,14 +38,14 @@
         border: $border-0;
         outline: $outline-0;
         color: $white-color;
-        background: $primary-color;
+        background: $primary-color-theme-light;
 
         &:hover {
             background: #4F5AD3;
         }
 
         &:focus {
-            background: $primary-color;
+            background: $primary-color-theme-light;
             box-shadow: 0px 0px 9px #4891FF;
         }
 
@@ -59,30 +59,20 @@
                 color: $dark-gray;
             }
         }
-
-        [light-theme] & {
-            color: $gray-dark;
-            background: $white-color;
-            border: 1px solid $gray-dark;
-
-            svg {
-                color: $gray-dark;
-            }
-        }
     }
     //button fill variant
     &--fill {
         border: $border-0;
         outline: $outline-0;
         color: $white-color;
-        background: $primary-color;
+        background: $primary-color-theme-light;
 
         &:hover {
             background: #4F5AD3;
         }
 
         &:focus {
-            background: $primary-color;
+            background: $primary-color-theme-light;
             box-shadow: 0px 0px 9px #4891FF;
         }
 
@@ -93,16 +83,6 @@
 
             svg {
                 color: $dark-gray;
-            }
-
-            [light-theme] & {
-                color: $white-color;
-                background: $white-color;
-                border: 1px solid $gray-dark;
-
-                svg {
-                    color: $gray-dark;
-                }
             }
         }
 
@@ -130,16 +110,6 @@
             svg {
                 color: $dark-gray;
             }
-
-            [light-theme] & {
-                color: $gray-dark;
-                background: $white-color;
-                border: 1px solid $gray-dark;
-
-                svg {
-                    color: $gray-dark;
-                }
-            }
         }
 
         &.danger {
@@ -165,16 +135,6 @@
                 svg {
                     color: $dark-gray;
                 }
-
-                [light-theme] & {
-                    color: $white-color;
-                    background: $white-color;
-                    border: 1px solid $gray-dark;
-
-                    svg {
-                        color: $gray-dark;
-                    }
-                }
             }
         }
     }
@@ -184,31 +144,14 @@
         background-color: $dark-gray;
         border: 1px solid $onyx-black;
 
-        [light-theme] & {
-            color: $gray-black;
-            background: $white-color;
-            border: 1px solid $gray-light-color;
-        }
-
         &:hover {
             color: $dim-white;
-
-            [light-theme] & {
-                background: $white-color;
-                color: $primary-color;
-            }
         }
 
         &:focus {
-            border: 1px solid $primary-color;
-            box-shadow: 0px 0px 9px rgba($primary-color, 0.5);
+            border: 1px solid $primary-color-theme-light;
+            box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);
             color: $dim-white;
-
-            [light-theme] & {
-                background: $white-color;
-                border: 1px solid $primary-color;
-                color: $secondary-color;
-            }
         }
 
         &.is-disabled, &[disabled] {
@@ -219,16 +162,6 @@
 
             svg {
                 color: $dark-gray;
-            }
-
-            [light-theme] & {
-                color: $gray-dark;
-                background: $white-color;
-                border: 1px solid $gray-dark;
-
-                svg {
-                    color: $gray-dark;
-                }
             }
         }
     }
@@ -238,24 +171,10 @@
         border: none;
         color: $gray-black;
 
-        [light-theme] & {
-            color: $secondary-color;
-        }
-
         &:hover {
-
-            [light-theme] & {
-                color: $primary-color;
-                background: $white-color;
-            }
         }
 
         &:focus {
-
-            [light-theme] & {
-                background: $white-color;
-                box-shadow: $elevation-1;
-            }
         }
 
         &.is-disabled, &[disabled] {
@@ -266,16 +185,6 @@
 
             svg {
                 color: $dark-gray;
-            }
-
-            [light-theme] & {
-                color: $gray-dark;
-                background: $white-color;
-                border: 1px solid $gray-dark;
-
-                svg {
-                    color: $gray-dark;
-                }
             }
         }
     }
@@ -287,22 +196,18 @@
         border-radius: $rounded-circle;
 
         &:hover {
-            color: $primary-color;
+            color: $primary-color-theme-light;
             background: $white-color;
         }
 
         &:focus {
             background: $white-color;
-            box-shadow: $elevation-1;
+            box-shadow: $elevation-1-theme-light;
         }
 
         &.is-disabled, &[disabled] {
             color: $dark-gray;
             pointer-events: none;
-
-            [light-theme] & {
-                color: $gray-dark;
-            }
         }
     }
     // button extra large
@@ -339,16 +244,6 @@
 
         svg {
             color: $dark-gray;
-        }
-
-        [light-theme] & {
-            color: $gray-dark;
-            background: $white-color;
-            border: 1px solid $gray-dark;
-
-            svg {
-                color: $gray-dark;
-            }
         }
     }
 }

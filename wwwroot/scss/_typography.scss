@@ -70,11 +70,11 @@ a {
 //== theme color
 
 .giz-primary {
-    background-color: $primary-color !important;
+    background-color: $primary-color-theme-light !important;
 }
 
 .giz-primary-text {
-    color: $primary-color !important;
+    color: $primary-color-theme-light !important;
 }
 
 .giz-theme-on-primary {
@@ -706,19 +706,19 @@ h6, .giz-typography-h6 {
 }
 
 .giz-elevation-1 {
-    box-shadow: $elevation-1 !important;
+    box-shadow: $elevation-1-theme-light !important;
 }
 
 .giz-elevation-2 {
-    box-shadow: $elevation-2 !important;
+    box-shadow: $elevation-2-theme-light !important;
 }
 
 .giz-elevation-3 {
-    box-shadow: $elevation-3 !important;
+    box-shadow: $elevation-3-theme-light !important;
 }
 
 .giz-elevation-4 {
-    box-shadow: $elevation-4 !important;
+    box-shadow: $elevation-4-theme-light !important;
 }
 
 //== border
@@ -728,7 +728,7 @@ h6, .giz-typography-h6 {
 }
 
 .border-primary {
-    border-color: $primary-color !important;
+    border-color: $primary-color-theme-light !important;
 }
 
 .border-primary-light {

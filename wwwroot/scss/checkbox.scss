@@ -42,8 +42,8 @@
 
     &:checked + label:before {
         content: '';
-        background: $primary-color;
-        border-color: $primary-color;
+        background: $primary-color-theme-light;
+        border-color: $primary-color-theme-light;
     }
 
     &.is-disabled + label:before, &[disabled] + label:before {
@@ -79,8 +79,8 @@
     }
 
     &:indeterminate + label:before {
-        background: $primary-color;
-        border-color: $primary-color;
+        background: $primary-color-theme-light;
+        border-color: $primary-color-theme-light;
     }
 
     &:indeterminate.is-disabled + label:before, &:indeterminate[disabled] + label:before {
