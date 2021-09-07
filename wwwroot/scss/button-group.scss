@@ -32,10 +32,10 @@
 
         &:hover:not(.selected) {
             background: $dark-gray;
-            color: $dim-white;
+            color: $dim-white-theme-light;
 
             [light-theme] & {
-                background: $dim-white;
+                background: $dim-white-theme-light;
                 color: $dim-color;
             }
         }
@@ -46,7 +46,7 @@
         pointer-events: none;
 
         [light-theme] & {
-            color: $dim-white;
+            color: $dim-white-theme-light;
         }
 
         .giz-button {

@@ -38,8 +38,11 @@
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\text-input.scss" />
 	  <Content Remove="wwwroot\scss\theme_client.scss" />
+	  <Content Remove="wwwroot\scss\theme_client_components.scss" />
 	  <Content Remove="wwwroot\scss\theme_light.scss" />
+	  <Content Remove="wwwroot\scss\theme_light_components.scss" />
 	  <Content Remove="wwwroot\scss\time-picker.scss" />
+	  <Content Remove="wwwroot\scss\_mixin.scss" />
 	  <Content Remove="wwwroot\scss\_typography.scss" />
 	  <Content Remove="wwwroot\scss\_variables.scss" />
 	</ItemGroup>
@@ -60,7 +63,10 @@
 		<None Include="wwwroot\scripts.js" />
 		<None Include="wwwroot\scss\divider.scss" />
 		<None Include="wwwroot\scss\collapse.scss" />
+		<None Include="wwwroot\scss\_mixin.scss" />
 		<None Include="wwwroot\scss\icon.scss" />
+		<None Include="wwwroot\scss\theme_client_components.scss" />
+		<None Include="wwwroot\scss\theme_light_components.scss" />
 		<None Include="wwwroot\scss\theme_light.scss" />
 		<None Include="wwwroot\scss\theme_client.scss" />
 		<None Include="wwwroot\scss\overlay.scss" />

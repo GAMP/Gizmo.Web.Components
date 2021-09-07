@@ -384,15 +384,15 @@ a {
 }
 
 .giz-dim-white {
-    background-color: $dim-white !important;
+    background-color: $dim-white-theme-light !important;
 }
 
 .giz-dim-white-text {
-    color: $dim-white !important;
+    color: $dim-white-theme-light !important;
 }
 
 .giz-theme-on-dim-white {
-    color: $dim-white !important;
+    color: $dim-white-theme-light !important;
 
     [light-theme] & {
         color: $black-color !important;
@@ -499,7 +499,7 @@ a {
 }
 
 .font-14 {
-    font-size: $font-14 !important;
+    font-size: $font-14-theme-light !important;
 }
 
 .font-15 {
@@ -800,7 +800,7 @@ h6, .giz-typography-h6 {
 }
 
 .border-dark-color {
-    border-color: $border-dark-color !important;
+    border-color: $border-dark-color-theme-light !important;
 }
 
 .border-dark-grey {

@@ -7,10 +7,6 @@
     font-size: $font-16;
     background: $dark-gray;
 
-    [light-theme] & {
-        color: $secondary-color;
-        background: $white-color;
-    }
 
     & > thead td, & > thead th {
         height: 5rem;
@@ -20,10 +16,6 @@
         font-weight: $font-weight-400;
         padding: 0 1.7rem;
         text-align: $text-align-left;
-
-        [light-theme] & {
-            color: $dim-color;
-        }
 
         &.is-sorted-up {
             position: $position-relative;
@@ -76,31 +68,9 @@
             }
         }
 
-        [light-theme] & {
-            background: $transparent-color;
-        }
-
         &:hover {
             background: $dark-jungle;
             color: $white-color;
-
-            [light-theme] & {
-                background: $secondary-light;
-                color: $black-color;
-
-                & > td {
-                    border-top: 1px solid $gray-dark;
-                    border-bottom: 1px solid $gray-dark;
-
-                    &:first-child {
-                        border-left: 1px solid $gray-dark;
-                    }
-
-                    &:last-child {
-                        border-right: 1px solid $gray-dark;
-                    }
-                }
-            }
 
             & > td {
                 border-top: 1px solid $onyx-black;
@@ -116,30 +86,11 @@
             }
         }
 
-
         &.is-opened {
             border-color: #453855;
             background: $primary-color-theme-light;
             cursor: $cursor-pointer;
             color: $white-color;
-
-            [light-theme] & {
-                border-color: #dddfe4;
-                background: $primary-color-theme-light;
-
-                & > td {
-                    border-top: 1px solid $gray-dark;
-                    border-bottom: 1px solid $gray-dark;
-
-                    &:first-child {
-                        border-left: 1px solid $gray-dark;
-                    }
-
-                    &:last-child {
-                        border-right: 1px solid $gray-dark;
-                    }
-                }
-            }
 
             & > td {
                 border-top: 1px solid $onyx-black;
@@ -159,7 +110,6 @@
             background: rgba(90,103,242,0.2);
             cursor: $cursor-pointer;
 
-
             & > td {
                 border-top: 1px solid $onyx-black;
                 border-bottom: 1px solid $onyx-black;
@@ -173,42 +123,8 @@
                 }
             }
 
-            [light-theme] & {
-                background: $primary-light-color;
-
-                & > td {
-                    border-top: 1px solid $gray-dark;
-                    border-bottom: 1px solid $gray-dark;
-
-                    &:first-child {
-                        border-left: 1px solid $gray-dark;
-                    }
-
-                    &:last-child {
-                        border-right: 1px solid $gray-dark;
-                    }
-                }
-            }
-
             &:hover {
                 background: rgba(90,103,242,0.2);
-
-                [light-theme] & {
-                    background: $primary-light-color;
-
-                    & > td {
-                        border-top: 1px solid $gray-dark;
-                        border-bottom: 1px solid $gray-dark;
-
-                        &:first-child {
-                            border-left: 1px solid $gray-dark;
-                        }
-
-                        &:last-child {
-                            border-right: 1px solid $gray-dark;
-                        }
-                    }
-                }
 
                 & > td {
                     border-top: 1px solid $onyx-black;
@@ -230,11 +146,6 @@
             background: $dark-light-color;
             border-radius: 4px 4px 0 0;
             margin-bottom: $spacer-0;
-
-            [light-theme] & {
-                border-color: #dddfe4;
-                background: $primary-light-color;
-            }
         }
 
         & > td:first-child {

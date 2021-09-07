@@ -140,18 +140,18 @@
     }
     //button outline variant
     &--outline {
-        color: $dim-white;
+        color: $dim-white-theme-light;
         background-color: $dark-gray;
         border: 1px solid $onyx-black;
 
         &:hover {
-            color: $dim-white;
+            color: $dim-white-theme-light;
         }
 
         &:focus {
             border: 1px solid $primary-color-theme-light;
             box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);
-            color: $dim-white;
+            color: $dim-white-theme-light;
         }
 
         &.is-disabled, &[disabled] {
