@@ -23,6 +23,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public bool ShowValues { get; set; }
+
+        [Parameter]
         public List<decimal> Values
         {
             get

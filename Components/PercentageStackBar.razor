@@ -6,6 +6,10 @@
     {
         var local_i = i;
         <div class="giz-stacked-bar" style="background-color: @Colors[local_i]; width: @(_percentValues[local_i].ToString(System.Globalization.CultureInfo.InvariantCulture))%;" role="progressbar">
+            @if (ShowValues)
+            {
+                @Values[local_i].ToString()
+            }
         </div>
     }
 </div>

@@ -59,6 +59,32 @@
     }
 }
 
+//== stacked progress bar  ====//
+
+.giz-stacked-progress {
+    [client-theme] & {
+        display: $display-inline-block;
+        height: 1.563rem;
+        width: 11.5rem;
+        overflow: $overflow-hidden;
+        border-radius: $rounded-md;
+        vertical-align: inherit;
+
+        @include open-sans-600;
+        @include font-11;
+        letter-spacing: $letter-spacing-24;
+        position: $position-relative;
+
+        .giz-stacked-bar {
+            padding: 0.438rem 0.375rem;
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+}
+
 // == button == //
 
 .giz-button {
