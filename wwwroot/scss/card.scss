@@ -5,9 +5,9 @@
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
     background-color: $dark-color;
-    border-radius: $rounded;
+    border-radius: $rounded-theme-dark;
     color: $secondary-color;
-    box-shadow: $elevation-2-theme-light;
+    box-shadow: $elevation-2-theme-dark;
 
     [light-theme] & {
         background-color: $white-color;

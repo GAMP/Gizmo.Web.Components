@@ -70,6 +70,9 @@ namespace Gizmo.Web.Components
         public bool HasShadow { get; set; }
 
         [Parameter]
+        public bool IsTransparent { get; set; }
+
+        [Parameter]
         public bool IsFullWidth { get; set; }
 
         [Parameter]

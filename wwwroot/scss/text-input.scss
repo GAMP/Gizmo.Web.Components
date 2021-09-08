@@ -6,42 +6,39 @@
     .giz-input-label {
         font-weight: $font-weight-600;
         font-size: $font-15;
-        line-height: $line-height-16;
+        line-height: $line-height-16-theme-dark;
         letter-spacing: $letter-spacing-8;
+        //Default Theme
         color: $white-color;
-
-        [light-theme] & {
-            color: $dim-light;
-        }
     }
     //Input default size (normal)
     .giz-input-root {
         display: $display-flex;
         align-items: center;
-        background: $dark-gray;
-        /*border: 1px solid $border-color;*/
-        border-radius: $rounded;
         height: 4.8rem;
         padding: $spacer-16;
         font-weight: $font-weight-600;
         font-size: $font-15;
-        line-height: $line-height-16;
+        line-height: $line-height-16-theme-dark;
         letter-spacing: $letter-spacing-8;
         color: $white-color;
         width: fit-content;
         border: $border-0;
+        border-radius: $rounded-theme-dark;
+        //Default Theme
+        color: $white-color;
 
-        [light-theme] & {
-            background: $white-color;
-            color: $secondary-color;
+        &--transparent {
+            background: $transparent-color;
+        }
 
-            &:hover {
-                color: $black-color;
-            }
+        &--filled {
+            //Default Theme
+            background: $dark-gray;
         }
 
         svg {
-            color: $primary-color-theme-light;
+            color: $primary-color-theme-dark;
         }
 
         input {
@@ -49,33 +46,20 @@
             border: none;
             outline: none;
             background: inherit;
+            //Default Theme
             color: $gray-black;
-
 
             &::placeholder {
                 color: $gray-dim;
             }
 
-            [light-theme] & {
-                background: inherit;
-                color: $secondary-color;
-
-                &::placeholder {
-                    color: $gray-light-color;
-                }
-            }
-
             &.is-disabled, &[disabled] {
-                background: $onyx-black;
-                color: $dim-light;
                 pointer-events: none;
-
-                [light-theme] & {
-                    background: $gray-dark;
-                }
+                color: $dim-light;
+                //Default Theme
+                background: $onyx-black-theme-dark;
             }
         }
-
 
         &:hover {
             color: $white-color;
@@ -86,16 +70,11 @@
         }
 
         &.is-disabled, &[disabled] {
-            background: $onyx-black;
-            border: 1px solid $onyx-black;
             pointer-events: none;
+            //Default Theme
+            background: $onyx-black-theme-dark;
             color: $mid-gray;
-
-            [light-theme] & {
-                background: $gray-dark;
-                border: 1px solid $gray-dark;
-                color: $dim-light;
-            }
+            /*border: 1px solid $onyx-black-theme-dark;*/
         }
 
         .giz-input-icon-left {
@@ -126,6 +105,9 @@
                 height: 1.6rem;
             }
         }
+        &--medium {
+
+        }
         //input large
         &--large {
             padding: 2.8rem 3.2rem;
@@ -136,17 +118,9 @@
             line-height: $line-height-24;
 
             &.is-disabled, &[disabled] {
-                background: $onyx-black;
+                background: $onyx-black-theme-dark;
                 color: $white-color;
                 pointer-events: none;
-            }
-
-            [light-theme] & {
-                &.is-disabled, &[disabled] {
-                    background-color: $gray-dark;
-                    color: $dim-light;
-                    pointer-events: none;
-                }
             }
 
             .giz-input-icon-left {
@@ -164,23 +138,17 @@
             outline-offset: -0.2rem;
             outline-width: 0.1rem;
             /*outline-style: groove;*/
-            border: 1px solid $onyx-black;
-
-            [light-theme] & {
-                border: 1px solid $gray-dark;
-
-                &:hover {
-                    border: 1px solid $gray-dark;
-                }
-            }
+            //Default Theme
+            border: 1px solid $onyx-black-theme-dark;
 
             &:hover {
-                border: 1px solid $onyx-black;
+                //Default Theme
+                border: 1px solid $onyx-black-theme-dark;
             }
 
             &:focus-within {
-                /*      border: 1px solid $primary-color-theme-light;*/
-                /*    box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);*/
+                /*      border: 1px solid $primary-color-theme-dark;*/
+                /*    box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);*/
             }
         }
         //input shadow
@@ -188,18 +156,18 @@
             box-shadow: 0px 0px 9px rgba($dim-light, 0.5);
 
             &:hover {
-                box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);
+                box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);
             }
 
             &:focus-within {
-                box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);
+                box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);
             }
         }
     }
 
     .giz-input-validation-message {
         font-weight: $font-weight-500;
-        font-size: $font-14-theme-light;
+        font-size: $font-14-theme-dark;
         line-height: $line-height-22;
         letter-spacing: $letter-spacing-8;
     }

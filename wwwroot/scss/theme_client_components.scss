@@ -59,7 +59,7 @@
     }
 }
 
-//== stacked progress bar  ====//
+//== stacked progress bar == //
 
 .giz-stacked-progress {
     [client-theme] & {
@@ -84,6 +84,138 @@
         }
     }
 }
+
+// == button group == //
+
+.giz-button-group {
+    [client-theme] & {
+        display: inline-flex;
+        background-color: unset !important;
+        border: 1px solid $border-dark-color !important;
+        border-radius: $rounded-5 !important;
+        padding: unset !important;
+
+        .giz-button {
+            @include font-11;
+            @include open-sans-600;
+            text-transform: $text-uppercase;
+            color: $white-color !important;
+            background-color: unset !important;
+            border-radius: unset !important;
+            border-right: 1px solid $border-dark-color !important;
+            letter-spacing: normal !important;
+
+            &:focus {
+                box-shadow: unset !important;
+            }
+
+            &:last-child {
+                border-right: none !important;
+            }
+
+            &.selected {
+                background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%) !important;
+            }
+        }
+
+        .giz-button--medium {
+            height: 33px !important;
+            padding: 0 0.688rem !important;
+        }
+    }
+}
+
+//== giz input == //
+
+.giz-input-control {
+    [client-theme] & {
+
+        .giz-input-root {
+            color: $white-color !important;
+
+            svg {
+                color: $white-color !important;
+                vertical-align: baseline !important;
+            }
+
+            input {
+                color: $white-color !important;
+            }
+
+            &--outline {
+                border: 1px solid $border-charcoal-gray !important;
+
+                &:hover {
+                    border: 1px solid $border-charcoal-gray !important;
+                }
+
+                &:focus-within {
+                    border: 1px solid $border-heather-gray !important;
+                }
+            }
+
+            &--filled {
+                background: $black-mirage-color !important;
+
+                &:focus-within {
+                    background: $onyx-black !important;
+                }
+            }
+
+            &--transparent {
+                background: $transparent-color !important;
+            }
+
+            &--small {
+            }
+
+            &--medium {
+                border-radius: $rounded-5 !important;
+                height: 35px !important;
+                padding: 0.5rem !important;
+
+                input {
+                    @include open-sans-600;
+                    @include font-11;
+                }
+            }
+
+            &--large {
+                border-radius: $rounded !important;
+                height: 54px !important;
+                padding: 1.063rem 1.125rem !important;
+
+                input {
+                    font-size: $font-16 !important;
+                    line-height: $line-height-16 !important;
+                    text-shadow: $text-shadow-sm !important;
+                }
+            }
+        }
+    }
+}
+
+// == select == //
+
+.giz-input-select {
+    [client-theme] & {
+        .giz-input-select-dropdown-menu {
+            .giz-list {
+                background: $jet-black !important;
+
+                .giz-list-item {
+                    padding: 0.5rem !important;
+                    @include open-sans-600;
+                    @include font-11;
+                    font-weight: normal !important;
+                    letter-spacing: unset !important;
+                    color: $white-color !important;
+                }
+            }
+        }
+    }
+}
+
 
 // == button == //
 
@@ -157,14 +289,14 @@
         &:hover {
             [client-theme] & {
                 /*background: $white-color;
-                color: $primary-color-theme-light;*/
+                color: $primary-color;*/
             }
         }
 
         &:focus {
             [client-theme] & {
                 /*background: $white-color;
-                border: 1px solid $primary-color-theme-light;
+                border: 1px solid $primary-color;
                 color: $secondary-color;*/
             }
         }
@@ -189,7 +321,7 @@
 
         &:hover {
             [client-theme] & {
-                /*color: $primary-color-theme-light;
+                /*color: $primary-color;
                 background: $white-color;*/
             }
         }
@@ -197,7 +329,7 @@
         &:focus {
             [client-theme] & {
                 /*background: $white-color;
-                box-shadow: $elevation-1-theme-light;*/
+                box-shadow: $elevation-1;*/
             }
         }
 

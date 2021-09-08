@@ -36,8 +36,8 @@
 
     &:checked + label:before {
         content: '';
-        background: $primary-color-theme-light;
-        border-color: $primary-color-theme-light;
+        background: $primary-color-theme-dark;
+        border-color: $primary-color-theme-dark;
     }
 
     &.is-disabled + label:before, &[disabled] + label:before {

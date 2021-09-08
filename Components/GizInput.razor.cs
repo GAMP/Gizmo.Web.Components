@@ -48,6 +48,9 @@ namespace Gizmo.Web.Components
         public bool HasShadow { get; set; }
 
         [Parameter]
+        public bool IsTransparent { get; set; }
+
+        [Parameter]
         public bool IsFullWidth { get; set; }
 
         [Parameter]
@@ -98,8 +101,11 @@ namespace Gizmo.Web.Components
                  .Add("giz-input-root")
                  .If("giz-input-root--outline", () => HasOutline)
                  .If("giz-input-root--shadow", () => HasShadow)
+                 .If("giz-input-root--filled", () => !IsTransparent)
+                 .If("giz-input-root--transparent", () => IsTransparent)
                  .If("giz-input-root--full-width", () => IsFullWidth)
                  .If("giz-input-root--small", () => Size == InputSizes.Small)
+                 .If("giz-input-root--medium", () => Size == InputSizes.Normal)
                  .If("giz-input-root--large", () => Size == InputSizes.Large)
                  .AsString();
 

@@ -2,7 +2,7 @@
 //== list.scss files == //
 
 .giz-list {
-    border-radius: $rounded;
+    border-radius: $rounded-theme-dark;
     position: $position-relative;
     min-width: 15rem;
     background: $dark-gray;
@@ -16,7 +16,7 @@
         align-items: center;
         font-weight: $font-weight-600;
         font-size: $font-15;
-        line-height: $line-height-16;
+        line-height: $line-height-16-theme-dark;
         letter-spacing: $letter-spacing-8;
         color: $gray-black;
         text-decoration: $text-decoration;
@@ -41,11 +41,11 @@
         .giz-list-item {
             &:hover {
                 background-color: $dark-jungle;
-                color: $primary-color-theme-light;
+                color: $primary-color-theme-dark;
             }
 
             &:hover svg {
-                color: $primary-color-theme-light;
+                color: $primary-color-theme-dark;
             }
 
             [light-theme] &:hover {
@@ -59,7 +59,7 @@
         .giz-list-item {
 
             &.giz-list-item-selected {
-                background-color: $primary-color-theme-light;
+                background-color: $primary-color-theme-dark;
                 color: $white-color;
             }
         }

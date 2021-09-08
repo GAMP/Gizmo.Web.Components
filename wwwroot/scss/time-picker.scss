@@ -13,7 +13,7 @@
     position: $position-relative;
 
     .giz-input-timepicker-dropdown-menu {
-        box-shadow: $elevation-3-theme-light;
+        box-shadow: $elevation-3-theme-dark;
     }
 
     .giz-popup {
@@ -24,14 +24,14 @@
 
 // giz timer picker
 .giz-time-picker {
-    border-radius: $rounded;
+    border-radius: $rounded-theme-dark;
     max-width: 28rem;
     min-height: 1.6rem;
     // giz time picker header
     .giz-time-picker-header {
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
-        background-color: $primary-color-theme-light;
+        background-color: $primary-color-theme-dark;
         padding: 3rem 0;
         display: $display-flex;
         justify-content: $justify-center;
@@ -50,7 +50,7 @@
 
         &--label {
             color: $white-color;
-            font-size: $font-16;
+            font-size: $font-16-theme-dark;
             font-weight: $font-weight-600;
         }
     }
@@ -70,7 +70,7 @@
         }
 
         &--icon-size {
-            font-size: $font-16;
+            font-size: $font-16-theme-dark;
         }
 
         &--timer {

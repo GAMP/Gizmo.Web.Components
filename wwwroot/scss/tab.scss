@@ -28,7 +28,7 @@
             left: 0;
             width: $width-full;
             height: 3px;
-            background-color: $primary-color-theme-light;
+            background-color: $primary-color-theme-dark;
             animation-duration: .3s;
             animation-name: slideborder;
         }
@@ -47,7 +47,7 @@
         list-style: $list-unstyled;
         padding: 1.7rem 4.5rem;
         padding: $spacer-0;
-        border-bottom: 1px solid $onyx-black;
+        border-bottom: 1px solid $onyx-black-theme-dark;
 
         [light-theme] & {
             background: $secondary-light;

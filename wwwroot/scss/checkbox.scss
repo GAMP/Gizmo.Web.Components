@@ -31,8 +31,8 @@
         width: 2.4rem;
         height: 2.4rem;
         background: $dark-gray;
-        border: 1px solid $onyx-black;
-        border-radius: $rounded;
+        border: 1px solid $onyx-black-theme-dark;
+        border-radius: $rounded-theme-dark;
 
         [light-theme] & {
             background: $transparent-color;
@@ -42,8 +42,8 @@
 
     &:checked + label:before {
         content: '';
-        background: $primary-color-theme-light;
-        border-color: $primary-color-theme-light;
+        background: $primary-color-theme-dark;
+        border-color: $primary-color-theme-dark;
     }
 
     &.is-disabled + label:before, &[disabled] + label:before {
@@ -79,8 +79,8 @@
     }
 
     &:indeterminate + label:before {
-        background: $primary-color-theme-light;
-        border-color: $primary-color-theme-light;
+        background: $primary-color-theme-dark;
+        border-color: $primary-color-theme-dark;
     }
 
     &:indeterminate.is-disabled + label:before, &:indeterminate[disabled] + label:before {

@@ -3,94 +3,188 @@
 // == data-grid == //
 .giz-data-grid {
     [light-theme] & {
-        color: $secondary-color;
-        background: $white-color;
+        color: $secondary-color !important;
+        background: $white-color !important;
 
         & > thead td, & > thead th {
-            color: $dim-color;
+            color: $dim-color !important;
         }
 
         & > tbody > tr {
-            background: $transparent-color;
+            background: $transparent-color !important;
 
             &:hover {
-                background: $secondary-light;
-                color: $black-color;
+                background: $secondary-light !important;
+                color: $black-color !important;
 
                 & > td {
-                    border-top: 1px solid $gray-dark;
-                    border-bottom: 1px solid $gray-dark;
+                    border-top: 1px solid $gray-dark !important;
+                    border-bottom: 1px solid $gray-dark !important;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark;
+                        border-left: 1px solid $gray-dark !important;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark;
+                        border-right: 1px solid $gray-dark !important;
                     }
                 }
             }
 
             &.is-opened {
-                border-color: #dddfe4;
-                background: $primary-color-theme-light;
+                border-color: #dddfe4 !important;
+                background: $primary-color-theme-dark !important;
 
                 & > td {
-                    border-top: 1px solid $gray-dark;
-                    border-bottom: 1px solid $gray-dark;
+                    border-top: 1px solid $gray-dark !important;
+                    border-bottom: 1px solid $gray-dark !important;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark;
+                        border-left: 1px solid $gray-dark !important;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark;
+                        border-right: 1px solid $gray-dark !important;
                     }
                 }
             }
 
             &.is-selected {
-                background: $primary-light-color;
+                background: $primary-light-color !important;
 
                 & > td {
-                    border-top: 1px solid $gray-dark;
-                    border-bottom: 1px solid $gray-dark;
+                    border-top: 1px solid $gray-dark !important;
+                    border-bottom: 1px solid $gray-dark !important;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark;
+                        border-left: 1px solid $gray-dark !important;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark;
+                        border-right: 1px solid $gray-dark !important;
                     }
                 }
 
                 &:hover {
-                    background: $primary-light-color;
+                    background: $primary-light-color !important;
 
                     & > td {
-                        border-top: 1px solid $gray-dark;
-                        border-bottom: 1px solid $gray-dark;
+                        border-top: 1px solid $gray-dark !important;
+                        border-bottom: 1px solid $gray-dark !important;
 
                         &:first-child {
-                            border-left: 1px solid $gray-dark;
+                            border-left: 1px solid $gray-dark !important;
                         }
 
                         &:last-child {
-                            border-right: 1px solid $gray-dark;
+                            border-right: 1px solid $gray-dark !important;
                         }
                     }
                 }
             }
 
             &.is-active {
-                border-color: #dddfe4;
-                background: $primary-light-color;
+                border-color: #dddfe4 !important;
+                background: $primary-light-color !important;
             }
         }
     }
 }
 
+// == button group == //
+
+.giz-button-group {
+    [light-theme] & {
+        background-color: $secondary-light !important;
+        border: 2px solid $secondary-light !important;
+
+        .giz-button {
+            color: $dim-light !important;
+            background-color: $secondary-light !important;
+
+            &.selected {
+                background-color: $white-color !important;
+            }
+
+            &:hover:not(.selected) {
+                background: $dim-white-theme-dark !important;
+                color: $dim-color !important;
+            }
+        }
+
+        &.disabled {
+            color: $dim-white-theme-dark !important;
+
+            .giz-button {
+                &.selected {
+                    color: $dim-light !important;
+                    background: $white-color !important;
+                }
+            }
+        }
+    }
+}
+
+//== giz input
+.giz-input-control {
+    [light-theme] & {
+
+        .giz-input-label {
+            color: $dim-light !important;
+        }
+
+        .giz-input-root {
+            color: $secondary-color !important;
+
+            &:hover {
+                color: $black-color !important;
+            }
+
+            input {
+                color: $secondary-color !important;
+
+                &::placeholder {
+                    color: $gray-light-color !important;
+                }
+
+                &.is-disabled, &[disabled] {
+                    background: $gray-dark !important;
+                }
+            }
+
+            &.is-disabled, &[disabled] {
+                background: $gray-dark !important;
+                /*border: 1px solid $gray-dark !important;*/
+                color: $dim-light !important;
+            }
+
+            &--outline {
+                border: 1px solid $gray-dark !important;
+
+                &:hover {
+                    border: 1px solid $gray-dark !important;
+                }
+            }
+
+            &--filled {
+                background: $white-color !important;
+
+                &:focus-within {
+                }
+            }
+        }
+    }
+}
+
+// == select == //
+.giz-input-select {
+    [light-theme] & {
+
+        .giz-input-select-dropdown-menu {
+            border: 1px solid $gray-dark !important;
+        }
+    }
+}
 // == button == //
 
 .giz-button {
@@ -109,7 +203,7 @@
     //button fill variant
     &--fill {
         [light-theme] & {
-            background: $primary-color-theme-light;
+            background: $primary-color-theme-dark;
             color: $white-color;
         }
 
@@ -162,14 +256,14 @@
         &:hover {
             [light-theme] & {
                 background: $white-color;
-                color: $primary-color-theme-light;
+                color: $primary-color-theme-dark;
             }
         }
 
         &:focus {
             [light-theme] & {
                 background: $white-color;
-                border: 1px solid $primary-color-theme-light;
+                border: 1px solid $primary-color-theme-dark;
                 color: $secondary-color;
             }
         }
@@ -194,7 +288,7 @@
 
         &:hover {
             [light-theme] & {
-                color: $primary-color-theme-light;
+                color: $primary-color-theme-dark;
                 background: $white-color;
             }
         }
@@ -202,7 +296,7 @@
         &:focus {
             [light-theme] & {
                 background: $white-color;
-                box-shadow: $elevation-1-theme-light;
+                box-shadow: $elevation-1-theme-dark;
             }
         }
 

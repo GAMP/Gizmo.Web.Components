@@ -4,7 +4,7 @@
 .giz-button {
     font-size: $font-17;
     cursor: $cursor-pointer;
-    border-radius: $rounded;
+    border-radius: $rounded-theme-dark;
     transition: color 0.3s ease;
     transition: background 0.3s ease;
     transition: border 0.3s ease;
@@ -38,20 +38,20 @@
         border: $border-0;
         outline: $outline-0;
         color: $white-color;
-        background: $primary-color-theme-light;
+        background: $primary-color-theme-dark;
 
         &:hover {
             background: #4F5AD3;
         }
 
         &:focus {
-            background: $primary-color-theme-light;
+            background: $primary-color-theme-dark;
             box-shadow: 0px 0px 9px #4891FF;
         }
 
         &.is-disabled, &[disabled] {
             color: $dark-gray;
-            background: $onyx-black;
+            background: $onyx-black-theme-dark;
             pointer-events: none;
             border: none;
 
@@ -65,20 +65,20 @@
         border: $border-0;
         outline: $outline-0;
         color: $white-color;
-        background: $primary-color-theme-light;
+        background: $primary-color-theme-dark;
 
         &:hover {
             background: #4F5AD3;
         }
 
         &:focus {
-            background: $primary-color-theme-light;
+            background: $primary-color-theme-dark;
             box-shadow: 0px 0px 9px #4891FF;
         }
 
         &.is-disabled, &[disabled] {
             color: $dark-gray;
-            background: $onyx-black;
+            background: $onyx-black-theme-dark;
             pointer-events: none;
 
             svg {
@@ -103,7 +103,7 @@
 
             &.is-disabled, &[disabled] {
                 color: $dark-gray;
-                background: $onyx-black;
+                background: $onyx-black-theme-dark;
                 pointer-events: none;
             }
 
@@ -129,7 +129,7 @@
 
             &.is-disabled, &[disabled] {
                 color: $dark-gray;
-                background: $onyx-black;
+                background: $onyx-black-theme-dark;
                 pointer-events: none;
 
                 svg {
@@ -140,23 +140,23 @@
     }
     //button outline variant
     &--outline {
-        color: $dim-white-theme-light;
+        color: $dim-white-theme-dark;
         background-color: $dark-gray;
-        border: 1px solid $onyx-black;
+        border: 1px solid $onyx-black-theme-dark;
 
         &:hover {
-            color: $dim-white-theme-light;
+            color: $dim-white-theme-dark;
         }
 
         &:focus {
-            border: 1px solid $primary-color-theme-light;
-            box-shadow: 0px 0px 9px rgba($primary-color-theme-light, 0.5);
-            color: $dim-white-theme-light;
+            border: 1px solid $primary-color-theme-dark;
+            box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);
+            color: $dim-white-theme-dark;
         }
 
         &.is-disabled, &[disabled] {
             color: $dark-gray;
-            background: $onyx-black;
+            background: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
 
@@ -179,7 +179,7 @@
 
         &.is-disabled, &[disabled] {
             color: $dark-gray;
-            background: $onyx-black;
+            background: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
 
@@ -196,13 +196,13 @@
         border-radius: $rounded-circle;
 
         &:hover {
-            color: $primary-color-theme-light;
+            color: $primary-color-theme-dark;
             background: $white-color;
         }
 
         &:focus {
             background: $white-color;
-            box-shadow: $elevation-1-theme-light;
+            box-shadow: $elevation-1-theme-dark;
         }
 
         &.is-disabled, &[disabled] {
@@ -238,7 +238,7 @@
     //buton disable
     &.is-disabled, &[disabled] {
         color: $dark-gray;
-        background: $onyx-black;
+        background: $onyx-black-theme-dark;
         border: none;
         pointer-events: none;
 

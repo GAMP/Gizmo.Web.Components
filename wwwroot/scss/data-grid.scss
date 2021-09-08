@@ -4,7 +4,7 @@
     border-collapse: separate;
     border-spacing: 0 1.2rem;
     color: $gray-black;
-    font-size: $font-16;
+    font-size: $font-16-theme-dark;
     background: $dark-gray;
 
 
@@ -73,35 +73,35 @@
             color: $white-color;
 
             & > td {
-                border-top: 1px solid $onyx-black;
-                border-bottom: 1px solid $onyx-black;
+                border-top: 1px solid $onyx-black-theme-dark;
+                border-bottom: 1px solid $onyx-black-theme-dark;
 
                 &:first-child {
-                    border-left: 1px solid $onyx-black;
+                    border-left: 1px solid $onyx-black-theme-dark;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $onyx-black;
+                    border-right: 1px solid $onyx-black-theme-dark;
                 }
             }
         }
 
         &.is-opened {
             border-color: #453855;
-            background: $primary-color-theme-light;
+            background: $primary-color-theme-dark;
             cursor: $cursor-pointer;
             color: $white-color;
 
             & > td {
-                border-top: 1px solid $onyx-black;
-                border-bottom: 1px solid $onyx-black;
+                border-top: 1px solid $onyx-black-theme-dark;
+                border-bottom: 1px solid $onyx-black-theme-dark;
 
                 &:first-child {
-                    border-left: 1px solid $onyx-black;
+                    border-left: 1px solid $onyx-black-theme-dark;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $onyx-black;
+                    border-right: 1px solid $onyx-black-theme-dark;
                 }
             }
         }
@@ -111,15 +111,15 @@
             cursor: $cursor-pointer;
 
             & > td {
-                border-top: 1px solid $onyx-black;
-                border-bottom: 1px solid $onyx-black;
+                border-top: 1px solid $onyx-black-theme-dark;
+                border-bottom: 1px solid $onyx-black-theme-dark;
 
                 &:first-child {
-                    border-left: 1px solid $onyx-black;
+                    border-left: 1px solid $onyx-black-theme-dark;
                 }
 
                 &:last-child {
-                    border-right: 1px solid $onyx-black;
+                    border-right: 1px solid $onyx-black-theme-dark;
                 }
             }
 
@@ -127,15 +127,15 @@
                 background: rgba(90,103,242,0.2);
 
                 & > td {
-                    border-top: 1px solid $onyx-black;
-                    border-bottom: 1px solid $onyx-black;
+                    border-top: 1px solid $onyx-black-theme-dark;
+                    border-bottom: 1px solid $onyx-black-theme-dark;
 
                     &:first-child {
-                        border-left: 1px solid $onyx-black;
+                        border-left: 1px solid $onyx-black-theme-dark;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $onyx-black;
+                        border-right: 1px solid $onyx-black-theme-dark;
                     }
                 }
             }
@@ -187,7 +187,7 @@
     position: $position-relative;
     width: $width-full;
     border: 1px solid #292e39;
-    border-radius: $rounded;
+    border-radius: $rounded-theme-dark;
     display: $display-flex;
     align-items: $align-start;
     box-sizing: border-box;

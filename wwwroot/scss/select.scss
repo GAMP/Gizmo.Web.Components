@@ -9,19 +9,12 @@
     }
 
     .giz-input-select-dropdown-menu {
-        box-shadow: $elevation-2-theme-light;
+        box-shadow: $elevation-2-theme-dark;
         border: 1px solid $border-color;
-
-        [light-theme] & {
-            border: 1px solid $gray-dark;
-        }
 
         .giz-list {
             .giz-list-item {
-                padding-top: $spacer-16;
-                padding-bottom: $spacer-16;
-                padding-left: $spacer-20;
-                padding-right: $spacer-20;
+                padding: $spacer-16 $spacer-20;
             }
         }
     }
@@ -48,5 +41,3 @@
         overflow-y: $overflow-auto;
     }
 }
-
-

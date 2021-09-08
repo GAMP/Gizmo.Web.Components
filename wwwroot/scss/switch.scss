@@ -12,11 +12,11 @@
         height: 0;
 
         &:checked + .slider {
-            background-color: $primary-color-theme-light;
+            background-color: $primary-color-theme-dark;
         }
 
         &:focus + .slider {
-            box-shadow: 0 0 1px $primary-color-theme-light;
+            box-shadow: 0 0 1px $primary-color-theme-dark;
         }
 
         &:checked + .slider:before {
