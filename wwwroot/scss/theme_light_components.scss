@@ -92,7 +92,6 @@
 }
 
 // == button group == //
-
 .giz-button-group {
     [light-theme] & {
         background-color: $secondary-light-theme-dark !important;
@@ -185,8 +184,8 @@
         }
     }
 }
-// == button == //
 
+// == button == //
 .giz-button {
     [light-theme] & {
         //group button
@@ -303,6 +302,26 @@
 
             svg {
                 color: $gray-dark-theme-dark;
+            }
+        }
+    }
+}
+
+// == list == //
+.giz-list {
+    [light-theme] & {
+        background-color: $white-color;
+
+        .giz-list-item {
+            color: $secondary-color-theme-dark;
+        }
+
+        &.giz-list--clickable {
+            .giz-list-item {
+                &:hover {
+                    background-color: $secondary-light-theme-dark;
+                    color: $primary-color-theme-dark;
+                }
             }
         }
     }

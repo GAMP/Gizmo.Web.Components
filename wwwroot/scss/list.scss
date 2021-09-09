@@ -7,10 +7,6 @@
     min-width: 15rem;
     background: $dark-gray-theme-dark;
 
-    [light-theme] & {
-        background-color: $white-color;
-    }
-
     .giz-list-item {
         display: flex;
         align-items: center;
@@ -21,10 +17,6 @@
         color: $gray-black-theme-dark;
         text-decoration: $text-decoration;
         cursor: pointer;
-
-        [light-theme] & {
-            color: $secondary-color-theme-dark;
-        }
 
         &.giz-list-item-disabled {
             color: rgb(230, 230, 230);
@@ -42,14 +34,6 @@
             &:hover {
                 background-color: $dark-jungle-theme-dark;
                 color: $primary-color-theme-dark;
-            }
-
-            &:hover svg {
-                color: $primary-color-theme-dark;
-            }
-
-            [light-theme] &:hover {
-                background-color: $secondary-light-theme-dark;
             }
         }
     }

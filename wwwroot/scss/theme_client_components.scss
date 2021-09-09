@@ -1,7 +1,6 @@
 // == theme client components == //
 
 // == data-grid == //
-
 .giz-data-grid {
     [client-theme] & {
         border-collapse: collapse !important;
@@ -60,7 +59,6 @@
 }
 
 //== stacked progress bar == //
-
 .giz-stacked-progress {
     [client-theme] & {
         display: $display-inline-block;
@@ -86,7 +84,6 @@
 }
 
 // == button group == //
-
 .giz-button-group {
     [client-theme] & {
         display: inline-flex;
@@ -121,7 +118,6 @@
 }
 
 //== giz input == //
-
 .giz-input-control {
     [client-theme] & {
 
@@ -191,7 +187,6 @@
 }
 
 // == select == //
-
 .giz-input-select {
     [client-theme] & {
         .giz-input-select-dropdown-menu {
@@ -211,9 +206,7 @@
     }
 }
 
-
 // == button == //
-
 .giz-button {
     [client-theme] & {
         border-radius: $rounded-sm;
@@ -298,6 +291,44 @@
         &--medium {
             height: 33px !important;
             padding: 0 0.688rem !important;
+        }
+    }
+}
+
+// == avatar == //
+.giz-avatar {
+    [client-theme] & {
+        &.giz-avatar--small {
+            width: 18px;
+            height: 18px;
+        }
+
+        &.giz-avatar--medium {
+            width: 27px;
+            height: 27px;
+        }
+
+        &.giz-avatar--large {
+            width: 67px;
+            height: 67px;
+        }
+    }
+}
+
+// == list == //
+.giz-list {
+    [client-theme] & {
+        border-radius: $rounded-lg;
+        background: $dark-jungle;
+
+        .giz-list-item {
+            color: $secondary-color-theme-dark;
+        }
+
+        &.giz-list--clickable {
+            .giz-list-item {
+                background-color: unset !important;
+            }
         }
     }
 }
