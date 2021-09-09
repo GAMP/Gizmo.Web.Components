@@ -8,7 +8,7 @@ $font-family-open-sans: 'Open Sans', sans-serif;
 
 //== common color
 
-$primary-color-theme-client: #258cf6;
+$primary-color: #258cf6;
 
 $dim-white: rgba(255, 255, 255, 0.6);
 $border-dark-color: #303D4E;
@@ -18,36 +18,90 @@ $border-charcoal-gray: rgba(59, 62, 66, 0.5);
 $border-heather-gray: rgba(177, 191, 200, 0.35);
 $black-mirage-color: #1C2129;
 $jet-black: #1B1D25;
+$info-color: #153C7A;
 
 //== typography
 //font size  (based on root font-size 16px)
+$font-9: 0.563rem;
 $font-10: 0.625rem;
 $font-11: 0.688rem;
+$font-12: 0.75rem;
+$font-13: 0.8125rem;
 $font-14: 0.875rem;
+$font-15: 0.9375rem;
 $font-16: 1rem;
+$font-17: 1.0625rem;
+$font-18: 1.125rem;
+$font-19: 1.1875rem;
+$font-20: 1.25rem;
+$font-21: 1.313rem;
+$font-22: 1.375rem;
+$font-23: 1.438rem;
+$font-24: 1.5rem;
+$font-25: 1.563rem;
+$font-26: 1.625rem;
 
 //letter-spacing
+$letter-spacing-1: -0.01rem;
 $letter-spacing-24: -0.015rem;
+$letter-spacing-10: 0.05rem;
+$letter-spacing-8: -0.08px;
+$letter-spacing-2: -0.02rem;
+$letter-spacing-5: -0.005rem;
+$letter-spacing-6: 0.06rem;
+$letter-spacing-15: 0.015rem;
 
 //line height  (based on root font-size 16px)
+$line-height-9: 0.563rem;
 $line-height-10: 0.625rem;
 $line-height-11: 0.688rem;
+$line-height-12: 0.75rem;
+$line-height-13: 0.8125rem;
 $line-height-14: 0.875rem;
+$line-height-15: 0.9375rem;
 $line-height-16: 1rem;
+$line-height-17: 1.0625rem;
+$line-height-18: 1.125rem;
+$line-height-19: 1.1875rem;
+$line-height-20: 1.25rem;
+$line-height-21: 1.313rem;
+$line-height-22: 1.375rem;
+$line-height-23: 1.438rem;
+$line-height-24: 1.5rem;
+$line-height-25: 1.563rem;
+$line-height-26: 1.625rem;
 
 //== box shadow (elevation)
 
 $elevation-0: none;
-$elevation-1-theme-client: 0px 1px 12px rgba(37, 140, 246, 0.5);
-$elevation-2-theme-client: 0px 5px 10px rgba(8, 8, 13, 0.3);
-$elevation-3-theme-client: 0px 4px 8px rgba(4, 5, 6, 0.4);
-$elevation-4-theme-client: 0px 5px 10px rgba(8, 8, 13, 0.3);
-$elevation-5-theme-client: 0px 20px 15px 5px rgba(4, 5, 6, 0.4);
+$elevation-1: 0px 1px 12px rgba(37, 140, 246, 0.5);
+$elevation-2: 0px 5px 10px rgba(8, 8, 13, 0.3);
+$elevation-3: 0px 4px 8px rgba(4, 5, 6, 0.4);
+$elevation-4: 0px 5px 10px rgba(8, 8, 13, 0.3);
+$elevation-5: 0px 20px 15px 5px rgba(4, 5, 6, 0.4);
 
 //== text shadow
 $text-shadow-sm: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+//== border size
+
+$border-0: 0rem;
+$border: 1px solid #282B32;
+$border-top: 1px solid #282B32;
+$border-bottom: 1px solid #282B32;
+$border-start: 1px solid #282B32;
+$border-end: 1px solid #282B32;
+
 //== border radius
+
+$rounded-circle: 50%;
+$rounded-pill: 12.5rem;
+$rounded-pill-37: 2.313rem;
+$rounded-0: 0rem;
 $rounded: 0.25rem;
+$rounded-sm: 0.188rem;
 $rounded-md: 0.375rem;
 $rounded-5: 0.313rem;
+$rounded-lg: 0.5rem;
+$rounded-xl: 0.625rem;
+$rounded-xxl: 0.75rem;

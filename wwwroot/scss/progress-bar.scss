@@ -70,7 +70,7 @@
 
     &--value {
         display: $display-flex;
-        border-radius: $rounded-circle;
+        border-radius: $rounded-circle-theme-dark;
         align-items: $align-center;
         justify-content: $justify-center;
         height: $height-full;
@@ -85,7 +85,7 @@
             content: "";
             width: 88%;
             height: 88%;
-            border-radius: $rounded-circle;
+            border-radius: $rounded-circle-theme-dark;
             position: $position-absolute;
             top: 0;
             left: 0;
@@ -125,7 +125,7 @@
             content: "";
             width: 88%;
             height: 88%;
-            border-radius: $rounded-circle;
+            border-radius: $rounded-circle-theme-dark;
             position: $position-absolute;
             top: 0;
             left: 0;
@@ -165,7 +165,7 @@
             content: "";
             width: 86%;
             height: 86%;
-            border-radius: $rounded-circle;
+            border-radius: $rounded-circle-theme-dark;
             position: $position-absolute;
             top: 0;
             left: 0;
@@ -205,7 +205,7 @@
             content: "";
             width: 90%;
             height: 90%;
-            border-radius: $rounded-circle;
+            border-radius: $rounded-circle-theme-dark;
             position: $position-absolute;
             top: 0;
             left: 0;

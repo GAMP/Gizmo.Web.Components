@@ -2,33 +2,33 @@
 
 .giz-button-group {
     display: $display-inline-block;
-    background-color: $dark-jungle;
+    background-color: $dark-jungle-theme-dark;
     padding: $spacer-4;
     border-radius: $rounded-theme-dark;
 
     .giz-button {
-        color: $gray-black;
-        background-color: $dark-jungle;
+        color: $gray-black-theme-dark;
+        background-color: $dark-jungle-theme-dark;
 
         &.selected {
             color: $primary-color-theme-dark;
-            background-color: $dark-gray;
+            background-color: $dark-gray-theme-dark;
             box-shadow: $elevation-4-theme-dark;
         }
 
         &:hover:not(.selected) {
-            background: $dark-gray;
+            background: $dark-gray-theme-dark;
             color: $dim-white-theme-dark;
         }
     }
 
     &.disabled {
-        color: $gray-dim;
+        color: $gray-dim-theme-dark;
         pointer-events: none;
 
         .giz-button {
             &.selected {
-                color: $mid-gray;
+                color: $mid-gray-theme-dark;
                 background: $onyx-black-theme-dark;
             }
 

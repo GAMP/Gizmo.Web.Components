@@ -62,7 +62,7 @@
         align-items: $align-center;
         text-align: $text-align-center;
         color: $white-color;
-        background-color: $dark-color;
+        background-color: $dark-color-theme-dark;
 
         [light-theme] & {
             color: $black-color;
@@ -78,7 +78,7 @@
                 width: $width-full;
                 text-align: $text-align-center;
                 border: none;
-                font-size: $font-20;
+                font-size: $font-20-theme-dark;
                 font-weight: $font-weight-500;
                 padding: $spacer-12;
 
@@ -95,7 +95,7 @@
     }
     // giz time picker footer
     .giz-time-picker-footer {
-        background-color: $dark-color;
+        background-color: $dark-color-theme-dark;
 
         [light-theme] & {
             background-color: $white-color;

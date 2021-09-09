@@ -3,30 +3,30 @@
 // == data-grid == //
 .giz-data-grid {
     [light-theme] & {
-        color: $secondary-color !important;
+        color: $secondary-color-theme-dark !important;
         background: $white-color !important;
 
         & > thead td, & > thead th {
-            color: $dim-color !important;
+            color: $dim-color-theme-dark !important;
         }
 
         & > tbody > tr {
             background: $transparent-color !important;
 
             &:hover {
-                background: $secondary-light !important;
+                background: $secondary-light-theme-dark !important;
                 color: $black-color !important;
 
                 & > td {
-                    border-top: 1px solid $gray-dark !important;
-                    border-bottom: 1px solid $gray-dark !important;
+                    border-top: 1px solid $gray-dark-theme-dark !important;
+                    border-bottom: 1px solid $gray-dark-theme-dark !important;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark !important;
+                        border-left: 1px solid $gray-dark-theme-dark !important;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark !important;
+                        border-right: 1px solid $gray-dark-theme-dark !important;
                     }
                 }
             }
@@ -36,48 +36,48 @@
                 background: $primary-color-theme-dark !important;
 
                 & > td {
-                    border-top: 1px solid $gray-dark !important;
-                    border-bottom: 1px solid $gray-dark !important;
+                    border-top: 1px solid $gray-dark-theme-dark !important;
+                    border-bottom: 1px solid $gray-dark-theme-dark !important;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark !important;
+                        border-left: 1px solid $gray-dark-theme-dark !important;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark !important;
+                        border-right: 1px solid $gray-dark-theme-dark !important;
                     }
                 }
             }
 
             &.is-selected {
-                background: $primary-light-color !important;
+                background: $primary-light-color-theme-dark !important;
 
                 & > td {
-                    border-top: 1px solid $gray-dark !important;
-                    border-bottom: 1px solid $gray-dark !important;
+                    border-top: 1px solid $gray-dark-theme-dark !important;
+                    border-bottom: 1px solid $gray-dark-theme-dark !important;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark !important;
+                        border-left: 1px solid $gray-dark-theme-dark !important;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark !important;
+                        border-right: 1px solid $gray-dark-theme-dark !important;
                     }
                 }
 
                 &:hover {
-                    background: $primary-light-color !important;
+                    background: $primary-light-color-theme-dark !important;
 
                     & > td {
-                        border-top: 1px solid $gray-dark !important;
-                        border-bottom: 1px solid $gray-dark !important;
+                        border-top: 1px solid $gray-dark-theme-dark !important;
+                        border-bottom: 1px solid $gray-dark-theme-dark !important;
 
                         &:first-child {
-                            border-left: 1px solid $gray-dark !important;
+                            border-left: 1px solid $gray-dark-theme-dark !important;
                         }
 
                         &:last-child {
-                            border-right: 1px solid $gray-dark !important;
+                            border-right: 1px solid $gray-dark-theme-dark !important;
                         }
                     }
                 }
@@ -85,7 +85,7 @@
 
             &.is-active {
                 border-color: #dddfe4 !important;
-                background: $primary-light-color !important;
+                background: $primary-light-color-theme-dark !important;
             }
         }
     }
@@ -95,12 +95,12 @@
 
 .giz-button-group {
     [light-theme] & {
-        background-color: $secondary-light !important;
-        border: 2px solid $secondary-light !important;
+        background-color: $secondary-light-theme-dark !important;
+        border: 2px solid $secondary-light-theme-dark !important;
 
         .giz-button {
-            color: $dim-light !important;
-            background-color: $secondary-light !important;
+            color: $dim-ligh-theme-darkt !important;
+            background-color: $secondary-light-theme-dark !important;
 
             &.selected {
                 background-color: $white-color !important;
@@ -108,7 +108,7 @@
 
             &:hover:not(.selected) {
                 background: $dim-white-theme-dark !important;
-                color: $dim-color !important;
+                color: $dim-color-theme-dark !important;
             }
         }
 
@@ -117,7 +117,7 @@
 
             .giz-button {
                 &.selected {
-                    color: $dim-light !important;
+                    color: $dim-ligh-theme-darkt !important;
                     background: $white-color !important;
                 }
             }
@@ -130,39 +130,39 @@
     [light-theme] & {
 
         .giz-input-label {
-            color: $dim-light !important;
+            color: $dim-ligh-theme-darkt !important;
         }
 
         .giz-input-root {
-            color: $secondary-color !important;
+            color: $secondary-color-theme-dark !important;
 
             &:hover {
                 color: $black-color !important;
             }
 
             input {
-                color: $secondary-color !important;
+                color: $secondary-color-theme-dark !important;
 
                 &::placeholder {
-                    color: $gray-light-color !important;
+                    color: $gray-light-color-theme-dark !important;
                 }
 
                 &.is-disabled, &[disabled] {
-                    background: $gray-dark !important;
+                    background: $gray-dark-theme-dark !important;
                 }
             }
 
             &.is-disabled, &[disabled] {
-                background: $gray-dark !important;
-                /*border: 1px solid $gray-dark !important;*/
-                color: $dim-light !important;
+                background: $gray-dark-theme-dark !important;
+                /*border: 1px solid $gray-dark-theme-dark !important;*/
+                color: $dim-ligh-theme-darkt !important;
             }
 
             &--outline {
-                border: 1px solid $gray-dark !important;
+                border: 1px solid $gray-dark-theme-dark !important;
 
                 &:hover {
-                    border: 1px solid $gray-dark !important;
+                    border: 1px solid $gray-dark-theme-dark !important;
                 }
             }
 
@@ -181,155 +181,128 @@
     [light-theme] & {
 
         .giz-input-select-dropdown-menu {
-            border: 1px solid $gray-dark !important;
+            border: 1px solid $gray-dark-theme-dark !important;
         }
     }
 }
 // == button == //
 
 .giz-button {
-    //group button
-    &--group-button {
-        [light-theme] & {
-            color: $gray-dark;
+    [light-theme] & {
+        //group button
+        &--group-button {
+            color: $gray-dark-theme-dark;
             background: $white-color;
-            border: 1px solid $gray-dark;
+            border: 1px solid $gray-dark-theme-dark;
 
             svg {
-                color: $gray-dark;
+                color: $gray-dark-theme-dark;
             }
         }
-    }
-    //button fill variant
-    &--fill {
-        [light-theme] & {
-            background: $primary-color-theme-dark;
-            color: $white-color;
-        }
-
-        &.is-disabled, &[disabled] {
-            [light-theme] & {
+        //button fill variant
+        &--fill {
+            &.is-disabled, &[disabled] {
                 color: $white-color;
                 background: $white-color;
-                border: 1px solid $gray-dark;
+                border: 1px solid $gray-dark-theme-dark;
 
                 svg {
-                    color: $gray-dark;
+                    color: $gray-dark-theme-dark;
                 }
             }
-        }
 
-        &.warning {
-            [light-theme] & {
-                color: $gray-dark;
+            &.primary {
+                background: $primary-color-theme-dark;
+                color: $white-color;
+            }
+
+            &.warning {
+                color: $gray-dark-theme-dark;
                 background: $white-color;
-                border: 1px solid $gray-dark;
+                border: 1px solid $gray-dark-theme-dark;
 
                 svg {
-                    color: $gray-dark;
+                    color: $gray-dark-theme-dark;
                 }
             }
-        }
 
-        &.danger {
-            &.is-disabled, &[disabled] {
-                [light-theme] & {
+            &.danger {
+                &.is-disabled, &[disabled] {
                     color: $white-color;
                     background: $white-color;
-                    border: 1px solid $gray-dark;
+                    border: 1px solid $gray-dark-theme-dark;
 
                     svg {
-                        color: $gray-dark;
+                        color: $gray-dark-theme-dark;
                     }
                 }
             }
         }
-    }
-    //button outline variant
-    &--outline {
-        [light-theme] & {
-            color: $gray-black;
+        //button outline variant
+        &--outline {
+            color: $gray-black-theme-dark;
             background: $white-color;
-            border: 1px solid $gray-light-color;
-        }
+            border: 1px solid $gray-light-color-theme-dark;
 
-        &:hover {
-            [light-theme] & {
+            &:hover {
                 background: $white-color;
                 color: $primary-color-theme-dark;
             }
-        }
 
-        &:focus {
-            [light-theme] & {
+            &:focus {
                 background: $white-color;
                 border: 1px solid $primary-color-theme-dark;
-                color: $secondary-color;
+                color: $secondary-color-theme-dark;
             }
-        }
 
-        &.is-disabled, &[disabled] {
-            [light-theme] & {
-                color: $gray-dark;
+            &.is-disabled, &[disabled] {
+                color: $gray-dark-theme-dark;
                 background: $white-color;
-                border: 1px solid $gray-dark;
+                border: 1px solid $gray-dark-theme-dark;
 
                 svg {
-                    color: $gray-dark;
+                    color: $gray-dark-theme-dark;
                 }
             }
         }
-    }
-    //button text variant
-    &--text {
-        [light-theme] & {
-            color: $secondary-color;
-        }
+        //button text variant
+        &--text {
+            color: $secondary-color-theme-dark;
 
-        &:hover {
-            [light-theme] & {
+            &:hover {
                 color: $primary-color-theme-dark;
                 background: $white-color;
             }
-        }
 
-        &:focus {
-            [light-theme] & {
+            &:focus {
                 background: $white-color;
                 box-shadow: $elevation-1-theme-dark;
             }
-        }
 
-        &.is-disabled, &[disabled] {
-            [light-theme] & {
-                color: $gray-dark;
+            &.is-disabled, &[disabled] {
+                color: $gray-dark-theme-dark;
                 background: $white-color;
-                border: 1px solid $gray-dark;
+                border: 1px solid $gray-dark-theme-dark;
 
                 svg {
-                    color: $gray-dark;
+                    color: $gray-dark-theme-dark;
                 }
             }
         }
-    }
-    //button icon variant
-    &--icon {
-        &.is-disabled, &[disabled] {
-            [light-theme] & {
-                color: $gray-dark;
+        //button icon variant
+        &--icon {
+            &.is-disabled, &[disabled] {
+                color: $gray-dark-theme-dark;
             }
         }
-    }
-    //buton disable
-    &.is-disabled, &[disabled] {
-
-        [light-theme] & {
-            color: $gray-dark;
+        //buton disable
+        &.is-disabled, &[disabled] {
+            color: $gray-dark-theme-dark;
             background: $white-color;
-            border: 1px solid $gray-dark;
+            border: 1px solid $gray-dark-theme-dark;
 
             svg {
-                color: $gray-dark;
+                color: $gray-dark-theme-dark;
             }
         }
     }

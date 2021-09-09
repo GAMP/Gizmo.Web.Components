@@ -47,7 +47,7 @@
     max-width: 32rem;
     min-height: 1.6rem;
     box-shadow: $elevation-3-theme-dark;
-    background-color: $dark-color;
+    background-color: $dark-color-theme-dark;
 
     [light-theme] & {
         background-color: $white-color;
@@ -72,7 +72,7 @@
     }
 
     .giz-calendar-content {
-        background-color: $dark-color;
+        background-color: $dark-color-theme-dark;
         color: $white-color;
         /*padding: 0.8rem 1rem;*/
 
@@ -101,10 +101,10 @@
         .giz-calendar-weekday {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            color: $dim-light;
+            color: $dim-ligh-theme-darkt;
             place-items: center;
             margin-bottom: $spacer-8;
-            font-size: $font-12;
+            font-size: $font-12-theme-dark;
         }
 
         .giz-calendar-day {
@@ -115,7 +115,7 @@
             place-items: center;
 
             .giz-calendar-day-count {
-                font-size: $font-12;
+                font-size: $font-12-theme-dark;
             }
         }
 
@@ -141,7 +141,7 @@
                 text-align: center;
 
                 &:hover:not(.active) {
-                    background: $light-color;
+                    background: $light-color-theme-dark;
                 }
             }
         }

@@ -3,8 +3,8 @@
     left: -9999px;
 
     & + label {
-        font-size: $font-15;
-        color: $secondary-color;
+        font-size: $font-15-theme-dark;
+        color: $secondary-color-theme-dark;
         position: $position-relative;
         padding-left: $spacer-36;
         display: $display-flex;
@@ -30,13 +30,13 @@
         transform: translateY(-50%);
         width: 2.4rem;
         height: 2.4rem;
-        background: $dark-gray;
+        background: $dark-gray-theme-dark;
         border: 1px solid $onyx-black-theme-dark;
         border-radius: $rounded-theme-dark;
 
         [light-theme] & {
             background: $transparent-color;
-            border: 1px solid $gray-color;
+            border: 1px solid $gray-color-theme-dark;
         }
     }
 
@@ -48,13 +48,13 @@
 
     &.is-disabled + label:before, &[disabled] + label:before {
         cursor: default;
-        background: $gray-dim;
-        border-color: $gray-dim;
+        background: $gray-dim-theme-dark;
+        border-color: $gray-dim-theme-dark;
         pointer-events: none;
 
         [light-theme] & {
-            background: $gray-dark;
-            border-color: $gray-dark;
+            background: $gray-dark-theme-dark;
+            border-color: $gray-dark-theme-dark;
         }
     }
 
@@ -84,8 +84,8 @@
     }
 
     &:indeterminate.is-disabled + label:before, &:indeterminate[disabled] + label:before {
-        background: $gray-color;
-        border-color: $gray-color;
+        background: $gray-color-theme-dark;
+        border-color: $gray-color-theme-dark;
     }
 
     &:indeterminate + label:after {

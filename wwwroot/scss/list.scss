@@ -5,7 +5,7 @@
     border-radius: $rounded-theme-dark;
     position: $position-relative;
     min-width: 15rem;
-    background: $dark-gray;
+    background: $dark-gray-theme-dark;
 
     [light-theme] & {
         background-color: $white-color;
@@ -15,15 +15,15 @@
         display: flex;
         align-items: center;
         font-weight: $font-weight-600;
-        font-size: $font-15;
+        font-size: $font-15-theme-dark;
         line-height: $line-height-16-theme-dark;
-        letter-spacing: $letter-spacing-8;
-        color: $gray-black;
+        letter-spacing: $letter-spacing-8-theme-dark;
+        color: $gray-black-theme-dark;
         text-decoration: $text-decoration;
         cursor: pointer;
 
         [light-theme] & {
-            color: $secondary-color;
+            color: $secondary-color-theme-dark;
         }
 
         &.giz-list-item-disabled {
@@ -40,7 +40,7 @@
     &.giz-list--clickable {
         .giz-list-item {
             &:hover {
-                background-color: $dark-jungle;
+                background-color: $dark-jungle-theme-dark;
                 color: $primary-color-theme-dark;
             }
 
@@ -49,7 +49,7 @@
             }
 
             [light-theme] &:hover {
-                background-color: $secondary-light;
+                background-color: $secondary-light-theme-dark;
             }
         }
     }

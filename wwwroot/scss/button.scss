@@ -2,7 +2,7 @@
 
 //button (default button primary)
 .giz-button {
-    font-size: $font-17;
+    font-size: $font-17-theme-dark;
     cursor: $cursor-pointer;
     border-radius: $rounded-theme-dark;
     transition: color 0.3s ease;
@@ -10,9 +10,9 @@
     transition: border 0.3s ease;
     transition: box-shadow 0.3s ease;
     font-weight: $font-weight-600;
-    letter-spacing: $letter-spacing-8;
+    letter-spacing: $letter-spacing-8-theme-dark;
     white-space: $nowrap-white-space;
-    line-height: $line-height-22;
+    line-height: $line-height-22-theme-dark;
     text-align: $text-align-center;
     position: $position-relative;
     align-items: center;
@@ -35,7 +35,7 @@
     }
     //group button
     &--group-button {
-        border: $border-0;
+        border: $border-0-theme-dark;
         outline: $outline-0;
         color: $white-color;
         background: $primary-color-theme-dark;
@@ -50,90 +50,92 @@
         }
 
         &.is-disabled, &[disabled] {
-            color: $dark-gray;
+            color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             pointer-events: none;
             border: none;
 
             svg {
-                color: $dark-gray;
+                color: $dark-gray-theme-dark;
             }
         }
     }
     //button fill variant
     &--fill {
-        border: $border-0;
-        outline: $outline-0;
-        color: $white-color;
-        background: $primary-color-theme-dark;
-
         &:hover {
             background: #4F5AD3;
         }
 
-        &:focus {
-            background: $primary-color-theme-dark;
-            box-shadow: 0px 0px 9px #4891FF;
-        }
-
         &.is-disabled, &[disabled] {
-            color: $dark-gray;
+            color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             pointer-events: none;
 
             svg {
-                color: $dark-gray;
+                color: $dark-gray-theme-dark;
+            }
+        }
+
+        &.primary {
+            border: $border-0-theme-dark;
+            outline: $outline-0;
+            color: $white-color;
+            background: $primary-color-theme-dark;
+
+            &:focus {
+                background: $primary-color-theme-dark;
+                box-shadow: 0px 0px 9px #4891FF;
             }
         }
 
         &.warning {
-            border: $border-0;
+            border: $border-0-theme-dark;
             outline: $outline-0;
             color: $white-color;
-            background: $warning-color;
+            background: $warning-color-theme-dark;
 
             &:hover {
                 background: #e98950;
             }
 
             &:focus {
-                background: $warning-color;
+                background: $warning-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
 
             &.is-disabled, &[disabled] {
-                color: $dark-gray;
+                color: $dark-gray-theme-dark;
                 background: $onyx-black-theme-dark;
                 pointer-events: none;
             }
 
             svg {
-                color: $dark-gray;
+                color: $dark-gray-theme-dark;
             }
         }
 
         &.danger {
-            border: $border-0;
+            border: $border-0-theme-dark;
             outline: $outline-0;
             color: $white-color;
-            background: $danger-color;
+            background: $danger-color-theme-dark;
 
             &:hover {
                 background: #e94554;
             }
 
             &:focus {
-                background: $danger-color;
+                background: $danger-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
 
             &.is-disabled, &[disabled] {
-                color: $dark-gray;
+                color: $dark-gray-theme-dark;
                 background: $onyx-black-theme-dark;
                 pointer-events: none;
 
                 svg {
-                    color: $dark-gray;
+                    color: $dark-gray-theme-dark;
                 }
             }
         }
@@ -141,7 +143,7 @@
     //button outline variant
     &--outline {
         color: $dim-white-theme-dark;
-        background-color: $dark-gray;
+        background-color: $dark-gray-theme-dark;
         border: 1px solid $onyx-black-theme-dark;
 
         &:hover {
@@ -155,13 +157,13 @@
         }
 
         &.is-disabled, &[disabled] {
-            color: $dark-gray;
+            color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
 
             svg {
-                color: $dark-gray;
+                color: $dark-gray-theme-dark;
             }
         }
     }
@@ -169,7 +171,7 @@
     &--text {
         background: none;
         border: none;
-        color: $gray-black;
+        color: $gray-black-theme-dark;
 
         &:hover {
         }
@@ -178,13 +180,13 @@
         }
 
         &.is-disabled, &[disabled] {
-            color: $dark-gray;
+            color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
 
             svg {
-                color: $dark-gray;
+                color: $dark-gray-theme-dark;
             }
         }
     }
@@ -192,8 +194,8 @@
     &--icon {
         background: none;
         border: none;
-        color: $secondary-color;
-        border-radius: $rounded-circle;
+        color: $secondary-color-theme-dark;
+        border-radius: $rounded-circle-theme-dark;
 
         &:hover {
             color: $primary-color-theme-dark;
@@ -206,13 +208,13 @@
         }
 
         &.is-disabled, &[disabled] {
-            color: $dark-gray;
+            color: $dark-gray-theme-dark;
             pointer-events: none;
         }
     }
     // button extra large
     &--extra-large {
-        font-size: $font-19;
+        font-size: $font-19-theme-dark;
         height: 8rem;
         font-weight: $font-weight-700;
         padding: 0 4rem;
@@ -220,30 +222,30 @@
     //button large
     &--large {
         height: 4.8rem;
-        font-size: $font-17;
+        font-size: $font-17-theme-dark;
         padding: 0 2.4rem;
     }
     //button medium
     &--medium {
         height: 3.2rem;
-        font-size: $font-15;
+        font-size: $font-15-theme-dark;
         padding: 0 1.6rem;
     }
     //button small
     &--small {
         height: 2.4rem;
-        font-size: $font-12;
+        font-size: $font-12-theme-dark;
         padding: 0 1.2rem;
     }
     //buton disable
     &.is-disabled, &[disabled] {
-        color: $dark-gray;
+        color: $dark-gray-theme-dark;
         background: $onyx-black-theme-dark;
         border: none;
         pointer-events: none;
 
         svg {
-            color: $dark-gray;
+            color: $dark-gray-theme-dark;
         }
     }
 }

@@ -32,7 +32,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: $gray-color;
+        background-color: $gray-color-theme-dark;
         transition: 0.4s;
 
         &:before {
@@ -42,7 +42,7 @@
             width: 28px;
             left: 2px;
             bottom: 2px;
-            background-color: $gray-dim;
+            background-color: $gray-dim-theme-dark;
             transition: 0.4s;
 
             [light-theme] & {
@@ -52,7 +52,7 @@
 
         &.round {
             border-radius: 34px;
-            background: $gray-dark;
+            background: $gray-dark-theme-dark;
 
             &:before {
                 border-radius: 50%;

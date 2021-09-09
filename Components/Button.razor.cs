@@ -30,6 +30,9 @@ namespace Gizmo.Web.Components
 
         #region PUBLIC
 
+        [Parameter]
+        public ButtonColors Color { get; set; } = ButtonColors.Primary;
+
         [Parameter()]
         public ButtonVariants Variant { get; set; } = ButtonVariants.Fill;
 
@@ -201,6 +204,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-button")
                  .Add($"giz-button--{Size.ToDescriptionString()}")
+                 .Add($"{Color.ToDescriptionString()}")
                  .If("giz-button--group-button", () => ButtonGroup != null)
                  .If("giz-button--fill", () => ButtonGroup == null && Variant == ButtonVariants.Fill)
                  .If("giz-button--outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)

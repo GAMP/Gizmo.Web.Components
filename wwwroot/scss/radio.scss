@@ -3,8 +3,8 @@
     left: -9999px;
 
     & + label {
-        font-size: $font-15;
-        color: $secondary-color;
+        font-size: $font-15-theme-dark;
+        color: $secondary-color-theme-dark;
         position: $position-relative;
         padding-left: $spacer-36;
         display: $display-flex;
@@ -30,7 +30,7 @@
         width: 2.4rem;
         height: 2.4rem;
         background: $transparent-color;
-        border: 1px solid $gray-color;
+        border: 1px solid $gray-color-theme-dark;
         border-radius: 100px;
     }
 
@@ -42,7 +42,7 @@
 
     &.is-disabled + label:before, &[disabled] + label:before {
         cursor: default;
-        background: $gray-color;
+        background: $gray-color-theme-dark;
     }
 
     &.is-disabled + label, &[disabled] + label {

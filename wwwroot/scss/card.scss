@@ -4,9 +4,9 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
-    background-color: $dark-color;
+    background-color: $dark-color-theme-dark;
     border-radius: $rounded-theme-dark;
-    color: $secondary-color;
+    color: $secondary-color-theme-dark;
     box-shadow: $elevation-2-theme-dark;
 
     [light-theme] & {
@@ -14,7 +14,7 @@
     }
 
     &.giz-card-outlined {
-        border: 1px solid $gray-light-color;
+        border: 1px solid $gray-light-color-theme-dark;
     }
 
     .giz-card-header {

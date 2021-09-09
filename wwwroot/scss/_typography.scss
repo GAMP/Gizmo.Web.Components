@@ -9,7 +9,7 @@
 
 body {
     color: $base-color;
-    font-family: $font-family;
+    font-family: $font-family-theme-dark;
     font-size: $base-font-size;
     font-weight: $base-font-weight;
     line-height: $base-line-height;
@@ -24,14 +24,14 @@ a {
 //== font family
 
 .giz-font-family {
-    font-family: $font-family !important;
+    font-family: $font-family-theme-dark !important;
 }
 
 //== theme
 
 //theme background
 .giz-theme-background {
-    background: $dark-gray !important;
+    background: $dark-gray-theme-dark !important;
     color: $white-color;
 
     [light-theme] & {
@@ -50,11 +50,11 @@ a {
 
 //theme surface
 .giz-theme-surface {
-    background: $dark-light-color !important;
+    background: $dark-light-color-theme-dark !important;
     color: $white-color !important;
 
     [light-theme] & {
-        background: $secondary-light !important;
+        background: $secondary-light-theme-dark !important;
         color: $black-color !important;
     }
 }
@@ -86,11 +86,11 @@ a {
 }
 
 .giz-primary-light {
-    background-color: $primary-light-color !important;
+    background-color: $primary-light-color-theme-dark !important;
 }
 
 .giz-primary-light-text {
-    color: $primary-light-color !important;
+    color: $primary-light-color-theme-dark !important;
 }
 
 .giz-theme-on-primary-light {
@@ -102,19 +102,19 @@ a {
 }
 
 .giz-warning {
-    background-color: $warning-color !important;
+    background-color: $warning-color-theme-dark !important;
 }
 
 .giz-warning-text {
-    color: $warning-color !important;
+    color: $warning-color-theme-dark !important;
 }
 
 .giz-secondary {
-    background-color: $secondary-color !important;
+    background-color: $secondary-color-theme-dark !important;
 }
 
 .giz-secondary-text {
-    color: $secondary-color !important;
+    color: $secondary-color-theme-dark !important;
 }
 
 .giz-theme-on-secondary {
@@ -126,11 +126,11 @@ a {
 }
 
 .giz-secondary-light {
-    background-color: $secondary-light !important;
+    background-color: $secondary-light-theme-dark !important;
 }
 
 .giz-secondary-light-text {
-    color: $secondary-light !important;
+    color: $secondary-light-theme-dark !important;
 }
 
 .giz-theme-on-secondary-light {
@@ -142,11 +142,11 @@ a {
 }
 
 .giz-secondary-dark {
-    background-color: $secondary-dark !important;
+    background-color: $secondary-dark-theme-dark !important;
 }
 
 .giz-secondary-dark-text {
-    color: $secondary-dark !important;
+    color: $secondary-dark-theme-dark !important;
 }
 
 .giz-theme-on-secondary-dark {
@@ -158,11 +158,11 @@ a {
 }
 
 .giz-info {
-    background-color: $info-color !important;
+    background-color: $info-color-theme-dark !important;
 }
 
 .giz-info-text {
-    color: $info-color !important;
+    color: $info-color-theme-dark !important;
 }
 
 .giz-theme-on-info {
@@ -174,11 +174,11 @@ a {
 }
 
 .giz-success {
-    background-color: $success-color !important;
+    background-color: $success-color-theme-dark !important;
 }
 
 .giz-success-text {
-    color: $success-color !important;
+    color: $success-color-theme-dark !important;
 }
 
 .giz-theme-on-success {
@@ -190,11 +190,11 @@ a {
 }
 
 .giz-danger {
-    background-color: $danger-color !important;
+    background-color: $danger-color-theme-dark !important;
 }
 
 .giz-danger-text {
-    color: $danger-color !important;
+    color: $danger-color-theme-dark !important;
 }
 
 .giz-theme-on-danger {
@@ -206,11 +206,11 @@ a {
 }
 
 .giz-light {
-    background-color: $light-color !important;
+    background-color: $light-color-theme-dark !important;
 }
 
 .giz-light-text {
-    color: $light-color !important;
+    color: $light-color-theme-dark !important;
 }
 
 .giz-theme-on-light {
@@ -222,11 +222,11 @@ a {
 }
 
 .giz-dark {
-    background-color: $dark-color !important;
+    background-color: $dark-color-theme-dark !important;
 }
 
 .giz-dark-text {
-    color: $dark-color !important;
+    color: $dark-color-theme-dark !important;
 }
 
 .giz-theme-on-dark {
@@ -238,11 +238,11 @@ a {
 }
 
 .giz-dark-light {
-    background-color: $dark-light-color !important;
+    background-color: $dark-light-color-theme-dark !important;
 }
 
 .giz-dark-light-text {
-    color: $dark-light-color !important;
+    color: $dark-light-color-theme-dark !important;
 }
 
 .giz-theme-on-dark-light {
@@ -254,15 +254,15 @@ a {
 }
 
 .giz-dark-jungle {
-    background-color: $dark-jungle !important;
+    background-color: $dark-jungle-theme-dark !important;
 }
 
 .giz-dark-jungle-text {
-    color: $dark-jungle !important;
+    color: $dark-jungle-theme-dark !important;
 }
 
 .giz-theme-on-dark-jungle {
-    color: $dark-jungle !important;
+    color: $dark-jungle-theme-dark !important;
 
     [light-theme] & {
         color: $white-color !important;
@@ -303,66 +303,66 @@ a {
 }
 
 .giz-mid-gray {
-    background-color: $mid-gray !important;
+    background-color: $mid-gray-theme-dark !important;
 }
 
 .giz-mid-gray-text {
-    color: $mid-gray !important;
+    color: $mid-gray-theme-dark !important;
 }
 
 .giz-theme-on-mid-gray {
-    color: $mid-gray !important;
+    color: $mid-gray-theme-dark !important;
 
     [light-theme] & {
-        color: $mid-gray !important;
+        color: $mid-gray-theme-dark !important;
     }
 }
 
 .giz-dark-gray {
-    background-color: $dark-gray !important;
+    background-color: $dark-gray-theme-dark !important;
 }
 
 .giz-dark-gray-text {
-    color: $dark-gray !important;
+    color: $dark-gray-theme-dark !important;
 }
 
 .giz-theme-on-dark-gray {
-    color: $dark-gray !important;
+    color: $dark-gray-theme-dark !important;
 
     [light-theme] & {
-        color: $dark-gray !important;
+        color: $dark-gray-theme-dark !important;
     }
 }
 
 .giz-grey-black {
-    background-color: $gray-black !important;
+    background-color: $gray-black-theme-dark !important;
 }
 
 .giz-grey-black-text {
-    color: $gray-black !important;
+    color: $gray-black-theme-dark !important;
 }
 
 .giz-theme-on-grey-black {
-    color: $gray-black !important;
+    color: $gray-black-theme-dark !important;
 
     [light-theme] & {
-        color: $gray-black !important;
+        color: $gray-black-theme-dark !important;
     }
 }
 
 .giz-grey-dim {
-    background-color: $gray-dim !important;
+    background-color: $gray-dim-theme-dark !important;
 }
 
 .giz-grey-dim-text {
-    color: $gray-dim !important;
+    color: $gray-dim-theme-dark !important;
 }
 
 .giz-theme-on-grey-dim {
-    color: $gray-dim !important;
+    color: $gray-dim-theme-dark !important;
 
     [light-theme] & {
-        color: $gray-dim !important;
+        color: $gray-dim-theme-dark !important;
     }
 }
 
@@ -400,11 +400,11 @@ a {
 }
 
 .giz-gray {
-    background-color: $gray-color !important;
+    background-color: $gray-color-theme-dark !important;
 }
 
 .giz-gray-text {
-    color: $gray-color !important;
+    color: $gray-color-theme-dark !important;
 }
 
 .giz-theme-on-gray {
@@ -416,11 +416,11 @@ a {
 }
 
 .giz-gray-light {
-    background-color: $gray-light-color !important;
+    background-color: $gray-light-color-theme-dark !important;
 }
 
 .giz-gray-light-text {
-    color: $gray-light-color !important;
+    color: $gray-light-color-theme-dark !important;
 }
 
 .giz-theme-on-gray-light {
@@ -432,11 +432,11 @@ a {
 }
 
 .giz-gray-dark {
-    background-color: $gray-dark !important;
+    background-color: $gray-dark-theme-dark !important;
 }
 
 .giz-gray-dark-text {
-    color: $gray-dark !important;
+    color: $gray-dark-theme-dark !important;
 }
 
 .giz-theme-on-gray-dark {
@@ -448,11 +448,11 @@ a {
 }
 
 .giz-dim-light {
-    background-color: $dim-light !important;
+    background-color: $dim-ligh-theme-darkt !important;
 }
 
 .giz-dim-light-text {
-    color: $dim-light !important;
+    color: $dim-ligh-theme-darkt !important;
 }
 
 .giz-theme-on-dim-light {
@@ -464,11 +464,11 @@ a {
 }
 
 .giz-dim-color {
-    background-color: $dim-color !important;
+    background-color: $dim-color-theme-dark !important;
 }
 
 .giz-dim-color-text {
-    color: $dim-color !important;
+    color: $dim-color-theme-dark !important;
 }
 
 .giz-theme-on-dim-color {
@@ -491,11 +491,11 @@ a {
 
 //font
 .font-12 {
-    font-size: $font-12 !important;
+    font-size: $font-12-theme-dark !important;
 }
 
 .font-13 {
-    font-size: $font-13 !important;
+    font-size: $font-13-theme-dark !important;
 }
 
 .font-14 {
@@ -503,7 +503,7 @@ a {
 }
 
 .font-15 {
-    font-size: $font-15 !important;
+    font-size: $font-15-theme-dark !important;
 }
 
 .font-16 {
@@ -511,29 +511,29 @@ a {
 }
 
 .font-17 {
-    font-size: $font-17 !important;
+    font-size: $font-17-theme-dark !important;
 }
 
 .font-18 {
-    font-size: $font-18 !important;
+    font-size: $font-18-theme-dark !important;
 }
 
 .font-19 {
-    font-size: $font-19 !important;
+    font-size: $font-19-theme-dark !important;
 }
 
 .font-20 {
-    font-size: $font-20 !important;
+    font-size: $font-20-theme-dark !important;
 }
 
 //letter spacing
 
 .letter-spacing-4 {
-    letter-spacing: $letter-spacing-4 !important;
+    letter-spacing: $letter-spacing-4-theme-dark !important;
 }
 
 .letter-spacing-8 {
-    letter-spacing: $letter-spacing-8 !important;
+    letter-spacing: $letter-spacing-8-theme-dark !important;
 }
 
 //line height
@@ -543,11 +543,11 @@ a {
 }
 
 .line-height-24 {
-    line-height: $line-height-24 !important;
+    line-height: $line-height-24-theme-dark !important;
 }
 
 .line-height-22 {
-    line-height: $line-height-22 !important;
+    line-height: $line-height-22-theme-dark !important;
 }
 
 //cursor
@@ -702,7 +702,7 @@ h6, .giz-typography-h6 {
 //== box shadow
 
 .giz-elevation-0 {
-    box-shadow: $elevation-0 !important;
+    box-shadow: $elevation-0-theme-dark !important;
 }
 
 .giz-elevation-1 {
@@ -724,7 +724,7 @@ h6, .giz-typography-h6 {
 //== border
 
 .border-color {
-    border-color: $border-color !important;
+    border-color: $border-color-theme-dark !important;
 }
 
 .border-primary {
@@ -732,47 +732,47 @@ h6, .giz-typography-h6 {
 }
 
 .border-primary-light {
-    border-color: $primary-light-color !important;
+    border-color: $primary-light-color-theme-dark !important;
 }
 
 .border-secondary {
-    border-color: $secondary-color !important;
+    border-color: $secondary-color-theme-dark !important;
 }
 
 .border-secondary-light {
-    border-color: $secondary-light !important;
+    border-color: $secondary-light-theme-dark !important;
 }
 
 .border-secondary-dark {
-    border-color: $secondary-dark !important;
+    border-color: $secondary-dark-theme-dark !important;
 }
 
 .border-gray-dark {
-    border-color: $gray-dark !important;
+    border-color: $gray-dark-theme-dark !important;
 }
 
 .border-info {
-    border-color: $info-color !important;
+    border-color: $info-color-theme-dark !important;
 }
 
 .border-success {
-    border-color: $success-color !important;
+    border-color: $success-color-theme-dark !important;
 }
 
 .border-danger {
-    border-color: $danger-color !important;
+    border-color: $danger-color-theme-dark !important;
 }
 
 .border-light {
-    border-color: $light-color !important;
+    border-color: $light-color-theme-dark !important;
 }
 
 .border-dark {
-    border-color: $dark-color !important;
+    border-color: $dark-color-theme-dark !important;
 }
 
 .border-dark-light {
-    background-color: $dark-light-color !important;
+    background-color: $dark-light-color-theme-dark !important;
 }
 
 .border-black {
@@ -788,15 +788,15 @@ h6, .giz-typography-h6 {
 }
 
 .border-gray {
-    border-color: $gray-color !important;
+    border-color: $gray-color-theme-dark !important;
 }
 
 .border-gray-light {
-    border-color: $gray-light-color !important;
+    border-color: $gray-light-color-theme-dark !important;
 }
 
 .border-gray-black {
-    border-color: $gray-black !important;
+    border-color: $gray-black-theme-dark !important;
 }
 
 .border-dark-color {
@@ -804,39 +804,39 @@ h6, .giz-typography-h6 {
 }
 
 .border-dark-grey {
-    border-color: $dark-gray !important;
+    border-color: $dark-gray-theme-dark !important;
 }
 
 .border-dark-gray {
-    border-color: $dark-gray !important;
+    border-color: $dark-gray-theme-dark !important;
 }
 
 .border-mid-gray {
-    border-color: $mid-gray !important;
+    border-color: $mid-gray-theme-dark !important;
 }
 
 .border-dark-jungle {
-    border-color: $dark-jungle !important;
+    border-color: $dark-jungle-theme-dark !important;
 }
 
 .border-gray-dim {
-    border-color: $gray-dim !important;
+    border-color: $gray-dim-theme-dark !important;
 }
 
 .border-light-color {
-    border-color: $border-light-color !important;
+    border-color: $border-light-color-theme-dark !important;
 }
 
 .border-dim-color {
-    border-color: $dim-color !important;
+    border-color: $dim-color-theme-dark !important;
 }
 
 .border-dim-light {
-    border-color: $dim-light !important;
+    border-color: $dim-ligh-theme-darkt !important;
 }
 
 .border-dark-navy {
-    border-color: $border-dark-navy !important;
+    border-color: $border-dark-navy-theme-dark !important;
 }
 //== height / width
 
@@ -855,41 +855,41 @@ h6, .giz-typography-h6 {
 //==border width
 
 .border-0 {
-    border-width: $border-0 !important;
+    border-width: $border-0-theme-dark !important;
 }
 
 .border {
-    border: $border;
+    border: $border-theme-dark;
 }
 
 .border-top {
-    border-top: $border;
+    border-top: $border-theme-dark;
 }
 
 .border-bottom {
-    border-bottom: $border;
+    border-bottom: $border-theme-dark;
 }
 
 .border-start {
-    border-left: $border;
+    border-left: $border-theme-dark;
 }
 
 .border-end {
-    border-right: $border
+    border-right: $border-theme-dark
 }
 
 //==border radius
 
 .rounded-circle {
-    border-radius: $rounded-circle !important;
+    border-radius: $rounded-circle-theme-dark !important;
 }
 
 .rounded-pill {
-    border-radius: $rounded-pill !important;
+    border-radius: $rounded-pill-theme-dark !important;
 }
 
 .rounded-0 {
-    border-radius: $rounded-0 !important;
+    border-radius: $rounded-0-theme-dark !important;
 }
 
 .rounded {
@@ -897,7 +897,7 @@ h6, .giz-typography-h6 {
 }
 
 .rounded-lg {
-    border-radius: $rounded-lg !important;
+    border-radius: $rounded-lg-theme-dark !important;
 }
 
 //== outline
