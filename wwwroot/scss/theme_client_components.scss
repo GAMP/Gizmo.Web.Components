@@ -190,13 +190,15 @@
 .giz-input-select {
     [client-theme] & {
         .giz-input-select-dropdown-menu {
+            border: unset !important;
+
             .giz-list {
                 background: $jet-black !important;
 
                 .giz-list-item {
-                    padding: 0.5rem !important;
                     @include open-sans-600;
                     @include font-11;
+                    padding: 0.5rem !important;
                     font-weight: normal !important;
                     letter-spacing: unset !important;
                     color: $white-color !important;
@@ -342,12 +344,30 @@
         background: $dark-jungle;
 
         .giz-list-item {
-            color: $secondary-color-theme-dark;
+            border-radius: $rounded-lg;
+            font-size: $font-17;
+            line-height: $line-height-21;
+            letter-spacing: $letter-spacing-5;
+            color: $white-color;
         }
 
         &.giz-list--clickable {
             .giz-list-item {
-                background-color: unset !important;
+                background: $black-forest;
+
+                &:hover {
+                    background: $metalic-black;
+                    color: $white-color;
+                }
+            }
+        }
+
+        &.giz-list--selectable {
+            .giz-list-item {
+                &.giz-list-item-selected {
+                    background: $metalic-black;
+                    color: $white-color;
+                }
             }
         }
     }
