@@ -209,7 +209,6 @@
 // == button == //
 .giz-button {
     [client-theme] & {
-        border-radius: $rounded-sm;
         color: $white-color;
         font-weight: $font-weight-700;
         letter-spacing: $letter-spacing-24;
@@ -228,6 +227,7 @@
         }
         //button fill variant
         &--fill {
+
             &.is-disabled, &[disabled] {
             }
 
@@ -281,6 +281,19 @@
         }
         //button icon variant
         &--icon {
+            &.giz-button--medium {
+                background: $midnight-black !important;
+                height: 1.875rem !important;
+                width: 1.875rem !important;
+                border-radius: $rounded-circle !important;
+                padding: 0 !important;
+
+                .giz-icon--medium {
+                    width: 14px !important;
+                    height: 14px !important;
+                }
+            }
+
             &.is-disabled, &[disabled] {
             }
         }
@@ -291,6 +304,13 @@
         &--medium {
             height: 33px !important;
             padding: 0 0.688rem !important;
+            border-radius: $rounded-sm;
+        }
+
+        &--large {
+            height: 53px !important;
+            padding: 1.219rem !important;
+            border-radius: $rounded;
         }
     }
 }
