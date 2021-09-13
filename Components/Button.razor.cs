@@ -55,6 +55,9 @@ namespace Gizmo.Web.Components
         public bool IsDisabled { get; set; }
 
         [Parameter]
+        public bool HasShadow { get; set; }
+
+        [Parameter]
         public bool IsFullWidth { get; set; }
 
         /// <summary>
@@ -211,6 +214,7 @@ namespace Gizmo.Web.Components
                  .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
                  .If("giz-button--icon", () => ButtonGroup == null && Variant == ButtonVariants.Icon)
                  .If("giz-button-full-width", () => IsFullWidth)
+                 .If("giz-button-shadow", () => HasShadow)
                  .If("disabled", () => IsDisabled)
                  .If("selected", () => _selected)
                  .AsString();

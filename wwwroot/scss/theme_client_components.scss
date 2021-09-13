@@ -211,6 +211,7 @@
 // == button == //
 .giz-button {
     [client-theme] & {
+        border-radius: $rounded-sm;
         color: $white-color;
         font-weight: $font-weight-700;
         letter-spacing: $letter-spacing-24;
@@ -223,7 +224,6 @@
         position: $position-relative;
         font-size: $font-13;
         line-height: $line-height-13;
-        padding: 0.813rem 1.938rem !important;
         //group button
         &--group-button {
         }
@@ -238,11 +238,17 @@
 
             &.primary {
                 background: $primary-color !important;
-                box-shadow: $elevation-1 !important;
 
                 &:focus {
                     background: $white-color;
-                    box-shadow: $elevation-1-theme-dark;
+                }
+
+                &.giz-button-shadow {
+                    box-shadow: $elevation-1 !important;
+
+                    &:focus {
+                        box-shadow: $elevation-1-theme-dark;
+                    }
                 }
             }
 
@@ -303,16 +309,22 @@
         &.is-disabled, &[disabled] {
         }
 
+        &--small {
+        }
+
         &--medium {
             height: 33px !important;
             padding: 0 0.688rem !important;
-            border-radius: $rounded-sm;
         }
 
         &--large {
+            height: 39px !important;
+            padding: 0.813rem 1.938rem !important;
+        }
+
+        &--extra-large {
             height: 53px !important;
             padding: 1.219rem !important;
-            border-radius: $rounded;
         }
     }
 }
