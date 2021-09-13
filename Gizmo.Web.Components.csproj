@@ -22,6 +22,8 @@
 	  <Content Remove="wwwroot\scss\badge.scss" />
 	  <Content Remove="wwwroot\scss\button-group.scss" />
 	  <Content Remove="wwwroot\scss\card.scss" />
+	  <Content Remove="wwwroot\scss\chip-group.scss" />
+	  <Content Remove="wwwroot\scss\chip.scss" />
 	  <Content Remove="wwwroot\scss\collapse.scss" />
 	  <Content Remove="wwwroot\scss\date-picker.scss" />
 	  <Content Remove="wwwroot\scss\dialog.scss" />
@@ -33,6 +35,7 @@
 	  <Content Remove="wwwroot\scss\pagination.scss" />
 	  <Content Remove="wwwroot\scss\popup.scss" />
 	  <Content Remove="wwwroot\scss\progress-bar.scss" />
+	  <Content Remove="wwwroot\scss\rating.scss" />
 	  <Content Remove="wwwroot\scss\select.scss" />
 	  <Content Remove="wwwroot\scss\switch.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
@@ -61,8 +64,11 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="wwwroot\scripts.js" />
+		<None Include="wwwroot\scss\chip.scss" />
+		<None Include="wwwroot\scss\chip-group.scss" />
 		<None Include="wwwroot\scss\divider.scss" />
 		<None Include="wwwroot\scss\collapse.scss" />
+		<None Include="wwwroot\scss\rating.scss" />
 		<None Include="wwwroot\scss\_mixin.scss" />
 		<None Include="wwwroot\scss\icon.scss" />
 		<None Include="wwwroot\scss\theme_client_components.scss" />
