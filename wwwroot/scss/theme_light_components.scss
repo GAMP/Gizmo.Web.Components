@@ -326,3 +326,11 @@
         }
     }
 }
+
+// == card == //
+
+.giz-card {
+    [light-theme] & {
+        background-color: $white-color;
+    }
+}

@@ -11,9 +11,12 @@
                 <div class="flex-grow-1">
                     @DialogHeader
                 </div>
-                <div>
-                    <Button Size="ButtonSizes.Large" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Close" @onclick="OnClickButtonCloseHandler" />
-                </div>
+                @if (ShowCloseButton)
+                {
+                    <div>
+                        <Button Size="ButtonSizes.Large" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Close" @onclick="OnClickButtonCloseHandler" />
+                    </div>
+                }
             </div>
         </CardHeader>
         <CardBody>

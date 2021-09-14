@@ -39,6 +39,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string MaximumHeight { get; set; }
 
+        [Parameter]
+        public bool ShowCloseButton { get; set; }
+
         #endregion
 
         #region EVENTS
