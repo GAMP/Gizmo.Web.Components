@@ -53,7 +53,7 @@
                 color: $gray-dim-theme-dark;
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 pointer-events: none;
                 color: $dim-ligh-theme-darkt;
                 //Default Theme
@@ -69,7 +69,7 @@
             color: $black-color;
         }
 
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
             pointer-events: none;
             //Default Theme
             background: $onyx-black-theme-dark;
@@ -117,7 +117,7 @@
             font-size: $font-19-theme-dark;
             line-height: $line-height-24-theme-dark;
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 background: $onyx-black-theme-dark;
                 color: $white-color;
                 pointer-events: none;

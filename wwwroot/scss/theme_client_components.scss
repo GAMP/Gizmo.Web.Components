@@ -229,26 +229,24 @@
         }
         //button fill variant
         &--fill {
+            &:focus:not(.giz-button-shadow) {
+                //Remove shadow from default theme.
+                box-shadow: unset !important;
+            }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
+                background: $dark-grayish !important;
+                color: $dim-white !important;
             }
 
             &.warning {
             }
 
-            &.primary {
+            &.primary:not(.disabled) {
                 background: $primary-color !important;
-
-                &:focus {
-                    background: $white-color;
-                }
 
                 &.giz-button-shadow {
                     box-shadow: $elevation-1 !important;
-
-                    &:focus {
-                        box-shadow: $elevation-1-theme-dark;
-                    }
                 }
             }
 
@@ -261,7 +259,7 @@
             }
 
             &.danger {
-                &.is-disabled, &[disabled] {
+                &.disabled, &[disabled] {
                 }
             }
         }
@@ -273,13 +271,12 @@
             &:focus {
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
             }
         }
         //button text variant
         &--text {
             [client-theme] & {
-                /*color: $secondary-color;*/
             }
 
             &:hover {
@@ -288,7 +285,7 @@
             &:focus {
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
             }
         }
         //button icon variant
@@ -306,11 +303,11 @@
                 }
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
             }
         }
         //buton disable
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
         }
 
         &--small {

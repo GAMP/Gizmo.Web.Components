@@ -46,7 +46,7 @@
         border-color: $primary-color-theme-dark;
     }
 
-    &.is-disabled + label:before, &[disabled] + label:before {
+    &.disabled + label:before, &[disabled] + label:before {
         cursor: default;
         background: $gray-dim-theme-dark;
         border-color: $gray-dim-theme-dark;
@@ -58,7 +58,7 @@
         }
     }
 
-    &.is-disabled + label, &[disabled] + label {
+    &.disabled + label, &[disabled] + label {
         cursor: default;
     }
 
@@ -83,7 +83,7 @@
         border-color: $primary-color-theme-dark;
     }
 
-    &:indeterminate.is-disabled + label:before, &:indeterminate[disabled] + label:before {
+    &:indeterminate.disabled + label:before, &:indeterminate[disabled] + label:before {
         background: $gray-color-theme-dark;
         border-color: $gray-color-theme-dark;
     }

@@ -152,7 +152,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-checkbox")
-                 .If("is-disabled", () => IsDisabled)
+                 .If("disabled", () => IsDisabled)
                  .AsString();
 
         #endregion

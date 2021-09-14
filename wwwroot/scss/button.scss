@@ -49,7 +49,7 @@
             box-shadow: 0px 0px 9px #4891FF;
         }
 
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             pointer-events: none;
@@ -66,7 +66,7 @@
             background: #4F5AD3;
         }
 
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             pointer-events: none;
@@ -103,7 +103,7 @@
                 box-shadow: 0px 0px 9px #e98950;
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 color: $dark-gray-theme-dark;
                 background: $onyx-black-theme-dark;
                 pointer-events: none;
@@ -129,7 +129,7 @@
                 box-shadow: 0px 0px 9px #e98950;
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 color: $dark-gray-theme-dark;
                 background: $onyx-black-theme-dark;
                 pointer-events: none;
@@ -156,7 +156,7 @@
             color: $dim-white-theme-dark;
         }
 
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             border: none;
@@ -179,7 +179,7 @@
         &:focus {
         }
 
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             border: none;
@@ -207,7 +207,7 @@
             box-shadow: $elevation-1-theme-dark;
         }
 
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
             pointer-events: none;
         }
@@ -238,7 +238,7 @@
         padding: 0 1.2rem;
     }
     //buton disable
-    &.is-disabled, &[disabled] {
+    &.disabled, &[disabled] {
         color: $dark-gray-theme-dark;
         background: $onyx-black-theme-dark;
         border: none;

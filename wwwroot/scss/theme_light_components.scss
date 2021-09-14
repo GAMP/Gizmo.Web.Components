@@ -146,12 +146,12 @@
                     color: $gray-light-color-theme-dark !important;
                 }
 
-                &.is-disabled, &[disabled] {
+                &.disabled, &[disabled] {
                     background: $gray-dark-theme-dark !important;
                 }
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 background: $gray-dark-theme-dark !important;
                 /*border: 1px solid $gray-dark-theme-dark !important;*/
                 color: $dim-ligh-theme-darkt !important;
@@ -200,7 +200,7 @@
         }
         //button fill variant
         &--fill {
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 color: $white-color;
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
@@ -226,7 +226,7 @@
             }
 
             &.danger {
-                &.is-disabled, &[disabled] {
+                &.disabled, &[disabled] {
                     color: $white-color;
                     background: $white-color;
                     border: 1px solid $gray-dark-theme-dark;
@@ -254,7 +254,7 @@
                 color: $secondary-color-theme-dark;
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 color: $gray-dark-theme-dark;
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
@@ -278,7 +278,7 @@
                 box-shadow: $elevation-1-theme-dark;
             }
 
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 color: $gray-dark-theme-dark;
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
@@ -290,12 +290,12 @@
         }
         //button icon variant
         &--icon {
-            &.is-disabled, &[disabled] {
+            &.disabled, &[disabled] {
                 color: $gray-dark-theme-dark;
             }
         }
         //buton disable
-        &.is-disabled, &[disabled] {
+        &.disabled, &[disabled] {
             color: $gray-dark-theme-dark;
             background: $white-color;
             border: 1px solid $gray-dark-theme-dark;

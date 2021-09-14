@@ -40,12 +40,12 @@
         border-color: $primary-color-theme-dark;
     }
 
-    &.is-disabled + label:before, &[disabled] + label:before {
+    &.disabled + label:before, &[disabled] + label:before {
         cursor: default;
         background: $gray-color-theme-dark;
     }
 
-    &.is-disabled + label, &[disabled] + label {
+    &.disabled + label, &[disabled] + label {
         cursor: default;
     }
 
