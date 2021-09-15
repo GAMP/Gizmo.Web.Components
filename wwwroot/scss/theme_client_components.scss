@@ -5,7 +5,7 @@
     [client-theme] & {
         border-collapse: collapse !important;
         border-spacing: 0 !important;
-        background: unset !important;
+        background: transparent;
         color: unset !important;
 
         & > thead td, & > thead th {
@@ -16,14 +16,37 @@
             @include font-10;
         }
 
-        & > tbody > tr {
-            border-top: 1px solid $border-dark-color !important;
-            height: unset !important;
+        & > tbody {
+            & > tr {
+                border-top: 1px solid $border-dark-color !important;
+                height: unset !important;
 
-            &:hover {
-                background: $crystal-light !important;
+                &:hover {
+                    background: rgba(98, 123, 156, 0.15);
+
+                    & > td {
+                        &:first-child {
+                            border-left: unset !important;
+                        }
+
+                        &:last-child {
+                            border-right: unset !important;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    border-bottom: 1px solid $border-dark-color !important;
+                }
 
                 & > td {
+                    padding: 1rem 0rem 1rem 1.875rem !important;
+                    border-top: unset !important;
+                    border-bottom: unset !important;
+                    @include open-sans-600;
+                    @include font-14;
+                    letter-spacing: $letter-spacing-24 !important;
+
                     &:first-child {
                         border-left: unset !important;
                     }
@@ -34,24 +57,11 @@
                 }
             }
 
-            &:last-child {
-                border-bottom: 1px solid $border-dark-color !important;
-            }
+            & > tr:nth-of-type(odd) {
+                background: $crystal-light;
 
-            & > td {
-                padding: 1rem 0rem 1rem 1.875rem !important;
-                border-top: unset !important;
-                border-bottom: unset !important;
-                @include open-sans-600;
-                @include font-14;
-                letter-spacing: $letter-spacing-24 !important;
-
-                &:first-child {
-                    border-left: unset !important;
-                }
-
-                &:last-child {
-                    border-right: unset !important;
+                &:hover {
+                    background: rgba(98, 123, 156, 0.15);
                 }
             }
         }
