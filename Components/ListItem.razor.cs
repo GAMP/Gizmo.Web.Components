@@ -1,5 +1,6 @@
 ﻿using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
@@ -45,6 +46,9 @@ namespace Gizmo.Web.Components
         public string Href { get; set; }
 
         [Parameter]
+        public NavLinkMatch Match { get; set; } = NavLinkMatch.All;
+
+        [Parameter]
         public RenderFragment NestedList { get; set; }
 
         [Parameter]
@@ -58,7 +62,7 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
-        
+
         [Parameter]
         public ICommand Command { get; set; }
 
@@ -97,6 +101,15 @@ namespace Gizmo.Web.Components
             await OnClick.InvokeAsync(args);
         }
 
+        private async void NavigationManager_LocationChanged(object sender, LocationChangedEventArgs e)
+        {
+            if (Href != null)
+            {
+                if (IsActiveLink())
+                    await Parent.SetSelectedItem(this);
+            }
+        }
+
         #endregion
 
         #region METHODS
@@ -114,15 +127,33 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
+        private bool IsActiveLink()
+        {
+            var relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri).ToLower();
+
+            if (Match == NavLinkMatch.All)
+                return relativePath == Href.ToLower();
+            else
+                return relativePath.StartsWith(Href.ToLower());
+        }
+
         #endregion
 
         #region OVERRIDE
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
+            NavigationManager.LocationChanged += NavigationManager_LocationChanged;
+
             if (Parent != null)
             {
                 Parent.Register(this);
+
+                if (Href != null)
+                {
+                    if (IsActiveLink())
+                        await Parent.SetSelectedItem(this);
+                }
             }
         }
 
