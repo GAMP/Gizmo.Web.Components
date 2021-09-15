@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Extensions;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -60,7 +61,10 @@ namespace Gizmo.Web.Components
         public bool IsOpen { get; set; }
 
         [Parameter]
-        public bool OffsetY { get; set; }
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
+        [Parameter]
+        public bool OffsetY { get; set; } = true;
 
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Normal;
@@ -168,14 +172,11 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-select")
-                 //.If("giz-select-root--disabled", () => IsDisabled)
-                 //.If("giz-select-root--offset", () => OffsetY)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-select-dropdown-menu")
                  .Add("giz-select-dropdown-full-width")
-                 .Add("giz-popup-bottom")
                  .AsString();
 
         #endregion

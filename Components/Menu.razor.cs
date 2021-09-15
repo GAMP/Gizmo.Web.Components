@@ -76,6 +76,9 @@ namespace Gizmo.Web.Components
         public RenderFragment Activator { get; set; }
 
         [Parameter]
+        public MenuActivationEvents ActivationEvent { get; set; } = MenuActivationEvents.LeftClick;
+
+        [Parameter]
         public ListDirections Direction { get; set; } = ListDirections.Right;
 
         [Parameter]
@@ -88,12 +91,28 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task OnClickMenuHandler(MouseEventArgs args)
+        protected Task OnMouseDownHandler(MouseEventArgs args)
         {
-            if (!IsDisabled)
-                IsOpen = true;
+            if ((ActivationEvent == MenuActivationEvents.LeftClick && args.Button == 0) ||
+               (ActivationEvent == MenuActivationEvents.RightClick && args.Button == 2))
+            {
+                if (!IsDisabled)
+                    IsOpen = !IsOpen;
+            }
 
             return Task.CompletedTask;
+        }
+
+        public void OnMouseOverHandler(MouseEventArgs args)
+        {
+            if (ActivationEvent == MenuActivationEvents.MouseOver && !IsDisabled)
+                IsOpen = true;
+        }
+
+        public void OnMouseLeaveHandler(MouseEventArgs args)
+        {
+            if (ActivationEvent == MenuActivationEvents.MouseOver && !IsDisabled)
+                IsOpen = false;
         }
 
         protected Task OnClickMenuItemHandler()
@@ -108,6 +127,11 @@ namespace Gizmo.Web.Components
         {
             IsOpen = false;
 
+            return Task.CompletedTask;
+        }
+
+        protected Task OnContextMenuHandler(MouseEventArgs args)
+        {
             return Task.CompletedTask;
         }
 
@@ -135,7 +159,6 @@ namespace Gizmo.Web.Components
 
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-menu-dropdown")
-                 .Add("giz-popup-bottom")
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()

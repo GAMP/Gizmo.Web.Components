@@ -1,4 +1,5 @@
-﻿using Gizmo.Web.Components.Infrastructure;
+﻿using Gizmo.Web.Components.Extensions;
+using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
@@ -54,6 +55,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsModal { get; set; }
 
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
+        [Parameter]
+        public bool OffsetY { get; set; } = true;
+
         #endregion
 
         #region METHODS
@@ -89,6 +96,8 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-popup")
+                 .Add($"giz-popup--{OpenDirection.ToDescriptionString()}")
+                 .If("giz-popup--offset", () => OffsetY)
                  .If("giz-popup-open", () => IsOpen)
                  .AsString();
 

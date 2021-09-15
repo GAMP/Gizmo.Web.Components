@@ -4,7 +4,8 @@
 <CascadingValue Value="@this">
 
     <div class="@Class @ClassName"
-         style="@Style">
+         style="@Style"
+         @onmouseout="OnMouseLeaveHandler">
 
         @if (IsContextMenu)
         {
@@ -12,7 +13,10 @@
         }
         else if (Activator != null)
         {
-            <div @onclick="OnClickMenuHandler">
+            <div @onmousedown="OnMouseDownHandler"
+                 @onmouseover="OnMouseOverHandler"
+                 @oncontextmenu:preventDefault="@(ActivationEvent == MenuActivationEvents.RightClick)"
+                 @oncontextmenu="OnContextMenuHandler">
                 @Activator
             </div>
         }
@@ -24,7 +28,9 @@
                         Size="@Size"
                         RightIcon="@Icon"
                         RightSVGIcon="SVGIcon"
-                        @onclick="OnClickMenuHandler">
+                        @onmousedown="OnMouseDownHandler"
+                        @onmouseover="OnMouseOverHandler"
+                        >
                     @Label
                 </Button>
             }
@@ -33,7 +39,9 @@
                 <Button Variant="@Variant"
                         Size="@Size"
                         RightSVGIcon="@(IsOpen ? Icons.TriangleUp : Icons.TriangleDown)"
-                        @onclick="OnClickMenuHandler">
+                        @onmousedown="OnMouseDownHandler"
+                        @onmouseover="OnMouseOverHandler"
+                        >
                     @Label
                 </Button>
             }

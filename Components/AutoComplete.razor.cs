@@ -396,7 +396,6 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-autocomplete-dropdown-menu")
                  .Add("giz-autocomplete-dropdown-full-width")
-                 .Add("giz-popup-bottom")
                  .AsString();
 
         #endregion

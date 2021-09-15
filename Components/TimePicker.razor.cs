@@ -228,7 +228,6 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-timepicker-dropdown-menu")
                  .Add("giz-timepicker-dropdown-full-width")
-                 .Add("giz-popup-bottom")
                  .AsString();
 
         #endregion

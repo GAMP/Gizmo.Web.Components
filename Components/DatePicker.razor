@@ -29,7 +29,7 @@
 
             </GizInput>
 
-            <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName">
+            <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName" OpenDirection="@(Variant == PickerVariants.Inline ? PopupOpenDirections.Bottom : PopupOpenDirections.None)">
                 <DatePickerBase Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" />
             </Popup>
         </div>

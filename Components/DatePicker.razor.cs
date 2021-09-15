@@ -138,7 +138,8 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-datepicker-dropdown-menu")
                  .Add("giz-datepicker-dropdown-full-width")
-                 .If("giz-popup-bottom", () => Variant == PickerVariants.Inline)
+                 .If("giz-popup--bottom", () => Variant == PickerVariants.Inline)
+                 .If("giz-popup--offset", () => Variant == PickerVariants.Inline)
                  .AsString();
 
         #endregion

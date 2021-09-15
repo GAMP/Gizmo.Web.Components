@@ -286,8 +286,6 @@
         }
         //button text variant
         &--text {
-            [client-theme] & {
-            }
 
             &:hover {
             }
@@ -300,20 +298,34 @@
         }
         //button icon variant
         &--icon {
-            &.giz-button--medium {
+            border-radius: $rounded-circle !important;
+            background: transparent !important;
+
+            &:focus:not(.giz-button-shadow) {
+                //Remove shadow from default theme.
+                box-shadow: unset !important;
+            }
+
+            &:hover {
+                background: transparent !important;
+            }
+
+            &:focus {
                 background: $midnight-black !important;
+            }
+
+            &.disabled, &[disabled] {
+            }
+
+            &.giz-button--medium {
                 height: 1.875rem !important;
                 width: 1.875rem !important;
-                border-radius: $rounded-circle !important;
                 padding: 0 !important;
 
                 .giz-icon--medium {
                     width: 14px !important;
                     height: 14px !important;
                 }
-            }
-
-            &.disabled, &[disabled] {
             }
         }
         //buton disable
@@ -411,7 +423,7 @@
             border: thin solid $border-silver-gray;
             background: $dark-color;
             backdrop-filter: blur(20px);
-            padding: 3.125rem 6.813rem;
+            padding: 3rem;
             overflow: $overflow-hidden;
 
             &::before {

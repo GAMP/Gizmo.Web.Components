@@ -10,8 +10,21 @@
         visibility: visible;
     }
 
-    &.giz-popup-bottom {
-        top: 100%;
+    &.giz-popup--top {
+        top: auto;
+        bottom: 0;
+
+        &.giz-popup--offset {
+            bottom: 100%;
+        }
+    }
+
+    &.giz-popup--bottom {
         bottom: auto;
+        top: 0;
+
+        &.giz-popup--offset {
+            top: 100%;
+        }
     }
 }
