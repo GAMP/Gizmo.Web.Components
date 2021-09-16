@@ -1,0 +1,20 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@Class @ClassName">
+    @ChildContent
+    @if (!String.IsNullOrEmpty(Text) || TooltipContent != null)
+    {
+        <div class="@TooltipClassName">
+            @if (TooltipContent != null)
+            {
+                @TooltipContent
+            }
+            else
+            {
+                @Text
+            }
+        </div>
+    }
+</div>
+

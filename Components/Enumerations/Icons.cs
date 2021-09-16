@@ -75,6 +75,7 @@
         Sleep,
         Sort,
         Star,
+        Star2,
         Text,
         Time,
         Time2,

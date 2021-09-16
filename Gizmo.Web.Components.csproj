@@ -45,6 +45,7 @@
 	  <Content Remove="wwwroot\scss\theme_light.scss" />
 	  <Content Remove="wwwroot\scss\theme_light_components.scss" />
 	  <Content Remove="wwwroot\scss\time-picker.scss" />
+	  <Content Remove="wwwroot\scss\tooltip.scss" />
 	  <Content Remove="wwwroot\scss\_mixin.scss" />
 	  <Content Remove="wwwroot\scss\_typography.scss" />
 	  <Content Remove="wwwroot\scss\_variables.scss" />
@@ -64,6 +65,7 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="wwwroot\scripts.js" />
+		<None Include="wwwroot\scss\tooltip.scss" />
 		<None Include="wwwroot\scss\chip.scss" />
 		<None Include="wwwroot\scss\chip-group.scss" />
 		<None Include="wwwroot\scss\divider.scss" />
