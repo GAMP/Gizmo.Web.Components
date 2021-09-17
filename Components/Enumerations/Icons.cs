@@ -93,6 +93,7 @@
         Unlock,
         User,
         Users,
-        WaitingLines
+        WaitingLines,
+        Warning_Client
     }
 }
