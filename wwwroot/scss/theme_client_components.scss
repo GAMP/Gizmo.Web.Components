@@ -296,38 +296,6 @@
             &.disabled, &[disabled] {
             }
         }
-        //button icon variant
-        &--icon {
-            border-radius: $rounded-circle !important;
-            background: transparent !important;
-
-            &:focus:not(.giz-button-shadow) {
-                //Remove shadow from default theme.
-                box-shadow: unset !important;
-            }
-
-            &:hover {
-                background: transparent !important;
-            }
-
-            &:focus {
-                background: $midnight-black !important;
-            }
-
-            &.disabled, &[disabled] {
-            }
-
-            &.giz-button--medium {
-                height: 1.875rem !important;
-                width: 1.875rem !important;
-                padding: 0 !important;
-
-                .giz-icon--medium {
-                    width: 14px !important;
-                    height: 14px !important;
-                }
-            }
-        }
         //buton disable
         &.disabled, &[disabled] {
         }
@@ -478,5 +446,61 @@
     [client-theme] & {
         width: 34px;
         height: 34px;
+    }
+}
+
+// == icon button == //
+
+.giz-icon-button {
+    [client-theme] & {
+        color: $white-color;
+
+        &--fill {
+            background: $midnight-black;
+
+            &:hover {
+                background: $davy-dark-gray;
+            }
+
+            &:focus:not(.giz-button-shadow) {
+                //Remove shadow from default theme.
+                box-shadow: unset !important;
+            }
+
+            &:focus {
+                background: $davy-dark-gray;
+            }
+
+            &.disabled, &[disabled] {
+            }
+        }
+
+        &--text {
+            background: none;
+            border: none;
+
+            &:hover {
+                background: $davy-dark-gray;
+            }
+
+            &:focus:not(.giz-button-shadow) {
+                //Remove shadow from default theme.
+                box-shadow: unset !important;
+            }
+
+            &:focus {
+                background: $davy-dark-gray;
+            }
+
+            &.disabled, &[disabled] {
+                border: none;
+                pointer-events: none;
+            }
+        }
+
+        &--small {
+            width: 30px;
+            height: 30px;
+        }
     }
 }

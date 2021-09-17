@@ -4,11 +4,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Gizmo.Web.Components
 {
-    public partial class Button : CustomDOMComponentBase
+    public partial class Button : ButtonBase
     {
         #region CONSTRUCTOR
         public Button()
@@ -31,51 +30,21 @@ namespace Gizmo.Web.Components
         #region PUBLIC
 
         [Parameter]
-        public ButtonColors Color { get; set; } = ButtonColors.Primary;
-
-        [Parameter()]
         public ButtonVariants Variant { get; set; } = ButtonVariants.Fill;
-
-        /// <summary>
-        /// Gets or sets button size.
-        /// </summary>
-        [Parameter()]
-        public ButtonSizes Size { get; set; } = ButtonSizes.Medium;
-
-        /// <summary>
-        /// Gets or sets element name.
-        /// </summary>
-        [Parameter()]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets if element is disabled.
-        /// </summary>
-        [Parameter()]
-        public bool IsDisabled { get; set; }
-
-        [Parameter]
-        public bool HasShadow { get; set; }
 
         [Parameter]
         public bool IsFullWidth { get; set; }
 
         /// <summary>
-        /// Gets or sets element type.
-        /// </summary>
-        [Parameter()]
-        public string Type { get; set; } = "button";
-
-        /// <summary>
         /// Gets or sets value.
         /// </summary>
-        [Parameter()]
+        [Parameter]
         public string Value { get; set; }
 
         /// <summary>
         /// Gets or sets label.
         /// </summary>
-        [Parameter()]
+        [Parameter]
         public string Label { get; set; }
 
         /// <summary>
@@ -116,12 +85,6 @@ namespace Gizmo.Web.Components
                 }
             }
         }
-
-        [Parameter]
-        public ICommand Command { get; set; }
-
-        [Parameter]
-        public object CommandParameter { get; set; }
 
         #endregion
 
@@ -212,7 +175,6 @@ namespace Gizmo.Web.Components
                  .If("giz-button--fill", () => ButtonGroup == null && Variant == ButtonVariants.Fill)
                  .If("giz-button--outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
                  .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
-                 .If("giz-button--icon", () => ButtonGroup == null && Variant == ButtonVariants.Icon)
                  .If("giz-button-full-width", () => IsFullWidth)
                  .If("giz-button-shadow", () => HasShadow)
                  .If("disabled", () => IsDisabled)

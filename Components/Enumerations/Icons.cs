@@ -2,6 +2,7 @@
 {
     public enum Icons
     {
+        Apps_Client,
         ArrowCircle,
         ArrowDown,
         ArrowLeft,
@@ -45,6 +46,7 @@
         Guest,
         Help,
         Headphones,
+        Heart_Client,
         Image,
         Info,
         Key,
@@ -75,12 +77,14 @@
         Sleep,
         Sort,
         Star,
-        Star2,
+        Star_Client,
+        StoreApp_Client,
         Text,
         Time,
         Time2,
         Time3,
         Trash,
+        Trash_Client,
         TriangleDown,
         TriangleLeft,
         TriangleRight,

@@ -1,10 +1,10 @@
-//=============== gizmo button classes ================//
+//=============== gizmo icon button classes ================//
 
 //button (default button primary)
-.giz-button {
+.giz-icon-button {
     font-size: $font-17-theme-dark;
     cursor: $cursor-pointer;
-    border-radius: $rounded-theme-dark;
+    border-radius: $rounded-circle-theme-dark;
     transition: color 0.3s ease;
     transition: background 0.3s ease;
     transition: border 0.3s ease;
@@ -16,50 +16,7 @@
     text-align: $text-align-center;
     position: $position-relative;
     align-items: center;
-
-    .giz-button-icon-left {
-        margin-right: $spacer-8;
-    }
-
-    .giz-button-icon-right {
-        float: $float-right;
-        margin-left: $spacer-8;
-    }
-
-    &.giz-button-icon-right {
-        text-align: $text-align-left;
-    }
-
-    &.giz-button-full-width {
-        width: $width-full;
-    }
-    //group button
-    &--group-button {
-        border: $border-0-theme-dark;
-        outline: $outline-0;
-        color: $white-color;
-        background: $primary-color-theme-dark;
-
-        &:hover {
-            background: #4F5AD3;
-        }
-
-        &:focus {
-            background: $primary-color-theme-dark;
-            box-shadow: 0px 0px 9px #4891FF;
-        }
-
-        &.disabled, &[disabled] {
-            color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
-            pointer-events: none;
-            border: none;
-
-            svg {
-                color: $dark-gray-theme-dark;
-            }
-        }
-    }
+    padding: 0;
     //button fill variant
     &--fill {
         &:hover {
@@ -174,9 +131,13 @@
         color: $gray-black-theme-dark;
 
         &:hover {
+            color: $primary-color-theme-dark;
+            background: $white-color;
         }
 
         &:focus {
+            background: $white-color;
+            box-shadow: $elevation-1-theme-dark;
         }
 
         &.disabled, &[disabled] {
@@ -192,28 +153,28 @@
     }
     // button extra large
     &--extra-large {
-        font-size: $font-19-theme-dark;
         height: 8rem;
+        width: 8rem;
+        font-size: $font-19-theme-dark;
         font-weight: $font-weight-700;
-        padding: 0 4rem;
     }
     //button large
     &--large {
         height: 4.8rem;
+        width: 4.8rem;
         font-size: $font-17-theme-dark;
-        padding: 0 2.4rem;
     }
     //button medium
     &--medium {
         height: 3.2rem;
+        width: 3.2rem;
         font-size: $font-15-theme-dark;
-        padding: 0 1.6rem;
     }
     //button small
     &--small {
         height: 2.4rem;
+        width: 2.4rem;
         font-size: $font-12-theme-dark;
-        padding: 0 1.2rem;
     }
     //buton disable
     &.disabled, &[disabled] {

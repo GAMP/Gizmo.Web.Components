@@ -7,7 +7,6 @@
     {
         Fill,
         Outline,
-        Text,
-        Icon
+        Text
     }
 }

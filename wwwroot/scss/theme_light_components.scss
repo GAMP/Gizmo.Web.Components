@@ -288,12 +288,6 @@
                 }
             }
         }
-        //button icon variant
-        &--icon {
-            &.disabled, &[disabled] {
-                color: $gray-dark-theme-dark;
-            }
-        }
         //buton disable
         &.disabled, &[disabled] {
             color: $gray-dark-theme-dark;
