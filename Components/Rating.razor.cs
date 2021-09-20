@@ -5,7 +5,7 @@ namespace Gizmo.Web.Components
     public partial class Rating
     {
         [Parameter]
-        public int Value { get; set; }
+        public decimal Value { get; set; }
 
         #region CLASSMAPPERS
 
