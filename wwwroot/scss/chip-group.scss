@@ -5,20 +5,42 @@
 
     .giz-chip {
         margin-right: 1rem;
-        font-size: $font-11;
-        line-height: $line-height-11;
-        color: $white-color;
-        text-transform: $text-uppercase;
-        padding: 0.5rem;
 
         &:last-child {
             margin-right: 0px;
         }
 
-        &.selected {
-            background: $primary-color;
-            box-shadow: $elevation-1;
-            border-radius: $rounded-pill;
+        &.disabled {
+            color: $dim-white;
+            cursor: default;
+        }
+    }
+
+    &.primary {
+        .giz-chip {
+            &.selected {
+                color: $white-color;
+                background: $primary-color;
+                box-shadow: $elevation-1;
+            }
+        }
+    }
+
+    &.secondary {
+        .giz-chip {
+            &.selected {
+                color: $white-color;
+                background: $secondary-color;
+            }
+        }
+    }
+
+    &.info {
+        .giz-chip {
+            &.selected {
+                color: $white-color;
+                background: $info-color;
+            }
         }
     }
 

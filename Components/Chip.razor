@@ -2,6 +2,8 @@
 @inherits Gizmo.Web.Components.CustomDOMComponentBase
 
 <div class="@Class @ClassName"
-     style="@Style">
+     style="@Style"
+     @onclick="@OnClickChipHandler"
+     @onclick:stopPropagation="true">
     @ChildContent
 </div>

@@ -3,4 +3,9 @@
 .giz-chip {
     display: inline-block;
     cursor: pointer;
+    padding: 0.5rem;
+    font-size: $font-11;
+    line-height: $line-height-11;
+    text-transform: $text-uppercase;
+    border-radius: $rounded-pill;
 }

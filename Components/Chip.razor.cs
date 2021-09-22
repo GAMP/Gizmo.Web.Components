@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Gizmo.Web.Components
 {
@@ -51,6 +54,31 @@ namespace Gizmo.Web.Components
                     ChipGroup.SelectItem(this, _isSelected);
                 }
             }
+        }
+
+        [Parameter]
+        public ICommand Command { get; set; }
+
+        [Parameter]
+        public object CommandParameter { get; set; }
+
+        #endregion
+
+        #region EVENTS
+
+        protected Task OnClickChipHandler(MouseEventArgs args)
+        {
+            if (ChipGroup != null && !ChipGroup.IsDisabled)
+            {
+                ChipGroup.SelectItem(this, !_selected);
+            }
+
+            if (Command?.CanExecute(CommandParameter) ?? false)
+            {
+                Command.Execute(CommandParameter);
+            }
+
+            return Task.CompletedTask;
         }
 
         #endregion

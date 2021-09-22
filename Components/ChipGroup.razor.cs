@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Extensions;
+using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -66,6 +67,9 @@ namespace Gizmo.Web.Components
             get { return _selectedItems; }
             set { _selectedItems = value; }
         }
+
+        [Parameter]
+        public ButtonColors Color { get; set; } = ButtonColors.Primary;
 
         #endregion
 
@@ -214,6 +218,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-chip-group")
+                 .Add($"{Color.ToDescriptionString()}")
                  .If("disabled", () => IsDisabled)
                  .AsString();
 
