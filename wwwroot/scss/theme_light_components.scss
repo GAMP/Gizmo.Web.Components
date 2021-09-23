@@ -328,3 +328,17 @@
         background-color: $white-color;
     }
 }
+
+// == menu == //
+
+.giz-menu {
+    [light-theme] & {
+
+        .giz-menu-dropdown {
+
+            .giz-list {
+                border: 1px solid $gray-dark-theme-dark;
+            }
+        }
+    }
+}

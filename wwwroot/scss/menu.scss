@@ -1,6 +1,7 @@
 //=============== gizmo menu classes ================//
 
 .giz-menu {
+    display: $display-inline-block;
     position: $position-relative;
 
     & > button {
@@ -15,10 +16,6 @@
             border: 1px solid $onyx-black-theme-dark;
             box-shadow: $elevation-2-theme-dark;
             padding: 1.2rem 0.8rem;
-
-            [light-theme] & {
-                border: 1px solid $gray-dark-theme-dark;
-            }
 
             .giz-list-item {
                 padding: $spacer-8;

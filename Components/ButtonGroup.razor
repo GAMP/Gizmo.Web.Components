@@ -1,7 +1,8 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="@Class @ClassName">
+<div class="@Class @ClassName"
+     style="@Style">
     <CascadingValue Value="@this" IsFixed="true">
         @ChildContent
     </CascadingValue>

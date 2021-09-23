@@ -68,14 +68,17 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickChipHandler(MouseEventArgs args)
         {
-            if (ChipGroup != null && !ChipGroup.IsDisabled)
+            if (!IsDisabled)
             {
-                ChipGroup.SelectItem(this, !_selected);
-            }
+                if (ChipGroup != null && !ChipGroup.IsDisabled)
+                {
+                    ChipGroup.SelectItem(this, !_selected);
+                }
 
-            if (Command?.CanExecute(CommandParameter) ?? false)
-            {
-                Command.Execute(CommandParameter);
+                if (Command?.CanExecute(CommandParameter) ?? false)
+                {
+                    Command.Execute(CommandParameter);
+                }
             }
 
             return Task.CompletedTask;
