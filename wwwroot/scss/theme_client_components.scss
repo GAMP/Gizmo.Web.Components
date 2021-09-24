@@ -132,15 +132,29 @@
     [client-theme] & {
 
         .giz-input-root {
-            color: $white-color !important;
+            color: $white-color;
 
             svg {
-                color: $white-color !important;
+                color: $white-color;
                 vertical-align: baseline !important;
             }
 
+            &.disabled, &[disabled] {
+                pointer-events: none;
+                //Default Theme
+                background: $onyx-black-theme-dark;
+                color: $mid-gray-theme-dark;
+            }
+
             input {
-                color: $white-color !important;
+                color: $white-color;
+
+                &.disabled, &[disabled] {
+                    pointer-events: none;
+                    color: $dim-ligh-theme-darkt;
+                    //Default Theme
+                    background: $onyx-black-theme-dark;
+                }
             }
 
             &--outline {
@@ -156,18 +170,27 @@
             }
 
             &--filled {
-                background: $black-mirage-color !important;
+                background: $black-mirage-color;
 
                 &:focus-within {
-                    background: $onyx-black !important;
+                    background: $onyx-black;
                 }
             }
 
             &--transparent {
-                background: $transparent-color !important;
+                background: $transparent-color;
             }
 
             &--small {
+                border-radius: $rounded-5 !important;
+                height: 30px !important;
+                padding: 0.3rem !important;
+
+                input {
+                    font-size: $font-9 !important;
+                    line-height: $line-height-9 !important;
+                    text-shadow: $text-shadow-sm !important;
+                }
             }
 
             &--medium {
@@ -301,21 +324,43 @@
         }
 
         &--small {
+            height: 20px;
+            padding: 0;
+
+            .giz-icon--small {
+                width: 10px;
+                height: 10px;
+            }
         }
 
         &--medium {
             height: 33px;
             padding: 0 0.688rem;
+
+            .giz-icon--medium {
+                width: 15px;
+                height: 15px;
+            }
         }
 
         &--large {
             height: 39px;
-            padding: 0.813rem 1.938rem;
+            padding: 0 1.938rem;
+
+            .giz-icon--large {
+                width: 20px;
+                height: 20px;
+            }
         }
 
         &--extra-large {
             height: 53px;
-            padding: 1.219rem;
+            padding: 0 1.219rem;
+
+            .giz-icon--extra-large {
+                width: 38px;
+                height: 38px;
+            }
         }
     }
 }
@@ -377,7 +422,6 @@
 }
 
 // == dialog == //
-
 .giz-dialog {
     [client-theme] & {
         background: linear-gradient(180deg, rgba(22, 30, 37, 0.8) 0%, rgba(11, 17, 23, 0.9) 100%);
@@ -420,7 +464,6 @@
 }
 
 // == icon == //
-
 .giz-icon--small {
     [client-theme] & {
         width: 18px;
@@ -450,7 +493,6 @@
 }
 
 // == icon button == //
-
 .giz-icon-button {
     [client-theme] & {
         color: $white-color;
@@ -472,6 +514,24 @@
             }
 
             &.disabled, &[disabled] {
+            }
+        }
+
+        &--outline {
+            background: $light-midnight-black;
+            border: 1px solid $border-steel-gray;
+
+            &:hover {
+                background: $davy-dark-gray;
+            }
+
+            &:focus:not(.giz-button-shadow) {
+                //Remove shadow from default theme.
+                box-shadow: unset !important;
+            }
+
+            &:focus {
+                background: $davy-dark-gray;
             }
         }
 
@@ -502,11 +562,15 @@
             width: 30px;
             height: 30px;
         }
+
+        &--medium {
+            width: 49px;
+            height: 49px;
+        }
     }
 }
 
 // == menu == //
-
 .giz-menu {
     [client-theme] & {
 
