@@ -68,6 +68,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string MaximumHeight { get; set; }
 
+        [Parameter]
+        public RenderFragment ListHeader { get; set; }
+
         #endregion
 
         #region METHODS

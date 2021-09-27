@@ -4,6 +4,14 @@
 <div class="@Class @ClassName"
      style="@Style @StyleValue"
      @ref="@Ref">
+
+    @if (ListHeader != null)
+    {
+        <div class="giz-list-header">
+            @ListHeader
+        </div>
+    }
+
     <CascadingValue Value="@this" IsFixed="true">
         @ChildContent
     </CascadingValue>

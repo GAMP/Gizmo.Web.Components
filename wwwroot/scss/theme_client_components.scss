@@ -391,6 +391,16 @@
         border-radius: $rounded-lg;
         background: $dark-jungle;
 
+        @include open-sans-600;
+
+        .giz-list-header {
+            border-bottom: 1px solid $border-color;
+            padding: 0.625rem 0.625rem 1.25rem 0.625rem !important;
+            font-size: $font-17;
+            line-height: $line-height-21;
+            letter-spacing: $letter-spacing-5;
+        }
+
         .giz-list-item {
             border-radius: $rounded-lg;
             font-size: $font-17;

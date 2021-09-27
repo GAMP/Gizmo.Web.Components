@@ -69,6 +69,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public object CommandParameter { get; set; }
 
+        [Parameter]
+        public string BackgroundImage { get; set; }
+
         #endregion
 
         #region EVENTS
@@ -182,6 +185,7 @@ namespace Gizmo.Web.Components
 
         protected string StyleValue => new StyleMapper()
                  .If($"border: 1px solid {BorderColor}; border-radius: 0.4rem", () => HasBorder)
+                 .If($"background: url('{BackgroundImage}') no-repeat; background-size: cover;", () => !string.IsNullOrEmpty(BackgroundImage))
                  .AsString();
 
         #endregion
