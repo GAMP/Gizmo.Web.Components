@@ -599,13 +599,12 @@
                     background: unset;
                     padding: 0.625rem;
                     letter-spacing: $letter-spacing-2;
-                    color: $dim-white;
+                    color: $white-color;
                     @include open-sans-600;
                     @include font-13;
 
                     &:hover {
                         background: $midnight-color;
-                        color: $white-color;
                     }
 
                     .giz-list-item-icon {
@@ -626,5 +625,43 @@
             right: 0;
             width: max-content;
         }
+    }
+}
+
+// == checkbox == //
+.giz-checkbox {
+    [client-theme] & {
+        & input {
+            & + label:before {
+                height: 0.875rem;
+                width: 0.875rem;
+                background: $dark-light-color;
+                border: 1px solid $border-bright-gray;
+                border-radius: $rounded;
+            }
+
+            &:checked + label:after {
+                background: unset;
+                left: 6px;
+                top: 2px;
+                width: 0.188rem;
+                height: 0.438rem;
+                border: solid $white-color;
+                border-width: 0 1px 1px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+
+// == divider == //
+.giz-divider {
+    [client-theme] & {
+        border: none;
+        border-top: solid;
+        border-width: 1px;
+        border-color: $onyx-black-theme-dark;
     }
 }

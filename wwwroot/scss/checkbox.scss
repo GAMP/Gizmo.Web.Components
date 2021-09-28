@@ -1,103 +1,107 @@
 .giz-checkbox {
-    position: $position-absolute;
-    left: -9999px;
+    display: inline-flex;
 
-    & + label {
-        font-size: $font-15-theme-dark;
-        color: $secondary-color-theme-dark;
-        position: $position-relative;
-        padding-left: $spacer-36;
-        display: $display-flex;
-        align-items: $align-center;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        cursor: $cursor-pointer;
-        margin: 4px 0;
-        font-weight: $font-weight-600;
-    }
-
-    &:checked + label {
-        overflow: $overflow-visible;
-    }
-
-    & + label:before {
-        content: '';
+    & input {
         position: $position-absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 2.4rem;
-        height: 2.4rem;
-        background: $dark-gray-theme-dark;
-        border: 1px solid $onyx-black-theme-dark;
-        border-radius: $rounded-theme-dark;
+        left: -9999px;
 
-        [light-theme] & {
-            background: $transparent-color;
-            border: 1px solid $gray-color-theme-dark;
+        & + label {
+            font-size: $font-15-theme-dark;
+            color: $secondary-color-theme-dark;
+            position: $position-relative;
+            display: $display-flex;
+            align-items: $align-center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: $cursor-pointer;
+            margin: 4px 0;
+            font-weight: $font-weight-600;
         }
-    }
 
-    &:checked + label:before {
-        content: '';
-        background: $primary-color-theme-dark;
-        border-color: $primary-color-theme-dark;
-    }
-
-    &.disabled + label:before, &[disabled] + label:before {
-        cursor: default;
-        background: $gray-dim-theme-dark;
-        border-color: $gray-dim-theme-dark;
-        pointer-events: none;
-
-        [light-theme] & {
-            background: $gray-dark-theme-dark;
-            border-color: $gray-dark-theme-dark;
+        &:checked + label {
+            overflow: $overflow-visible;
         }
-    }
 
-    &.disabled + label, &[disabled] + label {
-        cursor: default;
-    }
+        & + label:before {
+            content: '';
+            /*position: $position-absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);*/
+            width: 2.4rem;
+            height: 2.4rem;
+            background: $dark-gray-theme-dark;
+            border: 1px solid $onyx-black-theme-dark;
+            border-radius: $rounded-theme-dark;
+            margin-right: 0.75rem;
 
-    &:checked + label:after {
-        content: '';
-        position: $position-absolute;
-        left: 0.6rem;
-        top: 50%;
-        transform: translateY(-35%);
-        -moz-transform: translateY(-35%);
-        -webkit-transform: translateY(-35%);
-        width: 8px;
-        height: 6px;
-        background: url('/img/icons/tick.svg') no-repeat;
-        height: 1.6rem;
-        width: 1.6rem;
-        background-size: 1.4rem;
-    }
+            [light-theme] & {
+                background: $transparent-color;
+                border: 1px solid $gray-color-theme-dark;
+            }
+        }
 
-    &:indeterminate + label:before {
-        background: $primary-color-theme-dark;
-        border-color: $primary-color-theme-dark;
-    }
+        &:checked + label:before {
+            content: '';
+            background: $primary-color-theme-dark;
+            border-color: $primary-color-theme-dark;
+        }
 
-    &:indeterminate.disabled + label:before, &:indeterminate[disabled] + label:before {
-        background: $gray-color-theme-dark;
-        border-color: $gray-color-theme-dark;
-    }
+        &.disabled + label:before, &[disabled] + label:before {
+            cursor: default;
+            background: $gray-dim-theme-dark;
+            border-color: $gray-dim-theme-dark;
+            pointer-events: none;
 
-    &:indeterminate + label:after {
-        content: '';
-        position: $position-absolute;
-        left: 0.8rem;
-        top: 50%;
-        transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        width: 0.8rem;
-        height: 2px;
-        background: $white-color;
+            [light-theme] & {
+                background: $gray-dark-theme-dark;
+                border-color: $gray-dark-theme-dark;
+            }
+        }
+
+        &.disabled + label, &[disabled] + label {
+            cursor: default;
+        }
+
+        &:checked + label:after {
+            content: '';
+            position: $position-absolute;
+            left: 0.6rem;
+            top: 50%;
+            transform: translateY(-35%);
+            -moz-transform: translateY(-35%);
+            -webkit-transform: translateY(-35%);
+            width: 8px;
+            height: 6px;
+            background: url('/img/icons/tick.svg') no-repeat;
+            height: 1.6rem;
+            width: 1.6rem;
+            background-size: 1.4rem;
+        }
+
+        &:indeterminate + label:before {
+            background: $primary-color-theme-dark;
+            border-color: $primary-color-theme-dark;
+        }
+
+        &:indeterminate.disabled + label:before, &:indeterminate[disabled] + label:before {
+            background: $gray-color-theme-dark;
+            border-color: $gray-color-theme-dark;
+        }
+
+        &:indeterminate + label:after {
+            content: '';
+            position: $position-absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            width: 0.8rem;
+            height: 2px;
+            background: $white-color;
+        }
     }
 }

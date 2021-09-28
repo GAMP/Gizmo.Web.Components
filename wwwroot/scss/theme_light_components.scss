@@ -340,3 +340,10 @@
         }
     }
 }
+
+// == divider == //
+.giz-divider {
+    [light-theme] & {
+        background: $gray-dark-theme-dark;
+    }
+}
