@@ -87,6 +87,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool PreserveIconSpace { get; set; }
 
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
         #endregion
 
         #region EVENTS
@@ -97,7 +100,15 @@ namespace Gizmo.Web.Components
                (ActivationEvent == MenuActivationEvents.RightClick && args.Button == 2))
             {
                 if (!IsDisabled)
+                {
+                    if (OpenDirection == PopupOpenDirections.Cursor)
+                    {
+                        OffsetX = args.ClientX;
+                        OffsetY = args.ClientY;
+                    }
+
                     IsOpen = !IsOpen;
+                }
             }
 
             return Task.CompletedTask;
@@ -106,7 +117,15 @@ namespace Gizmo.Web.Components
         public void OnMouseOverHandler(MouseEventArgs args)
         {
             if (ActivationEvent == MenuActivationEvents.MouseOver && !IsDisabled)
+            {
+                if (OpenDirection == PopupOpenDirections.Cursor)
+                {
+                    OffsetX = args.ClientX;
+                    OffsetY = args.ClientY;
+                }
+
                 IsOpen = true;
+            }
         }
 
         public void OnMouseLeaveHandler(MouseEventArgs args)
@@ -157,14 +176,19 @@ namespace Gizmo.Web.Components
                  .Add("giz-menu")
                  .AsString();
 
+        protected string PopupWrapperClassName => new ClassMapper()
+                 .If("giz-popup-wrapper", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-popup-wrapper-visible", () => OpenDirection == PopupOpenDirections.Cursor && IsOpen)
+                 .AsString();
+
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-menu-dropdown")
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()
-                 .If($"position: absolute", () => IsContextMenu)
-                 .If($"top: {OffsetY}px", () => IsContextMenu)
-                 .If($"left: {OffsetX}px", () => IsContextMenu)
+                 .If($"position: absolute", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"top: {OffsetY}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {OffsetX}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion

@@ -14,6 +14,9 @@ namespace Gizmo.Web.Components
         Bottom,
 
         [Description("top")]
-        Top
+        Top,
+
+        [Description("cursor")]
+        Cursor
     }
 }
