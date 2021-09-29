@@ -1,9 +1,9 @@
-
 //== list.scss files == //
 
 .giz-list {
     position: $position-relative;
     min-width: 15rem;
+    text-align: left;
     //Default Theme
     border-radius: $rounded-theme-dark;
     background: $dark-gray-theme-dark;
