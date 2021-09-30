@@ -1,3 +1,9 @@
 .giz-rating {
     display: inline-block;
+
+    &:not(.readonly) {
+        svg {
+            cursor: pointer;
+        }
+    }
 }
