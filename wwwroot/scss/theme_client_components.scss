@@ -478,6 +478,13 @@
 }
 
 // == icon == //
+.giz-icon--extra-small {
+    [client-theme] & {
+        width: 10px;
+        height: 10px;
+    }
+}
+
 .giz-icon--small {
     [client-theme] & {
         width: 18px;
@@ -494,8 +501,8 @@
 
 .giz-icon--large {
     [client-theme] & {
-        width: 27px;
-        height: 27px;
+        width: 28px;
+        height: 28px;
     }
 }
 

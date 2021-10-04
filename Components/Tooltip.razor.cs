@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Extensions;
+using Microsoft.AspNetCore.Components;
 
 namespace Gizmo.Web.Components
 {
@@ -21,6 +22,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Text { get; set; }
 
+        [Parameter]
+        public TooltipOpenDirections OpenDirection { get; set; } = TooltipOpenDirections.Top;
+
         #endregion
 
         #region CLASSMAPPERS
@@ -31,6 +35,7 @@ namespace Gizmo.Web.Components
 
         protected string TooltipClassName => new ClassMapper()
                  .Add("giz-tooltip")
+                 .Add($"giz-tooltip--{OpenDirection.ToDescriptionString()}")
                  .AsString();
 
         #endregion

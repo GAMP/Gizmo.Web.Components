@@ -7,6 +7,9 @@ namespace Gizmo.Web.Components
     /// </summary>
     public enum IconSizes
     {
+        [Description("extra-small")]
+        ExtraSmall,
+
         [Description("small")]
         Small,
 
