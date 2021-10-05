@@ -1,8 +1,8 @@
 //=============== gizmo overlay classes ================//
 
 .giz-overlay {
-    width: $width-full;
-    height: $height-full;
+    width: 100vw;
+    height: 100vh;
     outline: $outline-0;
     z-index: 50;
     display: $display-none;
