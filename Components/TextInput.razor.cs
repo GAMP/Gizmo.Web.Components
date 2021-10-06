@@ -76,6 +76,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool UpdateOnInput { get; set; }
 
+        [Parameter]
+        public bool IsMultiLine { get; set; }
+
         public bool IsValid => _isValid && !_converter.HasGetError;
 
         public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;

@@ -61,6 +61,19 @@
             }
         }
 
+        textarea {
+            width: $width-full;
+            resize: none;
+            border: none;
+            outline: none;
+            background: inherit;
+            //
+            height: 100%;
+            color: $white-color;
+            @include font-12;
+            @include open-sans-600;
+        }
+
         &:hover {
             color: $white-color;
         }
@@ -105,8 +118,8 @@
                 height: 1.6rem;
             }
         }
-        &--medium {
 
+        &--medium {
         }
         //input large
         &--large {

@@ -17,6 +17,7 @@
         Balance,
         Ban,
         Bell,
+        Bell_Client,
         Calendar,
         Cash,
         Check,
