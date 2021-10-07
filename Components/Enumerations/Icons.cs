@@ -62,6 +62,7 @@
         Key,
         Lock,
         Login,
+        Login_Client,
         Logout,
         Logout_Client,
         Logs,
