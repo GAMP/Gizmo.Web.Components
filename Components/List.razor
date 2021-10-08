@@ -11,8 +11,11 @@
             @ListHeader
         </div>
     }
-
-    <CascadingValue Value="@this" IsFixed="true">
-        @ChildContent
-    </CascadingValue>
+    
+    <div class="giz-list-body @BodyClass">
+        <CascadingValue Value="@this" IsFixed="true">
+            @ChildContent
+        </CascadingValue>
+    </div>
+    
 </div>

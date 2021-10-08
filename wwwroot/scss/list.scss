@@ -52,6 +52,15 @@
             }
         }
     }
+
+    &.giz-list-with-header {
+        display: grid;
+        grid-template-rows: auto 1fr;
+
+        .giz-list-body {
+            padding-top: 0.5rem;
+        }
+    }
 }
 
 //== nested list

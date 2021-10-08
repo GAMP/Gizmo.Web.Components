@@ -71,6 +71,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ListHeader { get; set; }
 
+        [Parameter]
+        public string BodyClass { get; set; }
+
         #endregion
 
         #region METHODS
@@ -179,6 +182,7 @@ namespace Gizmo.Web.Components
                  .Add($"giz-list--{Direction.ToDescriptionString()}")
                  .If("giz-list--clickable", () => CanClick)
                  .If("giz-list--selectable", () => CanSelect)
+                 .If("giz-list-with-header", () => ListHeader != null)
                  .AsString();
 
         protected string StyleValue => new StyleMapper()
