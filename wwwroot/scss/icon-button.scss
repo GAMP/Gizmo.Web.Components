@@ -39,7 +39,7 @@
             color: $white-color;
             background: $primary-color-theme-dark;
 
-            &:focus {
+            &:active {
                 background: $primary-color-theme-dark;
                 box-shadow: 0px 0px 9px #4891FF;
             }
@@ -55,7 +55,7 @@
                 background: #e98950;
             }
 
-            &:focus {
+            &:active {
                 background: $warning-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
@@ -81,7 +81,7 @@
                 background: #e94554;
             }
 
-            &:focus {
+            &:active {
                 background: $danger-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
@@ -107,7 +107,7 @@
             color: $dim-white-theme-dark;
         }
 
-        &:focus {
+        &:active {
             border: 1px solid $primary-color-theme-dark;
             box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);
             color: $dim-white-theme-dark;
@@ -135,7 +135,7 @@
             background: $white-color;
         }
 
-        &:focus {
+        &:active {
             background: $white-color;
             box-shadow: $elevation-1-theme-dark;
         }

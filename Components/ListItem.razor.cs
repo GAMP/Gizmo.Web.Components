@@ -72,6 +72,25 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string BackgroundImage { get; set; }
 
+        [Parameter]
+        public bool IsSelected
+        {
+            get
+            {
+                return _isSelected;
+            }
+            set
+            {
+                if (_isSelected == value)
+                    return;
+
+                _isSelected = value;
+
+                if (Parent != null)
+                    _ = Parent.SetSelectedItem(this);
+            }
+        }
+
         #endregion
 
         #region EVENTS
@@ -156,6 +175,13 @@ namespace Gizmo.Web.Components
                 {
                     if (IsActiveLink())
                         await Parent.SetSelectedItem(this);
+                }
+                else
+                {
+                    if (_isSelected)
+                    {
+                        await Parent.SetSelectedItem(this);
+                    }
                 }
             }
         }

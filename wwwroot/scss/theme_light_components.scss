@@ -248,7 +248,7 @@
                 color: $primary-color-theme-dark;
             }
 
-            &:focus {
+            &:active {
                 background: $white-color;
                 border: 1px solid $primary-color-theme-dark;
                 color: $secondary-color-theme-dark;
@@ -273,7 +273,7 @@
                 background: $white-color;
             }
 
-            &:focus {
+            &:active {
                 background: $white-color;
                 box-shadow: $elevation-1-theme-dark;
             }

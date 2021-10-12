@@ -112,7 +112,7 @@
             border-right: 1px solid $border-dark-color !important;
             letter-spacing: normal !important;
 
-            &:focus {
+            &:active {
                 box-shadow: unset !important;
             }
 
@@ -262,7 +262,7 @@
         }
         //button fill variant
         &--fill {
-            &:focus:not(.giz-button-shadow) {
+            &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
                 box-shadow: unset !important;
             }
@@ -301,7 +301,7 @@
             &:hover {
             }
 
-            &:focus {
+            &:active {
             }
 
             &.disabled, &[disabled] {
@@ -313,7 +313,7 @@
             &:hover {
             }
 
-            &:focus {
+            &:active {
             }
 
             &.disabled, &[disabled] {
@@ -526,12 +526,12 @@
                 background: $davy-dark-gray;
             }
 
-            &:focus:not(.giz-button-shadow) {
+            &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
                 box-shadow: unset !important;
             }
 
-            &:focus {
+            &:active {
                 background: $davy-dark-gray;
             }
 
@@ -547,12 +547,12 @@
                 background: $davy-dark-gray;
             }
 
-            &:focus:not(.giz-button-shadow) {
+            &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
                 box-shadow: unset !important;
             }
 
-            &:focus {
+            &:active {
                 background: $davy-dark-gray;
             }
         }
@@ -565,12 +565,12 @@
                 background: $davy-dark-gray;
             }
 
-            &:focus:not(.giz-button-shadow) {
+            &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
                 box-shadow: unset !important;
             }
 
-            &:focus {
+            &:active {
                 background: $davy-dark-gray;
             }
 
