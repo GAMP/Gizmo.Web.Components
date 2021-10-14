@@ -77,6 +77,11 @@
     &.giz-list--left {
         right: 100%;
     }
+
+    &.giz-list--top {
+        margin-top: unset;
+        bottom: 0;
+    }
 }
 
 .giz-nested-list-expand-icon {

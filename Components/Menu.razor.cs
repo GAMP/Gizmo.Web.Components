@@ -90,11 +90,13 @@ namespace Gizmo.Web.Components
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
+        internal bool ExpandBottomToTop { get; set; } = false;
+
         #endregion
 
         #region EVENTS
 
-        protected Task OnMouseDownHandler(MouseEventArgs args)
+        protected async Task OnMouseDownHandler(MouseEventArgs args)
         {
             if ((ActivationEvent == MenuActivationEvents.LeftClick && args.Button == 0) ||
                (ActivationEvent == MenuActivationEvents.RightClick && args.Button == 2))
@@ -103,15 +105,37 @@ namespace Gizmo.Web.Components
                 {
                     if (OpenDirection == PopupOpenDirections.Cursor)
                     {
-                        OffsetX = args.ClientX;
-                        OffsetY = args.ClientY;
+                        var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                        var mainMenuSize = await this.GetListBoundingClientRect();
+
+                        if (args.ClientX > windowSize.Width / 2)
+                        {
+                            //Open direction right to left.
+                            OffsetX = args.ClientX - mainMenuSize.Width;
+                            Direction = ListDirections.Left;
+                        }
+                        else
+                        {
+                            OffsetX = args.ClientX;
+                            Direction = ListDirections.Right;
+                        }
+
+                        if (args.ClientY > windowSize.Height / 2)
+                        {
+                            //Open direction bottom to top.
+                            OffsetY = args.ClientY - mainMenuSize.Height;
+                            ExpandBottomToTop = true;
+                        }
+                        else
+                        {
+                            OffsetY = args.ClientY;
+                            ExpandBottomToTop = false;
+                        }
                     }
 
                     IsOpen = !IsOpen;
                 }
             }
-
-            return Task.CompletedTask;
         }
 
         public void OnMouseOverHandler(MouseEventArgs args)
@@ -183,10 +207,10 @@ namespace Gizmo.Web.Components
 
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-menu-dropdown")
+                 .If("giz-menu-dropdown--cursor", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()
-                 .If($"position: absolute", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
                  .If($"top: {OffsetY}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
                  .If($"left: {OffsetX}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();

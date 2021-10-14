@@ -12,6 +12,15 @@
         right: 0;
         left: 0;
 
+        &.giz-menu-dropdown--cursor {
+            position: absolute;
+
+            & > .giz-list {
+                right: 0;
+                left: 0;
+            }
+        }
+
         .giz-list {
             border: 1px solid $onyx-black-theme-dark;
             box-shadow: $elevation-2-theme-dark;
@@ -42,10 +51,10 @@
         width: 100vw;
         height: 100vh;
         z-index: 50;
-        display: none;
+        visibility: hidden;
 
         &.giz-popup-wrapper-visible {
-            display: block;
+            visibility: visible;
         }
     }
 }

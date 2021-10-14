@@ -39,7 +39,7 @@
 @if (NestedList != null)
 {
     <Collapse Expanded="@IsExpanded">
-        <List Class="giz-nested-list" IsDisabled="@IsDisabled">
+        <List Class="giz-nested-list" IsDisabled="@IsDisabled" ExpandBottomToTop="@(Parent?.ExpandBottomToTop ?? false)">
             @NestedList
         </List>
     </Collapse>

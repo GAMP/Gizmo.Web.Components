@@ -2,6 +2,7 @@
 
 .giz-collapse {
     display: $display-none;
+    position: relative;
 
     &.giz-collapse-expanded {
         display: $display-block;

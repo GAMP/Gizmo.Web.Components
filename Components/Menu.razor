@@ -49,7 +49,12 @@
 
         <div class="@PopupWrapperClassName" @onclick="OnClickOverlayHandler">
             <Popup @bind-IsOpen="IsOpen" Class="@PopupClassName" Style="@PopupStyleValue" IsModal="@(!CloseOnItemClick)">
-                <List @ref="_itemsList" Direction="@Direction" CanClick="true" OnClickItem="@(() => OnClickMenuItemHandler())" PreserveIconSpace="@PreserveIconSpace">
+                <List @ref="_itemsList"
+                      Direction="@Direction"
+                      ExpandBottomToTop="@ExpandBottomToTop"
+                      PreserveIconSpace="@PreserveIconSpace"
+                      CanClick="true"
+                      OnClickItem="@(() => OnClickMenuItemHandler())">
                     @ChildContent
                 </List>
             </Popup>
