@@ -17,6 +17,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
         public string Source { get; set; }
 
         [Parameter]

@@ -3,6 +3,12 @@
 
 <div class="@Class @ClassName">
     
+    @{
+        var midPoint = Math.Round(Value * 2, MidpointRounding.AwayFromZero) / 2;
+        var hasHalfStar = midPoint - ((int)midPoint) == 0.5m;
+        bool halfStar = false;
+    }
+
     @for (int i = 0; i < 5; i++)
     {
         var local_i = i;
@@ -12,12 +18,37 @@
         {
             starColor = Color;
         }
+        
+        @if (hasHalfStar && midPoint > i && midPoint < i + 1 && _selectedStar == 0)
+        {
+            halfStar = true;
+        }
+        else
+        {
+            halfStar = false;
+        }
 
         <div style="display: inline-flex"
              @onmouseover="@(() => OnMouseOverStar(local_i + 1))"
              @onmouseout="@(() => OnMouseOut())"
              @onclick="@(() => OnClickStar(local_i + 1))">
-            <Icon SVGIcon="Icons.Star_Client" Color="@starColor" />
+            @if (halfStar)
+            {
+               <Icon Color="@starColor">
+                   <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M12 15.0667L16.9467 18.6667L15.0533 12.8534L20 9.33337H13.9333L12 3.33337L10.0667 9.33337H4L8.94667 12.8534L7.05333 18.6667L12 15.0667Z"
+                            fill="@BackgroundColor"
+                            stroke-width="1.05646" />
+                      <path d="M 12 3.3339844 L 10.066406 9.3339844 L 4 9.3339844 L 8.9472656 12.853516 L 7.0527344 18.666016 L 12 15.066406 L 12 3.3339844 z "
+                            stroke-width="1.05646"
+                            fill="@Color" />
+                    </svg>
+                </Icon>
+            }
+            else
+            {
+                <Icon SVGIcon="Icons.Star_Client" Color="@starColor" />
+            }
         </div>
     }
 </div>

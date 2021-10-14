@@ -24,6 +24,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public Icons? SVGIcon { get; set; }
 
+        [Parameter]
+        public string IconColor { get; set; }
+
+        [Parameter]
+        public string IconBackgroundColor { get; set; }
+
         #endregion
 
         #region EVENTS
