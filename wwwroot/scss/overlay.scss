@@ -5,12 +5,12 @@
     height: 100vh;
     outline: $outline-0;
     z-index: 50;
-    display: $display-none;
-    position: $position-fixed;
+    display: none;
+    position: fixed;
     left: 0;
     top: 0;
 
     &.giz-overlay-visible {
-        display: $display-flex;
+        display: flex;
     }
 }

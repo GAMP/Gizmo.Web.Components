@@ -10,15 +10,15 @@
 }
 
 .giz-input-datepicker--popup {
-    position: $position-relative;
+    position: relative;
 
     .giz-input-datepicker-dropdown-menu {
         box-shadow: $elevation-3-theme-dark;
     }
 
     .giz-popup {
-        overflow-x: $overflow-hidden;
-        overflow-y: $overflow-auto;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 }
 
@@ -34,7 +34,7 @@
     }
 
     .giz-calendar {
-        position: $position-absolute;
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -89,7 +89,7 @@
         .giz-calendar-title-switch {
             align-items: $align-center;
             margin: $spacer-8 $spacer-0;
-            display: $display-flex;
+            display: flex;
             justify-content: $justify-space-between;
 
             .giz-calendar-title-slide:hover {
@@ -147,7 +147,7 @@
         }
 
         .giz-calendar-action {
-            display: $display-flex;
+            display: flex;
             justify-content: $justify-end;
         }
     }

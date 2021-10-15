@@ -1,7 +1,7 @@
 //== list.scss files == //
 
 .giz-list {
-    position: $position-relative;
+    position: relative;
     min-width: 15rem;
     text-align: left;
     //Default Theme
@@ -66,7 +66,7 @@
 //== nested list
 
 .giz-nested-list {
-    position: $position-absolute;
+    position: absolute;
     margin-top: -50px;
     width: max-content;
 

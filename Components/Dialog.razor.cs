@@ -67,7 +67,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-dialog")
-                 .If("giz-dialog-open", () => IsOpen)
+                 .If("giz-dialog--open", () => IsOpen)
                  .AsString();
         protected string DialogStyleValue => new StyleMapper()
                  .If($"max-width: 100%;", () => string.IsNullOrEmpty(MaximumWidth))

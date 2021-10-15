@@ -5,7 +5,7 @@
 
 .giz-stacked-progress {
     height: 1rem;
-    overflow: $overflow-hidden;
+    overflow: hidden;
     background-color: transparent;
     border-radius: $rounded-theme-dark;
 
@@ -21,13 +21,13 @@
 //== giz circle progress bar ====//
 
 .giz-circle-progress {
-    position: $position-relative;
+    position: relative;
 
     > span {
         width: 50%;
         height: $height-full;
-        overflow: $overflow-hidden;
-        position: $position-absolute;
+        overflow: hidden;
+        position: absolute;
         top: 0;
         z-index: 1;
     }
@@ -36,7 +36,7 @@
         width: $width-full;
         height: $height-full;
         border-style: solid;
-        position: $position-absolute;
+        position: absolute;
         top: 0;
     }
 
@@ -69,7 +69,7 @@
     }
 
     &--value {
-        display: $display-flex;
+        display: flex;
         border-radius: $rounded-circle-theme-dark;
         align-items: $align-center;
         justify-content: $justify-center;
@@ -86,7 +86,7 @@
             width: 88%;
             height: 88%;
             border-radius: $rounded-circle-theme-dark;
-            position: $position-absolute;
+            position: absolute;
             top: 0;
             left: 0;
             border-width: 0.1rem;
@@ -126,7 +126,7 @@
             width: 88%;
             height: 88%;
             border-radius: $rounded-circle-theme-dark;
-            position: $position-absolute;
+            position: absolute;
             top: 0;
             left: 0;
             border-width: 0.2rem;
@@ -166,7 +166,7 @@
             width: 86%;
             height: 86%;
             border-radius: $rounded-circle-theme-dark;
-            position: $position-absolute;
+            position: absolute;
             top: 0;
             left: 0;
             border-width: 0.4rem;
@@ -206,7 +206,7 @@
             width: 90%;
             height: 90%;
             border-radius: $rounded-circle-theme-dark;
-            position: $position-absolute;
+            position: absolute;
             top: 0;
             left: 0;
             border-width: 0.7rem;

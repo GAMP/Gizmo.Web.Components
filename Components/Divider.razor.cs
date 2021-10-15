@@ -11,7 +11,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-divider")
-                 .If("giz-divider-vertical", () => IsVertical)
+                 .If("giz-divider--vertical", () => IsVertical)
                  .AsString();
 
         #endregion

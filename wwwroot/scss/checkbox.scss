@@ -2,14 +2,14 @@
     display: inline-flex;
 
     & input {
-        position: $position-absolute;
+        position: absolute;
         left: -9999px;
 
         & + label {
             font-size: $font-15-theme-dark;
             color: $secondary-color-theme-dark;
-            position: $position-relative;
-            display: $display-flex;
+            position: relative;
+            display: flex;
             align-items: $align-center;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -21,12 +21,12 @@
         }
 
         &:checked + label {
-            overflow: $overflow-visible;
+            overflow: visible;
         }
 
         & + label:before {
             content: '';
-            /*position: $position-absolute;
+            /*position: absolute;
             left: 0;
             top: 50%;
             transform: translateY(-50%);*/
@@ -67,7 +67,7 @@
 
         &:checked + label:after {
             content: '';
-            position: $position-absolute;
+            position: absolute;
             left: 0.6rem;
             top: 50%;
             transform: translateY(-35%);
@@ -93,7 +93,7 @@
 
         &:indeterminate + label:after {
             content: '';
-            position: $position-absolute;
+            position: absolute;
             left: 0.8rem;
             top: 50%;
             transform: translateY(-50%);

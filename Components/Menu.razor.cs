@@ -60,6 +60,9 @@ namespace Gizmo.Web.Components
 
                 _isOpen = value;
                 IsOpenChanged.InvokeAsync(_isOpen);
+
+                if (_isOpen)
+                    _itemsList.Collapse();
             }
         }
 
@@ -202,12 +205,12 @@ namespace Gizmo.Web.Components
 
         protected string PopupWrapperClassName => new ClassMapper()
                  .If("giz-popup-wrapper", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-popup-wrapper-visible", () => OpenDirection == PopupOpenDirections.Cursor && IsOpen)
+                 .If("giz-popup-wrapper--visible", () => OpenDirection == PopupOpenDirections.Cursor && IsOpen)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-menu-dropdown")
-                 .If("giz-menu-dropdown--cursor", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
+                 .Add("giz-menu__dropdown")
+                 .If("giz-menu__dropdown--cursor", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()

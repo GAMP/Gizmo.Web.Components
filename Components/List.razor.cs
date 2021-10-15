@@ -1,6 +1,7 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Gizmo.Web.Components
         private List<ListItem> _items = new List<ListItem>();
         private HashSet<List> _childLists = new HashSet<List>();
         private ListItem _selectedItem;
+        private ListDirections _direction = ListDirections.Right;
 
         #endregion
 
@@ -59,11 +61,40 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<ListItem> SelectedItemChanged { get; set; }
 
+        internal void Collapse()
+        {
+            foreach (var item in _items)
+            {
+                item.IsExpanded = false;
+            }
+
+            foreach (var item in _childLists)
+            {
+                item.Collapse();
+            }
+        }
+
         [Parameter]
         public EventCallback<ListItem> OnClickItem { get; set; }
 
-        [Parameter()]
-        public ListDirections Direction { get; set; } = ListDirections.Right;
+        [Parameter]
+        public ListDirections Direction
+        {
+            get
+            {
+                return _direction;
+
+            }
+            set
+            {
+                _direction = value;
+
+                foreach (var item in _childLists)
+                {
+                    item.Direction = _direction;
+                }
+            }
+        }
 
         [Parameter]
         public string MaximumHeight { get; set; }

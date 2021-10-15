@@ -3,7 +3,7 @@
 .giz-badge {
     display: inline-block;
 
-    .giz-badge__wrapper {
+    &__wrapper {
         .giz-badge__badge {
             border-radius: 1rem;
             white-space: nowrap;

@@ -1,24 +1,36 @@
 //=============== gizmo menu classes ================//
 
 .giz-menu {
-    display: $display-inline-block;
-    position: $position-relative;
+    display: inline-block;
+    position: relative;
 
     & > button {
         width: 100%;
     }
 
-    .giz-menu-dropdown {
+    &__dropdown {
         right: 0;
         left: 0;
 
-        &.giz-menu-dropdown--cursor {
+        &--cursor {
             position: absolute;
 
             & > .giz-list {
                 right: 0;
                 left: 0;
             }
+        }
+
+        & > .giz-list.giz-list--right {
+            position: absolute;
+            left: 0;
+            width: max-content;
+        }
+
+        & > .giz-list.giz-list--left {
+            position: absolute;
+            right: 0;
+            width: max-content;
         }
 
         .giz-list {
@@ -32,18 +44,6 @@
         }
     }
 
-    .giz-menu-dropdown > .giz-list.giz-list--right {
-        position: absolute;
-        left: 0;
-        width: max-content;
-    }
-
-    .giz-menu-dropdown > .giz-list.giz-list--left {
-        position: absolute;
-        right: 0;
-        width: max-content;
-    }
-
     .giz-popup-wrapper {
         position: fixed;
         top: 0;
@@ -53,7 +53,7 @@
         z-index: 50;
         visibility: hidden;
 
-        &.giz-popup-wrapper-visible {
+        &--visible {
             visibility: visible;
         }
     }

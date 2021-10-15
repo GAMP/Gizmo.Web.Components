@@ -2,11 +2,11 @@
 
 .giz-divider {
     background: $onyx-black-theme-dark;
-}
 
-.giz-divider-vertical {
-    width: 1px;
-    height: auto;
-    margin-block-start: 0;
-    margin-block-end: 0;
+    &--vertical {
+        width: 1px;
+        height: auto;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
 }

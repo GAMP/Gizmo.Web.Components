@@ -1,5 +1,5 @@
 .giz-data-grid {
-    position: $position-relative;
+    position: relative;
     width: $width-full;
     border-collapse: separate;
     border-spacing: 0 1.2rem;
@@ -18,14 +18,14 @@
         text-align: $text-align-left;
 
         &.is-sorted-up {
-            position: $position-relative;
+            position: relative;
 
             &:after {
                 content: '\f0de';
-                position: $position-absolute;
+                position: absolute;
                 right: 1rem;
                 height: $height-full;
-                display: $display-flex;
+                display: flex;
                 align-items: $align-center;
                 justify-content: $justify-center;
                 top: 0;
@@ -33,14 +33,14 @@
         }
 
         &.is-sorted-down {
-            position: $position-relative;
+            position: relative;
 
             &:after {
                 content: '\f0dd';
-                position: $position-absolute;
+                position: absolute;
                 right: 1rem;
                 height: $height-full;
-                display: $display-flex;
+                display: flex;
                 align-items: $align-center;
                 justify-content: $justify-center;
                 top: 0;
@@ -169,7 +169,7 @@
 
 
 .table__details {
-    display: $display-none;
+    display: none;
     background: $transparent-color !important;
 
     &:hover {
@@ -179,16 +179,16 @@
     }
 
     .table__row-dropdown.is-opened + & {
-        display: $display-table-row;
+        display: table-row;
     }
 }
 
 .giz-data-grid__details-content {
-    position: $position-relative;
+    position: relative;
     width: $width-full;
     border: 1px solid #292e39;
     border-radius: $rounded-theme-dark;
-    display: $display-flex;
+    display: flex;
     align-items: $align-start;
     box-sizing: border-box;
     border-top: $border-0-theme-dark;

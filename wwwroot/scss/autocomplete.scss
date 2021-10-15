@@ -2,7 +2,7 @@
 
 //== giz-input autoComplete
 .giz-input-autocomplete {
-    position: $position-relative;
+    position: relative;
 
     .giz-autocomplete-dropdown-full-width {
         width: $width-full;
@@ -36,14 +36,14 @@
 
             .giz-input-icon-right {
                 text-align: $text-align-right;
-                display: $display-block;
+                display: block;
                 cursor: pointer;
             }
         }
     }
 
     .giz-popup {
-        overflow-x: $overflow-hidden;
-        overflow-y: $overflow-auto;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 }

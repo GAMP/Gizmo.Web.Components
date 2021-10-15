@@ -2,7 +2,7 @@
 //== tab.scss files == //
 
 .giz-tab.giz-tab-hidden {
-    display: $display-none;
+    display: none;
 }
 
 .giz-tab.giz-tab-disabled {
@@ -23,7 +23,7 @@
 
         &::after {
             content: "";
-            position: $position-absolute;
+            position: absolute;
             bottom: 0;
             left: 0;
             width: $width-full;
@@ -35,7 +35,7 @@
     }
 
     .giz-tab-hidden {
-        display: $display-none;
+        display: none;
     }
 
     .giz-tab-disabled {
@@ -78,7 +78,7 @@
     background: $dark-gray-theme-dark;
 
     > div {
-        display: $display-none;
+        display: none;
     }
 
     [light-theme] & {
@@ -87,7 +87,7 @@
     }
 
     .giz-tab-content-active {
-        display: $display-block;
+        display: block;
         padding: $spacer-20;
     }
 

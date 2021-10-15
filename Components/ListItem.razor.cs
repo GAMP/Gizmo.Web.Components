@@ -52,9 +52,6 @@ namespace Gizmo.Web.Components
         public RenderFragment NestedList { get; set; }
 
         [Parameter]
-        public bool IsExpanded { get; set; }
-
-        [Parameter]
         public bool HasBorder { get; set; }
 
         [Parameter]
@@ -90,6 +87,8 @@ namespace Gizmo.Web.Components
                     _ = Parent.SetSelectedItem(this);
             }
         }
+
+        public bool IsExpanded { get; set; }
 
         #endregion
 

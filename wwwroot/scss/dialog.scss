@@ -6,17 +6,17 @@
     height: $height-full;
     outline: $outline-0;
     z-index: 100;
-    display: $display-none;
-    position: $position-fixed;
+    display: none;
+    position: fixed;
     left: 0;
     top: 0;
-    overflow-x: $overflow-hidden;
-    overflow-y: $overflow-auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     justify-content: $justify-center;
     align-items: $align-center;
     padding: 1rem;
 
-    &.giz-dialog-open {
-        display: $display-flex;
+    &.giz-dialog--open {
+        display: flex;
     }
 }

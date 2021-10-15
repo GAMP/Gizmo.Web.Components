@@ -4,7 +4,7 @@
     /*background-color: rgba(230, 230, 230, 0.3);*/
     z-index: 100;
     visibility: collapse;
-    position: $position-absolute;
+    position: absolute;
 
     &.giz-popup-open {
         visibility: visible;

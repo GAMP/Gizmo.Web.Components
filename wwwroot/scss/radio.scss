@@ -1,13 +1,13 @@
 .giz-radio {
-    position: $position-absolute;
+    position: absolute;
     left: -9999px;
 
     & + label {
         font-size: $font-15-theme-dark;
         color: $secondary-color-theme-dark;
-        position: $position-relative;
+        position: relative;
         padding-left: $spacer-36;
-        display: $display-flex;
+        display: flex;
         align-items: $align-center;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -18,12 +18,12 @@
     }
 
     &:checked + label {
-        overflow: $overflow-visible;
+        overflow: visible;
     }
 
     & + label:before {
         content: '';
-        position: $position-absolute;
+        position: absolute;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
@@ -51,7 +51,7 @@
 
     &:checked + label:after {
         content: '';
-        position: $position-absolute;
+        position: absolute;
         left: 0.6rem;
         top: 50%;
         transform: translateY(-50%);

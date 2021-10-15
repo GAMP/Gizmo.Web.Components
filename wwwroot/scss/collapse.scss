@@ -1,10 +1,10 @@
 //=============== gizmo collapse classes ================//
 
 .giz-collapse {
-    display: $display-none;
+    display: none;
     position: relative;
 
     &.giz-collapse-expanded {
-        display: $display-block;
+        display: block;
     }
 }
