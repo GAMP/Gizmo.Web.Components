@@ -14,6 +14,11 @@
 
 //giz-tab
 .giz-tab {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    max-height: 100%;
+    overflow: hidden;
+
     .giz-tab-active {
         color: $white-color;
 
@@ -76,6 +81,8 @@
 //giz-tab-content
 .giz-tab-content {
     background: $dark-gray-theme-dark;
+    max-height: 100%;
+    overflow: auto;
 
     > div {
         display: none;
@@ -83,7 +90,7 @@
 
     [light-theme] & {
         color: $secondary-color-theme-dark;
-        background:$white-color;
+        background: $white-color;
     }
 
     .giz-tab-content-active {

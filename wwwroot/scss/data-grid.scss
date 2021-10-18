@@ -1,3 +1,9 @@
+.giz-data-grid-wrapper {
+    .giz-menu {
+        position: absolute !important;
+    }
+}
+
 .giz-data-grid {
     position: relative;
     width: $width-full;
@@ -167,11 +173,15 @@
     }
 }
 
+.column-selector-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 .column-selector {
-    position: absolute !important;
     top: 2.2rem;
     right: 0;
-    z-index: 1;
 }
 
 .table__details {
@@ -209,7 +219,7 @@
 .giz-data-grid-sticky-header {
     max-height: 100%;
 
-    .table {
+    .giz-data-grid {
 
         & > thead td, & > thead th {
             position: sticky;

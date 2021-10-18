@@ -456,6 +456,10 @@ namespace Gizmo.Web.Components
 
         #region CLASSMAPPERS
 
+        protected string ClassName => new ClassMapper()
+                 .If("giz-data-grid-wrapper", () => Variant == DataGridVariants.Default)
+                 .AsString();
+
         protected string StyleValue => new StyleMapper()
                  .If($"max-height: 100%", () => HasStickyHeader)
                  .AsString();
