@@ -36,6 +36,7 @@ namespace Gizmo.Web.Components
         private Menu _contextMenu;
         private DataGridColumn<TItemType> _sortColumn;
         private SortDirections _sortDirection;
+        private TItemType _activeItem;
 
         #endregion
 
@@ -59,20 +60,14 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets if virtualization enabled.
         /// </summary>
-        [Parameter()]
-        public bool IsVirtualized
-        {
-            get; set;
-        }
+        [Parameter]
+        public bool IsVirtualized { get; set; }
 
         /// <summary>
         /// Gets or sets item source.
         /// </summary>
-        [Parameter()]
-        public ICollection<TItemType> ItemSource
-        {
-            get; set;
-        }
+        [Parameter]
+        public ICollection<TItemType> ItemSource { get; set; }
 
         /// <summary>
         /// Gets or sets item size.
@@ -80,11 +75,8 @@ namespace Gizmo.Web.Components
         /// <remarks>
         /// Only applicable if virtualization is enabled.
         /// </remarks>
-        [Parameter()]
-        public int ItemSize
-        {
-            get; set;
-        }
+        [Parameter]
+        public int ItemSize { get; set; }
 
         /// <summary>
         /// Gets or sets overscan count.
@@ -92,7 +84,7 @@ namespace Gizmo.Web.Components
         /// <remarks>
         /// Only applicable if virtualization is enabled.
         /// </remarks>
-        [Parameter()]
+        [Parameter]
         public int OverscanCount { get; set; } = 3;
 
         /// <summary>
@@ -101,11 +93,8 @@ namespace Gizmo.Web.Components
         /// <remarks>
         /// Only applicable if virtualization is enabled.
         /// </remarks>
-        [Parameter()]
-        public ItemsProviderDelegate<TItemType> ItemsProvider
-        {
-            get; set;
-        }
+        [Parameter]
+        public ItemsProviderDelegate<TItemType> ItemsProvider { get; set; }
 
         /// <summary>
         /// Gets or sets placeholder template.
@@ -113,11 +102,8 @@ namespace Gizmo.Web.Components
         /// <remarks>
         /// Only applicable if virtualization is enabled.
         /// </remarks>
-        [Parameter()]
-        public RenderFragment PlaceHolderTemplate
-        {
-            get; set;
-        }
+        [Parameter]
+        public RenderFragment PlaceHolderTemplate { get; set; }
 
         /// <summary>
         /// Gets columns collection.
@@ -130,11 +116,28 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets selected item.
         /// </summary>
-        [Parameter()]
-        public TItemType SelectedItem
+        [Parameter]
+        public TItemType SelectedItem { get; set; }
+
+        /// <summary>
+        /// The item under mouse on right click.
+        /// </summary>
+        [Parameter]
+        public TItemType ActiveItem
         {
-            get;
-            set;
+            get
+            {
+                return _activeItem;
+            }
+            set
+            {
+                if (EqualityComparer<TItemType>.Default.Equals(_activeItem, value))
+                    return;
+
+                _activeItem = value;
+
+                _ = ActiveItemChanged.InvokeAsync(_activeItem);
+            }
         }
 
         [Parameter]
@@ -143,7 +146,7 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets selected items.
         /// </summary>
-        [Parameter()]
+        [Parameter]
         public ICollection<TItemType> SelectedItems
         {
             get { return _selectedItems; }
@@ -153,36 +156,26 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets selection mode.
         /// </summary>
-        [Parameter()]
-        public SelectionMode SelectionMode
-        {
-            get;
-            set;
-        }
+        [Parameter]
+        public SelectionMode SelectionMode { get; set; }
 
-        [Parameter()]
-        public RenderFragment<TItemType> DetailTemplate
-        {
-            get; set;
-        }
+        [Parameter]
+        public RenderFragment<TItemType> DetailTemplate { get; set; }
 
-        [Parameter()]
-        public RenderFragment ChildContent
-        {
-            get; set;
-        }
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
 
-        [Parameter()]
-        public EventCallback<TItemType> SelectedItemChanged
-        {
-            get; set;
-        }
+        [Parameter]
+        public EventCallback<TItemType> SelectedItemChanged { get; set; }
 
-        [Parameter()]
-        public EventCallback<ICollection<TItemType>> SelectedItemsChanged
-        {
-            get; set;
-        }
+        [Parameter]
+        public EventCallback<ICollection<TItemType>> SelectedItemsChanged { get; set; }
+
+        [Parameter]
+        public EventCallback<TItemType> ActiveItemChanged { get; set; }
+
+        [Parameter]
+        public EventCallback<TItemType> OnDoubleClickItem { get; set; }
 
         [Parameter]
         public RenderFragment ContextMenu { get; set; }
@@ -287,6 +280,13 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        internal Task SetActiveItem(TItemType item)
+        {
+            ActiveItem = item;
+
+            return Task.CompletedTask;
+        }
+
         internal async Task OpenContextMenu(double clientX, double clientY)
         {
             var gridPosition = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
@@ -349,7 +349,14 @@ namespace Gizmo.Web.Components
             _rows.Remove(item);
         }
 
-        internal async Task SelectItem(DataGridRow<TItemType> item, bool selected)
+        internal async Task DoubleClickRow(DataGridRow<TItemType> item)
+        {
+            TItemType dataItem = item.Item;
+
+            await OnDoubleClickItem.InvokeAsync(dataItem);
+        }
+
+        internal async Task SelectRow(DataGridRow<TItemType> item, bool selected)
         {
             //called once data row item is clicked
 

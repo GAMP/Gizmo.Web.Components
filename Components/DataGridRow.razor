@@ -5,7 +5,8 @@
 
 <tr class="@Class @ClassName"
     @key="Item.GetHashCode()"
-    @onclick="@(async (e) => await OnDataRowMouseEvent(e, Item))"
+    @onclick="@(async (e) => await OnClickEvent(e, Item))"
+    @ondblclick="@(async (e) => await OnDoubleClickEvent(e, Item))"
     @onclick:stopPropagation="true"
     @oncontextmenu:preventDefault="@(Parent.ContextMenu != null )"
     @oncontextmenu="ContextMenuHandler"

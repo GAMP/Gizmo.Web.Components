@@ -97,7 +97,7 @@ namespace Gizmo.Web.Components
 
         private async Task TrySetIndeterminateAsync(bool value)
         {
-            await InvokeVoidAsync("window.jsinterop.setPropByElement", Ref, "indeterminate", value);
+            await InvokeVoidAsync("setPropByElement", Ref, "indeterminate", value);
         }
 
         #endregion

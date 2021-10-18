@@ -2,7 +2,7 @@
     position: relative;
     width: $width-full;
     border-collapse: separate;
-    border-spacing: 0 1.2rem;
+    border-spacing: 0 0.2rem;
     color: $gray-black-theme-dark;
     font-size: $font-16-theme-dark;
     background: $dark-gray-theme-dark;
@@ -50,7 +50,7 @@
 
 
     & > tbody > tr {
-        height: 4.8rem;
+        height: 3.9rem;
         background: $transparent-color;
         border-radius: $rounded-lg-theme-dark;
         margin-bottom: $spacer-12;
@@ -167,6 +167,12 @@
     }
 }
 
+.column-selector {
+    position: absolute !important;
+    top: 2.2rem;
+    right: 0;
+    z-index: 1;
+}
 
 .table__details {
     display: none;

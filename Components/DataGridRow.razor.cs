@@ -92,8 +92,9 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected async Task OnDataRowMouseEvent(MouseEventArgs args, TItemType item)
+        protected async Task OnClickEvent(MouseEventArgs args, TItemType item)
         {
+            //TODO: A ADD DELAY FOR DOUBLE CLICK?
             if (IsDropdown)
             {
                 IsOpen = !IsOpen;
@@ -102,26 +103,35 @@ namespace Gizmo.Web.Components
             {
                 if (IsSelectable && Parent.SelectOnClick)
                 {
-                    await Parent?.SelectItem(this, !_selected);
+                    await Parent?.SelectRow(this, !_selected);
                 }
             }
         }
 
+        protected async Task OnDoubleClickEvent(MouseEventArgs args, TItemType item)
+        {
+            await Parent?.DoubleClickRow(this);
+        }
+
         protected async Task IsCheckedChangedHandler(bool value)
         {
-            await Parent?.SelectItem(this, value);
+            await Parent?.SelectRow(this, value);
         }
 
         protected async Task ContextMenuHandler(MouseEventArgs args)
         {
-            if (IsSelectable && Parent.SelectOnClick)
+            if (Parent != null)
             {
-                await Parent?.SelectItem(this, !_selected);
-            }
+                if (IsSelectable && Parent.SelectOnClick)
+                {
+                    await Parent?.SelectRow(this, !_selected);
+                }
 
-            if (args.Button == 2 && Parent.ContextMenu != null)
-            {
-                await Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                if (args.Button == 2 && Parent.ContextMenu != null)
+                {
+                    await Parent.SetActiveItem(Item);
+                    await Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                }
             }
         }
 
