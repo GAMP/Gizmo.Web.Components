@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -12,11 +11,22 @@ namespace Gizmo.Web.Components
         [Parameter]
         public TItemType Item { get; set; }
 
-        protected ValueTask OnDataCellMouseEvent(MouseEventArgs args, TItemType item, DataGridColumn<TItemType> column)
-        {
-            //called once cell data item is clicked
+        private bool _shouldRender;
 
-            return ValueTask.CompletedTask;
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                _shouldRender = false;
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
         }
     }
 }

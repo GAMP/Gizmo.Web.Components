@@ -61,6 +61,8 @@ namespace Gizmo.Web.Components
                 _isOpen = value;
                 IsOpenChanged.InvokeAsync(_isOpen);
 
+                _shouldRender = true;
+
                 if (_isOpen)
                     _itemsList.Collapse();
             }
@@ -185,9 +187,27 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        internal void Open()
+        {
+            IsOpen = true;
+
+            StateHasChanged();
+        }
+
+        internal void Open(double offsetX, double offsetY)
+        {
+            OffsetX = offsetX;
+            OffsetY = offsetY;
+            IsOpen = true;
+
+            StateHasChanged();
+        }
+
         internal void Close()
         {
             IsOpen = false;
+
+            StateHasChanged();
         }
 
         internal async Task<BoundingClientRect> GetListBoundingClientRect()
@@ -220,5 +240,22 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        private bool _shouldRender;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                _shouldRender = false;
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
+        }
     }
 }

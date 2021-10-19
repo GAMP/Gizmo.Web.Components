@@ -170,5 +170,14 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        //protected override async Task OnAfterRenderAsync(bool firstRender)
+        //{
+        //    if (!firstRender)
+        //        await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+
+        //    await base.OnAfterRenderAsync(firstRender);
+        //}
+
     }
 }

@@ -3,6 +3,6 @@
 
 @typeparam TItemType
 
-<td @onclick="@(async (e) => await OnDataCellMouseEvent(e, Item, Column))">
+<td>
     @Column.CellTemplate(Item)
 </td>

@@ -30,19 +30,20 @@ namespace Gizmo.Web.Components
         private bool _hasSelectedItems;
         private bool _hasSelectedAllItems;
         private int _providerTotalItems = 0;
-        private bool _isContextMenuOpen;
+        //private bool _isContextMenuOpen;
         private double _clientX;
         private double _clientY;
         private Menu _contextMenu;
         private DataGridColumn<TItemType> _sortColumn;
         private SortDirections _sortDirection;
         private TItemType _activeItem;
+        private ICollection<TItemType> _itemSource;
 
         #endregion
 
         #region PROPERTIES
 
-        [Parameter]
+      [Parameter]
         public DataGridVariants Variant { get; set; } = DataGridVariants.Default;
 
         [Parameter]
@@ -67,7 +68,22 @@ namespace Gizmo.Web.Components
         /// Gets or sets item source.
         /// </summary>
         [Parameter]
-        public ICollection<TItemType> ItemSource { get; set; }
+        public ICollection<TItemType> ItemSource
+        {
+            get
+            {
+                return _itemSource;
+            }
+            set
+            {
+                if (_itemSource == value)
+                    return;
+
+                _itemSource = value;
+
+                _shouldRender = true;
+            }
+        }
 
         /// <summary>
         /// Gets or sets item size.
@@ -302,9 +318,11 @@ namespace Gizmo.Web.Components
 
             _clientY = clientY - gridPosition.Top;
 
-            _isContextMenuOpen = true;
+            _contextMenu.Open(_clientX, _clientY);
 
-            StateHasChanged();
+            //_isContextMenuOpen = true;
+
+            //StateHasChanged();
         }
 
         internal void AddColumn(DataGridColumn<TItemType> column)
@@ -446,7 +464,7 @@ namespace Gizmo.Web.Components
                 }
             }
 
-            StateHasChanged();
+            //StateHasChanged();
 
             await SelectedItemChanged.InvokeAsync(dataItem);
             await SelectedItemsChanged.InvokeAsync();
@@ -458,13 +476,6 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .If("giz-data-grid-wrapper", () => Variant == DataGridVariants.Default)
-                 .AsString();
-
-        protected string StyleValue => new StyleMapper()
-                 .If($"max-height: 100%", () => HasStickyHeader)
-                 .AsString();
-
-        protected string TableContainerClassName => new ClassMapper()
                  .If("giz-data-grid-sticky-header", () => HasStickyHeader)
                  .AsString();
 
@@ -565,5 +576,27 @@ namespace Gizmo.Web.Components
                 return result;
             }
         }
+
+        private bool _shouldRender;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                _shouldRender = false;
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
+        }
+
+        //protected override void OnParametersSet()
+        //{
+        //}
     }
 }

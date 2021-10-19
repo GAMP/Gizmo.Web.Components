@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -67,6 +68,14 @@ namespace Gizmo.Web.Components
                 .AsString();
 
         #endregion
+
+        //protected override async Task OnAfterRenderAsync(bool firstRender)
+        //{
+        //    if (!firstRender)
+        //        await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+
+        //    await base.OnAfterRenderAsync(firstRender);
+        //}
 
     }
 }

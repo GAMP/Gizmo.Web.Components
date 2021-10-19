@@ -128,9 +128,18 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("data-grid-column")
                  .AsString();
+
         protected string StyleValue => new StyleMapper()
                  .If($"cursor: pointer;", () => CanSort)
                  .AsString();
+
+        //protected override async Task OnAfterRenderAsync(bool firstRender)
+        //{
+        //    if (!firstRender)
+        //        await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+
+        //    await base.OnAfterRenderAsync(firstRender);
+        //}
 
     }
 }

@@ -148,11 +148,29 @@ namespace Gizmo.Web.Components
                 return;
 
             _selected = selected;
+            _shouldRender = true;
 
             StateHasChanged();
         }
 
         #endregion
 
+        private bool _shouldRender;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                _shouldRender = false;
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
+        }
     }
 }
