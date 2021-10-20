@@ -1,0 +1,98 @@
+//== tab.scss files == //
+
+//giz-simple-tab
+.giz-simple-tab {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    max-height: 100%;
+    overflow: hidden;
+
+    &--disabled {
+        .giz-simple-tab__link {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    }
+
+    &--hidden {
+        display: none;
+    }
+
+    .giz-simple-tab-active {
+        color: $white-color;
+
+        [light-theme] & {
+            color: $black-color;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: $width-full;
+            height: 3px;
+            background-color: $primary-color-theme-dark;
+        }
+    }
+
+    .giz-simple-tab-hidden {
+        display: none;
+    }
+
+    .giz-simple-tab-disabled {
+        pointer-events: none;
+        opacity: 0.4;
+    }
+
+    &__ul {
+        list-style: $list-unstyled;
+        padding: 1.7rem 4.5rem;
+        padding: $spacer-0;
+        border-bottom: 1px solid $onyx-black-theme-dark;
+
+        [light-theme] & {
+            background: $secondary-light-theme-dark;
+            border-bottom: 1px solid $white-color;
+        }
+    }
+
+    &__link {
+        color: $gray-black-theme-dark;
+
+        [light-theme] & {
+            color: $dim-color-theme-dark;
+        }
+
+        &:hover {
+            color: $white-color;
+
+            [light-theme] & {
+                background-color: $white-color;
+                color: $dim-color-theme-dark;
+            }
+        }
+    }
+}
+
+.giz-simple-tab-content {
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.giz-simple-tab-item {
+    background: $dark-gray-theme-dark;
+    max-height: 100%;
+    overflow: auto;
+    display: none;
+
+    [light-theme] & {
+        color: $secondary-color-theme-dark;
+        background: $white-color;
+    }
+
+    &--active {
+        display: block;
+        padding: 0.5rem;
+    }
+}

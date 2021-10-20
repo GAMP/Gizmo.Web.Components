@@ -1,0 +1,11 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<ul class="giz-simple-tab__ul d-flex ma-0">
+    @foreach (var item in Items)
+    {
+        <li class="giz-simple-tab__item relative py-4 px-0">
+            <a class="giz-simple-tab__link giz-typography-body2 cursor-pointer font-weight-600 pa-4 @(GetTabItemClass(item))" @onclick="@(() => OnClickEvent(item))">@item.Header</a>
+        </li>
+    }
+</ul>

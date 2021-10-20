@@ -1,0 +1,9 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@Class @ClassName">
+    @if (_isSelected && ChildContent != null)
+    {
+        @ChildContent
+    }
+</div>

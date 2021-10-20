@@ -10,9 +10,10 @@ namespace Gizmo.Web.Components
     {
         #region FIELDS
 
-        private bool _selected;
-
+        private bool _isSelected;
         private TItemType _item;
+        private bool _isOpen;
+        private bool _shouldRender;
 
         #endregion
 
@@ -49,14 +50,29 @@ namespace Gizmo.Web.Components
         public bool IsDropdown { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
+        public bool IsOpen
+        {
+            get
+            {
+                return _isOpen;
+            }
+            set
+            {
+                if (_isOpen == value)
+                    return;
+
+                _isOpen = value;
+
+                _shouldRender = true;
+            }
+        }
 
         #endregion
 
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-             .If("is-selected", () => _selected)
+             .If("is-selected", () => _isSelected)
              .If("table__row-dropdown", () => IsDropdown)
              .If("is-opened", () => IsOpen).AsString();
 
@@ -103,7 +119,7 @@ namespace Gizmo.Web.Components
             {
                 if (IsSelectable && Parent.SelectOnClick)
                 {
-                    await Parent?.SelectRow(this, !_selected);
+                    await Parent?.SelectRow(this, !_isSelected);
                 }
             }
         }
@@ -124,7 +140,7 @@ namespace Gizmo.Web.Components
             {
                 if (IsSelectable && Parent.SelectOnClick)
                 {
-                    await Parent?.SelectRow(this, !_selected);
+                    await Parent?.SelectRow(this, !_isSelected);
                 }
 
                 if (args.Button == 2 && Parent.ContextMenu != null)
@@ -139,23 +155,28 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        public void Refresh()
+        {
+            _shouldRender = true;
+
+            StateHasChanged();
+        }
+
         internal void SetSelected(bool selected)
         {
             if (!IsSelectable)
                 return;
 
-            if (_selected == selected)
+            if (_isSelected == selected)
                 return;
 
-            _selected = selected;
+            _isSelected = selected;
             _shouldRender = true;
 
             StateHasChanged();
         }
 
         #endregion
-
-        private bool _shouldRender;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

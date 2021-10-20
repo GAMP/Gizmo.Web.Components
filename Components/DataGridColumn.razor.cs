@@ -133,13 +133,15 @@ namespace Gizmo.Web.Components
                  .If($"cursor: pointer;", () => CanSort)
                  .AsString();
 
-        //protected override async Task OnAfterRenderAsync(bool firstRender)
-        //{
-        //    if (!firstRender)
-        //        await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
 
-        //    await base.OnAfterRenderAsync(firstRender);
-        //}
+            await base.OnAfterRenderAsync(firstRender);
+        }
 
     }
 }

@@ -15,7 +15,7 @@
     @if (IsSelectable && (Parent.ShowCheckBoxes || !Parent.SelectOnClick))
     {
         <td>
-            <CheckBox IsChecked="@_selected" IsCheckedChanged="@IsCheckedChangedHandler" IsReadOnly="@Parent.SelectOnClick" />
+            <CheckBox IsChecked="@_isSelected" IsCheckedChanged="@IsCheckedChangedHandler" IsReadOnly="@Parent.SelectOnClick" />
         </td>
     }
 

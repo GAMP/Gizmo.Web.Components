@@ -5,18 +5,15 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class TabItem : CustomDOMComponentBase
+    public partial class SimpleTabItem : CustomDOMComponentBase
     {
-        #region CONSTRUCTOR
-        public TabItem()
-        {
-        }
-        #endregion
-
-        #region PROPERTIES
+        private bool _isSelected;
+        private bool _shouldRender;
 
         [CascadingParameter]
-        protected Tab Parent { get; set; }
+        protected SimpleTab Parent { get; set; }
+
+        #region PROPERTIES
 
         [Parameter]
         public RenderFragment Header { get; set; }
@@ -36,6 +33,21 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
+        internal void SetSelected(bool selected)
+        {
+            if (_isSelected == selected)
+                return;
+
+            _isSelected = selected;
+            _shouldRender = true;
+
+            StateHasChanged();
+        }
+
+        #endregion
+
+        #region OVERRIDES
 
         protected override void OnInitialized()
         {
@@ -64,7 +76,8 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                .Add("giz-tab-content-active")
+                .Add("giz-simple-tab-item")
+                .If("giz-simple-tab-item--active", () => _isSelected)
                 .AsString();
 
         #endregion
@@ -78,6 +91,10 @@ namespace Gizmo.Web.Components
 
             await base.OnAfterRenderAsync(firstRender);
         }
-
+        
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
+        }
     }
 }

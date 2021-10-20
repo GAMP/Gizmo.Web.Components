@@ -43,7 +43,7 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-      [Parameter]
+        [Parameter]
         public DataGridVariants Variant { get; set; } = DataGridVariants.Default;
 
         [Parameter]
@@ -295,6 +295,18 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
+        public void Refresh()
+        {
+            _shouldRender = true;
+
+            foreach (var row in _rows)
+            {
+                row.Value.Refresh();
+            }
+
+            StateHasChanged();
+        }
 
         internal Task SetActiveItem(TItemType item)
         {

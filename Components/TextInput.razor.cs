@@ -86,6 +86,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region EVENTS
+
         protected Task OnInputHandler(ChangeEventArgs args)
         {
             if (UpdateOnInput)
@@ -170,5 +171,14 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
     }
 }

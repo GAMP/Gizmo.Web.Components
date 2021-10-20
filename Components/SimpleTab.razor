@@ -1,0 +1,11 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@Class @ClassName">
+    <CascadingValue Value="@this" IsFixed="true">
+        <SimpleTabHeader @ref="_tabHeader" Items="@_items" />
+        <div class="giz-simple-tab-content giz-width-full">
+            @ChildContent
+        </div>
+    </CascadingValue>
+</div>

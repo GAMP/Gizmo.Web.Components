@@ -17,6 +17,7 @@ namespace Gizmo.Web.Components
 
         private List _itemsList;
         private bool _isOpen;
+        private bool _shouldRender;
 
         #endregion
 
@@ -239,8 +240,6 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
-
-        private bool _shouldRender;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

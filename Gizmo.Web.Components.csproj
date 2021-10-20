@@ -38,6 +38,7 @@
 	  <Content Remove="wwwroot\scss\progress-bar.scss" />
 	  <Content Remove="wwwroot\scss\rating.scss" />
 	  <Content Remove="wwwroot\scss\select.scss" />
+	  <Content Remove="wwwroot\scss\simple-tab.scss" />
 	  <Content Remove="wwwroot\scss\switch.scss" />
 	  <Content Remove="wwwroot\scss\tab.scss" />
 	  <Content Remove="wwwroot\scss\text-input.scss" />
@@ -67,6 +68,7 @@
 		</None>
 		<None Include="wwwroot\scripts.js" />
 		<None Include="wwwroot\scss\icon-button.scss" />
+		<None Include="wwwroot\scss\simple-tab.scss" />
 		<None Include="wwwroot\scss\tooltip.scss" />
 		<None Include="wwwroot\scss\chip.scss" />
 		<None Include="wwwroot\scss\chip-group.scss" />
