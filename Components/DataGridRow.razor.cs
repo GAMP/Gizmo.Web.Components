@@ -11,19 +11,53 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private bool _isSelected;
+
+        private bool _shouldRender;
+
+        private DataGrid<TItemType> _parent;
+        private IEnumerable<DataGridColumn<TItemType>> _columns;
         private TItemType _item;
         private bool _isOpen;
-        private bool _shouldRender;
 
         #endregion
 
         #region PROPERTIES
 
         [CascadingParameter(Name = "Parent")]
-        protected DataGrid<TItemType> Parent { get; set; }
+        protected DataGrid<TItemType> Parent
+        {
+            get
+            {
+                return _parent;
+            }
+            set
+            {
+                if (_parent == value)
+                    return;
+
+                _parent = value;
+
+                this.Refresh();
+            }
+        }
 
         [Parameter]
-        public IEnumerable<DataGridColumn<TItemType>> Columns { get; set; }
+        public IEnumerable<DataGridColumn<TItemType>> Columns
+        {
+            get
+            {
+                return _columns;
+            }
+            set
+            {
+                if (_columns == value)
+                    return;
+
+                _columns = value;
+
+                this.Refresh();
+            }
+        }
 
         [Parameter]
         public TItemType Item
@@ -34,7 +68,12 @@ namespace Gizmo.Web.Components
             }
             set
             {
+                if (EqualityComparer<TItemType>.Default.Equals(_item, value))
+                    return;
+
                 _item = value;
+
+                this.Refresh();
 
                 if (Parent != null)
                 {
@@ -42,12 +81,6 @@ namespace Gizmo.Web.Components
                 }
             }
         }
-
-        [Parameter]
-        public bool IsSelectable { get; set; }
-
-        [Parameter]
-        public bool IsDropdown { get; set; }
 
         [Parameter]
         public bool IsOpen
@@ -63,9 +96,15 @@ namespace Gizmo.Web.Components
 
                 _isOpen = value;
 
-                _shouldRender = true;
+                this.Refresh();
             }
         }
+
+        [Parameter]
+        public bool IsSelectable { get; set; }
+
+        [Parameter]
+        public bool IsDropdown { get; set; }
 
         #endregion
 

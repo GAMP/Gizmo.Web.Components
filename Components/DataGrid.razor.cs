@@ -37,7 +37,11 @@ namespace Gizmo.Web.Components
         private DataGridColumn<TItemType> _sortColumn;
         private SortDirections _sortDirection;
         private TItemType _activeItem;
+
+        private bool _shouldRender;
+
         private ICollection<TItemType> _itemSource;
+        private RenderFragment _childContent;
 
         #endregion
 
@@ -45,24 +49,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public DataGridVariants Variant { get; set; } = DataGridVariants.Default;
-
-        [Parameter]
-        public bool HasStickyHeader { get; set; }
-
-        [Parameter]
-        public bool IsSelectable { get; set; }
-
-        [Parameter]
-        public bool ShowCheckBoxes { get; set; }
-
-        [Parameter]
-        public bool SelectOnClick { get; set; }
-
-        /// <summary>
-        /// Gets or sets if virtualization enabled.
-        /// </summary>
-        [Parameter]
-        public bool IsVirtualized { get; set; }
 
         /// <summary>
         /// Gets or sets item source.
@@ -81,9 +67,45 @@ namespace Gizmo.Web.Components
 
                 _itemSource = value;
 
-                _shouldRender = true;
+                this.Refresh();
             }
         }
+
+        [Parameter]
+        public RenderFragment ChildContent
+        {
+            get
+            {
+                return _childContent;
+            }
+            set
+            {
+                if (_childContent == value)
+                    return;
+
+                _childContent = value;
+
+                this.Refresh();
+            }
+        }
+
+        [Parameter]
+        public bool HasStickyHeader { get; set; }
+
+        [Parameter]
+        public bool IsSelectable { get; set; }
+
+        [Parameter]
+        public bool ShowCheckBoxes { get; set; }
+
+        [Parameter]
+        public bool SelectOnClick { get; set; }
+
+        /// <summary>
+        /// Gets or sets if virtualization enabled.
+        /// </summary>
+        [Parameter]
+        public bool IsVirtualized { get; set; }
 
         /// <summary>
         /// Gets or sets item size.
@@ -177,9 +199,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public RenderFragment<TItemType> DetailTemplate { get; set; }
-
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
 
         [Parameter]
         public EventCallback<TItemType> SelectedItemChanged { get; set; }
@@ -588,8 +607,6 @@ namespace Gizmo.Web.Components
                 return result;
             }
         }
-
-        private bool _shouldRender;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
