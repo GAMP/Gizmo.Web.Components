@@ -25,6 +25,12 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region FIELDS
+
+        private bool _isVisible  = true;
+
+        #endregion
+
         #region PROPERTIES
 
         #region PUBLIC
@@ -66,7 +72,22 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public bool IsVisible { get; set; } = true;
+        public bool IsVisible
+        {
+            get
+            {
+                return _isVisible;
+            }
+            set
+            {
+                if (_isVisible == value)
+                    return;
+
+                _isVisible = value;
+
+                Parent?.Refresh();
+            }
+        }
 
         [Parameter]
         public bool CanChangeVisibility { get; set; } = true;
@@ -76,6 +97,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public Func<SortDirections, IEnumerable<TItemType>> SortFunction { get; set; }
+
+        [Parameter]
+        public TextAlignments TextAlignment { get; set; }
 
         public bool IsSorted { get; set; }
 

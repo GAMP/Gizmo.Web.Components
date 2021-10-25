@@ -30,7 +30,6 @@ namespace Gizmo.Web.Components
         private bool _hasSelectedItems;
         private bool _hasSelectedAllItems;
         private int _providerTotalItems = 0;
-        //private bool _isContextMenuOpen;
         private double _clientX;
         private double _clientY;
         private Menu _contextMenu;
@@ -305,7 +304,7 @@ namespace Gizmo.Web.Components
                     column.IsSorted = true;
                 }
 
-                StateHasChanged();
+                this.Refresh();
             }
 
             return ValueTask.CompletedTask;
@@ -350,10 +349,6 @@ namespace Gizmo.Web.Components
             _clientY = clientY - gridPosition.Top;
 
             _contextMenu.Open(_clientX, _clientY);
-
-            //_isContextMenuOpen = true;
-
-            //StateHasChanged();
         }
 
         internal void AddColumn(DataGridColumn<TItemType> column)
@@ -463,6 +458,9 @@ namespace Gizmo.Web.Components
                 }
             }
 
+            var previousHasSelectedItems = _hasSelectedItems;
+            var previousHasSelectedAllItems = _hasSelectedAllItems;
+
             if (SelectedItems?.Count == 0)
             {
                 _hasSelectedItems = false;
@@ -495,7 +493,9 @@ namespace Gizmo.Web.Components
                 }
             }
 
-            //StateHasChanged();
+            if (previousHasSelectedItems != _hasSelectedItems ||
+                previousHasSelectedAllItems != _hasSelectedAllItems)
+                this.Refresh();
 
             await SelectedItemChanged.InvokeAsync(dataItem);
             await SelectedItemsChanged.InvokeAsync();

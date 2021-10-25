@@ -106,7 +106,7 @@ namespace Gizmo.Web.Components
 
         protected override async Task OnFirstAfterRenderAsync()
         {
-            if (IsTriState && IsIndeterminate)
+            if (IsIndeterminate)
             {
                 await TrySetIndeterminateAsync(true);
             }
@@ -128,13 +128,13 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickCheckBoxHandler(MouseEventArgs args)
         {
-            if (IsTriState)
+            if (IsIndeterminate)
             {
-                if (IsIndeterminate)
-                {
-                    IsIndeterminate = false;
-                }
-                else
+                IsIndeterminate = false;
+            }
+            else
+            {
+                if (IsTriState)
                 {
                     if (_nextIndeterminate)
                     {

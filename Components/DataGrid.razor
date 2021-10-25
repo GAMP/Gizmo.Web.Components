@@ -49,7 +49,7 @@
                     @if (IsSelectable && (ShowCheckBoxes || !SelectOnClick))
                     {
                         <th>
-                            <CheckBox IsChecked="@(_hasSelectedAllItems)" IsTriState="@(_hasSelectedItems && !_hasSelectedAllItems)" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" IsCheckedChanged="@IsCheckedChangedHandler" />
+                            <CheckBox IsChecked="@(_hasSelectedAllItems)" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" IsCheckedChanged="@IsCheckedChangedHandler" />
                         </th>
                     }
                     @ChildContent

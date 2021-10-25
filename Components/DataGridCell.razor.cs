@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Extensions;
+using Gizmo.Web.Components.Infrastructure;
+using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -10,6 +12,10 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public TItemType Item { get; set; }
+
+        protected string StyleValue => new StyleMapper()
+                 .If($"text-align: {Column.TextAlignment.ToDescriptionString()};", () => Column.TextAlignment != TextAlignments.Left)
+                 .AsString();
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
