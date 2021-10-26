@@ -16,7 +16,6 @@
     font-size: $font-16-theme-dark;
     background: $dark-gray-theme-dark;
 
-
     & > thead td, & > thead th {
         height: 5rem;
         text-transform: $text-uppercase;
@@ -25,6 +24,12 @@
         font-weight: $font-weight-400;
         padding: 0 0.5rem;
         text-align: $text-align-left;
+
+        .giz-data-grid-header {
+            display: flex;
+            height: 100%;
+            align-items: center;
+        }
 
         &.is-sorted-up {
             position: relative;

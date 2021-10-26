@@ -38,6 +38,9 @@ namespace Gizmo.Web.Components
         public string BackgroundColor { get; set; }
 
         [Parameter]
+        public bool IsVisible { get; set; } = true;
+
+        [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         #endregion
@@ -75,6 +78,7 @@ namespace Gizmo.Web.Components
         protected string StyleValue => new StyleMapper()
                  .If($"color: { Color }", () => !string.IsNullOrEmpty(Color))
                  .If($"background-color: { BackgroundColor }", () => BackgroundStyle != IconBackgroundStyles.None)
+                 .If($"visibility: hidden", () => !IsVisible)
                  .AsString();
 
         #endregion
