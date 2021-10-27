@@ -1,11 +1,9 @@
-﻿using Gizmo.Web.Components.Infrastructure;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -40,7 +38,10 @@ namespace Gizmo.Web.Components
         private bool _shouldRender;
 
         private ICollection<TItemType> _itemSource;
+        private TItemType _selectedItem;
         private RenderFragment _childContent;
+        private ICollection<TItemType> _previousItemSource;
+        private TItemType _previousSelectedItem;
 
         #endregion
 
@@ -65,8 +66,31 @@ namespace Gizmo.Web.Components
                     return;
 
                 _itemSource = value;
+            }
+        }
 
-                this.Refresh();
+        /// <summary>
+        /// Gets or sets selected item.
+        /// </summary>
+        [Parameter]
+        public TItemType SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                if (EqualityComparer<TItemType>.Default.Equals(_selectedItem, value))
+                    return;
+
+                _selectedItem = value;
+
+                if (SelectionMode == SelectionMode.Single && SelectedItems?.Contains(_selectedItem) == false)
+                {
+                    SelectedItems?.Clear();
+                    SelectedItems?.Add(_selectedItem);
+                }
             }
         }
 
@@ -149,12 +173,6 @@ namespace Gizmo.Web.Components
         {
             get { return _columns; }
         }
-
-        /// <summary>
-        /// Gets or sets selected item.
-        /// </summary>
-        [Parameter]
-        public TItemType SelectedItem { get; set; }
 
         /// <summary>
         /// The item under mouse on right click.
@@ -366,6 +384,8 @@ namespace Gizmo.Web.Components
             if (item == null)
                 return;
 
+            //InvokeVoidAsync("writeLine", $"Add row {item}");
+
             _rows[item] = row;
 
             if (SelectedItems.Contains(item))
@@ -376,6 +396,8 @@ namespace Gizmo.Web.Components
         {
             if (item == null)
                 return;
+
+            //InvokeVoidAsync("writeLine", $"Update row {item}");
 
             _rows[item] = row;
 
@@ -390,7 +412,15 @@ namespace Gizmo.Web.Components
             if (item == null)
                 return;
 
-            _rows.Remove(item);
+            //InvokeVoidAsync("writeLine", $"Remove row {item}");
+            //_rows.Remove(item);
+
+            var actualRow = _rows.Where(a => a.Value == row).FirstOrDefault();
+            if (!actualRow.Equals(default(KeyValuePair<DataGridRow<TItemType>, TItemType>)))
+            {
+                //InvokeVoidAsync("writeLine", $"Remove row {actualRow.Key}");
+                _rows.Remove(actualRow.Key);
+            }
         }
 
         internal async Task DoubleClickRow(DataGridRow<TItemType> item)
@@ -400,14 +430,40 @@ namespace Gizmo.Web.Components
             await OnDoubleClickItem.InvokeAsync(dataItem);
         }
 
+        internal bool VerifySelected()
+        {
+            bool selectionUpdated = false;
+
+            if (SelectedItems != null)
+            {
+                var previouslySelectedItems = SelectedItems.ToList();
+
+                foreach (var item in previouslySelectedItems)
+                {
+                    if (_itemSource.Where(a => EqualityComparer<TItemType>.Default.Equals(a, item)).Count() == 0)
+                    {
+                        SelectedItems.Remove(item);
+                        selectionUpdated = true;
+                    }
+                }
+            }
+
+            if (SelectedItems == null || SelectedItems.Count == 0)
+            {
+                _selectedItem = default;
+            }
+
+            return selectionUpdated;
+        }
+
         internal async Task SelectRow(DataGridRow<TItemType> item, bool selected)
         {
-            //called once data row item is clicked
+            //called once data row item is clicked, right clicked or row checkbox clicked.
 
             TItemType dataItem = item.Item;
 
             //no matter of selection the clicked item is always the selected one
-            SelectedItem = dataItem;
+            _selectedItem = dataItem;
 
             bool wasSelected = SelectedItems?.Contains(dataItem) == true;
 
@@ -456,49 +512,66 @@ namespace Gizmo.Web.Components
                     SelectedItems?.Add(dataItem);
                     item.SetSelected(true);
                 }
+
+                if (SelectedItems == null || SelectedItems.Count == 0)
+                {
+                    _selectedItem = default;
+                }
             }
 
+            UpdateHeaderCheckbox();
+
+            await SelectedItemChanged.InvokeAsync(_selectedItem);
+            await SelectedItemsChanged.InvokeAsync();
+        }
+
+        private void UpdateHeaderCheckbox()
+        {
             var previousHasSelectedItems = _hasSelectedItems;
             var previousHasSelectedAllItems = _hasSelectedAllItems;
 
-            if (SelectedItems?.Count == 0)
+            if (SelectionMode == SelectionMode.Single)
             {
-                _hasSelectedItems = false;
-                SelectedItem = default;
+                _hasSelectedItems = _selectedItem != null;
+                _hasSelectedAllItems = _selectedItem != null && _itemSource.Count == 1;
             }
             else
             {
-                _hasSelectedItems = true;
-                if (ItemSource != null)
+                if (SelectedItems?.Count > 0)
                 {
-                    if (SelectedItems?.Count == ItemSource.Count)
+                    _hasSelectedItems = true;
+                    if (ItemSource != null)
                     {
-                        _hasSelectedAllItems = true;
+                        if (SelectedItems?.Count == ItemSource.Count)
+                        {
+                            _hasSelectedAllItems = true;
+                        }
+                        else
+                        {
+                            _hasSelectedAllItems = false;
+                        }
                     }
                     else
                     {
-                        _hasSelectedAllItems = false;
+                        if (SelectedItems?.Count == _providerTotalItems)
+                        {
+                            _hasSelectedAllItems = true;
+                        }
+                        else
+                        {
+                            _hasSelectedAllItems = false;
+                        }
                     }
                 }
                 else
                 {
-                    if (SelectedItems?.Count == _providerTotalItems)
-                    {
-                        _hasSelectedAllItems = true;
-                    }
-                    else
-                    {
-                        _hasSelectedAllItems = false;
-                    }
+                    _hasSelectedItems = false;
                 }
             }
 
             if (previousHasSelectedItems != _hasSelectedItems ||
                 previousHasSelectedAllItems != _hasSelectedAllItems)
                 this.Refresh();
-
-            await SelectedItemChanged.InvokeAsync(dataItem);
-            await SelectedItemsChanged.InvokeAsync();
         }
 
         #endregion
@@ -616,16 +689,61 @@ namespace Gizmo.Web.Components
                 //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
             }
 
+            if (SelectionMode == SelectionMode.Single)
+            {
+                if (_selectedItem != null && _rows.ContainsKey(_selectedItem))
+                {
+                    var selectedRow = _rows[_selectedItem];
+                    selectedRow.SetSelected(true);
+
+                    foreach (var row in _rows.Where(a => a.Value != selectedRow))
+                    {
+                        row.Value.SetSelected(false);
+                    }
+                }
+                else
+                {
+                    //Deselect all rows.
+                    foreach (var row in _rows)
+                    {
+                        row.Value.SetSelected(false);
+                    }
+                }
+            }
+
             await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            bool newItemSource = !EqualityComparer<ICollection<TItemType>>.Default.Equals(_previousItemSource, _itemSource);
+            bool newSelectedItem = !EqualityComparer<TItemType>.Default.Equals(_previousSelectedItem, _selectedItem);
+
+            _previousItemSource = _itemSource;
+            _previousSelectedItem = _selectedItem;
+
+            //In case of new item source make a full refresh.
+            if (newItemSource)
+            {
+                VerifySelected();
+
+                this.Refresh();
+            }
+            else
+            {
+                if (newSelectedItem)
+                {
+                    if (VerifySelected())
+                        this.Refresh();
+                }
+            }
+
+            await base.OnParametersSetAsync();
         }
 
         protected override bool ShouldRender()
         {
             return _shouldRender;
         }
-
-        //protected override void OnParametersSet()
-        //{
-        //}
     }
 }

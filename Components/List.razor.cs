@@ -61,19 +61,6 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<ListItem> SelectedItemChanged { get; set; }
 
-        internal void Collapse()
-        {
-            foreach (var item in _items)
-            {
-                item.IsExpanded = false;
-            }
-
-            foreach (var item in _childLists)
-            {
-                item.Collapse();
-            }
-        }
-
         [Parameter]
         public EventCallback<ListItem> OnClickItem { get; set; }
 
@@ -111,6 +98,19 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
+        internal void Collapse()
+        {
+            foreach (var item in _items)
+            {
+                item.IsExpanded = false;
+            }
+
+            foreach (var item in _childLists)
+            {
+                item.Collapse();
+            }
+        }
 
         internal async Task SetSelectedItem(ListItem item)
         {
