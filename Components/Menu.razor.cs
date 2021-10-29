@@ -235,8 +235,8 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()
-                 .If($"top: {OffsetY}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
-                 .If($"left: {OffsetX}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"top: {OffsetY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {OffsetX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => IsContextMenu || OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion
