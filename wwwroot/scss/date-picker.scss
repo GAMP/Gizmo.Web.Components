@@ -12,7 +12,7 @@
 .giz-input-datepicker--popup {
     position: relative;
 
-    .giz-input-datepicker-dropdown-menu {
+    .giz-input-datepicker__dropdown {
         box-shadow: $elevation-3-theme-dark;
     }
 
@@ -24,7 +24,7 @@
 
 .giz-input-datepicker--dialog {
 
-    .giz-input-datepicker-dropdown-menu {
+    .giz-input-datepicker__dropdown {
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);

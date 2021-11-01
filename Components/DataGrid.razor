@@ -8,7 +8,7 @@
        
         @if (ContextMenu != null)
         {
-            <Menu @ref="_contextMenu" IsContextMenu="true">
+            <Menu @ref="_contextMenu" IsContextMenu="true" OpenDirection="PopupOpenDirections.Cursor">
                 @ContextMenu
             </Menu>
         }

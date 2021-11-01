@@ -28,7 +28,7 @@
 
         </GizInput>
 
-        <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName">
+        <Popup IsOpen="@IsOpen" OpenDirection="@OpenDirection" Class="@PopupClassName">
 
             <div class="giz-time-picker">
                 <div class="giz-time-picker-header">
@@ -68,8 +68,8 @@
         </Popup>
     </div>
 
-    <Overlay Visible="@IsOpen"
+@*    <Overlay Visible="@IsOpen"
              @onclick="OnClickOverlayHandler">
-    </Overlay>
+    </Overlay>*@
 
 </CascadingValue>

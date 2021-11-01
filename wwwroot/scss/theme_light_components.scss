@@ -179,7 +179,7 @@
 .giz-input-select {
     [light-theme] & {
 
-        .giz-input-select-dropdown-menu {
+        .giz-input-select__dropdown {
             border: 1px solid $gray-dark-theme-dark !important;
         }
     }
@@ -192,7 +192,6 @@
         &--group-button {
             color: $gray-dark-theme-dark;
             background: $white-color;
-            border: 1px solid $gray-dark-theme-dark;
 
             svg {
                 color: $gray-dark-theme-dark;
@@ -332,7 +331,7 @@
 .giz-menu {
     [light-theme] & {
 
-        .giz-menu-dropdown {
+        &__dropdown {
 
             .giz-list {
                 border: 1px solid $gray-dark-theme-dark;

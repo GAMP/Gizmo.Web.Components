@@ -15,7 +15,7 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
-        private List _itemsList;
+        private List _popupContent;
         private bool _isOpen;
         private bool _shouldRender;
 
@@ -65,7 +65,7 @@ namespace Gizmo.Web.Components
                 _shouldRender = true;
 
                 if (_isOpen)
-                    _itemsList.Collapse();
+                    _popupContent.Collapse();
             }
         }
 
@@ -104,42 +104,45 @@ namespace Gizmo.Web.Components
 
         protected async Task OnMouseDownHandler(MouseEventArgs args)
         {
-            if ((ActivationEvent == MenuActivationEvents.LeftClick && args.Button == 0) ||
-               (ActivationEvent == MenuActivationEvents.RightClick && args.Button == 2))
+            if (!IsContextMenu)
             {
                 if (!IsDisabled)
                 {
-                    if (OpenDirection == PopupOpenDirections.Cursor)
+                    if ((ActivationEvent == MenuActivationEvents.LeftClick && args.Button == 0) ||
+                        (ActivationEvent == MenuActivationEvents.RightClick && args.Button == 2))
                     {
-                        var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
-                        var mainMenuSize = await this.GetListBoundingClientRect();
+                        if (OpenDirection == PopupOpenDirections.Cursor)
+                        {
+                            var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                            var mainMenuSize = await this.GetListBoundingClientRect();
 
-                        if (args.ClientX > windowSize.Width / 2)
-                        {
-                            //Open direction right to left.
-                            OffsetX = args.ClientX - mainMenuSize.Width;
-                            Direction = ListDirections.Left;
-                        }
-                        else
-                        {
-                            OffsetX = args.ClientX;
-                            Direction = ListDirections.Right;
+                            if (args.ClientX > windowSize.Width / 2)
+                            {
+                                //Open direction right to left.
+                                OffsetX = args.ClientX - mainMenuSize.Width;
+                                Direction = ListDirections.Left;
+                            }
+                            else
+                            {
+                                OffsetX = args.ClientX;
+                                Direction = ListDirections.Right;
+                            }
+
+                            if (args.ClientY > windowSize.Height / 2)
+                            {
+                                //Open direction bottom to top.
+                                OffsetY = args.ClientY - mainMenuSize.Height;
+                                ExpandBottomToTop = true;
+                            }
+                            else
+                            {
+                                OffsetY = args.ClientY;
+                                ExpandBottomToTop = false;
+                            }
                         }
 
-                        if (args.ClientY > windowSize.Height / 2)
-                        {
-                            //Open direction bottom to top.
-                            OffsetY = args.ClientY - mainMenuSize.Height;
-                            ExpandBottomToTop = true;
-                        }
-                        else
-                        {
-                            OffsetY = args.ClientY;
-                            ExpandBottomToTop = false;
-                        }
+                        IsOpen = !IsOpen;
                     }
-
-                    IsOpen = !IsOpen;
                 }
             }
         }
@@ -188,6 +191,11 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        internal void SetDirection(ListDirections direction)
+        {
+            Direction = direction;
+        }
+
         internal void Open()
         {
             IsOpen = true;
@@ -213,7 +221,7 @@ namespace Gizmo.Web.Components
 
         internal async Task<BoundingClientRect> GetListBoundingClientRect()
         {
-            return await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _itemsList.Ref);
+            return await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
         }
 
         #endregion
@@ -222,11 +230,6 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-menu")
-                 .AsString();
-
-        protected string PopupWrapperClassName => new ClassMapper()
-                 .If("giz-popup-wrapper", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-popup-wrapper--visible", () => OpenDirection == PopupOpenDirections.Cursor && IsOpen)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()

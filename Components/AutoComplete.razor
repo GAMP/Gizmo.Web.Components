@@ -4,10 +4,10 @@
 @typeparam TItemType
 @typeparam TValue
 
-<CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
-
-    <div class="@Class @ClassName">
-
+<div class="@Class @ClassName"
+     id="@Id"
+     @ref="@Ref">
+    <CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
         <GizInput Label="@Label"
                   IsDisabled="@IsDisabled"
                   IsFullWidth="@IsFullWidth"
@@ -17,23 +17,26 @@
                   Size="@Size"
                   IsValid="@_isValid"
                   ValidationMessage="@_validationMessage"
-                  RightSVGIcon="Icons.TriangleDown"
-                  @onclick="OnMenuClickHandler">
+                  RightSVGIcon="Icons.Search">
 
-            <input id="@Id"
-                   type="text"
+            <input type="text"
                    value="@_text"
                    readonly="@IsReadOnly"
                    disabled="@IsDisabled"
                    @oninput="OnInputHandler"
                    @onkeydown="OnInputKeyDownHandler"
-                   @onclick="OnInputClickHandler"
                    />
 
         </GizInput>
 
-        <Popup IsModal="true" MaximumHeight="@MaximumHeight" IsOpen="@IsOpen" Class="@PopupClassName">
-            <List @ref="_itemsList" CanSelect="true">
+        <Popup MaximumHeight="@MaximumHeight"
+               @bind-IsOpen="_isOpen"
+               OpenDirection="@OpenDirection"
+               Class="@PopupClassName"
+               Style="@PopupStyleValue">
+            <List @ref="_popupContent"
+                  CanClick="true"
+                  CanSelect="true">
                 @if (_items != null)
                 {
                     @foreach (var item in GetFiltered(_text))
@@ -50,10 +53,5 @@
                 }
             </List>
         </Popup>
-    </div>
-
-    <Overlay Visible="@IsOpen"
-             @onclick="OnClickOverlayHandler">
-    </Overlay>
-
-</CascadingValue>
+    </CascadingValue>
+</div>

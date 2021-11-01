@@ -47,25 +47,17 @@
             }
         }
 
-        <div class="@PopupWrapperClassName" @onclick="OnClickOverlayHandler">
-            <Popup @bind-IsOpen="IsOpen" Class="@PopupClassName" Style="@PopupStyleValue" IsModal="@(!CloseOnItemClick)">
-                <List @ref="_itemsList"
-                      Direction="@Direction"
-                      ExpandBottomToTop="@ExpandBottomToTop"
-                      PreserveIconSpace="@PreserveIconSpace"
-                      CanClick="true"
-                      OnClickItem="@(() => OnClickMenuItemHandler())">
-                    @ChildContent
-                </List>
-            </Popup>
-        </div>
+        <Popup @bind-IsOpen="IsOpen" Class="@PopupClassName" Style="@PopupStyleValue" CloseOnClick="@CloseOnItemClick"
+               OpenDirection="@(IsContextMenu ? PopupOpenDirections.Cursor : OpenDirection)">
+            <List @ref="_popupContent"
+                    Direction="@Direction"
+                    ExpandBottomToTop="@ExpandBottomToTop"
+                    PreserveIconSpace="@PreserveIconSpace"
+                    CanClick="true"
+                    OnClickItem="@(() => OnClickMenuItemHandler())">
+                @ChildContent
+            </List>
+        </Popup>
     </div>
-    
-    @if (!IsContextMenu && OpenDirection != PopupOpenDirections.Cursor)
-    {
-        <Overlay Visible="@IsOpen"
-                 @onclick="OnClickOverlayHandler">
-        </Overlay>
-    }
 
 </CascadingValue>

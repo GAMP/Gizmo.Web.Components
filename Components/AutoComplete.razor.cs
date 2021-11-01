@@ -25,11 +25,15 @@ namespace Gizmo.Web.Components
         private string _text;
 
         private IEnumerable<TItemType> _items;
-        private List _itemsList;
         private Dictionary<TValue, SelectItem<TValue>> _selectItems = new Dictionary<TValue, SelectItem<TValue>>();
         private DeferredAction _deferredAction;
         private int _delay = DEFAULT_DELAY;
         private TimeSpan _delayTimeSpan;
+        private List _popupContent;
+        private bool _isOpen;
+        private double _popupX;
+        private double _popupY;
+        private double _popupWidth;
         #endregion
 
         #region PROPERTIES
@@ -101,9 +105,6 @@ namespace Gizmo.Web.Components
         public string MaximumHeight { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
-
-        [Parameter]
         public bool OffsetY { get; set; }
 
         [Parameter]
@@ -126,6 +127,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public int MinimumCharacters { get; set; } = 3;
+
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
         [Parameter]
         public int Delay
@@ -194,6 +198,31 @@ namespace Gizmo.Web.Components
             return result;
         }
 
+        private async Task Open()
+        {
+            if (OpenDirection == PopupOpenDirections.Cursor)
+            {
+                var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                var mainMenuSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
+
+                var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+
+                _popupX = inputSize.Left;
+                _popupWidth = inputSize.Width;
+
+                if (inputSize.Bottom + mainMenuSize.Height > windowSize.Height)
+                {
+                    _popupY = windowSize.Height - mainMenuSize.Height;
+                }
+                else
+                {
+                    _popupY = inputSize.Bottom;
+                }
+            }
+
+            _isOpen = true;
+        }
+
         #endregion
 
         #region EVENTS
@@ -206,14 +235,14 @@ namespace Gizmo.Web.Components
             if (args.Key == null || args.Key == "Tab")
                 return;
 
-            if (!IsOpen)
-                IsOpen = true;
+            if (!_isOpen)
+                await Open();
 
             //If list has items.
             //Get the index of the selected item.
 
-            int activeItemIndex = _itemsList.GetSelectedItemIndex();
-            int listSize = _itemsList.GetListSize();
+            int activeItemIndex = _popupContent.GetSelectedItemIndex();
+            int listSize = _popupContent.GetListSize();
 
             switch (args.Key)
             {
@@ -226,11 +255,11 @@ namespace Gizmo.Web.Components
                     else
                     {
                         //Set the value of the AutoComplete based on the selected item.
-                        var selectItem = _selectItems.Where(a => a.Value.ListItem == _itemsList.SelectedItem).Select(a => a.Value).FirstOrDefault();
+                        var selectItem = _selectItems.Where(a => a.Value.ListItem == _popupContent.SelectedItem).Select(a => a.Value).FirstOrDefault();
                         await SetSelectedItem(selectItem);
 
                         //Close the popup.
-                        IsOpen = false;
+                        _isOpen = false;
 
                         return;
                     }
@@ -271,7 +300,7 @@ namespace Gizmo.Web.Components
             }
 
             //Update the selected item in the list.
-            await _itemsList.SetSelectedItemIndex(activeItemIndex);
+            await _popupContent.SetSelectedItemIndex(activeItemIndex);
         }
 
         public Task OnInputHandler(ChangeEventArgs args)
@@ -295,25 +324,6 @@ namespace Gizmo.Web.Components
             _items = await SearchFunction(_text);
 
             StateHasChanged();
-        }
-
-        protected Task OnInputClickHandler(MouseEventArgs args)
-        {
-            return Task.CompletedTask;
-        }
-
-        protected Task OnMenuClickHandler(MouseEventArgs args)
-        {
-            IsOpen = true;
-
-            return Task.CompletedTask;
-        }
-
-        protected Task OnClickOverlayHandler(MouseEventArgs args)
-        {
-            IsOpen = false;
-
-            return Task.CompletedTask;
         }
 
         #endregion
@@ -367,7 +377,7 @@ namespace Gizmo.Web.Components
 
         public Task SetSelectedItem(SelectItem<TValue> selectItem)
         {
-            IsOpen = false;
+            _isOpen = false;
 
             if (selectItem != null)
             {
@@ -394,8 +404,15 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-autocomplete-dropdown-menu")
-                 .Add("giz-autocomplete-dropdown-full-width")
+                 .Add("giz-input-autocomplete__dropdown")
+                 .If("giz-input-autocomplete__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-autocomplete-dropdown-full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .AsString();
+
+        protected string PopupStyleValue => new StyleMapper()
+                 .If($"top: {_popupY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {_popupX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"width: {_popupWidth.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion

@@ -1,7 +1,8 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits GizInputBase<DateTime?>
 
-<div class="giz-calendar">
+<div class="giz-calendar"
+     @ref="@Ref">
     <div class="giz-calendar-header">
         <div @onclick="OnClickButtonYearHandler"><span class="giz-calendar-year-title">@CurrentVisibleMonth.ToString("yyyy")</span></div>
         <div class="giz-calendar-title mt-3">@(Value?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>

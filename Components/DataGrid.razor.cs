@@ -353,18 +353,41 @@ namespace Gizmo.Web.Components
 
         internal async Task OpenContextMenu(double clientX, double clientY)
         {
-            var gridPosition = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
-
             var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
             var contextMenuSize = await _contextMenu.GetListBoundingClientRect();
 
-            _clientX = clientX - gridPosition.Left;
-            if (gridPosition.Left + _clientX + contextMenuSize.Width > windowSize.Width)
+            //var gridPosition = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+            //_clientX = clientX - gridPosition.Left;
+            //if (gridPosition.Left + _clientX + contextMenuSize.Width > windowSize.Width)
+            //{
+            //    _clientX = windowSize.Width - gridPosition.Left - contextMenuSize.Width - 40;
+            //}
+
+            //_clientY = clientY - gridPosition.Top;
+
+            if (clientX > windowSize.Width / 2)
             {
-                _clientX = windowSize.Width - gridPosition.Left - contextMenuSize.Width - 40;
+                //Open direction right to left.
+                _clientX = clientX - contextMenuSize.Width;
+                _contextMenu.SetDirection(ListDirections.Left);
+            }
+            else
+            {
+                _clientX = clientX;
+                _contextMenu.SetDirection(ListDirections.Right);
             }
 
-            _clientY = clientY - gridPosition.Top;
+            if (clientY > windowSize.Height / 2)
+            {
+                //Open direction bottom to top.
+                _clientY = clientY - contextMenuSize.Height;
+                _contextMenu.ExpandBottomToTop = true;
+            }
+            else
+            {
+                _clientY = clientY;
+                _contextMenu.ExpandBottomToTop = false;
+            }
 
             _contextMenu.Open(_clientX, _clientY);
         }

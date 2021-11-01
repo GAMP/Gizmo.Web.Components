@@ -5,8 +5,9 @@
 
     @if (Variant != PickerVariants.Static)
     {
-        <div class="@Class @ClassName">
-
+        <div class="@Class @ClassName"
+             id="@Id"
+             @ref="@Ref">
             <GizInput Label="@Label"
                       IsDisabled="@IsDisabled"
                       IsFullWidth="@IsFullWidth"
@@ -17,26 +18,24 @@
                       IsValid="@_isValid"
                       ValidationMessage="@_validationMessage"
                       RightSVGIcon="Icons.Calendar"
-                      @onclick="OnClickInputHandler">
+                      @onclick="OnClickInput">
 
-                <input id="@Id"
-                       type="text"
+                <input type="text"
                        value="@_text"
                        readonly="@IsReadOnly"
                        disabled="@IsDisabled"
                        @oninput="OnInputHandler"
-                       @onclick="OnClickInputHandler" />
+                       @onclick="OnClickInput" />
 
             </GizInput>
 
-            <Popup IsModal="true" IsOpen="@IsOpen" Class="@PopupClassName" OpenDirection="@(Variant == PickerVariants.Inline ? PopupOpenDirections.Bottom : PopupOpenDirections.None)">
-                <DatePickerBase Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" />
+            <Popup @bind-IsOpen="_isOpen"
+                   OpenDirection="@(Variant != PickerVariants.Inline ? PopupOpenDirections.None : OpenDirection)"
+                   Class="@PopupClassName"
+                   Style="@PopupStyleValue">
+                <DatePickerBase @ref="_popupContent" Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" />
             </Popup>
         </div>
-
-        <Overlay Visible="@IsOpen"
-                 @onclick="OnClickOverlayHandler">
-        </Overlay>
     }
     else
     {

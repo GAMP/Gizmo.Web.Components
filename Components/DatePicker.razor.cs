@@ -14,8 +14,15 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
         private DateTime? _value;
         private string _text;
+        private DatePickerBase _popupContent;
+        private bool _isOpen;
+        private double _popupX;
+        private double _popupY;
+        private double _popupWidth;
+
         #endregion
 
         #region PROPERTIES
@@ -55,9 +62,6 @@ namespace Gizmo.Web.Components
         public string Label { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
-
-        [Parameter]
         public bool OffsetY { get; set; }
 
         [Parameter]
@@ -78,13 +82,16 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Placeholder { get; set; }
 
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
         #endregion
 
         #region METHODS
 
         private Task DatePickerValueChanged(DateTime? value)
         {
-            IsOpen = false;
+            _isOpen = false;
             Value = value;
 
             return Task.CompletedTask;
@@ -111,18 +118,32 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        protected Task OnClickInputHandler(MouseEventArgs args)
+        protected async Task OnClickInput()
         {
-            IsOpen = true;
+            if (!IsDisabled)
+            {
+                if (!_isOpen && OpenDirection == PopupOpenDirections.Cursor)
+                {
+                    var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                    var mainMenuSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
 
-            return Task.CompletedTask;
-        }
+                    var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
 
-        protected Task OnClickOverlayHandler(MouseEventArgs args)
-        {
-            IsOpen = false;
+                    _popupX = inputSize.Left;
+                    _popupWidth = inputSize.Width;
 
-            return Task.CompletedTask;
+                    if (inputSize.Bottom + mainMenuSize.Height > windowSize.Height)
+                    {
+                        _popupY = windowSize.Height - mainMenuSize.Height;
+                    }
+                    else
+                    {
+                        _popupY = inputSize.Bottom;
+                    }
+                }
+
+                _isOpen = !_isOpen;
+            }
         }
 
         #endregion
@@ -136,10 +157,16 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-datepicker-dropdown-menu")
-                 .Add("giz-datepicker-dropdown-full-width")
+                 .Add("giz-input-datepicker__dropdown")
+                 .If("giz-input-datepicker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-datepicker-dropdown-full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .If("giz-popup--bottom", () => Variant == PickerVariants.Inline)
                  .If("giz-popup--offset", () => Variant == PickerVariants.Inline)
+                 .AsString();
+
+        protected string PopupStyleValue => new StyleMapper()
+                 .If($"top: {_popupY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {_popupX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion

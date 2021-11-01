@@ -8,9 +8,18 @@
         width: $width-full;
     }
 
-    .giz-input-select-dropdown-menu {
+    .giz-input-select__dropdown {
         box-shadow: $elevation-2-theme-dark;
         border: 1px solid $border-color-theme-dark;
+
+        &--cursor {
+            position: absolute;
+
+            & > .giz-list {
+                right: 0;
+                left: 0;
+            }
+        }
 
         .giz-list {
             .giz-list-item {

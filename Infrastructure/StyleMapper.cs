@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Gizmo.Web.Components.Infrastructure
+namespace Gizmo.Web.Components
 {
     /// <summary>
     /// Style mapper.
@@ -11,7 +11,10 @@ namespace Gizmo.Web.Components.Infrastructure
         
         public override string AsString()
         {
-            return string.Join("; ", Items.Select(i => i()).Where(i => i != null));
+            var result = string.Join("; ", Items.Select(i => i()).Where(i => i != null));
+            if (result.Length > 0)
+                result += ";";
+            return result;
         } 
 
         #endregion

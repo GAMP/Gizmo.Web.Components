@@ -56,6 +56,9 @@ namespace Gizmo.Web.Components
         public bool IsModal { get; set; }
 
         [Parameter]
+        public bool CloseOnClick { get; set; }
+
+        [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
         [Parameter]
@@ -74,20 +77,16 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task OnClickPopupHandler(MouseEventArgs args)
+        protected void ClickInsidePopup()
         {
-            if (!IsModal)
+            if (CloseOnClick)
                 IsOpen = false;
-
-            return Task.CompletedTask;
         }
 
-        protected Task OnFocusOutHandler()
+        protected void ClickOutsidePopup()
         {
             if (!IsModal)
                 IsOpen = false;
-
-            return Task.CompletedTask;
         }
 
         #endregion
@@ -103,6 +102,11 @@ namespace Gizmo.Web.Components
 
         protected string StyleValue => new StyleMapper()
                  .If($"max-height: {MaximumHeight}", () => !string.IsNullOrEmpty(MaximumHeight))
+                 .AsString();
+
+        protected string PopupWrapperClassName => new ClassMapper()
+                 .If("giz-popup-wrapper", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-popup-wrapper--visible", () => OpenDirection == PopupOpenDirections.Cursor && IsOpen)
                  .AsString();
 
         #endregion

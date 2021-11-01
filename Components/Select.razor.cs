@@ -1,4 +1,5 @@
 ﻿using Gizmo.Web.Components.Extensions;
+using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
@@ -15,9 +16,16 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
         private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
         private TValue _value;
         private SelectItem<TValue> _selectedItem;
+        private List _popupContent;
+        private bool _isOpen;
+        private double _popupX;
+        private double _popupY;
+        private double _popupWidth;
+
         #endregion
 
         #region PROPERTIES
@@ -58,13 +66,10 @@ namespace Gizmo.Web.Components
         public string MaximumHeight { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
-
-        [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
         [Parameter]
-        public bool OffsetY { get; set; } = true;
+        public bool OffsetY { get; set; }
 
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Normal;
@@ -105,19 +110,32 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task OnClickInputHandler(MouseEventArgs args)
+        protected async Task OnClickInput()
         {
             if (!IsDisabled)
-                IsOpen = true;
+            {
+                if (!_isOpen && OpenDirection == PopupOpenDirections.Cursor)
+                {
+                    var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                    var mainMenuSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
 
-            return Task.CompletedTask;
-        }
+                    var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
 
-        protected Task OnClickOverlayHandler(MouseEventArgs args)
-        {
-            IsOpen = false;
+                    _popupX = inputSize.Left;
+                    _popupWidth = inputSize.Width;
 
-            return Task.CompletedTask;
+                    if (inputSize.Bottom + mainMenuSize.Height > windowSize.Height)
+                    {
+                        _popupY = windowSize.Height - mainMenuSize.Height;
+                    }
+                    else
+                    {
+                        _popupY = inputSize.Bottom;
+                    }
+                }
+
+                _isOpen = !_isOpen;
+            }
         }
 
         #endregion
@@ -151,7 +169,7 @@ namespace Gizmo.Web.Components
 
         public Task SetSelectedItem(SelectItem<TValue> selectItem)
         {
-            IsOpen = false;
+            _isOpen = false;
 
             if (_selectedItem != selectItem)
             {
@@ -175,8 +193,15 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-select-dropdown-menu")
-                 .Add("giz-select-dropdown-full-width")
+                 .Add("giz-input-select__dropdown")
+                 .If("giz-input-select__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-select-dropdown-full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .AsString();
+
+        protected string PopupStyleValue => new StyleMapper()
+                 .If($"top: {_popupY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {_popupX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"width: {_popupWidth.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion

@@ -222,7 +222,7 @@
 // == select == //
 .giz-input-select {
     [client-theme] & {
-        .giz-input-select-dropdown-menu {
+        .giz-input-select__dropdown {
             border: unset !important;
 
             .giz-list {

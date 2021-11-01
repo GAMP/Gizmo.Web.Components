@@ -20,6 +20,7 @@ namespace Gizmo.Web.Components
         private int _minutes;
         private bool _am = true;
         private string _text;
+        private bool _isOpen;
         #endregion
 
         #region PROPERTIES
@@ -58,7 +59,23 @@ namespace Gizmo.Web.Components
         public string Label { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
+        public bool IsOpen
+        {
+            get
+            {
+                return _isOpen;
+            }
+            set
+            {
+                if (_isOpen == value)
+                    return;
+
+                _isOpen = value;
+
+                if (!_isOpen)
+                    ReloadValue();
+            }
+        }
 
         [Parameter]
         public bool OffsetY { get; set; }
@@ -80,6 +97,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Placeholder { get; set; }
+
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
         #endregion
 
