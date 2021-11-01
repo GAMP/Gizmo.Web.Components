@@ -17,7 +17,7 @@ function scrollListItemIntoView(element) {
         let { top: eTop } = element.getBoundingClientRect();
         let { top: pTop } = parent.getBoundingClientRect();
 
-        parent.parentElement.scrollTop = eTop - pTop;
+        parent.parentElement.parentElement.scrollTop = eTop - pTop;
     }
 }
 //

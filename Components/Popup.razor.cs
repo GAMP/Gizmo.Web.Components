@@ -36,7 +36,7 @@ namespace Gizmo.Web.Components
                 _isOpen = value;
                 IsOpenChanged.InvokeAsync(_isOpen);
 
-                if (_isOpen)
+                if (_isOpen && CanFocus)
                 {
                     Task.Run(async () =>
                     {
@@ -64,6 +64,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool OffsetY { get; set; } = true;
 
+        [Parameter]
+        public bool CanFocus { get; set; }
+
         #endregion
 
         #region METHODS
@@ -80,6 +83,12 @@ namespace Gizmo.Web.Components
         protected void ClickInsidePopup()
         {
             if (CloseOnClick)
+                IsOpen = false;
+        }
+
+        protected void OnFocusOutHandler()
+        {
+            if (!IsModal && CanFocus)
                 IsOpen = false;
         }
 
@@ -102,12 +111,18 @@ namespace Gizmo.Web.Components
 
         protected string StyleValue => new StyleMapper()
                  .If($"max-height: {MaximumHeight}", () => !string.IsNullOrEmpty(MaximumHeight))
+                 .If($"pointer-events: all", () => CanFocus)
                  .AsString();
 
         protected string PopupWrapperClassName => new ClassMapper()
                  .If("giz-popup-wrapper", () => OpenDirection == PopupOpenDirections.Cursor)
                  .If("giz-popup-wrapper--visible", () => OpenDirection == PopupOpenDirections.Cursor && IsOpen)
                  .AsString();
+
+        protected string PopupWrapperStyleValue => new StyleMapper()
+                 .If($"pointer-events: none", () => CanFocus)
+                 .AsString();
+
 
         #endregion
 

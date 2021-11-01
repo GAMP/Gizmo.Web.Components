@@ -21,6 +21,7 @@ namespace Gizmo.Web.Components
         private List<ListItem> _items = new List<ListItem>();
         private HashSet<List> _childLists = new HashSet<List>();
         private ListItem _selectedItem;
+        private ListItem _activeItem;
         private ListDirections _direction = ListDirections.Right;
 
         #endregion
@@ -95,6 +96,21 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool ExpandBottomToTop { get; set; }
 
+        public ListItem ActiveItem
+        {
+            get
+            {
+                return _activeItem;
+            }
+            set
+            {
+                if (_activeItem == value)
+                    return;
+
+                _activeItem = value;
+            }
+        }
+
         #endregion
 
         #region METHODS
@@ -133,6 +149,26 @@ namespace Gizmo.Web.Components
                 await ParentList.SetSelectedItem(item);
         }
 
+        internal async Task SetActiveItem(ListItem item)
+        {
+            if (IsDisabled)
+                return;
+
+            if (_activeItem == item)
+                return;
+
+            _activeItem = item;
+
+            foreach (var listItem in _items.ToArray())
+                listItem.SetActive(item == listItem);
+
+            foreach (var childList in _childLists.ToArray())
+                await childList.SetActiveItem(item);
+
+            if (ParentList != null)
+                await ParentList.SetActiveItem(item);
+        }
+
         internal async Task SetClickedItem(ListItem item)
         {
             if (ParentList != null)
@@ -163,20 +199,20 @@ namespace Gizmo.Web.Components
             _childLists.Remove(child);
         }
 
-        internal int GetSelectedItemIndex()
+        internal int GetActiveItemIndex()
         {
-            if (_selectedItem != null)
-                return _items.IndexOf(_selectedItem);
+            if (_activeItem != null)
+                return _items.IndexOf(_activeItem);
             else
                 return -1;
         }
 
-        internal async Task SetSelectedItemIndex(int index)
+        internal async Task SetActiveItemIndex(int index)
         {
             if (index >= 0 && index < _items.Count)
             {
                 var item = _items[index];
-                await SetSelectedItem(item);
+                await SetActiveItem(item);
                 await InvokeVoidAsync("scrollListItemIntoView", item.Ref);
             }
         }

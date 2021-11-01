@@ -241,7 +241,7 @@ namespace Gizmo.Web.Components
             //If list has items.
             //Get the index of the selected item.
 
-            int activeItemIndex = _popupContent.GetSelectedItemIndex();
+            int activeItemIndex = _popupContent.GetActiveItemIndex();
             int listSize = _popupContent.GetListSize();
 
             switch (args.Key)
@@ -255,7 +255,7 @@ namespace Gizmo.Web.Components
                     else
                     {
                         //Set the value of the AutoComplete based on the selected item.
-                        var selectItem = _selectItems.Where(a => a.Value.ListItem == _popupContent.SelectedItem).Select(a => a.Value).FirstOrDefault();
+                        var selectItem = _selectItems.Where(a => a.Value.ListItem == _popupContent.ActiveItem).Select(a => a.Value).FirstOrDefault();
                         await SetSelectedItem(selectItem);
 
                         //Close the popup.
@@ -300,7 +300,7 @@ namespace Gizmo.Web.Components
             }
 
             //Update the selected item in the list.
-            await _popupContent.SetSelectedItemIndex(activeItemIndex);
+            await _popupContent.SetActiveItemIndex(activeItemIndex);
         }
 
         public Task OnInputHandler(ChangeEventArgs args)

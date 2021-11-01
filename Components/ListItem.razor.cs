@@ -19,6 +19,7 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private bool _isSelected;
+        private bool _isActive;
 
         #endregion
 
@@ -148,6 +149,19 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
+        internal void SetActive(bool active)
+        {
+            if (IsDisabled)
+                return;
+
+            if (_isActive == active)
+                return;
+
+            _isActive = active;
+
+            StateHasChanged();
+        }
+
         private bool IsActiveLink()
         {
             var relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri).ToLower();
@@ -206,7 +220,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-list-item")
                  .If("giz-list-item-disabled", () => IsDisabled)
-                 .If("giz-list-item-selected", () => _isSelected).AsString();
+                 .If("giz-list-item-selected", () => _isSelected || _isActive).AsString();
 
         protected string StyleValue => new StyleMapper()
                  .If($"border: 1px solid {BorderColor}; border-radius: 0.4rem", () => HasBorder)

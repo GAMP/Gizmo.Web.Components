@@ -7,6 +7,7 @@
          style="@Style @StyleValue"
          @ref="@Ref"
          @onclick="ClickInsidePopup"
+         @onfocusout="OnFocusOutHandler"
          tabindex="-1">
         @ChildContent
     </div>
@@ -17,11 +18,12 @@
 }
 else
 {
-    <div class="@PopupWrapperClassName" @onclick="ClickOutsidePopup">
+    <div class="@PopupWrapperClassName" style="@PopupWrapperStyleValue" @onclick="ClickOutsidePopup">
         <div class="@Class @ClassName"
              style="@Style @StyleValue"
              @ref="@Ref"
              @onclick="ClickInsidePopup"
+             @onfocusout="OnFocusOutHandler"
              tabindex="-1">
             @ChildContent
         </div>
