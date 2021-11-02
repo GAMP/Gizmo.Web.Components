@@ -1,7 +1,8 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="@Class @ClassName">
+<div class="@Class @ClassName"
+     style="@Style">
     @if (!string.IsNullOrEmpty(Label))
     {
         <label for="@Id" class="giz-input-label">@Label</label>
