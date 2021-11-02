@@ -121,7 +121,7 @@
         }
 
         &.is-selected {
-            background: rgba(90,103,242,0.2);
+            background: $dark-navy-theme-dark;
             cursor: $cursor-pointer;
 
             & > td {

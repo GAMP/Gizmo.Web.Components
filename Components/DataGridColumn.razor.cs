@@ -1,4 +1,5 @@
-﻿using Gizmo.Web.Components.Infrastructure;
+﻿using Gizmo.Web.Components.Extensions;
+using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
@@ -155,6 +156,10 @@ namespace Gizmo.Web.Components
 
         protected string StyleValue => new StyleMapper()
                  .If($"cursor: pointer;", () => CanSort)
+                 .AsString();
+
+        protected string HeaderStyleValue => new StyleMapper()
+                 .If($"justify-content: {TextAlignment.ToDescriptionString()};", () => TextAlignment != TextAlignments.Left)
                  .AsString();
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
