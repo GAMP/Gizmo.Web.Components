@@ -33,6 +33,8 @@
         Deployment,
         Dessert,
         Dollar,
+        Dollar2,
+        Divide,
         Drink,
         Edit,
         Error,

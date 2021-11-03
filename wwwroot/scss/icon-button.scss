@@ -100,15 +100,18 @@
     //button outline variant
     &--outline {
         color: $dim-white-theme-dark;
-        background-color: $dark-gray-theme-dark;
-        border: 1px solid $onyx-black-theme-dark;
+        //background-color: $dark-gray-theme-dark;
+        //border: 1px solid $onyx-black-theme-dark;
+        background-color: transparent;
+        border: none;
 
         &:hover {
             color: $dim-white-theme-dark;
         }
 
         &:active {
-            border: 1px solid $primary-color-theme-dark;
+            //border: 1px solid $primary-color-theme-dark;
+            border: none;
             box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);
             color: $dim-white-theme-dark;
         }
@@ -155,6 +158,8 @@
     &--extra-large {
         height: 8rem;
         width: 8rem;
+        min-height: 8rem;
+        min-width: 8rem;
         font-size: $font-19-theme-dark;
         font-weight: $font-weight-700;
     }
@@ -162,18 +167,24 @@
     &--large {
         height: 4.8rem;
         width: 4.8rem;
+        min-height: 4.8rem;
+        min-width: 4.8rem;
         font-size: $font-17-theme-dark;
     }
     //button medium
     &--medium {
         height: 3.2rem;
         width: 3.2rem;
+        min-height: 3.2rem;
+        min-width: 3.2rem;
         font-size: $font-15-theme-dark;
     }
     //button small
     &--small {
         height: 2.4rem;
         width: 2.4rem;
+        min-height: 2.4rem;
+        min-width: 2.4rem;
         font-size: $font-12-theme-dark;
     }
     //buton disable
