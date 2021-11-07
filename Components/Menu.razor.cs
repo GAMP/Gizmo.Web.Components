@@ -96,7 +96,7 @@ namespace Gizmo.Web.Components
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
-        internal bool ExpandBottomToTop { get; set; } = false;
+        public bool ExpandBottomToTop { get; set; } = false;
 
         #endregion
 
@@ -191,19 +191,19 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        internal void SetDirection(ListDirections direction)
+        public void SetDirection(ListDirections direction)
         {
             Direction = direction;
         }
 
-        internal void Open()
+        public void Open()
         {
             IsOpen = true;
 
             StateHasChanged();
         }
 
-        internal void Open(double offsetX, double offsetY)
+        public void Open(double offsetX, double offsetY)
         {
             OffsetX = offsetX;
             OffsetY = offsetY;
@@ -212,14 +212,14 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
-        internal void Close()
+        public void Close()
         {
             IsOpen = false;
 
             StateHasChanged();
         }
 
-        internal async Task<BoundingClientRect> GetListBoundingClientRect()
+        public async Task<BoundingClientRect> GetListBoundingClientRect()
         {
             return await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
         }
