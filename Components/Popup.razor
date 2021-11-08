@@ -23,6 +23,7 @@ else
              style="@Style @StyleValue"
              @ref="@Ref"
              @onclick="ClickInsidePopup"
+             @onclick:stopPropagation="true"
              @onfocusout="OnFocusOutHandler"
              tabindex="-1">
             @ChildContent

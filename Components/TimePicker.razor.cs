@@ -14,13 +14,15 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
-        private DateTime? _previewValue;
+
         private DateTime? _value;
-        private int _hours;
-        private int _minutes;
-        private bool _am = true;
         private string _text;
+        private TimePickerBase _popupContent;
         private bool _isOpen;
+        private double _popupX;
+        private double _popupY;
+        private double _popupWidth;
+
         #endregion
 
         #region PROPERTIES
@@ -49,7 +51,7 @@ namespace Gizmo.Web.Components
                     _text = string.Empty;
                 }
 
-                ReloadValue();
+                //TODO: TEST _popupContent.ReloadValue();
 
                 ValueChanged.InvokeAsync(Value);
             }
@@ -73,7 +75,7 @@ namespace Gizmo.Web.Components
                 _isOpen = value;
 
                 if (!_isOpen)
-                    ReloadValue();
+                    _popupContent.ReloadValue();
             }
         }
 
@@ -103,91 +105,12 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        #region METHODS
-
-        private void ReloadValue()
-        {
-            if (Value.HasValue)
-            {
-                if (Value.Value.Hour < 12)
-                {
-                    _hours = Value.Value.Hour;
-                    _am = true;
-                }
-                else
-                {
-                    _hours = Value.Value.Hour - 12;
-                    _am = false;
-                }
-
-                _minutes = Value.Value.Minute;
-            }
-            else
-            {
-                _hours = 0;
-                _minutes = 0;
-                _am = true;
-            }
-
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
-        }
-
-        #endregion
-
         #region EVENTS
 
-        private Task OnClickButtonIncreaseHourHandler(MouseEventArgs args)
+        private Task TimePickerValueChanged(DateTime? value)
         {
-            if (_hours < 11)
-                _hours += 1;
-            else
-                _hours = 0;
-
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
-
-            return Task.CompletedTask;
-        }
-
-        private Task OnClickButtonDecreaseHourHandler(MouseEventArgs args)
-        {
-            if (_hours > 0)
-                _hours -= 1;
-            else
-                _hours = 11;
-
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
-
-            return Task.CompletedTask;
-        }
-
-        private Task OnClickButtonIncreaseMinuteHandler(MouseEventArgs args)
-        {
-            if (_minutes < 59)
-                _minutes += 1;
-            else
-                _minutes = 0;
-
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
-
-            return Task.CompletedTask;
-        }
-
-        private Task OnClickButtonDecreaseMinuteHandler(MouseEventArgs args)
-        {
-            if (_minutes > 0)
-                _minutes -= 1;
-            else
-                _minutes = 59;
-
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
-
-            return Task.CompletedTask;
-        }
-
-        private Task OnClickButtonSwitchAMPMHandler(MouseEventArgs args)
-        {
-            _am = !_am;
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            _isOpen = false;
+            Value = value;
 
             return Task.CompletedTask;
         }
@@ -202,17 +125,36 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        protected Task OnClickInputHandler(MouseEventArgs args)
+        protected async Task OnClickInput()
         {
-            IsOpen = true;
+            if (!IsDisabled)
+            {
+                if (!_isOpen && OpenDirection == PopupOpenDirections.Cursor)
+                {
+                    var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                    var mainMenuSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
 
-            return Task.CompletedTask;
+                    var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+
+                    _popupX = inputSize.Left;
+                    _popupWidth = inputSize.Width;
+
+                    if (inputSize.Bottom + mainMenuSize.Height > windowSize.Height)
+                    {
+                        _popupY = windowSize.Height - mainMenuSize.Height;
+                    }
+                    else
+                    {
+                        _popupY = inputSize.Bottom;
+                    }
+                }
+
+                _isOpen = !_isOpen;
+            }
         }
 
         protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
-            ReloadValue();
-
             IsOpen = false;
 
             return Task.CompletedTask;
@@ -220,8 +162,6 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickOKButtonHandler(MouseEventArgs args)
         {
-            Value = _previewValue;
-
             IsOpen = false;
 
             return Task.CompletedTask;
@@ -229,8 +169,6 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickCancelButtonHandler(MouseEventArgs args)
         {
-            ReloadValue();
-
             IsOpen = false;
 
             return Task.CompletedTask;
@@ -246,8 +184,14 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-timepicker-dropdown-menu")
-                 .Add("giz-timepicker-dropdown-full-width")
+                 .Add("giz-input-timepicker__dropdown")
+                 .If("giz-input-datepicker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-timepicker-dropdown-full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .AsString();
+
+        protected string PopupStyleValue => new StyleMapper()
+                 .If($"top: {_popupY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {_popupX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion

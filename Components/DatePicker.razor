@@ -33,7 +33,7 @@
                    OpenDirection="@(Variant != PickerVariants.Inline ? PopupOpenDirections.None : OpenDirection)"
                    Class="@PopupClassName"
                    Style="@PopupStyleValue">
-                <DatePickerBase @ref="_popupContent" Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" />
+                <DatePickerBase @ref="_popupContent" Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" ShowTime="@ShowTime" />
             </Popup>
         </div>
     }

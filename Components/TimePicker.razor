@@ -3,8 +3,9 @@
 
 <CascadingValue Value="@this" IsFixed="true">
 
-    <div class="@Class @ClassName">
-
+    <div class="@Class @ClassName"
+         id="@Id"
+         @ref="@Ref">
         <GizInput Label="@Label"
                   IsDisabled="@IsDisabled"
                   IsFullWidth="@IsFullWidth"
@@ -15,7 +16,7 @@
                   IsValid="@_isValid"
                   ValidationMessage="@_validationMessage"
                   RightSVGIcon="Icons.Time2"
-                  @onclick="OnClickInputHandler">
+                  @onclick="OnClickInput">
 
             <input id="@Id"
                    type="text"
@@ -24,52 +25,16 @@
                    disabled="@IsDisabled"
                    style="cursor: pointer;"
                    @oninput="OnInputHandler"
-                   @onclick="OnClickInputHandler" />
+                   @onclick="OnClickInput" />
 
         </GizInput>
 
-        <Popup IsOpen="@IsOpen" OpenDirection="@OpenDirection" Class="@PopupClassName">
-
-            <div class="giz-time-picker">
-                <div class="giz-time-picker-header">
-                    <span class="giz-time-picker-header--title">@(_hours.ToString().PadLeft(2, '0') ?? "00")</span>
-                    <div><span class="giz-time-picker-header--title">:</span></div>
-                    <span class="giz-time-picker-header--title">@(_minutes.ToString().PadLeft(2, '0') ?? "00")</span>
-                    <div class="giz-time-picker-header--ampm ml-3">
-                        <span class="giz-time-picker-header--label">@(_previewValue.HasValue ? _previewValue.Value.ToString("tt") : DateTime.Now.ToString("tt"))</span>
-                    </div>
-                </div>
-                <div class="giz-time-picker-content">
-                    <div class="giz-time-picker-content--timer">
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonIncreaseHourHandler" SVGIcon="Icons.ArrowUp"></IconButton>
-                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@_hours.ToString()" Min="0" Max="59" MaxLength="2" />
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonDecreaseHourHandler" SVGIcon="Icons.ArrowDown"></IconButton>
-                    </div>
-                    <div>
-                        <span class="giz-time-picker-content--separator">:</span>
-                    </div>
-                    <div class="giz-time-picker-content--timer">
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonIncreaseMinuteHandler" SVGIcon="Icons.ArrowUp"></IconButton>
-                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@_minutes.ToString()" Min="0" Max="59" MaxLength="2" />
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonDecreaseMinuteHandler" SVGIcon="Icons.ArrowDown"></IconButton>
-                    </div>
-                    <div class="giz-time-picker-content--timer">
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonSwitchAMPMHandler" SVGIcon="Icons.ArrowUp"></IconButton>
-                        <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@(_previewValue.HasValue ? _previewValue.Value.ToString("tt") : DateTime.Now.ToString("tt"))" IsReadOnly="true" MaxLength="2" />
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonSwitchAMPMHandler" SVGIcon="Icons.ArrowDown"></IconButton>
-                    </div>
-                </div>
-                <div class="giz-time-picker-footer">
-                    <div><Button @onclick="OnClickOKButtonHandler">OK</Button></div>
-                    <div><Button Class="ml-3" Variant="ButtonVariants.Outline" @onclick="OnClickCancelButtonHandler">CANCEL</Button></div>
-                </div>
-            </div>
-
+        <Popup IsOpen="@IsOpen"
+               OpenDirection="@OpenDirection"
+               Class="@PopupClassName"
+               Style="@PopupStyleValue">
+            <TimePickerBase @ref="_popupContent" Value="@Value" ValueChanged="@TimePickerValueChanged" IsFullWidth="@IsFullWidth" />
         </Popup>
     </div>
-
-@*    <Overlay Visible="@IsOpen"
-             @onclick="OnClickOverlayHandler">
-    </Overlay>*@
 
 </CascadingValue>

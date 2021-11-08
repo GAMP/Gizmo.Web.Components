@@ -25,7 +25,7 @@
 // giz timer picker
 .giz-time-picker {
     border-radius: $rounded-theme-dark;
-    max-width: 28rem;
+    width: 25rem;
     min-height: 1.6rem;
     // giz time picker header
     .giz-time-picker-header {
@@ -80,7 +80,6 @@
                 border: none;
                 font-size: $font-20-theme-dark;
                 font-weight: $font-weight-500;
-                padding: $spacer-12;
 
                 &:focus {
                     outline: none;

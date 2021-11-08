@@ -15,6 +15,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
         private DateTime _currentVisibleMonth;
         private int _monthDays = 0;
         private int _whiteSpaces = 0;
@@ -22,6 +23,8 @@ namespace Gizmo.Web.Components
         private bool _showMonthPicker;
         private bool _showYearPicker;
         private bool _requiresScrolling;
+        private bool _timePickerIsOpen;
+
         #endregion
 
         #region PROPERTIES
@@ -66,6 +69,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsFullWidth { get; set; }
+
+        [Parameter]
+        public bool ShowTime { get; set; }
 
         #endregion
 
@@ -160,6 +166,23 @@ namespace Gizmo.Web.Components
             _showMonthPicker = true;
 
             return Task.CompletedTask;
+        }
+
+        private Task OnClickTimePickerHandler(MouseEventArgs args)
+        {
+            _timePickerIsOpen = true;
+
+            return Task.CompletedTask;
+        }
+
+        private void OnClickTimePickerOK()
+        {
+            _timePickerIsOpen = false;
+        }
+
+        private void OnClickTimePickerCancel()
+        {
+            _timePickerIsOpen = false;
         }
 
         #endregion

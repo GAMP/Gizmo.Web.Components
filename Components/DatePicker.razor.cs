@@ -47,7 +47,10 @@ namespace Gizmo.Web.Components
                 //Update the component's text.
                 if (_value != null)
                 {
-                    _text = _value.Value.ToShortDateString();
+                    if (ShowTime)
+                        _text = _value.Value.ToString();
+                    else
+                        _text = _value.Value.ToShortDateString();
                 }
                 else
                 {
@@ -85,9 +88,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
+        [Parameter]
+        public bool ShowTime { get; set; }
+
         #endregion
 
-        #region METHODS
+        #region EVENTS
 
         private Task DatePickerValueChanged(DateTime? value)
         {
@@ -96,10 +102,6 @@ namespace Gizmo.Web.Components
 
             return Task.CompletedTask;
         }
-
-        #endregion
-
-        #region EVENTS
 
         public Task OnInputHandler(ChangeEventArgs args)
         {
