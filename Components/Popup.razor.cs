@@ -67,6 +67,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool CanFocus { get; set; }
 
+        [Parameter]
+        public bool HasDisabledCursor { get; set; }
+
         #endregion
 
         #region METHODS
@@ -120,7 +123,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string PopupWrapperStyleValue => new StyleMapper()
-                 .If($"pointer-events: none", () => CanFocus)
+                 .If($"pointer-events: none", () => CanFocus || HasDisabledCursor)
                  .AsString();
 
 

@@ -117,16 +117,16 @@ namespace Gizmo.Web.Components
                 if (!_isOpen && OpenDirection == PopupOpenDirections.Cursor)
                 {
                     var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
-                    var mainMenuSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
+                    var popupContentSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
 
                     var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
 
                     _popupX = inputSize.Left;
                     _popupWidth = inputSize.Width;
 
-                    if (inputSize.Bottom + mainMenuSize.Height > windowSize.Height)
+                    if (inputSize.Bottom + popupContentSize.Height > windowSize.Height)
                     {
-                        _popupY = windowSize.Height - mainMenuSize.Height;
+                        _popupY = windowSize.Height - popupContentSize.Height;
                     }
                     else
                     {
