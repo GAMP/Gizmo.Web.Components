@@ -245,6 +245,8 @@
             position: sticky;
             top: 0;
             z-index: 1;
+            color: $gray-black-theme-dark;
+            background: $dark-gray-theme-dark;
 
             [light-theme] & {
                 color: $secondary-color-theme-dark;
