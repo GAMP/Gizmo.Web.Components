@@ -14,7 +14,15 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region FIELDS
+
         private bool _isOpen;
+
+        private bool _customPosition;
+        private double _top;
+        private double _left;
+
+        #endregion
 
         #region PROPERTIES
 
@@ -79,6 +87,34 @@ namespace Gizmo.Web.Components
             await InvokeVoidAsync("focusElement", Ref);
         }
 
+        public void SetPosition(double top, double left)
+        {
+            _customPosition = true;
+            _top = top;
+            _left = left;
+        }
+
+        public void ResetPosition()
+        {
+            _customPosition = false;
+            _top = 0;
+            _left = 0;
+        }
+
+        public void Open()
+        {
+            IsOpen = true;
+
+            StateHasChanged();
+        }
+
+        public void Close()
+        {
+            IsOpen = false;
+
+            StateHasChanged();
+        }
+
         #endregion
 
         #region EVENTS
@@ -115,6 +151,8 @@ namespace Gizmo.Web.Components
         protected string StyleValue => new StyleMapper()
                  .If($"max-height: {MaximumHeight}", () => !string.IsNullOrEmpty(MaximumHeight))
                  .If($"pointer-events: all", () => CanFocus)
+                 .If($"top: {_top.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => _customPosition)
+                 .If($"left: {_left.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => _customPosition)
                  .AsString();
 
         protected string PopupWrapperClassName => new ClassMapper()
@@ -125,7 +163,6 @@ namespace Gizmo.Web.Components
         protected string PopupWrapperStyleValue => new StyleMapper()
                  .If($"pointer-events: none", () => CanFocus || HasDisabledCursor)
                  .AsString();
-
 
         #endregion
 

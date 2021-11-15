@@ -12,7 +12,7 @@ function getElementBoundingClientRect(element) {
 //
 function scrollListItemIntoView(element) {
     if (element) {
-        let parent = element.parentElement
+        let parent = element.parentElement;
 
         let { top: eTop } = element.getBoundingClientRect();
         let { top: pTop } = parent.getBoundingClientRect();
@@ -46,6 +46,22 @@ function scrollItemToTop(element) {
 
         parent.scrollTop = eTop - pTop;
     }
+}
+//
+function getElementScrollSize(element) {
+    if (element) {
+        let parent = element.parentElement;
+
+        return {
+            width: parent.scrollLeft,
+            height: parent.scrollTop
+        };
+    }
+
+    return {
+        width: 0,
+        height: 0
+    };
 }
 //
 function writeLine(message) {
