@@ -1,6 +1,6 @@
 ﻿namespace Gizmo.Web.Components
 {
-    public class BoundingClientRect
+    public struct BoundingClientRect
     {
         public double X { get; set; }
         public double Y { get; set; }
