@@ -93,6 +93,7 @@
         Sales,
         Search,
         Search_Client,
+        Server,
         Settings_Client,
         Show,
         Sleep,
