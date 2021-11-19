@@ -77,6 +77,7 @@
         Move,
         News,
         Note,
+        Note2,
         OpenDrawer,
         Password,
         Pay,
