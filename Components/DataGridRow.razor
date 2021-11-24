@@ -14,7 +14,7 @@
 
     @if (IsSelectable && (Parent.ShowCheckBoxes || !Parent.SelectOnClick))
     {
-        <td>
+        <td class="giz-data-grid-check">
             <CheckBox IsChecked="@_isSelected" IsCheckedChanged="@IsCheckedChangedHandler" IsReadOnly="@Parent.SelectOnClick" />
         </td>
     }

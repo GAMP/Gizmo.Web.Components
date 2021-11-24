@@ -179,6 +179,10 @@
     & > tbody > tr.table__details > td {
         padding: $spacer-0;
     }
+
+    &-check {
+        width: 1%;
+    }
 }
 
 .column-selector-wrapper {

@@ -48,7 +48,7 @@
                 <tr>
                     @if (IsSelectable && (ShowCheckBoxes || !SelectOnClick))
                     {
-                        <th>
+                        <th class="giz-data-grid-check">
                             <CheckBox IsChecked="@(_hasSelectedAllItems)" IsIndeterminate="@(_hasSelectedItems && !_hasSelectedAllItems)" IsCheckedChanged="@IsCheckedChangedHandler" />
                         </th>
                     }
