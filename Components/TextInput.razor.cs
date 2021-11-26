@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -79,6 +80,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsMultiLine { get; set; }
 
+        [Parameter]
+        public CultureInfo? Culture { get; set; }
+
         public bool IsValid => _isValid && !_converter.HasGetError;
 
         public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
@@ -139,6 +143,16 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region OVERRIDE
+
+        protected override void OnInitialized()
+        {
+            if (Culture != null)
+            {
+                _converter.Culture = Culture;
+            }
+
+            base.OnInitialized();
+        }
 
         protected override Task OnFirstAfterRenderAsync()
         {
