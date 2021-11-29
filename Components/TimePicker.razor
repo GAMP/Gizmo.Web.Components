@@ -1,5 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits GizInputBase<DateTime?>
+@inherits GizInputBase<TValue>
+
+@typeparam TValue
 
 <CascadingValue Value="@this" IsFixed="true">
 
@@ -33,7 +35,7 @@
                OpenDirection="@OpenDirection"
                Class="@PopupClassName"
                Style="@PopupStyleValue">
-            <TimePickerBase @ref="_popupContent" Value="@Value" ValueChanged="@TimePickerValueChanged" IsFullWidth="@IsFullWidth" />
+            <TimePickerBase @ref="_popupContent" TValue="TValue" Value="@Value" ValueChanged="@TimePickerValueChanged" IsFullWidth="@IsFullWidth" OnClickOK="@OnClickOKButtonHandler" OnClickCancel="@OnClickCancelButtonHandler" />
         </Popup>
     </div>
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -19,11 +20,11 @@ namespace Gizmo.Web.Components
         private DateTime _currentVisibleMonth;
         private int _monthDays = 0;
         private int _whiteSpaces = 0;
-        private DateTime? _value;
         private bool _showMonthPicker;
         private bool _showYearPicker;
         private bool _requiresScrolling;
         private bool _timePickerIsOpen;
+        private DateTime? _previousValue;
 
         #endregion
 
@@ -45,27 +46,7 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public DateTime? Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                if (_value != value)
-                {
-                    _value = value;
-
-                    if (_value.HasValue)
-                        CurrentVisibleMonth = new DateTime(_value.Value.Year, _value.Value.Month, 1);
-                    else
-                        CurrentVisibleMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-
-                    ValueChanged.InvokeAsync(_value);
-                }
-            }
-        }
+        public DateTime? Value { get; set; }
 
         [Parameter]
         public bool IsFullWidth { get; set; }
@@ -144,11 +125,9 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        private Task OnClickButtonDay(int day)
+        private async Task OnClickButtonDay(int day)
         {
-            Value = new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day);
-
-            return Task.CompletedTask;
+            await SetValueAsync(new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day));
         }
 
         private Task OnClickButtonMonth(int month)
@@ -187,14 +166,25 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region METHODS
+
+        protected async Task SetValueAsync(DateTime? value)
+        {
+            Value = value;
+
+            await ValueChanged.InvokeAsync(Value);
+        }
+
+        #endregion
+
         #region OVERRIDES
 
         protected override async Task OnFirstAfterRenderAsync()
         {
             //If the component initialized with a value.
-            if (_value.HasValue)
+            if (Value.HasValue)
             {
-                CurrentVisibleMonth = new DateTime(_value.Value.Year, _value.Value.Month, 1);
+                CurrentVisibleMonth = new DateTime(Value.Value.Year, Value.Value.Month, 1);
             }
 
             await base.OnFirstAfterRenderAsync();
@@ -207,6 +197,22 @@ namespace Gizmo.Web.Components
                 await ScrollDatePickerYearIntoView();
                 _requiresScrolling = false;
             }
+        }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            bool newValue = !EqualityComparer<DateTime?>.Default.Equals(_previousValue, Value);
+            _previousValue = Value;
+
+            if (newValue)
+            {
+                if (Value.HasValue)
+                    CurrentVisibleMonth = new DateTime(Value.Value.Year, Value.Value.Month, 1);
+                else
+                    CurrentVisibleMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            }
+
+            await base.OnParametersSetAsync();
         }
 
         #endregion

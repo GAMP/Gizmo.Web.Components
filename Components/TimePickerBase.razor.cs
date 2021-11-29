@@ -1,43 +1,29 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class TimePickerBase : GizInputBase<DateTime?>
+    public partial class TimePickerBase<TValue> : GizInputBase<TValue>
     {
         #region FIELDS
 
+        private DateConverter<TValue> _converter = new DateConverter<TValue>();
         private DateTime? _previewValue;
-        private DateTime? _value;
         private int _hours;
         private int _minutes;
         private bool _am = true;
+        private TValue _previousValue;
 
         #endregion
 
         #region PROPERTIES
 
         [Parameter]
-        public DateTime? Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                if (_value == value)
-                    return;
-
-                _value = value;
-
-                ReloadValue();
-
-                ValueChanged.InvokeAsync(Value);
-            }
-        }
+        public TValue Value { get; set; }
 
         [Parameter]
         public bool IsFullWidth { get; set; }
@@ -48,26 +34,34 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback OnClickCancel { get; set; }
 
+        [Parameter]
+        public CultureInfo? Culture { get; set; }
+
+        [Parameter]
+        public string Format { get; set; }
+
         #endregion
 
         #region METHODS
 
         internal void ReloadValue()
         {
-            if (Value.HasValue)
+            var value = _converter.SetValue(Value);
+
+            if (value.HasValue)
             {
-                if (Value.Value.Hour < 12)
+                if (value.Value.Hour < 12)
                 {
-                    _hours = Value.Value.Hour;
+                    _hours = value.Value.Hour;
                     _am = true;
                 }
                 else
                 {
-                    _hours = Value.Value.Hour - 12;
+                    _hours = value.Value.Hour - 12;
                     _am = false;
                 }
 
-                _minutes = Value.Value.Minute;
+                _minutes = value.Value.Minute;
             }
             else
             {
@@ -141,7 +135,9 @@ namespace Gizmo.Web.Components
 
         protected async Task OnClickOKButtonHandler(MouseEventArgs args)
         {
-            Value = _previewValue;
+            TValue newValue = _converter.GetValue(_previewValue);
+
+            await SetValueAsync(newValue);
 
             await OnClickOK.InvokeAsync();
         }
@@ -154,5 +150,47 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        #region METHODS
+
+        protected async Task SetValueAsync(TValue value)
+        {
+            Value = value;
+
+            ReloadValue();
+
+            await ValueChanged.InvokeAsync(Value);
+        }
+
+        #endregion
+
+        #region OVERRIDE
+
+        protected override void OnInitialized()
+        {
+            if (Culture != null && !string.IsNullOrEmpty(Format))
+            {
+                _converter.Culture = Culture;
+                _converter.Format = Format;
+            }
+
+            base.OnInitialized();
+        }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            bool newValue = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
+            _previousValue = Value;
+
+            if (newValue)
+            {
+                _previewValue = _converter.SetValue(Value);
+            }
+
+            await base.OnParametersSetAsync();
+        }
+
+        #endregion
+
     }
 }

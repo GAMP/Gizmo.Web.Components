@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class TimePicker : GizInputBase<DateTime?>
+    public partial class TimePicker<TValue> : GizInputBase<TValue>
     {
         #region CONSTRUCTOR
         public TimePicker()
@@ -15,9 +16,9 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
-        private DateTime? _value;
+        private DateConverter<TValue> _converter = new DateConverter<TValue>();
         private string _text;
-        private TimePickerBase _popupContent;
+        private TimePickerBase<TValue> _popupContent;
         private bool _isOpen;
         private double _popupX;
         private double _popupY;
@@ -28,34 +29,7 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
-        public DateTime? Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                if (_value == value)
-                    return;
-
-                _value = value;
-
-                //Update the component's text.
-                if (_value != null)
-                {
-                    _text = _value.Value.ToString("hh:mm tt");
-                }
-                else
-                {
-                    _text = string.Empty;
-                }
-
-                //TODO: TEST _popupContent.ReloadValue();
-
-                ValueChanged.InvokeAsync(Value);
-            }
-        }
+        public TValue Value { get; set; }
 
         [Parameter]
         public string Label { get; set; }
@@ -103,17 +77,15 @@ namespace Gizmo.Web.Components
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
+        [Parameter]
+        public CultureInfo? Culture { get; set; }
+
+        [Parameter]
+        public string Format { get; set; }
+
         #endregion
 
         #region EVENTS
-
-        private Task TimePickerValueChanged(DateTime? value)
-        {
-            _isOpen = false;
-            Value = value;
-
-            return Task.CompletedTask;
-        }
 
         public Task OnInputHandler(ChangeEventArgs args)
         {
@@ -160,18 +132,78 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        protected Task OnClickOKButtonHandler(MouseEventArgs args)
+        private async Task TimePickerValueChanged(TValue value)
         {
             IsOpen = false;
 
-            return Task.CompletedTask;
+            await SetValueAsync(value);
         }
 
-        protected Task OnClickCancelButtonHandler(MouseEventArgs args)
+        protected void OnClickOKButtonHandler()
         {
             IsOpen = false;
+        }
 
-            return Task.CompletedTask;
+        protected void OnClickCancelButtonHandler()
+        {
+            IsOpen = false;
+        }
+
+        #endregion
+
+        #region METHODS
+
+        protected async Task SetValueAsync(TValue value)
+        {
+            Value = value;
+
+            //Update the component's text.
+            var dateValue = _converter.SetValue(Value);
+            if (dateValue != null)
+            {
+                _text = dateValue.Value.ToString("hh:mm tt");
+            }
+            else
+            {
+                _text = string.Empty;
+            }
+
+            await ValueChanged.InvokeAsync(Value);
+        }
+
+        #endregion
+
+        #region OVERRIDE
+
+        protected override void OnInitialized()
+        {
+            if (Culture != null && !string.IsNullOrEmpty(Format))
+            {
+                _converter.Culture = Culture;
+                _converter.Format = Format;
+            }
+
+            base.OnInitialized();
+        }
+
+        public override async Task SetParametersAsync(ParameterView parameters)
+        {
+            await base.SetParametersAsync(parameters);
+
+            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
+            if (valueChanged)
+            {
+                //Update the component's text.
+                var dateValue = _converter.SetValue(Value);
+                if (dateValue != null)
+                {
+                    _text = dateValue.Value.ToString("hh:mm tt");
+                }
+                else
+                {
+                    _text = string.Empty;
+                }
+            }
         }
 
         #endregion
