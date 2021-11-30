@@ -15,7 +15,7 @@ namespace Gizmo.Web.Components
                     return default(TValue);
 
                 if (typeof(TValue) == typeof(string))
-                    return (TValue)(object)value.Value.ToString(); //TODO: A
+                    return (TValue)(object)value.Value.ToString(); //TODO: A FORMAT
 
                 // DateTime
                 else if (typeof(TValue) == typeof(DateTime) || typeof(TValue) == typeof(DateTime?))
@@ -53,7 +53,7 @@ namespace Gizmo.Web.Components
             {
                 // string
                 if (typeof(TValue) == typeof(string))
-                    return DateTime.Parse((string)(object)arg); //TODO: A
+                    return DateTime.Parse((string)(object)arg); //TODO: A FORMAT
 
                 // DateTime
                 else if (typeof(TValue) == typeof(DateTime))

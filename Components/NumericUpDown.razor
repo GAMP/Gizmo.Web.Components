@@ -1,0 +1,26 @@
+﻿@namespace Gizmo.Web.Components
+@inherits GizInputBase<TValue>
+
+@typeparam TValue
+
+<GizInput Label="@Label"
+          IsDisabled="@IsDisabled"
+          IsFullWidth="@IsFullWidth"
+          HasOutline="@HasOutline"
+          HasShadow="@HasShadow"
+          IsTransparent="@IsTransparent"
+          Size="@Size"
+          IsValid="@_isValid"
+          ValidationMessage="@_validationMessage">
+
+    <input type="text"
+           value="@_text"
+           disabled="@IsDisabled"
+           @oninput="OnInputHandler" />
+
+    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowDown" Class="quantity-button mr-2" @onclick="OnClickButtonRemoveQuantityHandler">
+    </Button>
+    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowUp" Class="quantity-button" @onclick="OnClickButtonAddQuantityHandler">
+    </Button>
+
+</GizInput>

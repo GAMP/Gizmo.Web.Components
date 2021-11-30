@@ -89,7 +89,7 @@ namespace Gizmo.Web.Components
 
         public Task OnInputHandler(ChangeEventArgs args)
         {
-            //TODO: TRY PARSE
+            //TODO: A TRY PARSE
             _text = (string)args.Value;
 
             StateHasChanged();

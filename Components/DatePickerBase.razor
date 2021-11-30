@@ -3,7 +3,7 @@
 
 @if (_timePickerIsOpen)
 {
-    <TimePickerBase @bind-Value="Value" OnClickOK="@OnClickTimePickerOK" OnClickCancel="@OnClickTimePickerCancel" />
+    <TimePickerBase TValue="DateTime?" Value="@Value" ValueChanged="@TimePickerValueChanged" IsFullWidth="@IsFullWidth" OnClickOK="@OnClickTimePickerOK" OnClickCancel="@OnClickTimePickerCancel" />
 }
 else
 {

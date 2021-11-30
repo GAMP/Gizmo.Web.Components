@@ -70,7 +70,7 @@ namespace Gizmo.Web.Components
                 _am = true;
             }
 
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            SetPreviewValue(_am ? _hours : _hours + 12, _minutes);
         }
 
         #endregion
@@ -84,7 +84,7 @@ namespace Gizmo.Web.Components
             else
                 _hours = 0;
 
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            SetPreviewValue(_am ? _hours : _hours + 12, _minutes);
 
             return Task.CompletedTask;
         }
@@ -96,7 +96,7 @@ namespace Gizmo.Web.Components
             else
                 _hours = 11;
 
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            SetPreviewValue(_am ? _hours : _hours + 12, _minutes);
 
             return Task.CompletedTask;
         }
@@ -108,7 +108,7 @@ namespace Gizmo.Web.Components
             else
                 _minutes = 0;
 
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            SetPreviewValue(_am ? _hours : _hours + 12, _minutes);
 
             return Task.CompletedTask;
         }
@@ -120,7 +120,7 @@ namespace Gizmo.Web.Components
             else
                 _minutes = 59;
 
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            SetPreviewValue(_am ? _hours : _hours + 12, _minutes);
 
             return Task.CompletedTask;
         }
@@ -128,7 +128,8 @@ namespace Gizmo.Web.Components
         private Task OnClickButtonSwitchAMPMHandler(MouseEventArgs args)
         {
             _am = !_am;
-            _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+
+            SetPreviewValue(_am ? _hours : _hours + 12, _minutes);
 
             return Task.CompletedTask;
         }
@@ -152,6 +153,14 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
+        private void SetPreviewValue(int hours, int minutes)
+        {
+            if (_previewValue == null)
+                _previewValue = new DateTime(1, 1, 1, _am ? _hours : _hours + 12, _minutes, 0);
+            else
+                _previewValue = new DateTime(_previewValue.Value.Year, _previewValue.Value.Month, _previewValue.Value.Day, hours, minutes, 0);
+        }
 
         protected async Task SetValueAsync(TValue value)
         {

@@ -80,6 +80,13 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
+        private async Task TimePickerValueChanged(DateTime? value)
+        {
+            _timePickerIsOpen = false;
+
+            await SetValueAsync(value);
+        }
+
         private Task OnClickButtonYearHandler(MouseEventArgs args)
         {
             _showMonthPicker = false;
@@ -147,11 +154,9 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        private Task OnClickTimePickerHandler(MouseEventArgs args)
+        private void OnClickTimePickerHandler(MouseEventArgs args)
         {
             _timePickerIsOpen = true;
-
-            return Task.CompletedTask;
         }
 
         private void OnClickTimePickerOK()
