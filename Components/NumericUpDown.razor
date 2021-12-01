@@ -18,9 +18,9 @@
            disabled="@IsDisabled"
            @oninput="OnInputHandler" />
 
-    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowDown" Class="quantity-button mr-2" @onclick="OnClickButtonRemoveQuantityHandler">
+    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowDown" Class="quantity-button mr-2" @onclick="OnClickButtonDecreaseValueHandler">
     </Button>
-    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowUp" Class="quantity-button" @onclick="OnClickButtonAddQuantityHandler">
+    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowUp" Class="quantity-button" @onclick="OnClickButtonIncreaseValueHandler">
     </Button>
 
 </GizInput>

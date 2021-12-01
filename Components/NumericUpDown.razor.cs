@@ -75,26 +75,42 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        public Task OnClickButtonRemoveQuantityHandler(MouseEventArgs args)
+        public Task OnClickButtonDecreaseValueHandler(MouseEventArgs args)
         {
-            return Task.CompletedTask;
-            //decimal value = _converter.SetValue(Value);
-            //if (value - Step < Minimum)
-            //    return Task.CompletedTask;
+            //Convert value
+            decimal? value = ValueToDecimal();
+            if (value.HasValue)
+            {
+                if (value - Step < Minimum)
+                    return Task.CompletedTask;
 
-            //value -= Step;
-            //return SetValueAsync(_converter.GetValue(value.ToString()));
+                //Decrease value
+                value -= Step;
+
+                //Set new value
+                return SetValueAsync(_converter.GetValue(value.ToString()));
+            }
+
+            return Task.CompletedTask;
         }
 
-        public Task OnClickButtonAddQuantityHandler(MouseEventArgs args)
+        public Task OnClickButtonIncreaseValueHandler(MouseEventArgs args)
         {
-            return Task.CompletedTask;
-            //decimal value = _converter.SetValue(Value);
-            //if (value + Step > Maximum)
-            //    return Task.CompletedTask;
+            //Convert value
+            decimal? value = ValueToDecimal();
+            if (value.HasValue)
+            {
+                if (value + Step > Maximum)
+                    return Task.CompletedTask;
 
-            //value += Step;
-            //return SetValueAsync(_converter.GetValue(value.ToString()));
+                //Increase value
+                value += Step;
+
+                //Set new value
+                return SetValueAsync(_converter.GetValue(value.ToString()));
+            }
+
+            return Task.CompletedTask;
         }
 
         #endregion
@@ -105,6 +121,34 @@ namespace Gizmo.Web.Components
         {
             Value = value;
             await ValueChanged.InvokeAsync(Value);
+        }
+
+        private decimal? ValueToDecimal()
+        {
+            decimal? result = null;
+
+            if (Value == null)
+                return result;
+
+            if (typeof(TValue) == typeof(short) || typeof(TValue) == typeof(short?))
+                return System.Convert.ToDecimal((short)(object)Value);
+
+            if (typeof(TValue) == typeof(int) || typeof(TValue) == typeof(int?))
+                return System.Convert.ToDecimal((int)(object)Value);
+
+            if (typeof(TValue) == typeof(long) || typeof(TValue) == typeof(long?))
+                return System.Convert.ToDecimal((long)(object)Value);
+
+            if (typeof(TValue) == typeof(float) || typeof(TValue) == typeof(float?))
+                return System.Convert.ToDecimal((float)(object)Value);
+
+            if (typeof(TValue) == typeof(double) || typeof(TValue) == typeof(double?))
+                return System.Convert.ToDecimal((double)(object)Value);
+
+            if (typeof(TValue) == typeof(decimal) || typeof(TValue) == typeof(decimal?))
+                return (decimal)(object)Value;
+
+            return result;
         }
 
         #endregion

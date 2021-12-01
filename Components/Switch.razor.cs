@@ -47,6 +47,9 @@ namespace Gizmo.Web.Components
 
         protected Task OnChangeHandler(ChangeEventArgs args)
         {
+            if (IsDisabled)
+                return Task.CompletedTask;
+
             IsChecked = (bool)args.Value;
             return IsCheckedChanged.InvokeAsync(IsChecked);
         }
