@@ -10,36 +10,60 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region FIELDS
+
+        private bool _isChecked;
+
+        #endregion
+
         #region PROPERTIES
 
         [Parameter]
         public string Label { get; set; }
 
         /// <summary>
-        /// Gets or sets if element is disabled.
-        /// </summary>
-        [Parameter()]
-        public bool IsDisabled
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// Gets or sets if element is checked.
         /// </summary>
-        [Parameter()]
+        [Parameter]
         public bool IsChecked
         {
-            get; set;
+            get
+            {
+                return _isChecked;
+            }
+            set
+            {
+                if (_isChecked == value)
+                    return;
+
+                _isChecked = value;
+
+                IsCheckedChanged.InvokeAsync(_isChecked);
+            }
         }
+
+        [Parameter]
+        public EventCallback<bool> IsCheckedChanged { get; set; }
+
+        /// <summary>
+        /// Gets or sets if element is disabled.
+        /// </summary>
+        [Parameter]
+        public bool IsDisabled { get; set; }
 
         /// <summary>
         /// Gets or sets radio button name.
         /// </summary>
-        [Parameter()]
-        public string GroupName
+        [Parameter]
+        public string GroupName { get; set; }
+
+        #endregion
+
+        #region EVENTS
+
+        protected void OnChangeRadioButtonHandler(ChangeEventArgs args)
         {
-            get; set;
+            IsChecked = ((string)args.Value).Equals("on");
         }
 
         #endregion

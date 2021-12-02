@@ -1,12 +1,14 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<input id="@Id"
-       class="@Class @ClassName"
-       type="radio" checked="@IsChecked"
-       disabled="@IsDisabled"
+<input type="radio"
        name="@GroupName"
-       @ref="Ref" />
+       checked="@IsChecked"
+       disabled="@IsDisabled"
+       id="@Id"
+       @ref="Ref"
+       @onchange="OnChangeRadioButtonHandler"
+       class="@Class @ClassName" />
 <label for="@Id">
     @if (!string.IsNullOrEmpty(Label))
     {
