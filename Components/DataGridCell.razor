@@ -4,5 +4,12 @@
 @typeparam TItemType
 
 <td style="@StyleValue">
-    @Column.CellTemplate(Item)
+    @if (IsEditMode && @Column.CellEditTemplate != null)
+    {
+        @Column.CellEditTemplate(Item)
+    }
+    else
+    {
+        @Column.CellTemplate(Item)
+    }
 </td>

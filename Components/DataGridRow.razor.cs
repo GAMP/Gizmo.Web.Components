@@ -10,14 +10,14 @@ namespace Gizmo.Web.Components
     {
         #region FIELDS
 
-        private bool _isSelected;
-
-        private bool _shouldRender;
-
         private DataGrid<TItemType> _parent;
         private IEnumerable<DataGridColumn<TItemType>> _columns;
         private TItemType _item;
-        private bool _isOpen;
+        private bool _isSelected = false;
+        private bool _isOpen = false;
+        private bool _isEditMode = false;
+
+        private bool _shouldRender = false;
 
         #endregion
 
@@ -201,15 +201,26 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
-        internal void SetSelected(bool selected)
+        internal void SetSelected(bool value)
         {
             if (!IsSelectable)
                 return;
 
-            if (_isSelected == selected)
+            if (_isSelected == value)
                 return;
 
-            _isSelected = selected;
+            _isSelected = value;
+            _shouldRender = true;
+
+            StateHasChanged();
+        }
+
+        internal void SetEditMode(bool value)
+        {
+            if (_isEditMode == value)
+                return;
+
+            _isEditMode = value;
             _shouldRender = true;
 
             StateHasChanged();

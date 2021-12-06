@@ -39,7 +39,7 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets field name of the data object.
         /// </summary>
-        [Parameter()]
+        [Parameter]
         public string Field
         {
             get; set;
@@ -57,7 +57,7 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets header template.
         /// </summary>
-        [Parameter()]
+        [Parameter]
         public RenderFragment HeaderTemplate
         {
             get; set;
@@ -66,8 +66,17 @@ namespace Gizmo.Web.Components
         /// <summary>
         /// Gets or sets template header.
         /// </summary>
-        [Parameter()]
+        [Parameter]
         public RenderFragment<TItemType> CellTemplate
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Gets or sets template header.
+        /// </summary>
+        [Parameter]
+        public RenderFragment<TItemType> CellEditTemplate
         {
             get; set;
         }

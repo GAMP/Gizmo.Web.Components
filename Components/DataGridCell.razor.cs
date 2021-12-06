@@ -13,6 +13,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public TItemType Item { get; set; }
 
+        [Parameter]
+        public bool IsEditMode { get; set; }
+
         protected string StyleValue => new StyleMapper()
                  .If($"text-align: {Column.TextAlignment.ToDescriptionString()};", () => Column.TextAlignment != TextAlignments.Left)
                  .AsString();

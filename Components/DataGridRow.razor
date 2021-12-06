@@ -23,7 +23,7 @@
     {
         if (column.IsVisible && column.CellTemplate != null)
         {
-            <DataGridCell TItemType="@TItemType" Column="column" Item="@Item" />
+            <DataGridCell TItemType="@TItemType" Column="column" Item="@Item" IsEditMode="@_isEditMode" />
         }
     }
 </tr>

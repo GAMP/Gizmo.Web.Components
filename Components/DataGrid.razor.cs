@@ -28,20 +28,41 @@ namespace Gizmo.Web.Components
         private bool _hasSelectedItems;
         private bool _hasSelectedAllItems;
         private int _providerTotalItems = 0;
-        private double _clientX;
-        private double _clientY;
-        private Menu _contextMenu;
-        private DataGridColumn<TItemType> _sortColumn;
-        private SortDirections _sortDirection;
-        private TItemType _activeItem;
-
-        private bool _shouldRender;
 
         private ICollection<TItemType> _itemSource;
         private TItemType _selectedItem;
         private RenderFragment _childContent;
+
+        #region CONTEXT MENU
+
+        private double _clientX;
+        private double _clientY;
+        private Menu _contextMenu;
+
+        #endregion
+
+        #region SORTING
+
+        private DataGridColumn<TItemType> _sortColumn;
+        private SortDirections _sortDirection;
+        private TItemType _activeItem;
+
+        #endregion
+
+        #region PERFORMANCE
+
+        private bool _shouldRender;
         private ICollection<TItemType> _previousItemSource;
         private TItemType _previousSelectedItem;
+
+        #endregion
+
+        #region CRUD
+
+        private bool _newRow = false;
+        private TItemType _editedRow = default(TItemType);
+
+        #endregion
 
         #endregion
 
@@ -238,6 +259,15 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string TableClass { get; set; }
 
+        [Parameter]
+        public bool AllowCreate { get; set; }
+
+        [Parameter]
+        public bool AllowUpdate { get; set; }
+
+        [Parameter]
+        public bool AllowDelete { get; set; }
+
         #endregion
 
         #region OVERRIDE
@@ -332,6 +362,84 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        #region CRUD
+
+        public void CreateRow()
+        {
+            TItemType newRow = (TItemType)Activator.CreateInstance(typeof(TItemType));
+            CreateRow(newRow);
+        }
+
+        public void CreateRow(TItemType item)
+        {
+            if (!AllowCreate)
+                return;
+
+            //If there is already a row in edit mode then ignore.
+            if (_editedRow != null)
+                return;
+
+            //If item is null then ignore it.
+            if (EqualityComparer<TItemType>.Default.Equals(item, default(TItemType)))
+                return;
+
+            //Store the new row so we can set it in edit mode when it's added to the DataGrid.
+            _newRow = true;
+            _editedRow = item;
+
+            if (IsVirtualized)
+            {
+                //TODO: Virtualization
+            }
+            else
+            {
+                ItemSource.Add(_editedRow);
+            }
+
+            //We need to refresh the DataGrid to see the new row.
+            this.Refresh();
+        }
+
+        public void UpdateRow(TItemType item)
+        {
+            if (!AllowUpdate)
+                return;
+
+            //If there is already a row in edit mode then ignore.
+            if (_editedRow != null)
+                return;
+
+            //If item is null then ignore it.
+            if (EqualityComparer<TItemType>.Default.Equals(item, default(TItemType)))
+                return;
+
+            _newRow = false;
+            _editedRow = item;
+
+            if (_rows.ContainsKey(_editedRow))
+            {
+                _rows[_editedRow].SetEditMode(true);
+            }
+        }
+
+        #endregion
+
+        private void ExitEditMode()
+        {
+            //If the selected row is not the edited row.
+            if (_editedRow != null)
+            {
+                //TODO: VALIDATE BEFORE EXIT EDIT MODE
+                if (_rows.ContainsKey(_editedRow))
+                {
+                    _rows[_editedRow].SetEditMode(false);
+                }
+
+                _newRow = false;
+                _editedRow = default(TItemType);
+            }
+        }
+
         public void Refresh()
         {
             _shouldRender = true;
@@ -413,6 +521,11 @@ namespace Gizmo.Web.Components
 
             if (SelectedItems.Contains(item))
                 _rows[item].SetSelected(true);
+
+            if (EqualityComparer<TItemType>.Default.Equals(item, _editedRow))
+            {
+                _rows[item].SetEditMode(true);
+            }
         }
 
         internal void UpdateRow(DataGridRow<TItemType> row, TItemType item)
@@ -421,6 +534,13 @@ namespace Gizmo.Web.Components
                 return;
 
             //InvokeVoidAsync("writeLine", $"Update row {item}");
+
+            var actualRow = _rows.Where(a => a.Value == row).FirstOrDefault();
+            if (!actualRow.Equals(default(KeyValuePair<DataGridRow<TItemType>, TItemType>)))
+            {
+                //InvokeVoidAsync("writeLine", $"Remove row {actualRow.Key}");
+                _rows.Remove(actualRow.Key);
+            }
 
             _rows[item] = row;
 
@@ -481,11 +601,11 @@ namespace Gizmo.Web.Components
 
         internal async Task SelectRow(DataGridRow<TItemType> item, bool selected)
         {
-            //called once data row item is clicked, right clicked or row checkbox clicked.
+            //Called once data row item is clicked, right clicked or row checkbox clicked.
 
             TItemType dataItem = item.Item;
 
-            //no matter of selection the clicked item is always the selected one
+            //No matter of selection the clicked item is always the selected one
             _selectedItem = dataItem;
 
             bool wasSelected = SelectedItems?.Contains(dataItem) == true;
@@ -500,12 +620,27 @@ namespace Gizmo.Web.Components
                 //If current row is already selected.
                 if (wasSelected)
                 {
-                    //Clear selected items list and set selected property to false.
-                    SelectedItems?.Clear();
-                    item.SetSelected(false);
+                    if (AllowUpdate)
+                    {
+                        _newRow = false;
+                        _editedRow = _selectedItem;
+
+                        if (_rows.ContainsKey(_editedRow))
+                        {
+                            _rows[_editedRow].SetEditMode(true);
+                        }
+                    }
+                    else
+                    {
+                        //Clear selected items list and set selected property to false.
+                        SelectedItems?.Clear();
+                        item.SetSelected(false);
+                    }
                 }
                 else
                 {
+                    ExitEditMode();
+
                     //Clear selected items list, add only this item in the list and set selected property to true.
                     SelectedItems?.Clear();
                     SelectedItems?.Add(dataItem);
