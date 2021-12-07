@@ -16,7 +16,7 @@
         display: flex;
         align-items: center;
         height: 3.9rem;
-        padding: $spacer-16;
+        padding: 0 $spacer-16;
         font-weight: $font-weight-600;
         font-size: $font-15-theme-dark;
         line-height: $line-height-16-theme-dark;
@@ -39,6 +39,18 @@
 
         svg {
             color: $primary-color-theme-dark;
+        }
+
+        .giz-input-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            input {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
         }
 
         input {

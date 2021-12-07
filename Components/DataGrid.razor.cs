@@ -536,18 +536,24 @@ namespace Gizmo.Web.Components
             //InvokeVoidAsync("writeLine", $"Update row {item}");
 
             var actualRow = _rows.Where(a => a.Value == row).FirstOrDefault();
-            if (!actualRow.Equals(default(KeyValuePair<DataGridRow<TItemType>, TItemType>)))
+            if (!actualRow.Equals(default(KeyValuePair<DataGridRow<TItemType>, TItemType>)) && actualRow.Key != null)
             {
-                //InvokeVoidAsync("writeLine", $"Remove row {actualRow.Key}");
+                //InvokeVoidAsync("writeLine", $"Remove previous row {actualRow.Key}");
                 _rows.Remove(actualRow.Key);
             }
 
             _rows[item] = row;
 
             if (SelectedItems.Contains(item))
+            {
+                //InvokeVoidAsync("writeLine", $"Selected row {item}");
                 _rows[item].SetSelected(true);
+            }
             else
+            {
+                //InvokeVoidAsync("writeLine", $"Deselected row {item}");
                 _rows[item].SetSelected(false);
+            }
         }
 
         internal void RemoveRow(DataGridRow<TItemType> row, TItemType item)
