@@ -375,6 +375,10 @@ namespace Gizmo.Web.Components
             if (!AllowCreate)
                 return;
 
+            //If ItemSource is null then ignore it.
+            if (ItemSource == null)
+                return;
+
             //If there is already a row in edit mode then ignore.
             if (_editedRow != null)
                 return;
