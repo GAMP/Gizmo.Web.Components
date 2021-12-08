@@ -28,10 +28,12 @@
 	  <Content Remove="wwwroot\scss\date-picker.scss" />
 	  <Content Remove="wwwroot\scss\dialog.scss" />
 	  <Content Remove="wwwroot\scss\divider.scss" />
+	  <Content Remove="wwwroot\scss\giz-input.scss" />
 	  <Content Remove="wwwroot\scss\icon-button.scss" />
 	  <Content Remove="wwwroot\scss\icon.scss" />
 	  <Content Remove="wwwroot\scss\list.scss" />
 	  <Content Remove="wwwroot\scss\menu.scss" />
+	  <Content Remove="wwwroot\scss\numeric-up-down.scss" />
 	  <Content Remove="wwwroot\scss\overlay.scss" />
 	  <Content Remove="wwwroot\scss\pagination.scss" />
 	  <Content Remove="wwwroot\scss\popup.scss" />
@@ -69,6 +71,8 @@
 		<None Include="wwwroot\scripts.js" />
 		<None Include="wwwroot\scss\icon-button.scss" />
 		<None Include="wwwroot\scss\simple-tab.scss" />
+		<None Include="wwwroot\scss\giz-input.scss" />
+		<None Include="wwwroot\scss\numeric-up-down.scss" />
 		<None Include="wwwroot\scss\tooltip.scss" />
 		<None Include="wwwroot\scss\chip.scss" />
 		<None Include="wwwroot\scss\chip-group.scss" />
