@@ -79,38 +79,34 @@ namespace Gizmo.Web.Components
         {
             //Convert value
             decimal? value = ValueToDecimal();
-            if (value.HasValue)
-            {
-                if (value - Step < Minimum)
-                    return Task.CompletedTask;
+            if (!value.HasValue)
+                value = 0;
 
-                //Decrease value
-                value -= Step;
+            if (value - Step < Minimum)
+                return Task.CompletedTask;
 
-                //Set new value
-                return SetValueAsync(_converter.GetValue(value.ToString()));
-            }
+            //Decrease value
+            value -= Step;
 
-            return Task.CompletedTask;
+            //Set new value
+            return SetValueAsync(_converter.GetValue(value.ToString()));
         }
 
         public Task OnClickButtonIncreaseValueHandler(MouseEventArgs args)
         {
             //Convert value
             decimal? value = ValueToDecimal();
-            if (value.HasValue)
-            {
-                if (value + Step > Maximum)
-                    return Task.CompletedTask;
+            if (!value.HasValue)
+                value = 0;
 
-                //Increase value
-                value += Step;
+            if (value + Step > Maximum)
+                return Task.CompletedTask;
 
-                //Set new value
-                return SetValueAsync(_converter.GetValue(value.ToString()));
-            }
+            //Increase value
+            value += Step;
 
-            return Task.CompletedTask;
+            //Set new value
+            return SetValueAsync(_converter.GetValue(value.ToString()));
         }
 
         #endregion
@@ -173,10 +169,30 @@ namespace Gizmo.Web.Components
             if (valueChanged)
             {
                 _text = _converter.SetValue(Value);
+                StateHasChanged();
             }
         }
 
         #endregion
 
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-input-numeric-up-down")
+                 .If("giz-input-numeric-up-down--full-width", () => IsFullWidth)
+                 .Add(Class)
+                 .AsString();
+
+        #endregion
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
     }
 }

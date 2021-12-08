@@ -154,6 +154,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-datepicker")
+                 .If("giz-input-datepicker--full-width", () => IsFullWidth)
                  .If("giz-input-datepicker--dialog", () => Variant == PickerVariants.Dialog)
                  .If("giz-input-datepicker--popup", () => Variant == PickerVariants.Inline)
                  .AsString();

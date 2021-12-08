@@ -2,15 +2,20 @@
 
 //== giz-input autoComplete
 .giz-input-autocomplete {
+    display: inline-block;
     position: relative;
 
-    .giz-autocomplete-dropdown-full-width {
-        width: $width-full;
+    &--full-width {
+        display: block;
     }
 
     .giz-input-autocomplete__dropdown {
         box-shadow: $elevation-2-theme-dark;
         border: 1px solid $border-color-theme-dark;
+
+        &--full-width {
+            width: $width-full;
+        }
 
         &--cursor {
             position: absolute;

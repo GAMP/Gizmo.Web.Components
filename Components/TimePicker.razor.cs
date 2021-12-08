@@ -212,6 +212,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-timepicker")
+                 .If("giz-input-timepicker--full-width", () => IsFullWidth)
                  .Add("giz-input-timepicker--popup")
                  .AsString();
 

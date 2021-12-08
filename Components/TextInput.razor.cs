@@ -185,6 +185,16 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-input-text")
+                 .If("giz-input-text--full-width", () => IsFullWidth)
+                 .Add(Class)
+                 .AsString();
+
+        #endregion
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender)

@@ -4,7 +4,7 @@
 <button class="@Class @ClassName @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? ButtonIconRight : "")"
         style="@Style @StyleValue"
         @onclick="@OnClickButtonHandler"
-        @onclick:stopPropagation="true"
+        @onclick:stopPropagation="@StopPropagation"
         aria-label="@Label"
         disabled="@IsDisabled"
         type="@Type"

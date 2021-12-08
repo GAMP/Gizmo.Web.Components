@@ -86,6 +86,9 @@ namespace Gizmo.Web.Components
             }
         }
 
+        [Parameter]
+        public bool StopPropagation { get; set; } = true;
+
         #endregion
 
         #endregion

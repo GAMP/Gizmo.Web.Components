@@ -3,7 +3,9 @@
 
 @typeparam TValue
 
-<GizInput Label="@Label"
+<GizInput Class="@ClassName"
+          Style="@Style"
+          Label="@Label"
           IsDisabled="@IsDisabled"
           IsFullWidth="@IsFullWidth"
           HasOutline="@HasOutline"
@@ -18,9 +20,10 @@
            disabled="@IsDisabled"
            @oninput="OnInputHandler" />
 
-    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowDown" Class="quantity-button mr-2" @onclick="OnClickButtonDecreaseValueHandler">
-    </Button>
-    <Button Size="ButtonSizes.Small" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.ArrowUp" Class="quantity-button" @onclick="OnClickButtonIncreaseValueHandler">
-    </Button>
+    <Icon SVGIcon="@Icons.ArrowDown"
+          @onclick="OnClickButtonDecreaseValueHandler" />
+
+    <Icon SVGIcon="@Icons.ArrowUp"
+          @onclick="OnClickButtonIncreaseValueHandler" />
 
 </GizInput>

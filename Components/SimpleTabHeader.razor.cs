@@ -6,7 +6,7 @@ namespace Gizmo.Web.Components
 {
     public partial class SimpleTabHeader : CustomDOMComponentBase
     {
-        private SimpleTabItem _selectedItem;
+        private int _selectedIndex;
 
         [CascadingParameter]
         protected SimpleTab Parent { get; set; }
@@ -20,38 +20,28 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected void OnClickEvent(SimpleTabItem item)
+        protected void OnClickEvent(int index)
         {
-            Parent?.SetSelectedItem(item);
+            Parent?.SetSelectedIndex(index);
         }
 
         #endregion
 
-        internal void SetSelectedItem(SimpleTabItem item)
+        internal void SetSelectedIndex(int index)
         {
-            _selectedItem = item;
+            _selectedIndex = index;
 
             StateHasChanged();
         }
 
-        string GetTabItemClass(SimpleTabItem item)
+        string GetTabItemClass(int index)
         {
             var itemClassName = new ClassMapper()
-             .If("giz-simple-tab-active", () => item == _selectedItem)
-             .If("giz-simple-tab-hidden", () => !item.IsVisible)
-             .If("giz-simple-tab-disabled", () => item.IsDisabled).AsString();
+             .If("giz-simple-tab-active", () => index == _selectedIndex)
+             .If("giz-simple-tab-hidden", () => !Items[index].IsVisible)
+             .If("giz-simple-tab-disabled", () => Items[index].IsDisabled)
+             .AsString();
             return itemClassName;
         }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
     }
 }

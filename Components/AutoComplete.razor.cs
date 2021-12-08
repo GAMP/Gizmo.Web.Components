@@ -401,12 +401,13 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-autocomplete")
+                 .If("giz-input-autocomplete--full-width", () => IsFullWidth)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-autocomplete__dropdown")
                  .If("giz-input-autocomplete__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-autocomplete-dropdown-full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .If("giz-input-autocomplete__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()

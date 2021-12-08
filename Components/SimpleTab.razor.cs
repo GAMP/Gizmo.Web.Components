@@ -10,9 +10,9 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private SimpleTabHeader _tabHeader;
-        private int _selectedItemIndex = 0;
-        private SimpleTabItem _selectedItem;
+        private int _selectedIndex = 0;
         private List<SimpleTabItem> _items = new List<SimpleTabItem>();
+        private SimpleTabItem _previousSelectedItem;
 
         #endregion
 
@@ -28,14 +28,25 @@ namespace Gizmo.Web.Components
         public bool IsVisible { get; set; } = true;
 
         [Parameter]
-        public int SelectedItemIndex
+        public int SelectedIndex
         {
-            get => _selectedItemIndex;
+            get
+            {
+                return _selectedIndex;
+            }
             set
             {
-                SetSelectedIndex(value);
+                if (_selectedIndex == value)
+                    return;
+
+                _selectedIndex = value;
+                UpdateSelected();
+                SelectedIndexChanged.InvokeAsync(_selectedIndex);
             }
         }
+
+        [Parameter]
+        public EventCallback<int> SelectedIndexChanged { get; set; }
 
         #endregion
 
@@ -51,43 +62,32 @@ namespace Gizmo.Web.Components
             _items.Remove(item);
         }
 
-        internal void SetSelectedItem(SimpleTabItem item)
+        internal void SetSelectedIndex(int index)
         {
-            int index = _items.IndexOf(item);
-            SetSelectedIndex(index);
+            SelectedIndex = index;
         }
 
-        internal void SetSelectedIndex(int index)
+        private void UpdateSelected()
         {
             if (_items.Count > 0)
             {
                 //If the index is invalid the do nothing. (Just to be sure.)
-                if (index < 0 || index >= _items.Count)
+                if (_selectedIndex < 0 || _selectedIndex >= _items.Count)
                     return;
 
                 //If the whole tab component is disabled then do nothing.
                 if (IsDisabled)
                     return;
 
-                SimpleTabItem item = _items[index];
+                _tabHeader?.SetSelectedIndex(_selectedIndex);
 
-                //If the clicked item is disabled then do nothing.
-                if (item.IsDisabled)
-                    return;
+                if (_previousSelectedItem != null)
+                {
+                    _previousSelectedItem.SetSelected(false);
+                }
 
-                //If the clicked item is already the ActiveItem then do nothing.
-                if (_selectedItem == item)
-                    return;
-
-                //Change the active item.
-                var previousSelectedItem = _selectedItem;
-                _selectedItemIndex = index;
-                _selectedItem = item;
-
-                _tabHeader?.SetSelectedItem(_selectedItem);
-                if (previousSelectedItem != null)
-                    previousSelectedItem.SetSelected(false);
-                _selectedItem.SetSelected(true);
+                _previousSelectedItem = _items[_selectedIndex];
+                _previousSelectedItem.SetSelected(true);
             }
         }
 
@@ -105,8 +105,9 @@ namespace Gizmo.Web.Components
 
         protected override Task OnFirstAfterRenderAsync()
         {
-            //If user set active index then don't whatever active index should marked as active
-            if (_selectedItemIndex == 0)
+            //Validate selection
+            if (_selectedIndex < 0 || _selectedIndex >= _items.Count ||
+                !_items[_selectedIndex].IsVisible || _items[_selectedIndex].IsDisabled)
             {
                 var firstAvailableItem = _items.Where(a => a.IsVisible && !a.IsDisabled).FirstOrDefault();
                 if (firstAvailableItem != null)
@@ -115,19 +116,14 @@ namespace Gizmo.Web.Components
                     SetSelectedIndex(index);
                 }
             }
+            else
+            {
+                UpdateSelected();
+            }
+
+            StateHasChanged();
 
             return base.OnFirstAfterRenderAsync();
         }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
     }
 }
