@@ -1,17 +1,19 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits GizInputBase<DateTime?>
+@inherits GizInputBase<TValue>
+
+@typeparam TValue
 
 @if (_timePickerIsOpen)
 {
-    <TimePickerBase TValue="DateTime?" Value="@Value" ValueChanged="@TimePickerValueChanged" IsFullWidth="@IsFullWidth" OnClickOK="@OnClickTimePickerOK" OnClickCancel="@OnClickTimePickerCancel" />
+    <TimePickerBase TValue="TValue" Value="@Value" ValueChanged="@TimePickerValueChanged" IsFullWidth="@IsFullWidth" OnClickOK="@OnClickTimePickerOK" OnClickCancel="@OnClickTimePickerCancel" Culture="@Culture" Format="@Format" />
 }
 else
 {
     <div class="giz-calendar"
          @ref="@Ref">
         <div class="giz-calendar-header">
-            <div @onclick="OnClickButtonYearHandler"><span class="giz-calendar-year-title">@CurrentVisibleMonth.ToString("yyyy")</span></div>
-            <div class="giz-calendar-title mt-3">@(Value?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>
+            <div @onclick="OnClickButtonYearHandler"><span class="giz-calendar-year-title">@(_previousValue?.ToString("yyyy") ?? DateTime.Now.ToString("yyyy"))</span></div>
+            <div class="giz-calendar-title mt-3">@(_previousValue?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>
         </div>
         <div class="giz-calendar-content">
             @if (_showMonthPicker)

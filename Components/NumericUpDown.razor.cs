@@ -48,7 +48,7 @@ namespace Gizmo.Web.Components
         public bool IsFullWidth { get; set; }
 
         [Parameter]
-        public CultureInfo? Culture { get; set; }
+        public CultureInfo Culture { get; set; }
 
         [Parameter]
         public string Format { get; set; }

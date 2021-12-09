@@ -9,9 +9,23 @@ namespace Gizmo.Web.Components
 {
     public partial class TimePickerBase<TValue> : GizInputBase<TValue>
     {
+        #region CONSTRUCTOR
+        public TimePickerBase()
+        {
+            //Set default culture and format;
+            _culture = CultureInfo.CurrentCulture;
+            _format = _culture.DateTimeFormat.ShortDatePattern;
+            _converter = new DateConverter<TValue>();
+            _converter.Culture = _culture;
+            _converter.Format = _format;
+        }
+
+        #endregion
         #region FIELDS
 
-        private DateConverter<TValue> _converter = new DateConverter<TValue>();
+        private CultureInfo _culture;
+        private string _format;
+        private DateConverter<TValue> _converter;
         private DateTime? _previewValue;
         private int _hours;
         private int _minutes;
@@ -35,7 +49,7 @@ namespace Gizmo.Web.Components
         public EventCallback OnClickCancel { get; set; }
 
         [Parameter]
-        public CultureInfo? Culture { get; set; }
+        public CultureInfo Culture { get; set; }
 
         [Parameter]
         public string Format { get; set; }
@@ -62,12 +76,16 @@ namespace Gizmo.Web.Components
                 }
 
                 _minutes = value.Value.Minute;
+
+                _previewValue = value;
             }
             else
             {
                 _hours = 0;
                 _minutes = 0;
                 _am = true;
+
+                _previewValue = null;
             }
 
             SetPreviewValue(_am ? _hours : _hours + 12, _minutes);
@@ -175,15 +193,17 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDE
 
-        protected override void OnInitialized()
+        protected override async Task OnFirstAfterRenderAsync()
         {
-            if (Culture != null && !string.IsNullOrEmpty(Format))
+            //If the component initialized with a value.
+            DateTime? value = _converter.SetValue(Value);
+
+            if (value.HasValue)
             {
-                _converter.Culture = Culture;
-                _converter.Format = Format;
+                ReloadValue();
             }
 
-            base.OnInitialized();
+            await base.OnFirstAfterRenderAsync();
         }
 
         protected override async Task OnParametersSetAsync()
@@ -193,8 +213,29 @@ namespace Gizmo.Web.Components
 
             if (newValue)
             {
-                _previewValue = _converter.SetValue(Value);
+                ReloadValue();
             }
+
+            if (Culture != null)
+            {
+                _culture = Culture;
+            }
+            else
+            {
+                _culture = CultureInfo.CurrentCulture;
+            }
+
+            if (!string.IsNullOrEmpty(Format))
+            {
+                _format = Format;
+            }
+            else
+            {
+                _format = _culture.DateTimeFormat.ShortTimePattern;
+            }
+
+            _converter.Culture = _culture;
+            _converter.Format = _format;
 
             await base.OnParametersSetAsync();
         }

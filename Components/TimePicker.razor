@@ -15,8 +15,8 @@
                   HasShadow="@HasShadow"
                   IsTransparent="@IsTransparent"
                   Size="@Size"
-                  IsValid="@_isValid"
-                  ValidationMessage="@_validationMessage"
+                  IsValid="@IsValid"
+                  ValidationMessage="@ValidationMessage"
                   RightSVGIcon="Icons.Time2"
                   @onclick="OnClickInput">
 
@@ -31,7 +31,7 @@
 
         </GizInput>
 
-        <Popup IsOpen="@IsOpen"
+        <Popup @bind-IsOpen="@IsOpen"
                OpenDirection="@OpenDirection"
                Class="@PopupClassName"
                Style="@PopupStyleValue">

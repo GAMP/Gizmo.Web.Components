@@ -81,7 +81,7 @@ namespace Gizmo.Web.Components
         public bool IsMultiLine { get; set; }
 
         [Parameter]
-        public CultureInfo? Culture { get; set; }
+        public CultureInfo Culture { get; set; }
 
         public bool IsValid => _isValid && !_converter.HasGetError;
 

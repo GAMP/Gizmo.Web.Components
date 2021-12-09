@@ -1,5 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits GizInputBase<DateTime?>
+@inherits GizInputBase<TValue>
+
+@typeparam TValue
 
 <CascadingValue Value="@this" IsFixed="true">
 
@@ -15,8 +17,8 @@
                       HasShadow="@HasShadow"
                       IsTransparent="@IsTransparent"
                       Size="@Size"
-                      IsValid="@_isValid"
-                      ValidationMessage="@_validationMessage"
+                      IsValid="@IsValid"
+                      ValidationMessage="@ValidationMessage"
                       RightSVGIcon="Icons.Calendar"
                       @onclick="OnClickInput">
 
@@ -33,13 +35,13 @@
                    OpenDirection="@(Variant != PickerVariants.Inline ? PopupOpenDirections.None : OpenDirection)"
                    Class="@PopupClassName"
                    Style="@PopupStyleValue">
-                <DatePickerBase @ref="_popupContent" Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" ShowTime="@ShowTime" />
+                <DatePickerBase @ref="_popupContent" TValue="TValue" Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" ShowTime="@ShowTime" Culture="@Culture" Format="@Format" />
             </Popup>
         </div>
     }
     else
     {
-        <DatePickerBase @bind-Value="Value" IsFullWidth="@IsFullWidth" />
+        <DatePickerBase TValue="TValue" @bind-Value="Value" IsFullWidth="@IsFullWidth" Culture="@Culture" Format="@Format" />
     }
 
 </CascadingValue>

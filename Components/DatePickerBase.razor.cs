@@ -2,21 +2,32 @@
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class DatePickerBase : GizInputBase<DateTime?>
+    public partial class DatePickerBase<TValue> : GizInputBase<TValue>
     {
         #region CONSTRUCTOR
         public DatePickerBase()
         {
+            //Set default culture and format;
+            _culture = CultureInfo.CurrentCulture;
+            _format = _culture.DateTimeFormat.ShortDatePattern;
+            _converter = new DateConverter<TValue>();
+            _converter.Culture = _culture;
+            _converter.Format = _format;
+
             CurrentVisibleMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
         }
         #endregion
 
         #region FIELDS
 
+        private CultureInfo _culture;
+        private string _format;
+        private DateConverter<TValue> _converter;
         private DateTime _currentVisibleMonth;
         private int _monthDays = 0;
         private int _whiteSpaces = 0;
@@ -46,7 +57,7 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public DateTime? Value { get; set; }
+        public TValue Value { get; set; }
 
         [Parameter]
         public bool IsFullWidth { get; set; }
@@ -54,17 +65,25 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool ShowTime { get; set; }
 
+        [Parameter]
+        public CultureInfo Culture { get; set; }
+
+        [Parameter]
+        public string Format { get; set; }
+
         #endregion
 
         #region METHODS
 
         private bool IsCurrentDay(int year, int month, int day)
         {
-            if (Value.HasValue)
+            DateTime? value = _converter.SetValue(Value);
+
+            if (value.HasValue)
             {
-                if (Value.Value.Year == year &&
-                    Value.Value.Month == month &&
-                    Value.Value.Day == day)
+                if (value.Value.Year == year &&
+                    value.Value.Month == month &&
+                    value.Value.Day == day)
                     return true;
             }
 
@@ -80,7 +99,7 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        private async Task TimePickerValueChanged(DateTime? value)
+        private async Task TimePickerValueChanged(TValue value)
         {
             _timePickerIsOpen = false;
 
@@ -134,7 +153,19 @@ namespace Gizmo.Web.Components
 
         private async Task OnClickButtonDay(int day)
         {
-            await SetValueAsync(new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day));
+            TValue newValue;
+
+            DateTime? oldValue = _converter.SetValue(Value);
+            if (oldValue.HasValue)
+            {
+                newValue = _converter.GetValue(new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day, oldValue.Value.Hour, oldValue.Value.Minute, oldValue.Value.Second));
+            }
+            else
+            {
+                newValue = _converter.GetValue(new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day));
+            }
+
+            await SetValueAsync(newValue);
         }
 
         private Task OnClickButtonMonth(int month)
@@ -173,7 +204,7 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        protected async Task SetValueAsync(DateTime? value)
+        protected async Task SetValueAsync(TValue value)
         {
             Value = value;
 
@@ -187,14 +218,16 @@ namespace Gizmo.Web.Components
         protected override async Task OnFirstAfterRenderAsync()
         {
             //If the component initialized with a value.
-            if (Value.HasValue)
+            DateTime? value = _converter.SetValue(Value);
+
+            if (value.HasValue)
             {
-                CurrentVisibleMonth = new DateTime(Value.Value.Year, Value.Value.Month, 1);
+                CurrentVisibleMonth = new DateTime(value.Value.Year, value.Value.Month, 1);
             }
 
             await base.OnFirstAfterRenderAsync();
         }
-        
+
         protected async override Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender && _requiresScrolling)
@@ -206,16 +239,46 @@ namespace Gizmo.Web.Components
 
         protected override async Task OnParametersSetAsync()
         {
-            bool newValue = !EqualityComparer<DateTime?>.Default.Equals(_previousValue, Value);
-            _previousValue = Value;
+            DateTime? value = _converter.SetValue(Value);
+
+            bool newValue = !EqualityComparer<DateTime?>.Default.Equals(_previousValue, value);
+            _previousValue = value;
 
             if (newValue)
             {
-                if (Value.HasValue)
-                    CurrentVisibleMonth = new DateTime(Value.Value.Year, Value.Value.Month, 1);
+                if (value.HasValue)
+                    CurrentVisibleMonth = new DateTime(value.Value.Year, value.Value.Month, 1);
                 else
                     CurrentVisibleMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             }
+
+            if (Culture != null)
+            {
+                _culture = Culture;
+            }
+            else
+            {
+                _culture = CultureInfo.CurrentCulture;
+            }
+
+            if (!string.IsNullOrEmpty(Format))
+            {
+                _format = Format;
+            }
+            else
+            {
+                if (ShowTime)
+                {
+                    _format = _culture.DateTimeFormat.ShortDatePattern + " " + _culture.DateTimeFormat.ShortTimePattern;
+                }
+                else
+                {
+                    _format = _culture.DateTimeFormat.ShortDatePattern;
+                }
+            }
+
+            _converter.Culture = _culture;
+            _converter.Format = _format;
 
             await base.OnParametersSetAsync();
         }

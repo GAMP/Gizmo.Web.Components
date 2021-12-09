@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -11,18 +12,29 @@ namespace Gizmo.Web.Components
         #region CONSTRUCTOR
         public TimePicker()
         {
+            //Set default culture and format;
+            _culture = CultureInfo.CurrentCulture;
+            _format = _culture.DateTimeFormat.ShortDatePattern;
+            _converter = new DateConverter<TValue>();
+            _converter.Culture = _culture;
+            _converter.Format = _format;
         }
         #endregion
 
         #region FIELDS
 
-        private DateConverter<TValue> _converter = new DateConverter<TValue>();
+        private CultureInfo _culture;
+        private string _format;
+        private DateConverter<TValue> _converter;
         private string _text;
         private TimePickerBase<TValue> _popupContent;
         private bool _isOpen;
         private double _popupX;
         private double _popupY;
         private double _popupWidth;
+
+        private bool _hasParsingErrors;
+        private string _parsingErrors;
 
         #endregion
 
@@ -78,10 +90,14 @@ namespace Gizmo.Web.Components
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
         [Parameter]
-        public CultureInfo? Culture { get; set; }
+        public CultureInfo Culture { get; set; }
 
         [Parameter]
         public string Format { get; set; }
+
+        public bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
+
+        public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
 
         #endregion
 
@@ -89,10 +105,23 @@ namespace Gizmo.Web.Components
 
         public Task OnInputHandler(ChangeEventArgs args)
         {
-            //TODO: A TRY PARSE
-            _text = (string)args.Value;
+            //Get input text.
+            var newText = args?.Value as string;
 
-            StateHasChanged();
+            //Try parse.
+            try
+            {
+                var newDate = DateTime.ParseExact(newText, _format, _culture, DateTimeStyles.None);
+
+                TValue newValue = _converter.GetValue(newDate);
+
+                return SetValueAsync(newValue);
+            }
+            catch
+            {
+                _hasParsingErrors = true;
+                _parsingErrors = "The field should be a time.";
+            }
 
             return Task.CompletedTask;
         }
@@ -101,7 +130,7 @@ namespace Gizmo.Web.Components
         {
             if (!IsDisabled)
             {
-                if (!_isOpen && OpenDirection == PopupOpenDirections.Cursor)
+                if (!IsOpen && OpenDirection == PopupOpenDirections.Cursor)
                 {
                     var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
                     var mainMenuSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
@@ -121,7 +150,7 @@ namespace Gizmo.Web.Components
                     }
                 }
 
-                _isOpen = !_isOpen;
+                IsOpen = !IsOpen;
             }
         }
 
@@ -132,11 +161,11 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        private async Task TimePickerValueChanged(TValue value)
+        private Task TimePickerValueChanged(TValue value)
         {
             IsOpen = false;
 
-            await SetValueAsync(value);
+            return SetValueAsync(value);
         }
 
         protected void OnClickOKButtonHandler()
@@ -155,35 +184,45 @@ namespace Gizmo.Web.Components
 
         protected async Task SetValueAsync(TValue value)
         {
-            Value = value;
+            _hasParsingErrors = false;
+            _parsingErrors = String.Empty;
 
-            //Update the component's text.
-            var dateValue = _converter.SetValue(Value);
-            if (dateValue != null)
+            if (!EqualityComparer<TValue>.Default.Equals(Value, value))
             {
-                _text = dateValue.Value.ToString("hh:mm tt");
-            }
-            else
-            {
-                _text = string.Empty;
-            }
+                Value = value;
 
-            await ValueChanged.InvokeAsync(Value);
+                await ValueChanged.InvokeAsync(Value);
+            }
         }
 
         #endregion
 
         #region OVERRIDE
 
-        protected override void OnInitialized()
+        protected override async Task OnParametersSetAsync()
         {
-            if (Culture != null && !string.IsNullOrEmpty(Format))
+            if (Culture != null)
             {
-                _converter.Culture = Culture;
-                _converter.Format = Format;
+                _culture = Culture;
+            }
+            else
+            {
+                _culture = CultureInfo.CurrentCulture;
             }
 
-            base.OnInitialized();
+            if (!string.IsNullOrEmpty(Format))
+            {
+                _format = Format;
+            }
+            else
+            {
+                _format = _culture.DateTimeFormat.ShortTimePattern;
+            }
+
+            _converter.Culture = _culture;
+            _converter.Format = _format;
+
+            await base.OnParametersSetAsync();
         }
 
         public override async Task SetParametersAsync(ParameterView parameters)
@@ -194,10 +233,10 @@ namespace Gizmo.Web.Components
             if (valueChanged)
             {
                 //Update the component's text.
-                var dateValue = _converter.SetValue(Value);
-                if (dateValue != null)
+                var value = _converter.SetValue(Value);
+                if (value != null)
                 {
-                    _text = dateValue.Value.ToString("hh:mm tt");
+                    _text = value.Value.ToString(_format, _culture);
                 }
                 else
                 {

@@ -1,27 +1,40 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class DatePicker : GizInputBase<DateTime?>
+    public partial class DatePicker<TValue> : GizInputBase<TValue>
     {
         #region CONSTRUCTOR
         public DatePicker()
         {
+            //Set default culture and format;
+            _culture = CultureInfo.CurrentCulture;
+            _format = _culture.DateTimeFormat.ShortDatePattern;
+            _converter = new DateConverter<TValue>();
+            _converter.Culture = _culture;
+            _converter.Format = _format;
         }
         #endregion
 
         #region FIELDS
 
-        private DateTime? _value;
+        private CultureInfo _culture;
+        private string _format;
+        private DateConverter<TValue> _converter;
         private string _text;
-        private DatePickerBase _popupContent;
+        private DatePickerBase<TValue> _popupContent;
         private bool _isOpen;
         private double _popupX;
         private double _popupY;
         private double _popupWidth;
+
+        private bool _hasParsingErrors;
+        private string _parsingErrors;
 
         #endregion
 
@@ -31,35 +44,7 @@ namespace Gizmo.Web.Components
         public PickerVariants Variant { get; set; } = PickerVariants.Inline;
 
         [Parameter]
-        public DateTime? Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                if (_value == value)
-                    return;
-
-                _value = value;
-
-                //Update the component's text.
-                if (_value != null)
-                {
-                    if (ShowTime)
-                        _text = _value.Value.ToString();
-                    else
-                        _text = _value.Value.ToShortDateString();
-                }
-                else
-                {
-                    _text = string.Empty;
-                }
-
-                ValueChanged.InvokeAsync(Value);
-            }
-        }
+        public TValue Value { get; set; }
 
         [Parameter]
         public string Label { get; set; }
@@ -91,31 +76,46 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool ShowTime { get; set; }
 
+        [Parameter]
+        public CultureInfo Culture { get; set; }
+
+        [Parameter]
+        public string Format { get; set; }
+
+        public bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
+
+        public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
+
         #endregion
 
         #region EVENTS
 
-        private Task DatePickerValueChanged(DateTime? value)
+        private Task DatePickerValueChanged(TValue value)
         {
             _isOpen = false;
-            Value = value;
 
-            return Task.CompletedTask;
+            return SetValueAsync(value);
         }
 
         public Task OnInputHandler(ChangeEventArgs args)
         {
-            //TODO: TRY PARSE
-            _text = (string)args.Value;
+            //Get input text.
+            var newText = args?.Value as string;
 
-            DateTime date;
-
-            if (DateTime.TryParse(_text, out date))
+            //Try parse.
+            try
             {
-                Value = date;
-            }
+                var newDate = DateTime.ParseExact(newText, _format, _culture, DateTimeStyles.None);
 
-            StateHasChanged();
+                TValue newValue = _converter.GetValue(newDate);
+
+                return SetValueAsync(newValue);
+            }
+            catch
+            {
+                _hasParsingErrors = true;
+                _parsingErrors = "The field should be a date.";
+            }
 
             return Task.CompletedTask;
         }
@@ -145,6 +145,81 @@ namespace Gizmo.Web.Components
                 }
 
                 _isOpen = !_isOpen;
+            }
+        }
+
+        #endregion
+
+        #region METHODS
+
+        protected async Task SetValueAsync(TValue value)
+        {
+            _hasParsingErrors = false;
+            _parsingErrors = String.Empty;
+
+            if (!EqualityComparer<TValue>.Default.Equals(Value, value))
+            {
+                Value = value;
+
+                await ValueChanged.InvokeAsync(Value);
+            }
+        }
+
+        #endregion
+
+        #region OVERRIDE
+
+        protected override async Task OnParametersSetAsync()
+        {
+            if (Culture != null)
+            {
+                _culture = Culture;
+            }
+            else
+            {
+                _culture = CultureInfo.CurrentCulture;
+            }
+
+            if (!string.IsNullOrEmpty(Format))
+            {
+                _format = Format;
+            }
+            else
+            {
+                if (ShowTime)
+                {
+                    _format = _culture.DateTimeFormat.ShortDatePattern + " " + _culture.DateTimeFormat.ShortTimePattern;
+                }
+                else
+                {
+                    _format = _culture.DateTimeFormat.ShortDatePattern;
+                }
+            }
+
+            _converter.Culture = _culture;
+            _converter.Format = _format;
+
+            await base.OnParametersSetAsync();
+        }
+
+        public override async Task SetParametersAsync(ParameterView parameters)
+        {
+            await base.SetParametersAsync(parameters);
+
+            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
+            if (valueChanged)
+            {
+                //Update the component's text.
+                DateTime? value = _converter.SetValue(Value);
+
+                if (value != null)
+                {
+                    _text = value.Value.ToString(_format, _culture);
+                }
+                else
+                {
+                    _text = string.Empty;
+                }
             }
         }
 
