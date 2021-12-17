@@ -15,7 +15,7 @@
     <div class="giz-time-picker-content">
         <div class="giz-time-picker-content--timer">
             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonIncreaseHourHandler" SVGIcon="Icons.ArrowUp"></IconButton>
-            <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@_hours.ToString()" Min="0" Max="59" MaxLength="2" />
+            <TextInput IsFullWidth="true" HasOutline="false" HasShadow="false" Type="text" Value="@_hours.ToString()" Min="0" Max="59" MaxLength="2" />
             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonDecreaseHourHandler" SVGIcon="Icons.ArrowDown"></IconButton>
         </div>
         <div>
@@ -23,12 +23,12 @@
         </div>
         <div class="giz-time-picker-content--timer">
             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonIncreaseMinuteHandler" SVGIcon="Icons.ArrowUp"></IconButton>
-            <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@_minutes.ToString()" Min="0" Max="59" MaxLength="2" />
+            <TextInput IsFullWidth="true" HasOutline="false" HasShadow="false" Type="text" Value="@_minutes.ToString()" Min="0" Max="59" MaxLength="2" />
             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonDecreaseMinuteHandler" SVGIcon="Icons.ArrowDown"></IconButton>
         </div>
         <div class="giz-time-picker-content--timer">
             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonSwitchAMPMHandler" SVGIcon="Icons.ArrowUp"></IconButton>
-            <TextInput HasOutline="false" HasShadow="false" Type="text" Value="@(_previewValue.HasValue ? _previewValue.Value.ToString("tt") : DateTime.Now.ToString("tt"))" IsReadOnly="true" MaxLength="2" />
+            <TextInput IsFullWidth="true" HasOutline="false" HasShadow="false" Type="text" Value="@(_previewValue.HasValue ? _previewValue.Value.ToString("tt") : DateTime.Now.ToString("tt"))" IsReadOnly="true" MaxLength="2" />
             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonSwitchAMPMHandler" SVGIcon="Icons.ArrowDown"></IconButton>
         </div>
     </div>

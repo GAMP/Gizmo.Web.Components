@@ -11,6 +11,7 @@
         <GizInput Label="@Label"
                   IsDisabled="@IsDisabled"
                   IsFullWidth="@IsFullWidth"
+                  Width="@Width"
                   HasOutline="@HasOutline"
                   HasShadow="@HasShadow"
                   IsTransparent="@IsTransparent"
@@ -19,16 +20,16 @@
                   ValidationMessage="@ValidationMessage"
                   RightSVGIcon="Icons.Time2"
                   @onclick="OnClickInput">
-
-            <input id="@Id"
-                   type="text"
-                   value="@_text"
-                   readonly="@IsReadOnly"
-                   disabled="@IsDisabled"
-                   style="cursor: pointer;"
-                   @oninput="OnInputHandler"
-                   @onclick="OnClickInput" />
-
+            <div class="giz-input-wrapper">
+                <input id="@Id"
+                       type="text"
+                       value="@_text"
+                       readonly="@IsReadOnly"
+                       disabled="@IsDisabled"
+                       style="cursor: pointer;"
+                       @oninput="OnInputHandler"
+                       @onclick="OnClickInput" />
+            </div>
         </GizInput>
 
         <Popup @bind-IsOpen="@IsOpen"

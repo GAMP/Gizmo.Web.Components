@@ -54,6 +54,9 @@ namespace Gizmo.Web.Components
         public bool IsFullWidth { get; set; }
 
         [Parameter]
+        public string Width { get; set; } = "20rem";
+
+        [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         [Parameter]
@@ -107,6 +110,10 @@ namespace Gizmo.Web.Components
                  .If("giz-input-root--small", () => Size == InputSizes.Small)
                  .If("giz-input-root--medium", () => Size == InputSizes.Normal)
                  .If("giz-input-root--large", () => Size == InputSizes.Large)
+                 .AsString();
+
+        protected string FieldStyleValue => new StyleMapper()
+                 .If($"width: {Width}", () => !IsFullWidth)
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()

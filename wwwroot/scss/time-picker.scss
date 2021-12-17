@@ -80,16 +80,20 @@
         }
 
         &--timer {
-            input {
-                width: $width-full;
-                text-align: $text-align-center;
-                border: none;
-                font-size: $font-20-theme-dark;
-                font-weight: $font-weight-500;
+            .giz-input-root {
+                padding: 0;
 
-                &:focus {
-                    outline: none;
+                input {
+                    width: $width-full;
+                    text-align: $text-align-center;
                     border: none;
+                    font-size: $font-20-theme-dark;
+                    font-weight: $font-weight-500;
+
+                    &:focus {
+                        outline: none;
+                        border: none;
+                    }
                 }
             }
         }

@@ -9,6 +9,7 @@
           IsReadOnly="@IsReadOnly"
           IsDisabled="@IsDisabled"
           IsFullWidth="@IsFullWidth"
+          Width="@Width"
           HasOutline="@HasOutline"
           HasShadow="@HasShadow"
           IsTransparent="@IsTransparent"
@@ -19,32 +20,32 @@
           RightIcon="@RightIcon"
           LeftSVGIcon="@LeftSVGIcon"
           RightSVGIcon="@RightSVGIcon">
-
-    @if (!IsMultiLine)
-    {
-        <input id="@Id"
-               type="@Type"
-               value="@_text"
-               readonly="@IsReadOnly"
-               disabled="@IsDisabled"
-               placeholder="@Placeholder"
-               @oninput="OnInputHandler"
-               @onchange="OnChangeHandler"
-               @onclick="OnClickHandler"
-               @attributes="Attributes" />
-    }
-    else
-    {
-        <textarea id="@Id"
-                  type="@Type"
-                  value="@_text"
-                  readonly="@IsReadOnly"
-                  disabled="@IsDisabled"
-                  placeholder="@Placeholder"
-                  @oninput="OnInputHandler"
-                  @onchange="OnChangeHandler"
-                  @onclick="OnClickHandler"
-                  @attributes="Attributes" />
-    }
-
+    <div class="giz-input-wrapper">
+        @if (!IsMultiLine)
+        {
+            <input id="@Id"
+                   type="@Type"
+                   value="@_text"
+                   readonly="@IsReadOnly"
+                   disabled="@IsDisabled"
+                   placeholder="@Placeholder"
+                   @oninput="OnInputHandler"
+                   @onchange="OnChangeHandler"
+                   @onclick="OnClickHandler"
+                   @attributes="Attributes" />
+        }
+        else
+        {
+            <textarea id="@Id"
+                      type="@Type"
+                      value="@_text"
+                      readonly="@IsReadOnly"
+                      disabled="@IsDisabled"
+                      placeholder="@Placeholder"
+                      @oninput="OnInputHandler"
+                      @onchange="OnChangeHandler"
+                      @onclick="OnClickHandler"
+                      @attributes="Attributes" />
+        }
+    </div>
 </GizInput>

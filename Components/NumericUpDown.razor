@@ -8,17 +8,19 @@
           Label="@Label"
           IsDisabled="@IsDisabled"
           IsFullWidth="@IsFullWidth"
+          Width="@Width"
           HasOutline="@HasOutline"
           HasShadow="@HasShadow"
           IsTransparent="@IsTransparent"
           Size="@Size"
-          IsValid="@_isValid"
-          ValidationMessage="@_validationMessage">
-
-    <input type="text"
-           value="@_text"
-           disabled="@IsDisabled"
-           @oninput="OnInputHandler" />
+          IsValid="@IsValid"
+          ValidationMessage="@ValidationMessage">
+    <div class="giz-input-wrapper">
+        <input type="text"
+               value="@_text"
+               disabled="@IsDisabled"
+               @oninput="OnInputHandler" />
+    </div>
 
     <Icon SVGIcon="@Icons.ArrowDown"
           @onclick="OnClickButtonDecreaseValueHandler" />

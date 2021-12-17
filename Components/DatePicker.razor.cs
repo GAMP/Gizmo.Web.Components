@@ -68,6 +68,9 @@ namespace Gizmo.Web.Components
         public bool IsFullWidth { get; set; }
 
         [Parameter]
+        public string Width { get; set; } = "20rem";
+
+        [Parameter]
         public string Placeholder { get; set; }
 
         [Parameter]

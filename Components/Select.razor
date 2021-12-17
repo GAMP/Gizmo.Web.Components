@@ -11,6 +11,7 @@
         <GizInput Label="@Label"
                   IsDisabled="@IsDisabled"
                   IsFullWidth="@IsFullWidth"
+                  Width="@Width"
                   HasOutline="@HasOutline"
                   HasShadow="@HasShadow"
                   IsTransparent="@IsTransparent"
@@ -28,11 +29,13 @@
             }
             else
             {
-                <input type="text"
-                       value="@_selectedItem?.Text"
-                       disabled="@IsDisabled"
-                       readonly
-                       @onclick="OnClickInput" />
+                <div class="giz-input-wrapper">
+                    <input type="text"
+                           value="@_selectedItem?.Text"
+                           disabled="@IsDisabled"
+                           readonly
+                           @onclick="OnClickInput" />
+                </div>
             }
 
         </GizInput>

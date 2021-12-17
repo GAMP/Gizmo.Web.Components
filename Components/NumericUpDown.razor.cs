@@ -48,6 +48,9 @@ namespace Gizmo.Web.Components
         public bool IsFullWidth { get; set; }
 
         [Parameter]
+        public string Width { get; set; } = "20rem";
+
+        [Parameter]
         public CultureInfo Culture { get; set; }
 
         [Parameter]
@@ -67,9 +70,12 @@ namespace Gizmo.Web.Components
 
             TValue newValue = _converter.GetValue(newText);
 
-            if (!EqualityComparer<TValue>.Default.Equals(Value, newValue))
+            if (!_converter.HasGetError)
             {
-                return SetValueAsync(newValue);
+                if (!EqualityComparer<TValue>.Default.Equals(Value, newValue))
+                {
+                    return SetValueAsync(newValue);
+                }
             }
 
             return Task.CompletedTask;
