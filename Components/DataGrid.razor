@@ -5,7 +5,8 @@
 <CascadingValue Value="this" Name="Parent" IsFixed="true">
 
     <div class="@Class @ClassName"
-         style="@Style">
+         style="@Style"
+         @ref="@Ref">
        
         @if (ContextMenu != null)
         {
@@ -40,7 +41,7 @@
 
         <table class="@TableClass @TableClassName"
                 id="@Id"
-                @ref="@Ref"
+                @ref="@_table"
                 @attributes="@Attributes">
 
             @*table head*@

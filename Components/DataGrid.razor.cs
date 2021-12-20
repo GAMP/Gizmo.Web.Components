@@ -33,11 +33,14 @@ namespace Gizmo.Web.Components
         private TItemType _selectedItem;
         private RenderFragment _childContent;
 
+        private BoundingClientRect _dataGridSize;
+
         #region CONTEXT MENU
 
         private double _clientX;
         private double _clientY;
         private Menu _contextMenu;
+        private ElementReference _table;
 
         #endregion
 
@@ -268,6 +271,10 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool AllowDelete { get; set; }
 
+        private WindowResizeEventInterop WindowResizeEventInterop { get; set; }
+
+        private WindowClickEventInterop WindowClickEventInterop { get; set; }
+
         #endregion
 
         #region OVERRIDE
@@ -279,6 +286,91 @@ namespace Gizmo.Web.Components
                 var itemsProviderResult = await ItemsProvider.Invoke(new ItemsProviderRequest());
                 _providerTotalItems = itemsProviderResult.TotalItemCount;
             }
+        }
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                _shouldRender = false;
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+            else
+            {
+                //Global events required to exit edit mode if user clicks outside the datagrid.
+                WindowResizeEventInterop = new WindowResizeEventInterop(JsRuntime);
+                await WindowResizeEventInterop.SetupWindowResizeEventCallback(args => WindowResizeHandler(args));
+
+                WindowClickEventInterop = new WindowClickEventInterop(JsRuntime);
+                await WindowClickEventInterop.SetupWindowClickEventCallback(args => WindowClickHandler(args));
+            }
+
+            if (SelectionMode == SelectionMode.Single)
+            {
+                if (_selectedItem != null && _rows.ContainsKey(_selectedItem))
+                {
+                    var selectedRow = _rows[_selectedItem];
+                    selectedRow.SetSelected(true);
+
+                    foreach (var row in _rows.Where(a => a.Value != selectedRow))
+                    {
+                        row.Value.SetSelected(false);
+                    }
+                }
+                else
+                {
+                    //Deselect all rows.
+                    foreach (var row in _rows)
+                    {
+                        row.Value.SetSelected(false);
+                    }
+                }
+            }
+
+            await RefreshControlSize();
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            bool newItemSource = !EqualityComparer<ICollection<TItemType>>.Default.Equals(_previousItemSource, _itemSource);
+            bool newSelectedItem = !EqualityComparer<TItemType>.Default.Equals(_previousSelectedItem, _selectedItem);
+
+            _previousItemSource = _itemSource;
+            _previousSelectedItem = _selectedItem;
+
+            //In case of new item source make a full refresh.
+            if (newItemSource)
+            {
+                VerifySelected();
+
+                this.Refresh();
+            }
+            else
+            {
+                if (newSelectedItem)
+                {
+                    if (VerifySelected())
+                        this.Refresh();
+                }
+            }
+
+            await base.OnParametersSetAsync();
+        }
+
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
+        }
+
+        public override void Dispose()
+        {
+            WindowResizeEventInterop?.Dispose();
+            WindowClickEventInterop?.Dispose();
+
+            base.Dispose();
         }
 
         #endregion
@@ -356,6 +448,29 @@ namespace Gizmo.Web.Components
             }
 
             return ValueTask.CompletedTask;
+        }
+
+        private async Task WindowResizeHandler(EventArgs args)
+        {
+            await RefreshControlSize();
+        }
+
+        private Task WindowClickHandler(MouseEventArgs args)
+        {
+            if (_editedRow != null)
+            {
+                //If user clicks outside the datagrid then exit edit mode.
+                if (args.ClientY < _dataGridSize.Top || args.ClientY > _dataGridSize.Bottom ||
+                    args.ClientX < _dataGridSize.Left || args.ClientX > _dataGridSize.Right)
+                {
+                    ExitEditMode();
+
+                    _shouldRender = true;
+                    StateHasChanged();
+                }
+            }
+
+            return Task.CompletedTask;
         }
 
         #endregion
@@ -742,6 +857,11 @@ namespace Gizmo.Web.Components
                 this.Refresh();
         }
 
+        private async Task RefreshControlSize()
+        {
+            _dataGridSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+        }
+
         #endregion
 
         #region CLASSMAPPERS
@@ -847,71 +967,6 @@ namespace Gizmo.Web.Components
 
                 return result;
             }
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                _shouldRender = false;
-                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
-            }
-
-            if (SelectionMode == SelectionMode.Single)
-            {
-                if (_selectedItem != null && _rows.ContainsKey(_selectedItem))
-                {
-                    var selectedRow = _rows[_selectedItem];
-                    selectedRow.SetSelected(true);
-
-                    foreach (var row in _rows.Where(a => a.Value != selectedRow))
-                    {
-                        row.Value.SetSelected(false);
-                    }
-                }
-                else
-                {
-                    //Deselect all rows.
-                    foreach (var row in _rows)
-                    {
-                        row.Value.SetSelected(false);
-                    }
-                }
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
-        protected override async Task OnParametersSetAsync()
-        {
-            bool newItemSource = !EqualityComparer<ICollection<TItemType>>.Default.Equals(_previousItemSource, _itemSource);
-            bool newSelectedItem = !EqualityComparer<TItemType>.Default.Equals(_previousSelectedItem, _selectedItem);
-
-            _previousItemSource = _itemSource;
-            _previousSelectedItem = _selectedItem;
-
-            //In case of new item source make a full refresh.
-            if (newItemSource)
-            {
-                VerifySelected();
-
-                this.Refresh();
-            }
-            else
-            {
-                if (newSelectedItem)
-                {
-                    if (VerifySelected())
-                        this.Refresh();
-                }
-            }
-
-            await base.OnParametersSetAsync();
-        }
-
-        protected override bool ShouldRender()
-        {
-            return _shouldRender;
         }
     }
 }

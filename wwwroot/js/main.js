@@ -64,6 +64,61 @@ function getElementScrollSize(element) {
     };
 }
 //
+function findElementIndexById(list, objRef) {
+    var objRefIndex = -1;
+
+    list.forEach((item, index) => {
+        if (item._id == objRef._id)
+            objRefIndex = index;
+    });
+
+    return objRefIndex;
+}
+//
+var globalResizeEventListener;
+var globalResizeEventListenerReferences = [];
+function addWindowResizeEventListener(objRef) {
+    if (!globalResizeEventListener) {
+        globalResizeEventListener = window.addEventListener('resize', windowResizeHandler);
+    }
+
+    globalResizeEventListenerReferences.push(objRef);
+}
+function removeWindowResizeEventListener(objRef) {
+    //not working var index = globalResizeEventListenerReferences.indexOf(objRef);
+    var index = findElementIndexById(globalResizeEventListenerReferences, objRef);
+    if (index > -1) {
+        globalResizeEventListenerReferences.splice(index, 1);
+    }
+}
+function windowResizeHandler(event) {
+    globalResizeEventListenerReferences.forEach((item) => {
+        item.invokeMethodAsync('OnWindowResizeEvent', { width: window.innerWidth, height: window.innerHeight });
+    });
+}
+//
+var globalClickEventListener;
+var globalClickEventListenerReferences = [];
+function addWindowClickEventListener(objRef) {
+    if (!globalClickEventListener) {
+        globalClickEventListener = window.addEventListener('click', windowClickHandler);
+    }
+
+    globalClickEventListenerReferences.push(objRef);
+}
+function removeWindowClickEventListener(objRef) {
+    //not working var index = globalClickEventListenerReferences.indexOf(objRef);
+    var index = findElementIndexById(globalClickEventListenerReferences, objRef);
+    if (index > -1) {
+        globalClickEventListenerReferences.splice(index, 1);
+    }
+}
+function windowClickHandler(event) {
+    globalClickEventListenerReferences.forEach((item) => {
+        item.invokeMethodAsync('OnWindowClickEvent', { clientX: event.clientX, clientY: event.clientY });
+    });
+}
+//
 function writeLine(message) {
     window.console.log(message);
 }
