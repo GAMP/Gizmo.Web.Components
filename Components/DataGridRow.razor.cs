@@ -119,14 +119,14 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDES
 
-        protected override Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
             if (Parent != null)
             {
-                Parent.AddRow(this, Item);
+                await Parent.AddRow(this, Item);
             }
 
-            return base.OnInitializedAsync();
+            await base.OnInitializedAsync();
         }
 
         public override void Dispose()

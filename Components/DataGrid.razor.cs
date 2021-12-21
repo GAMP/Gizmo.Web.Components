@@ -271,6 +271,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool AllowDelete { get; set; }
 
+        [Parameter]
+        public EventCallback<DataGridOperation> OnBeginOperation { get; set; }
+
+        [Parameter]
+        public EventCallback<DataGridOperation> OnCompleteOperation { get; set; }
+
         private WindowResizeEventInterop WindowResizeEventInterop { get; set; }
 
         private WindowClickEventInterop WindowClickEventInterop { get; set; }
@@ -485,7 +491,7 @@ namespace Gizmo.Web.Components
             CreateRow(newRow);
         }
 
-        public void CreateRow(TItemType item)
+        public async Task CreateRow(TItemType item)
         {
             if (!AllowCreate)
                 return;
@@ -506,6 +512,8 @@ namespace Gizmo.Web.Components
             _newRow = true;
             _editedRow = item;
 
+            await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
+
             if (IsVirtualized)
             {
                 //TODO: Virtualization
@@ -519,7 +527,7 @@ namespace Gizmo.Web.Components
             this.Refresh();
         }
 
-        public void UpdateRow(TItemType item)
+        public async Task UpdateRow(TItemType item)
         {
             if (!AllowUpdate)
                 return;
@@ -535,6 +543,8 @@ namespace Gizmo.Web.Components
             _newRow = false;
             _editedRow = item;
 
+            await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
+
             if (_rows.ContainsKey(_editedRow))
             {
                 _rows[_editedRow].SetEditMode(true);
@@ -543,12 +553,15 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        private void ExitEditMode()
+        private async Task ExitEditMode()
         {
             //If the selected row is not the edited row.
             if (_editedRow != null)
             {
                 //TODO: VALIDATE BEFORE EXIT EDIT MODE
+
+                var lastEditedRow = _editedRow;
+
                 if (_rows.ContainsKey(_editedRow))
                 {
                     _rows[_editedRow].SetEditMode(false);
@@ -556,6 +569,8 @@ namespace Gizmo.Web.Components
 
                 _newRow = false;
                 _editedRow = default(TItemType);
+
+                await OnCompleteOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = lastEditedRow });
             }
         }
 
@@ -629,7 +644,7 @@ namespace Gizmo.Web.Components
             _columns.Remove(column);
         }
 
-        internal void AddRow(DataGridRow<TItemType> row, TItemType item)
+        internal async Task AddRow(DataGridRow<TItemType> row, TItemType item)
         {
             if (item == null)
                 return;
@@ -643,6 +658,7 @@ namespace Gizmo.Web.Components
 
             if (EqualityComparer<TItemType>.Default.Equals(item, _editedRow))
             {
+                await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
                 _rows[item].SetEditMode(true);
             }
         }
@@ -752,6 +768,7 @@ namespace Gizmo.Web.Components
 
                         if (_rows.ContainsKey(_editedRow))
                         {
+                            await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
                             _rows[_editedRow].SetEditMode(true);
                         }
                     }
