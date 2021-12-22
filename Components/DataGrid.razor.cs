@@ -279,7 +279,7 @@ namespace Gizmo.Web.Components
 
         private WindowResizeEventInterop WindowResizeEventInterop { get; set; }
 
-        private WindowClickEventInterop WindowClickEventInterop { get; set; }
+        private WindowMouseDownEventInterop WindowMouseDownEventInterop { get; set; }
 
         #endregion
 
@@ -308,8 +308,8 @@ namespace Gizmo.Web.Components
                 WindowResizeEventInterop = new WindowResizeEventInterop(JsRuntime);
                 await WindowResizeEventInterop.SetupWindowResizeEventCallback(args => WindowResizeHandler(args));
 
-                WindowClickEventInterop = new WindowClickEventInterop(JsRuntime);
-                await WindowClickEventInterop.SetupWindowClickEventCallback(args => WindowClickHandler(args));
+                WindowMouseDownEventInterop = new WindowMouseDownEventInterop(JsRuntime);
+                await WindowMouseDownEventInterop.SetupWindowMouseDownEventCallback(args => WindowMouseDownHandler(args));
             }
 
             if (SelectionMode == SelectionMode.Single)
@@ -374,7 +374,7 @@ namespace Gizmo.Web.Components
         public override void Dispose()
         {
             WindowResizeEventInterop?.Dispose();
-            WindowClickEventInterop?.Dispose();
+            WindowMouseDownEventInterop?.Dispose();
 
             base.Dispose();
         }
@@ -461,7 +461,7 @@ namespace Gizmo.Web.Components
             await RefreshControlSize();
         }
 
-        private Task WindowClickHandler(MouseEventArgs args)
+        private async Task WindowMouseDownHandler(MouseEventArgs args)
         {
             if (_editedRow != null)
             {
@@ -469,14 +469,12 @@ namespace Gizmo.Web.Components
                 if (args.ClientY < _dataGridSize.Top || args.ClientY > _dataGridSize.Bottom ||
                     args.ClientX < _dataGridSize.Left || args.ClientX > _dataGridSize.Right)
                 {
-                    ExitEditMode();
+                    await ExitEditMode();
 
                     _shouldRender = true;
                     StateHasChanged();
                 }
             }
-
-            return Task.CompletedTask;
         }
 
         #endregion
@@ -485,10 +483,10 @@ namespace Gizmo.Web.Components
 
         #region CRUD
 
-        public void CreateRow()
+        public async Task CreateRow()
         {
             TItemType newRow = (TItemType)Activator.CreateInstance(typeof(TItemType));
-            CreateRow(newRow);
+            await CreateRow(newRow);
         }
 
         public async Task CreateRow(TItemType item)
@@ -781,7 +779,7 @@ namespace Gizmo.Web.Components
                 }
                 else
                 {
-                    ExitEditMode();
+                    await ExitEditMode();
 
                     //Clear selected items list, add only this item in the list and set selected property to true.
                     SelectedItems?.Clear();

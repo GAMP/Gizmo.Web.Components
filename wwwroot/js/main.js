@@ -97,25 +97,25 @@ function windowResizeHandler(event) {
     });
 }
 //
-var globalClickEventListener;
-var globalClickEventListenerReferences = [];
-function addWindowClickEventListener(objRef) {
-    if (!globalClickEventListener) {
-        globalClickEventListener = window.addEventListener('click', windowClickHandler);
+var globalMouseDownEventListener;
+var globalMouseDownEventListenerReferences = [];
+function addWindowMouseDownEventListener(objRef) {
+    if (!globalMouseDownEventListener) {
+        globalMouseDownEventListener = window.addEventListener('mousedown', windowMouseDownHandler);
     }
 
-    globalClickEventListenerReferences.push(objRef);
+    globalMouseDownEventListenerReferences.push(objRef);
 }
-function removeWindowClickEventListener(objRef) {
-    //not working var index = globalClickEventListenerReferences.indexOf(objRef);
-    var index = findElementIndexById(globalClickEventListenerReferences, objRef);
+function removeWindowMouseDownEventListener(objRef) {
+    //not working var index = globalMouseDownEventListenerReferences.indexOf(objRef);
+    var index = findElementIndexById(globalMouseDownEventListenerReferences, objRef);
     if (index > -1) {
-        globalClickEventListenerReferences.splice(index, 1);
+        globalMouseDownEventListenerReferences.splice(index, 1);
     }
 }
-function windowClickHandler(event) {
-    globalClickEventListenerReferences.forEach((item) => {
-        item.invokeMethodAsync('OnWindowClickEvent', { clientX: event.clientX, clientY: event.clientY });
+function windowMouseDownHandler(event) {
+    globalMouseDownEventListenerReferences.forEach((item) => {
+        item.invokeMethodAsync('OnWindowMouseDownEvent', { clientX: event.clientX, clientY: event.clientY });
     });
 }
 //

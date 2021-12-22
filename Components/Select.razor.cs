@@ -145,7 +145,7 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDES
 
-        protected override Task OnFirstAfterRenderAsync()
+        protected override Task OnAfterRenderAsync(bool firstRender)
         {
             if (_value != null)
             {
@@ -153,7 +153,7 @@ namespace Gizmo.Web.Components
                     SetSelectedItem(_items[_value]);
             }
 
-            return base.OnFirstAfterRenderAsync();
+            return base.OnAfterRenderAsync(firstRender);
         }
 
         #endregion
@@ -174,10 +174,10 @@ namespace Gizmo.Web.Components
         {
             _isOpen = false;
 
-            if (_selectedItem != selectItem)
-            {
-                _selectedItem = selectItem;
-            }
+            if (_selectedItem == selectItem)
+                return Task.CompletedTask;
+
+            _selectedItem = selectItem;
 
             StateHasChanged();
 
