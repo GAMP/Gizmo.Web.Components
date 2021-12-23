@@ -272,7 +272,7 @@ namespace Gizmo.Web.Components
         public bool AllowDelete { get; set; }
 
         [Parameter]
-        public EventCallback<DataGridOperation> OnBeginOperation { get; set; }
+        public EventCallback<DataGridBeginOperation> OnBeginOperation { get; set; }
 
         [Parameter]
         public EventCallback<DataGridOperation> OnCompleteOperation { get; set; }
@@ -510,7 +510,11 @@ namespace Gizmo.Web.Components
             _newRow = true;
             _editedRow = item;
 
-            await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
+            var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
+            await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
+
+            if (dataGridBeginOperation.Cancel)
+                return;
 
             if (IsVirtualized)
             {
@@ -541,7 +545,11 @@ namespace Gizmo.Web.Components
             _newRow = false;
             _editedRow = item;
 
-            await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
+            var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
+            await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
+
+            if (dataGridBeginOperation.Cancel)
+                return;
 
             if (_rows.ContainsKey(_editedRow))
             {
@@ -656,8 +664,13 @@ namespace Gizmo.Web.Components
 
             if (EqualityComparer<TItemType>.Default.Equals(item, _editedRow))
             {
-                await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
-                _rows[item].SetEditMode(true);
+                var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
+                await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
+
+                if (!dataGridBeginOperation.Cancel)
+                {
+                    _rows[item].SetEditMode(true);
+                }
             }
         }
 
@@ -766,8 +779,13 @@ namespace Gizmo.Web.Components
 
                         if (_rows.ContainsKey(_editedRow))
                         {
-                            await OnBeginOperation.InvokeAsync(new DataGridOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow });
-                            _rows[_editedRow].SetEditMode(true);
+                            var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
+                            await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
+
+                            if (!dataGridBeginOperation.Cancel)
+                            {
+                                _rows[_editedRow].SetEditMode(true);
+                            }
                         }
                     }
                     else
