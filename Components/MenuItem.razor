@@ -1,0 +1,19 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<ListItem IsDisabled="@IsDisabled"
+          Icon="@Icon"
+          SVGIcon="@SVGIcon"
+          NestedList="@NestedList"
+          Command="@Command"
+          CommandParameter="@CommandParameter"
+          @onclick="OnClickListItemHandler">
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @Text
+    }
+</ListItem>

@@ -47,7 +47,10 @@ namespace Gizmo.Web.Components
         [Parameter]
         public Button SelectedItem
         {
-            get => _selectedItem;
+            get
+            {
+                return _selectedItem;
+            }
             set
             {
                 if (_selectedItem == value)
@@ -66,7 +69,7 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-        [Parameter()]
+        [Parameter]
         public ICollection<Button> SelectedItems
         {
             get { return _selectedItems; }
