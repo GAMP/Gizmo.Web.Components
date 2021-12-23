@@ -592,6 +592,14 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
+        public void Refresh(TItemType item)
+        {
+            if (_rows.ContainsKey(item))
+            {
+                _rows[item].Refresh();
+            }
+        }
+
         internal Task SetActiveItem(TItemType item)
         {
             ActiveItem = item;
