@@ -22,10 +22,12 @@
                @oninput="OnInputHandler" />
     </div>
 
-    <Icon SVGIcon="@Icons.ArrowDown"
-          @onclick="OnClickButtonDecreaseValueHandler" />
+    <div class="giz-input-icon-right">
+        <Icon SVGIcon="@Icons.ArrowDown" @onclick="OnClickButtonDecreaseValueHandler" />
+    </div>
 
-    <Icon SVGIcon="@Icons.ArrowUp"
-          @onclick="OnClickButtonIncreaseValueHandler" />
+    <div class="giz-input-icon-right">
+        <Icon SVGIcon="@Icons.ArrowUp" @onclick="OnClickButtonIncreaseValueHandler" />
+    </div>
 
 </GizInput>

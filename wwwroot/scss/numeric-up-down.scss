@@ -6,4 +6,12 @@
     &--full-width {
         display: block;
     }
+
+    .giz-input-root {
+        .giz-input-icon-right {
+            .giz-icon {
+                cursor: pointer;
+            }
+        }
+    }
 }

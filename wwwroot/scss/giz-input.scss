@@ -96,9 +96,13 @@
         }
 
         .giz-input-icon-right {
-            margin-left: $spacer-12;
-            width: 1.4rem;
-            height: 1.4rem;
+            display: flex;
+            padding-left: $spacer-12;
+
+            .giz-icon {
+                width: 2rem;
+                height: 2rem;
+            }
         }
         //full width
         &--full-width {
@@ -114,9 +118,13 @@
             }
 
             .giz-input-icon-right {
-                margin-left: $spacer-6;
-                width: 1.6rem;
-                height: 1.6rem;
+                display: flex;
+                padding-left: $spacer-6;
+
+                .giz-icon {
+                    width: 1.6rem;
+                    height: 1.6rem;
+                }
             }
         }
 
@@ -142,9 +150,13 @@
             }
 
             .giz-input-icon-right {
-                margin-left: $spacer-24;
-                width: 2.4rem;
-                height: 2.4rem;
+                display: flex;
+                padding-left: $spacer-24;
+
+                .giz-icon {
+                    width: 2.4rem;
+                    height: 2.4rem;
+                }
             }
         }
         //input outline

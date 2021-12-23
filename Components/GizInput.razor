@@ -19,9 +19,10 @@
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
-            <Icon Source="@RightIcon"
-                  SVGIcon="@RightSVGIcon"
-                  @onclick="OnClickHandler" Class="@IconRight" />
+            <div class="@IconRight" @onclick="OnClickHandler">
+                <Icon Source="@RightIcon"
+                      SVGIcon="@RightSVGIcon" />
+            </div>
         }
 
     </div>
