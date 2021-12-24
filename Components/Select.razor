@@ -16,8 +16,8 @@
                   HasShadow="@HasShadow"
                   IsTransparent="@IsTransparent"
                   Size="@Size"
-                  IsValid="@_isValid"
-                  ValidationMessage="@_validationMessage"
+                  IsValid="@IsValid"
+                  ValidationMessage="@ValidationMessage"
                   RightSVGIcon="Icons.TriangleDown"
                   @onclick="OnClickInput">
 
@@ -46,7 +46,8 @@
                Class="@PopupClassName"
                Style="@PopupStyleValue">
             <List @ref="_popupContent"
-                  CanClick="true">
+                  CanClick="true"
+                  MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
                 @ChildContent
             </List>
         </Popup>

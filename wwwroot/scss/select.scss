@@ -19,10 +19,12 @@
 
         &--cursor {
             position: absolute;
+            overflow: hidden !important;
 
             & > .giz-list {
                 right: 0;
                 left: 0;
+                overflow: auto;
             }
         }
 

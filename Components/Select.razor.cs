@@ -2,6 +2,7 @@
 using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,6 +26,9 @@ namespace Gizmo.Web.Components
         private double _popupX;
         private double _popupY;
         private double _popupWidth;
+
+        private bool _hasParsingErrors;
+        private string _parsingErrors;
 
         #endregion
 
@@ -50,7 +54,16 @@ namespace Gizmo.Web.Components
                 if (_value != null)
                 {
                     if (_items.ContainsKey(_value))
+                    {
                         SetSelectedItem(_items[_value]);
+                    }
+                    else
+                    {
+                        SetSelectedItem(null);
+
+                        _hasParsingErrors = true;
+                        _parsingErrors = "The field is required.";
+                    }
                 }
                 else
                 {
@@ -91,6 +104,10 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Placeholder { get; set; }
+
+        public bool IsValid => !_hasParsingErrors && _isValid;
+
+        public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _validationMessage;
 
         #endregion
 
@@ -150,7 +167,16 @@ namespace Gizmo.Web.Components
             if (_value != null)
             {
                 if (_items.ContainsKey(_value))
+                {
                     SetSelectedItem(_items[_value]);
+                }
+                else
+                {
+                    SetSelectedItem(null);
+
+                    _hasParsingErrors = true;
+                    _parsingErrors = "The field is required.";
+                }
             }
 
             return base.OnAfterRenderAsync(firstRender);
@@ -178,6 +204,9 @@ namespace Gizmo.Web.Components
                 return Task.CompletedTask;
 
             _selectedItem = selectItem;
+
+            _hasParsingErrors = false;
+            _parsingErrors = String.Empty;
 
             StateHasChanged();
 
