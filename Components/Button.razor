@@ -23,7 +23,7 @@
                   IconSizes.ExtraLarge)))" />
         }
 
-        <div style="display: inline-block; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
+        <div style="display: inline-block; overflow: hidden; text-overflow: ellipsis; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
             @ChildContent
         </div>
 
