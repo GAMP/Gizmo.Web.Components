@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using System;
@@ -20,6 +21,9 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
+        private EditContext _editContext;
+        private bool _validationFailed = false;
 
         private readonly HashSet<DataGridColumn<TItemType>> _columns = new(Enumerable.Empty<DataGridColumn<TItemType>>());
         private ICollection<TItemType> _selectedItems = new HashSet<TItemType>();
@@ -294,7 +298,6 @@ namespace Gizmo.Web.Components
             }
         }
 
-
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender)
@@ -510,6 +513,9 @@ namespace Gizmo.Web.Components
             _newRow = true;
             _editedRow = item;
 
+            _editContext = new EditContext(_editedRow);
+            _editContext.EnableDataAnnotationsValidation();
+
             var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
             await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
 
@@ -545,6 +551,9 @@ namespace Gizmo.Web.Components
             _newRow = false;
             _editedRow = item;
 
+            _editContext = new EditContext(_editedRow);
+            _editContext.EnableDataAnnotationsValidation();
+
             var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
             await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
 
@@ -564,7 +573,14 @@ namespace Gizmo.Web.Components
             //If the selected row is not the edited row.
             if (_editedRow != null)
             {
-                //TODO: VALIDATE BEFORE EXIT EDIT MODE
+                //Validate before exit edit mode.
+                if (_editContext != null && !_editContext.Validate())
+                {
+                    _validationFailed = true;
+                    return;
+                }
+
+                _validationFailed = false;
 
                 var lastEditedRow = _editedRow;
 
@@ -765,9 +781,6 @@ namespace Gizmo.Web.Components
 
             TItemType dataItem = item.Item;
 
-            //No matter of selection the clicked item is always the selected one
-            _selectedItem = dataItem;
-
             bool wasSelected = SelectedItems?.Contains(dataItem) == true;
 
             if (wasSelected == selected)
@@ -780,10 +793,15 @@ namespace Gizmo.Web.Components
                 //If current row is already selected.
                 if (wasSelected)
                 {
+                    _selectedItem = dataItem;
+
                     if (AllowUpdate)
                     {
                         _newRow = false;
                         _editedRow = _selectedItem;
+
+                        _editContext = new EditContext(_editedRow);
+                        _editContext.EnableDataAnnotationsValidation();
 
                         if (_rows.ContainsKey(_editedRow))
                         {
@@ -807,6 +825,11 @@ namespace Gizmo.Web.Components
                 {
                     await ExitEditMode();
 
+                    if (_validationFailed)
+                        return;
+
+                    _selectedItem = dataItem;
+
                     //Clear selected items list, add only this item in the list and set selected property to true.
                     SelectedItems?.Clear();
                     SelectedItems?.Add(dataItem);
@@ -821,6 +844,9 @@ namespace Gizmo.Web.Components
             }
             else if (SelectionMode == SelectionMode.Extended)
             {
+                //No matter of selection the clicked item is always the selected one
+                _selectedItem = dataItem;
+
                 //In extended selection mode.
 
                 //If current row is already selected.
