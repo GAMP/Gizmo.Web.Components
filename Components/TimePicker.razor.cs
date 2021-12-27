@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
@@ -245,6 +246,16 @@ namespace Gizmo.Web.Components
                 {
                     _text = string.Empty;
                 }
+            }
+        }
+
+        public override void Validate(FieldIdentifier fieldIdentifier, ValidationMessageStore validationMessageStore)
+        {
+            validationMessageStore.Clear();
+
+            if (_hasParsingErrors)
+            {
+                validationMessageStore.Add(fieldIdentifier, _parsingErrors);
             }
         }
 

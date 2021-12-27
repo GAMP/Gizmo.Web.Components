@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -20,6 +21,8 @@ namespace Gizmo.Web.Components
 
         [CascadingParameter]
         protected EditContext EditContext { get; set; } = default!;
+
+        ValidationMessageStore ValidationMessageStore;
 
         #region PROPERTIES
 
@@ -48,18 +51,37 @@ namespace Gizmo.Web.Components
                 _lastValueExpression = ValueExpression;
             }
 
-            if (EditContext != null && EditContext != _lastEditContext)
+            if (EditContext != _lastEditContext)
             {
-                RemoveValidationStateChangedHandler();
-                EditContext.OnValidationStateChanged += OnValidationStateChanged;
-                _lastEditContext = EditContext;
-            }
+                RemoveValidationHandlers();
+
+                if (EditContext != null)
+                {
+                    ValidationMessageStore = new ValidationMessageStore(EditContext);
+
+                    EditContext.OnValidationRequested += OnValidationRequested;
+                    EditContext.OnValidationStateChanged += OnValidationStateChanged;
+                    _lastEditContext = EditContext;
+                }
+            }          
+
+            base.OnParametersSet();
         }
 
-        private void RemoveValidationStateChangedHandler()
+        private void OnValidationRequested(object sender, ValidationRequestedEventArgs e)
+        {
+            Validate(_fieldIdentifier, ValidationMessageStore);
+        }
+
+        private void RemoveValidationHandlers()
         {
             if (_lastEditContext != null)
+            {
+                _lastEditContext.OnValidationRequested -= OnValidationRequested;
                 _lastEditContext.OnValidationStateChanged -= OnValidationStateChanged;
+
+                ValidationMessageStore.Clear();
+            }
         }
 
         private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
@@ -81,5 +103,16 @@ namespace Gizmo.Web.Components
             }
         }
 
+        public override void Dispose()
+        {
+            RemoveValidationHandlers();
+
+            base.Dispose();
+        }
+
+        public virtual void Validate(FieldIdentifier fieldIdentifier, ValidationMessageStore validationMessageStore)
+        {
+
+        }
     }
 }

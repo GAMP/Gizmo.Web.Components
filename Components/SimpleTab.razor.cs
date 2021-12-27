@@ -28,6 +28,9 @@ namespace Gizmo.Web.Components
         public bool IsVisible { get; set; } = true;
 
         [Parameter]
+        public bool RenderOnlyActive { get; set; } = true;
+
+        [Parameter]
         public int SelectedIndex
         {
             get

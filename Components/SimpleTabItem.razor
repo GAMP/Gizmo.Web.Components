@@ -2,7 +2,7 @@
 @inherits CustomDOMComponentBase
 
 <div class="@Class @ClassName">
-    @if (_isSelected && ChildContent != null)
+    @if (ChildContent != null && (Parent?.RenderOnlyActive == false || _isSelected))
     {
         @ChildContent
     }

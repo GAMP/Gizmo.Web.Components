@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
 using System.Globalization;
@@ -176,6 +177,16 @@ namespace Gizmo.Web.Components
             {
                 _text = _converter.SetValue(Value);
                 StateHasChanged();
+            }
+        }
+
+        public override void Validate(FieldIdentifier fieldIdentifier, ValidationMessageStore validationMessageStore)
+        {
+            validationMessageStore.Clear();
+
+            if (_converter.HasGetError)
+            {
+                validationMessageStore.Add(fieldIdentifier, _converter.GetErrorMessage);
             }
         }
 
