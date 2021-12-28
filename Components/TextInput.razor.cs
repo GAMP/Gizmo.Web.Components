@@ -24,6 +24,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        [Parameter]
         public string Label { get; set; }
 
         [Parameter]

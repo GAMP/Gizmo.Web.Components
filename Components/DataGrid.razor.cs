@@ -513,14 +513,14 @@ namespace Gizmo.Web.Components
             _newRow = true;
             _editedRow = item;
 
-            _editContext = new EditContext(_editedRow);
-            _editContext.EnableDataAnnotationsValidation();
-
             var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
             await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
 
             if (dataGridBeginOperation.Cancel)
                 return;
+
+            _editContext = new EditContext(_editedRow);
+            _editContext.EnableDataAnnotationsValidation();
 
             if (IsVirtualized)
             {
@@ -551,9 +551,6 @@ namespace Gizmo.Web.Components
             _newRow = false;
             _editedRow = item;
 
-            _editContext = new EditContext(_editedRow);
-            _editContext.EnableDataAnnotationsValidation();
-
             var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
             await OnBeginOperation.InvokeAsync(dataGridBeginOperation);
 
@@ -562,7 +559,13 @@ namespace Gizmo.Web.Components
 
             if (_rows.ContainsKey(_editedRow))
             {
+                _editContext = new EditContext(_editedRow);
+                _editContext.EnableDataAnnotationsValidation();
+
                 _rows[_editedRow].SetEditMode(true);
+
+                //Required to refresh the EditContext on the row.
+                this.Refresh();
             }
         }
 
@@ -800,9 +803,6 @@ namespace Gizmo.Web.Components
                         _newRow = false;
                         _editedRow = _selectedItem;
 
-                        _editContext = new EditContext(_editedRow);
-                        _editContext.EnableDataAnnotationsValidation();
-
                         if (_rows.ContainsKey(_editedRow))
                         {
                             var dataGridBeginOperation = new DataGridBeginOperation() { OperationType = DataGridOperationTypes.EditRow, Data = _editedRow };
@@ -810,7 +810,13 @@ namespace Gizmo.Web.Components
 
                             if (!dataGridBeginOperation.Cancel)
                             {
+                                _editContext = new EditContext(_editedRow);
+                                _editContext.EnableDataAnnotationsValidation();
+
                                 _rows[_editedRow].SetEditMode(true);
+
+                                //Required to refresh the EditContext on the row.
+                                this.Refresh();
                             }
                         }
                     }

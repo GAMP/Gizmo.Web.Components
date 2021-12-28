@@ -2,6 +2,11 @@
 
 //== giz input control
 .giz-input-control {
+    &:hover {
+        .giz-input-validation-tooltip {
+            display: block;
+        }
+    }
     //input label
     .giz-input-label {
         font-weight: $font-weight-600;
@@ -191,11 +196,20 @@
         }
     }
 
-    .giz-input-validation-message {
+    .giz-input-validation-label {
         font-weight: $font-weight-500;
         font-size: $font-14-theme-dark;
         line-height: $line-height-22-theme-dark;
         letter-spacing: $letter-spacing-8-theme-dark;
+    }
+
+    .giz-input-validation-tooltip {
+        display: none;
+        position: absolute;
+        background: $danger-color-theme-dark;
+        color: $white-color;
+        padding: 0 1rem;
+        border-radius: 0.2rem;
     }
 
     &--invalid {

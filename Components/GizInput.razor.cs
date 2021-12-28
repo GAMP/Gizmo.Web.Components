@@ -15,6 +15,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        [Parameter]
         public bool IsDisabled { get; set; }
 
         [Parameter]
@@ -117,7 +120,8 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
-                 .Add("giz-input-validation-message")
+                 .If("giz-input-validation-lebel", () => ValidationErrorStyle == ValidationErrorStyles.Label)
+                 .If("giz-input-validation-tooltip", () => ValidationErrorStyle == ValidationErrorStyles.Tooltip)
                  .AsString();
 
         #endregion

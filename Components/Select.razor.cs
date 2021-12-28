@@ -36,6 +36,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]

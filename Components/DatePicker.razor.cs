@@ -42,6 +42,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        [Parameter]
         public PickerVariants Variant { get; set; } = PickerVariants.Inline;
 
         [Parameter]

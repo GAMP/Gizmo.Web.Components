@@ -221,9 +221,9 @@ namespace Gizmo.Web.Components
                 return;
 
             _isEditMode = value;
-            _shouldRender = true;
+            //_shouldRender = true;
 
-            StateHasChanged();
+            //StateHasChanged();
         }
 
         #endregion

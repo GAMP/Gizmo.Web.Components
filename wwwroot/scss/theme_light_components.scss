@@ -153,15 +153,14 @@
 
             &.disabled, &[disabled] {
                 background: $gray-dark-theme-dark !important;
-                /*border: 1px solid $gray-dark-theme-dark !important;*/
                 color: $dim-ligh-theme-darkt !important;
             }
 
             &--outline {
-                border: 1px solid $gray-dark-theme-dark !important;
+                border: 1px solid $gray-dark-theme-dark;
 
                 &:hover {
-                    border: 1px solid $gray-dark-theme-dark !important;
+                    border: 1px solid $gray-dark-theme-dark;
                 }
             }
 
