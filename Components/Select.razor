@@ -35,7 +35,8 @@
                            value="@_selectedItem?.Text"
                            disabled="@IsDisabled"
                            readonly
-                           @onclick="OnClickInput" />
+                           @onclick="OnClickInput"
+                           @onkeydown="OnInputKeyDownHandler" />
                 </div>
             }
 

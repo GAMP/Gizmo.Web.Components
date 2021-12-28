@@ -11,7 +11,7 @@ namespace Gizmo.Web.Components
     {
         #region FIELDS
 
-        private Guid _guid = Guid.NewGuid();
+        //private Guid _guid = Guid.NewGuid();
         private Expression<Func<TValue>> _lastValueExpression;
         private FieldIdentifier _fieldIdentifier;
         private EditContext _lastEditContext;
@@ -58,8 +58,8 @@ namespace Gizmo.Web.Components
 
                 if (EditContext != null)
                 {
-                    var fieldName = ValueExpression != null ? ValueExpression.ToString() : "";
-                    InvokeVoidAsync("writeLine", $"{_guid} OnParametersSet EditContext {fieldName}");
+                    //var fieldName = ValueExpression != null ? ValueExpression.ToString() : "";
+                    //InvokeVoidAsync("writeLine", $"{_guid} OnParametersSet EditContext {fieldName}");
                     ValidationMessageStore = new ValidationMessageStore(EditContext);
 
                     EditContext.OnValidationRequested += OnValidationRequested;

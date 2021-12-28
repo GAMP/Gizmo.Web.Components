@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -59,19 +60,16 @@ namespace Gizmo.Web.Components
                 {
                     if (_items.ContainsKey(_value))
                     {
-                        SetSelectedItem(_items[_value]);
+                        SelectItem(false, string.Empty, _items[_value]);
                     }
                     else
                     {
-                        SetSelectedItem(null);
-
-                        _hasParsingErrors = true;
-                        _parsingErrors = "The field is required.";
+                        SelectItem(true, "The field is required.", null);
                     }
                 }
                 else
                 {
-                    SetSelectedItem(null);
+                    SelectItem(false, string.Empty, null);
                 }
             }
         }
@@ -138,28 +136,88 @@ namespace Gizmo.Web.Components
         {
             if (!IsDisabled)
             {
-                if (!_isOpen && OpenDirection == PopupOpenDirections.Cursor)
-                {
-                    var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
-                    var popupContentSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
+                if (!_isOpen)
+                    await Open();
+                else
+                    _isOpen = false;
+            }
+        }
 
-                    var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+        protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
+        {
+            if (IsDisabled)
+                return;
 
-                    _popupX = inputSize.Left;
-                    _popupWidth = inputSize.Width;
+            if (args.Key == null || args.Key == "Tab")
+                return;
 
-                    if (inputSize.Bottom + popupContentSize.Height > windowSize.Height)
+            if (!_isOpen)
+                await Open();
+
+            //If list has items.
+            //Get the index of the selected item.
+
+            int activeItemIndex = _popupContent.GetActiveItemIndex();
+            int listSize = _popupContent.GetListSize();
+
+            switch (args.Key)
+            {
+                case "Enter":
+
+                    if (activeItemIndex == -1) //If not item was selected.
                     {
-                        _popupY = windowSize.Height - popupContentSize.Height;
+                        activeItemIndex = 0; //Select the first item.
                     }
                     else
                     {
-                        _popupY = inputSize.Bottom;
-                    }
-                }
+                        //Set the value of the AutoComplete based on the selected item.
+                        var selectItem = _items.Where(a => a.Value.ListItem == _popupContent.ActiveItem).Select(a => a.Value).FirstOrDefault();
+                        await SetSelectedItem(selectItem);
+                        await _popupContent.SetActiveItemIndex(activeItemIndex);
 
-                _isOpen = !_isOpen;
+                        //Close the popup.
+                        _isOpen = false;
+
+                        return;
+                    }
+
+                    break;
+
+                case "ArrowDown":
+
+                    if (activeItemIndex == -1 || activeItemIndex == listSize - 1) //If not item was selected or the last item was selected.
+                    {
+                        //Select the first item.
+                        activeItemIndex = 0;
+                    }
+                    else
+                    {
+                        //Select the next item.
+                        activeItemIndex += 1;
+                    }
+
+                    break;
+                case "ArrowUp":
+
+                    if (activeItemIndex == -1 || activeItemIndex == 0) //If not item was selected or the first item was selected.
+                    {
+                        //Select the last item.
+                        activeItemIndex = listSize - 1;
+                    }
+                    else
+                    {
+                        //Select the previous item.
+                        activeItemIndex -= 1;
+                    }
+
+                    break;
+
+                default:
+                    return;
             }
+
+            //Update the selected item in the list.
+            await _popupContent.SetActiveItemIndex(activeItemIndex);
         }
 
         #endregion
@@ -172,15 +230,16 @@ namespace Gizmo.Web.Components
             {
                 if (_items.ContainsKey(_value))
                 {
-                    SetSelectedItem(_items[_value]);
+                    SelectItem(false, string.Empty, _items[_value]);
                 }
                 else
                 {
-                    SetSelectedItem(null);
-
-                    _hasParsingErrors = true;
-                    _parsingErrors = "The field is required.";
+                    SelectItem(true, "The field is required.", null);
                 }
+            }
+            else
+            {
+                SelectItem(false, string.Empty, null);
             }
 
             return base.OnAfterRenderAsync(firstRender);
@@ -200,14 +259,63 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        public void Register(SelectItem<TValue> selectItem)
+        public void Register(SelectItem<TValue> selectItem, TValue value)
         {
-            _items[selectItem.Value] = selectItem;
+            if (value == null)
+                return;
+
+            _items[value] = selectItem;
         }
 
-        public void Unregister(SelectItem<TValue> selectItem)
+        public void Update(SelectItem<TValue> selectItem, TValue value)
         {
-            _items.Remove(selectItem.Value);
+            if (value == null)
+                return;
+
+            var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)) && actualItem.Key != null)
+            {
+                _items.Remove(actualItem.Key);
+            }
+
+            _items[value] = selectItem;
+        }
+
+        public void Unregister(SelectItem<TValue> selectItem, TValue value)
+        {
+            if (value == null)
+                return;
+
+            var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)))
+            {
+                _items.Remove(actualItem.Key);
+            }
+        }
+
+        public void SelectItem(bool hasParsingErrors, string parsingErrors, SelectItem<TValue> selectItem)
+        {
+            bool refresh = false;
+
+            if (_hasParsingErrors != hasParsingErrors)
+            {
+                _hasParsingErrors = hasParsingErrors;
+                _parsingErrors = parsingErrors;
+
+                refresh = true;
+            }
+
+            if (_selectedItem != selectItem)
+            {
+                _selectedItem = selectItem;
+
+                refresh = true;
+            }
+
+            if (refresh)
+            {
+                StateHasChanged();
+            }
         }
 
         public Task SetSelectedItem(SelectItem<TValue> selectItem)
@@ -228,6 +336,34 @@ namespace Gizmo.Web.Components
                 return SetSelectedValue(selectItem.Value);
             else
                 return SetSelectedValue(default(TValue));
+        }
+
+        private async Task Open()
+        {
+            if (OpenDirection == PopupOpenDirections.Cursor)
+            {
+                var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                var popupContentSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
+
+                var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+
+                _popupX = inputSize.Left;
+                _popupWidth = inputSize.Width;
+
+                if (inputSize.Bottom + popupContentSize.Height > windowSize.Height)
+                {
+                    _popupY = windowSize.Height - popupContentSize.Height;
+                }
+                else
+                {
+                    _popupY = inputSize.Bottom;
+                }
+            }
+
+            int activeItemIndex = _popupContent.GetSelectedItemIndex();
+            await _popupContent.SetActiveItemIndex(activeItemIndex);
+
+            _isOpen = true;
         }
 
         #endregion

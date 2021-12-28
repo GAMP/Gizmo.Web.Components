@@ -149,15 +149,15 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
-        internal void SetActive(bool active)
+        internal void SetActive(bool value)
         {
             if (IsDisabled)
                 return;
 
-            if (_isActive == active)
+            if (_isActive == value)
                 return;
 
-            _isActive = active;
+            _isActive = value;
 
             StateHasChanged();
         }
@@ -220,7 +220,9 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-list-item")
                  .If("giz-list-item-disabled", () => IsDisabled)
-                 .If("giz-list-item-selected", () => _isSelected || _isActive).AsString();
+                 .If("giz-list-item-selected", () => _isSelected)
+                 .If("giz-list-item-active", () => _isActive)
+                 .AsString();
 
         protected string StyleValue => new StyleMapper()
                  .If($"border: 1px solid {BorderColor}; border-radius: 0.4rem", () => HasBorder)

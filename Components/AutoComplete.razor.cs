@@ -371,14 +371,38 @@ namespace Gizmo.Web.Components
 
         #region ISelect
 
-        public void Register(SelectItem<TValue> selectItem)
+        public void Register(SelectItem<TValue> selectItem, TValue value)
         {
-            _selectItems[selectItem.Value] = selectItem;
+            if (value == null)
+                return;
+
+            _selectItems[value] = selectItem;
         }
 
-        public void Unregister(SelectItem<TValue> selectItem)
+        public void Update(SelectItem<TValue> selectItem, TValue value)
         {
-            _selectItems.Remove(selectItem.Value);
+            if (value == null)
+                return;
+
+            var actualItem = _selectItems.Where(a => a.Value == selectItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)) && actualItem.Key != null)
+            {
+                _selectItems.Remove(actualItem.Key);
+            }
+
+            _selectItems[value] = selectItem;
+        }
+
+        public void Unregister(SelectItem<TValue> selectItem, TValue value)
+        {
+            if (value == null)
+                return;
+
+            var actualItem = _selectItems.Where(a => a.Value == selectItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)))
+            {
+                _selectItems.Remove(actualItem.Key);
+            }
         }
 
         public Task SetSelectedItem(SelectItem<TValue> selectItem)

@@ -306,6 +306,11 @@
 
         .giz-list-item {
             color: $secondary-color-theme-dark;
+
+            &.giz-list-item-active {
+                background-color: $primary-color-theme-dark;
+                color: $white-color;
+            }
         }
 
         &.giz-list--clickable {

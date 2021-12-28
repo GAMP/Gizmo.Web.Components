@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -13,6 +14,12 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        #region FIELDS
+
+        private TValue _value;
+
+        #endregion
+
         #region PROPERTIES
 
         internal ListItem ListItem { get; set; }
@@ -21,7 +28,25 @@ namespace Gizmo.Web.Components
         protected ISelect<TValue> Parent { get; set; }
 
         [Parameter]
-        public TValue Value { get; set; }
+        public TValue Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                if (EqualityComparer<TValue>.Default.Equals(_value, value))
+                    return;
+
+                _value = value;
+
+                if (Parent != null)
+                {
+                    Parent.Update(this, _value);
+                }
+            }
+        }
 
         [Parameter]
         public string Text { get; set; }
@@ -51,7 +76,7 @@ namespace Gizmo.Web.Components
         {
             if (Parent != null)
             {
-                Parent.Register(this);
+                Parent.Register(this, Value);
             }
         }
 
@@ -61,7 +86,7 @@ namespace Gizmo.Web.Components
             {
                 if (Parent != null)
                 {
-                    Parent.Unregister(this);
+                    Parent.Unregister(this, Value);
                 }
             }
             catch (Exception) { }

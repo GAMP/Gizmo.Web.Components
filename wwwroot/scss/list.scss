@@ -26,6 +26,12 @@
             pointer-events: none;
         }
 
+        &.giz-list-item-active {
+            //Default Theme
+            background-color: $primary-color-theme-dark;
+            color: $white-color;
+        }
+
         .giz-list-item-icon {
             margin-right: $spacer-17;
         }

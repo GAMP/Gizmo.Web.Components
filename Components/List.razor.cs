@@ -199,6 +199,24 @@ namespace Gizmo.Web.Components
             _childLists.Remove(child);
         }
 
+        internal int GetSelectedItemIndex()
+        {
+            if (_selectedItem != null)
+                return _items.IndexOf(_selectedItem);
+            else
+                return -1;
+        }
+
+        internal async Task SetSelectedItemIndex(int index)
+        {
+            if (index >= 0 && index < _items.Count)
+            {
+                var item = _items[index];
+                await SetSelectedItem(item);
+                await InvokeVoidAsync("scrollListItemIntoView", item.Ref);
+            }
+        }
+
         internal int GetActiveItemIndex()
         {
             if (_activeItem != null)
