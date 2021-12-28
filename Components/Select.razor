@@ -36,7 +36,8 @@
                            disabled="@IsDisabled"
                            readonly
                            @onclick="OnClickInput"
-                           @onkeydown="OnInputKeyDownHandler" />
+                           @onkeydown="OnInputKeyDownHandler"
+                           @onkeydown:preventDefault="true" />
                 </div>
             }
 
