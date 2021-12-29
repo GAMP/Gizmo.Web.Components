@@ -4,6 +4,12 @@
     display: inline-block;
     position: relative;
 
+    &--mouse {
+        .giz-overlay {
+            pointer-events: none;
+        }
+    }
+
     & > button {
         width: 100%;
     }

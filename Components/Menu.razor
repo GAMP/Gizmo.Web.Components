@@ -5,46 +5,41 @@
 
     <div class="@Class @ClassName"
          style="@Style"
+         @onmouseover="OnMouseOverHandler"
          @onmouseout="OnMouseLeaveHandler">
 
-        @if (IsContextMenu)
-        {
-
-        }
-        else if (Activator != null)
+        @if (!IsContextMenu)
         {
             <div @onmousedown="OnMouseDownHandler"
-                 @onmouseover="OnMouseOverHandler"
+                 @oncontextmenu="OnContextMenuHandler"
                  @oncontextmenu:preventDefault="@(ActivationEvent == MenuActivationEvents.RightClick)"
-                 @oncontextmenu="OnContextMenuHandler">
-                 @Activator
+                 >
+                 
+                @if (Activator != null)
+                {
+                    @Activator
+                }
+                else
+                {
+                    @if (!string.IsNullOrEmpty(Icon) || SVGIcon.HasValue)
+                    {
+                        <Button Variant="@Variant"
+                                Size="@Size"
+                                RightIcon="@Icon"
+                                RightSVGIcon="SVGIcon">
+                            @Label
+                        </Button>
+                    }
+                    else
+                    {
+                        <Button Variant="@Variant"
+                                Size="@Size"
+                                RightSVGIcon="@(IsOpen ? Icons.TriangleUp : Icons.TriangleDown)">
+                            @Label
+                        </Button>
+                    }
+                }
             </div>
-        }
-        else
-        {
-            @if (!string.IsNullOrEmpty(Icon) || SVGIcon.HasValue)
-            {
-                <Button Variant="@Variant"
-                        Size="@Size"
-                        RightIcon="@Icon"
-                        RightSVGIcon="SVGIcon"
-                        @onmousedown="OnMouseDownHandler"
-                        @onmouseover="OnMouseOverHandler"
-                        >
-                    @Label
-                </Button>
-            }
-            else
-            {
-                <Button Variant="@Variant"
-                        Size="@Size"
-                        RightSVGIcon="@(IsOpen ? Icons.TriangleUp : Icons.TriangleDown)"
-                        @onmousedown="OnMouseDownHandler"
-                        @onmouseover="OnMouseOverHandler"
-                        >
-                    @Label
-                </Button>
-            }
         }
 
         <Popup @bind-IsOpen="IsOpen" Class="@PopupClassName" Style="@PopupStyleValue" CloseOnClick="@CloseOnItemClick"

@@ -31,6 +31,11 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        protected Task OnContextMenuHandler(MouseEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+
         #endregion
 
         #region CLASSMAPPERS
