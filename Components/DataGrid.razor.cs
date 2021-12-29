@@ -480,6 +480,26 @@ namespace Gizmo.Web.Components
             }
         }
 
+        protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
+        {
+            if (args.Key == null || args.Key == "Tab")
+                return;
+
+            if (_editedRow != null && args.Key == "Enter")
+            {
+                var lastEditedRow = _editedRow;
+                await ExitEditMode();
+
+                if (!_validationFailed)
+                {
+                    this.Refresh(lastEditedRow);
+
+                    _shouldRender = true;
+                    StateHasChanged();
+                }
+            }
+        }
+
         #endregion
 
         #region METHODS

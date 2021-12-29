@@ -21,7 +21,7 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
-        private TValue _value;
+        //private TValue _value;
         private SelectItem<TValue> _selectedItem;
         private List _popupContent;
         private bool _isOpen;
@@ -43,36 +43,36 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public TValue Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                if (EqualityComparer<TValue>.Default.Equals(_value, value))
-                    return;
+        public TValue Value { get; set; }
+        //{
+        //    get
+        //    {
+        //        return _value;
+        //    }
+        //    set
+        //    {
+        //        if (EqualityComparer<TValue>.Default.Equals(_value, value))
+        //            return;
 
-                _value = value;
+        //        _value = value;
 
-                if (_value != null)
-                {
-                    if (_items.ContainsKey(_value))
-                    {
-                        SelectItem(false, string.Empty, _items[_value]);
-                    }
-                    else
-                    {
-                        SelectItem(true, "The field is required.", null);
-                    }
-                }
-                else
-                {
-                    SelectItem(false, string.Empty, null);
-                }
-            }
-        }
+        //        if (_value != null)
+        //        {
+        //            if (_items.ContainsKey(_value))
+        //            {
+        //                SelectItem(false, string.Empty, _items[_value]);
+        //            }
+        //            else
+        //            {
+        //                SelectItem(true, "The field is required.", null);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            SelectItem(false, string.Empty, null);
+        //        }
+        //    }
+        //}
 
         [Parameter]
         public string Label { get; set; }
@@ -117,10 +117,10 @@ namespace Gizmo.Web.Components
 
         internal Task SetSelectedValue(TValue value)
         {
-            if (!EqualityComparer<TValue>.Default.Equals(_value, value))
+            if (!EqualityComparer<TValue>.Default.Equals(Value, value))
             {
-                _value = value;
-                return ValueChanged.InvokeAsync(_value);
+                Value = value;
+                return ValueChanged.InvokeAsync(Value);
             }
             else
             {
@@ -170,7 +170,7 @@ namespace Gizmo.Web.Components
                     }
                     else
                     {
-                        //Set the value of the AutoComplete based on the selected item.
+                        //Set the value of the Select based on the selected item.
                         var selectItem = _items.Where(a => a.Value.ListItem == _popupContent.ActiveItem).Select(a => a.Value).FirstOrDefault();
                         await SetSelectedItem(selectItem);
                         await _popupContent.SetActiveItemIndex(activeItemIndex);
@@ -224,25 +224,50 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDES
 
-        protected override Task OnAfterRenderAsync(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (_value != null)
+            if (Value != null)
             {
-                if (_items.ContainsKey(_value))
+                if (_items.ContainsKey(Value))
                 {
-                    SelectItem(false, string.Empty, _items[_value]);
+                    await SelectItem(false, string.Empty, _items[Value]);
                 }
                 else
                 {
-                    SelectItem(true, "The field is required.", null);
+                    await SelectItem(true, "The field is required.", null);
                 }
             }
             else
             {
-                SelectItem(false, string.Empty, null);
+                await SelectItem(false, string.Empty, null);
             }
 
-            return base.OnAfterRenderAsync(firstRender);
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        public override async Task SetParametersAsync(ParameterView parameters)
+        {
+            await base.SetParametersAsync(parameters);
+
+            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
+            if (valueChanged)
+            {
+                if (Value != null)
+                {
+                    if (_items.ContainsKey(Value))
+                    {
+                        await SelectItem(false, string.Empty, _items[Value]);
+                    }
+                    else
+                    {
+                        await SelectItem(true, "The field is required.", null);
+                    }
+                }
+                else
+                {
+                    await SelectItem(false, string.Empty, null);
+                }
+            }
         }
 
         public override void Validate(FieldIdentifier fieldIdentifier, ValidationMessageStore validationMessageStore)
@@ -293,7 +318,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        public void SelectItem(bool hasParsingErrors, string parsingErrors, SelectItem<TValue> selectItem)
+        public async Task SelectItem(bool hasParsingErrors, string parsingErrors, SelectItem<TValue> selectItem)
         {
             bool refresh = false;
 
@@ -308,6 +333,8 @@ namespace Gizmo.Web.Components
             if (_selectedItem != selectItem)
             {
                 _selectedItem = selectItem;
+
+                await _popupContent.SetSelectedItem(_selectedItem.ListItem);
 
                 refresh = true;
             }

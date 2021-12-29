@@ -149,8 +149,6 @@ namespace Gizmo.Web.Components
 
         public void OnMouseOverHandler(MouseEventArgs args)
         {
-            InvokeVoidAsync("writeLine", $"OnMouseOverHandler {this.ToString()}");
-
             if (ActivationEvent == MenuActivationEvents.MouseOver && !IsDisabled && !IsOpen)
             {
                 if (OpenDirection == PopupOpenDirections.Cursor)
@@ -165,8 +163,6 @@ namespace Gizmo.Web.Components
 
         public void OnMouseLeaveHandler(MouseEventArgs args)
         {
-            InvokeVoidAsync("writeLine", $"OnMouseLeaveHandler {this.ToString()}");
-
             if (ActivationEvent == MenuActivationEvents.MouseOver && !IsDisabled)
                 IsOpen = false;
         }
@@ -254,7 +250,7 @@ namespace Gizmo.Web.Components
             if (!firstRender)
             {
                 _shouldRender = false;
-                await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
             }
 
             await base.OnAfterRenderAsync(firstRender);
