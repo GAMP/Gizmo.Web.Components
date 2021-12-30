@@ -39,7 +39,7 @@ namespace Gizmo.Web.Components
                 {
                     if (short.TryParse(value, NumberStyles.Integer, Culture, out var parsedValue))
                         return (TValue)(object)parsedValue;
-                    UpdateGetError("The field should be a number.");
+                    UpdateGetError("The field should be an integer number.");
                 }
 
                 // ushort
@@ -47,7 +47,7 @@ namespace Gizmo.Web.Components
                 {
                     if (ushort.TryParse(value, NumberStyles.Integer, Culture, out var parsedValue))
                         return (TValue)(object)parsedValue;
-                    UpdateGetError("The field should be a number.");
+                    UpdateGetError("The field should be an integer number.");
                 }
 
                 // int
@@ -55,7 +55,7 @@ namespace Gizmo.Web.Components
                 {
                     if (int.TryParse(value, NumberStyles.Integer, Culture, out var parsedValue))
                         return (TValue)(object)parsedValue;
-                    UpdateGetError("The field should be a number.");
+                    UpdateGetError("The field should be an integer number.");
                 }
 
                 // uint
@@ -63,7 +63,7 @@ namespace Gizmo.Web.Components
                 {
                     if (uint.TryParse(value, NumberStyles.Integer, Culture, out var parsedValue))
                         return (TValue)(object)parsedValue;
-                    UpdateGetError("The field should be a number.");
+                    UpdateGetError("The field should be an integer number.");
                 }
 
                 // long
@@ -71,7 +71,7 @@ namespace Gizmo.Web.Components
                 {
                     if (long.TryParse(value, NumberStyles.Integer, Culture, out var parsedValue))
                         return (TValue)(object)parsedValue;
-                    UpdateGetError("The field should be a number.");
+                    UpdateGetError("The field should be an integer number.");
                 }
 
                 // ulong
@@ -79,7 +79,7 @@ namespace Gizmo.Web.Components
                 {
                     if (ulong.TryParse(value, NumberStyles.Integer, Culture, out var parsedValue))
                         return (TValue)(object)parsedValue;
-                    UpdateGetError("The field should be a number.");
+                    UpdateGetError("The field should be an integer number.");
                 }
 
                 // float

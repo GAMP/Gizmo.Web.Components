@@ -4,7 +4,7 @@
 @if (ChildContent != null)
 {
     <div class="@Class @ClassName"
-         style="@Style @StyleValue"
+         style="@StyleValue @Style"
          @onclick="OnClickHandler">
          @ChildContent
      </div>
@@ -34,7 +34,7 @@ else
         @if (SVGIcon.HasValue)
         {
             <div class="@Class @ClassName"
-                 style="@Style @StyleValue"
+                 style="@StyleValue @Style"
                  @onclick="OnClickHandler">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                     @switch (SVGIcon.Value)

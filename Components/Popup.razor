@@ -4,7 +4,7 @@
 @if (OpenDirection != PopupOpenDirections.Cursor)
 {
     <div class="@Class @ClassName"
-         style="@Style @StyleValue"
+         style="@StyleValue @Style"
          @ref="@Ref"
          @onclick="ClickInsidePopup"
          @onfocusout="OnFocusOutHandler"
@@ -20,7 +20,7 @@ else
 {
     <div class="@PopupWrapperClassName" style="@PopupWrapperStyleValue" @onclick="ClickOutsidePopup">
         <div class="@Class @ClassName"
-             style="@Style @StyleValue"
+             style="@StyleValue @Style"
              @ref="@Ref"
              @onclick="ClickInsidePopup"
              @onclick:stopPropagation="true"

@@ -2,7 +2,7 @@
 @inherits ButtonBase
 
 <button class="@Class @ClassName"
-        style="@Style"
+        style="@StyleValue @Style"
         @onclick="@OnClickButtonHandler"
         @onclick:stopPropagation="true"
         disabled="@IsDisabled"
@@ -28,5 +28,12 @@
             }
         }
     </div>
+    
+    @if (!string.IsNullOrEmpty(Tooltip))
+    {
+        <div class="@TooltipClassName">
+            @Tooltip
+        </div>
+    }
 
 </button>

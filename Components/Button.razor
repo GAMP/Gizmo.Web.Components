@@ -2,7 +2,7 @@
 @inherits ButtonBase
 
 <button class="@Class @ClassName @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? ButtonIconRight : "")"
-        style="@Style @StyleValue"
+        style="@StyleValue @Style"
         @onclick="@OnClickButtonHandler"
         @onclick:stopPropagation="@StopPropagation"
         aria-label="@Label"

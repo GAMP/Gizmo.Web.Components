@@ -9,10 +9,23 @@ namespace Gizmo.Web.Components
 {
     public partial class NumericUpDown<TValue> : GizInputBase<TValue>
     {
+        #region CONSTRUCTOR
+        public NumericUpDown()
+        {
+            //Set default culture and format;
+            _culture = CultureInfo.CurrentCulture;
+            _converter = new StringConverter<TValue>();
+            _converter.Culture = _culture;
+        }
+        #endregion
+
         #region FIELDS
 
-        private StringConverter<TValue> _converter = new StringConverter<TValue>();
+        private CultureInfo _culture;
+        private StringConverter<TValue> _converter;
         private string _text;
+        private decimal? _decimalValue;
+        private ElementReference _inputElement;
 
         #endregion
 
@@ -126,6 +139,9 @@ namespace Gizmo.Web.Components
         protected async Task SetValueAsync(TValue value)
         {
             Value = value;
+
+            _decimalValue = ValueToDecimal();
+
             await ValueChanged.InvokeAsync(Value);
         }
 
@@ -171,6 +187,22 @@ namespace Gizmo.Web.Components
             base.OnInitialized();
         }
 
+        protected override async Task OnParametersSetAsync()
+        {
+            if (Culture != null)
+            {
+                _culture = Culture;
+            }
+            else
+            {
+                _culture = CultureInfo.CurrentCulture;
+            }
+
+            _converter.Culture = _culture;
+
+            await base.OnParametersSetAsync();
+        }
+
         public override async Task SetParametersAsync(ParameterView parameters)
         {
             await base.SetParametersAsync(parameters);
@@ -179,6 +211,9 @@ namespace Gizmo.Web.Components
             if (valueChanged)
             {
                 _text = _converter.SetValue(Value);
+
+                _decimalValue = ValueToDecimal();
+
                 StateHasChanged();
             }
         }
@@ -200,6 +235,8 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-numeric-up-down")
                  .If("giz-input-numeric-up-down--full-width", () => IsFullWidth)
+                 .If("giz-input-numeric-up-down--formatted", () => !string.IsNullOrEmpty(Format) && !_converter.HasGetError)
+                 .If("giz-input-numeric-up-down--formatted-invalid", () => !string.IsNullOrEmpty(Format) && _converter.HasGetError)
                  .Add(Class)
                  .AsString();
 

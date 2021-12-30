@@ -13,5 +13,65 @@
                 cursor: pointer;
             }
         }
+
+        &--small {
+            .giz-input-numeric-up-down__value {
+                line-height: 3.2rem;
+            }
+        }
+
+        &--medium {
+            .giz-input-numeric-up-down__value {
+                line-height: 3.9rem;
+            }
+        }
+
+        &--large {
+            .giz-input-numeric-up-down__value {
+                line-height: 8rem;
+            }
+        }
+    }
+
+    &__value {
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: inherit;
+        font-weight: 100;
+        letter-spacing: normal;
+        //Default Theme
+        color: $gray-black-theme-dark;
+    }
+
+    &--formatted {
+        input {
+            padding: 0;
+            height: 0 !important;
+        }
+
+        &:focus-within {
+            .giz-input-numeric-up-down__value {
+                height: 0 !important;
+            }
+
+            input {
+                height: 100% !important;
+            }
+        }
+    }
+
+    &--formatted-invalid {
+        .giz-input-numeric-up-down__value {
+            height: 0 !important;
+        }
+
+        input {
+            height: 100% !important;
+        }
     }
 }

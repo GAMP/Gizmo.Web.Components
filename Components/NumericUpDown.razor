@@ -20,7 +20,20 @@
         <input type="text"
                value="@_text"
                disabled="@IsDisabled"
+               @ref="_inputElement"
                @oninput="OnInputHandler" />
+        @if (!string.IsNullOrEmpty(Format))
+        {            
+            <div class="giz-input-numeric-up-down__value"
+                 @onclick="@(() => _inputElement.FocusAsync())"
+                 @oncontextmenu="@(() => _inputElement.FocusAsync())"
+                 @oncontextmenu:preventDefault="true">
+                @if (_decimalValue.HasValue)
+                {
+                    @_decimalValue.Value.ToString(Format)
+                }
+            </div>
+        }
     </div>
 
     <div class="giz-input-icon-right">

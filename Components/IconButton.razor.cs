@@ -30,6 +30,15 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string IconBackgroundColor { get; set; }
 
+        [Parameter]
+        public int? ZIndex { get; set; }
+
+        [Parameter]
+        public string Tooltip { get; set; }
+
+        [Parameter]
+        public TooltipOpenDirections TooltipOpenDirection { get; set; } = TooltipOpenDirections.Top;
+
         #endregion
 
         #region EVENTS
@@ -59,7 +68,16 @@ namespace Gizmo.Web.Components
                  .If("disabled", () => IsDisabled)
                  .AsString();
 
+        protected string StyleValue => new StyleMapper()
+                 .If($"z-index: {ZIndex}", () => ZIndex.HasValue)
+                 .AsString();
+
         protected string ButtonIcon => new ClassMapper()
+                 .AsString();
+
+        protected string TooltipClassName => new ClassMapper()
+                 .Add("giz-tooltip")
+                 .Add($"giz-tooltip--{TooltipOpenDirection.ToDescriptionString()}")
                  .AsString();
 
         #endregion

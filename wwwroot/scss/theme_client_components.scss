@@ -710,3 +710,26 @@
         }
     }
 }
+
+// == tooltip == //
+.giz-tooltip {
+    [client-theme] & {
+        background-color: $dark-black-pearl;
+        @include font-12;
+        @include open-sans-600;
+        letter-spacing: -0.025em;
+        border-radius: $rounded;
+
+        &--top {
+            &::after {
+                border-color: $dark-black-pearl transparent transparent transparent;
+            }
+        }
+
+        &--bottom {
+            &::after {
+                border-color: transparent transparent $dark-black-pearl transparent;
+            }
+        }
+    }
+}
