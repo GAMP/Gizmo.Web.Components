@@ -4,57 +4,66 @@
 @typeparam TItemType
 @typeparam TValue
 
-<div class="@Class @ClassName"
-     style="@Style"
-     id="@Id"
-     @ref="@Ref">
-    <CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
-        <GizInput Label="@Label"
-                  ValidationErrorStyle="@ValidationErrorStyle"
-                  IsDisabled="@IsDisabled"
-                  IsFullWidth="@IsFullWidth"
-                  Width="@Width"
-                  HasOutline="@HasOutline"
-                  HasShadow="@HasShadow"
-                  IsTransparent="@IsTransparent"
-                  Size="@Size"
-                  IsValid="@_isValid"
-                  ValidationMessage="@_validationMessage"
-                  RightSVGIcon="Icons.Search">
-            <div class="giz-input-wrapper">
-                <input type="text"
-                       value="@_text"
-                       readonly="@IsReadOnly"
-                       disabled="@IsDisabled"
-                       @oninput="OnInputHandler"
-                       @onkeydown="OnInputKeyDownHandler"
-                       />
-            </div>
-        </GizInput>
+<CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
+    <div class="@Class @ClassName"
+         style="@Style"
+         id="@Id"
+         @ref="@Ref">
+        <div style="position: relative;" @ref="_inputElement">
+            <GizInput Label="@Label"
+                      ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
+                      IsDisabled="@IsDisabled"
+                      IsFullWidth="@IsFullWidth"
+                      Width="@Width"
+                      HasOutline="@HasOutline"
+                      HasShadow="@HasShadow"
+                      IsTransparent="@IsTransparent"
+                      Size="@Size"
+                      IsValid="@_isValid"
+                      ValidationMessage="@_validationMessage"
+                      RightSVGIcon="Icons.Search">
+                <div class="giz-input-wrapper">
+                    <input type="text"
+                           value="@_text"
+                           readonly="@IsReadOnly"
+                           disabled="@IsDisabled"
+                           @oninput="OnInputHandler"
+                           @onkeydown="OnInputKeyDownHandler"
+                           />
+                </div>
+            </GizInput>
 
-        <Popup MaximumHeight="@MaximumHeight"
-               @bind-IsOpen="_isOpen"
-               OpenDirection="@OpenDirection"
-               Class="@PopupClassName"
-               Style="@PopupStyleValue">
-            <List @ref="_popupContent"
-                  CanClick="true"
-                  CanSelect="true">
-                @if (_items != null)
-                {
-                    @foreach (var item in GetFiltered(_text))
+            <Popup MaximumHeight="@MaximumHeight"
+                   @bind-IsOpen="_isOpen"
+                   OpenDirection="@OpenDirection"
+                   Class="@PopupClassName"
+                   Style="@PopupStyleValue">
+                <List @ref="_popupContent"
+                      CanClick="true"
+                      CanSelect="true">
+                    @if (_items != null)
                     {
-                        if (ItemTemplate != null)
+                        @foreach (var item in GetFiltered(_text))
                         {
-                            @ItemTemplate(item);
-                        }
-                        else
-                        {
-                            <SelectItem TValue="@TValue" Value="@GetItemValue(item)" Text="@GetItemText(item)" />
+                            if (ItemTemplate != null)
+                            {
+                                @ItemTemplate(item);
+                            }
+                            else
+                            {
+                                <SelectItem TValue="@TValue" Value="@GetItemValue(item)" Text="@GetItemText(item)" />
+                            }
                         }
                     }
-                }
-            </List>
-        </Popup>
-    </CascadingValue>
-</div>
+                </List>
+            </Popup>
+        </div>
+            
+        @if (ValidationErrorStyle == ValidationErrorStyles.Label)
+        {
+            <div class="giz-input-validation-label">
+                @_validationMessage
+            </div>
+        }
+    </div>
+</CascadingValue>

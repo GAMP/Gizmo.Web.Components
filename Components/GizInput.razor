@@ -26,7 +26,10 @@
         }
 
     </div>
-    <div class="@ValidationClassName">
-        @ValidationMessage
-    </div>
+    @if (ValidationErrorStyle != ValidationErrorStyles.BorderOnly)
+    {
+        <div class="@ValidationClassName">
+            @ValidationMessage
+        </div>
+    }
 </div>

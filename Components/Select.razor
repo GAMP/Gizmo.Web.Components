@@ -3,56 +3,65 @@
 
 @typeparam TValue
 
-<div class="@Class @ClassName"
-     style="@Style"
-     id="@Id"
-     @ref="@Ref">         
-    <CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
-        <GizInput Label="@Label"
-                  ValidationErrorStyle="@ValidationErrorStyle"
-                  IsDisabled="@IsDisabled"
-                  IsFullWidth="@IsFullWidth"
-                  Width="@Width"
-                  HasOutline="@HasOutline"
-                  HasShadow="@HasShadow"
-                  IsTransparent="@IsTransparent"
-                  Size="@Size"
-                  IsValid="@IsValid"
-                  ValidationMessage="@ValidationMessage"
-                  RightSVGIcon="Icons.TriangleDown"
-                  @onclick="OnClickInput">
+<CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
+    <div class="@Class @ClassName"
+         style="@Style"
+         id="@Id"
+         @ref="@Ref">         
+        <div style="position: relative;" @ref="_inputElement">
+            <GizInput Label="@Label"
+                      ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
+                      IsDisabled="@IsDisabled"
+                      IsFullWidth="@IsFullWidth"
+                      Width="@Width"
+                      HasOutline="@HasOutline"
+                      HasShadow="@HasShadow"
+                      IsTransparent="@IsTransparent"
+                      Size="@Size"
+                      IsValid="@IsValid"
+                      ValidationMessage="@ValidationMessage"
+                      RightSVGIcon="Icons.TriangleDown"
+                      @onclick="OnClickInput">
 
-            @if (@_selectedItem?.ChildContent != null)
-            {
-                <div @onclick="OnClickInput" style="cursor: pointer;">
-                    @_selectedItem.ChildContent
-                </div>
-            }
-            else
-            {
-                <div class="giz-input-wrapper">
-                    <input type="text"
-                           value="@_selectedItem?.Text"
-                           disabled="@IsDisabled"
-                           readonly
-                           @onclick="OnClickInput"
-                           @onkeydown="OnInputKeyDownHandler"
-                           @onkeydown:preventDefault="true" />
-                </div>
-            }
+                @if (@_selectedItem?.ChildContent != null)
+                {
+                    <div @onclick="OnClickInput" style="cursor: pointer;">
+                        @_selectedItem.ChildContent
+                    </div>
+                }
+                else
+                {
+                    <div class="giz-input-wrapper">
+                        <input type="text"
+                               value="@_selectedItem?.Text"
+                               disabled="@IsDisabled"
+                               readonly
+                               @onclick="OnClickInput"
+                               @onkeydown="OnInputKeyDownHandler"
+                               @onkeydown:preventDefault="true" />
+                    </div>
+                }
 
-        </GizInput>
+            </GizInput>
 
-        <Popup MaximumHeight="@MaximumHeight"
-               @bind-IsOpen="_isOpen"
-               OpenDirection="@OpenDirection"
-               Class="@PopupClassName"
-               Style="@PopupStyleValue">
-            <List @ref="_popupContent"
-                  CanClick="true"
-                  MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
-                @ChildContent
-            </List>
-        </Popup>
-    </CascadingValue>
-</div>
+            <Popup MaximumHeight="@MaximumHeight"
+                   @bind-IsOpen="_isOpen"
+                   OpenDirection="@OpenDirection"
+                   Class="@PopupClassName"
+                   Style="@PopupStyleValue">
+                <List @ref="_popupContent"
+                      CanClick="true"
+                      MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
+                    @ChildContent
+                </List>
+            </Popup>
+        </div>
+            
+        @if (ValidationErrorStyle == ValidationErrorStyles.Label)
+        {
+            <div class="giz-input-validation-label">
+                @ValidationMessage
+            </div>
+        }
+    </div>
+</CascadingValue>

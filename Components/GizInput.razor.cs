@@ -120,7 +120,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
-                 .If("giz-input-validation-lebel", () => ValidationErrorStyle == ValidationErrorStyles.Label)
+                 .If("giz-input-validation-label", () => ValidationErrorStyle == ValidationErrorStyles.Label)
                  .If("giz-input-validation-tooltip", () => ValidationErrorStyle == ValidationErrorStyles.Tooltip)
                  .AsString();
 

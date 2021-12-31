@@ -2,7 +2,8 @@
 {
     public enum ValidationErrorStyles
     {
-        Label = 0,
-        Tooltip = 1
+        BorderOnly,
+        Label,
+        Tooltip
     }
 }
