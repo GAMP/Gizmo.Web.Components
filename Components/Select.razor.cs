@@ -21,7 +21,6 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
-        //private TValue _value;
         private SelectItem<TValue> _selectedItem;
         private List _popupContent;
         private ElementReference _inputElement;
@@ -45,35 +44,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public TValue Value { get; set; }
-        //{
-        //    get
-        //    {
-        //        return _value;
-        //    }
-        //    set
-        //    {
-        //        if (EqualityComparer<TValue>.Default.Equals(_value, value))
-        //            return;
-
-        //        _value = value;
-
-        //        if (_value != null)
-        //        {
-        //            if (_items.ContainsKey(_value))
-        //            {
-        //                SelectItem(false, string.Empty, _items[_value]);
-        //            }
-        //            else
-        //            {
-        //                SelectItem(true, "The field is required.", null);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            SelectItem(false, string.Empty, null);
-        //        }
-        //    }
-        //}
 
         [Parameter]
         public string Label { get; set; }
