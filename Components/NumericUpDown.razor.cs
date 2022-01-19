@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -73,6 +74,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Format { get; set; }
 
+        [Parameter]
+        public bool CanClearValue { get; set; }
+
         public bool IsValid => _isValid && !_converter.HasGetError;
 
         public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
@@ -130,6 +134,11 @@ namespace Gizmo.Web.Components
 
             //Set new value
             return SetValueAsync(_converter.GetValue(value.ToString()));
+        }
+
+        public Task OnClickButtonClearValueHandler(MouseEventArgs args)
+        {
+            return SetValueAsync(default(TValue));
         }
 
         #endregion
@@ -226,6 +235,14 @@ namespace Gizmo.Web.Components
             {
                 validationMessageStore.Add(fieldIdentifier, _converter.GetErrorMessage);
             }
+        }
+
+        private bool IsNullable()
+        {
+            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
+                return true;
+
+            return false;
         }
 
         #endregion

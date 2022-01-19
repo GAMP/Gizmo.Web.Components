@@ -89,6 +89,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Format { get; set; }
 
+        [Parameter]
+        public bool CanClearValue { get; set; }
+
         public bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
 
         public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
@@ -155,6 +158,11 @@ namespace Gizmo.Web.Components
             }
         }
 
+        public Task OnClickButtonClearValueHandler(MouseEventArgs args)
+        {
+            return SetValueAsync(default(TValue));
+        }
+
         #endregion
 
         #region METHODS
@@ -170,6 +178,14 @@ namespace Gizmo.Web.Components
 
                 await ValueChanged.InvokeAsync(Value);
             }
+        }
+
+        private bool IsNullable()
+        {
+            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
+                return true;
+
+            return false;
         }
 
         #endregion

@@ -78,6 +78,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Placeholder { get; set; }
 
+        [Parameter]
+        public bool CanClearValue { get; set; }
+
         public bool IsValid => !_hasParsingErrors && _isValid;
 
         public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _validationMessage;
@@ -189,6 +192,11 @@ namespace Gizmo.Web.Components
 
             //Update the selected item in the list.
             await _popupContent.SetActiveItemIndex(activeItemIndex);
+        }
+
+        public Task OnClickButtonClearValueHandler(MouseEventArgs args)
+        {
+            return SetSelectedValue(default(TValue));
         }
 
         #endregion
@@ -362,6 +370,14 @@ namespace Gizmo.Web.Components
             await _popupContent.SetActiveItemIndex(activeItemIndex);
 
             _isOpen = true;
+        }
+
+        private bool IsNullable()
+        {
+            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
+                return true;
+
+            return false;
         }
 
         #endregion

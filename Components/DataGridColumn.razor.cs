@@ -147,12 +147,10 @@ namespace Gizmo.Web.Components
 
         #region PRIVATE
 
-        protected ValueTask OnHeaderMouseEvent(MouseEventArgs args)
+        protected void OnHeaderMouseEvent(MouseEventArgs args)
         {
-            if (Parent == null)
-                return ValueTask.CompletedTask;
-
-            return Parent.OnHeaderRowMouseEvent(args, this);
+            if (Parent != null)
+                Parent.OnHeaderRowMouseEvent(args, this);
         }
 
         #endregion

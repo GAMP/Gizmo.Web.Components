@@ -32,6 +32,13 @@
                                @oninput="OnInputHandler"
                                @onclick="OnClickInput" />
                     </div>
+
+                    @if (CanClearValue && IsNullable() && Value != null)
+                    {
+                        <div class="giz-input-icon-right">
+                            <Icon SVGIcon="@Icons.Close" @onclick="OnClickButtonClearValueHandler" />
+                        </div>
+                    }
                 </GizInput>
 
                 <Popup @bind-IsOpen="_isOpen"

@@ -276,6 +276,12 @@ namespace Gizmo.Web.Components
         public bool AllowDelete { get; set; }
 
         [Parameter]
+        public string InitialSortField { get; set; }
+
+        [Parameter]
+        public SortDirections InitialSortDirection { get; set; }
+
+        [Parameter]
         public EventCallback<DataGridBeginOperation> OnBeginOperation { get; set; }
 
         [Parameter]
@@ -295,6 +301,14 @@ namespace Gizmo.Web.Components
             {
                 var itemsProviderResult = await ItemsProvider.Invoke(new ItemsProviderRequest());
                 _providerTotalItems = itemsProviderResult.TotalItemCount;
+            }
+
+            if (!string.IsNullOrEmpty(InitialSortField))
+            {
+                var initialSortColumn = _columns.Where(a => a.Field == InitialSortField).FirstOrDefault();
+
+                if (initialSortColumn != null)
+                    SortByColumn(initialSortColumn, InitialSortDirection);
             }
         }
 
@@ -418,45 +432,9 @@ namespace Gizmo.Web.Components
             await SelectedItemsChanged.InvokeAsync();
         }
 
-        internal ValueTask OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
+        internal void OnHeaderRowMouseEvent(MouseEventArgs args, DataGridColumn<TItemType> column)
         {
-            if (column.CanSort)
-            {
-                foreach (var item in Columns)
-                {
-                    if (item != column)
-                    {
-                        item.IsSorted = false;
-                    }
-                }
-
-                if (_sortColumn != column)
-                {
-                    _sortColumn = column;
-                    _sortDirection = SortDirections.Ascending;
-                    column.SortDirection = _sortDirection;
-
-                    column.IsSorted = true;
-                }
-                else
-                {
-                    if (_sortDirection == SortDirections.Ascending)
-                    {
-                        _sortDirection = SortDirections.Descending;
-                    }
-                    else
-                    {
-                        _sortDirection = SortDirections.Ascending;
-                    }
-                    column.SortDirection = _sortDirection;
-
-                    column.IsSorted = true;
-                }
-
-                this.Refresh();
-            }
-
-            return ValueTask.CompletedTask;
+            SortByColumn(column, null);
         }
 
         private async Task WindowResizeHandler(EventArgs args)
@@ -590,6 +568,62 @@ namespace Gizmo.Web.Components
         }
 
         #endregion
+
+        private void SortByColumn(DataGridColumn<TItemType> column, SortDirections? sortDirection)
+        {
+            if (column.CanSort)
+            {
+                foreach (var item in Columns)
+                {
+                    if (item != column)
+                    {
+                        item.IsSorted = false;
+                    }
+                }
+
+                if (_sortColumn != column)
+                {
+                    _sortColumn = column;
+                    
+                    if (sortDirection.HasValue)
+                    {
+                        _sortDirection = sortDirection.Value;
+                    }
+                    else
+                    {
+                        _sortDirection = SortDirections.Ascending;
+                    }
+
+                    column.SortDirection = _sortDirection;
+
+                    column.IsSorted = true;
+                }
+                else
+                {
+                    if (sortDirection.HasValue)
+                    {
+                        _sortDirection = sortDirection.Value;
+                    }
+                    else
+                    {
+                        if (_sortDirection == SortDirections.Ascending)
+                        {
+                            _sortDirection = SortDirections.Descending;
+                        }
+                        else
+                        {
+                            _sortDirection = SortDirections.Ascending;
+                        }
+                    }
+
+                    column.SortDirection = _sortDirection;
+
+                    column.IsSorted = true;
+                }
+
+                this.Refresh();
+            }
+        }
 
         private async Task ExitEditMode()
         {
