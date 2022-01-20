@@ -1,5 +1,4 @@
-﻿using Gizmo.Web.Components.Infrastructure;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 
 namespace Gizmo.Web.Components

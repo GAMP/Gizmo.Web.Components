@@ -1,5 +1,4 @@
 ﻿using Gizmo.Web.Components.Extensions;
-using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;

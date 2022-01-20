@@ -44,6 +44,5 @@ namespace Gizmo.Web.Components
         public object CommandParameter { get; set; }
 
         #endregion
-
     }
 }

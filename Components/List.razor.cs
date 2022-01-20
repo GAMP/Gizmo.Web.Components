@@ -1,5 +1,4 @@
 ﻿using Gizmo.Web.Components.Extensions;
-using Gizmo.Web.Components.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;

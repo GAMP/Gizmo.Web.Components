@@ -1,12 +1,23 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Gizmo.Web.Components
 {
     public partial class IconButton : ButtonBase
     {
+        #region FIELDS
+
+        private bool _canExecute = true;
+
+        private ICommand _previousCommand;
+
+        #endregion
+
         #region PROPERTIES
 
         [Parameter]
@@ -53,6 +64,53 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        private void Command_CanExecuteChanged(object sender, EventArgs e)
+        {
+            _canExecute = Command.CanExecute(CommandParameter);
+        }
+
+        #endregion
+
+        #region OVERRIDES
+
+        protected override async Task OnParametersSetAsync()
+        {
+            bool newCommand = !EqualityComparer<ICommand>.Default.Equals(_previousCommand, Command);
+
+            if (newCommand)
+            {
+                if (_previousCommand != null)
+                {
+                    //Remove handler
+                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
+                }
+                if (Command != null)
+                {
+                    //Add handler
+                    Command.CanExecuteChanged += Command_CanExecuteChanged;
+                }
+            }
+
+            _previousCommand = Command;
+
+            await base.OnParametersSetAsync();
+        }
+
+        public override void Dispose()
+        {
+            try
+            {
+                if (_previousCommand != null)
+                {
+                    //Remove handler
+                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
+                }
+            }
+            catch (Exception) { }
+
+            base.Dispose();
+        }
+
         #endregion
 
         #region CLASSMAPPERS
@@ -65,7 +123,7 @@ namespace Gizmo.Web.Components
                  .If("giz-icon-button--outline", () => Variant == ButtonVariants.Outline)
                  .If("giz-icon-button--text", () => Variant == ButtonVariants.Text)
                  .If("giz-icon-button-shadow", () => HasShadow)
-                 .If("disabled", () => IsDisabled)
+                 .If("disabled", () => IsDisabled || !_canExecute)
                  .AsString();
 
         protected string StyleValue => new StyleMapper()
