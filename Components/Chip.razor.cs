@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -12,6 +13,9 @@ namespace Gizmo.Web.Components
 
         private bool _selected;
         private bool _isSelected;
+        private bool _canExecute = true;
+
+        private ICommand _previousCommand;
 
         #endregion
 
@@ -84,6 +88,11 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        private void Command_CanExecuteChanged(object sender, EventArgs e)
+        {
+            _canExecute = Command.CanExecute(CommandParameter);
+        }
+
         #endregion
 
         #region OVERRIDES
@@ -103,10 +112,38 @@ namespace Gizmo.Web.Components
             }
         }
 
+        protected override async Task OnParametersSetAsync()
+        {
+            bool newCommand = !EqualityComparer<ICommand>.Default.Equals(_previousCommand, Command);
+
+            if (newCommand)
+            {
+                if (_previousCommand != null)
+                {
+                    //Remove handler
+                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
+                }
+                if (Command != null)
+                {
+                    //Add handler
+                    Command.CanExecuteChanged += Command_CanExecuteChanged;
+                }
+            }
+
+            _previousCommand = Command;
+
+            await base.OnParametersSetAsync();
+        }
+
         public override void Dispose()
         {
             try
             {
+                if (_previousCommand != null)
+                {
+                    //Remove handler
+                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
+                }
                 if (ChipGroup != null)
                 {
                     ChipGroup.Unregister(this);
@@ -123,7 +160,7 @@ namespace Gizmo.Web.Components
 
         internal void SetSelected(bool selected)
         {
-            if (IsDisabled)
+            if (IsDisabled || !_canExecute)
                 return;
 
             if (_selected == selected)
@@ -147,7 +184,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-chip")
                  .If("giz-chip--group-chip", () => ChipGroup != null)
-                 .If("disabled", () => IsDisabled)
+                 .If("disabled", () => IsDisabled || !_canExecute)
                  .If("selected", () => _selected)
                  .AsString();
 

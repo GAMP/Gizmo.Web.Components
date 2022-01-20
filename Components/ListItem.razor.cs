@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -19,6 +20,9 @@ namespace Gizmo.Web.Components
 
         private bool _isSelected;
         private bool _isActive;
+        private bool _canExecute = true;
+
+        private ICommand _previousCommand;
 
         #endregion
 
@@ -131,13 +135,18 @@ namespace Gizmo.Web.Components
             }
         }
 
+        private void Command_CanExecuteChanged(object sender, EventArgs e)
+        {
+            _canExecute = Command.CanExecute(CommandParameter);
+        }
+
         #endregion
 
         #region METHODS
 
         internal void SetSelected(bool selected)
         {
-            if (IsDisabled)
+            if (IsDisabled || !_canExecute)
                 return;
 
             if (_isSelected == selected)
@@ -150,7 +159,7 @@ namespace Gizmo.Web.Components
 
         internal void SetActive(bool value)
         {
-            if (IsDisabled)
+            if (IsDisabled || !_canExecute)
                 return;
 
             if (_isActive == value)
@@ -198,10 +207,38 @@ namespace Gizmo.Web.Components
             }
         }
 
+        protected override async Task OnParametersSetAsync()
+        {
+            bool newCommand = !EqualityComparer<ICommand>.Default.Equals(_previousCommand, Command);
+
+            if (newCommand)
+            {
+                if (_previousCommand != null)
+                {
+                    //Remove handler
+                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
+                }
+                if (Command != null)
+                {
+                    //Add handler
+                    Command.CanExecuteChanged += Command_CanExecuteChanged;
+                }
+            }
+
+            _previousCommand = Command;
+
+            await base.OnParametersSetAsync();
+        }
+
         public override void Dispose()
         {
             try
             {
+                if (_previousCommand != null)
+                {
+                    //Remove handler
+                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
+                }
                 if (Parent != null)
                 {
                     Parent.Unregister(this);
@@ -218,7 +255,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-list-item")
-                 .If("giz-list-item-disabled", () => IsDisabled)
+                 .If("giz-list-item-disabled", () => IsDisabled || !_canExecute)
                  .If("giz-list-item-selected", () => _isSelected)
                  .If("giz-list-item-active", () => _isActive)
                  .AsString();
