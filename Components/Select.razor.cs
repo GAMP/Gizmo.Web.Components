@@ -312,7 +312,7 @@ namespace Gizmo.Web.Components
             {
                 _selectedItem = selectItem;
 
-                await _popupContent.SetSelectedItem(_selectedItem.ListItem);
+                await _popupContent.SetSelectedItem(_selectedItem?.ListItem);
 
                 refresh = true;
             }
