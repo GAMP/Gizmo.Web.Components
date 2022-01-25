@@ -21,7 +21,7 @@
         display: flex;
         align-items: center;
 
-        &:hover, &.is-active {
+        &:hover:not(.giz-pagination-btn--disabled), &.is-active {
             background: #5a7ff2;
             border-color: #5a7ff2;
             color: $white-color;
@@ -31,10 +31,24 @@
             color: $secondary-color-theme-dark;
             border-color: #d4d6db;
 
-            &:hover, &.is-active {
+            &:hover:not(.giz-pagination-btn--disabled), &.is-active {
                 background: #5a7ff2;
                 border-color: #5a7ff2;
                 color: $white-color;
+            }
+        }
+    }
+
+    &-btn {
+        &--disabled {
+            color: $dark-gray-theme-dark !important;
+            background: $onyx-black-theme-dark;
+            pointer-events: none;
+
+            [light-theme] & {
+                color: $gray-dark-theme-dark !important;
+                background: $white-color;
+                border: 1px solid $gray-dark-theme-dark;
             }
         }
     }

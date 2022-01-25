@@ -2,6 +2,6 @@
 @inherits CustomDOMComponentBase
 
 <ul class="giz-pagination">
-    <li>Previous</li>
-    <li>Next</li>
+    <li @onclick="OnClickPreviousHandler" class="@(!IsPreviousEnabled ? "giz-pagination-btn--disabled" : "")">Previous</li>
+    <li @onclick="OnClickNextHandler" class="@(!IsNextEnabled ? "giz-pagination-btn--disabled" : "")">Next</li>
 </ul>
