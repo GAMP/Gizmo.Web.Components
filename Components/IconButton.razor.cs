@@ -50,6 +50,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public TooltipOpenDirections TooltipOpenDirection { get; set; } = TooltipOpenDirections.Top;
 
+        [Parameter]
+        public Visibilities Visibility { get; set; } = Visibilities.Default;
+
         #endregion
 
         #region EVENTS
@@ -128,6 +131,7 @@ namespace Gizmo.Web.Components
 
         protected string StyleValue => new StyleMapper()
                  .If($"z-index: {ZIndex}", () => ZIndex.HasValue)
+                 .If($"visibility: {Visibility.ToDescriptionString()}", () => Visibility != Visibilities.Default)
                  .AsString();
 
         protected string ButtonIcon => new ClassMapper()

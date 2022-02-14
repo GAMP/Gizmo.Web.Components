@@ -1,0 +1,23 @@
+.giz-tree-view {
+    &-item {
+        cursor: default;
+
+        &__body {
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        & > .giz-tree-view__nested {
+            display: none;
+            margin-left: 2rem;
+        }
+
+        &--expanded {
+            & > .giz-tree-view__nested {
+                display: block;
+            }
+        }
+    }
+}

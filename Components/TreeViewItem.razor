@@ -1,0 +1,22 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@Class @ClassName"
+     @onclick="OnClickHandler"
+     @onclick:stopPropagation="true">
+
+    <div class="giz-tree-view-item__body">
+        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(NestedTreeView != null ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickHandler" />
+        <div class="giz-tree-view-item__content">
+            @ChildContent
+        </div>
+    </div>
+
+    @if (NestedTreeView != null)
+    {
+        <TreeView Class="giz-tree-view__nested">
+            @NestedTreeView
+        </TreeView>
+    }
+
+</div>
