@@ -50,6 +50,7 @@
 	  <Content Remove="wwwroot\scss\theme_light_components.scss" />
 	  <Content Remove="wwwroot\scss\time-picker.scss" />
 	  <Content Remove="wwwroot\scss\tooltip.scss" />
+	  <Content Remove="wwwroot\scss\tree-view.scss" />
 	  <Content Remove="wwwroot\scss\_mixin.scss" />
 	  <Content Remove="wwwroot\scss\_typography.scss" />
 	  <Content Remove="wwwroot\scss\_variables.scss" />
@@ -70,6 +71,7 @@
 		</None>
 		<None Include="wwwroot\scripts.js" />
 		<None Include="wwwroot\scss\icon-button.scss" />
+		<None Include="wwwroot\scss\tree-view.scss" />
 		<None Include="wwwroot\scss\simple-tab.scss" />
 		<None Include="wwwroot\scss\giz-input.scss" />
 		<None Include="wwwroot\scss\numeric-up-down.scss" />
