@@ -1,0 +1,22 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+@typeparam TItemType
+
+<div class="@Class @ClassName"
+     @onclick="OnClickHandler"
+     @onclick:stopPropagation="true">
+
+    <div class="giz-tree-view-item__body">
+        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(_hasSubItems ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickHandler" />
+        <div class="giz-tree-view-item__content">
+            @ChildContent
+        </div>
+    </div>
+
+    @if (_hasSubItems)
+    {
+        <HierarchicalTreeView ItemSource="@_subItems" HierarchicalItemSource="@Parent?.HierarchicalItemSource" DataTemplate="@Parent?.DataTemplate" Class="giz-tree-view__nested" />
+    }
+
+</div>

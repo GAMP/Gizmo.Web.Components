@@ -1,0 +1,23 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+@typeparam TItemType
+
+<div class="@Class @ClassName"
+     style="@Style"
+     id="@Id"
+     @ref="@Ref">
+
+    <CascadingValue Value="@this" IsFixed="true">
+        @if (ItemSource != null)
+        {
+            @foreach (var item in ItemSource)
+            {
+                <HierarchicalTreeViewItem TItemType="@TItemType" Item="@item">
+                    @DataTemplate(item)
+                </HierarchicalTreeViewItem>
+            }
+        }
+    </CascadingValue>
+    
+</div>
