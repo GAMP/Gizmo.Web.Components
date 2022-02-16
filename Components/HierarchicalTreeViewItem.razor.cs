@@ -12,7 +12,8 @@ namespace Gizmo.Web.Components
     {
         #region FIELDS
 
-        private bool _isExpanded;
+        private bool _isSelected = false;
+        private bool _isExpanded = false;
         private bool _hasSubItems;
         private List<TItemType> _subItems;
 
@@ -57,6 +58,19 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        internal void SetSelected(bool value)
+        {
+            //if (IsDisabled)
+            //    return;
+
+            if (_isSelected == value)
+                return;
+
+            _isSelected = value;
+
+            StateHasChanged();
+        }
+
         internal void SetExpanded(bool expanded)
         {
             //if (IsDisabled)
@@ -69,6 +83,8 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region EVENTS
+
         protected async Task OnClickHandler(MouseEventArgs args)
         {
             //if (IsDisabled)
@@ -78,16 +94,31 @@ namespace Gizmo.Web.Components
 
             if (Parent != null)
             {
-                await ((HierarchicalTreeView<TItemType>)Parent).SetClickedItem(this, IsExpanded);
+                await Parent.SetClickedItem(this, IsExpanded);
             }
 
             await OnClick.InvokeAsync(args);
         }
 
+        protected async Task ContextMenuHandler(MouseEventArgs args)
+        {
+            if (Parent != null)
+            {
+                if (args.Button == 2)
+                {
+                    await Parent.SetClickedItem(this, IsExpanded);
+                    await Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                }
+            }
+        }
+
+        #endregion
+
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-tree-view-item")
+                 .If("giz-tree-view-item--selected", () => _isSelected)
                  .If("giz-tree-view-item--expanded", () => IsExpanded)
                  .AsString();
 

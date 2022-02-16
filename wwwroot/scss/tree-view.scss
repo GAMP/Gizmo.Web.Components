@@ -1,4 +1,8 @@
 .giz-tree-view {
+    .giz-menu {
+        position: absolute !important;
+    }
+
     &-item {
         cursor: default;
 
@@ -17,6 +21,14 @@
         &--expanded {
             & > .giz-tree-view__nested {
                 display: block;
+            }
+        }
+
+        &--selected {
+            & > .giz-tree-view-item__body {
+                //Default Theme
+                background-color: $dark-jungle-theme-dark;
+                color: $primary-color-theme-dark;
             }
         }
     }

@@ -7,7 +7,9 @@
      @onclick="OnClickHandler"
      @onclick:stopPropagation="true">
 
-    <div class="giz-tree-view-item__body">
+    <div class="giz-tree-view-item__body"
+         @oncontextmenu:preventDefault="true"
+         @oncontextmenu="ContextMenuHandler">
         <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(_hasSubItems ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickHandler" />
         <div class="giz-tree-view-item__content">
             @ChildContent

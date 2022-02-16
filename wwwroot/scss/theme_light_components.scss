@@ -370,3 +370,16 @@
         }
     }
 }
+
+.giz-tree-view {
+    [light-theme] & {
+        &-item {
+            &--selected {
+                & > .giz-tree-view-item__body {
+                    background-color: $secondary-light-theme-dark;
+                    color: $primary-color-theme-dark;
+                }
+            }
+        }
+    }
+}

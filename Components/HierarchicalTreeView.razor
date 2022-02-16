@@ -3,12 +3,19 @@
 
 @typeparam TItemType
 
-<div class="@Class @ClassName"
-     style="@Style"
-     id="@Id"
-     @ref="@Ref">
+<CascadingValue Value="@this" IsFixed="true">
 
-    <CascadingValue Value="@this" IsFixed="true">
+    <div class="@Class @ClassName"
+         style="@Style"
+         @ref="@Ref">
+
+        @if (ContextMenu != null)
+        {
+            <Menu @ref="_contextMenu" IsContextMenu="true" OpenDirection="PopupOpenDirections.Cursor">
+                @ContextMenu
+            </Menu>
+        }
+
         @if (ItemSource != null)
         {
             @foreach (var item in ItemSource)
@@ -18,6 +25,7 @@
                 </HierarchicalTreeViewItem>
             }
         }
-    </CascadingValue>
     
-</div>
+    </div>
+
+</CascadingValue>

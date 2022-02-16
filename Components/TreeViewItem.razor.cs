@@ -10,7 +10,14 @@ namespace Gizmo.Web.Components
 {
     public partial class TreeViewItem : CustomDOMComponentBase
     {
-        private bool _isExpanded;
+        #region FIELDS
+
+        private bool _isSelected = false;
+        private bool _isExpanded = false;
+
+        #endregion
+
+        #region PROPERTIES
 
         [CascadingParameter]
         protected TreeView Parent { get; set; }
@@ -45,6 +52,10 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<bool> IsExpandedChanged { get; set; }
 
+        #endregion
+
+        #region EVENTS
+
         protected async Task OnClickHandler(MouseEventArgs args)
         {
             //if (IsDisabled)
@@ -54,21 +65,54 @@ namespace Gizmo.Web.Components
 
             if (Parent != null)
             {
-                await ((TreeView)Parent).SetClickedItem(this, IsExpanded);
+                await Parent.SetClickedItem(this, IsExpanded);
             }
 
             await OnClick.InvokeAsync(args);
         }
 
+        protected async Task ContextMenuHandler(MouseEventArgs args)
+        {
+            if (Parent != null)
+            {
+                if (args.Button == 2)
+                {
+                    await Parent.SetClickedItem(this, IsExpanded);
+                    await Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region METHODS
+
+        internal void SetSelected(bool value)
+        {
+            //if (IsDisabled)
+            //    return;
+
+            if (_isSelected == value)
+                return;
+
+            _isSelected = value;
+
+            StateHasChanged();
+        }
+
         internal void SetExpanded(bool expanded)
         {
             //if (IsDisabled)
-                //return;
+            //return;
 
             IsExpanded = expanded;
 
             //StateHasChanged();
         }
+
+        #endregion
+
+        #region OVERRIDES
 
         protected override void OnInitialized()
         {
@@ -93,10 +137,13 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
+        #endregion
+
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-tree-view-item")
+                 .If("giz-tree-view-item--selected", () => _isSelected)
                  .If("giz-tree-view-item--expanded", () => IsExpanded)
                  .AsString();
 

@@ -1,13 +1,21 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="@Class @ClassName"
-     style="@Style"
-     id="@Id"
-     @ref="@Ref">
+<CascadingValue Value="@this" IsFixed="true">
 
-    <CascadingValue Value="@this" IsFixed="true">
-        @ChildContent
-    </CascadingValue>
-    
-</div>
+    <div class="@Class @ClassName"
+         style="@Style"
+         @ref="@Ref">
+
+        @if (ContextMenu != null)
+        {
+            <Menu @ref="_contextMenu" IsContextMenu="true" OpenDirection="PopupOpenDirections.Cursor">
+                @ContextMenu
+            </Menu>
+        }
+
+        @ChildContent  
+         
+    </div>
+
+</CascadingValue>

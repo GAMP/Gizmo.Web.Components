@@ -9,7 +9,21 @@ namespace Gizmo.Web.Components
 {
     public partial class TreeView : CustomDOMComponentBase
     {
+        #region FIELDS
+
         private List<TreeViewItem> _items = new List<TreeViewItem>();
+        private List<TreeView> _childTreeViews = new List<TreeView>();
+
+        private double _clientX;
+        private double _clientY;
+        private Menu _contextMenu;
+
+        #endregion
+
+        #region PROPERTIES
+
+        [CascadingParameter]
+        protected TreeView ParentTreeView { get; set; }
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -19,6 +33,13 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public EventCallback<TreeViewItem> OnClickItem { get; set; }
+
+        [Parameter]
+        public RenderFragment ContextMenu { get; set; }
+
+        #endregion
+
+        #region METHODS
 
         internal void Register(TreeViewItem item)
         {
@@ -30,10 +51,109 @@ namespace Gizmo.Web.Components
             _items.Remove(item);
         }
 
-        internal async Task SetClickedItem(TreeViewItem treeViewItem, bool isExpanded)
+        internal void Register(TreeView child)
         {
-            await OnClickItem.InvokeAsync(treeViewItem);
+            _childTreeViews.Add(child);
         }
+
+        internal void Unregister(TreeView child)
+        {
+            _childTreeViews.Remove(child);
+        }
+
+        internal async Task SetClickedItem(TreeViewItem treeViewItem, bool isExpanded, bool findRoot = true)
+        {
+            if (findRoot && ParentTreeView != null)
+            {
+                await ParentTreeView.SetClickedItem(treeViewItem, isExpanded, true);
+            }
+            else
+            {
+                foreach (var item in _items.ToArray())
+                {
+                    item.SetSelected(item == treeViewItem);
+                }
+
+                foreach (var childTreeView in _childTreeViews.ToArray())
+                {
+                    await childTreeView.SetClickedItem(treeViewItem, isExpanded, false);
+                }
+
+                if (findRoot)
+                {
+                    //Raise event only from root.
+                    await OnClickItem.InvokeAsync(treeViewItem);
+                }
+            }
+        }
+
+        internal async Task OpenContextMenu(double clientX, double clientY)
+        {
+            if (ParentTreeView != null)
+            {
+                await ParentTreeView.OpenContextMenu(clientX, clientY);
+            }
+            else
+            {
+                var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                var contextMenuSize = await _contextMenu.GetListBoundingClientRect();
+
+                if (clientX > windowSize.Width / 2)
+                {
+                    //Open direction right to left.
+                    _clientX = clientX - contextMenuSize.Width;
+                    _contextMenu.SetDirection(ListDirections.Left);
+                }
+                else
+                {
+                    _clientX = clientX;
+                    _contextMenu.SetDirection(ListDirections.Right);
+                }
+
+                if (clientY > windowSize.Height / 2)
+                {
+                    //Open direction bottom to top.
+                    _clientY = clientY - contextMenuSize.Height;
+                    _contextMenu.ExpandBottomToTop = true;
+                }
+                else
+                {
+                    _clientY = clientY;
+                    _contextMenu.ExpandBottomToTop = false;
+                }
+
+                _contextMenu.Open(_clientX, _clientY);
+            }
+        }
+
+        #endregion
+
+        #region OVERRIDES
+
+        protected override void OnInitialized()
+        {
+            if (ParentTreeView != null)
+            {
+                ParentTreeView.Register(this);
+                IsDisabled = ParentTreeView.IsDisabled;
+            }
+        }
+
+        public override void Dispose()
+        {
+            try
+            {
+                if (ParentTreeView != null)
+                {
+                    ParentTreeView.Unregister(this);
+                }
+            }
+            catch (Exception) { }
+
+            base.Dispose();
+        }
+
+        #endregion
 
         #region CLASSMAPPERS
 
