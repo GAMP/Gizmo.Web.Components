@@ -7,7 +7,10 @@
 
         <div class="@Class @ClassName"
              style="@Style"
-             @ref="@Ref">
+             @ref="@Ref"
+             @oncontextmenu:preventDefault="@(ContextMenu != null)"
+             @oncontextmenu="ContextMenuHandler"
+             >
        
             @if (ContextMenu != null)
             {

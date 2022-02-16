@@ -478,6 +478,11 @@ namespace Gizmo.Web.Components
             }
         }
 
+        protected Task ContextMenuHandler(MouseEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+
         #endregion
 
         #region METHODS
