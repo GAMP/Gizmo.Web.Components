@@ -736,7 +736,7 @@ namespace Gizmo.Web.Components
             _columns.Remove(column);
         }
 
-        internal async Task AddRow(DataGridRow<TItemType> row, TItemType item)
+        internal async Task Register(DataGridRow<TItemType> row, TItemType item)
         {
             if (item == null)
                 return;
@@ -760,7 +760,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        internal void UpdateRow(DataGridRow<TItemType> row, TItemType item)
+        internal void UpdateItem(DataGridRow<TItemType> row, TItemType item)
         {
             if (item == null)
                 return;
@@ -788,7 +788,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        internal void RemoveRow(DataGridRow<TItemType> row, TItemType item)
+        internal void Unregister(DataGridRow<TItemType> row, TItemType item)
         {
             if (item == null)
                 return;

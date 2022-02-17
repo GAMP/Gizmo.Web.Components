@@ -380,7 +380,7 @@ namespace Gizmo.Web.Components
             _selectItems[value] = selectItem;
         }
 
-        public void Update(SelectItem<TValue> selectItem, TValue value)
+        public void UpdateItem(SelectItem<TValue> selectItem, TValue value)
         {
             if (value == null)
                 return;

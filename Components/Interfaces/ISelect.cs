@@ -6,7 +6,7 @@ namespace Gizmo.Web.Components
     {
         void Register(SelectItem<TItemType> selectItem, TItemType value);
 
-        void Update(SelectItem<TItemType> selectItem, TItemType value);
+        void UpdateItem(SelectItem<TItemType> selectItem, TItemType value);
 
         void Unregister(SelectItem<TItemType> selectItem, TItemType value);
 

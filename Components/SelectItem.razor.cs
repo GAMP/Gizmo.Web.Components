@@ -43,7 +43,7 @@ namespace Gizmo.Web.Components
 
                 if (Parent != null)
                 {
-                    Parent.Update(this, _value);
+                    Parent.UpdateItem(this, _value);
                 }
             }
         }

@@ -77,7 +77,7 @@ namespace Gizmo.Web.Components
 
                 if (Parent != null)
                 {
-                    Parent.UpdateRow(this, _item);
+                    Parent.UpdateItem(this, _item);
                 }
             }
         }
@@ -123,7 +123,7 @@ namespace Gizmo.Web.Components
         {
             if (Parent != null)
             {
-                await Parent.AddRow(this, Item);
+                await Parent.Register(this, Item);
             }
 
             await base.OnInitializedAsync();
@@ -135,7 +135,7 @@ namespace Gizmo.Web.Components
             {
                 if (Parent != null)
                 {
-                    Parent.RemoveRow(this, Item);
+                    Parent.Unregister(this, Item);
                 }
             }
             catch (Exception) { }
