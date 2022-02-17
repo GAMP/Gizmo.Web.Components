@@ -11,7 +11,7 @@ namespace Gizmo.Web.Components
     {
         #region FIELDS
 
-        private List<HierarchicalTreeViewItem<TItemType>> _items = new List<HierarchicalTreeViewItem<TItemType>>();
+        private Dictionary<TItemType, HierarchicalTreeViewItem<TItemType>> _items = new Dictionary<TItemType, HierarchicalTreeViewItem<TItemType>>();
         private List<HierarchicalTreeView<TItemType>> _childTreeViews = new List<HierarchicalTreeView<TItemType>>();
 
         private double _clientX;
@@ -41,20 +41,47 @@ namespace Gizmo.Web.Components
         public EventCallback<HierarchicalTreeViewItem<TItemType>> OnClickItem { get; set; }
 
         [Parameter]
+        public EventCallback<HierarchicalTreeViewItem<TItemType>> OnDoubleClickItem { get; set; }
+
+        [Parameter]
         public RenderFragment ContextMenu { get; set; }
 
         #endregion
 
         #region METHODS
 
-        internal void Register(HierarchicalTreeViewItem<TItemType> item)
+        internal void Register(HierarchicalTreeViewItem<TItemType> treeViewItem, TItemType item)
         {
-            _items.Add(item);
+            if (item == null)
+                return;
+
+            _items[item] = treeViewItem;
         }
 
-        internal void Unregister(HierarchicalTreeViewItem<TItemType> item)
+        internal void UpdateItem(HierarchicalTreeViewItem<TItemType> treeViewItem, TItemType item)
         {
-            _items.Remove(item);
+            if (item == null)
+                return;
+
+            var actualItem = _items.Where(a => a.Value == treeViewItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TItemType, HierarchicalTreeViewItem<TItemType>>)) && actualItem.Key != null)
+            {
+                _items.Remove(actualItem.Key);
+            }
+
+            _items[item] = treeViewItem;
+        }
+
+        internal void Unregister(HierarchicalTreeViewItem<TItemType> treeViewItem, TItemType item)
+        {
+            if (item == null)
+                return;
+
+            var actualItem = _items.Where(a => a.Value == treeViewItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TItemType, HierarchicalTreeViewItem<TItemType>>)))
+            {
+                _items.Remove(actualItem.Key);
+            }
         }
 
         internal void Register(HierarchicalTreeView<TItemType> child)
@@ -67,28 +94,46 @@ namespace Gizmo.Web.Components
             _childTreeViews.Remove(child);
         }
 
-        internal async Task SetClickedItem(HierarchicalTreeViewItem<TItemType> treeViewItem, bool isExpanded, bool findRoot = true)
+        internal async Task SetClickedItem(HierarchicalTreeViewItem<TItemType> treeViewItem, bool findRoot = true)
         {
             if (findRoot && ParentTreeView != null)
             {
-                await ParentTreeView.SetClickedItem(treeViewItem, isExpanded, true);
+                await ParentTreeView.SetClickedItem(treeViewItem, true);
             }
             else
             {
-                foreach (var item in _items.ToArray())
+                treeViewItem.SetSelected(true);
+
+                foreach (var item in _items.Where(a => a.Value != treeViewItem).ToArray().ToArray())
                 {
-                    item.SetSelected(item == treeViewItem);
+                    item.Value.SetSelected(false);
                 }
 
                 foreach (var childTreeView in _childTreeViews.ToArray())
                 {
-                    await childTreeView.SetClickedItem(treeViewItem, isExpanded, false);
+                    await childTreeView.SetClickedItem(treeViewItem, false);
                 }
 
                 if (findRoot)
                 {
                     //Raise event only from root.
                     await OnClickItem.InvokeAsync(treeViewItem);
+                }
+            }
+        }
+
+        internal async Task SetDoubleClickedItem(HierarchicalTreeViewItem<TItemType> treeViewItem, bool findRoot = true)
+        {
+            if (findRoot && ParentTreeView != null)
+            {
+                await ParentTreeView.SetDoubleClickedItem(treeViewItem, true);
+            }
+            else
+            {                
+                if (findRoot)
+                {
+                    //Raise event only from root.
+                    await OnDoubleClickItem.InvokeAsync(treeViewItem);
                 }
             }
         }
@@ -132,6 +177,17 @@ namespace Gizmo.Web.Components
             }
         }
 
+        internal bool IsChildSelected()
+        {
+            foreach (var item in _items)
+            {
+                if (item.Value.IsChildSelected())
+                    return true;
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region OVERRIDES
@@ -168,5 +224,15 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
+
+        //protected override async Task OnAfterRenderAsync(bool firstRender)
+        //{
+        //    if (!firstRender)
+        //    {
+        //        await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+        //    }
+
+        //    await base.OnAfterRenderAsync(firstRender);
+        //}
     }
 }

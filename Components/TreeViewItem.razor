@@ -3,12 +3,14 @@
 
 <div class="@Class @ClassName"
      @onclick="OnClickHandler"
-     @onclick:stopPropagation="true">
+     @onclick:stopPropagation="true"
+     @ondblclick="OnDoubleClickEvent"
+     @ondblclick:stopPropagation="true">
 
     <div class="giz-tree-view-item__body"
          @oncontextmenu:preventDefault="true"
          @oncontextmenu="ContextMenuHandler">
-        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(NestedTreeView != null ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickHandler" />
+        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(NestedTreeView != null ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickExpandButtonHandler" />
         <div class="giz-tree-view-item__content">
             @ChildContent
         </div>
@@ -16,7 +18,7 @@
 
     @if (NestedTreeView != null)
     {
-        <TreeView Class="giz-tree-view__nested">
+        <TreeView @ref="_treeView" Class="giz-tree-view__nested">
             @NestedTreeView
         </TreeView>
     }

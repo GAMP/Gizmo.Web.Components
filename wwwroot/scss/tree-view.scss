@@ -11,6 +11,8 @@
             align-items: center;
             position: relative;
             padding: 0.5rem 1rem;
+            //Default Theme
+            color: $gray-black-theme-dark;
         }
 
         & > .giz-tree-view__nested {

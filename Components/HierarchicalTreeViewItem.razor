@@ -5,12 +5,14 @@
 
 <div class="@Class @ClassName"
      @onclick="OnClickHandler"
-     @onclick:stopPropagation="true">
+     @onclick:stopPropagation="true"
+     @ondblclick="OnDoubleClickEvent"
+     @ondblclick:stopPropagation="true">
 
     <div class="giz-tree-view-item__body"
          @oncontextmenu:preventDefault="true"
          @oncontextmenu="ContextMenuHandler">
-        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(_hasSubItems ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickHandler" />
+        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(_hasSubItems ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickExpandButtonHandler" />
         <div class="giz-tree-view-item__content">
             @ChildContent
         </div>
@@ -18,7 +20,7 @@
 
     @if (_hasSubItems)
     {
-        <HierarchicalTreeView ItemSource="@_subItems" HierarchicalItemSource="@Parent?.HierarchicalItemSource" DataTemplate="@Parent?.DataTemplate" Class="giz-tree-view__nested" />
+        <HierarchicalTreeView @ref="_hierarchicalTreeView" ItemSource="@_subItems" HierarchicalItemSource="@Parent?.HierarchicalItemSource" DataTemplate="@Parent?.DataTemplate" Class="giz-tree-view__nested" />
     }
 
 </div>

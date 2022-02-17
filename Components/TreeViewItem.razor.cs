@@ -14,6 +14,7 @@ namespace Gizmo.Web.Components
 
         private bool _isSelected = false;
         private bool _isExpanded = false;
+        private TreeView _treeView;
 
         #endregion
 
@@ -50,13 +51,48 @@ namespace Gizmo.Web.Components
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         [Parameter]
+        public EventCallback<MouseEventArgs> OnDoubleClick { get; set; }
+
+        [Parameter]
         public EventCallback<bool> IsExpandedChanged { get; set; }
 
         #endregion
 
         #region EVENTS
 
+        protected async Task OnClickExpandButtonHandler(MouseEventArgs args)
+        {
+            //if (IsDisabled)
+            //    return;
+
+            IsExpanded = !IsExpanded;
+
+            //If collapsed and the selected item is under this item then set this item as clicked item.
+            if (!IsExpanded && IsChildSelected())
+            {
+                if (Parent != null)
+                {
+                    await Parent.SetClickedItem(this);
+                }
+
+                await OnClick.InvokeAsync(args);
+            }
+        }
+
         protected async Task OnClickHandler(MouseEventArgs args)
+        {
+            //if (IsDisabled)
+            //    return;
+
+            if (Parent != null)
+            {
+                await Parent.SetClickedItem(this);
+            }
+
+            await OnClick.InvokeAsync(args);
+        }
+
+        protected async Task OnDoubleClickEvent(MouseEventArgs args)
         {
             //if (IsDisabled)
             //    return;
@@ -65,10 +101,10 @@ namespace Gizmo.Web.Components
 
             if (Parent != null)
             {
-                await Parent.SetClickedItem(this, IsExpanded);
+                await Parent.SetDoubleClickedItem(this);
             }
 
-            await OnClick.InvokeAsync(args);
+            await OnDoubleClick.InvokeAsync(args);
         }
 
         protected async Task ContextMenuHandler(MouseEventArgs args)
@@ -77,7 +113,7 @@ namespace Gizmo.Web.Components
             {
                 if (args.Button == 2)
                 {
-                    await Parent.SetClickedItem(this, IsExpanded);
+                    await Parent.SetClickedItem(this);
                     await Parent.OpenContextMenu(args.ClientX, args.ClientY);
                 }
             }
@@ -108,6 +144,19 @@ namespace Gizmo.Web.Components
             IsExpanded = expanded;
 
             //StateHasChanged();
+        }
+
+        internal bool IsChildSelected()
+        {
+            if (_isSelected)
+                return true;
+
+            if (NestedTreeView != null)
+            {
+                return _treeView.IsChildSelected();
+            }
+
+            return false;
         }
 
         #endregion

@@ -374,6 +374,10 @@
 .giz-tree-view {
     [light-theme] & {
         &-item {
+            &__body {
+                color: $secondary-color-theme-dark;
+            }
+
             &--selected {
                 & > .giz-tree-view-item__body {
                     background-color: $secondary-light-theme-dark;

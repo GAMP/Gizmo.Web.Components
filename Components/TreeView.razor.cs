@@ -35,6 +35,9 @@ namespace Gizmo.Web.Components
         public EventCallback<TreeViewItem> OnClickItem { get; set; }
 
         [Parameter]
+        public EventCallback<TreeViewItem> OnDoubleClickItem { get; set; }
+
+        [Parameter]
         public RenderFragment ContextMenu { get; set; }
 
         #endregion
@@ -61,11 +64,11 @@ namespace Gizmo.Web.Components
             _childTreeViews.Remove(child);
         }
 
-        internal async Task SetClickedItem(TreeViewItem treeViewItem, bool isExpanded, bool findRoot = true)
+        internal async Task SetClickedItem(TreeViewItem treeViewItem, bool findRoot = true)
         {
             if (findRoot && ParentTreeView != null)
             {
-                await ParentTreeView.SetClickedItem(treeViewItem, isExpanded, true);
+                await ParentTreeView.SetClickedItem(treeViewItem, true);
             }
             else
             {
@@ -76,13 +79,29 @@ namespace Gizmo.Web.Components
 
                 foreach (var childTreeView in _childTreeViews.ToArray())
                 {
-                    await childTreeView.SetClickedItem(treeViewItem, isExpanded, false);
+                    await childTreeView.SetClickedItem(treeViewItem, false);
                 }
 
                 if (findRoot)
                 {
                     //Raise event only from root.
                     await OnClickItem.InvokeAsync(treeViewItem);
+                }
+            }
+        }
+
+        internal async Task SetDoubleClickedItem(TreeViewItem treeViewItem, bool findRoot = true)
+        {
+            if (findRoot && ParentTreeView != null)
+            {
+                await ParentTreeView.SetDoubleClickedItem(treeViewItem, true);
+            }
+            else
+            {
+                if (findRoot)
+                {
+                    //Raise event only from root.
+                    await OnDoubleClickItem.InvokeAsync(treeViewItem);
                 }
             }
         }
@@ -124,6 +143,17 @@ namespace Gizmo.Web.Components
 
                 _contextMenu.Open(_clientX, _clientY);
             }
+        }
+
+        internal bool IsChildSelected()
+        {
+            foreach (var item in _items)
+            {
+                if (item.IsChildSelected())
+                    return true;
+            }
+
+            return false;
         }
 
         #endregion
