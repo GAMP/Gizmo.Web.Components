@@ -3,29 +3,30 @@
 .giz-switch {
     position: relative;
     display: inline-block;
-    width: 48px;
-    height: 32px;
+    width: 4.8rem;
+    height: 3.2rem;
 
     input {
         opacity: 0;
         width: 0;
         height: 0;
 
-        &:checked + .slider {
+        &:checked + .giz-switch__slider {
             background-color: $primary-color-theme-dark;
         }
 
-        &:focus + .slider {
+        &:focus + .giz-switch__slider {
             box-shadow: 0 0 1px $primary-color-theme-dark;
         }
 
-        &:checked + .slider:before {
-            transform: translateX(15px);
+        &:checked + .giz-switch__slider {
+            .giz-switch__slider__thumb {
+                transform: translateX(1.5rem);
+            }
         }
-
     }
 
-    .slider {
+    &__slider {
         position: absolute;
         cursor: pointer;
         top: 0;
@@ -35,13 +36,12 @@
         background-color: $gray-color-theme-dark;
         transition: 0.4s;
 
-        &:before {
+        &__thumb {
             position: absolute;
-            content: "";
-            height: 28px;
-            width: 28px;
-            left: 2px;
-            bottom: 2px;
+            height: 2.4rem;
+            width: 2.4rem;
+            left: 0.4rem;
+            bottom: 0.4rem;
             background-color: $gray-dim-theme-dark;
             transition: 0.4s;
 
@@ -50,11 +50,11 @@
             }
         }
 
-        &.round {
-            border-radius: 34px;
-            background: $gray-dark-theme-dark;
+        &--round {
+            border-radius: 3.4rem;
+            background-color: $gray-dark-theme-dark;
 
-            &:before {
+            .giz-switch__slider__thumb {
                 border-radius: 50%;
             }
         }

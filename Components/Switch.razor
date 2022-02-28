@@ -1,7 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="d-flex flex-column">
+<div class="d-flex flex-column @Class">
     <label for="@Id" class="control-label">@Label</label>
 
     <label class="giz-switch">
@@ -10,6 +10,13 @@
                checked="@IsChecked"
                disabled="@IsDisabled"
                @onchange="OnChangeHandler">
-        <span class="slider round"></span>
+        <span class="giz-switch__slider giz-switch__slider--round">
+            <span class="giz-switch__slider__thumb">
+                @if (ThumbSVGIcon.HasValue)
+                {
+                    <Icon SVGIcon="ThumbSVGIcon" />
+                }
+            </span>
+        </span>
     </label>
 </div>

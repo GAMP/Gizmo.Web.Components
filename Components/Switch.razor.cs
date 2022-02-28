@@ -30,16 +30,13 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public EventCallback<bool> IsCheckedChanged
-        {
-            get; set;
-        }
+        public EventCallback<bool> IsCheckedChanged { get; set; }
 
         [Parameter]
-        public bool IsDisabled
-        {
-            get; set;
-        }
+        public bool IsDisabled { get; set; }
+
+        [Parameter]
+        public Icons? ThumbSVGIcon { get; set; }
 
         #endregion
 
