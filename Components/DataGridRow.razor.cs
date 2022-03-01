@@ -182,10 +182,14 @@ namespace Gizmo.Web.Components
                     await Parent?.SelectRow(this, !_isSelected);
                 }
 
-                if (args.Button == 2 && Parent.ContextMenu != null)
+                if (args.Button == 2)
                 {
-                    await Parent.SetActiveItem(Item);
-                    await Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                    await Parent.RightClickItem(Item);
+
+                    if (Parent.ContextMenu != null)
+                    {
+                        await Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                    }
                 }
             }
         }

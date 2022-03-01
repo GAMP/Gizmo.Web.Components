@@ -287,6 +287,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<DataGridOperation> OnCompleteOperation { get; set; }
 
+        [Parameter]
+        public EventCallback<TItemType> OnRightClick { get; set; }
+
         private WindowResizeEventInterop WindowResizeEventInterop { get; set; }
 
         private WindowMouseDownEventInterop WindowMouseDownEventInterop { get; set; }
@@ -678,11 +681,11 @@ namespace Gizmo.Web.Components
             }
         }
 
-        internal Task SetActiveItem(TItemType item)
+        internal Task RightClickItem(TItemType item)
         {
             ActiveItem = item;
 
-            return Task.CompletedTask;
+            return OnRightClick.InvokeAsync(ActiveItem);
         }
 
         internal async Task OpenContextMenu(double clientX, double clientY)
