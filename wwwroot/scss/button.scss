@@ -63,7 +63,7 @@
     //button fill variant
     &--fill {
         &:hover {
-            background: #4F5AD3;
+            box-shadow: inset 0px 0px 10.rem rgba(0, 0, 0, 0.2);
         }
 
         &.disabled, &[disabled] {

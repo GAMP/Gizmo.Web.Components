@@ -288,6 +288,9 @@ namespace Gizmo.Web.Components
         public EventCallback<DataGridOperation> OnCompleteOperation { get; set; }
 
         [Parameter]
+        public EventCallback<DataGridRowBound<TItemType>> OnRowBound { get; set; }
+
+        [Parameter]
         public EventCallback<TItemType> OnRightClick { get; set; }
 
         private WindowResizeEventInterop WindowResizeEventInterop { get; set; }

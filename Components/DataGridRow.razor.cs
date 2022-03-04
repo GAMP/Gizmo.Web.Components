@@ -106,6 +106,8 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsDropdown { get; set; }
 
+        public string CustomStyle { get; set; }
+
         #endregion
 
         #region CLASSMAPPERS
@@ -124,6 +126,7 @@ namespace Gizmo.Web.Components
             if (Parent != null)
             {
                 await Parent.Register(this, Item);
+                await Parent.OnRowBound.InvokeAsync(new DataGridRowBound<TItemType>() { Row = this });
             }
 
             await base.OnInitializedAsync();
