@@ -890,6 +890,8 @@ namespace Gizmo.Web.Components
                         //Clear selected items list and set selected property to false.
                         SelectedItems?.Clear();
                         item.SetSelected(false);
+
+                        _selectedItem = default;
                     }
                 }
                 else

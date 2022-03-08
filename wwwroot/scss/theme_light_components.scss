@@ -192,9 +192,9 @@
             color: $gray-dark-theme-dark;
             background: $white-color;
 
-            svg {
+            /*svg {
                 color: $gray-dark-theme-dark;
-            }
+            }*/
         }
         //button fill variant
         &--fill {
@@ -203,9 +203,9 @@
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
 
-                svg {
+                /*svg {
                     color: $gray-dark-theme-dark;
-                }
+                }*/
             }
 
             &.primary {
@@ -218,9 +218,9 @@
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
 
-                svg {
+                /*svg {
                     color: $gray-dark-theme-dark;
-                }
+                }*/
             }
 
             &.danger {
@@ -229,9 +229,9 @@
                     background: $white-color;
                     border: 1px solid $gray-dark-theme-dark;
 
-                    svg {
+                    /*svg {
                         color: $gray-dark-theme-dark;
-                    }
+                    }*/
                 }
             }
         }
@@ -257,9 +257,9 @@
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
 
-                svg {
+                /*svg {
                     color: $gray-dark-theme-dark;
-                }
+                }*/
             }
         }
         //button text variant
@@ -281,9 +281,9 @@
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
 
-                svg {
+                /*svg {
                     color: $gray-dark-theme-dark;
-                }
+                }*/
             }
         }
         //buton disable
@@ -292,9 +292,9 @@
             background: $white-color;
             border: 1px solid $gray-dark-theme-dark;
 
-            svg {
+            /*svg {
                 color: $gray-dark-theme-dark;
-            }
+            }*/
         }
     }
 }

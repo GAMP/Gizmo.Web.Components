@@ -54,16 +54,15 @@
             background: $onyx-black-theme-dark;
             pointer-events: none;
             border: none;
-
-            svg {
+            /*svg {
                 color: $dark-gray-theme-dark;
-            }
+            }*/
         }
     }
     //button fill variant
     &--fill {
         &:hover {
-            box-shadow: inset 0px 0px 10.rem rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0px 0px 10rem rgba(0, 0, 0, 0.2);
         }
 
         &.disabled, &[disabled] {
@@ -71,9 +70,9 @@
             background: $onyx-black-theme-dark;
             pointer-events: none;
 
-            svg {
+            /*svg {
                 color: $dark-gray-theme-dark;
-            }
+            }*/
         }
 
         &.primary {
@@ -109,9 +108,9 @@
                 pointer-events: none;
             }
 
-            svg {
+            /*svg {
                 color: $dark-gray-theme-dark;
-            }
+            }*/
         }
 
         &.danger {
@@ -134,9 +133,9 @@
                 background: $onyx-black-theme-dark;
                 pointer-events: none;
 
-                svg {
+                /*svg {
                     color: $dark-gray-theme-dark;
-                }
+                }*/
             }
         }
     }
@@ -162,9 +161,9 @@
             border: none;
             pointer-events: none;
 
-            svg {
+            /*svg {
                 color: $dark-gray-theme-dark;
-            }
+            }*/
         }
     }
     //button text variant
@@ -185,9 +184,9 @@
             border: none;
             pointer-events: none;
 
-            svg {
+            /*svg {
                 color: $dark-gray-theme-dark;
-            }
+            }*/
         }
     }
     // button extra large
@@ -222,8 +221,8 @@
         border: none;
         pointer-events: none;
 
-        svg {
+        /*svg {
             color: $dark-gray-theme-dark;
-        }
+        }*/
     }
 }
