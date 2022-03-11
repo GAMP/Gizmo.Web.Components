@@ -2,6 +2,8 @@
 
 //== giz input control
 .giz-input-control {
+    position: relative;
+
     &:hover {
         .giz-input-validation-tooltip {
             display: block;
@@ -233,6 +235,7 @@
 .giz-input-validation-tooltip {
     display: none;
     position: absolute;
+    z-index: 1;
     background: $danger-color-theme-dark;
     color: $white-color;
     padding: 0 1rem;

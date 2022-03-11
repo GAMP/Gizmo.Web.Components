@@ -4,7 +4,6 @@
 .giz-input-select {
     display: inline-block;
     position: relative;
-    cursor: pointer;
 
     &--full-width {
         display: block;
@@ -37,6 +36,8 @@
     }
 
     .giz-input-control {
+        cursor: pointer;
+
         .giz-input-root {
             justify-content: $justify-space-between;
             align-items: $align-center;

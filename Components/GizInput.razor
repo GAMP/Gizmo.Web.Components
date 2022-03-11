@@ -2,7 +2,8 @@
 @inherits CustomDOMComponentBase
 
 <div class="@Class @ClassName"
-     style="@Style">
+     style="@Style"
+     @onclick="OnClickHandler">
     @if (!string.IsNullOrEmpty(Label))
     {
         <label for="@Id" class="giz-input-label">@Label</label>
