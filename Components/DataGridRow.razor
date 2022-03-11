@@ -29,7 +29,7 @@
     }
 </tr>
 
-@if (IsDropdown)
+@if (IsDropdown && !HideDetails)
 {
     <DataGridDetailTemplate Columns="@(Columns.Count())">
         @Parent.DetailTemplate(Item)

@@ -108,13 +108,15 @@ namespace Gizmo.Web.Components
 
         public string CustomStyle { get; set; }
 
+        public bool HideDetails { get; set; }
+
         #endregion
 
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
              .If("is-selected", () => _isSelected)
-             .If("table__row-dropdown", () => IsDropdown)
+             .If("table__row-dropdown", () => IsDropdown && !HideDetails)
              .If("is-opened", () => IsOpen).AsString();
 
         #endregion
@@ -153,7 +155,7 @@ namespace Gizmo.Web.Components
         protected async Task OnClickEvent(MouseEventArgs args, TItemType item)
         {
             //TODO: A ADD DELAY FOR DOUBLE CLICK?
-            if (IsDropdown)
+            if (IsDropdown && !HideDetails)
             {
                 IsOpen = !IsOpen;
             }
