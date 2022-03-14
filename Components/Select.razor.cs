@@ -325,10 +325,17 @@ namespace Gizmo.Web.Components
 
         public Task SetSelectedItem(SelectItem<TValue> selectItem)
         {
+            bool requiresRefresh = _isOpen;
+
             _isOpen = false;
 
             if (_selectedItem == selectItem)
+            {
+                if (requiresRefresh)
+                    StateHasChanged();
+
                 return Task.CompletedTask;
+            }
 
             _selectedItem = selectItem;
 
