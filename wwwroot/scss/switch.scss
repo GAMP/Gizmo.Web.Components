@@ -16,7 +16,7 @@
         }
 
         &:focus + .giz-switch__slider {
-            box-shadow: 0 0 1px $primary-color-theme-dark;
+            //box-shadow: 0 0 1px $primary-color-theme-dark;
         }
 
         &:checked + .giz-switch__slider {

@@ -78,6 +78,7 @@
         More_Client,
         Move,
         News,
+        NoReceipt,
         NoStock,
         Note,
         Note2,
