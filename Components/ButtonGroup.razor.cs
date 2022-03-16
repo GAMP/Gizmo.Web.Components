@@ -201,8 +201,13 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDES
 
-        protected override Task OnFirstAfterRenderAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            if (!firstRender)
+            {
+                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+            }
+
             //If is mandatory and there is no item selected, select the first available item if any.
             if (IsMandatory && SelectedItem == null)
             {
@@ -214,7 +219,7 @@ namespace Gizmo.Web.Components
                 }
             }
 
-            return base.OnFirstAfterRenderAsync();
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         #endregion
@@ -228,14 +233,5 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
     }
 }
