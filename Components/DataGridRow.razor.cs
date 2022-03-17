@@ -78,6 +78,7 @@ namespace Gizmo.Web.Components
                 if (Parent != null)
                 {
                     Parent.UpdateItem(this, _item);
+                    _ = Parent.OnRowBound.InvokeAsync(new DataGridRowBound<TItemType>() { Row = this });
                 }
             }
         }
