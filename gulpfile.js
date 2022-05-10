@@ -46,7 +46,7 @@ function sassCompile() {
 
 //js compilation function
 function jsCompile() {
-    return src('src/js/*.js')
+    return src('src/js/**/*.js')
         .pipe(minify({
             ext: {
                 min: '.min.js'
