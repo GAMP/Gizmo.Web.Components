@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<Authors>NETProjects</Authors>
 		<Product>Gizmo</Product>
+		<OutputType>Library</OutputType>
 		<Description>Gizmo shared razor components library.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://www.gizmopowered.net/</PackageProjectUrl>
@@ -15,46 +16,6 @@
 		<!--Fixes duplicate file error on publish (.NET6 BUG)-->
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <Content Remove="wwwroot\scss\autocomplete.scss" />
-	  <Content Remove="wwwroot\scss\avatar.scss" />
-	  <Content Remove="wwwroot\scss\badge.scss" />
-	  <Content Remove="wwwroot\scss\button-group.scss" />
-	  <Content Remove="wwwroot\scss\card.scss" />
-	  <Content Remove="wwwroot\scss\chip-group.scss" />
-	  <Content Remove="wwwroot\scss\chip.scss" />
-	  <Content Remove="wwwroot\scss\collapse.scss" />
-	  <Content Remove="wwwroot\scss\date-picker.scss" />
-	  <Content Remove="wwwroot\scss\dialog.scss" />
-	  <Content Remove="wwwroot\scss\divider.scss" />
-	  <Content Remove="wwwroot\scss\giz-input.scss" />
-	  <Content Remove="wwwroot\scss\icon-button.scss" />
-	  <Content Remove="wwwroot\scss\icon.scss" />
-	  <Content Remove="wwwroot\scss\list.scss" />
-	  <Content Remove="wwwroot\scss\menu.scss" />
-	  <Content Remove="wwwroot\scss\numeric-up-down.scss" />
-	  <Content Remove="wwwroot\scss\overlay.scss" />
-	  <Content Remove="wwwroot\scss\pagination.scss" />
-	  <Content Remove="wwwroot\scss\popup.scss" />
-	  <Content Remove="wwwroot\scss\progress-bar.scss" />
-	  <Content Remove="wwwroot\scss\rating.scss" />
-	  <Content Remove="wwwroot\scss\select.scss" />
-	  <Content Remove="wwwroot\scss\simple-tab.scss" />
-	  <Content Remove="wwwroot\scss\switch.scss" />
-	  <Content Remove="wwwroot\scss\tab.scss" />
-	  <Content Remove="wwwroot\scss\text-input.scss" />
-	  <Content Remove="wwwroot\scss\theme_client.scss" />
-	  <Content Remove="wwwroot\scss\theme_client_components.scss" />
-	  <Content Remove="wwwroot\scss\theme_light.scss" />
-	  <Content Remove="wwwroot\scss\theme_light_components.scss" />
-	  <Content Remove="wwwroot\scss\time-picker.scss" />
-	  <Content Remove="wwwroot\scss\tooltip.scss" />
-	  <Content Remove="wwwroot\scss\tree-view.scss" />
-	  <Content Remove="wwwroot\scss\_mixin.scss" />
-	  <Content Remove="wwwroot\scss\_typography.scss" />
-	  <Content Remove="wwwroot\scss\_variables.scss" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
@@ -69,57 +30,10 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-		<None Include="wwwroot\scripts.js" />
-		<None Include="wwwroot\scss\icon-button.scss" />
-		<None Include="wwwroot\scss\tree-view.scss" />
-		<None Include="wwwroot\scss\simple-tab.scss" />
-		<None Include="wwwroot\scss\giz-input.scss" />
-		<None Include="wwwroot\scss\numeric-up-down.scss" />
-		<None Include="wwwroot\scss\tooltip.scss" />
-		<None Include="wwwroot\scss\chip.scss" />
-		<None Include="wwwroot\scss\chip-group.scss" />
-		<None Include="wwwroot\scss\divider.scss" />
-		<None Include="wwwroot\scss\collapse.scss" />
-		<None Include="wwwroot\scss\rating.scss" />
-		<None Include="wwwroot\scss\_mixin.scss" />
-		<None Include="wwwroot\scss\icon.scss" />
-		<None Include="wwwroot\scss\theme_client_components.scss" />
-		<None Include="wwwroot\scss\theme_light_components.scss" />
-		<None Include="wwwroot\scss\theme_light.scss" />
-		<None Include="wwwroot\scss\theme_client.scss" />
-		<None Include="wwwroot\scss\overlay.scss" />
-		<None Include="wwwroot\scss\dialog.scss" />
-		<None Include="wwwroot\scss\card.scss" />
-		<None Include="wwwroot\scss\avatar.scss" />
-		<None Include="wwwroot\scss\button-group.scss" />
-		<None Include="wwwroot\scss\badge.scss" />
-		<None Include="wwwroot\scss\time-picker.scss" />
-		<None Include="wwwroot\scss\progress-bar.scss" />
-		<None Include="wwwroot\scss\popup.scss" />
-		<None Include="wwwroot\scss\pagination.scss" />
-		<None Include="wwwroot\scss\autocomplete.scss" />
-		<None Include="wwwroot\scss\switch.scss" />
-		<None Include="wwwroot\scss\menu.scss" />
-		<None Include="wwwroot\scss\date-picker.scss" />
-		<None Include="wwwroot\scss\select.scss" />
-		<None Include="wwwroot\scss\text-input.scss" />
-		<None Include="wwwroot\scss\list.scss" />
-		<None Include="wwwroot\scss\tab.scss" />
-		<None Include="wwwroot\scss\main.scss" />
-		<None Include="wwwroot\scss\button.scss" />
-		<None Include="wwwroot\scss\checkbox.scss" />
-		<None Include="wwwroot\scss\radio.scss" />
-		<None Include="wwwroot\scss\data-grid.scss" />
-		<None Include="wwwroot\scss\_typography.scss" />
-		<None Include="wwwroot\scss\_variables.scss" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\css\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Gizmo.Shared\Gizmo.Shared.csproj" />
 	</ItemGroup>
-
+	
 </Project>

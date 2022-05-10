@@ -1,4 +1,4 @@
-//
+﻿//
 function getWindowSize() {
     return {
         width: window.innerWidth,
