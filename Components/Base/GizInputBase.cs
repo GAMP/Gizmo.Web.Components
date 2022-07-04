@@ -87,7 +87,7 @@ namespace Gizmo.Web.Components
                 if (errors.Count > 0)
                 {
                     _isValid = false;
-                    _validationMessage = errors.FirstOrDefault();
+                    _validationMessage = String.Join(" ", errors);
                 }
                 else
                 {
