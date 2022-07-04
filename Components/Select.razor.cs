@@ -30,6 +30,7 @@ namespace Gizmo.Web.Components
 
         private bool _hasParsingErrors;
         private string _parsingErrors;
+        private ValidationMessageStore _validationMessageStore;
 
         #endregion
 
@@ -88,16 +89,13 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        internal Task SetSelectedValue(TValue value)
+        internal async Task SetSelectedValue(TValue value)
         {
             if (!EqualityComparer<TValue>.Default.Equals(Value, value))
             {
                 Value = value;
-                return ValueChanged.InvokeAsync(Value);
-            }
-            else
-            {
-                return Task.CompletedTask;
+                await ValueChanged.InvokeAsync(Value);
+                NotifyFieldChanged();
             }
         }
 
@@ -248,13 +246,23 @@ namespace Gizmo.Web.Components
             }
         }
 
-        public override void Validate(FieldIdentifier fieldIdentifier, ValidationMessageStore validationMessageStore)
+        protected override void OnParametersSet()
         {
-            validationMessageStore.Clear();
+            if (EditContext != _lastEditContext && EditContext != null)
+            {
+                _validationMessageStore = new ValidationMessageStore(EditContext);
+            }
+
+            base.OnParametersSet();
+        }
+
+        public override void Validate()
+        {
+            _validationMessageStore.Clear();
 
             if (_hasParsingErrors)
             {
-                validationMessageStore.Add(fieldIdentifier, _parsingErrors);
+                _validationMessageStore.Add(_fieldIdentifier, _parsingErrors);
             }
         }
 

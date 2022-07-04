@@ -27,6 +27,7 @@ namespace Gizmo.Web.Components
         private string _text;
         private decimal? _decimalValue;
         private ElementReference _inputElement;
+        private ValidationMessageStore _validationMessageStore;
 
         #endregion
 
@@ -196,7 +197,7 @@ namespace Gizmo.Web.Components
             base.OnInitialized();
         }
 
-        protected override async Task OnParametersSetAsync()
+        protected override void OnParametersSet()
         {
             if (Culture != null)
             {
@@ -209,7 +210,12 @@ namespace Gizmo.Web.Components
 
             _converter.Culture = _culture;
 
-            await base.OnParametersSetAsync();
+            if (EditContext != _lastEditContext && EditContext != null)
+            {
+                _validationMessageStore = new ValidationMessageStore(EditContext);
+            }
+
+            base.OnParametersSet();
         }
 
         public override async Task SetParametersAsync(ParameterView parameters)
@@ -227,13 +233,13 @@ namespace Gizmo.Web.Components
             }
         }
 
-        public override void Validate(FieldIdentifier fieldIdentifier, ValidationMessageStore validationMessageStore)
+        public override void Validate()
         {
-            validationMessageStore.Clear();
+            _validationMessageStore.Clear();
 
             if (_converter.HasGetError)
             {
-                validationMessageStore.Add(fieldIdentifier, _converter.GetErrorMessage);
+                _validationMessageStore.Add(_fieldIdentifier, _converter.GetErrorMessage);
             }
         }
 

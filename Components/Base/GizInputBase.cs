@@ -13,8 +13,8 @@ namespace Gizmo.Web.Components
 
         //private Guid _guid = Guid.NewGuid();
         private Expression<Func<TValue>> _lastValueExpression;
-        private FieldIdentifier _fieldIdentifier;
-        private EditContext _lastEditContext;
+        protected FieldIdentifier _fieldIdentifier;
+        protected EditContext _lastEditContext;
         protected bool _isValid = true;
         protected string _validationMessage;
 
@@ -22,8 +22,6 @@ namespace Gizmo.Web.Components
 
         [CascadingParameter]
         protected EditContext EditContext { get; set; } = default!;
-
-        ValidationMessageStore ValidationMessageStore;
 
         #region PROPERTIES
 
@@ -44,6 +42,8 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region OVERRIDE
+
         protected override void OnParametersSet()
         {
             if (ValueExpression != null && ValueExpression != _lastValueExpression)
@@ -60,7 +60,6 @@ namespace Gizmo.Web.Components
                 {
                     //var fieldName = ValueExpression != null ? ValueExpression.ToString() : "";
                     //InvokeVoidAsync("writeLine", $"{_guid} OnParametersSet EditContext {fieldName}");
-                    ValidationMessageStore = new ValidationMessageStore(EditContext);
 
                     EditContext.OnValidationRequested += OnValidationRequested;
                     EditContext.OnValidationStateChanged += OnValidationStateChanged;
@@ -71,20 +70,13 @@ namespace Gizmo.Web.Components
             base.OnParametersSet();
         }
 
+        #endregion
+
+        #region EVENTS
+
         private void OnValidationRequested(object sender, ValidationRequestedEventArgs e)
         {
-            Validate(_fieldIdentifier, ValidationMessageStore);
-        }
-
-        private void RemoveValidationHandlers()
-        {
-            if (_lastEditContext != null)
-            {
-                _lastEditContext.OnValidationRequested -= OnValidationRequested;
-                _lastEditContext.OnValidationStateChanged -= OnValidationStateChanged;
-
-                ValidationMessageStore.Clear();
-            }
+            Validate();
         }
 
         private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
@@ -106,6 +98,31 @@ namespace Gizmo.Web.Components
             }
         }
 
+        #endregion
+
+        #region METHODS
+
+        private void RemoveValidationHandlers()
+        {
+            if (_lastEditContext != null)
+            {
+                _lastEditContext.OnValidationRequested -= OnValidationRequested;
+                _lastEditContext.OnValidationStateChanged -= OnValidationStateChanged;
+
+                //TODO: A ??? ValidationMessageStore.Clear();
+            }
+        }
+
+        protected void NotifyFieldChanged()
+        {
+            if (EditContext != null && !_fieldIdentifier.Equals(default(FieldIdentifier)))
+            {
+                EditContext.NotifyFieldChanged(_fieldIdentifier);
+            }
+        }
+
+        #endregion
+
         public override void Dispose()
         {
             RemoveValidationHandlers();
@@ -113,7 +130,7 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
-        public virtual void Validate(FieldIdentifier fieldIdentifier, ValidationMessageStore validationMessageStore)
+        public virtual void Validate()
         {
 
         }

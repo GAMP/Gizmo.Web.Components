@@ -160,16 +160,13 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        internal Task SetSelectedValue(TValue value)
+        internal async Task SetSelectedValue(TValue value)
         {
             if (!EqualityComparer<TValue>.Default.Equals(_value, value))
             {
                 _value = value;
-                return ValueChanged.InvokeAsync(_value);
-            }
-            else
-            {
-                return Task.CompletedTask;
+                await ValueChanged.InvokeAsync(_value);
+                NotifyFieldChanged();
             }
         }
 

@@ -23,10 +23,6 @@ namespace Gizmo.Web.Components
         private StringConverter<TValue> _converter = new StringConverter<TValue>();
         private string _text;
 
-        private Expression<Func<TValue>> _lastValueExpression;
-        private FieldIdentifier _fieldIdentifier;
-        private EditContext _lastEditContext;
-
         #endregion
 
         #region PROPERTIES
@@ -144,25 +140,6 @@ namespace Gizmo.Web.Components
             return OnClick.InvokeAsync(args);
         }
 
-        private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
-        {
-            if (EditContext != null && !_fieldIdentifier.Equals(default(FieldIdentifier)))
-            {
-                var errors = EditContext.GetValidationMessages(_fieldIdentifier).ToList();
-                if (errors.Count > 0)
-                {
-                    _isValid = false;
-                    _validationMessage = errors.FirstOrDefault();
-                }
-                else
-                {
-                    _isValid = true;
-                    _validationMessage = null;
-                }
-                StateHasChanged();
-            }
-        }
-
         #endregion
 
         #region METHODS
@@ -171,46 +148,12 @@ namespace Gizmo.Web.Components
         {
             Value = value;
             await ValueChanged.InvokeAsync(Value);
-
-            if (EditContext != null && !_fieldIdentifier.Equals(default(FieldIdentifier)))
-            {
-                EditContext.NotifyFieldChanged(_fieldIdentifier);
-            }
-        }
-
-        private void RemoveValidationHandlers()
-        {
-            if (_lastEditContext != null)
-            {
-                _lastEditContext.OnValidationStateChanged -= OnValidationStateChanged;
-            }
+            NotifyFieldChanged();
         }
 
         #endregion
 
         #region OVERRIDE
-
-        protected override void OnParametersSet()
-        {
-            if (ValueExpression != null && ValueExpression != _lastValueExpression)
-            {
-                _fieldIdentifier = FieldIdentifier.Create(ValueExpression);
-                _lastValueExpression = ValueExpression;
-            }
-
-            if (EditContext != _lastEditContext)
-            {
-                RemoveValidationHandlers();
-
-                if (EditContext != null)
-                {
-                    EditContext.OnValidationStateChanged += OnValidationStateChanged;
-                    _lastEditContext = EditContext;
-                }
-            }
-
-            base.OnParametersSet();
-        }
 
         protected override void OnInitialized()
         {
