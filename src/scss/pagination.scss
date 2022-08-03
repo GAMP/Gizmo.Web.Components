@@ -41,12 +41,12 @@
 
     &-btn {
         &--disabled {
-            color: $dark-gray-theme-dark !important;
+            color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             pointer-events: none;
 
             [light-theme] & {
-                color: $gray-dark-theme-dark !important;
+                color: $gray-dark-theme-dark;
                 background: $white-color;
                 border: 1px solid $gray-dark-theme-dark;
             }

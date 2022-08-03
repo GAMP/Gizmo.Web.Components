@@ -3,89 +3,89 @@
 // == data-grid == //
 .giz-data-grid {
     [light-theme] & {
-        color: $secondary-color-theme-dark !important;
-        background: $white-color !important;
+        color: $secondary-color-theme-dark;
+        background: $white-color;
 
         & > thead td, & > thead th {
-            color: $dim-color-theme-dark !important;
+            color: $dim-color-theme-dark;
         }
 
         & > tbody > tr {
-            background: $transparent-color !important;
+            background: $transparent-color;
 
             &:hover {
-                background: $secondary-light-theme-dark !important;
-                color: $black-color !important;
+                background: $secondary-light-theme-dark;
+                color: $black-color;
 
                 & > td {
-                    border-top: 1px solid $gray-dark-theme-dark !important;
-                    border-bottom: 1px solid $gray-dark-theme-dark !important;
+                    border-top: 1px solid $gray-dark-theme-dark;
+                    border-bottom: 1px solid $gray-dark-theme-dark;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark-theme-dark !important;
+                        border-left: 1px solid $gray-dark-theme-dark;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark-theme-dark !important;
+                        border-right: 1px solid $gray-dark-theme-dark;
                     }
                 }
             }
 
             &.is-opened {
-                border-color: #dddfe4 !important;
-                background: $primary-color-theme-dark !important;
+                border-color: #dddfe4;
+                background: $primary-color-theme-dark;
 
                 & > td {
-                    border-top: 1px solid $gray-dark-theme-dark !important;
-                    border-bottom: 1px solid $gray-dark-theme-dark !important;
+                    border-top: 1px solid $gray-dark-theme-dark;
+                    border-bottom: 1px solid $gray-dark-theme-dark;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark-theme-dark !important;
+                        border-left: 1px solid $gray-dark-theme-dark;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark-theme-dark !important;
+                        border-right: 1px solid $gray-dark-theme-dark;
                     }
                 }
             }
 
             &.is-selected {
-                background: $primary-light-color-theme-dark !important;
+                background: $primary-light-color-theme-dark;
 
                 & > td {
-                    border-top: 1px solid $gray-dark-theme-dark !important;
-                    border-bottom: 1px solid $gray-dark-theme-dark !important;
+                    border-top: 1px solid $gray-dark-theme-dark;
+                    border-bottom: 1px solid $gray-dark-theme-dark;
 
                     &:first-child {
-                        border-left: 1px solid $gray-dark-theme-dark !important;
+                        border-left: 1px solid $gray-dark-theme-dark;
                     }
 
                     &:last-child {
-                        border-right: 1px solid $gray-dark-theme-dark !important;
+                        border-right: 1px solid $gray-dark-theme-dark;
                     }
                 }
 
                 &:hover {
-                    background: $primary-light-color-theme-dark !important;
+                    background: $primary-light-color-theme-dark;
 
                     & > td {
-                        border-top: 1px solid $gray-dark-theme-dark !important;
-                        border-bottom: 1px solid $gray-dark-theme-dark !important;
+                        border-top: 1px solid $gray-dark-theme-dark;
+                        border-bottom: 1px solid $gray-dark-theme-dark;
 
                         &:first-child {
-                            border-left: 1px solid $gray-dark-theme-dark !important;
+                            border-left: 1px solid $gray-dark-theme-dark;
                         }
 
                         &:last-child {
-                            border-right: 1px solid $gray-dark-theme-dark !important;
+                            border-right: 1px solid $gray-dark-theme-dark;
                         }
                     }
                 }
             }
 
             &.is-active {
-                border-color: #dddfe4 !important;
-                background: $primary-light-color-theme-dark !important;
+                border-color: #dddfe4;
+                background: $primary-light-color-theme-dark;
             }
         }
     }
@@ -94,30 +94,30 @@
 // == button group == //
 .giz-button-group {
     [light-theme] & {
-        background-color: $secondary-light-theme-dark !important;
-        border: 2px solid $secondary-light-theme-dark !important;
+        background-color: $secondary-light-theme-dark;
+        border: 2px solid $secondary-light-theme-dark;
 
         .giz-button {
-            color: $dim-ligh-theme-darkt !important;
-            background-color: $secondary-light-theme-dark !important;
+            color: $dim-ligh-theme-darkt;
+            background-color: $secondary-light-theme-dark;
 
             &.selected {
-                background-color: $white-color !important;
+                background-color: $white-color;
             }
 
             &:hover:not(.selected) {
-                background: $dim-white-theme-dark !important;
-                color: $dim-color-theme-dark !important;
+                background: $dim-white-theme-dark;
+                color: $dim-color-theme-dark;
             }
         }
 
         &.disabled {
-            color: $dim-white-theme-dark !important;
+            color: $dim-white-theme-dark;
 
             .giz-button {
                 &.selected {
-                    color: $dim-ligh-theme-darkt !important;
-                    background: $white-color !important;
+                    color: $dim-ligh-theme-darkt;
+                    background: $white-color;
                 }
             }
         }
@@ -129,31 +129,31 @@
     [light-theme] & {
 
         .giz-input-label {
-            color: $dim-ligh-theme-darkt !important;
+            color: $dim-ligh-theme-darkt;
         }
 
         .giz-input-root {
-            color: $secondary-color-theme-dark !important;
+            color: $secondary-color-theme-dark;
 
             &:hover {
-                color: $black-color !important;
+                color: $black-color;
             }
 
             input {
-                color: $secondary-color-theme-dark !important;
+                color: $secondary-color-theme-dark;
 
                 &::placeholder {
-                    color: $gray-light-color-theme-dark !important;
+                    color: $gray-light-color-theme-dark;
                 }
 
                 &.disabled, &[disabled] {
-                    background: $gray-dark-theme-dark !important;
+                    background: $gray-dark-theme-dark;
                 }
             }
 
             &.disabled, &[disabled] {
-                background: $gray-dark-theme-dark !important;
-                color: $dim-ligh-theme-darkt !important;
+                background: $gray-dark-theme-dark;
+                color: $dim-ligh-theme-darkt;
             }
 
             &--outline {
@@ -165,9 +165,37 @@
             }
 
             &--filled {
-                background: $white-color !important;
+                background: $white-color;
 
                 &:focus-within {
+                }
+            }
+        }
+
+        &--invalid {
+            color: $danger-color-theme-dark;
+
+            input {
+                color: $danger-color-theme-dark;
+            }
+
+            .giz-input-root--outline {
+                border: 1px solid $danger-color-theme-dark;
+
+                &:hover {
+                    border: 1px solid $danger-color-theme-dark;
+                }
+            }
+
+            .giz-input-root--shadow {
+                box-shadow: 0px 0px 9px rgba($danger-color-theme-dark, 0.4);
+
+                &:hover {
+                    box-shadow: 0px 0px 9px rgba($danger-color-theme-dark, 0.5);
+                }
+
+                &:focus-within {
+                    box-shadow: 0px 0px 9px rgba($danger-color-theme-dark, 0.6);
                 }
             }
         }
@@ -179,7 +207,7 @@
     [light-theme] & {
 
         .giz-input-select__dropdown {
-            border: 1px solid $gray-dark-theme-dark !important;
+            border: 1px solid $gray-dark-theme-dark;
         }
     }
 }

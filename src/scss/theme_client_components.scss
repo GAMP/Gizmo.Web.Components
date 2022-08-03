@@ -3,56 +3,56 @@
 // == data-grid == //
 .giz-data-grid {
     [client-theme] & {
-        border-collapse: collapse !important;
-        border-spacing: 0 !important;
+        border-collapse: collapse;
+        border-spacing: 0;
         background: transparent;
-        color: unset !important;
+        color: unset;
 
         & > thead td, & > thead th {
-            color: $dim-white !important;
-            text-shadow: $text-shadow-sm !important;
+            color: $dim-white;
+            text-shadow: $text-shadow-sm;
             padding: 1rem 0rem 1rem 1.875rem;
-            height: unset !important;
+            height: unset;
             @include font-10;
         }
 
         & > tbody {
             & > tr {
-                border-top: 1px solid $border-dark-color !important;
-                height: unset !important;
+                border-top: 1px solid $border-dark-color;
+                height: unset;
 
                 &:hover {
                     background: rgba(98, 123, 156, 0.15);
 
                     & > td {
                         &:first-child {
-                            border-left: unset !important;
+                            border-left: unset;
                         }
 
                         &:last-child {
-                            border-right: unset !important;
+                            border-right: unset;
                         }
                     }
                 }
 
                 &:last-child {
-                    border-bottom: 1px solid $border-dark-color !important;
+                    border-bottom: 1px solid $border-dark-color;
                 }
 
                 & > td {
-                    padding: 1rem 0rem 1rem 1.875rem !important;
-                    border-top: unset !important;
-                    border-bottom: unset !important;
+                    padding: 1rem 0rem 1rem 1.875rem;
+                    border-top: unset;
+                    border-bottom: unset;
                     @include open-sans-600;
                     @include font-14;
-                    letter-spacing: $letter-spacing-24 !important;
+                    letter-spacing: $letter-spacing-24;
 
                     &:first-child {
-                        border-left: unset !important;
+                        border-left: unset;
                     }
 
                     &:last-child {
-                        border-right: unset !important;
+                        border-right: unset;
                     }
                 }
             }
@@ -97,31 +97,31 @@
 .giz-button-group {
     [client-theme] & {
         display: inline-flex;
-        background-color: unset !important;
-        border: 1px solid $border-dark-color !important;
-        border-radius: $rounded-5 !important;
-        padding: unset !important;
+        background-color: unset;
+        border: 1px solid $border-dark-color;
+        border-radius: $rounded-5;
+        padding: unset;
 
         .giz-button {
             @include font-11;
             @include open-sans-600;
             text-transform: $text-uppercase;
-            color: $white-color !important;
-            background-color: unset !important;
-            border-radius: unset !important;
-            border-right: 1px solid $border-dark-color !important;
-            letter-spacing: normal !important;
+            color: $white-color;
+            background-color: unset;
+            border-radius: unset;
+            border-right: 1px solid $border-dark-color;
+            letter-spacing: normal;
 
             &:active {
-                box-shadow: unset !important;
+                box-shadow: unset;
             }
 
             &:last-child {
-                border-right: none !important;
+                border-right: none;
             }
 
             &.selected {
-                background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%) !important;
+                background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%);
             }
         }
     }
@@ -136,7 +136,7 @@
 
             svg {
                 color: $white-color;
-                vertical-align: baseline !important;
+                vertical-align: baseline;
             }
 
             &.disabled, &[disabled] {
@@ -182,21 +182,21 @@
             }
 
             &--small {
-                border-radius: $rounded-5 !important;
-                height: 30px !important;
-                padding: 0.3rem !important;
+                border-radius: $rounded-5;
+                height: 30px;
+                padding: 0.3rem;
 
                 input {
-                    font-size: $font-9 !important;
-                    line-height: $line-height-9 !important;
-                    text-shadow: $text-shadow-sm !important;
+                    font-size: $font-9;
+                    line-height: $line-height-9;
+                    text-shadow: $text-shadow-sm;
                 }
             }
 
             &--medium {
-                border-radius: $rounded-5 !important;
-                height: 35px !important;
-                padding: 0.5rem !important;
+                border-radius: $rounded-5;
+                height: 35px;
+                padding: 0.5rem;
 
                 input {
                     @include open-sans-600;
@@ -205,14 +205,14 @@
             }
 
             &--large {
-                border-radius: $rounded !important;
-                height: 54px !important;
-                padding: 1.063rem 1.125rem !important;
+                border-radius: $rounded;
+                height: 54px;
+                padding: 1.063rem 1.125rem;
 
                 input {
-                    font-size: $font-16 !important;
-                    line-height: $line-height-16 !important;
-                    text-shadow: $text-shadow-sm !important;
+                    font-size: $font-16;
+                    line-height: $line-height-16;
+                    text-shadow: $text-shadow-sm;
                 }
             }
         }
@@ -223,18 +223,18 @@
 .giz-input-select {
     [client-theme] & {
         .giz-input-select__dropdown {
-            border: unset !important;
+            border: unset;
 
             .giz-list {
-                background: $jet-black !important;
+                background: $jet-black;
 
                 .giz-list-item {
                     @include open-sans-600;
                     @include font-11;
-                    padding: 0.5rem !important;
-                    font-weight: normal !important;
-                    letter-spacing: unset !important;
-                    color: $white-color !important;
+                    padding: 0.5rem;
+                    font-weight: normal;
+                    letter-spacing: unset;
+                    color: $white-color;
                 }
             }
         }
@@ -264,31 +264,31 @@
         &--fill {
             &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
-                box-shadow: unset !important;
+                box-shadow: unset;
             }
 
             &.disabled, &[disabled] {
-                background: $dark-grayish !important;
-                color: $dim-white !important;
+                background: $dark-grayish;
+                color: $dim-white;
             }
 
             &.warning {
             }
 
             &.primary:not(.disabled) {
-                background: $primary-color !important;
+                background: $primary-color;
 
                 &.giz-button-shadow {
-                    box-shadow: $elevation-1 !important;
+                    box-shadow: $elevation-1;
                 }
             }
 
             &.secondary {
-                background: $secondary-color !important;
+                background: $secondary-color;
             }
 
             &.info {
-                background: $info-color !important;
+                background: $info-color;
             }
 
             &.danger {
@@ -395,7 +395,7 @@
 
         .giz-list-header {
             border-bottom: 1px solid $border-color;
-            padding: 0.625rem 0.625rem 1.25rem 0.625rem !important;
+            padding: 0.625rem 0.625rem 1.25rem 0.625rem;
             font-size: $font-17;
             line-height: $line-height-21;
             letter-spacing: $letter-spacing-5;
@@ -477,15 +477,15 @@
 .giz-card {
     [client-theme] & {
         .giz-card-header {
-            padding: unset !important;
+            padding: unset;
         }
 
         .giz-card-body {
-            padding: unset !important;
+            padding: unset;
         }
 
         .giz-card-footer {
-            padding: unset !important;
+            padding: unset;
         }
     }
 }
@@ -540,7 +540,7 @@
 
             &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
-                box-shadow: unset !important;
+                box-shadow: unset;
             }
 
             &:active {
@@ -561,7 +561,7 @@
 
             &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
-                box-shadow: unset !important;
+                box-shadow: unset;
             }
 
             &:active {
@@ -579,7 +579,7 @@
 
             &:active:not(.giz-button-shadow) {
                 //Remove shadow from default theme.
-                box-shadow: unset !important;
+                box-shadow: unset;
             }
 
             &:active {

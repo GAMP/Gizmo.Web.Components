@@ -62,8 +62,7 @@
         }
     }
 
-
-    & > tbody > tr {
+    & > tbody > tr:not(.table__details) {
         height: 3.9rem;
         background: $transparent-color;
         border-radius: $rounded-lg-theme-dark;
@@ -210,11 +209,11 @@
 
 .table__details {
     display: none;
-    background: $transparent-color !important;
+    background: $transparent-color;
 
     &:hover {
         & > td {
-            border-color: $transparent-color !important;
+            border-color: $transparent-color;
         }
     }
 
