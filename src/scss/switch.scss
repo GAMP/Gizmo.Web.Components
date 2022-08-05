@@ -44,10 +44,6 @@
             bottom: 0.4rem;
             background-color: $gray-dim-theme-dark;
             transition: 0.4s;
-
-            [light-theme] & {
-                background-color: $white-color;
-            }
         }
 
         &--round {

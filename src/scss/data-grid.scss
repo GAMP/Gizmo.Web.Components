@@ -233,10 +233,6 @@
     border-top: $border-0-theme-dark;
     padding: 1.2rem 0;
     margin-top: $spacer-n12;
-
-    [light-theme] & {
-        border-color: #dddfe4;
-    }
 }
 
 .giz-data-grid-sticky-header {
@@ -254,11 +250,6 @@
             z-index: 1;
             color: $gray-black-theme-dark;
             background: $dark-gray-theme-dark;
-
-            [light-theme] & {
-                color: $secondary-color-theme-dark;
-                background: $white-color;
-            }
         }
     }
 }

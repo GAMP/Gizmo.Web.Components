@@ -34,6 +34,12 @@
 
         .giz-list-item-icon {
             margin-right: $spacer-17;
+
+            &__placeholder {
+                width: 2.4rem;
+                height: 2.4rem;
+                margin-right: 1.7rem
+            }
         }
     }
 

@@ -8,7 +8,7 @@
     <div class="@Class @ClassName"
          id="@Id"
          @ref="@Ref">
-        <div style="position: relative;">
+        <div class="giz-input-timepicker__content">
             <GizInput Label="@Label"
                       ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
                       IsDisabled="@IsDisabled"
@@ -28,7 +28,6 @@
                            value="@_text"
                            readonly="@IsReadOnly"
                            disabled="@IsDisabled"
-                           style="cursor: pointer;"
                            @oninput="OnInputHandler"
                            @onclick="OnClickInput" />
                 </div>

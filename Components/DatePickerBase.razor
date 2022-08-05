@@ -18,7 +18,7 @@ else
         <div class="giz-calendar-content">
             @if (_showMonthPicker)
             {
-                <div style="padding: 0 1rem">
+                <div class="giz-calendar-content">
                     <div class="giz-calendar-title-switch">
                         <div>
                             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousYearHandler" SVGIcon="Icons.ArrowLeft" />
@@ -52,7 +52,7 @@ else
             }
             else
             {
-                <div style="padding: 0 1rem">
+                <div class="giz-calendar-content">
                     <div class="giz-calendar-title-switch">
                         <div>
                             <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousMonthHandler" SVGIcon="Icons.ArrowLeft" />

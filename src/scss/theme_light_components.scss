@@ -91,6 +91,23 @@
     }
 }
 
+.giz-data-grid__details-content {
+    [light-theme] & {
+        border-color: #dddfe4;
+    }
+}
+
+.giz-data-grid-sticky-header {
+    [light-theme] & {
+        .giz-data-grid {
+            & > thead td, & > thead th {
+                color: $secondary-color-theme-dark;
+                background: $white-color;
+            }
+        }
+    }
+}
+
 // == button group == //
 .giz-button-group {
     [light-theme] & {
@@ -399,6 +416,7 @@
     }
 }
 
+// == tree-view == //
 .giz-tree-view {
     [light-theme] & {
         &-item {
@@ -412,6 +430,153 @@
                     color: $primary-color-theme-dark;
                 }
             }
+        }
+    }
+}
+
+// == simple-tab == //
+.giz-simple-tab {
+    [light-theme] & {
+        .giz-simple-tab-active {
+            color: $black-color;
+        }
+
+        &__ul {
+            background: $secondary-light-theme-dark;
+            border-bottom: 1px solid $white-color;
+        }
+
+        &__link {
+            color: $dim-color-theme-dark;
+
+            &:hover {
+                background-color: $white-color;
+                color: $dim-color-theme-dark;
+            }
+        }
+    }
+}
+
+.giz-simple-tab-item {
+    [light-theme] & {
+        color: $secondary-color-theme-dark;
+        background: $white-color;
+    }
+}
+
+// == tab == //
+.giz-tab {
+    [light-theme] & {
+        .giz-tab-active {
+            color: $black-color;
+        }
+
+        &__ul {
+            background: $secondary-light-theme-dark;
+            border-bottom: 1px solid $white-color;
+        }
+
+        &__link {
+            color: $dim-color-theme-dark;
+
+            &:hover {
+                background-color: $white-color;
+                color: $dim-color-theme-dark;
+            }
+        }
+    }
+}
+
+.giz-tab-content {
+    [light-theme] & {
+        color: $secondary-color-theme-dark;
+        background: $white-color;
+    }
+}
+
+// == switch == //
+.giz-switch {
+    [light-theme] & {
+        &__slider {
+            &__thumb {
+                background-color: $white-color;
+            }
+        }
+    }
+}
+
+// == autocomplete == //
+.giz-input-autocomplete {
+    [light-theme] & {
+        .giz-input-autocomplete__dropdown {
+            border: 1px solid $gray-dark-theme-dark;
+        }
+    }
+}
+
+// == checkbox == //
+.giz-checkbox {
+    [light-theme] & {
+        & input {
+            & + label:before {
+                background: $transparent-color;
+                border: 1px solid $gray-color-theme-dark;
+            }
+
+            &.disabled + label:before, &[disabled] + label:before {
+                background: $gray-dark-theme-dark;
+                border-color: $gray-dark-theme-dark;
+            }
+        }
+    }
+}
+
+// == calendar == //
+.giz-calendar {
+    [light-theme] & {
+        background-color: $white-color;
+
+        .giz-calendar-content {
+            background-color: $white-color;
+            color: $black-color;
+        }
+    }
+}
+
+// == pagination == //
+.giz-pagination {
+    [light-theme] & {
+        & li {
+            color: $secondary-color-theme-dark;
+            border-color: #d4d6db;
+
+            &:hover:not(.giz-pagination-btn--disabled), &.is-active {
+                background: #5a7ff2;
+                border-color: #5a7ff2;
+                color: $white-color;
+            }
+        }
+
+        &-btn {
+            &--disabled {
+                color: $gray-dark-theme-dark;
+                background: $white-color;
+                border: 1px solid $gray-dark-theme-dark;
+            }
+        }
+    }
+}
+
+// == time-picker == //
+.giz-time-picker {
+    [light-theme] & {
+        .giz-time-picker-content {
+            color: $black-color;
+            background-color: $white-color;
+        }
+
+        .giz-time-picker-footer {
+            background-color: $white-color;
         }
     }
 }

@@ -5,6 +5,10 @@
     display: inline-block;
     position: relative;
 
+    &__content {
+        position: relative;
+    }
+
     &--full-width {
         display: block;
     }
@@ -24,10 +28,6 @@
                 right: 0;
                 left: 0;
             }
-        }
-
-        [light-theme] & {
-            border: 1px solid $gray-dark-theme-dark;
         }
 
         .giz-list {

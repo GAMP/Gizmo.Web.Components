@@ -17,6 +17,17 @@
     position: relative;
     align-items: center;
 
+    &__content {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &_wrapper {
+            display: flex;
+            align-items: center;
+        }
+    }
+
     .giz-button-icon-left {
         margin-right: $spacer-8;
     }
@@ -69,7 +80,6 @@
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             pointer-events: none;
-
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -107,7 +117,6 @@
                 background: $onyx-black-theme-dark;
                 pointer-events: none;
             }
-
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -132,7 +141,6 @@
                 color: $dark-gray-theme-dark;
                 background: $onyx-black-theme-dark;
                 pointer-events: none;
-
                 /*svg {
                     color: $dark-gray-theme-dark;
                 }*/
@@ -160,7 +168,6 @@
             background: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
-
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -183,7 +190,6 @@
             background: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
-
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -220,7 +226,6 @@
         background: $onyx-black-theme-dark;
         border: none;
         pointer-events: none;
-
         /*svg {
             color: $dark-gray-theme-dark;
         }*/

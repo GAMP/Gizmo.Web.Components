@@ -21,10 +21,6 @@
     .giz-simple-tab-active {
         color: $white-color;
 
-        [light-theme] & {
-            color: $black-color;
-        }
-
         &::after {
             content: "";
             position: absolute;
@@ -50,27 +46,13 @@
         padding: 1.7rem 4.5rem;
         padding: $spacer-0;
         border-bottom: 1px solid $onyx-black-theme-dark;
-
-        [light-theme] & {
-            background: $secondary-light-theme-dark;
-            border-bottom: 1px solid $white-color;
-        }
     }
 
     &__link {
         color: $gray-black-theme-dark;
 
-        [light-theme] & {
-            color: $dim-color-theme-dark;
-        }
-
         &:hover {
             color: $white-color;
-
-            [light-theme] & {
-                background-color: $white-color;
-                color: $dim-color-theme-dark;
-            }
         }
     }
 }
@@ -85,11 +67,6 @@
     max-height: 100%;
     overflow: auto;
     display: none;
-
-    [light-theme] & {
-        color: $secondary-color-theme-dark;
-        background: $white-color;
-    }
 
     &--active {
         display: block;

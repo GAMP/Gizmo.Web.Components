@@ -4,6 +4,16 @@
 .giz-input-timepicker {
     display: inline-block;
 
+    &__content {
+        position: relative;
+
+        & > .giz-input-wrapper {
+            input {
+                cursor: pointer;
+            }
+        }
+    }
+
     &--full-width {
         display: block;
     }
@@ -70,11 +80,6 @@
         color: $white-color;
         background-color: $dark-color-theme-dark;
 
-        [light-theme] & {
-            color: $black-color;
-            background-color: $white-color;
-        }
-
         &--icon-size {
             font-size: $font-16-theme-dark;
         }
@@ -105,11 +110,6 @@
     // giz time picker footer
     .giz-time-picker-footer {
         background-color: $dark-color-theme-dark;
-
-        [light-theme] & {
-            background-color: $white-color;
-        }
-
         padding: 1rem;
         display: flex;
         justify-content: $justify-end;

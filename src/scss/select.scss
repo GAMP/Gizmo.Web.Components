@@ -5,6 +5,14 @@
     display: inline-block;
     position: relative;
 
+    &__content {
+        cursor: pointer;
+
+        &_wrapper {
+            position: relative;
+        }
+    }
+
     &--full-width {
         display: block;
     }

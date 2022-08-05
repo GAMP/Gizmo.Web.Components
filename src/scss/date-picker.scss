@@ -4,6 +4,10 @@
 .giz-input-datepicker {
     display: inline-block;
 
+    &__content {
+        position: relative;
+    }
+
     &--full-width {
         display: block;
     }
@@ -55,10 +59,6 @@
     box-shadow: $elevation-3-theme-dark;
     background-color: $dark-color-theme-dark;
 
-    [light-theme] & {
-        background-color: $white-color;
-    }
-
     .giz-calendar-header {
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
@@ -82,9 +82,8 @@
         color: $white-color;
         /*padding: 0.8rem 1rem;*/
 
-        [light-theme] & {
-            background-color: $white-color;
-            color: $black-color;
+        &_wrapper {
+            padding: 0 1rem;
         }
 
         .active {

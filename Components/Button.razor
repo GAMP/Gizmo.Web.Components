@@ -14,7 +14,7 @@
         @attributes="@Attributes"
         id="@Id">
 
-    <div style="display: flex; align-items: center; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "" : "justify-content: center")">
+    <div class="giz-button__content_wrapper" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "" : "justify-content: center")">
         @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
         {
             <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" Size="@(Size == ButtonSizes.Small ? IconSizes.Small : 
@@ -23,7 +23,7 @@
                   IconSizes.ExtraLarge)))" />
         }
 
-        <div style="display: inline-block; overflow: hidden; text-overflow: ellipsis; @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
+        <div class="giz-button__content" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
             @ChildContent
         </div>
 

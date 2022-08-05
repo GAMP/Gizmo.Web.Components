@@ -36,11 +36,6 @@
             border: 1px solid $onyx-black-theme-dark;
             border-radius: $rounded-theme-dark;
             margin-right: 0.75rem;
-
-            [light-theme] & {
-                background: $transparent-color;
-                border: 1px solid $gray-color-theme-dark;
-            }
         }
 
         &:checked + label:before {
@@ -54,11 +49,6 @@
             background: $gray-dim-theme-dark;
             border-color: $gray-dim-theme-dark;
             pointer-events: none;
-
-            [light-theme] & {
-                background: $gray-dark-theme-dark;
-                border-color: $gray-dark-theme-dark;
-            }
         }
 
         &.disabled + label, &[disabled] + label {
