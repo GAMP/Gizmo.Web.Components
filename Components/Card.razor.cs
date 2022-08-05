@@ -28,7 +28,7 @@ namespace Gizmo.Web.Components
         public bool HasShadow { get; set; }
 
         [Parameter]
-        public int MaximumWidth { get; set; }
+        public string MaximumWidth { get; set; }
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace Gizmo.Web.Components
 
         protected string StyleValue => new StyleMapper()
                  .If($"background-color: {BackgroundColor}", () => !string.IsNullOrEmpty(BackgroundColor))
-                 .If($"max-width: {MaximumWidth}px", () => MaximumWidth > 0)
+                 .If($"max-width: {MaximumWidth}", () => !string.IsNullOrEmpty(MaximumWidth))
                  .AsString();
 
         #endregion
