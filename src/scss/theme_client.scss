@@ -7,8 +7,10 @@
 $font-family-open-sans: 'Open Sans', sans-serif;
 
 //== common color
-
-$primary-color: #258cf6;
+//Updated
+$primary-color: #3F8CFF;
+$danger-color: #EE505A;
+//Old
 $primary-dark: #2C94F4;
 $primary-dim-light: #289BDD;
 $primary-dim-color: #264F79;
@@ -36,7 +38,6 @@ $metalic-black: #23262F;
 $dark-black-pearl: rgba(4, 5, 6, 1);
 $black-pearl: rgba(4, 5, 6, 0.65);
 $black-slate: rgba(20, 22, 28, 0.8);
-$danger-color: rgba(217, 61, 71, 0.85);
 $danger-light: #DC1C1C;
 $white-color: #FFFFFF;
 $dim-white: rgba(255, 255, 255, 0.6);

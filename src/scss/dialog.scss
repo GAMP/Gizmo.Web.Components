@@ -16,6 +16,10 @@
     align-items: $align-center;
     padding: 1rem;
 
+    &__content {
+        height: 100%;
+    }
+
     &.giz-dialog--open {
         display: flex;
     }

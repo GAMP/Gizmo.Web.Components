@@ -1,0 +1,13 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@Class @ClassName"
+     style="@Style"
+     @onclick="OnClickDialogHandler">
+
+    <div class="giz-dialog__content" style="@ContentStyleValue">
+        @ChildContent
+    </div>
+
+
+</div>

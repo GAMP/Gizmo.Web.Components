@@ -130,12 +130,20 @@
 //== giz input == //
 .giz-input-control {
     [client-theme] & {
+        .giz-input-label {
+            letter-spacing: unset;
+
+            //Font
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+        }
 
         .giz-input-root {
-            color: $white-color;
+            color: #D5D5D6;
 
             svg {
-                color: $white-color;
+                color: #D5D5D6;
                 vertical-align: baseline;
             }
 
@@ -147,7 +155,7 @@
             }
 
             input {
-                color: $white-color;
+                color: #D5D5D6;
 
                 &.disabled, &[disabled] {
                     pointer-events: none;
@@ -161,11 +169,11 @@
                 border: 1px solid $border-charcoal-gray;
 
                 &:hover {
-                    border: 1px solid $border-charcoal-gray;
+                    border: 1px solid $border-heather-gray;
                 }
 
                 &:focus-within {
-                    border: 1px solid $border-heather-gray;
+                    border: 2px solid $primary-color;
                 }
             }
 
@@ -205,9 +213,9 @@
             }
 
             &--large {
-                border-radius: $rounded;
-                height: 54px;
-                padding: 1.063rem 1.125rem;
+                border-radius: 8px;
+                height: 48px;
+                padding: 11px 12px;
 
                 input {
                     font-size: $font-16;
@@ -216,6 +224,49 @@
                 }
             }
         }
+
+        &--invalid {
+            color: $danger-color;
+
+            input {
+                color: $danger-color;
+            }
+
+            .giz-input-root--outline {
+                border: 1px solid $danger-color;
+
+                &:hover {
+                    border: 1px solid $danger-color;
+                }
+
+                &:focus-within {
+                    border: 2px solid $danger-color;
+                }
+            }
+
+            .giz-input-root--shadow {
+                box-shadow: 0px 0px 9px rgba($danger-color, 0.4);
+
+                &:hover {
+                    box-shadow: 0px 0px 9px rgba($danger-color, 0.5);
+                }
+
+                &:focus-within {
+                    box-shadow: 0px 0px 9px rgba($danger-color, 0.6);
+                }
+            }
+        }
+    }
+}
+
+.giz-input-validation-label {
+    [client-theme] & {
+        letter-spacing: unset;
+
+        //Font
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
     }
 }
 
@@ -244,7 +295,7 @@
 // == button == //
 .giz-button {
     [client-theme] & {
-        border-radius: $rounded-sm;
+        border-radius: 8px;
         color: $white-color;
         font-weight: $font-weight-700;
         letter-spacing: $letter-spacing-24;
@@ -354,7 +405,7 @@
         }
 
         &--extra-large {
-            height: 53px;
+            height: 48px;
             padding: 0 1.219rem;
 
             .giz-icon--extra-large {
