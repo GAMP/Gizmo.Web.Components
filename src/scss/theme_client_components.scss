@@ -319,15 +319,19 @@
             }
 
             &.disabled, &[disabled] {
-                background: $dark-grayish;
-                color: $dim-white;
+                background: rgba(250, 250, 250, 0.16);
+                color: rgba(255, 255, 255, 0.24);
             }
 
             &.warning {
             }
 
             &.primary:not(.disabled) {
-                background: $primary-color;
+                background-color: rgba(250, 250, 250, 0.16);
+
+                &:hover {
+                    background-color: #0091FF;
+                }
 
                 &.giz-button-shadow {
                     box-shadow: $elevation-1;
@@ -346,10 +350,24 @@
                 &.disabled, &[disabled] {
                 }
             }
+
+            &.accent:not(.disabled) {
+                background-color: #0078D2;
+
+                &:hover {
+                    background-color: #0091FF;
+                }
+            }
         }
         //button outline variant
         &--outline {
+            background-color: unset;
+            border: 2px solid rgba(246, 251, 253, 0.28);
+            color: #FFFFFF;
+
             &:hover {
+                border: 2px solid #0091E6;
+                color: #0091E6;
             }
 
             &:active {
@@ -375,8 +393,8 @@
         }
 
         &--small {
-            height: 20px;
-            padding: 0;
+            height: 32px;
+            padding: 5px;
 
             .giz-icon--small {
                 width: 10px;
@@ -385,8 +403,8 @@
         }
 
         &--medium {
-            height: 33px;
-            padding: 0 0.688rem;
+            height: 36px;
+            padding: 7px;
 
             .giz-icon--medium {
                 width: 15px;
@@ -395,8 +413,8 @@
         }
 
         &--large {
-            height: 39px;
-            padding: 0 1.938rem;
+            height: 40px;
+            padding: 9px;
 
             .giz-icon--large {
                 width: 20px;
@@ -406,7 +424,7 @@
 
         &--extra-large {
             height: 48px;
-            padding: 0 1.219rem;
+            padding: 11px;
 
             .giz-icon--extra-large {
                 width: 20px;

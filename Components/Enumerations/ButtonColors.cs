@@ -23,6 +23,9 @@ namespace Gizmo.Web.Components
         Success = 4,
 
         [Description("info")]
-        Info = 5
+        Info = 5,
+
+        [Description("accent")]
+        Accent = 6
     }
 }
