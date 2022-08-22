@@ -8,15 +8,15 @@ namespace Gizmo.Web.Components
     public enum ButtonSizes
     {
         [Description("small")]
-        Small = 0,
+        Small,
 
         [Description("medium")]
-        Medium = 1,
+        Medium,
 
         [Description("large")]
-        Large = 2,
+        Large,
 
         [Description("extra-large")]
-        ExtraLarge = 3
+        ExtraLarge
     }
 }

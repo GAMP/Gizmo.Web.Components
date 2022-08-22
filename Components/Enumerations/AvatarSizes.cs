@@ -7,6 +7,9 @@ namespace Gizmo.Web.Components
     /// </summary>
     public enum AvatarSizes
     {
+        [Description("extra-small")]
+        ExtraSmall,
+
         [Description("small")]
         Small,
 
@@ -14,6 +17,9 @@ namespace Gizmo.Web.Components
         Medium,
 
         [Description("large")]
-        Large
+        Large,
+
+        [Description("extra-large")]
+        ExtraLarge
     }
 }

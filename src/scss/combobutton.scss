@@ -1,0 +1,15 @@
+.giz-combobutton {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: 2px;
+
+    & > .left-button {
+        border-bottom-right-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+    }
+
+    & > .right-button {
+        border-bottom-left-radius: 0px !important;
+        border-top-left-radius: 0px !important;
+    }
+}
