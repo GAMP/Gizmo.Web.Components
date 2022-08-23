@@ -1,0 +1,12 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<div class="@ClassName expanded"
+     @ref="@Ref">
+    <div class="giz-expansion-panel__header" @onclick="OnClickHeader">
+        @Header
+    </div>
+    <div class="giz-expansion-panel__body">
+        @ChildContent
+    </div>
+</div>

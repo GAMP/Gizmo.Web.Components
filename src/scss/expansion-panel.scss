@@ -1,0 +1,63 @@
+//=============== gizmo expansion panel classes ================//
+
+.giz-expansion-panel {
+    &__header {
+        cursor: pointer;
+        margin-bottom: 16px;
+        //Font
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    &__body {
+        display: none;
+        box-sizing: border-box;
+    }
+
+    &.expanded {
+        .giz-expansion-panel__body {
+            display: block;
+        }
+    }
+
+    &.expanding {
+        .giz-expansion-panel__body {
+            overflow: hidden;
+            animation-name: giz-expansion-panel-expanding-animation;
+            animation-timing-function: ease-in-out;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    &.collapsing {
+        .giz-expansion-panel__body {
+            overflow: hidden;
+            animation-name: giz-expansion-panel-collapsing-animation;
+            animation-timing-function: ease-in-out;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+    }
+}
+
+@keyframes giz-expansion-panel-expanding-animation {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: var(--abh);
+    }
+}
+
+@keyframes giz-expansion-panel-collapsing-animation {
+    from {
+        height: var(--abh);
+    }
+
+    to {
+        height: 0;
+    }
+}

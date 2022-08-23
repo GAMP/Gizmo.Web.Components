@@ -122,3 +122,44 @@ function windowMouseDownHandler(event) {
 function writeLine(message) {
     window.console.log(message);
 }
+
+var expansionPanelOperations = [];
+
+function expansionPanelToggle(element) {
+    window.console.log(element);
+    if (element) {
+        var expander = event.target.closest('.giz-expansion-panel__header').parentNode;
+
+        if (expansionPanelOperations[expander])
+            return;
+
+        if (!expander.classList.contains('expanded')) {
+            expander.classList.add('expanded');
+            var body = expander.querySelector('.giz-expansion-panel__body');
+            var height = body.getBoundingClientRect().height;
+
+            body.style.setProperty('--abh', height + 'px');
+            expander.classList.add('expanding');
+
+            var expansionPanelTimeout = setTimeout(function () {
+                expander.classList.remove('expanding');
+                expansionPanelOperations[expander] = null;
+            }, 500, expander);
+
+            expansionPanelOperations[expander] = expansionPanelTimeout;
+        }
+        else {
+            var body = expander.querySelector('.giz-expansion-panel__body');
+            var height = body.getBoundingClientRect().height;
+
+            body.style.setProperty('--abh', height + 'px');
+            expander.classList.add('collapsing');
+
+            var expansionPanelTimeout = setTimeout(function () {
+                expander.classList.remove('expanded');
+                expander.classList.remove('collapsing');
+                expansionPanelOperations[expander] = null;
+            }, 500, expander);
+        }
+    }
+}

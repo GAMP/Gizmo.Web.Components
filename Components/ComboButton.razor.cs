@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Gizmo.Web.Components
 {
-    public partial class ComboButton : ButtonBase
+    public partial class ComboButton : ButtonBase, ISelect<int>
     {
         #region CONSTRUCTOR
         public ComboButton()
@@ -17,6 +18,15 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
+        private Dictionary<int, SelectItem<int>> _items = new Dictionary<int, SelectItem<int>>();
+        private SelectItem<int> _selectedItem;
+        private List _popupContent;
+
+        private bool _isOpen;
+        private double _popupX;
+        private double _popupY;
+        private double _popupWidth;
 
         private bool _canExecute = true;
 
@@ -144,6 +154,60 @@ namespace Gizmo.Web.Components
             }
 
             await base.OnAfterRenderAsync(firstRender);
+        }
+
+        public void Register(SelectItem<int> selectItem, int value)
+        {
+            _items[value] = selectItem;
+        }
+
+        public void UpdateItem(SelectItem<int> selectItem, int value)
+        {
+            //var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
+            //if (!actualItem.Equals(default(KeyValuePair<int, SelectItem<int>>)) && actualItem.Key != null)
+            //{
+            //    _items.Remove(actualItem.Key);
+            //}
+
+            //_items[value] = selectItem;
+        }
+
+        public void Unregister(SelectItem<int> selectItem, int value)
+        {
+            //var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
+            //if (!actualItem.Equals(default(KeyValuePair<int, SelectItem<int>>)))
+            //{
+            //    _items.Remove(actualItem.Key);
+            //}
+        }
+
+        public Task SetSelectedItem(SelectItem<int> selectItem)
+        {
+            //bool requiresRefresh = _isOpen;
+
+            //_isOpen = false;
+
+            //if (_selectedItem == selectItem)
+            //{
+            //    if (requiresRefresh)
+            //        StateHasChanged();
+
+            //    return Task.CompletedTask;
+            //}
+
+            //_selectedItem = selectItem;
+
+            //_hasParsingErrors = false;
+            //_parsingErrors = String.Empty;
+
+            //StateHasChanged();
+
+            //if (selectItem != null)
+            //    return SetSelectedValue(selectItem.Value);
+            //else
+            //    return SetSelectedValue(default(TValue));
+
+            throw new NotImplementedException();
         }
     }
 }
