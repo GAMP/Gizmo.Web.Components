@@ -467,34 +467,37 @@
 // == list == //
 .giz-list {
     [client-theme] & {
-        border-radius: $rounded-lg;
-        background: $dark-jungle;
-
-        @include open-sans-600;
+        background: #201F1F;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        color: #E4E6EB;
+        padding: 8px 0;
+        overflow: hidden;
 
         .giz-list-header {
-            border-bottom: 1px solid $border-color;
-            padding: 0.625rem 0.625rem 1.25rem 0.625rem;
-            font-size: $font-17;
-            line-height: $line-height-21;
-            letter-spacing: $letter-spacing-5;
         }
 
         .giz-list-item {
-            border-radius: $rounded-lg;
-            font-size: $font-17;
-            line-height: $line-height-21;
-            letter-spacing: $letter-spacing-5;
-            color: $white-color;
+            padding: 9px 16px;
+            color: #E4E6EB;
+            //Font
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: unset;
+
+            &-active {
+                background: #373839;
+                color: #E4E6EB;
+            }
         }
 
         &.giz-list--clickable {
             .giz-list-item {
-                background: $black-forest;
 
                 &:hover {
-                    background: $metalic-black;
-                    color: $white-color;
+                    background: #373839;
+                    color: #E4E6EB;
                 }
             }
         }
@@ -502,8 +505,8 @@
         &.giz-list--selectable {
             .giz-list-item {
                 &.giz-list-item-selected {
-                    background: $metalic-black;
-                    color: $white-color;
+                    background: #373839;
+                    color: #E4E6EB;
                 }
             }
         }
@@ -810,5 +813,12 @@
                 border-color: transparent transparent $dark-black-pearl transparent;
             }
         }
+    }
+}
+
+.giz-combobutton {
+    .giz-popup {
+        width: 100%;
+        padding-top: 4px;
     }
 }

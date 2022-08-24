@@ -128,7 +128,7 @@ var expansionPanelOperations = [];
 function expansionPanelToggle(element) {
     window.console.log(element);
     if (element) {
-        var expander = event.target.closest('.giz-expansion-panel__header').parentNode;
+        var expander = element;
 
         if (expansionPanelOperations[expander])
             return;

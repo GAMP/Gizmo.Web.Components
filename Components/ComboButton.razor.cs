@@ -24,19 +24,18 @@ namespace Gizmo.Web.Components
         private List _popupContent;
 
         private bool _isOpen;
-        private double _popupX;
-        private double _popupY;
-        private double _popupWidth;
-
-        private bool _canExecute = true;
-
-        private ICommand _previousCommand;
 
         #endregion
 
         #region PROPERTIES
 
         #region PUBLIC
+
+        [Parameter]
+        public EventCallback OnClickMainButton { get; set; }
+
+        //[Parameter]
+        //public EventCallback OnClickDropDownButton { get; set; }
 
         [Parameter]
         public ButtonVariants Variant { get; set; } = ButtonVariants.Fill;
@@ -57,6 +56,9 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
+        public RenderFragment DropDownItems { get; set; }
+
+        [Parameter]
         public string LeftIcon { get; set; }
 
         [Parameter]
@@ -71,62 +73,35 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected Task OnClickButtonHandler(MouseEventArgs args)
+        protected async Task OnClickDropDownButtonHandler()
         {
-            if (Command?.CanExecute(CommandParameter) ?? false)
-            {
-                Command.Execute(CommandParameter);
-            }
+            //await OnClickDropDownButton.InvokeAsync();
 
-            return Task.CompletedTask;
+            if (!IsDisabled)
+            {
+                if (!_isOpen)
+                    await Open();
+                else
+                    _isOpen = false;
+            }
         }
 
-        private void Command_CanExecuteChanged(object sender, EventArgs e)
+        protected Task OnClickMainButtonHandler(MouseEventArgs args)
         {
-            _canExecute = Command.CanExecute(CommandParameter);
+            return OnClickMainButton.InvokeAsync();
         }
 
         #endregion
 
+        private async Task Open()
+        {
+            int activeItemIndex = _popupContent.GetSelectedItemIndex();
+            await _popupContent.SetActiveItemIndex(activeItemIndex);
+
+            _isOpen = true;
+        }
+
         #region OVERRIDES
-        
-        protected override async Task OnParametersSetAsync()
-        {
-            bool newCommand = !EqualityComparer<ICommand>.Default.Equals(_previousCommand, Command);
-
-            if (newCommand)
-            {
-                if (_previousCommand != null)
-                {
-                    //Remove handler
-                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
-                }
-                if (Command != null)
-                {
-                    //Add handler
-                    Command.CanExecuteChanged += Command_CanExecuteChanged;
-                }
-            }
-
-            _previousCommand = Command;
-
-            await base.OnParametersSetAsync();
-        }
-
-        public override void Dispose()
-        {
-            try
-            {
-                if (_previousCommand != null)
-                {
-                    //Remove handler
-                    _previousCommand.CanExecuteChanged -= Command_CanExecuteChanged;
-                }
-            }
-            catch (Exception) { }
-
-            base.Dispose();
-        }
 
         #endregion
 
@@ -141,7 +116,7 @@ namespace Gizmo.Web.Components
                  .If("giz-button--text", () => Variant == ButtonVariants.Text)
                  .If("giz-button-full-width", () => IsFullWidth)
                  .If("giz-button-shadow", () => HasShadow)
-                 .If("disabled", () => IsDisabled || !_canExecute)
+                 .If("disabled", () => IsDisabled)
                  .AsString();
 
         #endregion
@@ -207,7 +182,7 @@ namespace Gizmo.Web.Components
             //else
             //    return SetSelectedValue(default(TValue));
 
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
