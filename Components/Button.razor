@@ -14,6 +14,10 @@
         @attributes="@Attributes"
         id="@Id">
 
+    <div class="giz-button__progress-wrapper">
+        <div class="giz-button__progress" style="width: @(Progress.ToString(System.Globalization.CultureInfo.InvariantCulture))%"></div>
+    </div>
+
     <div class="giz-button__content_wrapper" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "" : "justify-content: center")">
         @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
         {

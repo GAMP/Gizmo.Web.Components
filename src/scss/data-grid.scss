@@ -64,26 +64,26 @@
 
     & > tbody > tr:not(.table__details) {
         height: 3.9rem;
-        background: $transparent-color;
+        background: transparent;
         border-radius: $rounded-lg-theme-dark;
         margin-bottom: $spacer-12;
 
         & > td {
-            border-top: 1px solid $transparent-color;
-            border-bottom: 1px solid $transparent-color;
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
 
             &:first-child {
-                border-left: 1px solid $transparent-color;
+                border-left: 1px solid transparent;
             }
 
             &:last-child {
-                border-right: 1px solid $transparent-color;
+                border-right: 1px solid transparent;
             }
         }
 
         &:hover {
             background: $dark-jungle-theme-dark;
-            color: $white-color;
+            color: white;
 
             & > td {
                 border-top: 1px solid $onyx-black-theme-dark;
@@ -103,7 +103,7 @@
             border-color: #453855;
             background: $primary-color-theme-dark;
             cursor: $cursor-pointer;
-            color: $white-color;
+            color: white;
 
             & > td {
                 border-top: 1px solid $onyx-black-theme-dark;
@@ -209,11 +209,11 @@
 
 .table__details {
     display: none;
-    background: $transparent-color;
+    background: transparent;
 
     &:hover {
         & > td {
-            border-color: $transparent-color;
+            border-color: transparent;
         }
     }
 

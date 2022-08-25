@@ -7,6 +7,7 @@
     {
         Fill,
         Outline,
-        Text
+        Text,
+        Progress
     }
 }

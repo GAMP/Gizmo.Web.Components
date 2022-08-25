@@ -21,6 +21,10 @@ a {
     text-decoration: $text-decoration;
 }
 
+$font-weight-light: 400;
+$font-weight-normal: 500;
+$font-weight-bold: 700;
+
 //== font family
 
 .giz-font-family {
@@ -32,38 +36,38 @@ a {
 //theme background
 .giz-theme-background {
     background: $dark-gray-theme-dark !important;
-    color: $white-color;
+    color: white;
 
     [light-theme] & {
-        background: $white-color !important;
-        color: $black-color;
+        background: white !important;
+        color: black;
     }
 }
 
 .giz-theme-on-background {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
 //theme surface
 .giz-theme-surface {
     background: $dark-light-color-theme-dark !important;
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
         background: $secondary-light-theme-dark !important;
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
 .giz-theme-on-surface {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -78,10 +82,10 @@ a {
 }
 
 .giz-theme-on-primary {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -94,10 +98,10 @@ a {
 }
 
 .giz-theme-on-primary-light {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -118,10 +122,10 @@ a {
 }
 
 .giz-theme-on-secondary {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -134,10 +138,10 @@ a {
 }
 
 .giz-theme-on-secondary-light {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -150,10 +154,10 @@ a {
 }
 
 .giz-theme-on-secondary-dark {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -166,10 +170,10 @@ a {
 }
 
 .giz-theme-on-info {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -182,10 +186,10 @@ a {
 }
 
 .giz-theme-on-success {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -198,10 +202,10 @@ a {
 }
 
 .giz-theme-on-danger {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -214,10 +218,10 @@ a {
 }
 
 .giz-theme-on-light {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -230,10 +234,10 @@ a {
 }
 
 .giz-theme-on-dark {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -246,10 +250,10 @@ a {
 }
 
 .giz-theme-on-dark-light {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -265,24 +269,24 @@ a {
     color: $dark-jungle-theme-dark !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
 
 .giz-black {
-    background-color: $black-color !important;
+    background-color: black !important;
 }
 
 .giz-black-text {
-    color: $black-color !important;
+    color: black !important;
 }
 
 .giz-theme-on-black {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -295,7 +299,7 @@ a {
 }
 
 .giz-theme-on-onyx-black {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
         color: $onyx-black-theme-dark !important;
@@ -368,18 +372,18 @@ a {
 
 
 .giz-white {
-    background-color: $white-color !important;
+    background-color: white !important;
 }
 
 .giz-white-text {
-    color: $white-color !important;
+    color: white !important;
 }
 
 .giz-theme-on-white {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -395,7 +399,7 @@ a {
     color: $dim-white-theme-dark !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -408,10 +412,10 @@ a {
 }
 
 .giz-theme-on-gray {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -424,10 +428,10 @@ a {
 }
 
 .giz-theme-on-gray-light {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -440,10 +444,10 @@ a {
 }
 
 .giz-theme-on-gray-dark {
-    color: $black-color !important;
+    color: black !important;
 
     [light-theme] & {
-        color: $black-color !important;
+        color: black !important;
     }
 }
 
@@ -456,10 +460,10 @@ a {
 }
 
 .giz-theme-on-dim-light {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
@@ -472,19 +476,19 @@ a {
 }
 
 .giz-theme-on-dim-color {
-    color: $white-color !important;
+    color: white !important;
 
     [light-theme] & {
-        color: $white-color !important;
+        color: white !important;
     }
 }
 
 .giz-transparent {
-    background-color: $transparent-color !important;
+    background-color: transparent !important;
 }
 
 .giz-transparent-text {
-    color: $transparent-color !important;
+    color: transparent !important;
 }
 
 //=typography
@@ -570,7 +574,7 @@ a {
 
 //heading
 h1, .giz-typography-h1 {
-    color: $white-color;
+    color: white;
     font-size: $h1-font-size;
     font-weight: $h1-font-weight;
     line-height: $h1-line-height;
@@ -582,7 +586,7 @@ h1, .giz-typography-h1 {
 }
 
 h2, .giz-typography-h2 {
-    color: $white-color;
+    color: white;
     font-size: $h2-font-size;
     font-weight: $h2-font-weight;
     line-height: $h2-line-height;
@@ -594,7 +598,7 @@ h2, .giz-typography-h2 {
 }
 
 h3, .giz-typography-h3 {
-    color: $white-color;
+    color: white;
     font-size: $h3-font-size;
     font-weight: $h3-font-weight;
     line-height: $h3-line-height;
@@ -606,7 +610,7 @@ h3, .giz-typography-h3 {
 }
 
 h4, .giz-typography-h4 {
-    color: $white-color;
+    color: white;
     font-size: $h4-font-size;
     font-weight: $h4-font-weight;
     line-height: $h4-line-height;
@@ -618,7 +622,7 @@ h4, .giz-typography-h4 {
 }
 
 h5, .giz-typography-h5 {
-    color: $white-color;
+    color: white;
     font-size: $h5-font-size;
     font-weight: $h5-font-weight;
     line-height: $h5-line-height;
@@ -630,7 +634,7 @@ h5, .giz-typography-h5 {
 }
 
 h6, .giz-typography-h6 {
-    color: $white-color;
+    color: white;
     font-size: $h6-font-size;
     font-weight: $h6-font-weight;
     line-height: $h6-line-height;
@@ -776,7 +780,7 @@ h6, .giz-typography-h6 {
 }
 
 .border-black {
-    border-color: $black-color !important;
+    border-color: black !important;
 }
 
 .border-black {
@@ -784,7 +788,7 @@ h6, .giz-typography-h6 {
 }
 
 .border-white {
-    border-color: $white-color !important;
+    border-color: white !important;
 }
 
 .border-gray {

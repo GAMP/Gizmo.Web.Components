@@ -93,6 +93,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool StopPropagation { get; set; } = true;
 
+        [Parameter]
+        public decimal Progress { get; set; }
+
         #endregion
 
         #endregion
@@ -216,6 +219,7 @@ namespace Gizmo.Web.Components
                  .If("giz-button--fill", () => ButtonGroup == null && Variant == ButtonVariants.Fill)
                  .If("giz-button--outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
                  .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
+                 .If("giz-button--progress", () => ButtonGroup == null && Variant == ButtonVariants.Progress)
                  .If("giz-button-full-width", () => IsFullWidth)
                  .If("giz-button-shadow", () => HasShadow)
                  .If("disabled", () => IsDisabled || !_canExecute)

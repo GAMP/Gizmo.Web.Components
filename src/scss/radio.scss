@@ -29,7 +29,7 @@
         transform: translateY(-50%);
         width: 2.4rem;
         height: 2.4rem;
-        background: $transparent-color;
+        background: transparent;
         border: 1px solid $gray-color-theme-dark;
         border-radius: 100px;
     }
@@ -57,7 +57,7 @@
         transform: translateY(-50%);
         width: 1.4rem;
         height: 1.4rem;
-        background: $white-color;
+        background: white;
         border-radius: 100px;
     }
 }

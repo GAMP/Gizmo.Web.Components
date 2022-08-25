@@ -16,7 +16,7 @@
         line-height: $line-height-16-theme-dark;
         letter-spacing: $letter-spacing-8-theme-dark;
         //Default Theme
-        color: $white-color;
+        color: white;
     }
     //Input default size (normal)
     .giz-input-root {
@@ -28,15 +28,15 @@
         font-size: $font-15-theme-dark;
         line-height: $line-height-16-theme-dark;
         letter-spacing: $letter-spacing-8-theme-dark;
-        color: $white-color;
+        color: white;
         border: $border-0-theme-dark;
         border-radius: $rounded-theme-dark;
         //Default Theme
-        color: $white-color;
+        color: white;
         //width: 20rem;
 
         &--transparent {
-            background: $transparent-color;
+            background: transparent;
         }
 
         &--filled {
@@ -84,11 +84,11 @@
         }
 
         &:hover {
-            color: $white-color;
+            color: white;
         }
 
         &:focus {
-            color: $black-color;
+            color: black;
         }
 
         &.disabled, &[disabled] {
@@ -149,7 +149,7 @@
 
             &.disabled, &[disabled] {
                 background: $onyx-black-theme-dark;
-                color: $white-color;
+                color: white;
                 pointer-events: none;
             }
 
@@ -241,7 +241,7 @@
     position: absolute;
     z-index: 1;
     background: $danger-color-theme-dark;
-    color: $white-color;
+    color: white;
     padding: 0 1rem;
     border-radius: 0.2rem;
 }

@@ -4,18 +4,18 @@
 .giz-data-grid {
     [light-theme] & {
         color: $secondary-color-theme-dark;
-        background: $white-color;
+        background: white;
 
         & > thead td, & > thead th {
             color: $dim-color-theme-dark;
         }
 
         & > tbody > tr {
-            background: $transparent-color;
+            background: transparent;
 
             &:hover {
                 background: $secondary-light-theme-dark;
-                color: $black-color;
+                color: black;
 
                 & > td {
                     border-top: 1px solid $gray-dark-theme-dark;
@@ -102,7 +102,7 @@
         .giz-data-grid {
             & > thead td, & > thead th {
                 color: $secondary-color-theme-dark;
-                background: $white-color;
+                background: white;
             }
         }
     }
@@ -119,7 +119,7 @@
             background-color: $secondary-light-theme-dark;
 
             &.selected {
-                background-color: $white-color;
+                background-color: white;
             }
 
             &:hover:not(.selected) {
@@ -134,7 +134,7 @@
             .giz-button {
                 &.selected {
                     color: $dim-ligh-theme-darkt;
-                    background: $white-color;
+                    background: white;
                 }
             }
         }
@@ -153,7 +153,7 @@
             color: $secondary-color-theme-dark;
 
             &:hover {
-                color: $black-color;
+                color: black;
             }
 
             input {
@@ -182,7 +182,7 @@
             }
 
             &--filled {
-                background: $white-color;
+                background: white;
 
                 &:focus-within {
                 }
@@ -235,7 +235,7 @@
         //group button
         &--group-button {
             color: $gray-dark-theme-dark;
-            background: $white-color;
+            background: white;
 
             /*svg {
                 color: $gray-dark-theme-dark;
@@ -244,8 +244,8 @@
         //button fill variant
         &--fill {
             &.disabled, &[disabled] {
-                color: $white-color;
-                background: $white-color;
+                color: white;
+                background: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -255,12 +255,12 @@
 
             &.primary {
                 background: $primary-color-theme-dark;
-                color: $white-color;
+                color: white;
             }
 
             &.warning {
                 color: $gray-dark-theme-dark;
-                background: $white-color;
+                background: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -270,8 +270,8 @@
 
             &.danger {
                 &.disabled, &[disabled] {
-                    color: $white-color;
-                    background: $white-color;
+                    color: white;
+                    background: white;
                     border: 1px solid $gray-dark-theme-dark;
 
                     /*svg {
@@ -283,23 +283,23 @@
         //button outline variant
         &--outline {
             color: $gray-black-theme-dark;
-            background: $white-color;
+            background: white;
             border: 1px solid $gray-light-color-theme-dark;
 
             &:hover {
-                background: $white-color;
+                background: white;
                 color: $primary-color-theme-dark;
             }
 
             &:active {
-                background: $white-color;
+                background: white;
                 border: 1px solid $primary-color-theme-dark;
                 color: $secondary-color-theme-dark;
             }
 
             &.disabled, &[disabled] {
                 color: $gray-dark-theme-dark;
-                background: $white-color;
+                background: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -313,17 +313,17 @@
 
             &:hover {
                 color: $primary-color-theme-dark;
-                background: $white-color;
+                background: white;
             }
 
             &:active {
-                background: $white-color;
+                background: white;
                 box-shadow: $elevation-1-theme-dark;
             }
 
             &.disabled, &[disabled] {
                 color: $gray-dark-theme-dark;
-                background: $white-color;
+                background: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -334,7 +334,7 @@
         //buton disable
         &.disabled, &[disabled] {
             color: $gray-dark-theme-dark;
-            background: $white-color;
+            background: white;
             border: 1px solid $gray-dark-theme-dark;
 
             /*svg {
@@ -347,14 +347,14 @@
 // == list == //
 .giz-list {
     [light-theme] & {
-        background-color: $white-color;
+        background-color: white;
 
         .giz-list-item {
             color: $secondary-color-theme-dark;
 
             &.giz-list-item-active {
                 background-color: $primary-color-theme-dark;
-                color: $white-color;
+                color: white;
             }
         }
 
@@ -372,7 +372,7 @@
 // == card == //
 .giz-card {
     [light-theme] & {
-        background-color: $white-color;
+        background-color: white;
     }
 }
 
@@ -399,7 +399,7 @@
 // == tooltip == //
 .giz-tooltip {
     [light-theme] & {
-        background-color: $white-color;
+        background-color: white;
         border: 1px solid $gray-dark-theme-dark;
 
         &--top {
@@ -438,19 +438,19 @@
 .giz-simple-tab {
     [light-theme] & {
         .giz-simple-tab-active {
-            color: $black-color;
+            color: black;
         }
 
         &__ul {
             background: $secondary-light-theme-dark;
-            border-bottom: 1px solid $white-color;
+            border-bottom: 1px solid white;
         }
 
         &__link {
             color: $dim-color-theme-dark;
 
             &:hover {
-                background-color: $white-color;
+                background-color: white;
                 color: $dim-color-theme-dark;
             }
         }
@@ -460,7 +460,7 @@
 .giz-simple-tab-item {
     [light-theme] & {
         color: $secondary-color-theme-dark;
-        background: $white-color;
+        background: white;
     }
 }
 
@@ -468,19 +468,19 @@
 .giz-tab {
     [light-theme] & {
         .giz-tab-active {
-            color: $black-color;
+            color: black;
         }
 
         &__ul {
             background: $secondary-light-theme-dark;
-            border-bottom: 1px solid $white-color;
+            border-bottom: 1px solid white;
         }
 
         &__link {
             color: $dim-color-theme-dark;
 
             &:hover {
-                background-color: $white-color;
+                background-color: white;
                 color: $dim-color-theme-dark;
             }
         }
@@ -490,7 +490,7 @@
 .giz-tab-content {
     [light-theme] & {
         color: $secondary-color-theme-dark;
-        background: $white-color;
+        background: white;
     }
 }
 
@@ -499,7 +499,7 @@
     [light-theme] & {
         &__slider {
             &__thumb {
-                background-color: $white-color;
+                background-color: white;
             }
         }
     }
@@ -519,7 +519,7 @@
     [light-theme] & {
         & input {
             & + label:before {
-                background: $transparent-color;
+                background: transparent;
                 border: 1px solid $gray-color-theme-dark;
             }
 
@@ -534,11 +534,11 @@
 // == calendar == //
 .giz-calendar {
     [light-theme] & {
-        background-color: $white-color;
+        background-color: white;
 
         .giz-calendar-content {
-            background-color: $white-color;
-            color: $black-color;
+            background-color: white;
+            color: black;
         }
     }
 }
@@ -553,14 +553,14 @@
             &:hover:not(.giz-pagination-btn--disabled), &.is-active {
                 background: #5a7ff2;
                 border-color: #5a7ff2;
-                color: $white-color;
+                color: white;
             }
         }
 
         &-btn {
             &--disabled {
                 color: $gray-dark-theme-dark;
-                background: $white-color;
+                background: white;
                 border: 1px solid $gray-dark-theme-dark;
             }
         }
@@ -571,12 +571,12 @@
 .giz-time-picker {
     [light-theme] & {
         .giz-time-picker-content {
-            color: $black-color;
-            background-color: $white-color;
+            color: black;
+            background-color: white;
         }
 
         .giz-time-picker-footer {
-            background-color: $white-color;
+            background-color: white;
         }
     }
 }

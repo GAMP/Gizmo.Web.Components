@@ -17,14 +17,39 @@
     position: relative;
     align-items: center;
 
+    &__progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transition: width 0.3s;
+
+        &-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            z-index: 0;
+            border-radius: $rounded-theme-dark;
+        }
+    }
+
     &__content {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        height: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
 
         &_wrapper {
+            position: relative;
             display: flex;
             align-items: center;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
         }
     }
 
@@ -48,7 +73,7 @@
     &--group-button {
         border: $border-0-theme-dark;
         outline: $outline-0;
-        color: $white-color;
+        color: white;
         background: $primary-color-theme-dark;
 
         &:hover {
@@ -88,7 +113,7 @@
         &.primary {
             border: $border-0-theme-dark;
             outline: $outline-0;
-            color: $white-color;
+            color: white;
             background: $primary-color-theme-dark;
 
             &:active {
@@ -100,7 +125,7 @@
         &.warning {
             border: $border-0-theme-dark;
             outline: $outline-0;
-            color: $white-color;
+            color: white;
             background: $warning-color-theme-dark;
 
             &:hover {
@@ -125,7 +150,7 @@
         &.danger {
             border: $border-0-theme-dark;
             outline: $outline-0;
-            color: $white-color;
+            color: white;
             background: $danger-color-theme-dark;
 
             &:hover {

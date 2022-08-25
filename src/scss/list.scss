@@ -29,7 +29,7 @@
         &.giz-list-item-active {
             //Default Theme
             background-color: $primary-color-theme-dark;
-            color: $white-color;
+            color: white;
         }
 
         .giz-list-item-icon {
@@ -60,7 +60,7 @@
             &.giz-list-item-selected {
                 //Default Theme
                 background-color: $primary-color-theme-dark;
-                color: $white-color;
+                color: white;
             }
         }
     }

@@ -65,7 +65,7 @@
         background-color: $primary-color-theme-dark;
         padding: 3rem 2rem;
         cursor: default;
-        color: $white-color;
+        color: white;
 
         .giz-calendar-year-title {
             font-size: 2.56rem;
@@ -79,7 +79,7 @@
 
     .giz-calendar-content {
         background-color: $dark-color-theme-dark;
-        color: $white-color;
+        color: white;
         /*padding: 0.8rem 1rem;*/
 
         &_wrapper {
@@ -88,7 +88,7 @@
 
         .active {
             background-color: $primary-color-theme-dark;
-            color: $white-color;
+            color: white;
         }
 
         .giz-calendar-title-switch {

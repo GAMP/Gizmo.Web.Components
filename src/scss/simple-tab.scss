@@ -19,7 +19,7 @@
     }
 
     .giz-simple-tab-active {
-        color: $white-color;
+        color: white;
 
         &::after {
             content: "";
@@ -52,7 +52,7 @@
         color: $gray-black-theme-dark;
 
         &:hover {
-            color: $white-color;
+            color: white;
         }
     }
 }

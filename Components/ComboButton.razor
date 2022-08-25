@@ -2,8 +2,8 @@
 @inherits ButtonBase
 
 <div class="giz-combobutton">
-    <Button Class="left-button" Color="@Color" Size="@Size" Variant="@Variant" Label="@Label" ChildContent="@ChildContent" StopPropagation="@StopPropagation" IsFullWidth="true" @onclick="OnClickMainButtonHandler" />
-    <Button Class="right-button" Color="@Color" Size="@Size" Variant="@Variant" LeftSVGIcon="Icons.TriangleDown" @onclick="OnClickDropDownButtonHandler" />
+    <Button Class="left-button" Color="@Color" Size="@Size" Variant="@Variant" Label="@Label" ChildContent="@ChildContent" StopPropagation="@StopPropagation" IsFullWidth="true" @onclick="OnClickMainButtonHandler" Progress="@Progress" />
+    <Button Class="right-button" Color="@Color" Size="@Size" Variant="@(Variant == ButtonVariants.Progress ? ButtonVariants.Fill : @Variant)" LeftSVGIcon="Icons.TriangleDown" @onclick="OnClickDropDownButtonHandler" />
 
     <Popup @bind-IsOpen="_isOpen"
            OpenDirection="PopupOpenDirections.Bottom">

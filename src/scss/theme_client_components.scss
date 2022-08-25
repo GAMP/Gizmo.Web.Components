@@ -9,16 +9,14 @@
         color: unset;
 
         & > thead td, & > thead th {
-            color: $dim-white;
-            text-shadow: $text-shadow-sm;
+            color: $unknown-color;
             padding: 1rem 0rem 1rem 1.875rem;
             height: unset;
-            @include font-10;
         }
 
         & > tbody {
             & > tr {
-                border-top: 1px solid $border-dark-color;
+                border-top: 1px solid $unknown-color;
                 height: unset;
 
                 &:hover {
@@ -36,16 +34,13 @@
                 }
 
                 &:last-child {
-                    border-bottom: 1px solid $border-dark-color;
+                    border-bottom: 1px solid $unknown-color;
                 }
 
                 & > td {
                     padding: 1rem 0rem 1rem 1.875rem;
                     border-top: unset;
                     border-bottom: unset;
-                    @include open-sans-600;
-                    @include font-14;
-                    letter-spacing: $letter-spacing-24;
 
                     &:first-child {
                         border-left: unset;
@@ -58,7 +53,7 @@
             }
 
             & > tr:nth-of-type(odd) {
-                background: $crystal-light;
+                background: $unknown-color;
 
                 &:hover {
                     background: rgba(98, 123, 156, 0.15);
@@ -75,12 +70,8 @@
         height: 1.563rem;
         width: 11.5rem;
         overflow: hidden;
-        border-radius: $rounded-md;
         vertical-align: inherit;
 
-        @include open-sans-600;
-        @include font-11;
-        letter-spacing: $letter-spacing-24;
         position: relative;
 
         .giz-stacked-bar {
@@ -98,18 +89,15 @@
     [client-theme] & {
         display: inline-flex;
         background-color: unset;
-        border: 1px solid $border-dark-color;
-        border-radius: $rounded-5;
+        border: 1px solid $unknown-color;
         padding: unset;
 
         .giz-button {
-            @include font-11;
-            @include open-sans-600;
             text-transform: $text-uppercase;
-            color: $white-color;
+            color: white;
             background-color: unset;
             border-radius: unset;
-            border-right: 1px solid $border-dark-color;
+            border-right: 1px solid $unknown-color;
             letter-spacing: normal;
 
             &:active {
@@ -132,11 +120,7 @@
     [client-theme] & {
         .giz-input-label {
             letter-spacing: unset;
-
-            //Font
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 22px;
+            @include font-m($font-weight-light);
         }
 
         .giz-input-root {
@@ -150,8 +134,8 @@
             &.disabled, &[disabled] {
                 pointer-events: none;
                 //Default Theme
-                background: $onyx-black-theme-dark;
-                color: $mid-gray-theme-dark;
+                background: rgba(250, 250, 250, 0.16);
+                color: rgba(255, 255, 255, 0.6);
             }
 
             input {
@@ -159,56 +143,37 @@
 
                 &.disabled, &[disabled] {
                     pointer-events: none;
-                    color: $dim-ligh-theme-darkt;
+                    color: rgba(255, 255, 255, 0.24);
                     //Default Theme
-                    background: $onyx-black-theme-dark;
+                    background: rgba(250, 250, 250, 0.16);
                 }
             }
 
             &--outline {
-                border: 1px solid $border-charcoal-gray;
-
-                &:hover {
-                    border: 1px solid $border-heather-gray;
-                }
-
-                &:focus-within {
-                    border: 2px solid $primary-color;
-                }
+                background: transparent;
             }
 
             &--filled {
-                background: $black-mirage-color;
-
-                &:focus-within {
-                    background: $onyx-black;
-                }
+                background: transparent;
             }
 
             &--transparent {
-                background: $transparent-color;
+                background: transparent;
             }
 
             &--small {
-                border-radius: $rounded-5;
                 height: 30px;
                 padding: 0.3rem;
 
                 input {
-                    font-size: $font-9;
-                    line-height: $line-height-9;
-                    text-shadow: $text-shadow-sm;
                 }
             }
 
             &--medium {
-                border-radius: $rounded-5;
                 height: 35px;
                 padding: 0.5rem;
 
                 input {
-                    @include open-sans-600;
-                    @include font-11;
                 }
             }
 
@@ -218,41 +183,38 @@
                 padding: 11px 12px;
 
                 input {
-                    font-size: $font-16;
-                    line-height: $line-height-16;
-                    text-shadow: $text-shadow-sm;
                 }
             }
         }
 
         &--invalid {
-            color: $danger-color;
+            color: $typo-alert;
 
             input {
-                color: $danger-color;
+                color: $typo-alert;
             }
 
             .giz-input-root--outline {
-                border: 1px solid $danger-color;
+                border: 1px solid $bg-alert;
 
                 &:hover {
-                    border: 1px solid $danger-color;
+                    border: 1px solid $bg-alert;
                 }
 
                 &:focus-within {
-                    border: 2px solid $danger-color;
+                    border: 2px solid $bg-alert;
                 }
             }
 
             .giz-input-root--shadow {
-                box-shadow: 0px 0px 9px rgba($danger-color, 0.4);
+                box-shadow: unset;
 
                 &:hover {
-                    box-shadow: 0px 0px 9px rgba($danger-color, 0.5);
+                    box-shadow: unset;
                 }
 
                 &:focus-within {
-                    box-shadow: 0px 0px 9px rgba($danger-color, 0.6);
+                    box-shadow: unset;
                 }
             }
         }
@@ -261,12 +223,7 @@
 
 .giz-input-validation-label {
     [client-theme] & {
-        letter-spacing: unset;
-
-        //Font
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 22px;
+        @include font-m($font-weight-light);
     }
 }
 
@@ -277,15 +234,13 @@
             border: unset;
 
             .giz-list {
-                background: $jet-black;
+                background: $unknown-color;
 
                 .giz-list-item {
-                    @include open-sans-600;
-                    @include font-11;
                     padding: 0.5rem;
                     font-weight: normal;
                     letter-spacing: unset;
-                    color: $white-color;
+                    color: white;
                 }
             }
         }
@@ -296,18 +251,21 @@
 .giz-button {
     [client-theme] & {
         border-radius: 8px;
-        color: $white-color;
-        font-weight: $font-weight-700;
-        letter-spacing: $letter-spacing-24;
-        border: $border-0;
+        color: white;
+        border: none;
         outline: $outline-0;
         text-align: $text-align-center;
-        cursor: $cursor-pointer;
-        font-family: $font-family-open-sans;
-        text-transform: $text-uppercase;
-        position: relative;
-        font-size: $font-13;
-        line-height: $line-height-13;
+        //FontF
+        font-family: $font-family-text;
+        @include font-l($font-weight-normal);
+
+        &__progress {
+            background: #3F8CFF;
+
+            &-wrapper {
+                border-radius: 8px;
+            }
+        }
         //group button
         &--group-button {
         }
@@ -339,11 +297,11 @@
             }
 
             &.secondary {
-                background: $secondary-color;
+                background: $unknown-color;
             }
 
             &.info {
-                background: $info-color;
+                background: $unknown-color;
             }
 
             &.danger {
@@ -388,6 +346,54 @@
             &.disabled, &[disabled] {
             }
         }
+        //button progress variant
+        &--progress {
+            &:active:not(.giz-button-shadow) {
+                //Remove shadow from default theme.
+                box-shadow: unset;
+            }
+
+            &.disabled, &[disabled] {
+                background: rgba(250, 250, 250, 0.16);
+                color: rgba(255, 255, 255, 0.24);
+            }
+
+            &.warning {
+            }
+
+            &.primary:not(.disabled) {
+                background-color: rgba(250, 250, 250, 0.16);
+
+                &:hover {
+                    background-color: #0091FF;
+                }
+
+                &.giz-button-shadow {
+                    box-shadow: $elevation-1;
+                }
+            }
+
+            &.secondary {
+                background: $unknown-color;
+            }
+
+            &.info {
+                background: $unknown-color;
+            }
+
+            &.danger {
+                &.disabled, &[disabled] {
+                }
+            }
+
+            &.accent:not(.disabled) {
+                background-color: rgba(63, 140, 255, 0.5);
+
+                &:hover {
+                    background-color: rgba(63, 140, 255, 0.5);
+                }
+            }
+        }
         //buton disable
         &.disabled, &[disabled] {
         }
@@ -395,6 +401,7 @@
         &--small {
             height: 32px;
             padding: 5px;
+            @include font-m($font-weight-normal);
 
             .giz-icon--small {
                 width: 10px;
@@ -405,6 +412,7 @@
         &--medium {
             height: 36px;
             padding: 7px;
+            @include font-m($font-weight-normal);
 
             .giz-icon--medium {
                 width: 15px;
@@ -415,6 +423,7 @@
         &--large {
             height: 40px;
             padding: 9px;
+            @include font-m($font-weight-normal);
 
             .giz-icon--large {
                 width: 20px;
@@ -425,6 +434,7 @@
         &--extra-large {
             height: 48px;
             padding: 11px;
+            @include font-l($font-weight-normal);
 
             .giz-icon--extra-large {
                 width: 20px;
@@ -480,11 +490,7 @@
         .giz-list-item {
             padding: 9px 16px;
             color: #E4E6EB;
-            //Font
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 22px;
-            letter-spacing: unset;
+            @include font-m($font-weight-light);
 
             &-active {
                 background: #373839;
@@ -534,10 +540,9 @@
 
         & > .giz-card {
             text-align: $text-align-center;
-            border-radius: $rounded-xl;
             z-index: 1002;
-            border: thin solid $border-silver-gray;
-            background: $dark-color;
+            border: thin solid $unknown-color;
+            background: $unknown-color;
             /*backdrop-filter: blur(20px);*/
             padding: 3rem;
             overflow: hidden;
@@ -611,13 +616,13 @@
 // == icon button == //
 .giz-icon-button {
     [client-theme] & {
-        color: $white-color;
+        color: white;
 
         &--fill {
-            background: $midnight-black;
+            background: $unknown-color;
 
             &:hover {
-                background: $davy-dark-gray;
+                background: $unknown-color;
             }
 
             &:active:not(.giz-button-shadow) {
@@ -626,7 +631,7 @@
             }
 
             &:active {
-                background: $davy-dark-gray;
+                background: $unknown-color;
             }
 
             &.disabled, &[disabled] {
@@ -634,11 +639,11 @@
         }
 
         &--outline {
-            background: $light-midnight-black;
-            border: 1px solid $border-steel-gray;
+            background: $unknown-color;
+            border: 1px solid $unknown-color;
 
             &:hover {
-                background: $davy-dark-gray;
+                background: $unknown-color;
             }
 
             &:active:not(.giz-button-shadow) {
@@ -647,16 +652,18 @@
             }
 
             &:active {
-                background: $davy-dark-gray;
+                background: $unknown-color;
             }
         }
 
         &--text {
             background: none;
             border: none;
+            color: #AAABAD;
 
             &:hover {
-                background: $davy-dark-gray;
+                background: transparent;
+                color: #FFFFFF;
             }
 
             &:active:not(.giz-button-shadow) {
@@ -665,7 +672,8 @@
             }
 
             &:active {
-                background: $davy-dark-gray;
+                background: transparent;
+                color: #FFFFFF;
             }
 
             &.disabled, &[disabled] {
@@ -707,7 +715,7 @@
             .giz-list {
                 padding: unset;
                 border-radius: unset;
-                border: 1px solid $midnight-color;
+                border: 1px solid $unknown-color;
                 box-shadow: $elevation-4;
                 background: rgba(9, 11, 16, 0.9);
                 /*background: $dark-color;
@@ -717,13 +725,10 @@
                     border-radius: unset;
                     background: unset;
                     padding: 0.625rem;
-                    letter-spacing: $letter-spacing-2;
-                    color: $white-color;
-                    @include open-sans-600;
-                    @include font-13;
+                    color: white;
 
                     &:hover {
-                        background: $midnight-color;
+                        background: $unknown-color;
                     }
 
                     .giz-list-item-icon {
@@ -742,9 +747,8 @@
             & + label:before {
                 height: 0.875rem;
                 width: 0.875rem;
-                background: $dark-light-color;
-                border: 1px solid $border-bright-gray;
-                border-radius: $rounded;
+                background: $unknown-color;
+                border: 1px solid $unknown-color;
             }
 
             &:checked + label:after {
@@ -753,7 +757,7 @@
                 top: 2px;
                 width: 0.188rem;
                 height: 0.438rem;
-                border: solid $white-color;
+                border: solid white;
                 border-width: 0 1px 1px 0;
                 -webkit-transform: rotate(45deg);
                 -ms-transform: rotate(45deg);
@@ -769,7 +773,7 @@
         border: none;
         border-top: solid;
         border-width: 1px;
-        border-color: $onyx-black-theme-dark;
+        border-color: $unknown-color;
     }
 }
 
@@ -796,21 +800,17 @@
 // == tooltip == //
 .giz-tooltip {
     [client-theme] & {
-        background-color: $dark-black-pearl;
-        @include font-12;
-        @include open-sans-600;
-        letter-spacing: -0.025em;
-        border-radius: $rounded;
+        background-color: $unknown-color;
 
         &--top {
             &::after {
-                border-color: $dark-black-pearl transparent transparent transparent;
+                border-color: $unknown-color transparent transparent transparent;
             }
         }
 
         &--bottom {
             &::after {
-                border-color: transparent transparent $dark-black-pearl transparent;
+                border-color: transparent transparent $unknown-color transparent;
             }
         }
     }

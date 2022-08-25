@@ -48,7 +48,7 @@
         &.primary {
             border: $border-0-theme-dark;
             outline: $outline-0;
-            color: $white-color;
+            color: white;
             background: $primary-color-theme-dark;
 
             &:active {
@@ -60,7 +60,7 @@
         &.warning {
             border: $border-0-theme-dark;
             outline: $outline-0;
-            color: $white-color;
+            color: white;
             background: $warning-color-theme-dark;
 
             &:hover {
@@ -86,7 +86,7 @@
         &.danger {
             border: $border-0-theme-dark;
             outline: $outline-0;
-            color: $white-color;
+            color: white;
             background: $danger-color-theme-dark;
 
             &:hover {
@@ -147,11 +147,11 @@
 
         &:hover {
             color: $primary-color-theme-dark;
-            background: $white-color;
+            background: white;
         }
 
         &:active {
-            background: $white-color;
+            background: white;
             box-shadow: $elevation-1-theme-dark;
         }
 

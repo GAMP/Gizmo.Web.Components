@@ -67,6 +67,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool StopPropagation { get; set; } = true;
 
+        [Parameter]
+        public decimal Progress { get; set; }
+
         #endregion
 
         #endregion

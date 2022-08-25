@@ -11,7 +11,7 @@
         }
 
         &.disabled {
-            color: $dim-white;
+            color: $unknown-color;
             cursor: default;
         }
     }
@@ -19,7 +19,7 @@
     &.primary {
         .giz-chip {
             &.selected {
-                color: $white-color;
+                color: white;
                 background: $primary-color;
                 box-shadow: $elevation-1;
             }
@@ -29,8 +29,8 @@
     &.secondary {
         .giz-chip {
             &.selected {
-                color: $white-color;
-                background: $secondary-color;
+                color: white;
+                background: $unknown-color;
             }
         }
     }
@@ -38,8 +38,8 @@
     &.info {
         .giz-chip {
             &.selected {
-                color: $white-color;
-                background: $info-color;
+                color: white;
+                background: $unknown-color;
             }
         }
     }
