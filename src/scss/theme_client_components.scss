@@ -5,22 +5,25 @@
     [client-theme] & {
         border-collapse: collapse;
         border-spacing: 0;
-        background: transparent;
+        background: #22272B;
         color: unset;
 
         & > thead td, & > thead th {
-            color: $unknown-color;
-            padding: 1rem 0rem 1rem 1.875rem;
+            color: #AAABAD;
+            padding: 11px 8px;
             height: unset;
+            @include font-s($font-weight-light);
+            border-bottom: rgba(246, 251, 253, 0.06);
         }
 
         & > tbody {
             & > tr {
-                border-top: 1px solid $unknown-color;
+                border-top: 1px solid #22272B;
                 height: unset;
+                @include font-m($font-weight-light);
 
                 &:hover {
-                    background: rgba(98, 123, 156, 0.15);
+                    background: #22272B;
 
                     & > td {
                         &:first-child {
@@ -34,11 +37,11 @@
                 }
 
                 &:last-child {
-                    border-bottom: 1px solid $unknown-color;
+                    border-bottom: 1px solid #22272B;
                 }
 
                 & > td {
-                    padding: 1rem 0rem 1rem 1.875rem;
+                    padding: 11px 8px;
                     border-top: unset;
                     border-bottom: unset;
 
@@ -53,10 +56,10 @@
             }
 
             & > tr:nth-of-type(odd) {
-                background: $unknown-color;
+                background: #22272B;
 
                 &:hover {
-                    background: rgba(98, 123, 156, 0.15);
+                    background: #22272B;
                 }
             }
         }
@@ -231,16 +234,39 @@
 .giz-input-select {
     [client-theme] & {
         .giz-input-select__dropdown {
+            background: #22272B;
+            box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            padding: 8px;
             border: unset;
 
             .giz-list {
-                background: $unknown-color;
+                padding: unset;
 
                 .giz-list-item {
-                    padding: 0.5rem;
-                    font-weight: normal;
-                    letter-spacing: unset;
-                    color: white;
+                    padding: 9px 16px;
+                    color: #E4E6EB;
+                    border-radius: 8px;
+                    @include font-m($font-weight-light);
+                }
+
+                &.giz-list--selectable {
+                    .giz-list-item {
+                        &.giz-list-item-selected {
+                            //Default Theme
+                            background-color: unset;
+                            color: #0F9FFF;
+                        }
+                    }
+                }
+
+                &.giz-list--clickable {
+                    .giz-list-item {
+                        &:hover {
+                            //Default Theme
+                            background: rgba(250, 250, 250, 0.23);
+                        }
+                    }
                 }
             }
         }
@@ -477,7 +503,7 @@
 // == list == //
 .giz-list {
     [client-theme] & {
-        background: #201F1F;
+        /*background: #201F1F;
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
         border-radius: 8px;
         color: #E4E6EB;
@@ -515,7 +541,7 @@
                     color: #E4E6EB;
                 }
             }
-        }
+        }*/
     }
 }
 
@@ -817,8 +843,64 @@
 }
 
 .giz-combobutton {
-    .giz-popup {
-        width: 100%;
-        padding-top: 4px;
+    [client-theme] & {
+        .giz-popup {
+            width: 100%;
+            padding-top: 4px;
+        }
+
+        .giz-list {
+            background: #201F1F;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            color: #E4E6EB;
+            padding: 8px 0;
+            overflow: hidden;
+
+            .giz-list-header {
+            }
+
+            .giz-list-item {
+                padding: 9px 16px;
+                color: #E4E6EB;
+                @include font-m($font-weight-light);
+
+                &-active {
+                    background: #373839;
+                    color: #E4E6EB;
+                }
+            }
+
+            &.giz-list--clickable {
+                .giz-list-item {
+
+                    &:hover {
+                        background: #373839;
+                        color: #E4E6EB;
+                    }
+                }
+            }
+
+            &.giz-list--selectable {
+                .giz-list-item {
+                    &.giz-list-item-selected {
+                        background: #373839;
+                        color: #E4E6EB;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// == text-input == //
+.giz-input-text {
+    .giz-input-root {
+        textarea {
+            color: rgba(255, 255, 255, 0.35);
+            //FontF
+            font-family: $font-family-text;
+            @include font-m($font-weight-light);
+        }
     }
 }

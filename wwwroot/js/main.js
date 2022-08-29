@@ -126,7 +126,6 @@ function writeLine(message) {
 var expansionPanelOperations = [];
 
 function expansionPanelToggle(element) {
-    window.console.log(element);
     if (element) {
         var expander = element;
 
