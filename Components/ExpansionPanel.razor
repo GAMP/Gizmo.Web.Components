@@ -3,8 +3,12 @@
 
 <div class="@ClassName expanded"
      @ref="@Ref">
-    <div class="giz-expansion-panel__header" @onclick="OnClickHeader">
-        @Header
+    <div class="giz-expansion-panel__header">
+        <div class="giz-expansion-panel__header__content" @onclick="OnClickHeader">
+            <div>@Header</div>
+            <Icon SVGIcon="Icons.ArrowUp" Class="giz-expansion-panel-arrow-up" />
+            <Icon SVGIcon="Icons.ArrowDown" Class="giz-expansion-panel-arrow-down" />
+        </div>
     </div>
     <div class="giz-expansion-panel__body">
         @ChildContent

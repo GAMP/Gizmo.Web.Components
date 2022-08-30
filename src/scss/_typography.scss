@@ -22,7 +22,7 @@ a {
 }
 
 $font-weight-light: 400;
-$font-weight-normal: 500;
+$font-weight-regular: 500;
 $font-weight-bold: 700;
 
 //== font family
@@ -913,7 +913,7 @@ h6, .giz-typography-h6 {
 //== theme font weight
 
 .font-weight-normal {
-    font-weight: $font-weight-normal !important;
+    font-weight: $font-weight-regular !important;
 }
 
 .font-weight-400 {

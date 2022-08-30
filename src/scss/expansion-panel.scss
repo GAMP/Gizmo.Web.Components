@@ -2,17 +2,41 @@
 
 .giz-expansion-panel {
     &__header {
-        cursor: pointer;
-        margin-bottom: 16px;
-        @include font-h5($font-weight-bold);
+        display: flex;
+
+        &__content {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            @include font-h5($font-weight-bold);
+        }
     }
 
     &__body {
         display: none;
         box-sizing: border-box;
+        margin-top: 16px;
+    }
+
+    .giz-expansion-panel-arrow-up {
+        display: none;
+    }
+
+    &:not(.expanded) {
+        .giz-expansion-panel-arrow-down {
+            display: inline-flex;
+        }
     }
 
     &.expanded {
+        .giz-expansion-panel-arrow-down {
+            display: none;
+        }
+
+        .giz-expansion-panel-arrow-up {
+            display: inline-flex;
+        }
+
         .giz-expansion-panel__body {
             display: block;
         }

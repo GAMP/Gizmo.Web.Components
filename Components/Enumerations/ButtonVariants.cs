@@ -5,9 +5,9 @@
     /// </summary>
     public enum ButtonVariants
     {
-        Fill,
-        Outline,
-        Text,
-        Progress
+        Fill = 0,
+        Outline = 1,
+        Text = 2,
+        Progress = 3
     }
 }

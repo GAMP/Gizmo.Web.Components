@@ -19,15 +19,10 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-        [Parameter]
-        public bool Expanded { get; set; }
-
         #endregion
 
         protected async Task OnClickHeader()
         {
-            Expanded = !Expanded;
-
             await InvokeVoidAsync("expansionPanelToggle", Ref);
         }
 
