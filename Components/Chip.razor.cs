@@ -27,6 +27,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        [Parameter]
+        public bool CanClose { get; set; }
+
         /// <summary>
         /// Gets or sets if element is disabled.
         /// </summary>
@@ -66,6 +69,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public object CommandParameter { get; set; }
 
+        [Parameter]
+        public EventCallback<string> OnClose { get; set; }
+
         #endregion
 
         #region EVENTS
@@ -91,6 +97,10 @@ namespace Gizmo.Web.Components
         private void Command_CanExecuteChanged(object sender, EventArgs e)
         {
             _canExecute = Command.CanExecute(CommandParameter);
+        }
+        protected Task OnClickCloseButtonHandler(MouseEventArgs args)
+        {
+            return OnClose.InvokeAsync(Value);
         }
 
         #endregion

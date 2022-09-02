@@ -1,7 +1,24 @@
 //=============== gizmo chip classes ================//
 
 .giz-chip {
-    display: inline-block;
-    cursor: pointer;
-    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 12px;
+    height: 40px;
+    color: #3F8CFF;
+    background: #0B1A24;
+    border-radius: 6px;
+    //cursor: pointer;
+    //Font
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+
+    .giz-icon-button {
+        margin-left: 10px;
+
+        svg {
+            color: #0B1A24;
+        }
+    }
 }

@@ -6,7 +6,7 @@
     <Button Class="right-button" Color="@Color" Size="@Size" Variant="@(Variant == ButtonVariants.Progress ? ButtonVariants.Fill : @Variant)" LeftSVGIcon="Icons.TriangleDown" @onclick="OnClickDropDownButtonHandler" />
 
     <Popup @bind-IsOpen="_isOpen"
-           OpenDirection="PopupOpenDirections.Bottom">
+           OpenDirection="@OpenDirection">
         <List @ref="_popupContent"
                 CanClick="true">
             @DropDownItems

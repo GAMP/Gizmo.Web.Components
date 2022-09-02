@@ -8,5 +8,11 @@
         @ref="@Ref"
         @attributes="@Attributes"
         id="@Id">
-    @ChildContent
+    <div>
+        @ChildContent
+    </div>
+    @if (CanClose)
+    {
+        <IconButton SVGIcon="Icons.Close_Client" Size="ButtonSizes.ExtraSmall" @onclick="OnClickCloseButtonHandler" />
+    }
 </div>

@@ -7,6 +7,9 @@ namespace Gizmo.Web.Components
     /// </summary>
     public enum ButtonSizes
     {
+        [Description("extra-small")]
+        ExtraSmall,
+
         [Description("small")]
         Small,
 

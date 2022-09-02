@@ -70,6 +70,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public decimal Progress { get; set; }
 
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
         #endregion
 
         #endregion

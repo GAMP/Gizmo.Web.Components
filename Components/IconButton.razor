@@ -21,10 +21,12 @@
         {
             @if (!string.IsNullOrEmpty(Icon) || SVGIcon.HasValue)
             {
-                <Icon Source="@Icon" SVGIcon="SVGIcon" Color="@IconColor" BackgroundColor="@IconBackgroundColor" Class="@ButtonIcon" Size="@(Size == ButtonSizes.Small ? IconSizes.Small :
+                <Icon Source="@Icon" SVGIcon="SVGIcon" Color="@IconColor" BackgroundColor="@IconBackgroundColor" Class="@ButtonIcon"
+                      Size="@(Size == ButtonSizes.ExtraSmall ? IconSizes.ExtraSmall :
+                      (Size == ButtonSizes.Small ? IconSizes.Small :
                       (Size == ButtonSizes.Medium ? IconSizes.Medium :
                       (Size == ButtonSizes.Large ? IconSizes.Large :
-                      IconSizes.ExtraLarge)))" />
+                      IconSizes.ExtraLarge))))" />
             }
         }
     </div>
