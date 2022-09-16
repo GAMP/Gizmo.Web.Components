@@ -227,7 +227,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string StyleValue => new StyleMapper()
-                 .If($"padding: 0 0.6rem;", () => string.IsNullOrEmpty(RightIcon) && !RightSVGIcon.HasValue && ChildContent == null)
+                 //TODO: A .If($"padding: 0 0.6rem;", () => string.IsNullOrEmpty(RightIcon) && !RightSVGIcon.HasValue && ChildContent == null)
                  .AsString();
 
         protected string ButtonIconLeft => new ClassMapper()

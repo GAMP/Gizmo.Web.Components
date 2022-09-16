@@ -24,6 +24,9 @@ namespace Gizmo.Web.Components
         private List _popupContent;
 
         private bool _isOpen;
+        private double _popupX;
+        private double _popupY;
+        private double _popupWidth;
 
         #endregion
 
@@ -101,6 +104,26 @@ namespace Gizmo.Web.Components
 
         private async Task Open()
         {
+            if (OpenDirection == PopupOpenDirections.Cursor)
+            {
+                var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                var popupContentSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
+
+                var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
+
+                _popupX = inputSize.Left;
+                _popupWidth = inputSize.Width;
+
+                if (inputSize.Bottom + popupContentSize.Height > windowSize.Height)
+                {
+                    _popupY = windowSize.Height - popupContentSize.Height;
+                }
+                else
+                {
+                    _popupY = inputSize.Bottom;
+                }
+            }
+
             int activeItemIndex = _popupContent.GetSelectedItemIndex();
             await _popupContent.SetActiveItemIndex(activeItemIndex);
 
@@ -123,6 +146,18 @@ namespace Gizmo.Web.Components
                  .If("giz-button-full-width", () => IsFullWidth)
                  .If("giz-button-shadow", () => HasShadow)
                  .If("disabled", () => IsDisabled)
+                 .AsString();
+
+        protected string PopupClassName => new ClassMapper()
+                 .Add("giz-input-select__dropdown")
+                 .If("giz-input-select__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-input-select__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .AsString();
+
+        protected string PopupStyleValue => new StyleMapper()
+                 .If($"top: {_popupY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {_popupX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"width: {_popupWidth.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion

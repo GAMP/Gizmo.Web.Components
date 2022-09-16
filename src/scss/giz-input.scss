@@ -11,6 +11,7 @@
     }
     //input label
     .giz-input-label {
+        display: block;
         font-weight: $font-weight-600;
         font-size: $font-15-theme-dark;
         line-height: $line-height-16-theme-dark;
@@ -105,7 +106,7 @@
 
         .giz-input-icon-right {
             display: flex;
-            padding-left: $spacer-12;
+            margin-left: $spacer-12;
 
             .giz-icon {
                 width: 2rem;
@@ -127,7 +128,7 @@
 
             .giz-input-icon-right {
                 display: flex;
-                padding-left: $spacer-6;
+                margin-left: $spacer-6;
 
                 .giz-icon {
                     width: 1.6rem;
@@ -159,7 +160,7 @@
 
             .giz-input-icon-right {
                 display: flex;
-                padding-left: $spacer-24;
+                margin-left: $spacer-24;
 
                 .giz-icon {
                     width: 2.4rem;

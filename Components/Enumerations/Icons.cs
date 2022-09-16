@@ -42,6 +42,8 @@
         Expand,
         EyeClose,
         EyeOpen,
+        EyeOpen_Client,
+        EyeClose_Client,
         Facebook_Client,
         File,
         Filters,

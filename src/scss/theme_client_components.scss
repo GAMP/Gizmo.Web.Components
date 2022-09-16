@@ -92,7 +92,8 @@
     [client-theme] & {
         display: inline-flex;
         background-color: unset;
-        border: 1px solid $unknown-color;
+        border: 1px solid rgba(246, 251, 253, 0.28);
+        border-radius: 8px;
         padding: unset;
 
         .giz-button {
@@ -100,7 +101,6 @@
             color: white;
             background-color: unset;
             border-radius: unset;
-            border-right: 1px solid $unknown-color;
             letter-spacing: normal;
 
             &:active {
@@ -122,7 +122,7 @@
 .giz-input-control {
     [client-theme] & {
         .giz-input-label {
-            letter-spacing: unset;
+            margin-bottom: 4px;
             @include font-m($font-weight-light);
         }
 
@@ -195,6 +195,13 @@
                 padding: 11px 12px;
 
                 input {
+                }
+
+                .giz-input-icon-right {
+                    .giz-icon {
+                        width: 24px;
+                        height: 24px;
+                    }
                 }
             }
         }
@@ -443,9 +450,25 @@
         &.disabled, &[disabled] {
         }
 
+        &--extra-small {
+            height: 24px;
+            padding: 3px;
+            border-radius: 4px;
+            //Font
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+
+            .giz-icon--small {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
         &--small {
             height: 32px;
             padding: 5px;
+            border-radius: 8px;
             @include font-m($font-weight-regular);
 
             .giz-icon--small {
@@ -457,6 +480,7 @@
         &--medium {
             height: 36px;
             padding: 7px;
+            border-radius: 8px;
             @include font-m($font-weight-regular);
 
             .giz-icon--medium {
@@ -468,6 +492,7 @@
         &--large {
             height: 40px;
             padding: 9px;
+            border-radius: 8px;
             @include font-m($font-weight-regular);
 
             .giz-icon--large {
@@ -479,6 +504,7 @@
         &--extra-large {
             height: 48px;
             padding: 11px;
+            border-radius: 8px;
             @include font-l($font-weight-regular);
 
             .giz-icon--extra-large {
@@ -997,6 +1023,60 @@
                 height: 8px;
                 background: #0078D2;
                 border-radius: 100px;
+            }
+        }
+    }
+}
+
+// == input password == //
+.giz-input-password {
+    [client-theme] & {
+        .giz-input-icon-right {
+            cursor: pointer;
+        }
+    }
+}
+
+//== giz circle progress bar ====//
+.giz-circle-progress {
+    [client-theme] & {
+        .giz-circle-progress-bar {
+            top: 0;
+        }
+
+        &.giz-circle-progress--extra-small {
+            width: 24px;
+            height: 24px;
+
+            &::after {
+                border-radius: 50%;
+                top: 0;
+                left: 0;
+                border-width: 4px;
+                width: calc(100% - 8px);
+                height: calc(100% - 8px);
+            }
+
+            & > .giz-circle-progress--left {
+
+                & > .giz-circle-progress-bar {
+                    border-top-right-radius: 12px;
+                    border-bottom-right-radius: 12px;
+                    border-width: 4px;
+                }
+            }
+
+            & > .giz-circle-progress--right {
+
+                & > .giz-circle-progress-bar {
+                    border-top-left-radius: 12px;
+                    border-bottom-left-radius: 12px;
+                    border-width: 4px;
+                }
+            }
+
+            & > .giz-circle-progress--value {
+                font-size: 0.8rem;
             }
         }
     }
