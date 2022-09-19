@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class SelectItem<TValue> : CustomDOMComponentBase, ISelectItem<TValue>
+    public partial class MultiSelectItem<TValue> : CustomDOMComponentBase, ISelectItem<TValue>
     {
         #region CONSTRUCTOR
-        public SelectItem()
+        public MultiSelectItem()
         {
         }
         #endregion
@@ -17,6 +17,7 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private TValue _value;
+        private bool _isSelected;
 
         #endregion
 
@@ -54,6 +55,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        [Parameter]
+        public bool IsDisabled { get; set; }
+
         #endregion
 
         #region EVENTS
@@ -66,6 +70,23 @@ namespace Gizmo.Web.Components
             }
 
             return Task.CompletedTask;
+        }
+
+        #endregion
+
+        #region METHODS
+
+        internal void SetSelected(bool selected)
+        {
+            if (IsDisabled)
+                return;
+
+            if (_isSelected == selected)
+                return;
+
+            _isSelected = selected;
+
+            StateHasChanged();
         }
 
         #endregion
@@ -96,5 +117,14 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-input-multi-select-item")
+                 .If("selected", () => _isSelected)
+                 .If("disabled", () => IsDisabled)
+                 .AsString();
+
+        #endregion
     }
 }

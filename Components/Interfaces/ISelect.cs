@@ -4,12 +4,12 @@ namespace Gizmo.Web.Components
 {
     public interface ISelect<TItemType>
     {
-        void Register(SelectItem<TItemType> selectItem, TItemType value);
+        void Register(ISelectItem<TItemType> selectItem, TItemType value);
 
-        void UpdateItem(SelectItem<TItemType> selectItem, TItemType value);
+        void UpdateItem(ISelectItem<TItemType> selectItem, TItemType value);
 
-        void Unregister(SelectItem<TItemType> selectItem, TItemType value);
+        void Unregister(ISelectItem<TItemType> selectItem, TItemType value);
 
-        Task SetSelectedItem(SelectItem<TItemType> selectItem);
+        Task SetSelectedItem(ISelectItem<TItemType> selectItem);
     }
 }

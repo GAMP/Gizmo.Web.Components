@@ -25,7 +25,7 @@ namespace Gizmo.Web.Components
         private string _text;
 
         private IEnumerable<TItemType> _items;
-        private Dictionary<TValue, SelectItem<TValue>> _selectItems = new Dictionary<TValue, SelectItem<TValue>>();
+        private Dictionary<TValue, ISelectItem<TValue>> _selectItems = new Dictionary<TValue, ISelectItem<TValue>>();
         private DeferredAction _deferredAction;
         private int _delay = DEFAULT_DELAY;
         private TimeSpan _delayTimeSpan;
@@ -369,7 +369,7 @@ namespace Gizmo.Web.Components
 
         #region ISelect
 
-        public void Register(SelectItem<TValue> selectItem, TValue value)
+        public void Register(ISelectItem<TValue> selectItem, TValue value)
         {
             if (value == null)
                 return;
@@ -377,13 +377,13 @@ namespace Gizmo.Web.Components
             _selectItems[value] = selectItem;
         }
 
-        public void UpdateItem(SelectItem<TValue> selectItem, TValue value)
+        public void UpdateItem(ISelectItem<TValue> selectItem, TValue value)
         {
             if (value == null)
                 return;
 
             var actualItem = _selectItems.Where(a => a.Value == selectItem).FirstOrDefault();
-            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)) && actualItem.Key != null)
+            if (!actualItem.Equals(default(KeyValuePair<TValue, ISelectItem<TValue>>)) && actualItem.Key != null)
             {
                 _selectItems.Remove(actualItem.Key);
             }
@@ -391,19 +391,19 @@ namespace Gizmo.Web.Components
             _selectItems[value] = selectItem;
         }
 
-        public void Unregister(SelectItem<TValue> selectItem, TValue value)
+        public void Unregister(ISelectItem<TValue> selectItem, TValue value)
         {
             if (value == null)
                 return;
 
             var actualItem = _selectItems.Where(a => a.Value == selectItem).FirstOrDefault();
-            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)))
+            if (!actualItem.Equals(default(KeyValuePair<TValue, ISelectItem<TValue>>)))
             {
                 _selectItems.Remove(actualItem.Key);
             }
         }
 
-        public Task SetSelectedItem(SelectItem<TValue> selectItem)
+        public Task SetSelectedItem(ISelectItem<TValue> selectItem)
         {
             _isOpen = false;
 

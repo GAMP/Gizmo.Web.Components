@@ -19,8 +19,8 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
-        private Dictionary<TValue, SelectItem<TValue>> _items = new Dictionary<TValue, SelectItem<TValue>>();
-        private SelectItem<TValue> _selectedItem;
+        private Dictionary<TValue, ISelectItem<TValue>> _items = new Dictionary<TValue, ISelectItem<TValue>>();
+        private ISelectItem<TValue> _selectedItem;
         private List _popupContent;
         private ElementReference _inputElement;
         private bool _isOpen;
@@ -270,7 +270,7 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        public void Register(SelectItem<TValue> selectItem, TValue value)
+        public void Register(ISelectItem<TValue> selectItem, TValue value)
         {
             if (value == null)
                 return;
@@ -278,13 +278,13 @@ namespace Gizmo.Web.Components
             _items[value] = selectItem;
         }
 
-        public void UpdateItem(SelectItem<TValue> selectItem, TValue value)
+        public void UpdateItem(ISelectItem<TValue> selectItem, TValue value)
         {
             if (value == null)
                 return;
 
             var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
-            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)) && actualItem.Key != null)
+            if (!actualItem.Equals(default(KeyValuePair<TValue, ISelectItem<TValue>>)) && actualItem.Key != null)
             {
                 _items.Remove(actualItem.Key);
             }
@@ -292,19 +292,19 @@ namespace Gizmo.Web.Components
             _items[value] = selectItem;
         }
 
-        public void Unregister(SelectItem<TValue> selectItem, TValue value)
+        public void Unregister(ISelectItem<TValue> selectItem, TValue value)
         {
             if (value == null)
                 return;
 
             var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
-            if (!actualItem.Equals(default(KeyValuePair<TValue, SelectItem<TValue>>)))
+            if (!actualItem.Equals(default(KeyValuePair<TValue, ISelectItem<TValue>>)))
             {
                 _items.Remove(actualItem.Key);
             }
         }
 
-        public async Task SelectItem(bool hasParsingErrors, string parsingErrors, SelectItem<TValue> selectItem)
+        public async Task SelectItem(bool hasParsingErrors, string parsingErrors, ISelectItem<TValue> selectItem)
         {
             bool refresh = false;
 
@@ -331,7 +331,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        public Task SetSelectedItem(SelectItem<TValue> selectItem)
+        public Task SetSelectedItem(ISelectItem<TValue> selectItem)
         {
             bool requiresRefresh = _isOpen;
 

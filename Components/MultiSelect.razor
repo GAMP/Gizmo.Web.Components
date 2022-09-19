@@ -1,0 +1,56 @@
+﻿@namespace Gizmo.Web.Components
+@inherits GizInputBase<List<TValue>>
+
+@typeparam TValue
+
+<CascadingValue Value="@((ISelect<TValue>)this)" IsFixed="true">
+    <div class="@Class @ClassName"
+         style="@Style"
+         id="@Id"
+         @ref="@Ref">         
+        <div class="giz-input-multi-select__content_wrapper" @ref="_inputElement">
+            <GizInput Label="@Label"
+                      ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
+                      IsDisabled="@IsDisabled"
+                      IsFullWidth="@IsFullWidth"
+                      Width="@Width"
+                      HasOutline="@HasOutline"
+                      HasShadow="@HasShadow"
+                      IsTransparent="@IsTransparent"
+                      Size="@Size"
+                      IsValid="@IsValid"
+                      ValidationMessage="@ValidationMessage"
+                      RightSVGIcon="Icons.TriangleDown"
+                      @onclick="OnClickInput">
+
+                <div class="giz-input-multi-select__content" @onclick="OnClickInput" @onclick:stopPropagation="true">
+                    @GetSelectedItems()
+                </div>
+
+                @if (CanClearValue && IsNullable() && Value != null)
+                {
+                    <div class="giz-input-icon-right">
+                        <Icon SVGIcon="@Icons.Close" @onclick="OnClickButtonClearValueHandler" />
+                    </div>
+                }
+            </GizInput>
+
+            <Popup MaximumHeight="@MaximumHeight"
+                   @bind-IsOpen="_isOpen"
+                   OpenDirection="@OpenDirection"
+                   Class="@PopupClassName"
+                   Style="@PopupStyleValue">
+                <div class="giz-input-multi-select-list" @ref="_popupContent">
+                    @ChildContent
+                </div>
+            </Popup>
+        </div>
+            
+        @if (ValidationErrorStyle == ValidationErrorStyles.Label)
+        {
+            <div class="giz-input-validation-label">
+                @ValidationMessage
+            </div>
+        }
+    </div>
+</CascadingValue>

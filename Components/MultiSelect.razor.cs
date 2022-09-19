@@ -1,0 +1,318 @@
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Web;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Gizmo.Web.Components
+{
+    public partial class MultiSelect<TValue> : GizInputBase<List<TValue>>, ISelect<TValue>
+    {
+        #region CONSTRUCTOR
+        public MultiSelect()
+        {
+        }
+        #endregion
+
+        #region FIELDS
+
+        private Dictionary<TValue, ISelectItem<TValue>> _items = new Dictionary<TValue, ISelectItem<TValue>>();
+        private List<ISelectItem<TValue>> _selectedItems = new List<ISelectItem<TValue>>();
+        private ElementReference _popupContent;
+        private ElementReference _inputElement;
+        private bool _isOpen;
+        private double _popupX;
+        private double _popupY;
+        private double _popupWidth;
+
+        #endregion
+
+        #region PROPERTIES
+
+        [Parameter]
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
+        public List<TValue> Value { get; set; }
+
+        [Parameter]
+        public string Label { get; set; }
+
+        [Parameter]
+        public string MaximumHeight { get; set; }
+
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
+        [Parameter]
+        public bool OffsetY { get; set; }
+
+        [Parameter]
+        public InputSizes Size { get; set; } = InputSizes.Normal;
+
+        [Parameter]
+        public bool HasOutline { get; set; } = true;
+
+        [Parameter]
+        public bool HasShadow { get; set; }
+
+        [Parameter]
+        public bool IsTransparent { get; set; }
+
+        [Parameter]
+        public bool IsFullWidth { get; set; }
+
+        [Parameter]
+        public string Width { get; set; } = "20rem";
+
+        [Parameter]
+        public string Placeholder { get; set; }
+
+        [Parameter]
+        public bool CanClearValue { get; set; }
+
+        public bool IsValid => _isValid;
+
+        public string ValidationMessage => _validationMessage;
+
+        #endregion
+
+        #region METHODS
+
+        internal async Task SetSelectedValue(List<TValue> value)
+        {
+            Value = value;
+            await ValueChanged.InvokeAsync(Value);
+            NotifyFieldChanged();
+        }
+
+        public string GetSelectedItems()
+        {
+            return "Test";
+        }
+
+        #endregion
+
+        #region EVENTS
+
+        protected async Task OnClickInput()
+        {
+            if (!IsDisabled)
+            {
+                if (!_isOpen)
+                    await Open();
+                else
+                    _isOpen = false;
+            }
+        }
+
+        public Task OnClickButtonClearValueHandler(MouseEventArgs args)
+        {
+            Clear();
+
+            return Task.CompletedTask;
+        }
+
+        #endregion
+
+        #region OVERRIDES
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            Clear();
+
+            if (Value != null)
+            {
+                foreach (var item in Value)
+                {
+                    if (_items.ContainsKey(item))
+                    {
+                        await SelectItem(_items[item]);
+                    }
+                }
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        public override async Task SetParametersAsync(ParameterView parameters)
+        {
+            await base.SetParametersAsync(parameters);
+
+            var valueChanged = parameters.TryGetValue<List<TValue>>(nameof(Value), out var newValue);
+            if (valueChanged)
+            {
+                Clear();
+
+                if (Value != null)
+                {
+                    foreach (var item in Value)
+                    {
+                        if (_items.ContainsKey(item))
+                        {
+                            await SelectItem(_items[item]);
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region METHODS
+
+        private void Clear()
+        {
+            foreach (var item in _selectedItems)
+            {
+                if (item is MultiSelectItem<TValue> multiSelectItem)
+                    multiSelectItem.SetSelected(false);
+            }
+
+            _selectedItems.Clear();
+        }
+
+        public void Register(ISelectItem<TValue> selectItem, TValue value)
+        {
+            if (value == null)
+                return;
+
+            _items[value] = selectItem;
+        }
+
+        public void UpdateItem(ISelectItem<TValue> selectItem, TValue value)
+        {
+            if (value == null)
+                return;
+
+            var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TValue, ISelectItem<TValue>>)) && actualItem.Key != null)
+            {
+                _items.Remove(actualItem.Key);
+            }
+
+            _items[value] = selectItem;
+        }
+
+        public void Unregister(ISelectItem<TValue> selectItem, TValue value)
+        {
+            if (value == null)
+                return;
+
+            var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
+            if (!actualItem.Equals(default(KeyValuePair<TValue, ISelectItem<TValue>>)))
+            {
+                _items.Remove(actualItem.Key);
+            }
+        }
+
+        public Task SelectItem(ISelectItem<TValue> selectItem)
+        {
+            //bool refresh = false;
+
+            if (selectItem != null)
+            {
+                if (!_selectedItems.Contains(selectItem))
+                {
+                    _selectedItems.Add(selectItem);
+
+                    if (selectItem is MultiSelectItem<TValue> multiSelectItem)
+                        multiSelectItem.SetSelected(true);
+
+                    //refresh = true;
+                }
+            }
+
+            //if (refresh)
+            //{
+            //    StateHasChanged();
+            //}
+
+            return Task.CompletedTask;
+        }
+
+        public Task SetSelectedItem(ISelectItem<TValue> selectItem)
+        {
+            bool selected = false;
+
+            if (!_selectedItems.Contains(selectItem))
+            {
+                _selectedItems.Add(selectItem);
+                selected = true;
+            }
+            else
+            {
+                _selectedItems.Remove(selectItem);
+            }
+
+            if (selectItem is MultiSelectItem<TValue> multiSelectItem)
+                multiSelectItem.SetSelected(selected);
+
+            StateHasChanged();
+
+            return SetSelectedValue(_selectedItems.Select(a => a.Value).ToList());
+        }
+
+        private async Task Open()
+        {
+            if (OpenDirection == PopupOpenDirections.Cursor)
+            {
+                var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
+                var popupContentSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent);
+
+                var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _inputElement);
+
+                _popupX = inputSize.Left;
+                _popupWidth = inputSize.Width;
+
+                if (inputSize.Bottom + popupContentSize.Height > windowSize.Height)
+                {
+                    _popupY = windowSize.Height - popupContentSize.Height;
+                }
+                else
+                {
+                    _popupY = inputSize.Bottom;
+                }
+            }
+
+            _isOpen = true;
+        }
+
+        private bool IsNullable()
+        {
+            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
+                return true;
+
+            return false;
+        }
+
+        #endregion
+
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-input-multi-select")
+                 .If("giz-input-multi-select--full-width", () => IsFullWidth)
+                 .AsString();
+
+        protected string PopupClassName => new ClassMapper()
+                 .Add("giz-input-multi-select__dropdown")
+                 .If("giz-input-multi-select__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-input-multi-select__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .AsString();
+
+        protected string PopupStyleValue => new StyleMapper()
+                 .If($"top: {_popupY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"left: {_popupX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"width: {_popupWidth.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .AsString();
+
+        #endregion
+
+    }
+}

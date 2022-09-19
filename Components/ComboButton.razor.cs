@@ -19,8 +19,8 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
-        private Dictionary<int, SelectItem<int>> _items = new Dictionary<int, SelectItem<int>>();
-        private SelectItem<int> _selectedItem;
+        private Dictionary<int, ISelectItem<int>> _items = new Dictionary<int, ISelectItem<int>>();
+        private ISelectItem<int> _selectedItem;
         private List _popupContent;
 
         private bool _isOpen;
@@ -172,12 +172,12 @@ namespace Gizmo.Web.Components
             await base.OnAfterRenderAsync(firstRender);
         }
 
-        public void Register(SelectItem<int> selectItem, int value)
+        public void Register(ISelectItem<int> selectItem, int value)
         {
             _items[value] = selectItem;
         }
 
-        public void UpdateItem(SelectItem<int> selectItem, int value)
+        public void UpdateItem(ISelectItem<int> selectItem, int value)
         {
             //var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
             //if (!actualItem.Equals(default(KeyValuePair<int, SelectItem<int>>)) && actualItem.Key != null)
@@ -188,7 +188,7 @@ namespace Gizmo.Web.Components
             //_items[value] = selectItem;
         }
 
-        public void Unregister(SelectItem<int> selectItem, int value)
+        public void Unregister(ISelectItem<int> selectItem, int value)
         {
             //var actualItem = _items.Where(a => a.Value == selectItem).FirstOrDefault();
             //if (!actualItem.Equals(default(KeyValuePair<int, SelectItem<int>>)))
@@ -197,7 +197,7 @@ namespace Gizmo.Web.Components
             //}
         }
 
-        public Task SetSelectedItem(SelectItem<int> selectItem)
+        public Task SetSelectedItem(ISelectItem<int> selectItem)
         {
             //bool requiresRefresh = _isOpen;
 

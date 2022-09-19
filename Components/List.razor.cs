@@ -132,6 +132,9 @@ namespace Gizmo.Web.Components
             if (IsDisabled)
                 return;
 
+            if (!CanSelect)
+                return;
+
             if (_selectedItem == item)
                 return;
 
@@ -151,6 +154,9 @@ namespace Gizmo.Web.Components
         internal async Task SetActiveItem(ListItem item)
         {
             if (IsDisabled)
+                return;
+
+            if (!CanSelect)
                 return;
 
             if (_activeItem == item)
