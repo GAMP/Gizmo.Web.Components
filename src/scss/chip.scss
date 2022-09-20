@@ -9,10 +9,7 @@
     background: #0B1A24;
     border-radius: 6px;
     //cursor: pointer;
-    //Font
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
+    @include font-m($font-weight-light);
 
     .giz-icon-button {
         margin-left: 10px;

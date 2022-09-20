@@ -286,6 +286,16 @@
                 }
             }
         }
+
+        .giz-input-control {
+
+            .giz-input-root {
+
+                input {
+                    @include font-m($font-weight-light);
+                }
+            }
+        }
     }
 }
 
@@ -454,10 +464,7 @@
             height: 24px;
             padding: 3px;
             border-radius: 4px;
-            //Font
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 18px;
+            @include font-s($font-weight-regular);
 
             .giz-icon--small {
                 width: 10px;
@@ -822,10 +829,7 @@
         & input {
             & + label {
                 color: #FAFAFA;
-                //Font
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 22px;
+                @include font-m($font-weight-light);
             }
 
             & + label:before {

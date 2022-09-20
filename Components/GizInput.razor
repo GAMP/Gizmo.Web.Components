@@ -13,14 +13,17 @@
         {
             <Icon Source="@LeftIcon"
                   SVGIcon="@LeftSVGIcon"
-                  @onclick="OnClickHandler" Class="@IconLeft" />
+                  @onclick="OnClickHandler"
+                  Class="@IconLeft" />
         }
         
         @ChildContent
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
-            <div class="@IconRight" @onclick="OnClickHandler">
+            <div class="@IconRight"
+                 @onclick="OnClickHandler"
+                 @onclick:stopPropagation="true">
                 <Icon Source="@RightIcon"
                       SVGIcon="@RightSVGIcon" />
             </div>

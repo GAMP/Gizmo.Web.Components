@@ -6,6 +6,7 @@
 
     &__content {
         cursor: pointer;
+        @include font-m($font-weight-light);
 
         &_wrapper {
             position: relative;
@@ -17,7 +18,7 @@
     }
 
     .giz-input-multi-select__dropdown {
-        box-shadow: $elevation-2-theme-dark;
+        //box-shadow: $elevation-2-theme-dark;
         //border: 1px solid $border-color-theme-dark;
 
         &--full-width {
@@ -49,10 +50,7 @@
                 border-radius: 4px;
                 padding: 0 12px;
                 cursor: pointer;
-                //Font
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 30px;
+                @include font-l($font-weight-light);
 
                 &.selected {
                     border: 1px solid transparent;

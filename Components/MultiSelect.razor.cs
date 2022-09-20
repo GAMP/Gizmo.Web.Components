@@ -93,7 +93,24 @@ namespace Gizmo.Web.Components
 
         public string GetSelectedItems()
         {
-            return "Test";
+            if (Value == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                List<string> result = new List<string>();
+
+                foreach (var item in _items)
+                {
+                    if (Value.Contains(item.Key))
+                    {
+                        result.Add(item.Value.Text);
+                    }
+                }
+
+                return string.Join(", ", result);
+            }
         }
 
         #endregion
@@ -135,6 +152,11 @@ namespace Gizmo.Web.Components
                         await SelectItem(_items[item]);
                     }
                 }
+            }
+
+            if (firstRender)
+            {
+                StateHasChanged();
             }
 
             await base.OnAfterRenderAsync(firstRender);
@@ -236,7 +258,7 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
-        public Task SetSelectedItem(ISelectItem<TValue> selectItem)
+        public async Task SetSelectedItem(ISelectItem<TValue> selectItem)
         {
             bool selected = false;
 
@@ -253,9 +275,9 @@ namespace Gizmo.Web.Components
             if (selectItem is MultiSelectItem<TValue> multiSelectItem)
                 multiSelectItem.SetSelected(selected);
 
-            StateHasChanged();
+            await SetSelectedValue(_selectedItems.Select(a => a.Value).ToList());
 
-            return SetSelectedValue(_selectedItems.Select(a => a.Value).ToList());
+            StateHasChanged();
         }
 
         private async Task Open()
