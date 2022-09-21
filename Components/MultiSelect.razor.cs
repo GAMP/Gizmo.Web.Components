@@ -91,7 +91,7 @@ namespace Gizmo.Web.Components
             NotifyFieldChanged();
         }
 
-        public string GetSelectedItems()
+        public string GetSelectedItemsText()
         {
             if (Value == null)
             {
@@ -128,11 +128,11 @@ namespace Gizmo.Web.Components
             }
         }
 
-        public Task OnClickButtonClearValueHandler(MouseEventArgs args)
+        public async Task OnClickButtonClearValueHandler(MouseEventArgs args)
         {
             Clear();
 
-            return Task.CompletedTask;
+            await SetSelectedValue(_selectedItems.Select(a => a.Value).ToList());
         }
 
         #endregion
@@ -235,8 +235,6 @@ namespace Gizmo.Web.Components
 
         public Task SelectItem(ISelectItem<TValue> selectItem)
         {
-            //bool refresh = false;
-
             if (selectItem != null)
             {
                 if (!_selectedItems.Contains(selectItem))
@@ -245,15 +243,8 @@ namespace Gizmo.Web.Components
 
                     if (selectItem is MultiSelectItem<TValue> multiSelectItem)
                         multiSelectItem.SetSelected(true);
-
-                    //refresh = true;
                 }
             }
-
-            //if (refresh)
-            //{
-            //    StateHasChanged();
-            //}
 
             return Task.CompletedTask;
         }
@@ -303,14 +294,6 @@ namespace Gizmo.Web.Components
             }
 
             _isOpen = true;
-        }
-
-        private bool IsNullable()
-        {
-            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
-                return true;
-
-            return false;
         }
 
         #endregion

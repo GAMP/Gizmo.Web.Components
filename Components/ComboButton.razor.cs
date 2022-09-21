@@ -52,9 +52,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Label { get; set; }
 
-        /// <summary>
-        /// Inline label of Button.
-        /// </summary>
+        [Parameter]
+        public string MaximumHeight { get; set; }
+
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
@@ -137,27 +137,20 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-button")
-                 .Add($"giz-button--{Size.ToDescriptionString()}")
-                 .Add($"{Color.ToDescriptionString()}")
-                 .If("giz-button--fill", () => Variant == ButtonVariants.Fill)
-                 .If("giz-button--outline", () => Variant == ButtonVariants.Outline)
-                 .If("giz-button--text", () => Variant == ButtonVariants.Text)
-                 .If("giz-button-full-width", () => IsFullWidth)
-                 .If("giz-button-shadow", () => HasShadow)
-                 .If("disabled", () => IsDisabled)
+                 .Add("giz-combo-button")
+                 .If("giz-combo-button--full-width", () => IsFullWidth)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-select__dropdown")
-                 .If("giz-input-select__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-input-select__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .Add("giz-combo-button__dropdown")
+                 .If("giz-combo-button__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-combo-button__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()
                  .If($"top: {_popupY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
                  .If($"left: {_popupX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If($"width: {_popupWidth.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If($"min-width: {_popupWidth.ToString(System.Globalization.CultureInfo.InvariantCulture)}px", () => OpenDirection == PopupOpenDirections.Cursor)
                  .AsString();
 
         #endregion

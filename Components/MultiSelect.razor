@@ -23,14 +23,14 @@
                       RightSVGIcon="Icons.TriangleDown"
                       @onclick="OnClickInput">
 
-                <div class="giz-input-multi-select__content" @onclick="OnClickInput" @onclick:stopPropagation="true">
-                    @GetSelectedItems()
+                <div class="giz-input-multi-select__content">
+                    @GetSelectedItemsText()
                 </div>
 
-                @if (CanClearValue && IsNullable() && Value != null)
+                @if (CanClearValue && Value != null && Value.Count > 0)
                 {
-                    <div class="giz-input-icon-right">
-                        <Icon SVGIcon="@Icons.Close" @onclick="OnClickButtonClearValueHandler" />
+                    <div class="giz-input-icon-right" @onclick="OnClickButtonClearValueHandler" @onclick:stopPropagation="true">
+                        <Icon SVGIcon="@Icons.Close" />
                     </div>
                 }
             </GizInput>

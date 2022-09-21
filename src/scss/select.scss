@@ -17,7 +17,7 @@
         display: block;
     }
 
-    .giz-input-select__dropdown {
+    &__dropdown {
         box-shadow: $elevation-2-theme-dark;
         border: 1px solid $border-color-theme-dark;
 

@@ -174,25 +174,28 @@
             }
 
             &--small {
-                height: 30px;
-                padding: 0.3rem;
+                //DESIGNER'S L
+                height: 40px;
+                padding: 9px 12px;
 
                 input {
                 }
             }
 
             &--medium {
-                height: 35px;
-                padding: 0.5rem;
+                //DESIGNER'S XL
+                height: 48px;
+                padding: 11px 12px;
 
                 input {
                 }
             }
 
             &--large {
+                //DESIGNER'S XXL
                 border-radius: 8px;
-                height: 48px;
-                padding: 11px 12px;
+                height: 52px;
+                padding: 13px 12px;
 
                 input {
                 }
@@ -919,57 +922,6 @@
     }
 }
 
-.giz-combobutton {
-    [client-theme] & {
-        .giz-popup {
-            width: 100%;
-            padding-top: 4px;
-        }
-
-        .giz-list {
-            background: #201F1F;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
-            border-radius: 8px;
-            color: #E4E6EB;
-            padding: 8px 0;
-            overflow: hidden;
-
-            .giz-list-header {
-            }
-
-            .giz-list-item {
-                padding: 9px 16px;
-                color: #E4E6EB;
-                @include font-m($font-weight-light);
-
-                &-active {
-                    background: #373839;
-                    color: #E4E6EB;
-                }
-            }
-
-            &.giz-list--clickable {
-                .giz-list-item {
-
-                    &:hover {
-                        background: #373839;
-                        color: #E4E6EB;
-                    }
-                }
-            }
-
-            &.giz-list--selectable {
-                .giz-list-item {
-                    &.giz-list-item-selected {
-                        background: #373839;
-                        color: #E4E6EB;
-                    }
-                }
-            }
-        }
-    }
-}
-
 // == text-input == //
 .giz-input-text {
     .giz-input-root {
@@ -1081,6 +1033,59 @@
 
             & > .giz-circle-progress--value {
                 font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+//== giz combo-button ====//
+.giz-combo-button {
+    [client-theme] & {
+        .giz-popup {
+            padding-top: 4px;
+        }
+
+        .giz-combo-button__dropdown {
+            border: unset;
+
+            .giz-list {
+                background: #201F1F;
+                box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+                border-radius: 8px;
+                color: #E4E6EB;
+                padding: 8px 0;
+
+                .giz-list-item {
+                    padding: 9px 16px;
+                    color: #E4E6EB;
+                    border-radius: 0;
+                    @include font-m($font-weight-light);
+
+                    &-active {
+                        background: #373839;
+                        color: #E4E6EB;
+                    }
+                }
+
+                &.giz-list--selectable {
+                    .giz-list-item {
+                        &.giz-list-item-selected {
+                            //Default Theme
+                            background: #373839;
+                            color: #E4E6EB;
+                        }
+                    }
+                }
+
+                &.giz-list--clickable {
+                    .giz-list-item {
+                        &:hover {
+                            //Default Theme
+                            background: #373839;
+                            color: #E4E6EB;
+                        }
+                    }
+                }
             }
         }
     }

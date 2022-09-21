@@ -10,12 +10,13 @@
             cursor: pointer;
             @include font-h5($font-weight-bold);
         }
+
+        margin-bottom: 16px;
     }
 
     &__body {
         display: none;
         box-sizing: border-box;
-        margin-top: 16px;
     }
 
     .giz-expansion-panel-arrow-up {

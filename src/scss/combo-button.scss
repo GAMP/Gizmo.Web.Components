@@ -1,0 +1,63 @@
+.giz-combo-button {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: 2px;
+
+    & > .left-button {
+        border-bottom-right-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+
+        .giz-button__progress {
+            &-wrapper {
+                border-bottom-right-radius: 0px !important;
+                border-top-right-radius: 0px !important;
+            }
+        }
+    }
+
+    & > .right-button {
+        border-bottom-left-radius: 0px !important;
+        border-top-left-radius: 0px !important;
+    }
+
+    &--full-width {
+        width: 100%;
+    }
+
+    &__dropdown {
+        box-shadow: $elevation-2-theme-dark;
+        border: 1px solid $border-color-theme-dark;
+
+        &--full-width {
+            width: $width-full;
+        }
+
+        &--cursor {
+            position: absolute;
+
+            & > .giz-list {
+                right: 0;
+                left: 0;
+
+                .giz-nested-list {
+                    &.giz-list--right {
+                        //left: calc(100% + 8px);
+                    }
+
+                    &.giz-list--left {
+                    }
+
+                    &.giz-list--top {
+                    }
+                }
+            }
+        }
+
+        .giz-list {
+            .giz-list-item {
+                //padding: $spacer-16 $spacer-20;
+            }
+        }
+    }
+}

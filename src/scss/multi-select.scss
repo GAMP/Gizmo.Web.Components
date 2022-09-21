@@ -6,6 +6,7 @@
 
     &__content {
         cursor: pointer;
+        flex-grow: 1;
         @include font-m($font-weight-light);
 
         &_wrapper {

@@ -25,7 +25,7 @@
 
                 @if (@_selectedItem?.ChildContent != null)
                 {
-                    <div class="giz-input-select__content" @onclick="OnClickInput" @onclick:stopPropagation="true">
+                    <div class="giz-input-select__content">
                         @_selectedItem.ChildContent
                     </div>
                 }
@@ -35,9 +35,7 @@
                         <input type="text"
                                value="@_selectedItem?.Text"
                                disabled="@IsDisabled"
-                               readonly
-                               @onclick="OnClickInput"
-                               @onclick:stopPropagation="true"
+                               readonly                               
                                @onkeydown="OnInputKeyDownHandler"
                                @onkeydown:preventDefault="true" />
                     </div>
@@ -45,8 +43,8 @@
 
                 @if (CanClearValue && IsNullable() && Value != null)
                 {
-                    <div class="giz-input-icon-right">
-                        <Icon SVGIcon="@Icons.Close" @onclick="OnClickButtonClearValueHandler" />
+                    <div class="giz-input-icon-right" @onclick="OnClickButtonClearValueHandler" @onclick:stopPropagation="true">
+                        <Icon SVGIcon="@Icons.Close" />
                     </div>
                 }
             </GizInput>

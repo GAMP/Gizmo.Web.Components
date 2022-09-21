@@ -19,6 +19,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        [Parameter]
+        public bool InitCollapsed { get; set; }
+
         #endregion
 
         protected async Task OnClickHeader()
@@ -30,10 +33,21 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-expansion-panel")
-                 //.If("giz-expansion-panel--expanded", () => Expanded)
                  .AsString();
 
         #endregion
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                if (InitCollapsed)
+                {
+                    await InvokeVoidAsync("expansionPanelToggle", Ref);
+                }
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
     }
 }
