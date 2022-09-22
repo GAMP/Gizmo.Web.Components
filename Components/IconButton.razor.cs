@@ -53,6 +53,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public Visibilities Visibility { get; set; } = Visibilities.Default;
 
+        [Parameter]
+        public bool StopPropagation { get; set; }
+
         #endregion
 
         #region EVENTS

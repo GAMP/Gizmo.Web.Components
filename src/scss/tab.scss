@@ -27,7 +27,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: $width-full;
+            width: 100%;
             height: 3px;
             background-color: $primary-color-theme-dark;
             animation-duration: .3s;
@@ -85,23 +85,23 @@
 @keyframes slideborder {
     from {
         margin-left: -22%;
-        width: $width-full;
+        width: 100%;
     }
 
     to {
         margin-left: 2%;
-        width: $width-full;
+        width: 100%;
     }
 }
 //keyframe for slide content-list text
 @keyframes slidein {
     from {
         margin-left: 100%;
-        width: $width-full;
+        width: 100%;
     }
 
     to {
         margin-left: 0%;
-        width: $width-full;
+        width: 100%;
     }
 }

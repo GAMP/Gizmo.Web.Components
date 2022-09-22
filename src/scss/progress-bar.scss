@@ -12,7 +12,7 @@
     .giz-stacked-bar {
         float: $float-left;
         width: 0;
-        height: $height-full;
+        height: 100%;
         background-color: #428bca;
     }
 }
@@ -25,7 +25,7 @@
 
     > span {
         width: 50%;
-        height: $height-full;
+        height: 100%;
         overflow: hidden;
         position: absolute;
         top: 0;
@@ -33,8 +33,8 @@
     }
 
     .giz-circle-progress-bar {
-        width: $width-full;
-        height: $height-full;
+        width: 100%;
+        height: 100%;
         border-style: solid;
         position: absolute;
         top: 0;
@@ -73,7 +73,7 @@
         border-radius: $rounded-circle-theme-dark;
         align-items: $align-center;
         justify-content: $justify-center;
-        height: $height-full;
+        height: 100%;
         font-weight: $font-weight-400;
     }
 

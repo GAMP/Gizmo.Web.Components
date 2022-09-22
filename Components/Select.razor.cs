@@ -32,6 +32,8 @@ namespace Gizmo.Web.Components
         private string _parsingErrors;
         private ValidationMessageStore _validationMessageStore;
 
+        private bool _clickHandled = false;
+
         #endregion
 
         #region PROPERTIES
@@ -105,6 +107,12 @@ namespace Gizmo.Web.Components
 
         protected async Task OnClickInput()
         {
+            if (_clickHandled)
+            {
+                _clickHandled = false;
+                return;
+            }
+
             if (!IsDisabled)
             {
                 if (!_isOpen)
@@ -193,6 +201,7 @@ namespace Gizmo.Web.Components
 
         public Task OnClickButtonClearValueHandler(MouseEventArgs args)
         {
+            _clickHandled = true;
             return SetSelectedValue(default(TValue));
         }
 

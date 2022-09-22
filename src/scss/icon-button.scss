@@ -3,7 +3,7 @@
 //button (default button primary)
 .giz-icon-button {
     font-size: $font-17-theme-dark;
-    cursor: $cursor-pointer;
+    cursor: pointer;
     border-radius: $rounded-circle-theme-dark;
     transition: color 0.3s ease;
     transition: background 0.3s ease;

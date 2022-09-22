@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -20,23 +19,38 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        /// <summary>
+        /// Get EditContext of parent EditForm.
+        /// </summary>
         [CascadingParameter]
         protected EditContext EditContext { get; set; } = default!;
 
         #region PROPERTIES
 
+        /// <summary>
+        /// Binding value expression.
+        /// </summary>
         [Parameter]
         public Expression<Func<TValue>> ValueExpression { get; set; }
 
         [Parameter]
         public EventCallback<TValue> ValueChanged { get; set; }
 
+        /// <summary>
+        /// Gets or sets if input is disabled.
+        /// </summary>
         [Parameter]
         public bool IsDisabled { get; set; }
 
+        /// <summary>
+        /// Gets or sets if input is read only.
+        /// </summary>
         [Parameter]
         public bool IsReadOnly { get; set; }
 
+        /// <summary>
+        /// Gets or sets if input is hidden.
+        /// </summary>
         [Parameter]
         public bool IsHidden { get; set; }
 
@@ -46,12 +60,14 @@ namespace Gizmo.Web.Components
 
         protected override void OnParametersSet()
         {
+            //If the ValueExpression has changed, then update filed identifier.
             if (ValueExpression != null && ValueExpression != _lastValueExpression)
             {
                 _fieldIdentifier = FieldIdentifier.Create(ValueExpression);
                 _lastValueExpression = ValueExpression;
             }
 
+            //If the EditContext has changed, then update validation handlers.
             if (EditContext != _lastEditContext)
             {
                 RemoveValidationHandlers();

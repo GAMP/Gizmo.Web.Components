@@ -106,6 +106,7 @@
         Search_Client,
         Server,
         Settings_Client,
+        ShoppingCart_Client,
         Show,
         Sleep,
         Sort,

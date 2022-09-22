@@ -43,7 +43,7 @@
 
                 @if (CanClearValue && IsNullable() && Value != null)
                 {
-                    <div class="giz-input-icon-right" @onclick="OnClickButtonClearValueHandler" @onclick:stopPropagation="true">
+                    <div class="giz-input-icon-right" @onclick="OnClickButtonClearValueHandler">
                         <Icon SVGIcon="@Icons.Close" />
                     </div>
                 }

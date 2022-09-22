@@ -29,7 +29,7 @@
 
                 @if (CanClearValue && Value != null && Value.Count > 0)
                 {
-                    <div class="giz-input-icon-right" @onclick="OnClickButtonClearValueHandler" @onclick:stopPropagation="true">
+                    <div class="giz-input-icon-right" @onclick="OnClickButtonClearValueHandler">
                         <Icon SVGIcon="@Icons.Close" />
                     </div>
                 }

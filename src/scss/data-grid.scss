@@ -9,7 +9,7 @@
 
 .giz-data-grid {
     position: relative;
-    width: $width-full;
+    width: 100%;
     border-collapse: separate;
     border-spacing: 0 0.2rem;
     color: $gray-black-theme-dark;
@@ -23,7 +23,7 @@
         color: $gray-black-theme-dark;
         font-weight: $font-weight-400;
         padding: 0 0.5rem;
-        text-align: $text-align-left;
+        text-align: left;
 
         .giz-data-grid-header {
             display: flex;
@@ -38,7 +38,7 @@
                 content: '\f0de';
                 position: absolute;
                 right: 1rem;
-                height: $height-full;
+                height: 100%;
                 display: flex;
                 align-items: $align-center;
                 justify-content: $justify-center;
@@ -53,7 +53,7 @@
                 content: '\f0dd';
                 position: absolute;
                 right: 1rem;
-                height: $height-full;
+                height: 100%;
                 display: flex;
                 align-items: $align-center;
                 justify-content: $justify-center;
@@ -102,7 +102,7 @@
         &.is-opened {
             border-color: #453855;
             background: $primary-color-theme-dark;
-            cursor: $cursor-pointer;
+            cursor: pointer;
             color: white;
 
             & > td {
@@ -121,7 +121,7 @@
 
         &.is-selected {
             background: $dark-navy-theme-dark;
-            cursor: $cursor-pointer;
+            cursor: pointer;
 
             & > td {
                 border-top: 1px solid $onyx-black-theme-dark;
@@ -224,7 +224,7 @@
 
 .giz-data-grid__details-content {
     position: relative;
-    width: $width-full;
+    width: 100%;
     border: 1px solid #292e39;
     border-radius: $rounded-theme-dark;
     display: flex;

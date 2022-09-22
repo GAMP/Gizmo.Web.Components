@@ -20,6 +20,7 @@ namespace Gizmo.Web.Components
 
         private bool _selected;
         private bool _isSelected;
+
         private bool _canExecute = true;
 
         private ICommand _previousCommand;
@@ -28,6 +29,9 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
+        /// <summary>
+        /// Get parent ButtonGroup if exists.
+        /// </summary>
         [CascadingParameter]
         protected ButtonGroup ButtonGroup { get; set; }
 
@@ -40,19 +44,19 @@ namespace Gizmo.Web.Components
         public bool IsFullWidth { get; set; }
 
         /// <summary>
-        /// Gets or sets value.
+        /// Gets or sets html element value.
         /// </summary>
         [Parameter]
         public string Value { get; set; }
 
         /// <summary>
-        /// Gets or sets label.
+        /// Gets or sets the label of the button.
         /// </summary>
         [Parameter]
         public string Label { get; set; }
 
         /// <summary>
-        /// Inline label of Button.
+        /// Gets or sets the content of the button.
         /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -91,7 +95,7 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public bool StopPropagation { get; set; } = true;
+        public bool StopPropagation { get; set; }
 
         [Parameter]
         public decimal Progress { get; set; }
@@ -188,6 +192,10 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        /// <summary>
+        /// Called by the parent ButtonGroup to set the button's selected state.
+        /// </summary>
+        /// <param name="selected">The selected state of the button.</param>
         internal void SetSelected(bool selected)
         {
             if (IsDisabled || !_canExecute)
@@ -202,6 +210,10 @@ namespace Gizmo.Web.Components
             StateHasChanged();
         }
 
+        /// <summary>
+        /// Called by the parent ButtonGroup to get the button' selected state.
+        /// </summary>
+        /// <returns></returns>
         internal bool GetSelected()
         {
             return _selected;

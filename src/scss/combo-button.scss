@@ -1,8 +1,8 @@
 .giz-combo-button {
-    position: relative;
-    display: grid;
+    display: inline-flex;
     grid-template-columns: 1fr min-content;
     gap: 2px;
+    position: relative;
 
     & > .left-button {
         border-bottom-right-radius: 0px !important;
@@ -22,7 +22,11 @@
     }
 
     &--full-width {
-        width: 100%;
+        display: flex;
+
+        & > .left-button {
+            flex-grow: 1;
+        }
     }
 
     &__dropdown {
@@ -30,7 +34,7 @@
         border: 1px solid $border-color-theme-dark;
 
         &--full-width {
-            width: $width-full;
+            min-width: 100%;
         }
 
         &--cursor {
@@ -56,7 +60,7 @@
 
         .giz-list {
             .giz-list-item {
-                //padding: $spacer-16 $spacer-20;
+                white-space: nowrap;
             }
         }
     }

@@ -65,7 +65,7 @@
         }
 
         input {
-            width: $width-full;
+            width: 100%;
             border: none;
             outline: none;
             background: inherit;
@@ -115,7 +115,7 @@
         }
         //full width
         &--full-width {
-            width: $width-full;
+            width: 100%;
         }
         //input small
         &--small {

@@ -27,6 +27,8 @@ namespace Gizmo.Web.Components
         private double _popupY;
         private double _popupWidth;
 
+        private bool _clickHandled = false;
+
         #endregion
 
         #region PROPERTIES
@@ -119,6 +121,12 @@ namespace Gizmo.Web.Components
 
         protected async Task OnClickInput()
         {
+            if (_clickHandled)
+            {
+                _clickHandled = false;
+                return;
+            }
+
             if (!IsDisabled)
             {
                 if (!_isOpen)
@@ -130,6 +138,8 @@ namespace Gizmo.Web.Components
 
         public async Task OnClickButtonClearValueHandler(MouseEventArgs args)
         {
+            _clickHandled = true;
+
             Clear();
 
             await SetSelectedValue(_selectedItems.Select(a => a.Value).ToList());

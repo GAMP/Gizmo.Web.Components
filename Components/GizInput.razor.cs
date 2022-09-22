@@ -17,15 +17,27 @@ namespace Gizmo.Web.Components
         [Parameter]
         public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
 
+        /// <summary>
+        /// Gets or sets if input is disabled.
+        /// </summary>
         [Parameter]
         public bool IsDisabled { get; set; }
 
+        /// <summary>
+        /// Gets or sets if input is read only.
+        /// </summary>
         [Parameter]
         public bool IsReadOnly { get; set; }
 
+        /// <summary>
+        /// Gets or sets if input is hidden.
+        /// </summary>
         [Parameter]
         public bool IsHidden { get; set; }
 
+        /// <summary>
+        /// Gets or sets the label of the input.
+        /// </summary>
         [Parameter]
         public string Label { get; set; }
 
@@ -41,27 +53,45 @@ namespace Gizmo.Web.Components
         [Parameter]
         public Icons? RightSVGIcon { get; set; }
 
+        /// <summary>
+        /// Gets or sets the size of the input.
+        /// </summary>
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Normal;
 
+        /// <summary>
+        /// Gets or sets if input has outline.
+        /// </summary>
         [Parameter]
         public bool HasOutline { get; set; } = true;
 
+        /// <summary>
+        /// Gets or sets if input has shadow.
+        /// </summary>
         [Parameter]
         public bool HasShadow { get; set; }
 
+        /// <summary>
+        /// Gets or sets if input is transparent.
+        /// </summary>
         [Parameter]
         public bool IsTransparent { get; set; }
 
         [Parameter]
         public bool IsFullWidth { get; set; }
 
+        /// <summary>
+        /// Gets or sets the width of the input.
+        /// </summary>
         [Parameter]
         public string Width { get; set; } = "20rem";
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
+        /// <summary>
+        /// Gets or sets the content of the input.
+        /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 

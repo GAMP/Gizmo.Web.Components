@@ -38,8 +38,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        height: $height-full;
-        width: $width-full;
+        height: 100%;
+        width: 100%;
         background: #21212199;
     }
 
@@ -98,7 +98,7 @@
             justify-content: $justify-space-between;
 
             .giz-calendar-title-slide:hover {
-                cursor: $cursor-pointer;
+                cursor: pointer;
                 font-weight: $font-weight-600;
             }
         }
