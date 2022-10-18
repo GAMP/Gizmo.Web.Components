@@ -76,6 +76,9 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
+        public bool RerenderOnStateChange { get; set; }
+
+        [Parameter]
         public DataGridVariants Variant { get; set; } = DataGridVariants.Default;
 
         /// <summary>
@@ -391,7 +394,7 @@ namespace Gizmo.Web.Components
 
         protected override bool ShouldRender()
         {
-            return _shouldRender;
+            return RerenderOnStateChange || _shouldRender;
         }
 
         public override void Dispose()

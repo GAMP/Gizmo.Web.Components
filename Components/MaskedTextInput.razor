@@ -1,0 +1,39 @@
+﻿@namespace Gizmo.Web.Components
+@inherits GizInputBase<TValue>
+
+@typeparam TValue
+
+<GizInput Class="@ClassName"
+          Style="@Style"
+          Label="@Label"
+          ValidationErrorStyle="@ValidationErrorStyle"
+          IsReadOnly="@IsReadOnly"
+          IsDisabled="@IsDisabled"
+          IsFullWidth="@IsFullWidth"
+          Width="@Width"
+          HasOutline="@HasOutline"
+          HasShadow="@HasShadow"
+          IsTransparent="@IsTransparent"
+          Size="@Size"
+          IsValid="@IsValid"
+          ValidationMessage="@ValidationMessage"
+          LeftIcon="@LeftIcon"
+          RightIcon="@RightIcon"
+          LeftSVGIcon="@LeftSVGIcon"
+          RightSVGIcon="@RightSVGIcon">
+    <div class="giz-input-wrapper">
+        <input id="@Id"
+                type="@Type"
+                value="@_text"
+                disabled="@IsDisabled"
+                placeholder="@Placeholder"
+                @onkeydown="OnInputKeyDownHandler"
+                @onkeydown:preventDefault="true"
+                @onclick="OnClickHandler"
+                @attributes="Attributes" />
+            <div class="giz-mask">
+                <div class="giz-mask-done">@_text</div>
+                <div class="giz-mask-left">@_mask_left</div>
+            </div>
+    </div>
+</GizInput>

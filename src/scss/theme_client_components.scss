@@ -293,6 +293,9 @@
         .giz-input-control {
 
             .giz-input-root {
+                .giz-input-select__content {
+                    @include font-m($font-weight-light);
+                }
 
                 input {
                     @include font-m($font-weight-light);

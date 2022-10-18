@@ -106,6 +106,7 @@
         Search_Client,
         Server,
         Settings_Client,
+        Shield_Client,
         ShoppingCart_Client,
         Show,
         Sleep,
@@ -137,6 +138,8 @@
         User_Client,
         Users,
         WaitingLines,
-        Warning_Client
+        Warning_Client,
+        WiFi_Client,
+        WorkHistory_Client
     }
 }

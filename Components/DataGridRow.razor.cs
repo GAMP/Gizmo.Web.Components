@@ -251,7 +251,7 @@ namespace Gizmo.Web.Components
 
         protected override bool ShouldRender()
         {
-            return _shouldRender;
+            return Parent?.RerenderOnStateChange == true || _shouldRender;
         }
     }
 }
