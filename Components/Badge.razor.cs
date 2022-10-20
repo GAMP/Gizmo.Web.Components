@@ -28,7 +28,7 @@ namespace Gizmo.Web.Components
         public string Color { get; set; }
 
         [Parameter]
-        public string BackgroundColor { get; set; } = "#5a67f2";
+        public string BackgroundColor { get; set; } //TODO: A = "#5a67f2";
 
         #endregion
 
@@ -38,6 +38,12 @@ namespace Gizmo.Web.Components
                  .Add("giz-badge")
                  .If("corner", () => !IsInline)
                  .If("small", () => Size == BadgeSize.Small)
+                 .AsString();
+
+        protected string BadgeStyleValue => new StyleMapper()
+                 .If($"color: {Color}", () => !string.IsNullOrEmpty(Color))
+                 .If($"background-color: {BackgroundColor}", () => !string.IsNullOrEmpty(BackgroundColor))
+                 .If($"border-color: {BackgroundColor}", () => !string.IsNullOrEmpty(BackgroundColor))
                  .AsString();
 
         #endregion

@@ -1,16 +1,28 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
     public partial class SimpleDialog : CustomDOMComponentBase
     {
+        const int DEFAULT_DELAY = 300;
+
         #region CONSTRUCTOR
         public SimpleDialog()
         {
+            _deferredAction = new DeferredAction(FadeOut);
+            _delayTimeSpan = new TimeSpan(0, 0, 0, 0, _delay);
         }
         #endregion
+
+        private bool _isOpen;
+        private bool _isFadingOut;
+
+        private DeferredAction _deferredAction;
+        private int _delay = DEFAULT_DELAY;
+        private TimeSpan _delayTimeSpan;
 
         #region PROPERTIES
 
@@ -18,7 +30,38 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool IsOpen { get; set; }
+        public bool IsOpen
+        {
+            get
+            {
+                return _isOpen;
+            }
+            set
+            {
+                if (_isOpen == value)
+                    return;
+
+                if (value)
+                {
+                    if (_isFadingOut)
+                    {
+                        _isFadingOut = false;
+                        _deferredAction.Cancel();
+                    }
+
+                    _isOpen = value;
+                    IsOpenChanged.InvokeAsync(_isOpen);
+                }
+                else
+                {
+                    if (!_isFadingOut)
+                    {
+                        _isFadingOut = true;
+                        _deferredAction.Defer(_delayTimeSpan);
+                    }
+                }
+            }
+        }
 
         [Parameter]
         public EventCallback<bool> IsOpenChanged { get; set; }
@@ -31,6 +74,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string MaximumHeight { get; set; }
+
+        [Parameter]
+        public bool Fade { get; set; } = true;
 
         #endregion
 
@@ -53,11 +99,24 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        private Task FadeOut()
+        {
+            _isOpen = false;
+            _isFadingOut = false;
+
+            StateHasChanged();
+
+            return IsOpenChanged.InvokeAsync(_isOpen);
+        }
+
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-dialog")
                  .If("giz-dialog--open", () => IsOpen)
+                 .If("fade", () => Fade)
+                 .If("fade-in", () => IsOpen && Fade && !_isFadingOut)
+                 .If("fade-out", () => IsOpen && Fade && _isFadingOut)
                  .AsString();
         protected string ContentStyleValue => new StyleMapper()
                  .If($"max-width: 100%;", () => string.IsNullOrEmpty(MaximumWidth))

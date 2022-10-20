@@ -6,7 +6,8 @@
     height: 100%;
     outline: $outline-0;
     z-index: 100;
-    display: none;
+    visibility: hidden;
+    display: flex;
     position: fixed;
     left: 0;
     top: 0;
@@ -20,6 +21,19 @@
     }
 
     &.giz-dialog--open {
-        display: flex;
+        visibility: visible;
+    }
+
+    &.fade {
+        opacity: 0;
+        transition: opacity ease-in-out 0.3s;
+    }
+
+    &.fade-in {
+        opacity: 1;
+    }
+
+    &.fade-out {
+        opacity: 0;
     }
 }
