@@ -30,6 +30,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string BackgroundColor { get; set; } //TODO: A = "#5a67f2";
 
+        [Parameter]
+        public bool IsVisible { get; set; } = true;
+
         #endregion
 
         #region CLASSMAPPERS
@@ -44,6 +47,7 @@ namespace Gizmo.Web.Components
                  .If($"color: {Color}", () => !string.IsNullOrEmpty(Color))
                  .If($"background-color: {BackgroundColor}", () => !string.IsNullOrEmpty(BackgroundColor))
                  .If($"border-color: {BackgroundColor}", () => !string.IsNullOrEmpty(BackgroundColor))
+                 .If($"visibility: hidden", () => !IsVisible)
                  .AsString();
 
         #endregion

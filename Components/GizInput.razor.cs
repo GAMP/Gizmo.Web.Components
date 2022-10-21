@@ -42,6 +42,12 @@ namespace Gizmo.Web.Components
         public string Label { get; set; }
 
         [Parameter]
+        public RenderFragment LeftContent { get; set; }
+
+        [Parameter]
+        public RenderFragment RightContent { get; set; }
+
+        [Parameter]
         public string LeftIcon { get; set; }
 
         [Parameter]

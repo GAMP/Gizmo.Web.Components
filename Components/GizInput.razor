@@ -16,7 +16,17 @@
                   Class="@IconLeft" />
         }
         
+        @if (LeftContent != null)
+        {
+            @LeftContent
+        }
+
         @ChildContent
+        
+        @if (RightContent != null)
+        {
+            @RightContent
+        }
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
