@@ -20,7 +20,7 @@ namespace Gizmo.Web.Components
                     return;
 
                 _value = value;
-                ValueChanged.InvokeAsync(_value);
+                _ = ValueChanged.InvokeAsync(_value);
             }
         }
 

@@ -50,7 +50,7 @@ namespace Gizmo.Web.Components
                     }
 
                     _isOpen = value;
-                    IsOpenChanged.InvokeAsync(_isOpen);
+                    _ = IsOpenChanged.InvokeAsync(_isOpen);
                 }
                 else
                 {
@@ -100,6 +100,13 @@ namespace Gizmo.Web.Components
         #endregion
 
         private Task FadeOut()
+        {
+            InvokeAsync(Close);
+
+            return Task.CompletedTask;
+        }
+
+        private Task Close()
         {
             _isOpen = false;
             _isFadingOut = false;

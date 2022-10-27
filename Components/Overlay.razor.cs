@@ -26,9 +26,7 @@ namespace Gizmo.Web.Components
 
         protected Task OnClickOverlayHandler(MouseEventArgs args)
         {
-            OnClick.InvokeAsync(args);
-
-            return Task.CompletedTask;
+            return OnClick.InvokeAsync(args);
         }
 
         protected Task OnContextMenuHandler(MouseEventArgs args)

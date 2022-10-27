@@ -37,8 +37,7 @@ namespace Gizmo.Web.Components
                     return;
 
                 _isChecked = value;
-
-                IsCheckedChanged.InvokeAsync(_isChecked);
+                _ = IsCheckedChanged.InvokeAsync(_isChecked);
             }
         }
 

@@ -56,7 +56,7 @@ namespace Gizmo.Web.Components
                     }
 
                     _isOpen = value;
-                    IsOpenChanged.InvokeAsync(_isOpen);
+                    _ = IsOpenChanged.InvokeAsync(_isOpen);
                 }
                 else
                 {

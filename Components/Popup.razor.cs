@@ -41,7 +41,7 @@ namespace Gizmo.Web.Components
                     return;
 
                 _isOpen = value;
-                IsOpenChanged.InvokeAsync(_isOpen);
+                _ = IsOpenChanged.InvokeAsync(_isOpen);
 
                 if (_isOpen && CanFocus)
                 {

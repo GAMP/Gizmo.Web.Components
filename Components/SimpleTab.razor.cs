@@ -44,7 +44,7 @@ namespace Gizmo.Web.Components
 
                 _selectedIndex = value;
                 UpdateSelected();
-                SelectedIndexChanged.InvokeAsync(_selectedIndex);
+                _ = SelectedIndexChanged.InvokeAsync(_selectedIndex);
             }
         }
 

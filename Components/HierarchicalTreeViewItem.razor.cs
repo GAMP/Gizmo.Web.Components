@@ -63,8 +63,7 @@ namespace Gizmo.Web.Components
                     return;
 
                 _isExpanded = value;
-
-                IsExpandedChanged.InvokeAsync(_isExpanded);
+                _ = IsExpandedChanged.InvokeAsync(_isExpanded);
             }
         }
 

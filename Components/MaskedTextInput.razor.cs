@@ -18,6 +18,10 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
+        private bool _shouldRender;
+        private string _previousMask = string.Empty;
+        private TValue _previousValue;
+
         private int _chars = 0;
         private string _mask_left = string.Empty;
 
@@ -188,46 +192,58 @@ namespace Gizmo.Web.Components
         {
             await base.SetParametersAsync(parameters);
 
-            var maskChanged = parameters.TryGetValue<TValue>(nameof(Mask), out var newMask);
-            if (maskChanged)
+            if (parameters.TryGetValue<string>(nameof(Mask), out var newMask))
             {
-                _chars = Mask.Where(a => a == '#').Count();
-                _mask_left = Mask;
+                var maskChanged = _previousMask != Mask;
+                if (maskChanged)
+                {
+                    _shouldRender = true;
+                    _previousMask = Mask;
+
+                    _chars = Mask.Where(a => a == '#').Count();
+                    _mask_left = Mask;
+                }
             }
 
-            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
-            if (valueChanged)
+            if (parameters.TryGetValue<TValue>(nameof(Value), out var newValue))
             {
-                _text = string.Empty;
-
-                var temp = _converter.SetValue(Value);
-
-                if (temp.Length > 0)
+                var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
+                if (valueChanged)
                 {
-                    int additionalCharacters = 0;
+                    _shouldRender = true;
+                    _previousValue = Value;
 
-                    for (int i = 0; i < Mask.Length; i++)
-                    {
-                        if (i > temp.Length - 1 + additionalCharacters)
-                            break;
-
-                        if (Mask[i] == '#')
-                        {
-                            _text += temp[i - additionalCharacters];
-                        }
-                        else
-                        {
-                            _text += Mask[i];
-                            additionalCharacters += 1;
-                        }
-                    }
-
-                    _mask_left = Mask.Substring(temp.Length + additionalCharacters);
-                }
-                else
-                {
                     _text = string.Empty;
-                    _mask_left = Mask;
+
+                    var temp = _converter.SetValue(Value);
+
+                    if (!string.IsNullOrEmpty(temp) && temp.Length > 0)
+                    {
+                        int additionalCharacters = 0;
+
+                        for (int i = 0; i < Mask.Length; i++)
+                        {
+                            if (i > temp.Length - 1 + additionalCharacters)
+                                break;
+
+                            if (Mask[i] == '#')
+                            {
+                                _text += temp[i - additionalCharacters];
+                            }
+                            else
+                            {
+                                _text += Mask[i];
+                                additionalCharacters += 1;
+                            }
+                        }
+
+                        _mask_left = Mask.Substring(temp.Length + additionalCharacters);
+                    }
+                    else
+                    {
+                        _text = string.Empty;
+                        _mask_left = Mask;
+                    }
                 }
             }
         }
@@ -245,10 +261,16 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
+        }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender)
             {
+                _shouldRender = false;
                 //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
             }
 
