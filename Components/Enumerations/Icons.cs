@@ -125,6 +125,7 @@
         Toolbox,
         Trash,
         Trash_Client,
+        Trash2_Client,
         TriangleDown,
         TriangleLeft,
         TriangleRight,

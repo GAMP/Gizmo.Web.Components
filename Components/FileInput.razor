@@ -2,6 +2,8 @@
 @inherits CustomDOMComponentBase
 @using Microsoft.AspNetCore.Components.Forms
 
-<div class="giz-file-input">
-    <InputFile OnChange="@OnInputFileChange" />
+<div class="@ClassName">
+    <label for="@Id" class="giz-input-file-real-input-label" />
+    <InputFile id="@Id" OnChange="@OnInputFileChange" class="giz-input-file-real-input" />
+    @ChildContent
 </div>

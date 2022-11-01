@@ -10,24 +10,40 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class MaskedTextInput<TValue> : GizInputBase<TValue>
+    public partial class MaskedDateInput<TValue> : GizInputBase<TValue>
     {
         #region CONSTRUCTOR
-        public MaskedTextInput()
+        public MaskedDateInput()
         {
+            //Set default culture and format;
+            _culture = CultureInfo.CurrentCulture;
+            _format = _culture.DateTimeFormat.ShortDatePattern;
+            _converter = new DateConverter<TValue>();
+            _converter.Culture = _culture;
+            _converter.Format = _format;
+            _separator = _culture.DateTimeFormat.DateSeparator[0];
+
+            _mask = _format;
+            _chars = _mask.Count();
+            _mask_left = _mask;
         }
         #endregion
+
+        private CultureInfo _culture;
+        private string _format;
+        private DateConverter<TValue> _converter;
+        private char _separator;
 
         private bool _shouldRender;
         private string _previousMask = string.Empty;
         private TValue _previousValue;
 
+        private string _mask;
         private int _chars = 0;
         private string _mask_left = string.Empty;
 
         #region FIELDS
 
-        private StringConverter<TValue> _converter = new StringConverter<TValue>();
         private string _text;
 
         #endregion
@@ -94,9 +110,6 @@ namespace Gizmo.Web.Components
         [Parameter]
         public CultureInfo Culture { get; set; }
 
-        [Parameter]
-        public string Mask { get; set; }
-
         public bool IsValid => _isValid && !_converter.HasGetError;
 
         public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
@@ -107,38 +120,65 @@ namespace Gizmo.Web.Components
 
         protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
-            var currentValue = _converter.SetValue(Value);
 
-            switch (args.Key)
+            if (args.Key == _separator.ToString())
             {
-                case "0":
-                case "1":
-                case "2":
-                case "3":
-                case "4":
-                case "5":
-                case "6":
-                case "7":
-                case "8":
-                case "9":
+                //move to next block
+            }
+            else
+            {
+                switch (args.Key)
+                {
+                    case "0":
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                    case "5":
+                    case "6":
+                    case "7":
+                    case "8":
+                    case "9":
 
-                    if (!string.IsNullOrEmpty(currentValue) && currentValue.Length >= _chars)
-                        return;
+                        if (!string.IsNullOrEmpty(_text) && _text.Length >= _chars)
+                            return;
 
-                    currentValue += args.Key;
-                    await SetValueAsync(_converter.GetValue(currentValue));
+                        _text += args.Key;
 
-                    break;
+                        //if (textValue == _chars)
+                        //await SetValueAsync(_converter.GetValue(currentValue));
 
-                case "Backspace":
+                        if (_mask[_text.Length] == _separator)
+                        {
+                            _text += _separator;
+                        }
 
-                    if (string.IsNullOrEmpty(currentValue) || currentValue.Length == 0)
-                        return;
+                        break;
 
-                    currentValue = currentValue.Substring(0, currentValue.Length - 1);
-                    await SetValueAsync(_converter.GetValue(currentValue));
+                    case "Backspace":
 
-                    break;
+                        if (string.IsNullOrEmpty(_text) || _text.Length == 0)
+                            return;
+
+                        _text = _text.Substring(0, _text.Length - 1);
+                        //set value to null?
+
+                        if (_mask[_text.Length] == _separator)
+                        {
+                            _text = _text.Substring(0, _text.Length - 1);
+                        }
+
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(_text) && _text.Length > 0)
+            {
+                _mask_left = _mask.Substring(_text.Length);
+            }
+            else
+            {
+                _mask_left = _mask;
             }
         }
 
@@ -190,72 +230,12 @@ namespace Gizmo.Web.Components
             return base.OnFirstAfterRenderAsync();
         }
 
-        public override async Task SetParametersAsync(ParameterView parameters)
-        {
-            await base.SetParametersAsync(parameters);
-
-            if (parameters.TryGetValue<string>(nameof(Mask), out var newMask))
-            {
-                var maskChanged = _previousMask != Mask;
-                if (maskChanged)
-                {
-                    _shouldRender = true;
-                    _previousMask = Mask;
-
-                    _chars = Mask.Where(a => a == '#').Count();
-                    _mask_left = Mask;
-                }
-            }
-
-            if (parameters.TryGetValue<TValue>(nameof(Value), out var newValue))
-            {
-                var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
-                if (valueChanged)
-                {
-                    _shouldRender = true;
-                    _previousValue = Value;
-
-                    _text = string.Empty;
-
-                    var temp = _converter.SetValue(Value);
-
-                    if (!string.IsNullOrEmpty(temp) && temp.Length > 0)
-                    {
-                        int additionalCharacters = 0;
-
-                        for (int i = 0; i < Mask.Length; i++)
-                        {
-                            if (i > temp.Length - 1 + additionalCharacters)
-                                break;
-
-                            if (Mask[i] == '#')
-                            {
-                                _text += temp[i - additionalCharacters];
-                            }
-                            else
-                            {
-                                _text += Mask[i];
-                                additionalCharacters += 1;
-                            }
-                        }
-
-                        _mask_left = Mask.Substring(temp.Length + additionalCharacters);
-                    }
-                    else
-                    {
-                        _text = string.Empty;
-                        _mask_left = Mask;
-                    }
-                }
-            }
-        }
-
         #endregion
 
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-masked-text-input")
+                 .Add("giz-masked-date-input")
                  .Add("giz-input-text")
                  .If("giz-input-text--full-width", () => IsFullWidth)
                  .Add(Class)
@@ -263,10 +243,10 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        protected override bool ShouldRender()
-        {
-            return _shouldRender;
-        }
+        //protected override bool ShouldRender()
+        //{
+        //    return _shouldRender;
+        //}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

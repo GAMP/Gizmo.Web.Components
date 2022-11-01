@@ -12,7 +12,20 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
+        public bool IsFullWidth { get; set; }
+
+        [Parameter]
         public EventCallback<InputFileChangeEventArgs> OnChange { get; set; }
+
+        #endregion
+
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-input-file")
+                 .If("giz-input-file--full-width", () => IsFullWidth)
+                 .Add(Class)
+                 .AsString();
 
         #endregion
 

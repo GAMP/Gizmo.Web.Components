@@ -21,10 +21,11 @@
     <div class="giz-button__content_wrapper" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "" : "justify-content: center")">
         @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
         {
-            <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" Size="@(Size == ButtonSizes.Small ? IconSizes.Small : 
+            <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" Size="@(Size == ButtonSizes.ExtraSmall ? IconSizes.ExtraSmall : 
+                  (Size == ButtonSizes.Small ? IconSizes.Small :
                   (Size == ButtonSizes.Medium ? IconSizes.Medium :
                   (Size == ButtonSizes.Large ? IconSizes.Large :
-                  IconSizes.ExtraLarge)))" />
+                  IconSizes.ExtraLarge))))" />
         }
 
         <div class="giz-button__content" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
@@ -33,10 +34,11 @@
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
-            <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" Size="@(Size == ButtonSizes.Small ? IconSizes.Small : 
+            <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" Size="@(Size == ButtonSizes.ExtraSmall ? IconSizes.ExtraSmall : 
+                  (Size == ButtonSizes.Small ? IconSizes.Small :
                   (Size == ButtonSizes.Medium ? IconSizes.Medium :
                   (Size == ButtonSizes.Large ? IconSizes.Large :
-                  IconSizes.ExtraLarge)))" />
+                  IconSizes.ExtraLarge))))" />
         }
     </div>
 
