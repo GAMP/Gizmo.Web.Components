@@ -39,8 +39,52 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
+        #region IGizInput
+
+        [Parameter]
+        public string Label { get; set; }
+
+        [Parameter]
+        public string Placeholder { get; set; }
+
+        [Parameter]
+        public string LeftIcon { get; set; }
+
+        [Parameter]
+        public string RightIcon { get; set; }
+
+        [Parameter]
+        public Icons? LeftSVGIcon { get; set; }
+
+        [Parameter]
+        public Icons? RightSVGIcon { get; set; }
+
+        [Parameter]
+        public InputSizes Size { get; set; } = InputSizes.Medium;
+
+        [Parameter]
+        public bool HasOutline { get; set; } = true;
+
+        [Parameter]
+        public bool HasShadow { get; set; }
+
+        [Parameter]
+        public bool IsTransparent { get; set; }
+
+        [Parameter]
+        public bool IsFullWidth { get; set; }
+
+        [Parameter]
+        public string Width { get; set; } = "20rem";
+
         [Parameter]
         public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        public bool IsValid => _isValid;
+
+        public string ValidationMessage => _validationMessage;
+
+        #endregion
 
         [Parameter]
         public IEnumerable<TItemType> ItemSource
@@ -103,34 +147,10 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public string Label { get; set; }
-
-        [Parameter]
         public string MaximumHeight { get; set; }
 
         [Parameter]
         public bool OffsetY { get; set; }
-
-        [Parameter]
-        public InputSizes Size { get; set; } = InputSizes.Normal;
-
-        [Parameter]
-        public bool HasOutline { get; set; } = true;
-
-        [Parameter]
-        public bool HasShadow { get; set; }
-
-        [Parameter]
-        public bool IsTransparent { get; set; }
-
-        [Parameter]
-        public bool IsFullWidth { get; set; }
-
-        [Parameter]
-        public string Width { get; set; } = "20rem";
-
-        [Parameter]
-        public string Placeholder { get; set; }
 
         [Parameter]
         public int MinimumCharacters { get; set; } = 3;
@@ -236,8 +256,11 @@ namespace Gizmo.Web.Components
             if (IsDisabled)
                 return;
 
-            if (args.Key == null || args.Key == "Tab")
+            if (args.Key == null)
                 return;
+
+            if (args.Key == "Tab")
+                await InvokeVoidAsync("focusNext", _inputElement);
 
             if (!_isOpen)
                 await Open();

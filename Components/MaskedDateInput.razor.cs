@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class MaskedDateInput<TValue> : GizInputBase<TValue>
+    public partial class MaskedDateInput<TValue> : MaskedInputBase<TValue>
     {
         #region CONSTRUCTOR
         public MaskedDateInput()
@@ -21,17 +21,37 @@ namespace Gizmo.Web.Components
             _converter = new DateConverter<TValue>();
             _converter.Culture = _culture;
             _converter.Format = _format;
+
+            _tempConverter = new DateConverter<string>();
+            _tempConverter.Culture = _culture;
+            _tempConverter.Format = _format;
+
             _separator = _culture.DateTimeFormat.DateSeparator[0];
 
-            _mask = _format;
+            var expandedFormat = _format;
+
+            if (!expandedFormat.Contains("dd"))
+            {
+                expandedFormat = expandedFormat.Replace("d", "dd");
+            }
+
+            if (!expandedFormat.Contains("MM"))
+            {
+                expandedFormat = expandedFormat.Replace("M", "MM");
+            }
+
+            _mask = expandedFormat;
             _chars = _mask.Count();
             _mask_left = _mask;
         }
         #endregion
 
+        #region FIELDS
+
         private CultureInfo _culture;
         private string _format;
         private DateConverter<TValue> _converter;
+        private DateConverter<string> _tempConverter;
         private char _separator;
 
         private bool _shouldRender;
@@ -40,90 +60,37 @@ namespace Gizmo.Web.Components
 
         private string _mask;
         private int _chars = 0;
-        private string _mask_left = string.Empty;
 
-        #region FIELDS
-
-        private string _text;
+        private bool _hasParsingErrors;
+        private string _parsingErrors;
+        private ValidationMessageStore _validationMessageStore;
 
         #endregion
 
         #region PROPERTIES
 
-        [Parameter]
-        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+        public new bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
 
-        [Parameter]
-        public string Label { get; set; }
-
-        [Parameter]
-        public string LeftIcon { get; set; }
-
-        [Parameter]
-        public string RightIcon { get; set; }
-
-        [Parameter]
-        public Icons? LeftSVGIcon { get; set; }
-
-        [Parameter]
-        public Icons? RightSVGIcon { get; set; }
-
-        [Parameter]
-        public InputSizes Size { get; set; } = InputSizes.Normal;
-
-        [Parameter]
-        public bool HasOutline { get; set; } = true;
-
-        [Parameter]
-        public bool HasShadow { get; set; }
-
-        [Parameter]
-        public bool IsTransparent { get; set; }
-
-        [Parameter]
-        public bool IsFullWidth { get; set; }
-
-        [Parameter]
-        public string Width { get; set; } = "20rem";
-
-        [Parameter]
-        public TValue Value { get; set; }
-
-        [Parameter]
-        public string Placeholder { get; set; }
-
-        [Parameter]
-        public string Type { get; set; } = "text";
-
-        [Parameter]
-        public EventCallback<MouseEventArgs> OnClick { get; set; }
-
-        [Parameter]
-        public int Min { get; set; }
-
-        [Parameter]
-        public int Max { get; set; }
-
-        [Parameter]
-        public int MaxLength { get; set; }
-
-        [Parameter]
-        public CultureInfo Culture { get; set; }
-
-        public bool IsValid => _isValid && !_converter.HasGetError;
-
-        public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
+        public new string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
 
         #endregion
 
         #region EVENTS
 
-        protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
+        protected new async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
+            if (IsDisabled)
+                return;
+
+            if (args.Key == null)
+                return;
+
+            if (args.Key == "Tab")
+                await InvokeVoidAsync("focusNext", _inputElement);
 
             if (args.Key == _separator.ToString())
             {
-                //move to next block
+                //TODO: A move to next block
             }
             else
             {
@@ -145,12 +112,25 @@ namespace Gizmo.Web.Components
 
                         _text += args.Key;
 
-                        //if (textValue == _chars)
-                        //await SetValueAsync(_converter.GetValue(currentValue));
-
-                        if (_mask[_text.Length] == _separator)
+                        if (_text.Length == _chars)
                         {
-                            _text += _separator;
+                            DateTime? temp = _tempConverter.SetValue(_text);
+                            if (!_tempConverter.HasSetError)
+                            {
+                                await SetValueAsync(_converter.GetValue(temp));
+                            }
+                            else
+                            {
+                                _hasParsingErrors = true;
+                                _parsingErrors = "The field should be a date.";
+                            }
+                        }
+                        else
+                        {
+                            if (_mask[_text.Length] == _separator)
+                            {
+                                _text += _separator;
+                            }
                         }
 
                         break;
@@ -182,52 +162,56 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected Task OnClickHandler(MouseEventArgs args)
+        protected async Task OnMouseUpHandler(MouseEventArgs args)
         {
-            return OnClick.InvokeAsync(args);
+            await InvokeVoidAsync("dropSelection", _inputElement);
+        }
+
+        protected async Task OnFocusHanlder()
+        {
+            await InvokeVoidAsync("dropSelection", _inputElement);
         }
 
         #endregion
 
         #region METHODS
 
-        protected async Task SetValueAsync(TValue value)
+        protected new async Task SetValueAsync(TValue value)
         {
-            Value = value;
-            await ValueChanged.InvokeAsync(Value);
-            NotifyFieldChanged();
+            _hasParsingErrors = false;
+            _parsingErrors = String.Empty;
+        
+            if (!EqualityComparer<TValue>.Default.Equals(Value, value))
+            {
+                Value = value;
+
+                await ValueChanged.InvokeAsync(Value);
+                NotifyFieldChanged();
+            }
         }
 
         #endregion
 
-        #region OVERRIDE
+        #region OVERRIDES
 
-        protected override void OnInitialized()
+        protected override void OnParametersSet()
         {
-            if (Culture != null)
+            if (EditContext != _lastEditContext && EditContext != null)
             {
-                _converter.Culture = Culture;
+                _validationMessageStore = new ValidationMessageStore(EditContext);
             }
 
-            base.OnInitialized();
+            base.OnParametersSet();
         }
 
-        protected override Task OnFirstAfterRenderAsync()
+        public override void Validate()
         {
-            var attributes = new Dictionary<string, object>();
+            _validationMessageStore.Clear();
 
-            if (Min > 0)
-                attributes["min"] = Min;
-
-            if (Max > 0)
-                attributes["max"] = Max;
-
-            if (MaxLength > 0)
-                attributes["maxlength"] = MaxLength;
-
-            Attributes = attributes;
-
-            return base.OnFirstAfterRenderAsync();
+            if (_hasParsingErrors)
+            {
+                _validationMessageStore.Add(_fieldIdentifier, _parsingErrors);
+            }
         }
 
         #endregion
@@ -243,20 +227,5 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        //protected override bool ShouldRender()
-        //{
-        //    return _shouldRender;
-        //}
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                _shouldRender = false;
-                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
     }
 }

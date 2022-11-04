@@ -162,3 +162,30 @@ function expansionPanelToggle(element) {
         }
     }
 }
+//
+function dropSelection(element) {
+    if (element) {
+        element.setSelectionRange(100, 100);
+    }
+}
+//
+function getInputSelectionRange(element) {
+    if (element) {
+        return {
+            selectionStart: element.selectionStart,
+            selectionEnd: element.selectionEnd
+        };
+    }
+}
+//
+function focusNext(element) {
+    if (element) {
+        var inputs = document.querySelectorAll('input');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i] == element) {
+                //TODO: A
+                inputs[i + 1].focus();
+            }
+        }
+    }
+}

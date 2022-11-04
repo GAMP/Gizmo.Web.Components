@@ -1,12 +1,19 @@
-﻿namespace Gizmo.Web.Components
+﻿using System.ComponentModel;
+
+namespace Gizmo.Web.Components
 {
     /// <summary>
     /// Input sizes.
     /// </summary>
     public enum InputSizes
     {
+        [Description("small")]
         Small = 0,
-        Normal = 1,
+
+        [Description("medium")]
+        Medium = 1,
+
+        [Description("large")]
         Large = 2
     }
 }

@@ -55,7 +55,7 @@ namespace Gizmo.Web.Components
         public bool OffsetY { get; set; }
 
         [Parameter]
-        public InputSizes Size { get; set; } = InputSizes.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Medium;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;

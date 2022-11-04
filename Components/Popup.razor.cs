@@ -144,7 +144,7 @@ namespace Gizmo.Web.Components
                  .Add("giz-popup")
                  .Add($"giz-popup--{OpenDirection.ToDescriptionString()}")
                  .If("giz-popup--offset", () => OffsetY)
-                 .If("giz-popup-open", () => IsOpen)
+                 .If("giz-popup--open", () => IsOpen)
                  .AsString();
 
         protected string StyleValue => new StyleMapper()

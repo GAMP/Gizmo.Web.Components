@@ -38,29 +38,28 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        [Parameter]
-        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
-
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
-
-        [Parameter]
-        public TValue Value { get; set; }
+        #region IGizInput
 
         [Parameter]
         public string Label { get; set; }
 
         [Parameter]
-        public string MaximumHeight { get; set; }
+        public string Placeholder { get; set; }
 
         [Parameter]
-        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+        public string LeftIcon { get; set; }
 
         [Parameter]
-        public bool OffsetY { get; set; }
+        public string RightIcon { get; set; }
 
         [Parameter]
-        public InputSizes Size { get; set; } = InputSizes.Normal;
+        public Icons? LeftSVGIcon { get; set; }
+
+        [Parameter]
+        public Icons? RightSVGIcon { get; set; }
+
+        [Parameter]
+        public InputSizes Size { get; set; } = InputSizes.Medium;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -78,14 +77,31 @@ namespace Gizmo.Web.Components
         public string Width { get; set; } = "20rem";
 
         [Parameter]
-        public string Placeholder { get; set; }
-
-        [Parameter]
-        public bool CanClearValue { get; set; }
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
 
         public bool IsValid => !_hasParsingErrors && _isValid;
 
         public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _validationMessage;
+
+        #endregion
+
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
+        public TValue Value { get; set; }
+
+        [Parameter]
+        public string MaximumHeight { get; set; }
+
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
+        [Parameter]
+        public bool OffsetY { get; set; }
+
+        [Parameter]
+        public bool CanClearValue { get; set; }
 
         #endregion
 
@@ -127,8 +143,11 @@ namespace Gizmo.Web.Components
             if (IsDisabled)
                 return;
 
-            if (args.Key == null || args.Key == "Tab")
+            if (args.Key == null)
                 return;
+
+            if (args.Key == "Tab")
+                await InvokeVoidAsync("focusNext", _inputElement);
 
             if (!_isOpen)
                 await Open();

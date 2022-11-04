@@ -4,6 +4,7 @@
     input {
         font-family: $font-family-text;
         @include font-m($font-weight-light);
+        user-select: none;
     }
 
     .giz-mask {

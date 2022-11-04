@@ -27,17 +27,13 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        [Parameter]
-        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+        #region IGizInput
 
         [Parameter]
         public string Label { get; set; }
 
         [Parameter]
-        public RenderFragment LeftContent { get; set; }
-
-        [Parameter]
-        public RenderFragment RightContent { get; set; }
+        public string Placeholder { get; set; }
 
         [Parameter]
         public string LeftIcon { get; set; }
@@ -52,7 +48,7 @@ namespace Gizmo.Web.Components
         public Icons? RightSVGIcon { get; set; }
 
         [Parameter]
-        public InputSizes Size { get; set; } = InputSizes.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Medium;
 
         [Parameter]
         public bool HasOutline { get; set; } = true;
@@ -70,10 +66,22 @@ namespace Gizmo.Web.Components
         public string Width { get; set; } = "20rem";
 
         [Parameter]
-        public TValue Value { get; set; }
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        public bool IsValid => _isValid && !_converter.HasGetError;
+
+        public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
+
+        #endregion
 
         [Parameter]
-        public string Placeholder { get; set; }
+        public RenderFragment LeftContent { get; set; }
+
+        [Parameter]
+        public RenderFragment RightContent { get; set; }
+
+        [Parameter]
+        public TValue Value { get; set; }
 
         [Parameter]
         public string Type { get; set; } = "text";
@@ -98,10 +106,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public CultureInfo Culture { get; set; }
-
-        public bool IsValid => _isValid && !_converter.HasGetError;
-
-        public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
 
         #endregion
 
@@ -159,7 +163,7 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        #region OVERRIDE
+        #region OVERRIDES
 
         protected override void OnInitialized()
         {

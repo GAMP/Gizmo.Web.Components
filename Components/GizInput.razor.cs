@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Gizmo.Web.Components.Extensions;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
@@ -63,7 +64,7 @@ namespace Gizmo.Web.Components
         /// Gets or sets the size of the input.
         /// </summary>
         [Parameter]
-        public InputSizes Size { get; set; } = InputSizes.Normal;
+        public InputSizes Size { get; set; } = InputSizes.Medium;
 
         /// <summary>
         /// Gets or sets if input has outline.
@@ -141,14 +142,12 @@ namespace Gizmo.Web.Components
 
         protected string FieldClassName => new ClassMapper()
                  .Add("giz-input-root")
+                 .Add($"giz-input-root--{Size.ToDescriptionString()}")
                  .If("giz-input-root--outline", () => HasOutline)
                  .If("giz-input-root--shadow", () => HasShadow)
                  .If("giz-input-root--filled", () => !IsTransparent)
                  .If("giz-input-root--transparent", () => IsTransparent)
                  .If("giz-input-root--full-width", () => IsFullWidth)
-                 .If("giz-input-root--small", () => Size == InputSizes.Small)
-                 .If("giz-input-root--medium", () => Size == InputSizes.Normal)
-                 .If("giz-input-root--large", () => Size == InputSizes.Large)
                  .AsString();
 
         protected string FieldStyleValue => new StyleMapper()

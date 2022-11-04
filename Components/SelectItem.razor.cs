@@ -70,7 +70,7 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        #region OVERRIDE
+        #region OVERRIDES
 
         protected override void OnInitialized()
         {
