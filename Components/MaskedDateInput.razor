@@ -30,13 +30,14 @@
                placeholder="@Placeholder"
                @onkeydown="OnInputKeyDownHandler"
                @onkeydown:preventDefault="true"
-               @onclick="OnClickHandler"
-               @onmouseup="OnMouseUpHandler"
-               @onfocus="OnFocusHanlder"
+               @onpaste="OnPasteHandler"
+               @onpaste:preventDefault="true"
+               @onmousedown="OnMouseDownHandler"
+               @onmousedown:preventDefault="true"
                @attributes="Attributes" />
-            <div class="giz-mask">
-                <div class="giz-mask-done">@_text</div>
-                <div class="giz-mask-left">@_mask_left</div>
-            </div>
+        <div class="giz-mask">
+            <div class="giz-mask-done">@_text</div>
+            <div class="giz-mask-left">@_mask_left</div>
+        </div>
     </div>
 </GizInput>

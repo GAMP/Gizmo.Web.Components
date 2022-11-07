@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class MaskedTextInput<TValue> : MaskedInputBase<TValue>
+    public partial class MaskedTextInput<TValue> : MaskedNumericInputBase<TValue>
     {
         #region CONSTRUCTOR
         public MaskedTextInput()

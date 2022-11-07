@@ -1,5 +1,5 @@
 ﻿@namespace Gizmo.Web.Components
-@inherits MaskedInputBase<TValue>
+@inherits MaskedNumericInputBase<TValue>
 
 @typeparam TValue
 
@@ -23,13 +23,17 @@
           RightSVGIcon="@RightSVGIcon">
     <div class="giz-input-wrapper">
         <input id="@Id"
+               @ref="_inputElement"
                type="text"
                value="@_text"
                disabled="@IsDisabled"
                placeholder="@Placeholder"
                @onkeydown="OnInputKeyDownHandler"
                @onkeydown:preventDefault="true"
-               @onclick="OnClickHandler"
+               @onpaste="OnPasteHandler"
+               @onpaste:preventDefault="true"
+               @onmousedown="OnMouseDownHandler"
+               @onmousedown:preventDefault="true"
                @attributes="Attributes" />
             <div class="giz-mask">
                 <div class="giz-mask-done">@_text</div>

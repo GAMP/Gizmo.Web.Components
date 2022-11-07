@@ -54,9 +54,7 @@ namespace Gizmo.Web.Components
         private DateConverter<string> _tempConverter;
         private char _separator;
 
-        private bool _shouldRender;
         private string _previousMask = string.Empty;
-        private TValue _previousValue;
 
         private string _mask;
         private int _chars = 0;
@@ -69,15 +67,15 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        public new bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
+        public override bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
 
-        public new string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
+        public override string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
 
         #endregion
 
         #region EVENTS
 
-        protected new async Task OnInputKeyDownHandler(KeyboardEventArgs args)
+        protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
             if (IsDisabled)
                 return;
@@ -91,6 +89,52 @@ namespace Gizmo.Web.Components
             if (args.Key == _separator.ToString())
             {
                 //TODO: A move to next block
+                var lastSeparator = _text.LastIndexOf(_separator) + 1;
+                var nextSeparator = _mask.IndexOf(_separator, lastSeparator);
+
+                if (nextSeparator != -1)
+                {
+                    if (_text.Length != nextSeparator)
+                    {
+                        var len = nextSeparator - lastSeparator;
+                        var blockValue = _text.Substring(lastSeparator);
+                        blockValue = blockValue.PadLeft(len, '0');
+
+                        var previousBlocks = string.Empty;
+                        if (lastSeparator > 0)
+                        {
+                            previousBlocks = _text.Substring(0, lastSeparator - 1);
+                        }
+
+                        if (previousBlocks.Length > 0)
+                        {
+                            blockValue = _separator + blockValue;
+                        }
+
+                        _text = previousBlocks + blockValue;
+
+                        if (_text.Length == _chars)
+                        {
+                            DateTime? temp = _tempConverter.SetValue(_text);
+                            if (!_tempConverter.HasSetError)
+                            {
+                                await SetValueAsync(_converter.GetValue(temp));
+                            }
+                            else
+                            {
+                                _hasParsingErrors = true;
+                                _parsingErrors = "The field should be a date.";
+                            }
+                        }
+                        else
+                        {
+                            if (_mask[_text.Length] == _separator)
+                            {
+                                _text += _separator;
+                            }
+                        }
+                    }
+                }
             }
             else
             {
@@ -162,21 +206,11 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected async Task OnMouseUpHandler(MouseEventArgs args)
-        {
-            await InvokeVoidAsync("dropSelection", _inputElement);
-        }
-
-        protected async Task OnFocusHanlder()
-        {
-            await InvokeVoidAsync("dropSelection", _inputElement);
-        }
-
         #endregion
 
         #region METHODS
 
-        protected new async Task SetValueAsync(TValue value)
+        protected async Task SetValueAsync(TValue value)
         {
             _hasParsingErrors = false;
             _parsingErrors = String.Empty;

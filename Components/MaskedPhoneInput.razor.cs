@@ -15,7 +15,7 @@ namespace Gizmo.Web.Components
         public string PhonePrefix { get; set; }
     }
 
-    public partial class MaskedPhoneInput<TValue> : MaskedInputBase<TValue>
+    public partial class MaskedPhoneInput<TValue> : MaskedNumericInputBase<TValue>
     {
         #region CONSTRUCTOR
         public MaskedPhoneInput()
@@ -87,16 +87,6 @@ namespace Gizmo.Web.Components
         {
             SelectedCountry = Countries.Where(a => a.Id == id).FirstOrDefault();
             _isOpen = false;
-        }
-
-        protected async Task OnMouseUpHandler(MouseEventArgs args)
-        {
-            await InvokeVoidAsync("dropSelection", _inputElement);
-        }
-
-        protected async Task OnFocusHanlder()
-        {
-            await InvokeVoidAsync("dropSelection", _inputElement);
         }
 
         #endregion
