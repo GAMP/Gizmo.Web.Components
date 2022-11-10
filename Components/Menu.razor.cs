@@ -16,6 +16,7 @@ namespace Gizmo.Web.Components
 
         private List _popupContent;
         private bool _isOpen;
+
         private bool _shouldRender;
 
         #endregion

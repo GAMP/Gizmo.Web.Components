@@ -195,13 +195,16 @@ namespace Gizmo.Web.Components
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            await base.SetParametersAsync(parameters);
-
-            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
-            if (valueChanged)
+            if (parameters.TryGetValue<TValue>(nameof(Value), out var newValue))
             {
-                _text = _converter.SetValue(Value);
+                var valueChanged = !EqualityComparer<TValue>.Default.Equals(Value, newValue);
+                if (valueChanged)
+                {
+                    _text = _converter.SetValue(Value);
+                }
             }
+
+            await base.SetParametersAsync(parameters);
         }
 
         #endregion

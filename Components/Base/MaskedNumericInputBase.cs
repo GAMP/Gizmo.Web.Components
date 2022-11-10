@@ -11,8 +11,6 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private int _chars = 0;
-        private string _previousMask = string.Empty;
-        private TValue _previousValue;
 
         private StringConverter<TValue> _converter = new StringConverter<TValue>();
 
@@ -110,15 +108,12 @@ namespace Gizmo.Web.Components
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            await base.SetParametersAsync(parameters);
-
             if (parameters.TryGetValue<string>(nameof(Mask), out var newMask))
             {
-                var maskChanged = _previousMask != Mask;
+                var maskChanged = Mask != newMask;
                 if (maskChanged)
                 {
                     _shouldRender = true;
-                    _previousMask = Mask;
 
                     _chars = Mask.Where(a => a == '#').Count();
                     _mask_left = Mask;
@@ -127,11 +122,10 @@ namespace Gizmo.Web.Components
 
             if (parameters.TryGetValue<TValue>(nameof(Value), out var newValue))
             {
-                var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
+                var valueChanged = !EqualityComparer<TValue>.Default.Equals(Value, newValue);
                 if (valueChanged)
                 {
                     _shouldRender = true;
-                    _previousValue = Value;
 
                     _text = string.Empty;
 
@@ -166,6 +160,8 @@ namespace Gizmo.Web.Components
                     }
                 }
             }
+
+            await base.SetParametersAsync(parameters);
         }
 
         #endregion

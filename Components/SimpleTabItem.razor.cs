@@ -8,6 +8,7 @@ namespace Gizmo.Web.Components
     public partial class SimpleTabItem : CustomDOMComponentBase
     {
         private bool _isSelected;
+
         private bool _shouldRender;
 
         [CascadingParameter]
@@ -86,6 +87,7 @@ namespace Gizmo.Web.Components
         {
             if (!firstRender)
             {
+                _shouldRender = false;
                 //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
             }
 

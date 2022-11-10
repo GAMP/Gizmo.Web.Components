@@ -174,24 +174,27 @@ namespace Gizmo.Web.Components
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            await base.SetParametersAsync(parameters);
-
-            var valueChanged = parameters.TryGetValue<List<TValue>>(nameof(Value), out var newValue);
-            if (valueChanged)
+            if (parameters.TryGetValue<List<TValue>>(nameof(Value), out var newValue))
             {
-                Clear();
-
-                if (Value != null)
+                var valueChanged = !EqualityComparer<List<TValue>>.Default.Equals(Value, newValue);
+                if (valueChanged)
                 {
-                    foreach (var item in Value)
+                    Clear();
+
+                    if (newValue != null)
                     {
-                        if (_items.ContainsKey(item))
+                        foreach (var item in newValue)
                         {
-                            await SelectItem(_items[item]);
+                            if (_items.ContainsKey(item))
+                            {
+                                await SelectItem(_items[item]);
+                            }
                         }
                     }
                 }
             }
+
+            await base.SetParametersAsync(parameters);
         }
 
         #endregion

@@ -234,23 +234,26 @@ namespace Gizmo.Web.Components
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            await base.SetParametersAsync(parameters);
-
-            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
-            if (valueChanged)
+            if (parameters.TryGetValue<TValue>(nameof(Value), out var newValue))
             {
-                //Update the component's text.
-                DateTime? value = _converter.SetValue(Value);
+                var valueChanged = !EqualityComparer<TValue>.Default.Equals(Value, newValue);
+                if (valueChanged)
+                {
+                    //Update the component's text.
+                    DateTime? value = _converter.SetValue(newValue);
 
-                if (value != null)
-                {
-                    _text = value.Value.ToString(_format, _culture);
-                }
-                else
-                {
-                    _text = string.Empty;
+                    if (value != null)
+                    {
+                        _text = value.Value.ToString(_format, _culture);
+                    }
+                    else
+                    {
+                        _text = string.Empty;
+                    }
                 }
             }
+
+            await base.SetParametersAsync(parameters);
         }
 
         public override void Validate()
