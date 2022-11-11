@@ -200,7 +200,7 @@ namespace Gizmo.Web.Components
                 var valueChanged = !EqualityComparer<TValue>.Default.Equals(Value, newValue);
                 if (valueChanged)
                 {
-                    _text = _converter.SetValue(Value);
+                    _text = _converter.SetValue(newValue);
                 }
             }
 

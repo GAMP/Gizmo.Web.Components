@@ -171,7 +171,7 @@ namespace Gizmo.Web.Components
         protected async Task SetValueAsync(TValue value)
         {
             _hasParsingErrors = false;
-            _parsingErrors = String.Empty;
+            _parsingErrors = string.Empty;
 
             if (!EqualityComparer<TValue>.Default.Equals(Value, value))
             {

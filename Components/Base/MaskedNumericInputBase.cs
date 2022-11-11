@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,24 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private int _chars = 0;
+        private string _previousMask = string.Empty;
+        private TValue _previousValue;
 
         private StringConverter<TValue> _converter = new StringConverter<TValue>();
+
+        private bool _hasParsingErrors;
+        private string _parsingErrors;
+        private ValidationMessageStore _validationMessageStore;
 
         #endregion
 
         #region PROPERTIES
 
         #region IGizInput
-        
-        public override bool IsValid => _isValid && !_converter.HasGetError;
 
-        public override string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
+        public override bool IsValid => !_hasParsingErrors && !_converter.HasGetError && _isValid;
+
+        public override string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
 
         #endregion
 
@@ -88,8 +95,73 @@ namespace Gizmo.Web.Components
         protected async Task SetValueAsync(TValue value)
         {
             Value = value;
+            UpdateText();
             await ValueChanged.InvokeAsync(Value);
             NotifyFieldChanged();
+        }
+
+        private void UpdateText()
+        {
+            var maskChanged = _previousMask != Mask;
+            if (maskChanged)
+            {
+                _shouldRender = true;
+                _previousMask = Mask;
+
+                _chars = Mask.Where(a => a == '#').Count();
+                _mask_left = Mask;
+            }
+
+            var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
+            if (valueChanged)
+            {
+                _shouldRender = true;
+                _previousValue = Value;
+
+                _text = string.Empty;
+
+                var temp = _converter.SetValue(Value);
+
+                if (!string.IsNullOrEmpty(temp) && temp.Length > 0)
+                {
+                    int additionalCharacters = 0;
+
+                    for (int i = 0; i < Mask.Length; i++)
+                    {
+                        if (i > temp.Length - 1 + additionalCharacters)
+                            break;
+
+                        if (Mask[i] == '#')
+                        {
+                            _text += temp[i - additionalCharacters];
+                        }
+                        else
+                        {
+                            _text += Mask[i];
+                            additionalCharacters += 1;
+                        }
+                    }
+
+                    _mask_left = Mask.Substring(temp.Length + additionalCharacters);
+                }
+                else
+                {
+                    _text = string.Empty;
+                    _mask_left = Mask;
+                }
+
+                //Validate new value.
+                if (!temp.All(char.IsDigit))
+                {
+                    _hasParsingErrors = true;
+                    _parsingErrors = "The field should be a number.";
+                }
+                else
+                {
+                    _hasParsingErrors = false;
+                    _parsingErrors = string.Empty;
+                }
+            }
         }
 
         #endregion
@@ -108,60 +180,9 @@ namespace Gizmo.Web.Components
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            if (parameters.TryGetValue<string>(nameof(Mask), out var newMask))
-            {
-                var maskChanged = Mask != newMask;
-                if (maskChanged)
-                {
-                    _shouldRender = true;
-
-                    _chars = Mask.Where(a => a == '#').Count();
-                    _mask_left = Mask;
-                }
-            }
-
-            if (parameters.TryGetValue<TValue>(nameof(Value), out var newValue))
-            {
-                var valueChanged = !EqualityComparer<TValue>.Default.Equals(Value, newValue);
-                if (valueChanged)
-                {
-                    _shouldRender = true;
-
-                    _text = string.Empty;
-
-                    var temp = _converter.SetValue(Value);
-
-                    if (!string.IsNullOrEmpty(temp) && temp.Length > 0)
-                    {
-                        int additionalCharacters = 0;
-
-                        for (int i = 0; i < Mask.Length; i++)
-                        {
-                            if (i > temp.Length - 1 + additionalCharacters)
-                                break;
-
-                            if (Mask[i] == '#')
-                            {
-                                _text += temp[i - additionalCharacters];
-                            }
-                            else
-                            {
-                                _text += Mask[i];
-                                additionalCharacters += 1;
-                            }
-                        }
-
-                        _mask_left = Mask.Substring(temp.Length + additionalCharacters);
-                    }
-                    else
-                    {
-                        _text = string.Empty;
-                        _mask_left = Mask;
-                    }
-                }
-            }
-
             await base.SetParametersAsync(parameters);
+
+            UpdateText();
         }
 
         #endregion
