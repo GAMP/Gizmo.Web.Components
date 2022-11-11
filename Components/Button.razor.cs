@@ -55,6 +55,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string Label { get; set; }
 
+        [Parameter]
+        public string Text { get; set; }
+
         /// <summary>
         /// Gets or sets the content of the button.
         /// </summary>
@@ -256,7 +259,7 @@ namespace Gizmo.Web.Components
         {
             if (!firstRender)
             {
-                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+                await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
             }
 
             await base.OnAfterRenderAsync(firstRender);

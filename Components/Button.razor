@@ -29,7 +29,14 @@
         }
 
         <div class="giz-button__content" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
-            @ChildContent
+            @if (ChildContent != null)
+            {
+                @ChildContent
+            }
+            else
+            {
+                @Text
+            }
         </div>
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)

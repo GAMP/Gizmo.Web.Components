@@ -91,7 +91,7 @@ namespace Gizmo.Web.Components
         /// Gets or sets the width of the input.
         /// </summary>
         [Parameter]
-        public string Width { get; set; } = "20rem";
+        public string Width { get; set; }
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
@@ -151,7 +151,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string FieldStyleValue => new StyleMapper()
-                 .If($"width: {Width}", () => !IsFullWidth)
+                 .If($"width: {Width}", () => !IsFullWidth && !string.IsNullOrEmpty(Width))
                  .AsString();
 
         protected string ValidationClassName => new ClassMapper()
