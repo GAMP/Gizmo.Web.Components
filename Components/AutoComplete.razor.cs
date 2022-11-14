@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class AutoComplete<TItemType, TValue> : GizInputBase<TValue>, ISelect<TValue>
+    public partial class AutoComplete<TItemType, TValue> : GizInputBase<TValue>, ISelect<TValue>, IGizInput
     {
         const int DEFAULT_DELAY = 500;
 

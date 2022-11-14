@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class GizInput : CustomDOMComponentBase
+    public partial class GizInput : CustomDOMComponentBase, IGizInput
     {
         #region CONSTRUCTOR
         public GizInput()
@@ -15,26 +15,7 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        [Parameter]
-        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
-
-        /// <summary>
-        /// Gets or sets if input is disabled.
-        /// </summary>
-        [Parameter]
-        public bool IsDisabled { get; set; }
-
-        /// <summary>
-        /// Gets or sets if input is read only.
-        /// </summary>
-        [Parameter]
-        public bool IsReadOnly { get; set; }
-
-        /// <summary>
-        /// Gets or sets if input is hidden.
-        /// </summary>
-        [Parameter]
-        public bool IsHidden { get; set; }
+        #region IGizInput
 
         /// <summary>
         /// Gets or sets the label of the input.
@@ -43,10 +24,7 @@ namespace Gizmo.Web.Components
         public string Label { get; set; }
 
         [Parameter]
-        public RenderFragment LeftContent { get; set; }
-
-        [Parameter]
-        public RenderFragment RightContent { get; set; }
+        public string Placeholder { get; set; }
 
         [Parameter]
         public string LeftIcon { get; set; }
@@ -94,6 +72,41 @@ namespace Gizmo.Web.Components
         public string Width { get; set; }
 
         [Parameter]
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        [Parameter]
+        public bool IsValid { get; set; }
+
+        [Parameter]
+        public string ValidationMessage { get; set; }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets if input is disabled.
+        /// </summary>
+        [Parameter]
+        public bool IsDisabled { get; set; }
+
+        /// <summary>
+        /// Gets or sets if input is read only.
+        /// </summary>
+        [Parameter]
+        public bool IsReadOnly { get; set; }
+
+        /// <summary>
+        /// Gets or sets if input is hidden.
+        /// </summary>
+        [Parameter]
+        public bool IsHidden { get; set; }
+
+        [Parameter]
+        public RenderFragment LeftContent { get; set; }
+
+        [Parameter]
+        public RenderFragment RightContent { get; set; }
+
+        [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         /// <summary>
@@ -101,12 +114,6 @@ namespace Gizmo.Web.Components
         /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }
-
-        [Parameter]
-        public bool IsValid { get; set; }
-
-        [Parameter]
-        public string ValidationMessage { get; set; }
 
         #endregion
 

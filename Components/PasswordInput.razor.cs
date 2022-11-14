@@ -1,16 +1,11 @@
-﻿using Gizmo.Web.Components;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class PasswordInput : GizInputBase<string>
+    public partial class PasswordInput : GizInputBase<string>, IGizInput
     {
         #region CONSTRUCTOR
         public PasswordInput()
@@ -23,15 +18,31 @@ namespace Gizmo.Web.Components
         private string _text;
         private bool _showPassword;
 
+        private string _previousValue;
+
         #endregion
 
         #region PROPERTIES
 
-        [Parameter]
-        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+        #region IGizInput
 
         [Parameter]
         public string Label { get; set; }
+
+        [Parameter]
+        public string Placeholder { get; set; }
+
+        [Parameter]
+        public string LeftIcon { get; set; }
+
+        [Parameter]
+        public string RightIcon { get; set; }
+
+        [Parameter]
+        public Icons? LeftSVGIcon { get; set; }
+
+        [Parameter]
+        public Icons? RightSVGIcon { get; set; }
 
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Medium;
@@ -52,10 +63,16 @@ namespace Gizmo.Web.Components
         public string Width { get; set; }
 
         [Parameter]
-        public string Value { get; set; }
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        public bool IsValid => _isValid;
+
+        public string ValidationMessage => _validationMessage;
+
+        #endregion
 
         [Parameter]
-        public string Placeholder { get; set; }
+        public string Value { get; set; }
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
@@ -65,10 +82,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool UpdateOnInput { get; set; }
-
-        public bool IsValid => _isValid;
-
-        public string ValidationMessage => _validationMessage;
 
         #endregion
 
@@ -125,8 +138,20 @@ namespace Gizmo.Web.Components
         protected async Task SetValueAsync(string value)
         {
             Value = value;
+            UpdateText();
             await ValueChanged.InvokeAsync(Value);
             NotifyFieldChanged();
+        }
+
+        private void UpdateText()
+        {
+            var valueChanged = _previousValue != Value;
+            if (valueChanged)
+            {
+                _previousValue = Value;
+
+                _text = Value;
+            }
         }
 
         #endregion
@@ -147,16 +172,9 @@ namespace Gizmo.Web.Components
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            if (parameters.TryGetValue<string>(nameof(Value), out var newValue))
-            {
-                var valueChanged = Value != newValue;
-                if (valueChanged)
-                {
-                    _text = newValue;
-                }
-            }
-
             await base.SetParametersAsync(parameters);
+
+            UpdateText();
         }
 
         #endregion

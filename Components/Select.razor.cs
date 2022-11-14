@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class Select<TValue> : GizInputBase<TValue>, ISelect<TValue>
+    public partial class Select<TValue> : GizInputBase<TValue>, ISelect<TValue>, IGizInput
     {
         #region CONSTRUCTOR
         public Select()

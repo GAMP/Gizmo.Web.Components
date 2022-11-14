@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class MultiSelect<TValue> : GizInputBase<List<TValue>>, ISelect<TValue>
+    public partial class MultiSelect<TValue> : GizInputBase<List<TValue>>, ISelect<TValue>, IGizInput
     {
         #region CONSTRUCTOR
         public MultiSelect()
@@ -33,26 +31,25 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        [Parameter]
-        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
-
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
-
-        [Parameter]
-        public List<TValue> Value { get; set; }
+        #region IGizInput
 
         [Parameter]
         public string Label { get; set; }
 
         [Parameter]
-        public string MaximumHeight { get; set; }
+        public string Placeholder { get; set; }
 
         [Parameter]
-        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+        public string LeftIcon { get; set; }
 
         [Parameter]
-        public bool OffsetY { get; set; }
+        public string RightIcon { get; set; }
+
+        [Parameter]
+        public Icons? LeftSVGIcon { get; set; }
+
+        [Parameter]
+        public Icons? RightSVGIcon { get; set; }
 
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Medium;
@@ -73,14 +70,31 @@ namespace Gizmo.Web.Components
         public string Width { get; set; }
 
         [Parameter]
-        public string Placeholder { get; set; }
-
-        [Parameter]
-        public bool CanClearValue { get; set; }
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
 
         public bool IsValid => _isValid;
 
         public string ValidationMessage => _validationMessage;
+
+        #endregion
+
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
+        public List<TValue> Value { get; set; }
+
+        [Parameter]
+        public string MaximumHeight { get; set; }
+
+        [Parameter]
+        public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
+
+        [Parameter]
+        public bool OffsetY { get; set; }
+
+        [Parameter]
+        public bool CanClearValue { get; set; }
 
         #endregion
 

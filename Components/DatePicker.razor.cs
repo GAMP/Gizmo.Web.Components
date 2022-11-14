@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class DatePicker<TValue> : GizInputBase<TValue>
+    public partial class DatePicker<TValue> : GizInputBase<TValue>, IGizInput
     {
         #region CONSTRUCTOR
         public DatePicker()
@@ -42,20 +42,25 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        [Parameter]
-        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
-
-        [Parameter]
-        public PickerVariants Variant { get; set; } = PickerVariants.Inline;
-
-        [Parameter]
-        public TValue Value { get; set; }
+        #region IGizInput
 
         [Parameter]
         public string Label { get; set; }
 
         [Parameter]
-        public bool OffsetY { get; set; }
+        public string Placeholder { get; set; }
+
+        [Parameter]
+        public string LeftIcon { get; set; }
+
+        [Parameter]
+        public string RightIcon { get; set; }
+
+        [Parameter]
+        public Icons? LeftSVGIcon { get; set; }
+
+        [Parameter]
+        public Icons? RightSVGIcon { get; set; }
 
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Medium;
@@ -76,7 +81,22 @@ namespace Gizmo.Web.Components
         public string Width { get; set; }
 
         [Parameter]
-        public string Placeholder { get; set; }
+        public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
+
+        public bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
+
+        public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
+
+        #endregion
+
+        [Parameter]
+        public PickerVariants Variant { get; set; } = PickerVariants.Inline;
+
+        [Parameter]
+        public TValue Value { get; set; }
+
+        [Parameter]
+        public bool OffsetY { get; set; }
 
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
@@ -92,10 +112,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool CanClearValue { get; set; }
-
-        public bool IsValid => !_hasParsingErrors && _isValid && !_converter.HasGetError;
-
-        public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
 
         #endregion
 

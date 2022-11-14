@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class TextInput<TValue> : GizInputBase<TValue>
+    public partial class TextInput<TValue> : GizInputBase<TValue>, IGizInput
     {
         #region CONSTRUCTOR
         public TextInput()
@@ -22,6 +18,8 @@ namespace Gizmo.Web.Components
 
         private StringConverter<TValue> _converter = new StringConverter<TValue>();
         private string _text;
+
+        private TValue _previousValue;
 
         #endregion
 
@@ -157,8 +155,20 @@ namespace Gizmo.Web.Components
         protected async Task SetValueAsync(TValue value)
         {
             Value = value;
+            UpdateText();
             await ValueChanged.InvokeAsync(Value);
             NotifyFieldChanged();
+        }
+
+        private void UpdateText()
+        {
+            var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
+            if (valueChanged)
+            {
+                _previousValue = Value;
+
+                _text = _converter.SetValue(Value);
+            }
         }
 
         #endregion
@@ -195,16 +205,9 @@ namespace Gizmo.Web.Components
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            if (parameters.TryGetValue<TValue>(nameof(Value), out var newValue))
-            {
-                var valueChanged = !EqualityComparer<TValue>.Default.Equals(Value, newValue);
-                if (valueChanged)
-                {
-                    _text = _converter.SetValue(newValue);
-                }
-            }
-
             await base.SetParametersAsync(parameters);
+
+            UpdateText();
         }
 
         #endregion
