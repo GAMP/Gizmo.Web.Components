@@ -152,7 +152,7 @@ namespace Gizmo.Web.Components
                 var valueChanged = Value != newValue;
                 if (valueChanged)
                 {
-                    _text = Value;
+                    _text = newValue;
                 }
             }
 
