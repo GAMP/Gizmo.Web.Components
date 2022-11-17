@@ -185,6 +185,26 @@ namespace Gizmo.Web.Components
             UpdateText();
         }
 
+        protected override void OnParametersSet()
+        {
+            if (EditContext != _lastEditContext && EditContext != null)
+            {
+                _validationMessageStore = new ValidationMessageStore(EditContext);
+            }
+
+            base.OnParametersSet();
+        }
+
+        public override void Validate()
+        {
+            _validationMessageStore.Clear();
+
+            if (_hasParsingErrors)
+            {
+                _validationMessageStore.Add(_fieldIdentifier, _parsingErrors);
+            }
+        }
+
         #endregion
     }
 }
