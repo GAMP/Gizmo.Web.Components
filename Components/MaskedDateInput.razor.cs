@@ -88,7 +88,6 @@ namespace Gizmo.Web.Components
 
             if (args.Key == _separator.ToString())
             {
-                //TODO: A move to next block
                 var lastSeparator = _text.LastIndexOf(_separator) + 1;
                 var nextSeparator = _mask.IndexOf(_separator, lastSeparator);
 

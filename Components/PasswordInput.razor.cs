@@ -16,7 +16,6 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private string _text;
-        private bool _showPassword;
 
         private string _previousValue;
 
@@ -61,6 +60,12 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Width { get; set; }
+
+        [Parameter]
+        public bool IsPasswordVisible { get; set; }
+
+        [Parameter]
+        public EventCallback<bool> IsPasswordVisibleChanged { get; set; }
 
         [Parameter]
         public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
@@ -126,9 +131,10 @@ namespace Gizmo.Web.Components
             return OnClick.InvokeAsync(args);
         }
 
-        public void OnClickButtonEyeHandler(MouseEventArgs args)
+        public Task OnClickButtonEyeHandler(MouseEventArgs args)
         {
-            _showPassword = !_showPassword;
+            IsPasswordVisible = !IsPasswordVisible;
+            return IsPasswordVisibleChanged.InvokeAsync(IsPasswordVisible);
         }
 
         #endregion
