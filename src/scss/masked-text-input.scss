@@ -3,7 +3,7 @@
 .giz-masked-text-input {
     input {
         font-family: $font-family-text;
-        @include font-m($font-weight-light);
+        @include font-l($font-weight-light);
     }
 
     .giz-mask {
@@ -11,7 +11,7 @@
         display: flex;
         //FontF
         font-family: $font-family-text;
-        @include font-m($font-weight-light);
+        @include font-l($font-weight-light);
 
         &-done {
             visibility: hidden;

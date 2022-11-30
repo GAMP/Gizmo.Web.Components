@@ -1,0 +1,98 @@
+﻿@namespace Gizmo.Web.Components
+@inherits GizInputBase<TValue>
+
+@typeparam TValue
+
+<div class="@Class @ClassName"
+     style="@Style"
+     id="@Id"
+     @ref="@Ref">
+
+    <div class="giz-input-select__content_wrapper" @ref="_inputElement">
+        <GizInput Label="@Label"
+                  ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
+                  IsDisabled="@IsDisabled"
+                  IsFullWidth="@IsFullWidth"
+                  Width="@Width"
+                  HasOutline="@HasOutline"
+                  HasShadow="@HasShadow"
+                  IsTransparent="@IsTransparent"
+                  Size="@Size"
+                  IsValid="@IsValid"
+                  ValidationMessage="@ValidationMessage"
+                  RightSVGIcon="Icons.TriangleDown"
+                  @onclick="OnClickInput">
+                    
+            <div class="giz-input-wrapper">
+
+                <input type="text"
+                       value="@(@SelectedCountry?.Name ?? "Search")"
+                       readonly="@IsReadOnly"
+                       disabled="@IsDisabled"
+                       @oninput="OnInputHandler"
+                       @onkeydown="OnInputKeyDownHandler" />
+
+                @if (SelectedCountry != null)
+                {
+                    @*<div class="giz-input-select__content">
+                        @_selectedItem.ChildContent
+                    </div>*@
+                }
+
+            </div>
+
+        </GizInput>
+
+        <Popup MaximumHeight="@MaximumHeight"
+                @bind-IsOpen="_isOpen"
+                OpenDirection="@OpenDirection"
+                Class="@PopupClassName"
+                Style="@PopupStyleValue">
+            <List @ref="_popupContent"
+                    CanClick="true"
+                    MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
+                @if (Countries != null)
+                {
+                    @if (SelectedCountry != null)
+                    {
+                        <ListItem OnClick="@(() => SetSelectedCountry(SelectedCountry.Id))">
+                            <div class="giz-country">
+                                <div class="giz-country-flag">
+                                    <Icon Size="IconSizes.Small">
+                                        @((MarkupString)SelectedCountry.Flag)
+                                    </Icon>
+                                </div>
+                                <div>@($"{SelectedCountry.Name} ({SelectedCountry.PhonePrefix})")</div>
+                                <Icon SVGIcon="Icons.Check" />
+                            </div>
+                        </ListItem>
+                        <Divider />
+                    }
+                    @foreach (var item in Countries)
+                    {
+                        @if (item != SelectedCountry)
+                        {
+                            <ListItem OnClick="@(() => SetSelectedCountry(item.Id))">
+                                <div class="giz-country">
+                                    <div class="giz-country-flag">
+                                        <Icon Size="IconSizes.Small">
+                                            @((MarkupString)item.Flag)
+                                        </Icon>
+                                    </div>
+                                    <div>@($"{item.Name} ({item.PhonePrefix})")</div>
+                                </div>
+                            </ListItem>
+                        }
+                    }
+                }
+            </List>
+        </Popup>
+    </div>
+            
+    @if (ValidationErrorStyle == ValidationErrorStyles.Label)
+    {
+        <div class="giz-input-validation-label">
+            @ValidationMessage
+        </div>
+    }
+</div>

@@ -4908,8 +4908,8 @@ h6,
 .giz-masked-text-input input {
   font-family: "Noto Sans", sans-serif;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: 26px;
   letter-spacing: initial;
 }
 
@@ -4920,8 +4920,8 @@ h6,
   display: flex;
   font-family: "Noto Sans", sans-serif;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: 26px;
   letter-spacing: initial;
 }
 
@@ -6778,7 +6778,7 @@ h6,
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:hover.giz-input-root--medium {
-  padding: 11px 12px;
+  padding: 9px 11px;
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:hover.giz-input-root--large {
@@ -6794,7 +6794,7 @@ h6,
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:focus-within.giz-input-root--medium {
-  padding: 11px 12px;
+  padding: 9px 11px;
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:focus-within.giz-input-root--large {
@@ -6816,7 +6816,7 @@ h6,
 
 [client-theme] .giz-input-control .giz-input-root--medium {
   height: 48px;
-  padding: 12px 13px;
+  padding: 10px 12px;
 }
 
 [client-theme] .giz-input-control .giz-input-root--large {
@@ -6846,8 +6846,16 @@ h6,
   border: 1px solid #F73B3B;
 }
 
+[client-theme] .giz-input-control--invalid .giz-input-root--outline:hover.giz-input-root--medium {
+  padding: 10px 12px;
+}
+
 [client-theme] .giz-input-control--invalid .giz-input-root--outline:focus-within {
   border: 2px solid #F73B3B;
+}
+
+[client-theme] .giz-input-control--invalid .giz-input-root--outline:focus-within.giz-input-root--medium {
+  padding: 9px 11px;
 }
 
 [client-theme] .giz-input-control--invalid .giz-input-root--shadow {
@@ -6866,6 +6874,8 @@ h6,
 }
 
 [client-theme] .giz-input-validation-label {
+  min-height: 22px;
+  margin-top: 4px;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -7192,6 +7202,11 @@ h6,
                 }
             }
         }*/
+}
+
+[client-theme] .giz-list .giz-divider {
+  margin: 8px;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 [client-theme] .giz-nested-list {
