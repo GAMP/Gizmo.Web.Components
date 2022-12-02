@@ -57,7 +57,6 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public Icons? RightSVGIcon { get; set; }
-
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Medium;
 
@@ -84,6 +83,9 @@ namespace Gizmo.Web.Components
         public string ValidationMessage => _hasParsingErrors ? _parsingErrors : _validationMessage;
 
         #endregion
+
+        [Parameter]
+        public Icons? HandleSVGIcon { get; set; }
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -150,7 +152,10 @@ namespace Gizmo.Web.Components
                 return;
 
             if (args.Key == "Tab")
+            {
                 await InvokeVoidAsync("focusNext", _inputElement);
+                return;
+            }
 
             if (!_isOpen)
                 await Open();

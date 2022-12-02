@@ -20,7 +20,7 @@
                       Size="@Size"
                       IsValid="@IsValid"
                       ValidationMessage="@ValidationMessage"
-                      RightSVGIcon="Icons.TriangleDown"
+                      RightSVGIcon="@(HandleSVGIcon.HasValue ? HandleSVGIcon.Value : Icons.TriangleDown)"
                       @onclick="OnClickInput">
 
                 <div class="giz-input-multi-select__content">

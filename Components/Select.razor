@@ -20,25 +20,35 @@
                       Size="@Size"
                       IsValid="@IsValid"
                       ValidationMessage="@ValidationMessage"
-                      RightSVGIcon="Icons.TriangleDown"
+                      LeftSVGIcon="@LeftSVGIcon"
+                      RightSVGIcon="@(HandleSVGIcon.HasValue ? HandleSVGIcon.Value : Icons.TriangleDown)"
                       @onclick="OnClickInput">
 
-                @if (@_selectedItem?.ChildContent != null)
+                @if (@_selectedItem == null)
                 {
                     <div class="giz-input-select__content">
-                        @_selectedItem.ChildContent
+                        @Placeholder
                     </div>
                 }
                 else
                 {
-                    <div class="giz-input-wrapper">
-                        <input type="text"
-                               value="@_selectedItem?.Text"
-                               disabled="@IsDisabled"
-                               readonly                               
-                               @onkeydown="OnInputKeyDownHandler"
-                               @onkeydown:preventDefault="true" />
-                    </div>
+                    @if (@_selectedItem.ChildContent != null)
+                    {
+                        <div class="giz-input-select__content">
+                            @_selectedItem.ChildContent
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="giz-input-wrapper">
+                            <input type="text"
+                                   value="@_selectedItem.Text"
+                                   disabled="@IsDisabled"
+                                   readonly
+                                   @onkeydown="OnInputKeyDownHandler"
+                                   @onkeydown:preventDefault="true" />
+                        </div>
+                    }
                 }
 
                 @if (CanClearValue && IsNullable() && Value != null)

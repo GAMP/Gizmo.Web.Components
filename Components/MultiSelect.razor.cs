@@ -79,6 +79,9 @@ namespace Gizmo.Web.Components
         #endregion
 
         [Parameter]
+        public Icons? HandleSVGIcon { get; set; }
+
+        [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
@@ -109,9 +112,9 @@ namespace Gizmo.Web.Components
 
         public string GetSelectedItemsText()
         {
-            if (Value == null)
+            if (Value == null || Value.Count == 0)
             {
-                return string.Empty;
+                return Placeholder;
             }
             else
             {

@@ -85,6 +85,9 @@ namespace Gizmo.Web.Components
         #endregion
 
         [Parameter]
+        public Icons? HandleSVGIcon { get; set; }
+
+        [Parameter]
         public List<Country> Countries { get; set; }
 
         [Parameter]

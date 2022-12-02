@@ -3955,6 +3955,9 @@ h6,
   line-height: 30px;
   letter-spacing: initial;
   font-family: Rubik, sans-serif;
+  background: transparent;
+  border: none;
+  color: #FAFAFA;
 }
 
 .giz-expansion-panel__body {
@@ -4993,6 +4996,9 @@ h6,
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -6614,6 +6620,31 @@ h6,
   background-color: white;
 }
 
+[client-theme] .giz-icon--extra-small {
+  width: 10px;
+  height: 10px;
+}
+
+[client-theme] .giz-icon--small {
+  width: 18px;
+  height: 18px;
+}
+
+[client-theme] .giz-icon--medium {
+  width: 24px;
+  height: 24px;
+}
+
+[client-theme] .giz-icon--large {
+  width: 28px;
+  height: 28px;
+}
+
+[client-theme] .giz-icon--extra-large {
+  width: 38px;
+  height: 38px;
+}
+
 [client-theme] .giz-data-grid {
   border-collapse: collapse;
   border-spacing: 0;
@@ -6739,6 +6770,11 @@ h6,
 
 [client-theme] .giz-input-control .giz-input-root {
   color: #D5D5D6;
+  width: 200px;
+}
+
+[client-theme] .giz-input-control .giz-input-root--full-width {
+  width: 100%;
 }
 
 [client-theme] .giz-input-control .giz-input-root svg {
@@ -6810,13 +6846,27 @@ h6,
 }
 
 [client-theme] .giz-input-control .giz-input-root--small {
+  border-radius: 8px;
   height: 40px;
   padding: 10px 13px;
 }
 
+[client-theme] .giz-input-control .giz-input-root--small .giz-input-icon-left .giz-icon,
+[client-theme] .giz-input-control .giz-input-root--small .giz-input-icon-right .giz-icon {
+  width: 20px;
+  height: 20px;
+}
+
 [client-theme] .giz-input-control .giz-input-root--medium {
+  border-radius: 8px;
   height: 48px;
   padding: 10px 12px;
+}
+
+[client-theme] .giz-input-control .giz-input-root--medium .giz-input-icon-left .giz-icon,
+[client-theme] .giz-input-control .giz-input-root--medium .giz-input-icon-right .giz-icon {
+  width: 24px;
+  height: 24px;
 }
 
 [client-theme] .giz-input-control .giz-input-root--large {
@@ -6825,6 +6875,7 @@ h6,
   padding: 14px 13px;
 }
 
+[client-theme] .giz-input-control .giz-input-root--large .giz-input-icon-left .giz-icon,
 [client-theme] .giz-input-control .giz-input-root--large .giz-input-icon-right .giz-icon {
   width: 24px;
   height: 24px;
@@ -7259,31 +7310,6 @@ h6,
   padding: unset;
 }
 
-[client-theme] .giz-icon--extra-small {
-  width: 10px;
-  height: 10px;
-}
-
-[client-theme] .giz-icon--small {
-  width: 18px;
-  height: 18px;
-}
-
-[client-theme] .giz-icon--medium {
-  width: 24px;
-  height: 24px;
-}
-
-[client-theme] .giz-icon--large {
-  width: 28px;
-  height: 28px;
-}
-
-[client-theme] .giz-icon--extra-large {
-  width: 38px;
-  height: 38px;
-}
-
 [client-theme] .giz-icon-button {
   color: white;
 }
@@ -7353,16 +7379,22 @@ h6,
 [client-theme] .giz-icon-button--extra-small {
   width: 16px;
   height: 16px;
+  min-width: 16px;
+  min-height: 16px;
 }
 
 [client-theme] .giz-icon-button--small {
   width: 30px;
   height: 30px;
+  min-width: 30px;
+  min-height: 30px;
 }
 
 [client-theme] .giz-icon-button--medium {
   width: 49px;
   height: 49px;
+  min-width: 49px;
+  min-height: 49px;
 }
 
 [client-theme] .giz-menu__dropdown > .giz-list.giz-list--right {

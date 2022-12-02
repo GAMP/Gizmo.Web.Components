@@ -9,6 +9,10 @@
             align-items: center;
             cursor: pointer;
             @include font-h5($font-weight-bold);
+            //Button
+            background: transparent;
+            border: none;
+            color: #FAFAFA;
         }
     }
 

@@ -7,6 +7,9 @@
     &__content {
         cursor: pointer;
         flex-grow: 1;
+        height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
         @include font-m($font-weight-light);
 
         &_wrapper {
