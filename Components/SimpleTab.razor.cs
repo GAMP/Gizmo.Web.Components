@@ -100,8 +100,8 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                 .Add("giz-simple-tab")
-                .If("giz-simple-tab--disabled", () => IsDisabled)
                 .If("giz-simple-tab--hidden", () => !IsVisible)
+                .If("disabled", () => IsDisabled)
                 .AsString();
 
         #endregion

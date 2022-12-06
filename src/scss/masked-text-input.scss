@@ -17,4 +17,24 @@
             visibility: hidden;
         }
     }
+
+    .giz-input-root {
+        &--small {
+            .giz-mask {
+                @include font-m($font-weight-light);
+            }
+        }
+
+        &--medium {
+            .giz-mask {
+                @include font-l($font-weight-light);
+            }
+        }
+
+        &--large {
+            .giz-mask {
+                @include font-l($font-weight-light);
+            }
+        }
+    }
 }

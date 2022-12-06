@@ -296,7 +296,7 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-datepicker__dropdown")
                  .If("giz-input-datepicker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-datepicker-dropdown-full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .If("giz-datepicker-dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .If("giz-popup--bottom", () => Variant == PickerVariants.Inline)
                  .If("giz-popup--offset", () => Variant == PickerVariants.Inline)
                  .AsString();

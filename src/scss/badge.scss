@@ -5,15 +5,15 @@
 
     &__wrapper {
         .giz-badge__badge {
-            border-radius: 1rem;
             white-space: nowrap;
+            //Default Skin
+            border-radius: 1rem;
             padding: 0 1rem;
         }
     }
 
-    &.corner {
+    &--corner {
         position: relative;
-        /*margin-right: 20px;*/
 
         .giz-badge__wrapper {
             position: absolute;
@@ -22,27 +22,30 @@
             width: 100%;
 
             .giz-badge__badge {
+                position: absolute;
+                //Default Skin
                 padding: unset;
                 height: 2.0rem;
                 min-width: 2.0rem;
-                position: absolute;
                 inset: auto auto calc(100% - 0.5rem) calc(100% - 0.5rem);
             }
         }
 
-        &.small {
+        &.giz-badge--small {
             .giz-badge__wrapper {
                 .giz-badge__badge {
+                    //Default Skin
                     padding: unset;
                 }
             }
         }
     }
 
-    &.small {
+    &--small {
         .giz-badge__wrapper {
             .giz-badge__badge {
                 display: inline-block;
+                //Default Skin
                 line-height: 1;
                 height: 1rem;
                 min-width: 1rem;

@@ -3,6 +3,7 @@
 .giz-switch {
     position: relative;
     display: inline-block;
+    //Default Skin
     width: 4.8rem;
     height: 3.2rem;
 
@@ -12,6 +13,7 @@
         height: 0;
 
         &:checked + .giz-switch__slider {
+            //Default Skin
             background-color: $primary-color-theme-dark;
         }
 
@@ -21,6 +23,7 @@
 
         &:checked + .giz-switch__slider {
             .giz-switch__slider__thumb {
+                //Default Skin
                 transform: translateX(1.5rem);
             }
         }
@@ -33,11 +36,13 @@
         left: 0;
         right: 0;
         bottom: 0;
+        //Default Skin
         background-color: $gray-color-theme-dark;
         transition: 0.4s;
 
         &__thumb {
             position: absolute;
+            //Default Skin
             height: 2.4rem;
             width: 2.4rem;
             left: 0.4rem;
@@ -47,6 +52,7 @@
         }
 
         &--round {
+            //Default Skin
             border-radius: 3.4rem;
             background-color: $gray-dark-theme-dark;
 

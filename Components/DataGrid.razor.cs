@@ -1011,7 +1011,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .If("giz-data-grid-wrapper", () => Variant == DataGridVariants.Default)
-                 .If("giz-data-grid-sticky-header", () => HasStickyHeader)
+                 .If("giz-data-grid--sticky-header", () => HasStickyHeader)
                  .AsString();
 
         protected string TableClassName => new ClassMapper()

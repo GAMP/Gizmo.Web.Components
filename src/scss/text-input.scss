@@ -3,21 +3,22 @@
 .giz-input-text {
     display: inline-block;
 
-    &--full-width {
-        display: block;
-    }
-
     .giz-input-root {
-
         textarea {
             width: 100%;
             resize: none;
             border: none;
             outline: none;
             background: inherit;
-            //
             height: 100%;
+            //Default Skin
             color: white;
         }
+    }
+
+    //Default Skin
+
+    &--full-width {
+        display: block;
     }
 }

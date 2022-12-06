@@ -10,6 +10,7 @@
         height: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
+        //Default Skin
         @include font-m($font-weight-light);
 
         &_wrapper {
@@ -41,6 +42,7 @@
         }
 
         .giz-input-multi-select-list {
+            //Default Skin
             background: #22272b;
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
             border-radius: 8px;
@@ -50,10 +52,11 @@
             gap: 8px;
 
             .giz-input-multi-select-item {
+                cursor: pointer;
+                //Default Skin
                 border: 1px solid rgba(246, 251, 253, 0.52);
                 border-radius: 4px;
                 padding: 0 12px;
-                cursor: pointer;
                 @include font-l($font-weight-light);
 
                 &.selected {

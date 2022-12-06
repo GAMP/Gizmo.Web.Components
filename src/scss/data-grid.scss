@@ -11,6 +11,7 @@
     position: relative;
     width: 100%;
     border-collapse: separate;
+    //Default Skin
     border-spacing: 0 0.2rem;
     color: $gray-black-theme-dark;
     font-size: $font-16-theme-dark;
@@ -62,7 +63,7 @@
         }
     }
 
-    & > tbody > tr:not(.table__details) {
+    & > tbody > tr:not(.giz-data-grid-row-detail) {
         height: 3.9rem;
         background: transparent;
         border-radius: $rounded-lg-theme-dark;
@@ -99,27 +100,7 @@
             }
         }
 
-        &.is-opened {
-            border-color: #453855;
-            background: $primary-color-theme-dark;
-            cursor: pointer;
-            color: white;
-
-            & > td {
-                border-top: 1px solid $onyx-black-theme-dark;
-                border-bottom: 1px solid $onyx-black-theme-dark;
-
-                &:first-child {
-                    border-left: 1px solid $onyx-black-theme-dark;
-                }
-
-                &:last-child {
-                    border-right: 1px solid $onyx-black-theme-dark;
-                }
-            }
-        }
-
-        &.is-selected {
+        &.selected {
             background: $dark-navy-theme-dark;
             cursor: pointer;
 
@@ -153,13 +134,12 @@
                 }
             }
         }
-
-        &.is-active {
+        /*&.is-active {
             border-color: #453855;
             background: $dark-light-color-theme-dark;
             border-radius: 4px 4px 0 0;
             margin-bottom: $spacer-0;
-        }
+        }*/
 
         & > td:first-child {
             border-radius: 4px 0 0 4px;
@@ -179,7 +159,7 @@
         }
     }
 
-    & > tbody > tr.table__details > td {
+    & > tbody > tr.giz-data-grid-row-details > td {
         padding: $spacer-0;
     }
 
@@ -188,17 +168,17 @@
     }
 }
 
-.column-selector-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
-}
-
 .column-selector {
     top: 1.2rem;
     right: 0;
+
+    &-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+    }
 
     .giz-checkbox {
         label {
@@ -207,35 +187,59 @@
     }
 }
 
-.table__details {
-    display: none;
-    background: transparent;
+.giz-data-grid-row {
+    &-detail {
+        display: none;
+        background: transparent;
 
-    &:hover {
-        & > td {
-            border-color: transparent;
+        &:hover {
+            & > td {
+                border-color: transparent;
+            }
+        }
+
+        &-content {
+            position: relative;
+            width: 100%;
+            border: 1px solid #292e39;
+            border-radius: $rounded-theme-dark;
+            display: flex;
+            align-items: $align-start;
+            box-sizing: border-box;
+            border-top: $border-0-theme-dark;
+            padding: 1.2rem 0;
+            margin-top: $spacer-n12;
         }
     }
 
-    .table__row-dropdown.is-opened + & {
-        display: table-row;
+    &--dropdown {
+        &.giz-data-grid-row--open + .giz-data-grid-row-detail {
+            display: table-row;
+        }
+    }
+
+    &--open {
+        border-color: #453855;
+        background: $primary-color-theme-dark;
+        cursor: pointer;
+        color: white;
+
+        & > td {
+            border-top: 1px solid $onyx-black-theme-dark;
+            border-bottom: 1px solid $onyx-black-theme-dark;
+
+            &:first-child {
+                border-left: 1px solid $onyx-black-theme-dark;
+            }
+
+            &:last-child {
+                border-right: 1px solid $onyx-black-theme-dark;
+            }
+        }
     }
 }
 
-.giz-data-grid__details-content {
-    position: relative;
-    width: 100%;
-    border: 1px solid #292e39;
-    border-radius: $rounded-theme-dark;
-    display: flex;
-    align-items: $align-start;
-    box-sizing: border-box;
-    border-top: $border-0-theme-dark;
-    padding: 1.2rem 0;
-    margin-top: $spacer-n12;
-}
-
-.giz-data-grid-sticky-header {
+.giz-data-grid--sticky-header {
     max-height: 100%;
 
     .column-selector-wrapper {
@@ -243,7 +247,6 @@
     }
 
     .giz-data-grid {
-
         & > thead td, & > thead th {
             position: sticky;
             top: 0;

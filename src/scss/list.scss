@@ -20,13 +20,13 @@
         letter-spacing: $letter-spacing-8-theme-dark;
         text-decoration: $text-decoration;
 
-        &.giz-list-item-disabled {
+        &.disabled {
             color: rgb(230, 230, 230);
             cursor: default;
             pointer-events: none;
         }
 
-        &.giz-list-item-active {
+        &.active {
             //Default Theme
             background-color: $primary-color-theme-dark;
             color: white;
@@ -57,7 +57,7 @@
 
         .giz-list-item {
 
-            &.giz-list-item-selected {
+            &.selected {
                 //Default Theme
                 background-color: $primary-color-theme-dark;
                 color: white;

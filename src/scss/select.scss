@@ -18,6 +18,7 @@
     }
 
     &__dropdown {
+        //Default Skin
         box-shadow: $elevation-2-theme-dark;
         border: 1px solid $border-color-theme-dark;
 
@@ -38,6 +39,7 @@
 
         .giz-list {
             .giz-list-item {
+                //Default Skin
                 padding: $spacer-16 $spacer-20;
             }
         }

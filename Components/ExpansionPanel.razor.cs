@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -23,6 +24,17 @@ namespace Gizmo.Web.Components
         public bool InitCollapsed { get; set; }
 
         #endregion
+
+        //protected async Task OnKeyDownHandler(KeyboardEventArgs args)
+        //{
+        //    if (args.Key == null)
+        //        return;
+
+        //    if (args.Key == "Enter")
+        //    {
+        //        await InvokeVoidAsync("expansionPanelToggle", Ref);
+        //    }
+        //}
 
         protected async Task OnClickHeader()
         {

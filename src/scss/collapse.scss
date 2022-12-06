@@ -4,7 +4,7 @@
     display: none;
     position: relative;
 
-    &.giz-collapse-expanded {
+    &--expanded {
         display: block;
     }
 }

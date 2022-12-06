@@ -2,6 +2,7 @@
 
 .giz-button-group {
     display: inline-block;
+    //Default Skin
     background-color: $dark-jungle-theme-dark;
     padding: $spacer-4;
     border-radius: $rounded-theme-dark;
@@ -23,8 +24,9 @@
     }
 
     &.disabled {
-        color: $gray-dim-theme-dark;
         pointer-events: none;
+        //Default Skin
+        color: $gray-dim-theme-dark;
 
         .giz-button {
             &.selected {

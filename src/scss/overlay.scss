@@ -3,14 +3,15 @@
 .giz-overlay {
     width: 100vw;
     height: 100vh;
-    outline: $outline-0;
     z-index: 50;
     display: none;
     position: fixed;
     left: 0;
     top: 0;
+    //Default Skin
+    outline: $outline-0;
 
-    &.giz-overlay-visible {
+    &--visible {
         display: flex;
     }
 }

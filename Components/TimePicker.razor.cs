@@ -314,7 +314,7 @@ namespace Gizmo.Web.Components
         protected string PopupClassName => new ClassMapper()
                  .Add("giz-input-timepicker__dropdown")
                  .If("giz-input-datepicker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-timepicker-dropdown-full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .If("giz-timepicker-dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()

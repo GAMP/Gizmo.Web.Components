@@ -28,7 +28,7 @@
             }
         }
 
-        &--selected {
+        &.selected {
             & > .giz-tree-view-item__body {
                 //Default Theme
                 background-color: $dark-jungle-theme-dark;

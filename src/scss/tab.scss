@@ -1,15 +1,8 @@
 
 //== tab.scss files == //
 
-.giz-tab.giz-tab-hidden {
+.giz-tab.giz-tab--hidden {
     display: none;
-}
-
-.giz-tab.giz-tab-disabled {
-    .giz-tab__link {
-        pointer-events: none;
-        opacity: 0.4;
-    }
 }
 
 //giz-tab
@@ -19,7 +12,17 @@
     max-height: 100%;
     overflow: hidden;
 
-    .giz-tab-active {
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.4;
+
+        .giz-tab__link {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    }
+
+    &.active {
         color: white;
 
         &::after {
@@ -35,13 +38,8 @@
         }
     }
 
-    .giz-tab-hidden {
+    .giz-tab--hidden {
         display: none;
-    }
-
-    .giz-tab-disabled {
-        pointer-events: none;
-        opacity: 0.4;
     }
 
     &__ul {
@@ -70,12 +68,9 @@
         display: none;
     }
 
-    .giz-tab-content-active {
+    &.active {
         display: block;
         padding: 0.5rem;
-    }
-
-    .giz-tab-content-active {
         animation-duration: 1s;
         animation-name: slidein;
     }

@@ -255,9 +255,9 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-list-item")
-                 .If("giz-list-item-disabled", () => IsDisabled || !_canExecute)
-                 .If("giz-list-item-selected", () => _isSelected)
-                 .If("giz-list-item-active", () => _isActive)
+                 .If("disabled", () => IsDisabled || !_canExecute)
+                 .If("selected", () => _isSelected)
+                 .If("active", () => _isActive)
                  .AsString();
 
         protected string StyleValue => new StyleMapper()

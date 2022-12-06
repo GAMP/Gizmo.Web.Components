@@ -37,9 +37,9 @@ namespace Gizmo.Web.Components
         string GetTabItemClass(int index)
         {
             var itemClassName = new ClassMapper()
-             .If("giz-simple-tab-active", () => index == _selectedIndex)
-             .If("giz-simple-tab-hidden", () => !Items[index].IsVisible)
-             .If("giz-simple-tab-disabled", () => Items[index].IsDisabled)
+             .If("giz-simple-tab--hidden", () => !Items[index].IsVisible)
+             .If("active", () => index == _selectedIndex)
+             .If("disabled", () => Items[index].IsDisabled)
              .AsString();
             return itemClassName;
         }

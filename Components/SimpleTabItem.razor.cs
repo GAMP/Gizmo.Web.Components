@@ -78,7 +78,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                 .Add("giz-simple-tab-item")
-                .If("giz-simple-tab-item--active", () => _isSelected)
+                .If("active", () => _isSelected)
                 .AsString();
 
         #endregion

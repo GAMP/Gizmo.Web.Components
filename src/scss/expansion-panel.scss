@@ -8,6 +8,7 @@
             display: flex;
             align-items: center;
             cursor: pointer;
+            //Default Skin
             @include font-h5($font-weight-bold);
             //Button
             background: transparent;

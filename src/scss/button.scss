@@ -2,8 +2,10 @@
 
 //button (default button primary)
 .giz-button {
-    font-size: $font-17-theme-dark;
+    position: relative;
     cursor: pointer;
+    //Default Skin
+    font-size: $font-17-theme-dark;
     border-radius: $rounded-theme-dark;
     transition: color 0.3s ease;
     transition: background 0.3s ease;
@@ -14,7 +16,6 @@
     white-space: $nowrap-white-space;
     line-height: $line-height-22-theme-dark;
     text-align: $text-align-center;
-    position: relative;
     align-items: center;
 
     &__progress {
@@ -22,6 +23,7 @@
         top: 0;
         left: 0;
         height: 100%;
+        //Default Skin
         transition: width 0.3s;
 
         &-wrapper {
@@ -31,6 +33,7 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
+            //Default Skin
             //z-index: 0;
             border-radius: $rounded-theme-dark;
         }
@@ -38,20 +41,24 @@
 
     &__content {
         display: flex;
-        align-items: center;
-        height: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
+        //Default Skin
+        align-items: center;
+        height: 100%;
 
         &_wrapper {
             position: relative;
             display: flex;
-            align-items: center;
             height: 100%;
             overflow: hidden;
+            //Default Skin
+            align-items: center;
             //z-index: 1;
         }
     }
+
+    //Default Skin?
 
     .giz-button-icon-left {
         margin-right: $spacer-8;
@@ -66,7 +73,7 @@
         text-align: left;
     }
 
-    &.giz-button-full-width {
+    &.giz-button--full-width {
         width: 100%;
     }
     //group button
@@ -86,9 +93,10 @@
         }
 
         &.disabled, &[disabled] {
+            pointer-events: none;
+            //Default Skin
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
-            pointer-events: none;
             border: none;
             /*svg {
                 color: $dark-gray-theme-dark;
@@ -102,9 +110,10 @@
         }
 
         &.disabled, &[disabled] {
+            pointer-events: none;
+            //Default Skin
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
-            pointer-events: none;
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -138,9 +147,10 @@
             }
 
             &.disabled, &[disabled] {
+                pointer-events: none;
+                //Default Skin
                 color: $dark-gray-theme-dark;
                 background: $onyx-black-theme-dark;
-                pointer-events: none;
             }
             /*svg {
                 color: $dark-gray-theme-dark;
@@ -163,9 +173,10 @@
             }
 
             &.disabled, &[disabled] {
+                pointer-events: none;
+                //Default Skin
                 color: $dark-gray-theme-dark;
                 background: $onyx-black-theme-dark;
-                pointer-events: none;
                 /*svg {
                     color: $dark-gray-theme-dark;
                 }*/
@@ -189,10 +200,11 @@
         }
 
         &.disabled, &[disabled] {
+            pointer-events: none;
+            //Default Skin
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             border: none;
-            pointer-events: none;
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -211,10 +223,11 @@
         }
 
         &.disabled, &[disabled] {
+            pointer-events: none;
+            //Default Skin
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             border: none;
-            pointer-events: none;
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -247,10 +260,11 @@
     }
     //buton disable
     &.disabled, &[disabled] {
+        pointer-events: none;
+        //Default Skin
         color: $dark-gray-theme-dark;
         background: $onyx-black-theme-dark;
         border: none;
-        pointer-events: none;
         /*svg {
             color: $dark-gray-theme-dark;
         }*/

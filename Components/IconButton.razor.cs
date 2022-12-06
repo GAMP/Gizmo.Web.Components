@@ -128,7 +128,7 @@ namespace Gizmo.Web.Components
                  .If("giz-icon-button--fill", () => Variant == ButtonVariants.Fill)
                  .If("giz-icon-button--outline", () => Variant == ButtonVariants.Outline)
                  .If("giz-icon-button--text", () => Variant == ButtonVariants.Text)
-                 .If("giz-icon-button-shadow", () => HasShadow)
+                 .If("giz-icon-button--shadow", () => HasShadow)
                  .If("disabled", () => IsDisabled || !_canExecute)
                  .AsString();
 

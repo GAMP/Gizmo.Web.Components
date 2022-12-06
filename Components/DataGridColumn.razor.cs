@@ -157,7 +157,7 @@ namespace Gizmo.Web.Components
         #endregion
 
         protected string ClassName => new ClassMapper()
-                 .Add("data-grid-column")
+                 .Add("giz-data-grid-column")
                  .AsString();
 
         protected string StyleValue => new StyleMapper()

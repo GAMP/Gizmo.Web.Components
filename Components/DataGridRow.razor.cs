@@ -116,9 +116,9 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-             .If("is-selected", () => _isSelected)
-             .If("table__row-dropdown", () => IsDropdown && !HideDetails)
-             .If("is-opened", () => IsOpen).AsString();
+             .If("selected", () => _isSelected)
+             .If("giz-data-grid-row--dropdown", () => IsDropdown && !HideDetails)
+             .If("giz-data-grid-row--open", () => IsOpen).AsString();
 
         #endregion
 

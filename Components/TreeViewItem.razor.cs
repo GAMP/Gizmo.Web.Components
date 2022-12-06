@@ -191,8 +191,8 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-tree-view-item")
-                 .If("giz-tree-view-item--selected", () => _isSelected)
                  .If("giz-tree-view-item--expanded", () => IsExpanded)
+                 .If("selected", () => _isSelected)
                  .AsString();
 
         #endregion

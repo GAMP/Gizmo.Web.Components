@@ -31,25 +31,7 @@
                 }
             }
 
-            &.is-opened {
-                border-color: #dddfe4;
-                background: $primary-color-theme-dark;
-
-                & > td {
-                    border-top: 1px solid $gray-dark-theme-dark;
-                    border-bottom: 1px solid $gray-dark-theme-dark;
-
-                    &:first-child {
-                        border-left: 1px solid $gray-dark-theme-dark;
-                    }
-
-                    &:last-child {
-                        border-right: 1px solid $gray-dark-theme-dark;
-                    }
-                }
-            }
-
-            &.is-selected {
+            &.selected {
                 background: $primary-light-color-theme-dark;
 
                 & > td {
@@ -83,7 +65,7 @@
                 }
             }
 
-            &.is-active {
+            &.active {
                 border-color: #dddfe4;
                 background: $primary-light-color-theme-dark;
             }
@@ -91,13 +73,37 @@
     }
 }
 
-.giz-data-grid__details-content {
+
+
+.giz-data-grid-row {
     [light-theme] & {
-        border-color: #dddfe4;
+        .giz-data-grid-row-detail {
+            &-content {
+                border-color: #dddfe4;
+            }
+        }
+
+        .giz-data-grid-row--open {
+            border-color: #dddfe4;
+            background: $primary-color-theme-dark;
+
+            & > td {
+                border-top: 1px solid $gray-dark-theme-dark;
+                border-bottom: 1px solid $gray-dark-theme-dark;
+
+                &:first-child {
+                    border-left: 1px solid $gray-dark-theme-dark;
+                }
+
+                &:last-child {
+                    border-right: 1px solid $gray-dark-theme-dark;
+                }
+            }
+        }
     }
 }
 
-.giz-data-grid-sticky-header {
+.giz-data-grid--sticky-header {
     [light-theme] & {
         .giz-data-grid {
             & > thead td, & > thead th {
@@ -352,7 +358,7 @@
         .giz-list-item {
             color: $secondary-color-theme-dark;
 
-            &.giz-list-item-active {
+            &.active {
                 background-color: $primary-color-theme-dark;
                 color: white;
             }
@@ -424,7 +430,7 @@
                 color: $secondary-color-theme-dark;
             }
 
-            &--selected {
+            &.selected {
                 & > .giz-tree-view-item__body {
                     background-color: $secondary-light-theme-dark;
                     color: $primary-color-theme-dark;
@@ -437,37 +443,35 @@
 // == simple-tab == //
 .giz-simple-tab {
     [light-theme] & {
-        .giz-simple-tab-active {
+        .active {
             color: black;
         }
 
-        &__ul {
+        &__header {
             background: $secondary-light-theme-dark;
             border-bottom: 1px solid white;
-        }
 
-        &__link {
-            color: $dim-color-theme-dark;
-
-            &:hover {
-                background-color: white;
+            &-link {
                 color: $dim-color-theme-dark;
+
+                &:hover {
+                    background-color: white;
+                    color: $dim-color-theme-dark;
+                }
             }
         }
-    }
-}
 
-.giz-simple-tab-item {
-    [light-theme] & {
-        color: $secondary-color-theme-dark;
-        background: white;
+        &-item {
+            color: $secondary-color-theme-dark;
+            background: white;
+        }
     }
 }
 
 // == tab == //
 .giz-tab {
     [light-theme] & {
-        .giz-tab-active {
+        &.active {
             color: black;
         }
 
@@ -550,7 +554,7 @@
             color: $secondary-color-theme-dark;
             border-color: #d4d6db;
 
-            &:hover:not(.giz-pagination-btn--disabled), &.is-active {
+            &:hover:not(.disabled), &.active {
                 background: #5a7ff2;
                 border-color: #5a7ff2;
                 color: white;
@@ -558,7 +562,7 @@
         }
 
         &-btn {
-            &--disabled {
+            &.disabled {
                 color: $gray-dark-theme-dark;
                 background: white;
                 border: 1px solid $gray-dark-theme-dark;

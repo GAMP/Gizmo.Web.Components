@@ -21,7 +21,7 @@
         display: flex;
         align-items: center;
 
-        &:hover:not(.giz-pagination-btn--disabled), &.is-active {
+        &:hover:not(.disabled), &.active {
             background: #5a7ff2;
             border-color: #5a7ff2;
             color: white;
@@ -29,7 +29,7 @@
     }
 
     &-btn {
-        &--disabled {
+        &.disabled {
             color: $dark-gray-theme-dark;
             background: $onyx-black-theme-dark;
             pointer-events: none;

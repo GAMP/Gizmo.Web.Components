@@ -40,7 +40,7 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-overlay")
-                 .If("giz-overlay-visible", () => Visible)
+                 .If("giz-overlay--visible", () => Visible)
                  .AsString();
 
         #endregion

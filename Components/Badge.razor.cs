@@ -39,8 +39,8 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-badge")
-                 .If("corner", () => !IsInline)
-                 .If("small", () => Size == BadgeSize.Small)
+                 .If("giz-badge--corner", () => !IsInline)
+                 .If("giz-badge--small", () => Size == BadgeSize.Small)
                  .AsString();
 
         protected string BadgeStyleValue => new StyleMapper()
