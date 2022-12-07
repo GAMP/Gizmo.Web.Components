@@ -3314,11 +3314,11 @@ h6,
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 9px 12px;
-  height: 40px;
+  padding: 0.9rem 1.2rem;
+  height: 4.0rem;
   color: #3F8CFF;
   background: #0B1A24;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 2.2rem;
@@ -3326,7 +3326,7 @@ h6,
 }
 
 .giz-chip .giz-icon-button {
-  margin-left: 10px;
+  margin-left: 1.0rem;
 }
 
 .giz-chip .giz-icon-button svg {
@@ -4893,7 +4893,7 @@ h6,
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: 1.0rem;
 }
 
 .giz-country-flag {
@@ -4903,7 +4903,7 @@ h6,
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 24px;
+  width: 2.4rem;
 }
 
 .giz-masked-text-input input {
@@ -6676,7 +6676,7 @@ h6,
 }
 
 [client-theme] .giz-data-grid > tbody > tr {
-  border-top: 1px solid #22272B;
+  border-top: 0.1rem solid #22272B;
   height: unset;
   font-weight: 400;
   font-size: 1.4rem;
@@ -6697,7 +6697,7 @@ h6,
 }
 
 [client-theme] .giz-data-grid > tbody > tr:last-child {
-  border-bottom: 1px solid #22272B;
+  border-bottom: 0.1rem solid #22272B;
 }
 
 [client-theme] .giz-data-grid > tbody > tr > td {
@@ -6738,7 +6738,7 @@ h6,
   display: -ms-inline-flexbox;
   display: inline-flex;
   background-color: unset;
-  border: 1px solid rgba(246, 251, 253, 0.28);
+  border: 0.1rem solid rgba(246, 251, 253, 0.28);
   border-radius: 0.8rem;
   padding: unset;
 }
@@ -6792,7 +6792,7 @@ h6,
   pointer-events: none;
   color: rgba(255, 255, 255, 0.6);
   background: rgba(250, 250, 250, 0.16);
-  border: 1px solid transparent;
+  border: 0.1rem solid transparent;
 }
 
 [client-theme] .giz-input-control .giz-input-root input {
@@ -6811,7 +6811,7 @@ h6,
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:hover {
-  border: 2px solid rgba(246, 251, 253, 0.52);
+  border: 0.2rem solid rgba(246, 251, 253, 0.52);
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:hover.giz-input-root--small {
@@ -6827,7 +6827,7 @@ h6,
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:focus-within {
-  border: 2px solid #0091E6;
+  border: 0.2rem solid #0091E6;
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:focus-within.giz-input-root--small {
@@ -6937,11 +6937,11 @@ h6,
 }
 
 [client-theme] .giz-input-control--invalid .giz-input-root--outline {
-  border: 1px solid #F73B3B;
+  border: 0.1rem solid #F73B3B;
 }
 
 [client-theme] .giz-input-control--invalid .giz-input-root--outline:hover {
-  border: 1px solid #F73B3B;
+  border: 0.1rem solid #F73B3B;
 }
 
 [client-theme] .giz-input-control--invalid .giz-input-root--outline:hover.giz-input-root--medium {
@@ -6949,7 +6949,7 @@ h6,
 }
 
 [client-theme] .giz-input-control--invalid .giz-input-root--outline:focus-within {
-  border: 2px solid #F73B3B;
+  border: 0.2rem solid #F73B3B;
 }
 
 [client-theme] .giz-input-control--invalid .giz-input-root--outline:focus-within.giz-input-root--medium {
@@ -6982,8 +6982,8 @@ h6,
 
 [client-theme] .giz-input-select .giz-input-select__dropdown {
   background: #22272B;
-  -webkit-box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
   border-radius: 0.8rem;
   padding: 0.8rem;
   border: unset;
@@ -7088,19 +7088,19 @@ h6,
 
 [client-theme] .giz-button--outline {
   background-color: unset;
-  border: 2px solid rgba(246, 251, 253, 0.28);
+  border: 0.2rem solid rgba(246, 251, 253, 0.28);
   color: #FFFFFF;
 }
 
 [client-theme] .giz-button--outline:hover {
-  border: 2px solid #0091E6;
+  border: 0.2rem solid #0091E6;
   color: #0091E6;
 }
 
 [client-theme] .giz-button--outline.disabled,
 [client-theme] .giz-button--outline[disabled] {
   opacity: 0.3;
-  border: 2px solid rgba(213, 213, 214, 0.5);
+  border: 0.2rem solid rgba(213, 213, 214, 0.5);
 }
 
 [client-theme] .giz-button--text {
@@ -7333,7 +7333,7 @@ h6,
 
 [client-theme] .giz-icon-button--outline {
   background: orange;
-  border: 1px solid orange;
+  border: 0.1rem solid orange;
 }
 
 [client-theme] .giz-icon-button--outline:hover {
@@ -7416,7 +7416,7 @@ h6,
 [client-theme] .giz-menu__dropdown .giz-list {
   padding: unset;
   border-radius: unset;
-  border: 1px solid orange;
+  border: 0.1rem solid orange;
   -webkit-box-shadow: 0px 5px 10px rgba(8, 8, 13, 0.3);
   box-shadow: 0px 5px 10px rgba(8, 8, 13, 0.3);
   background: rgba(9, 11, 16, 0.9);
@@ -7444,7 +7444,7 @@ h6,
   width: 2.4rem;
   height: 2.4rem;
   background: transparent;
-  border: 2px solid #FAFAFA;
+  border: 0.2rem solid #FAFAFA;
   border-radius: 0.4rem;
   margin-right: 0.8rem;
   -webkit-box-sizing: border-box;
@@ -7453,7 +7453,7 @@ h6,
 
 [client-theme] .giz-checkbox input:checked + label:before {
   background: #3F8CFF;
-  border: 2px solid #3F8CFF;
+  border: 0.2rem solid #3F8CFF;
 }
 
 [client-theme] .giz-checkbox input:checked + label:after {
@@ -7463,14 +7463,14 @@ h6,
   width: 0.4rem;
   height: 0.8rem;
   border: solid white;
-  border-width: 0 2px 2px 0;
+  border-width: 0 0.2rem 0.2rem 0;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
 [client-theme] .giz-checkbox input.disabled + label:before,
 [client-theme] .giz-checkbox input[disabled] + label:before {
-  border: 2px solid rgba(246, 251, 253, 0.28);
+  border: 0.2rem solid rgba(246, 251, 253, 0.28);
 }
 
 [client-theme] .giz-checkbox input.disabled + label,
@@ -7481,7 +7481,7 @@ h6,
 [client-theme] .giz-divider {
   border: none;
   border-top: solid;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-color: orange;
 }
 
@@ -7493,8 +7493,8 @@ h6,
   border-radius: 50%;
   padding: 0;
   inset: auto auto calc(100% - 0.3rem) calc(100% - 0.3rem);
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(37, 140, 246, 0.6);
-  box-shadow: 0px 0px 5px 2px rgba(37, 140, 246, 0.6);
+  -webkit-box-shadow: 0 0 0.5rem 0.2rem rgba(37, 140, 246, 0.6);
+  box-shadow: 0 0 0.5rem 0.2rem rgba(37, 140, 246, 0.6);
 }
 
 [client-theme] .giz-tooltip {
@@ -7531,7 +7531,7 @@ h6,
   width: 2.0rem;
   height: 2.0rem;
   background: transparent;
-  border: 1px solid rgba(246, 251, 253, 0.28);
+  border: 0.1rem solid rgba(246, 251, 253, 0.28);
   border-radius: 10.0rem;
 }
 
@@ -7581,7 +7581,7 @@ h6,
 [client-theme] .giz-circle-progress.giz-circle-progress--extra-small > .giz-circle-progress--left > .giz-circle-progress-bar {
   border-top-right-radius: 1.2rem;
   border-bottom-right-radius: 1.2rem;
-  border-width: 4px;
+  border-width: 0.4rem;
 }
 
 [client-theme] .giz-circle-progress.giz-circle-progress--extra-small > .giz-circle-progress--right > .giz-circle-progress-bar {
@@ -7600,8 +7600,8 @@ h6,
 
 [client-theme] .giz-combo-button .giz-combo-button__dropdown .giz-list {
   background: #201F1F;
-  -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
   border-radius: 0.8rem;
   color: #E4E6EB;
   padding: 0.8rem 0;

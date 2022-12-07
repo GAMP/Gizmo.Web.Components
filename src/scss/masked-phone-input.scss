@@ -135,11 +135,11 @@
     display: grid;
     grid-template-columns: min-content 1fr min-content;
     align-items: center;
-    gap: 10px;
+    gap: 1.0rem;
 }
 
 .giz-country-flag {
     display: flex;
     align-items: center;
-    width: 24px;
+    width: 2.4rem;
 }

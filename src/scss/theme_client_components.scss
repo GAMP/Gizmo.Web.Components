@@ -54,7 +54,7 @@
 
         & > tbody {
             & > tr {
-                border-top: 1px solid #22272B;
+                border-top: 0.1rem solid #22272B;
                 height: unset;
                 @include font-m($font-weight-light);
 
@@ -73,7 +73,7 @@
                 }
 
                 &:last-child {
-                    border-bottom: 1px solid #22272B;
+                    border-bottom: 0.1rem solid #22272B;
                 }
 
                 & > td {
@@ -124,7 +124,7 @@
     [client-theme] & {
         display: inline-flex;
         background-color: unset;
-        border: 1px solid rgba(246, 251, 253, 0.28);
+        border: 0.1rem solid rgba(246, 251, 253, 0.28);
         border-radius: 0.8rem;
         padding: unset;
 
@@ -176,7 +176,7 @@
                 //Default Theme
                 color: rgba(255, 255, 255, 0.6);
                 background: rgba(250, 250, 250, 0.16);
-                border: 1px solid transparent;
+                border: 0.1rem solid transparent;
             }
 
             input {
@@ -194,7 +194,7 @@
                 background: transparent;
 
                 &:hover {
-                    border: 2px solid rgba(246, 251, 253, 0.52);
+                    border: 0.2rem solid rgba(246, 251, 253, 0.52);
 
                     &.giz-input-root--small {
                         padding: 0.7rem 1.2rem;
@@ -210,7 +210,7 @@
                 }
 
                 &:focus-within {
-                    border: 2px solid #0091E6;
+                    border: 0.2rem solid #0091E6;
 
                     &.giz-input-root--small {
                         padding: 0.7rem 1.2rem;
@@ -318,10 +318,10 @@
             }
 
             .giz-input-root--outline {
-                border: 1px solid $bg-alert;
+                border: 0.1rem solid $bg-alert;
 
                 &:hover {
-                    border: 1px solid $bg-alert;
+                    border: 0.1rem solid $bg-alert;
 
                     &.giz-input-root--medium {
                         padding: 1.0rem 1.2rem;
@@ -329,7 +329,7 @@
                 }
 
                 &:focus-within {
-                    border: 2px solid $bg-alert;
+                    border: 0.2rem solid $bg-alert;
 
                     &.giz-input-root--medium {
                         padding: 0.9rem 1.1rem;
@@ -365,7 +365,7 @@
     [client-theme] & {
         .giz-input-select__dropdown {
             background: #22272B;
-            box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
             border-radius: 0.8rem;
             padding: 0.8rem;
             border: unset;
@@ -488,11 +488,11 @@
         //button outline variant
         &--outline {
             background-color: unset;
-            border: 2px solid rgba(246, 251, 253, 0.28);
+            border: 0.2rem solid rgba(246, 251, 253, 0.28);
             color: #FFFFFF;
 
             &:hover {
-                border: 2px solid #0091E6;
+                border: 0.2rem solid #0091E6;
                 color: #0091E6;
             }
 
@@ -501,7 +501,7 @@
 
             &.disabled, &[disabled] {
                 opacity: 0.3;
-                border: 2px solid rgba(213, 213, 214, 0.5);
+                border: 0.2rem solid rgba(213, 213, 214, 0.5);
             }
         }
         //button text variant
@@ -757,7 +757,7 @@
 
         &--outline {
             background: $unknown-color;
-            border: 1px solid $unknown-color;
+            border: 0.1rem solid $unknown-color;
 
             &:hover {
                 background: $unknown-color;
@@ -843,7 +843,7 @@
             .giz-list {
                 padding: unset;
                 border-radius: unset;
-                border: 1px solid $unknown-color;
+                border: 0.1rem solid $unknown-color;
                 box-shadow: $elevation-4;
                 background: rgba(9, 11, 16, 0.9);
 
@@ -877,7 +877,7 @@
                 width: 2.4rem;
                 height: 2.4rem;
                 background: transparent;
-                border: 2px solid #FAFAFA;
+                border: 0.2rem solid #FAFAFA;
                 border-radius: 0.4rem;
                 margin-right: 0.8rem;
                 box-sizing: border-box;
@@ -885,7 +885,7 @@
 
             &:checked + label:before {
                 background: #3F8CFF;
-                border: 2px solid #3F8CFF;
+                border: 0.2rem solid #3F8CFF;
             }
 
             &:checked + label:after {
@@ -895,14 +895,14 @@
                 width: 0.4rem;
                 height: 0.8rem;
                 border: solid white;
-                border-width: 0 2px 2px 0;
+                border-width: 0 0.2rem 0.2rem 0;
                 -webkit-transform: rotate(45deg);
                 -ms-transform: rotate(45deg);
                 transform: rotate(45deg);
             }
 
             &.disabled + label:before, &[disabled] + label:before {
-                border: 2px solid rgba(246, 251, 253, 0.28);
+                border: 0.2rem solid rgba(246, 251, 253, 0.28);
             }
 
             &.disabled + label, &[disabled] + label {
@@ -917,7 +917,7 @@
     [client-theme] & {
         border: none;
         border-top: solid;
-        border-width: 1px;
+        border-width: 0.1rem;
         border-color: $unknown-color;
     }
 }
@@ -935,7 +935,7 @@
                     border-radius: 50%;
                     padding: 0;
                     inset: auto auto calc(100% - 0.3rem) calc(100% - 0.3rem);
-                    box-shadow: 0px 0px 5px 2px rgba(37, 140, 246, 0.6);
+                    box-shadow: 0 0 0.5rem 0.2rem rgba(37, 140, 246, 0.6);
                 }
             }
         }
@@ -994,7 +994,7 @@
                 width: 2.0rem;
                 height: 2.0rem;
                 background: transparent;
-                border: 1px solid rgba(246, 251, 253, 0.28);
+                border: 0.1rem solid rgba(246, 251, 253, 0.28);
                 border-radius: 10.0rem;
             }
 
@@ -1057,7 +1057,7 @@
                 & > .giz-circle-progress-bar {
                     border-top-right-radius: 1.2rem;
                     border-bottom-right-radius: 1.2rem;
-                    border-width: 4px;
+                    border-width: 0.4rem;
                 }
             }
 
@@ -1089,7 +1089,7 @@
 
             .giz-list {
                 background: #201F1F;
-                box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 0.4rem 2.0rem rgba(0, 0, 0, 0.08);
                 border-radius: 0.8rem;
                 color: #E4E6EB;
                 padding: 0.8rem 0;
