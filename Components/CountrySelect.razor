@@ -26,9 +26,10 @@
             <div class="giz-input-wrapper">
 
                 <input type="text"
-                       value="@(@SelectedCountry?.Name ?? "Search")"
+                       value="@_text"
                        readonly="@IsReadOnly"
                        disabled="@IsDisabled"
+                       placeholder="@Placeholder"
                        @oninput="OnInputHandler"
                        @onkeydown="OnInputKeyDownHandler" />
 
@@ -49,13 +50,14 @@
                 Class="@PopupClassName"
                 Style="@PopupStyleValue">
             <List @ref="_popupContent"
-                    CanClick="true"
-                    MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
+                  CanClick="true"
+                  CanSelect="true"
+                  MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
                 @if (Countries != null)
                 {
                     @if (SelectedCountry != null)
                     {
-                        <ListItem OnClick="@(() => SetSelectedCountry(SelectedCountry.Id))">
+                        <div class="giz-list-item selected" @onclick="@(() => SetSelectedCountry(SelectedCountry.Id))">
                             <div class="giz-country">
                                 <div class="giz-country-flag">
                                     <Icon Size="IconSizes.Small">
@@ -65,10 +67,11 @@
                                 <div>@($"{SelectedCountry.Name} ({SelectedCountry.PhonePrefix})")</div>
                                 <Icon SVGIcon="Icons.Check" />
                             </div>
-                        </ListItem>
+                        </div>
                         <Divider />
                     }
-                    @foreach (var item in Countries)
+
+                    @foreach (var item in _filteredCountries)
                     {
                         @if (item != SelectedCountry)
                         {

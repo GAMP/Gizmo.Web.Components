@@ -11,13 +11,20 @@ namespace Gizmo.Web.Components
 {
     public partial class CountrySelect<TValue> : GizInputBase<TValue>, IGizInput
     {
+        const int DEFAULT_DELAY = 500;
+
         #region CONSTRUCTOR
         public CountrySelect()
         {
+            _deferredAction = new DeferredAction(Search);
+            _delayTimeSpan = new TimeSpan(0, 0, 0, 0, _delay);
         }
         #endregion
 
         #region FIELDS
+
+        private string _text = string.Empty;
+        private List<Country> _filteredCountries = new List<Country>();
 
         private Country _selectedCountry;
         private List _popupContent;
@@ -32,6 +39,10 @@ namespace Gizmo.Web.Components
         private ValidationMessageStore _validationMessageStore;
 
         private bool _clickHandled = false;
+
+        private DeferredAction _deferredAction;
+        private int _delay = DEFAULT_DELAY;
+        private TimeSpan _delayTimeSpan;
 
         #endregion
 
@@ -119,6 +130,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string PopupClass { get; set; }
 
+        [Parameter]
+        public int MinimumCharacters { get; set; } = 1;
+
         #endregion
 
         #region METHODS
@@ -126,6 +140,12 @@ namespace Gizmo.Web.Components
         protected void SetSelectedCountry(int id)
         {
             SelectedCountry = Countries.Where(a => a.Id == id).FirstOrDefault();
+
+            if (SelectedCountry != null)
+                _text = SelectedCountry.Name;
+            else
+                _text = string.Empty;
+
             _isOpen = false;
         }
 
@@ -150,98 +170,104 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected Task OnInputKeyDownHandler(KeyboardEventArgs args)
+        protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
-            //if (IsDisabled)
-            //    return;
+            if (IsDisabled)
+                return;
 
-            //if (args.Key == null)
-            //    return;
+            if (args.Key == null)
+                return;
 
-            //if (args.Key == "Tab")
-            //    await InvokeVoidAsync("focusNext", _inputElement);
+            if (args.Key == "Escape")
+            {
+                _isOpen = false;
+                return;
+            }
 
-            //if (!_isOpen)
-            //    await Open();
+            if (args.Key == "Tab")
+            {
+                _isOpen = false;
+                await InvokeVoidAsync("focusNext", _inputElement);
+                return;
+            }
 
-            ////If list has items.
-            ////Get the index of the selected item.
+            if (!_isOpen)
+                await Open();
 
-            //int activeItemIndex = _popupContent.GetActiveItemIndex();
-            //int listSize = _popupContent.GetListSize();
+            //If list has items.
+            //Get the index of the selected item.
 
-            //switch (args.Key)
-            //{
-            //    case "Enter":
+            int activeItemIndex = _popupContent.GetActiveItemIndex();
+            int listSize = _popupContent.GetListSize();
 
-            //        if (activeItemIndex == -1) //If not item was selected.
-            //        {
-            //            activeItemIndex = 0; //Select the first item.
-            //        }
-            //        else
-            //        {
-            //            //Set the value of the AutoComplete based on the selected item.
-            //            var selectItem = _selectItems.Where(a => a.Value.ListItem == _popupContent.ActiveItem).Select(a => a.Value).FirstOrDefault();
-            //            await SetSelectedItem(selectItem);
+            switch (args.Key)
+            {
+                case "Enter":
 
-            //            //Close the popup.
-            //            _isOpen = false;
+                    if (activeItemIndex == -1) //If no item was selected.
+                    {
+                        activeItemIndex = 0; //Select the first item.
+                    }
+                    else
+                    {
+                        if (activeItemIndex >= 0 && activeItemIndex < _filteredCountries.Count)
+                        {
+                            SetSelectedCountry(_filteredCountries[activeItemIndex].Id);
 
-            //            return;
-            //        }
+                            //Close the popup.
+                            _isOpen = false;
+                        }
 
-            //        break;
+                        return;
+                    }
 
-            //    case "ArrowDown":
+                    break;
 
-            //        if (activeItemIndex == -1 || activeItemIndex == listSize - 1) //If not item was selected or the last item was selected.
-            //        {
-            //            //Select the first item.
-            //            activeItemIndex = 0;
-            //        }
-            //        else
-            //        {
-            //            //Select the next item.
-            //            activeItemIndex += 1;
-            //        }
+                case "ArrowDown":
 
-            //        break;
-            //    case "ArrowUp":
+                    if (activeItemIndex == -1 || activeItemIndex == listSize - 1) //If no item was selected or the last item was selected.
+                    {
+                        //Select the first item.
+                        activeItemIndex = 0;
+                    }
+                    else
+                    {
+                        //Select the next item.
+                        activeItemIndex += 1;
+                    }
 
-            //        if (activeItemIndex == -1 || activeItemIndex == 0) //If not item was selected or the first item was selected.
-            //        {
-            //            //Select the last item.
-            //            activeItemIndex = listSize - 1;
-            //        }
-            //        else
-            //        {
-            //            //Select the previous item.
-            //            activeItemIndex -= 1;
-            //        }
+                    break;
+                case "ArrowUp":
 
-            //        break;
+                    if (activeItemIndex == -1 || activeItemIndex == 0) //If no item was selected or the first item was selected.
+                    {
+                        //Select the last item.
+                        activeItemIndex = listSize - 1;
+                    }
+                    else
+                    {
+                        //Select the previous item.
+                        activeItemIndex -= 1;
+                    }
 
-            //    default:
-            //        return;
-            //}
+                    break;
 
-            ////Update the selected item in the list.
-            //await _popupContent.SetActiveItemIndex(activeItemIndex);
+                default:
+                    return;
+            }
 
-            return Task.CompletedTask;
+            //Update the selected item in the list.
+            await _popupContent.SetActiveItemIndex(activeItemIndex);
         }
 
         public Task OnInputHandler(ChangeEventArgs args)
         {
-            //_text = (string)args.Value;
+            _text = (string)args.Value;
 
-            //if (SearchFunction != null)
-            //{
-            //    if (MinimumCharacters > 0 && _text.Length >= MinimumCharacters)
-            //    {
-            //        _deferredAction.Defer(_delayTimeSpan);
-            //    }
-            //}
+            if (MinimumCharacters > 0 && _text.Length >= MinimumCharacters)
+            {
+                _deferredAction.Defer(_delayTimeSpan);
+            }
 
             //StateHasChanged();
             return Task.CompletedTask;
@@ -257,6 +283,9 @@ namespace Gizmo.Web.Components
             {
                 _validationMessageStore = new ValidationMessageStore(EditContext);
             }
+
+            if (Countries != null)
+                _filteredCountries = Countries.ToList();
 
             base.OnParametersSet();
         }
@@ -301,6 +330,22 @@ namespace Gizmo.Web.Components
             await _popupContent.SetActiveItemIndex(activeItemIndex);
 
             _isOpen = true;
+        }
+
+        private Task Search()
+        {
+            if (string.IsNullOrEmpty(_text))
+            {
+                if (Countries != null)
+                    _filteredCountries = Countries.ToList();
+            }
+            else
+            {
+                if (Countries != null)
+                    _filteredCountries = Countries.Where(a => a.Name.Contains(_text, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            }
+
+            return InvokeAsync(StateHasChanged);
         }
 
         #endregion

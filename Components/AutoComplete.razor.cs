@@ -275,7 +275,7 @@ namespace Gizmo.Web.Components
             {
                 case "Enter":
 
-                    if (activeItemIndex == -1) //If not item was selected.
+                    if (activeItemIndex == -1) //If no item was selected.
                     {
                         activeItemIndex = 0; //Select the first item.
                     }
@@ -295,7 +295,7 @@ namespace Gizmo.Web.Components
 
                 case "ArrowDown":
 
-                    if (activeItemIndex == -1 || activeItemIndex == listSize - 1) //If not item was selected or the last item was selected.
+                    if (activeItemIndex == -1 || activeItemIndex == listSize - 1) //If no item was selected or the last item was selected.
                     {
                         //Select the first item.
                         activeItemIndex = 0;
@@ -309,7 +309,7 @@ namespace Gizmo.Web.Components
                     break;
                 case "ArrowUp":
 
-                    if (activeItemIndex == -1 || activeItemIndex == 0) //If not item was selected or the first item was selected.
+                    if (activeItemIndex == -1 || activeItemIndex == 0) //If no item was selected or the first item was selected.
                     {
                         //Select the last item.
                         activeItemIndex = listSize - 1;
