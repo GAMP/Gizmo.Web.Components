@@ -33,19 +33,13 @@
                        @oninput="OnInputHandler"
                        @onkeydown="OnInputKeyDownHandler" />
 
-                @if (SelectedCountry != null)
-                {
-                    @*<div class="giz-input-select__content">
-                        @_selectedItem.ChildContent
-                    </div>*@
-                }
-
             </div>
 
         </GizInput>
 
         <Popup MaximumHeight="@MaximumHeight"
-                @bind-IsOpen="_isOpen"
+                IsOpen="@_isOpen"
+                IsOpenChanged="IsOpenChangedHandler"
                 OpenDirection="@OpenDirection"
                 Class="@PopupClassName"
                 Style="@PopupStyleValue">
@@ -53,36 +47,36 @@
                   CanClick="true"
                   CanSelect="true"
                   MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
-                @if (Countries != null)
+                @if (ItemSource != null)
                 {
-                    @if (SelectedCountry != null)
+                    @if (SelectedItem != null)
                     {
-                        <div class="giz-list-item selected" @onclick="@(() => SetSelectedCountry(SelectedCountry.Id))">
+                        <div class="giz-list-item selected" @onclick="@(() => SetSelectedItem(SelectedItem.Id))">
                             <div class="giz-country">
                                 <div class="giz-country-flag">
                                     <Icon Size="IconSizes.Small">
-                                        @((MarkupString)SelectedCountry.Flag)
+                                        @((MarkupString)SelectedItem.Icon)
                                     </Icon>
                                 </div>
-                                <div>@($"{SelectedCountry.Name} ({SelectedCountry.PhonePrefix})")</div>
+                                <div>@($"{SelectedItem.Display}")</div>
                                 <Icon SVGIcon="Icons.Check" />
                             </div>
                         </div>
                         <Divider />
                     }
 
-                    @foreach (var item in _filteredCountries)
+                    @foreach (var item in _filteredItems)
                     {
-                        @if (item != SelectedCountry)
+                        @if (item != SelectedItem)
                         {
-                            <ListItem OnClick="@(() => SetSelectedCountry(item.Id))">
+                            <ListItem OnClick="@(() => SetSelectedItem(item.Id))">
                                 <div class="giz-country">
                                     <div class="giz-country-flag">
                                         <Icon Size="IconSizes.Small">
-                                            @((MarkupString)item.Flag)
+                                            @((MarkupString)item.Icon)
                                         </Icon>
                                     </div>
-                                    <div>@($"{item.Name} ({item.PhonePrefix})")</div>
+                                    <div>@($"{item.Display}")</div>
                                 </div>
                             </ListItem>
                         }

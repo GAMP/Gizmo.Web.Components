@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public partial class CountrySelect<TValue> : GizInputBase<TValue>, IGizInput
+    public partial class IconSelect<TValue> : GizInputBase<TValue>, IGizInput where TValue : IconSelectItem
     {
         const int DEFAULT_DELAY = 500;
 
         #region CONSTRUCTOR
-        public CountrySelect()
+        public IconSelect()
         {
             _deferredAction = new DeferredAction(Search);
             _delayTimeSpan = new TimeSpan(0, 0, 0, 0, _delay);
@@ -24,9 +24,9 @@ namespace Gizmo.Web.Components
         #region FIELDS
 
         private string _text = string.Empty;
-        private List<Country> _filteredCountries = new List<Country>();
+        private List<TValue> _filteredItems = new List<TValue>();
 
-        private Country _selectedCountry;
+        private TValue _selectedItem;
         private List _popupContent;
         private ElementReference _inputElement;
         private bool _isOpen;
@@ -43,6 +43,8 @@ namespace Gizmo.Web.Components
         private DeferredAction _deferredAction;
         private int _delay = DEFAULT_DELAY;
         private TimeSpan _delayTimeSpan;
+
+        private bool _customInput;
 
         #endregion
 
@@ -99,27 +101,27 @@ namespace Gizmo.Web.Components
         public Icons? HandleSVGIcon { get; set; }
 
         [Parameter]
-        public List<Country> Countries { get; set; }
+        public IEnumerable<TValue> ItemSource { get; set; }
 
         [Parameter]
-        public Country SelectedCountry
+        public TValue SelectedItem
         {
             get
             {
-                return _selectedCountry;
+                return _selectedItem;
             }
             set
             {
-                if (_selectedCountry == value)
+                if (_selectedItem == value)
                     return;
 
-                _selectedCountry = value;
-                _ = SelectedCountryChanged.InvokeAsync(_selectedCountry);
+                _selectedItem = value;
+                _ = SelectedItemChanged.InvokeAsync(_selectedItem);
             }
         }
 
         [Parameter]
-        public EventCallback<Country> SelectedCountryChanged { get; set; }
+        public EventCallback<TValue> SelectedItemChanged { get; set; }
 
         [Parameter]
         public string MaximumHeight { get; set; }
@@ -137,14 +139,19 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        protected void SetSelectedCountry(int id)
+        protected void SetSelectedItem(int id)
         {
-            SelectedCountry = Countries.Where(a => a.Id == id).FirstOrDefault();
+            SelectedItem = ItemSource.Where(a => a.Id == id).FirstOrDefault();
 
-            if (SelectedCountry != null)
-                _text = SelectedCountry.Name;
+            if (SelectedItem != null)
+                _text = SelectedItem.Text;
             else
                 _text = string.Empty;
+
+            _customInput = false;
+
+            _hasParsingErrors = false;
+            _parsingErrors = string.Empty;
 
             _isOpen = false;
         }
@@ -152,6 +159,16 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region EVENTS
+
+        private void IsOpenChangedHandler(bool value)
+        {
+            if (_isOpen && !value)
+            {
+                TrySetSelectedItem();
+            }
+
+            _isOpen = value;
+        }
 
         protected async Task OnClickInput()
         {
@@ -181,12 +198,18 @@ namespace Gizmo.Web.Components
             if (args.Key == "Escape")
             {
                 _isOpen = false;
+
+                TrySetSelectedItem();
+
                 return;
             }
 
             if (args.Key == "Tab")
             {
                 _isOpen = false;
+
+                TrySetSelectedItem();
+
                 await InvokeVoidAsync("focusNext", _inputElement);
                 return;
             }
@@ -210,9 +233,9 @@ namespace Gizmo.Web.Components
                     }
                     else
                     {
-                        if (activeItemIndex >= 0 && activeItemIndex < _filteredCountries.Count)
+                        if (activeItemIndex >= 0 && activeItemIndex < _filteredItems.Count)
                         {
-                            SetSelectedCountry(_filteredCountries[activeItemIndex].Id);
+                            SetSelectedItem(_filteredItems[activeItemIndex].Id);
 
                             //Close the popup.
                             _isOpen = false;
@@ -253,6 +276,9 @@ namespace Gizmo.Web.Components
                     break;
 
                 default:
+
+                    _customInput = true;
+
                     return;
             }
 
@@ -284,8 +310,13 @@ namespace Gizmo.Web.Components
                 _validationMessageStore = new ValidationMessageStore(EditContext);
             }
 
-            if (Countries != null)
-                _filteredCountries = Countries.ToList();
+            if (ItemSource != null)
+                _filteredItems = ItemSource.ToList();
+
+            if (SelectedItem != null)
+                _text = SelectedItem.Text;
+            else
+                _text = string.Empty;
 
             base.OnParametersSet();
         }
@@ -303,6 +334,25 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
+        private void TrySetSelectedItem()
+        {
+            if (_customInput)
+            {
+                var selectedItem = ItemSource.Where(a => string.Compare(a.Text, _text, false) == 0).FirstOrDefault();
+                if (selectedItem != null)
+                {
+                    SetSelectedItem(selectedItem.Id);
+                }
+                else
+                {
+                    SelectedItem = null;
+
+                    _hasParsingErrors = true;
+                    _parsingErrors = "The field is invalid.";
+                }
+            }
+        }
 
         private async Task Open()
         {
@@ -336,13 +386,13 @@ namespace Gizmo.Web.Components
         {
             if (string.IsNullOrEmpty(_text))
             {
-                if (Countries != null)
-                    _filteredCountries = Countries.ToList();
+                if (ItemSource != null)
+                    _filteredItems = ItemSource.ToList();
             }
             else
             {
-                if (Countries != null)
-                    _filteredCountries = Countries.Where(a => a.Name.Contains(_text, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                if (ItemSource != null)
+                    _filteredItems = ItemSource.Where(a => a.Text.Contains(_text, StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
 
             return InvokeAsync(StateHasChanged);

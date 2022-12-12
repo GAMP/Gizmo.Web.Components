@@ -7,14 +7,6 @@ using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
-    public class Country
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Flag { get; set; }
-        public string PhonePrefix { get; set; }
-    }
-
     public partial class MaskedPhoneInput<TValue> : MaskedNumericInputBase<TValue>
     {
         #region CONSTRUCTOR
@@ -31,17 +23,17 @@ namespace Gizmo.Web.Components
         private double _popupX;
         private double _popupY;
         private double _popupWidth;
-        private Country _selectedCountry;
+        private IconSelectItem _selectedCountry;
 
         #endregion
 
         #region PROPERTIES
 
         [Parameter]
-        public List<Country> Countries { get; set; }
+        public List<IconSelectItem> Countries { get; set; }
 
         [Parameter]
-        public Country SelectedCountry
+        public IconSelectItem SelectedCountry
         {
             get
             {
@@ -58,7 +50,7 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
-        public EventCallback<Country> SelectedCountryChanged { get; set; }
+        public EventCallback<IconSelectItem> SelectedCountryChanged { get; set; }
 
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;

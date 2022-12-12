@@ -15,7 +15,7 @@
                 @if (SelectedCountry != null)
                 {
                     <Icon Size="IconSizes.Small">
-                        @((MarkupString)SelectedCountry.Flag)
+                        @((MarkupString)SelectedCountry.Icon)
                     </Icon>
                 }
             </div>
@@ -77,10 +77,10 @@
                             <div class="giz-country">
                                 <div class="giz-country-flag">
                                     <Icon Size="IconSizes.Small">
-                                        @((MarkupString)SelectedCountry.Flag)
+                                        @((MarkupString)SelectedCountry.Icon)
                                     </Icon>
                                 </div>
-                                <div>@($"{SelectedCountry.Name} ({SelectedCountry.PhonePrefix})")</div>
+                                <div>@($"{SelectedCountry.Text} (PhonePrefix)")</div>
                                 <Icon SVGIcon="Icons.Check" />
                             </div>
                         </ListItem>
@@ -94,10 +94,10 @@
                                 <div class="giz-country">
                                     <div class="giz-country-flag">
                                         <Icon Size="IconSizes.Small">
-                                            @((MarkupString)item.Flag)
+                                            @((MarkupString)item.Icon)
                                         </Icon>
                                     </div>
-                                    <div>@($"{item.Name} ({item.PhonePrefix})")</div>
+                                    <div>@($"{item.Text} (PhonePrefix)")</div>
                                 </div>
                             </ListItem>
                         }
