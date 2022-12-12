@@ -1040,6 +1040,42 @@
         }
 
         &.giz-circle-progress--extra-small {
+            width: 1.2rem;
+            height: 1.2rem;
+
+            &::after {
+                border-radius: 50%;
+                top: 0;
+                left: 0;
+                border-width: 0.2rem;
+                width: calc(100% - 0.4rem);
+                height: calc(100% - 0.4rem);
+            }
+
+            & > .giz-circle-progress--left {
+
+                & > .giz-circle-progress-bar {
+                    border-top-right-radius: 0.6rem;
+                    border-bottom-right-radius: 0.6rem;
+                    border-width: 0.2rem;
+                }
+            }
+
+            & > .giz-circle-progress--right {
+
+                & > .giz-circle-progress-bar {
+                    border-top-left-radius: 0.6rem;
+                    border-bottom-left-radius: 0.6rem;
+                    border-width: 0.2rem;
+                }
+            }
+
+            & > .giz-circle-progress--value {
+                //font-size: 0.8rem;
+            }
+        }
+
+        &.giz-circle-progress--small {
             width: 2.4rem;
             height: 2.4rem;
 
