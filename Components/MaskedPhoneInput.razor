@@ -11,7 +11,7 @@
     <div class="giz-masked-phone-input__content_wrapper">
         
         <div class="giz-masked-phone-input__dropdown-button" @onclick="OnClickDropDownButtonHandler">
-            <div class="giz-country-flag">
+            <div class="giz-icon-select-item__icon">
                 @if (SelectedCountry != null)
                 {
                     <Icon Size="IconSizes.Small">
@@ -74,8 +74,8 @@
                     @if (SelectedCountry != null)
                     {
                         <ListItem OnClick="@(() => SetSelectedCountry(SelectedCountry.Id))">
-                            <div class="giz-country">
-                                <div class="giz-country-flag">
+                            <div class="giz-icon-select-item">
+                                <div class="giz-icon-select-item__icon">
                                     <Icon Size="IconSizes.Small">
                                         @((MarkupString)SelectedCountry.Icon)
                                     </Icon>
@@ -91,8 +91,8 @@
                         @if (item != SelectedCountry)
                         {
                             <ListItem OnClick="@(() => SetSelectedCountry(item.Id))">
-                                <div class="giz-country">
-                                    <div class="giz-country-flag">
+                                <div class="giz-icon-select-item">
+                                    <div class="giz-icon-select-item__icon">
                                         <Icon Size="IconSizes.Small">
                                             @((MarkupString)item.Icon)
                                         </Icon>

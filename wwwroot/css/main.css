@@ -4654,6 +4654,27 @@ h6,
   color: #25282D;
 }
 
+.giz-icon-select-item {
+  display: grid;
+  grid-template-columns: -webkit-min-content 1fr -webkit-min-content;
+  grid-template-columns: min-content 1fr min-content;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.0rem;
+  width: 100%;
+}
+
+.giz-icon-select-item__icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 2.4rem;
+}
+
 .giz-list {
   position: relative;
   text-align: left;
@@ -4884,26 +4905,6 @@ h6,
   border-radius: 8px;
   height: 52px;
   padding: 14px 13px;
-}
-
-.giz-country {
-  display: grid;
-  grid-template-columns: -webkit-min-content 1fr -webkit-min-content;
-  grid-template-columns: min-content 1fr min-content;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 1.0rem;
-}
-
-.giz-country-flag {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 2.4rem;
 }
 
 .giz-masked-text-input input {

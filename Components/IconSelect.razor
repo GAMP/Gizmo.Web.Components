@@ -52,8 +52,8 @@
                     @if (SelectedItem != null)
                     {
                         <div class="giz-list-item selected" @onclick="@(() => SetSelectedItem(SelectedItem.Id))">
-                            <div class="giz-country">
-                                <div class="giz-country-flag">
+                            <div class="giz-icon-select-item">
+                                <div class="giz-icon-select-item__icon">
                                     <Icon Size="IconSizes.Small">
                                         @((MarkupString)SelectedItem.Icon)
                                     </Icon>
@@ -70,8 +70,8 @@
                         @if (item != SelectedItem)
                         {
                             <ListItem OnClick="@(() => SetSelectedItem(item.Id))">
-                                <div class="giz-country">
-                                    <div class="giz-country-flag">
+                                <div class="giz-icon-select-item">
+                                    <div class="giz-icon-select-item__icon">
                                         <Icon Size="IconSizes.Small">
                                             @((MarkupString)item.Icon)
                                         </Icon>
