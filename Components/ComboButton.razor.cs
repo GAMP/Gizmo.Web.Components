@@ -76,6 +76,8 @@ namespace Gizmo.Web.Components
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
+        public ListDirections Direction { get; set; } = ListDirections.Right;
+
         #endregion
 
         #endregion
@@ -111,11 +113,23 @@ namespace Gizmo.Web.Components
 
                 var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", Ref);
 
-                _popupX = inputSize.Left;
+                if (inputSize.Left + popupContentSize.Width > windowSize.Width)
+                {
+                    //Open direction right to left.
+                    _popupX = inputSize.Right - popupContentSize.Width;
+                    Direction = ListDirections.Left;
+                }
+                else
+                {
+                    _popupX = inputSize.Left;
+                    Direction = ListDirections.Right;
+                }
+
                 _popupWidth = inputSize.Width;
 
                 if (inputSize.Bottom + popupContentSize.Height > windowSize.Height)
                 {
+                    //Open direction bottom to top.
                     _popupY = windowSize.Height - popupContentSize.Height;
                 }
                 else

@@ -3964,24 +3964,9 @@ h6,
   box-sizing: border-box;
 }
 
-.giz-expansion-panel .giz-expansion-panel-arrow-up {
-  display: none;
-}
-
-.giz-expansion-panel:not(.expanded) .giz-expansion-panel-arrow-down {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.giz-expansion-panel.expanded .giz-expansion-panel-arrow-down {
-  display: none;
-}
-
-.giz-expansion-panel.expanded .giz-expansion-panel-arrow-up {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+.giz-expansion-panel.expanded .giz-expansion-panel-arrow {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .giz-expansion-panel.expanded .giz-expansion-panel__body {
@@ -5011,6 +4996,11 @@ h6,
   position: relative;
 }
 
+.giz-input-multi-select.open .giz-input-icon-right {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
 .giz-input-multi-select__content {
   cursor: pointer;
   -webkit-box-flex: 1;
@@ -5601,6 +5591,11 @@ h6,
 .giz-input-select {
   display: inline-block;
   position: relative;
+}
+
+.giz-input-select.open .giz-input-icon-right {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .giz-input-select__content {
@@ -6804,11 +6799,11 @@ h6,
 [client-theme] .giz-input-control .giz-input-root input[disabled] {
   pointer-events: none;
   color: rgba(255, 255, 255, 0.24);
-  background: transparent;
+  background: #0C0F11;
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline {
-  background: transparent;
+  background: #0C0F11;
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:hover {
@@ -6886,7 +6881,7 @@ h6,
 }
 
 [client-theme] .giz-input-control .giz-input-root--filled {
-  background: transparent;
+  background: #0C0F11;
 }
 
 [client-theme] .giz-input-control .giz-input-root--transparent {

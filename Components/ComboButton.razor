@@ -13,6 +13,7 @@
            Class="@PopupClassName"
            Style="@PopupStyleValue">
         <List @ref="_popupContent"
+              Direction="@Direction"
               CanClick="true"
               MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
             @DropDownItems

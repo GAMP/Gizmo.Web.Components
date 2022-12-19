@@ -22,23 +22,9 @@
         box-sizing: border-box;
     }
 
-    .giz-expansion-panel-arrow-up {
-        display: none;
-    }
-
-    &:not(.expanded) {
-        .giz-expansion-panel-arrow-down {
-            display: inline-flex;
-        }
-    }
-
     &.expanded {
-        .giz-expansion-panel-arrow-down {
-            display: none;
-        }
-
-        .giz-expansion-panel-arrow-up {
-            display: inline-flex;
+        .giz-expansion-panel-arrow {
+            transform: rotate(180deg);
         }
 
         .giz-expansion-panel__body {

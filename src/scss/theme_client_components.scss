@@ -186,12 +186,14 @@
                     pointer-events: none;
                     color: rgba(255, 255, 255, 0.24);
                     //Default Theme
-                    background: transparent;
+                    //background: transparent;
+                    background: #0C0F11;
                 }
             }
 
             &--outline {
-                background: transparent;
+                //background: transparent;
+                background: #0C0F11;
 
                 &:hover {
                     border: 0.2rem solid rgba(246, 251, 253, 0.52);
@@ -251,7 +253,8 @@
             }
 
             &--filled {
-                background: transparent;
+                //background: transparent;
+                background: #0C0F11;
             }
 
             &--transparent {

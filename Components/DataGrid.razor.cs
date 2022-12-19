@@ -249,6 +249,9 @@ namespace Gizmo.Web.Components
         public RenderFragment<TItemType> DetailTemplate { get; set; }
 
         [Parameter]
+        public bool DetailTemplateCustomColumns { get; set; }
+
+        [Parameter]
         public EventCallback<TItemType> SelectedItemChanged { get; set; }
 
         [Parameter]

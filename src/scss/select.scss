@@ -5,6 +5,12 @@
     display: inline-block;
     position: relative;
 
+    &.open {
+        .giz-input-icon-right {
+            transform: rotate(180deg);
+        }
+    }
+
     &__content {
         cursor: pointer;
 

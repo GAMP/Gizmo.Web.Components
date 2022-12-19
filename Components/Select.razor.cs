@@ -437,6 +437,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-select")
                  .If("giz-input-select--full-width", () => IsFullWidth)
+                 .If("open", () => _isOpen)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()

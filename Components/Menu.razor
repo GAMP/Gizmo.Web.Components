@@ -45,11 +45,11 @@
         <Popup @bind-IsOpen="IsOpen" Class="@PopupClassName" Style="@PopupStyleValue" CloseOnClick="@CloseOnItemClick"
                OpenDirection="@(IsContextMenu ? PopupOpenDirections.Cursor : OpenDirection)" CanFocus="@IsContextMenu">
             <List @ref="_popupContent"
-                    Direction="@Direction"
-                    ExpandBottomToTop="@ExpandBottomToTop"
-                    PreserveIconSpace="@PreserveIconSpace"
-                    CanClick="true"
-                    OnClickItem="@(() => OnClickMenuItemHandler())">
+                  Direction="@Direction"
+                  ExpandBottomToTop="@ExpandBottomToTop"
+                  PreserveIconSpace="@PreserveIconSpace"
+                  CanClick="true"
+                  OnClickItem="@(() => OnClickMenuItemHandler())">
                 @ChildContent
             </List>
         </Popup>
