@@ -60,6 +60,9 @@ namespace Gizmo.Web.Components
         }
 
         [Parameter]
+        public bool DetailTemplateCustomColumns { get; set; }
+
+        [Parameter]
         public TItemType Item
         {
             get

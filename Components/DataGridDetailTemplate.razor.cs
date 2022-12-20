@@ -14,6 +14,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public int Columns { get; set; }
 
+        [Parameter]
+        public bool DetailTemplateCustomColumns { get; set; }
+
         [Parameter()]
         public RenderFragment ChildContent { get; set; }
 

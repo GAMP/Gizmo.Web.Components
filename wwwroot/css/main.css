@@ -6653,7 +6653,7 @@ h6,
 }
 
 [client-theme] .giz-data-grid {
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   background: #22272B;
   color: unset;
@@ -6668,10 +6668,11 @@ h6,
   font-size: 1.2rem;
   line-height: 1.8rem;
   letter-spacing: initial;
-  border-bottom: rgba(246, 251, 253, 0.06);
+  background: #22272B;
+  border-bottom: 0.1rem solid rgba(246, 251, 253, 0.06);
 }
 
-[client-theme] .giz-data-grid > tbody > tr {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail) {
   border-top: 0.1rem solid #22272B;
   height: unset;
   font-weight: 400;
@@ -6680,42 +6681,34 @@ h6,
   letter-spacing: initial;
 }
 
-[client-theme] .giz-data-grid > tbody > tr:hover {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail):hover {
   background: #22272B;
 }
 
-[client-theme] .giz-data-grid > tbody > tr:hover > td:first-child {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail):hover > td:first-child {
   border-left: unset;
 }
 
-[client-theme] .giz-data-grid > tbody > tr:hover > td:last-child {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail):hover > td:last-child {
   border-right: unset;
 }
 
-[client-theme] .giz-data-grid > tbody > tr:last-child {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail):last-child {
   border-bottom: 0.1rem solid #22272B;
 }
 
-[client-theme] .giz-data-grid > tbody > tr > td {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail) > td {
   padding: 1.1rem 0.8rem;
   border-top: unset;
   border-bottom: unset;
 }
 
-[client-theme] .giz-data-grid > tbody > tr > td:first-child {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail) > td:first-child {
   border-left: unset;
 }
 
-[client-theme] .giz-data-grid > tbody > tr > td:last-child {
+[client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail) > td:last-child {
   border-right: unset;
-}
-
-[client-theme] .giz-data-grid > tbody > tr:nth-of-type(odd) {
-  background: #22272B;
-}
-
-[client-theme] .giz-data-grid > tbody > tr:nth-of-type(odd):hover {
-  background: #22272B;
 }
 
 [client-theme] .giz-stacked-progress {
@@ -6987,6 +6980,7 @@ h6,
 
 [client-theme] .giz-input-select .giz-input-select__dropdown .giz-list {
   padding: unset;
+  background: #22272B;
 }
 
 [client-theme] .giz-input-select .giz-input-select__dropdown .giz-list .giz-list-item {

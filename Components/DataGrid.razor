@@ -106,7 +106,7 @@
                         {
                             @foreach (var dataItem in GetSortedData())
                             {
-                                <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                                <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" DetailTemplateCustomColumns="@DetailTemplateCustomColumns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                             }
                         }
                     }

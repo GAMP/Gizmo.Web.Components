@@ -2,9 +2,16 @@
 @inherits Gizmo.Web.Components.CustomDOMComponentBase
 
 <tr class="giz-data-grid-row-detail">
-    <td colspan="@Columns">
-        <div class="giz-data-grid-row-detail-content">
-            @ChildContent
-        </div>
-    </td>
+    @if (DetailTemplateCustomColumns)
+    {
+        @ChildContent
+    }
+    else
+    {
+        <td colspan="@Columns">
+            <div class="giz-data-grid-row-detail-content">
+                @ChildContent
+            </div>
+        </td>
+    }
 </tr>
