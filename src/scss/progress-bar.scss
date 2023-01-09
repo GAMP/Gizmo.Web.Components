@@ -1,5 +1,70 @@
 //=============== gizmo progresss bar classes ================//
 
+.giz-progress-bar {
+    position: relative;
+    width: 4.0rem;
+    height: 0.3rem;
+    overflow: hidden;
+    border-radius: 8px;
+    border-style: none;
+
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #E9EAEA;
+        border-radius: 8px;
+    }
+
+    &__bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: #0078D2;
+        border-radius: 8px;
+        z-index: 1;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background-image: linear-gradient( -45deg, rgba(255, 255, 255, .24) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .24) 50%, rgba(255, 255, 255, .24) 75%, transparent 75%, transparent );
+        background-size: 0.5rem 0.5rem;
+    }
+
+    &--indeterminate {
+        .giz-progress-bar__bar {
+            width: 1.6rem;
+            animation: giz-progress-bar-indeterminate-animation 1s linear infinite;
+        }
+
+        &:after {
+            content: none;
+        }
+    }
+
+    @keyframes giz-progress-bar-indeterminate-animation {
+        0% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(2.4rem);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
 
 //== stacked progress bar  ====//
 
@@ -16,7 +81,6 @@
         background-color: #428bca;
     }
 }
-
 
 //== giz circle progress bar ====//
 
