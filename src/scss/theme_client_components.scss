@@ -1024,6 +1024,10 @@
         .giz-input-icon-right {
             cursor: pointer;
         }
+
+        input::-ms-reveal {
+            display: none;
+        }
     }
 }
 

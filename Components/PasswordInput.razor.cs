@@ -88,6 +88,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool UpdateOnInput { get; set; }
 
+        [Parameter]
+        public bool ShowRevealButton { get; set; }
+
         #endregion
 
         #region EVENTS

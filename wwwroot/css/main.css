@@ -7636,6 +7636,10 @@ h6,
   cursor: pointer;
 }
 
+[client-theme] .giz-input-password input::-ms-reveal {
+  display: none;
+}
+
 [client-theme] .giz-circle-progress .giz-circle-progress-bar {
   top: 0;
 }
