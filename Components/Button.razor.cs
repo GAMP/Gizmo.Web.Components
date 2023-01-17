@@ -25,6 +25,8 @@ namespace Gizmo.Web.Components
 
         private ICommand _previousCommand;
 
+        protected bool _shouldRender;
+
         #endregion
 
         #region PROPERTIES
@@ -147,6 +149,73 @@ namespace Gizmo.Web.Components
                 }
             }
         }
+        public override async Task SetParametersAsync(ParameterView parameters)
+        {
+            if (parameters.TryGetValue<string>(nameof(Value), out var newValue))
+            {
+                var valueChanged = Value != newValue;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<RenderFragment>(nameof(ChildContent), out var newChildContent))
+            {
+                var valueChanged = !EqualityComparer<RenderFragment>.Default.Equals(ChildContent, newChildContent);
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<string>(nameof(Text), out var newText))
+            {
+                var valueChanged = Text != newText;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<decimal>(nameof(Progress), out var newProgress))
+            {
+                var valueChanged = Progress != newProgress;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<bool>(nameof(IsSelected), out var newIsSelected))
+            {
+                var valueChanged = IsSelected != newIsSelected;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<ButtonVariants>(nameof(Variant), out var newVariant))
+            {
+                var valueChanged = Variant != newVariant;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<bool>(nameof(IsDisabled), out var newIsDisabled))
+            {
+                var valueChanged = IsDisabled != newIsDisabled;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            await base.SetParametersAsync(parameters);
+        }
 
         protected override async Task OnParametersSetAsync()
         {
@@ -191,6 +260,11 @@ namespace Gizmo.Web.Components
             base.Dispose();
         }
 
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
+        }
+
         #endregion
 
         #region METHODS
@@ -209,6 +283,8 @@ namespace Gizmo.Web.Components
 
             _selected = selected;
             IsSelected = _selected;
+
+            _shouldRender = true;
 
             StateHasChanged();
         }
@@ -259,7 +335,8 @@ namespace Gizmo.Web.Components
         {
             if (!firstRender)
             {
-                await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
+                _shouldRender = false;
+                await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
             }
 
             await base.OnAfterRenderAsync(firstRender);

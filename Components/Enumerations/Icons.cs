@@ -105,6 +105,7 @@
         Note2,
         Notifications_Client,
         OpenDrawer,
+        Passport_Client,
         Password,
         Pay,
         Photo,
