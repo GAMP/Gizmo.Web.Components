@@ -53,6 +53,9 @@ namespace Gizmo.Web.Components
         public string Label { get; set; }
 
         [Parameter]
+        public string Text { get; set; }
+
+        [Parameter]
         public string MaximumHeight { get; set; }
 
         [Parameter]

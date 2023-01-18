@@ -4,7 +4,7 @@
 <div class="@Class @ClassName"
      id="@Id"
      @ref="@Ref">
-    <Button Class="left-button" Color="@Color" Size="@Size" Variant="@Variant" Label="@Label" ChildContent="@ChildContent" StopPropagation="@StopPropagation" IsFullWidth="true" @onclick="OnClickMainButtonHandler" Progress="@Progress" />
+    <Button Class="left-button" Color="@Color" Size="@Size" Variant="@Variant" Label="@Label" ChildContent="@ChildContent" Text="@Text" StopPropagation="@StopPropagation" IsFullWidth="true" @onclick="OnClickMainButtonHandler" Progress="@Progress" />
     <Button Class="right-button" Color="@Color" Size="@Size" Variant="@(Variant == ButtonVariants.Progress ? ButtonVariants.Fill : @Variant)" LeftSVGIcon="Icons.TriangleDown" @onclick="OnClickDropDownButtonHandler" />
 
     <Popup MaximumHeight="@MaximumHeight"
