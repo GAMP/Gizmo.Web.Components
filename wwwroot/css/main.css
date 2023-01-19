@@ -24,12 +24,12 @@ a {
 }
 
 .giz-theme-background {
-  background: #25282D !important;
+  background-color: #25282D !important;
   color: white;
 }
 
 [light-theme] .giz-theme-background {
-  background: white !important;
+  background-color: white !important;
   color: black;
 }
 
@@ -42,12 +42,12 @@ a {
 }
 
 .giz-theme-surface {
-  background: #1b212f !important;
+  background-color: #1b212f !important;
   color: white !important;
 }
 
 [light-theme] .giz-theme-surface {
-  background: #FAFAFA !important;
+  background-color: #FAFAFA !important;
   color: black !important;
 }
 
@@ -2916,15 +2916,15 @@ h6,
   border: 0rem;
   outline: 0rem;
   color: white;
-  background: #5A67F2;
+  background-color: #5A67F2;
 }
 
 .giz-button--group-button:hover {
-  background: #4F5AD3;
+  background-color: #4F5AD3;
 }
 
 .giz-button--group-button:active {
-  background: #5A67F2;
+  background-color: #5A67F2;
   -webkit-box-shadow: 0px 0px 9px #4891FF;
   box-shadow: 0px 0px 9px #4891FF;
 }
@@ -2933,7 +2933,7 @@ h6,
 .giz-button--group-button[disabled] {
   pointer-events: none;
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   border: none;
   /*svg {
                 color: $dark-gray-theme-dark;
@@ -2949,7 +2949,7 @@ h6,
 .giz-button--fill[disabled] {
   pointer-events: none;
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -2959,11 +2959,11 @@ h6,
   border: 0rem;
   outline: 0rem;
   color: white;
-  background: #5A67F2;
+  background-color: #5A67F2;
 }
 
 .giz-button--fill.primary:active {
-  background: #5A67F2;
+  background-color: #5A67F2;
   -webkit-box-shadow: 0px 0px 9px #4891FF;
   box-shadow: 0px 0px 9px #4891FF;
 }
@@ -2972,18 +2972,18 @@ h6,
   border: 0rem;
   outline: 0rem;
   color: white;
-  background: #F2935A;
+  background-color: #F2935A;
   /*svg {
                 color: $dark-gray-theme-dark;
             }*/
 }
 
 .giz-button--fill.warning:hover {
-  background: #e98950;
+  background-color: #e98950;
 }
 
 .giz-button--fill.warning:active {
-  background: #F2935A;
+  background-color: #F2935A;
   -webkit-box-shadow: 0px 0px 9px #e98950;
   box-shadow: 0px 0px 9px #e98950;
 }
@@ -2992,22 +2992,22 @@ h6,
 .giz-button--fill.warning[disabled] {
   pointer-events: none;
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
 }
 
 .giz-button--fill.danger {
   border: 0rem;
   outline: 0rem;
   color: white;
-  background: #F25A68;
+  background-color: #F25A68;
 }
 
 .giz-button--fill.danger:hover {
-  background: #e94554;
+  background-color: #e94554;
 }
 
 .giz-button--fill.danger:active {
-  background: #F25A68;
+  background-color: #F25A68;
   -webkit-box-shadow: 0px 0px 9px #e98950;
   box-shadow: 0px 0px 9px #e98950;
 }
@@ -3016,7 +3016,7 @@ h6,
 .giz-button--fill.danger[disabled] {
   pointer-events: none;
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   /*svg {
                     color: $dark-gray-theme-dark;
                 }*/
@@ -3043,7 +3043,7 @@ h6,
 .giz-button--outline[disabled] {
   pointer-events: none;
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   border: none;
   /*svg {
                 color: $dark-gray-theme-dark;
@@ -3051,7 +3051,7 @@ h6,
 }
 
 .giz-button--text {
-  background: none;
+  background-color: initial;
   border: none;
   color: #9095A0;
 }
@@ -3060,7 +3060,7 @@ h6,
 .giz-button--text[disabled] {
   pointer-events: none;
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   border: none;
   /*svg {
                 color: $dark-gray-theme-dark;
@@ -3096,7 +3096,7 @@ h6,
 .giz-button[disabled] {
   pointer-events: none;
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   border: none;
   /*svg {
             color: $dark-gray-theme-dark;
@@ -3123,7 +3123,7 @@ h6,
 }
 
 .giz-button-group .giz-button:hover:not(.selected) {
-  background: #25282D;
+  background-color: #25282D;
   color: #ECEFF7;
 }
 
@@ -3134,11 +3134,11 @@ h6,
 
 .giz-button-group.disabled .giz-button.selected {
   color: #5D6068;
-  background: #313439;
+  background-color: #313439;
 }
 
 .giz-button-group.disabled .giz-button:focus:not(.selected) {
-  background: unset;
+  background-color: unset;
   -webkit-box-shadow: unset;
   box-shadow: unset;
 }
@@ -3242,7 +3242,7 @@ h6,
             transform: translateY(-50%);*/
   width: 2.4rem;
   height: 2.4rem;
-  background: #25282D;
+  background-color: #25282D;
   border: 1px solid #313439;
   border-radius: 0.4rem;
   margin-right: 0.75rem;
@@ -3250,14 +3250,14 @@ h6,
 
 .giz-checkbox input:checked + label:before {
   content: '';
-  background: #5A67F2;
+  background-color: #5A67F2;
   border-color: #5A67F2;
 }
 
 .giz-checkbox input.disabled + label:before,
 .giz-checkbox input[disabled] + label:before {
   cursor: default;
-  background: #3F4248;
+  background-color: #3F4248;
   border-color: #3F4248;
   pointer-events: none;
 }
@@ -3284,13 +3284,13 @@ h6,
 }
 
 .giz-checkbox input:indeterminate + label:before {
-  background: #5A67F2;
+  background-color: #5A67F2;
   border-color: #5A67F2;
 }
 
 .giz-checkbox input:indeterminate.disabled + label:before,
 .giz-checkbox input:indeterminate[disabled] + label:before {
-  background: #E6E8ED;
+  background-color: #E6E8ED;
   border-color: #E6E8ED;
 }
 
@@ -3304,7 +3304,7 @@ h6,
   -webkit-transform: translateY(-50%);
   width: 0.8rem;
   height: 2px;
-  background: white;
+  background-color: white;
 }
 
 .giz-chip {
@@ -3317,7 +3317,7 @@ h6,
   padding: 0.9rem 1.2rem;
   height: 4.0rem;
   color: #3F8CFF;
-  background: #0B1A24;
+  background-color: #0B1A24;
   border-radius: 0.6rem;
   font-weight: 400;
   font-size: 1.4rem;
@@ -3352,19 +3352,19 @@ h6,
 
 .giz-chip-group.primary .giz-chip.selected {
   color: white;
-  background: #3F8CFF;
+  background-color: #3F8CFF;
   -webkit-box-shadow: 0px 1px 12px rgba(37, 140, 246, 0.5);
   box-shadow: 0px 1px 12px rgba(37, 140, 246, 0.5);
 }
 
 .giz-chip-group.secondary .giz-chip.selected {
   color: white;
-  background: orange;
+  background-color: orange;
 }
 
 .giz-chip-group.info .giz-chip.selected {
   color: white;
-  background: orange;
+  background-color: orange;
 }
 
 .giz-collapse {
@@ -3452,7 +3452,7 @@ h6,
   border-spacing: 0 0.2rem;
   color: #9095A0;
   font-size: 1.6rem;
-  background: #25282D;
+  background-color: #25282D;
 }
 
 .giz-data-grid > thead td,
@@ -3525,12 +3525,12 @@ h6,
 
 .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail) {
   height: 3.9rem;
-  background: transparent;
+  background-color: transparent;
   border-radius: 0.8rem;
   margin-bottom: 1.2rem;
   /*&.is-active {
             border-color: #453855;
-            background: $dark-light-color-theme-dark;
+            background-color: $dark-light-color-theme-dark;
             border-radius: 4px 4px 0 0;
             margin-bottom: $spacer-0;
         }*/
@@ -3550,7 +3550,7 @@ h6,
 }
 
 .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail):hover {
-  background: #1E2023;
+  background-color: #1E2023;
   color: white;
 }
 
@@ -3568,7 +3568,7 @@ h6,
 }
 
 .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail).selected {
-  background: #293249;
+  background-color: #293249;
   cursor: pointer;
 }
 
@@ -3586,7 +3586,7 @@ h6,
 }
 
 .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail).selected:hover {
-  background: rgba(90, 103, 242, 0.2);
+  background-color: rgba(90, 103, 242, 0.2);
 }
 
 .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail).selected:hover > td {
@@ -3646,7 +3646,7 @@ h6,
 
 .giz-data-grid-row-detail {
   display: none;
-  background: transparent;
+  background-color: transparent;
 }
 
 .giz-data-grid-row-detail:hover > td {
@@ -3677,7 +3677,7 @@ h6,
 
 .giz-data-grid-row--open {
   border-color: #453855;
-  background: #5A67F2;
+  background-color: #5A67F2;
   cursor: pointer;
   color: white;
 }
@@ -3709,7 +3709,7 @@ h6,
   top: 0;
   z-index: 1;
   color: #9095A0;
-  background: #25282D;
+  background-color: #25282D;
 }
 
 .giz-input-datepicker {
@@ -3749,7 +3749,7 @@ h6,
   transform: translate(-50%, -50%);
   height: 100%;
   width: 100%;
-  background: #21212199;
+  background-color: #21212199;
 }
 
 .giz-input-datepicker--dialog .giz-calendar {
@@ -3867,7 +3867,7 @@ h6,
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-year .giz-calendar-year-count:hover:not(.active) {
-  background: #eff0f2;
+  background-color: #eff0f2;
 }
 
 .giz-calendar .giz-calendar-content .giz-calendar-action {
@@ -3922,7 +3922,7 @@ h6,
 }
 
 .giz-divider {
-  background: #313439;
+  background-color: #313439;
 }
 
 .giz-divider--vertical {
@@ -3953,7 +3953,7 @@ h6,
   line-height: 3.0rem;
   letter-spacing: initial;
   font-family: Rubik, sans-serif;
-  background: transparent;
+  background-color: transparent;
   border: none;
   color: #FAFAFA;
 }
@@ -4107,11 +4107,11 @@ h6,
 }
 
 .giz-input-control .giz-input-root--transparent {
-  background: transparent;
+  background-color: transparent;
 }
 
 .giz-input-control .giz-input-root--filled {
-  background: #25282D;
+  background-color: #25282D;
 }
 
 .giz-input-control .giz-input-root svg {
@@ -4137,7 +4137,7 @@ h6,
   width: 100%;
   border: none;
   outline: none;
-  background: inherit;
+  background-color: inherit;
   color: #9095A0;
 }
 
@@ -4165,7 +4165,7 @@ h6,
 .giz-input-control .giz-input-root input[disabled] {
   pointer-events: none;
   color: #939DB5;
-  background: #313439;
+  background-color: #313439;
 }
 
 .giz-input-control .giz-input-root:hover {
@@ -4179,7 +4179,7 @@ h6,
 .giz-input-control .giz-input-root.disabled,
 .giz-input-control .giz-input-root[disabled] {
   pointer-events: none;
-  background: #313439;
+  background-color: #313439;
   color: #5D6068;
   /*border: 1px solid $onyx-black-theme-dark;*/
 }
@@ -4236,7 +4236,7 @@ h6,
 
 .giz-input-control .giz-input-root--large.disabled,
 .giz-input-control .giz-input-root--large[disabled] {
-  background: #313439;
+  background-color: #313439;
   color: white;
   pointer-events: none;
 }
@@ -4331,7 +4331,7 @@ h6,
   display: none;
   position: absolute;
   z-index: 1;
-  background: #F25A68;
+  background-color: #F25A68;
   color: white;
   padding: 0 1rem;
   border-radius: 0.2rem;
@@ -4448,13 +4448,13 @@ h6,
 }
 
 .giz-icon-button--fill:hover {
-  background: #4F5AD3;
+  background-color: #4F5AD3;
 }
 
 .giz-icon-button--fill.disabled,
 .giz-icon-button--fill[disabled] {
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   pointer-events: none;
 }
 
@@ -4467,11 +4467,11 @@ h6,
   border: 0rem;
   outline: 0rem;
   color: white;
-  background: #5A67F2;
+  background-color: #5A67F2;
 }
 
 .giz-icon-button--fill.primary:active {
-  background: #5A67F2;
+  background-color: #5A67F2;
   -webkit-box-shadow: 0px 0px 9px #4891FF;
   box-shadow: 0px 0px 9px #4891FF;
 }
@@ -4480,15 +4480,15 @@ h6,
   border: 0rem;
   outline: 0rem;
   color: white;
-  background: #F2935A;
+  background-color: #F2935A;
 }
 
 .giz-icon-button--fill.warning:hover {
-  background: #e98950;
+  background-color: #e98950;
 }
 
 .giz-icon-button--fill.warning:active {
-  background: #F2935A;
+  background-color: #F2935A;
   -webkit-box-shadow: 0px 0px 9px #e98950;
   box-shadow: 0px 0px 9px #e98950;
 }
@@ -4496,7 +4496,7 @@ h6,
 .giz-icon-button--fill.warning.disabled,
 .giz-icon-button--fill.warning[disabled] {
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   pointer-events: none;
 }
 
@@ -4508,15 +4508,15 @@ h6,
   border: 0rem;
   outline: 0rem;
   color: white;
-  background: #F25A68;
+  background-color: #F25A68;
 }
 
 .giz-icon-button--fill.danger:hover {
-  background: #e94554;
+  background-color: #e94554;
 }
 
 .giz-icon-button--fill.danger:active {
-  background: #F25A68;
+  background-color: #F25A68;
   -webkit-box-shadow: 0px 0px 9px #e98950;
   box-shadow: 0px 0px 9px #e98950;
 }
@@ -4524,7 +4524,7 @@ h6,
 .giz-icon-button--fill.danger.disabled,
 .giz-icon-button--fill.danger[disabled] {
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   pointer-events: none;
 }
 
@@ -4553,7 +4553,7 @@ h6,
 .giz-icon-button--outline.disabled,
 .giz-icon-button--outline[disabled] {
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   border: none;
   pointer-events: none;
 }
@@ -4564,18 +4564,18 @@ h6,
 }
 
 .giz-icon-button--text {
-  background: none;
+  background-color: initial;
   border: none;
   color: #9095A0;
 }
 
 .giz-icon-button--text:hover {
   color: #5A67F2;
-  background: white;
+  background-color: white;
 }
 
 .giz-icon-button--text:active {
-  background: white;
+  background-color: white;
   -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
   box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
 }
@@ -4583,7 +4583,7 @@ h6,
 .giz-icon-button--text.disabled,
 .giz-icon-button--text[disabled] {
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   border: none;
   pointer-events: none;
 }
@@ -4629,7 +4629,7 @@ h6,
 .giz-icon-button.disabled,
 .giz-icon-button[disabled] {
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   border: none;
   pointer-events: none;
 }
@@ -4673,7 +4673,7 @@ h6,
   position: relative;
   text-align: left;
   border-radius: 0.4rem;
-  background: #25282D;
+  background-color: #25282D;
 }
 
 .giz-list .giz-list-item {
@@ -4818,7 +4818,7 @@ h6,
 }
 
 .giz-masked-phone-input__dropdown {
-  background: #22272B;
+  background-color: #22272B;
   -webkit-box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
@@ -4857,7 +4857,7 @@ h6,
 }
 
 .giz-masked-phone-input__dropdown .giz-list.giz-list--clickable .giz-list-item:hover {
-  background: rgba(246, 251, 253, 0.1);
+  background-color: rgba(246, 251, 253, 0.1);
   color: #FAFAFA;
 }
 
@@ -5049,7 +5049,7 @@ h6,
 }
 
 .giz-input-multi-select .giz-input-multi-select__dropdown .giz-input-multi-select-list {
-  background: #22272b;
+  background-color: #22272b;
   -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
@@ -5075,7 +5075,7 @@ h6,
 
 .giz-input-multi-select .giz-input-multi-select__dropdown .giz-input-multi-select-list .giz-input-multi-select-item.selected {
   border: 1px solid transparent;
-  background: rgba(250, 250, 250, 0.16);
+  background-color: rgba(250, 250, 250, 0.16);
 }
 
 .giz-input-multi-select .giz-input-control {
@@ -5136,7 +5136,7 @@ h6,
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: inherit;
+  background-color: inherit;
   font-weight: 100;
   letter-spacing: normal;
   color: #9095A0;
@@ -5211,14 +5211,14 @@ h6,
 
 .giz-pagination li:hover:not(.disabled),
 .giz-pagination li.active {
-  background: #5a7ff2;
+  background-color: #5a7ff2;
   border-color: #5a7ff2;
   color: white;
 }
 
 .giz-pagination-btn.disabled {
   color: #25282D;
-  background: #313439;
+  background-color: #313439;
   pointer-events: none;
 }
 
@@ -5649,21 +5649,21 @@ h6,
   transform: translateY(-50%);
   width: 2.4rem;
   height: 2.4rem;
-  background: transparent;
+  background-color: transparent;
   border: 1px solid #E6E8ED;
   border-radius: 100px;
 }
 
 .giz-radio input:checked + label:before {
   content: '';
-  background: #5A67F2;
+  background-color: #5A67F2;
   border-color: #5A67F2;
 }
 
 .giz-radio input.disabled + label:before,
 .giz-radio input[disabled] + label:before {
   cursor: default;
-  background: #E6E8ED;
+  background-color: #E6E8ED;
 }
 
 .giz-radio input.disabled + label,
@@ -5680,7 +5680,7 @@ h6,
   transform: translateY(-50%);
   width: 1.4rem;
   height: 1.4rem;
-  background: white;
+  background-color: white;
   border-radius: 100px;
 }
 
@@ -5884,7 +5884,7 @@ h6,
 }
 
 .giz-tab-content {
-  background: #25282D;
+  background-color: #25282D;
   max-height: 100%;
   overflow: auto;
 }
@@ -5959,7 +5959,7 @@ h6,
   resize: none;
   border: none;
   outline: none;
-  background: inherit;
+  background-color: inherit;
   height: 100%;
   color: white;
 }
@@ -6248,7 +6248,7 @@ h6,
 }
 
 .giz-simple-tab-item {
-  background: #25282D;
+  background-color: #25282D;
   max-height: 100%;
   overflow: auto;
   display: none;
@@ -6261,7 +6261,7 @@ h6,
 
 [light-theme] .giz-data-grid {
   color: #6E7689;
-  background: white;
+  background-color: white;
 }
 
 [light-theme] .giz-data-grid > thead td,
@@ -6270,11 +6270,11 @@ h6,
 }
 
 [light-theme] .giz-data-grid > tbody > tr {
-  background: transparent;
+  background-color: transparent;
 }
 
 [light-theme] .giz-data-grid > tbody > tr:hover {
-  background: #FAFAFA;
+  background-color: #FAFAFA;
   color: black;
 }
 
@@ -6292,7 +6292,7 @@ h6,
 }
 
 [light-theme] .giz-data-grid > tbody > tr.selected {
-  background: #F6FAFF;
+  background-color: #F6FAFF;
 }
 
 [light-theme] .giz-data-grid > tbody > tr.selected > td {
@@ -6309,7 +6309,7 @@ h6,
 }
 
 [light-theme] .giz-data-grid > tbody > tr.selected:hover {
-  background: #F6FAFF;
+  background-color: #F6FAFF;
 }
 
 [light-theme] .giz-data-grid > tbody > tr.selected:hover > td {
@@ -6327,7 +6327,7 @@ h6,
 
 [light-theme] .giz-data-grid > tbody > tr.active {
   border-color: #dddfe4;
-  background: #F6FAFF;
+  background-color: #F6FAFF;
 }
 
 [light-theme] .giz-data-grid-row .giz-data-grid-row-detail-content {
@@ -6336,7 +6336,7 @@ h6,
 
 [light-theme] .giz-data-grid-row .giz-data-grid-row--open {
   border-color: #dddfe4;
-  background: #5A67F2;
+  background-color: #5A67F2;
 }
 
 [light-theme] .giz-data-grid-row .giz-data-grid-row--open > td {
@@ -6355,7 +6355,7 @@ h6,
 [light-theme] .giz-data-grid--sticky-header .giz-data-grid > thead td,
 [light-theme] .giz-data-grid--sticky-header .giz-data-grid > thead th {
   color: #6E7689;
-  background: white;
+  background-color: white;
 }
 
 [light-theme] .giz-button-group {
@@ -6373,7 +6373,7 @@ h6,
 }
 
 [light-theme] .giz-button-group .giz-button:hover:not(.selected) {
-  background: #ECEFF7;
+  background-color: #ECEFF7;
   color: #6E7689;
 }
 
@@ -6383,7 +6383,7 @@ h6,
 
 [light-theme] .giz-button-group.disabled .giz-button.selected {
   color: #939DB5;
-  background: white;
+  background-color: white;
 }
 
 [light-theme] .giz-input-control .giz-input-label {
@@ -6424,12 +6424,12 @@ h6,
 
 [light-theme] .giz-input-control .giz-input-root input.disabled,
 [light-theme] .giz-input-control .giz-input-root input[disabled] {
-  background: #E7E9EE;
+  background-color: #E7E9EE;
 }
 
 [light-theme] .giz-input-control .giz-input-root.disabled,
 [light-theme] .giz-input-control .giz-input-root[disabled] {
-  background: #E7E9EE;
+  background-color: #E7E9EE;
   color: #939DB5;
 }
 
@@ -6442,7 +6442,7 @@ h6,
 }
 
 [light-theme] .giz-input-control .giz-input-root--filled {
-  background: white;
+  background-color: white;
 }
 
 [light-theme] .giz-input-control--invalid {
@@ -6482,7 +6482,7 @@ h6,
 
 [light-theme] .giz-button--group-button {
   color: #E7E9EE;
-  background: white;
+  background-color: white;
   /*svg {
                 color: $gray-dark-theme-dark;
             }*/
@@ -6491,7 +6491,7 @@ h6,
 [light-theme] .giz-button--fill.disabled,
 [light-theme] .giz-button--fill[disabled] {
   color: white;
-  background: white;
+  background-color: white;
   border: 1px solid #E7E9EE;
   /*svg {
                     color: $gray-dark-theme-dark;
@@ -6499,13 +6499,13 @@ h6,
 }
 
 [light-theme] .giz-button--fill.primary {
-  background: #5A67F2;
+  background-color: #5A67F2;
   color: white;
 }
 
 [light-theme] .giz-button--fill.warning {
   color: #E7E9EE;
-  background: white;
+  background-color: white;
   border: 1px solid #E7E9EE;
   /*svg {
                     color: $gray-dark-theme-dark;
@@ -6515,7 +6515,7 @@ h6,
 [light-theme] .giz-button--fill.danger.disabled,
 [light-theme] .giz-button--fill.danger[disabled] {
   color: white;
-  background: white;
+  background-color: white;
   border: 1px solid #E7E9EE;
   /*svg {
                         color: $gray-dark-theme-dark;
@@ -6524,17 +6524,17 @@ h6,
 
 [light-theme] .giz-button--outline {
   color: #9095A0;
-  background: white;
+  background-color: white;
   border: 1px solid #CFD2D8;
 }
 
 [light-theme] .giz-button--outline:hover {
-  background: white;
+  background-color: white;
   color: #5A67F2;
 }
 
 [light-theme] .giz-button--outline:active {
-  background: white;
+  background-color: white;
   border: 1px solid #5A67F2;
   color: #6E7689;
 }
@@ -6542,7 +6542,7 @@ h6,
 [light-theme] .giz-button--outline.disabled,
 [light-theme] .giz-button--outline[disabled] {
   color: #E7E9EE;
-  background: white;
+  background-color: white;
   border: 1px solid #E7E9EE;
   /*svg {
                     color: $gray-dark-theme-dark;
@@ -6555,11 +6555,11 @@ h6,
 
 [light-theme] .giz-button--text:hover {
   color: #5A67F2;
-  background: white;
+  background-color: white;
 }
 
 [light-theme] .giz-button--text:active {
-  background: white;
+  background-color: white;
   -webkit-box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
   box-shadow: 0px 0px 9px rgba(72, 145, 255, 0.5);
 }
@@ -6567,7 +6567,7 @@ h6,
 [light-theme] .giz-button--text.disabled,
 [light-theme] .giz-button--text[disabled] {
   color: #E7E9EE;
-  background: white;
+  background-color: white;
   border: 1px solid #E7E9EE;
   /*svg {
                     color: $gray-dark-theme-dark;
@@ -6577,7 +6577,7 @@ h6,
 [light-theme] .giz-button.disabled,
 [light-theme] .giz-button[disabled] {
   color: #E7E9EE;
-  background: white;
+  background-color: white;
   border: 1px solid #E7E9EE;
   /*svg {
                 color: $gray-dark-theme-dark;
@@ -6611,7 +6611,7 @@ h6,
 }
 
 [light-theme] .giz-divider {
-  background: #E7E9EE;
+  background-color: #E7E9EE;
 }
 
 [light-theme] .giz-tooltip {
@@ -6641,7 +6641,7 @@ h6,
 }
 
 [light-theme] .giz-simple-tab__header {
-  background: #FAFAFA;
+  background-color: #FAFAFA;
   border-bottom: 1px solid white;
 }
 
@@ -6656,7 +6656,7 @@ h6,
 
 [light-theme] .giz-simple-tab-item {
   color: #6E7689;
-  background: white;
+  background-color: white;
 }
 
 [light-theme] .giz-tab.active {
@@ -6664,7 +6664,7 @@ h6,
 }
 
 [light-theme] .giz-tab__ul {
-  background: #FAFAFA;
+  background-color: #FAFAFA;
   border-bottom: 1px solid white;
 }
 
@@ -6679,7 +6679,7 @@ h6,
 
 [light-theme] .giz-tab-content {
   color: #6E7689;
-  background: white;
+  background-color: white;
 }
 
 [light-theme] .giz-switch__slider__thumb {
@@ -6691,13 +6691,13 @@ h6,
 }
 
 [light-theme] .giz-checkbox input + label:before {
-  background: transparent;
+  background-color: transparent;
   border: 1px solid #E6E8ED;
 }
 
 [light-theme] .giz-checkbox input.disabled + label:before,
 [light-theme] .giz-checkbox input[disabled] + label:before {
-  background: #E7E9EE;
+  background-color: #E7E9EE;
   border-color: #E7E9EE;
 }
 
@@ -6717,14 +6717,14 @@ h6,
 
 [light-theme] .giz-pagination li:hover:not(.disabled),
 [light-theme] .giz-pagination li.active {
-  background: #5a7ff2;
+  background-color: #5a7ff2;
   border-color: #5a7ff2;
   color: white;
 }
 
 [light-theme] .giz-pagination-btn.disabled {
   color: #E7E9EE;
-  background: white;
+  background-color: white;
   border: 1px solid #E7E9EE;
 }
 
@@ -6765,7 +6765,7 @@ h6,
 [client-theme] .giz-data-grid {
   border-collapse: separate;
   border-spacing: 0;
-  background: #22272B;
+  background-color: #22272B;
   color: unset;
 }
 
@@ -6778,7 +6778,7 @@ h6,
   font-size: 1.2rem;
   line-height: 1.8rem;
   letter-spacing: initial;
-  background: #22272B;
+  background-color: #22272B;
   border-bottom: 0.1rem solid rgba(246, 251, 253, 0.06);
 }
 
@@ -6792,7 +6792,7 @@ h6,
 }
 
 [client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail):hover {
-  background: #22272B;
+  background-color: #22272B;
 }
 
 [client-theme] .giz-data-grid > tbody > tr:not(.giz-data-grid-row-detail):hover > td:first-child {
@@ -6859,11 +6859,6 @@ h6,
   border-right: none;
 }
 
-[client-theme] .giz-button-group .giz-button.selected {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(44, 124, 244, 0.25)), to(rgba(13, 16, 23, 0)));
-  background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%);
-}
-
 [client-theme] .giz-input-control .giz-input-label {
   margin-bottom: 0.4rem;
   font-weight: 400;
@@ -6890,7 +6885,7 @@ h6,
 [client-theme] .giz-input-control .giz-input-root[disabled] {
   pointer-events: none;
   color: rgba(255, 255, 255, 0.6);
-  background: rgba(250, 250, 250, 0.16);
+  background-color: rgba(250, 250, 250, 0.16);
   border: 0.1rem solid transparent;
 }
 
@@ -6902,11 +6897,11 @@ h6,
 [client-theme] .giz-input-control .giz-input-root input[disabled] {
   pointer-events: none;
   color: rgba(255, 255, 255, 0.24);
-  background: #0C0F11;
+  background-color: #0C0F11;
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline {
-  background: #0C0F11;
+  background-color: #0C0F11;
 }
 
 [client-theme] .giz-input-control .giz-input-root--outline:hover {
@@ -6984,11 +6979,11 @@ h6,
 }
 
 [client-theme] .giz-input-control .giz-input-root--filled {
-  background: #0C0F11;
+  background-color: #0C0F11;
 }
 
 [client-theme] .giz-input-control .giz-input-root--transparent {
-  background: transparent;
+  background-color: transparent;
 }
 
 [client-theme] .giz-input-control .giz-input-root--small {
@@ -7080,7 +7075,7 @@ h6,
 }
 
 [client-theme] .giz-input-select .giz-input-select__dropdown {
-  background: #22272B;
+  background-color: #22272B;
   -webkit-box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
   box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
   border-radius: 0.8rem;
@@ -7090,7 +7085,7 @@ h6,
 
 [client-theme] .giz-input-select .giz-input-select__dropdown .giz-list {
   padding: unset;
-  background: #22272B;
+  background-color: #22272B;
 }
 
 [client-theme] .giz-input-select .giz-input-select__dropdown .giz-list .giz-list-item {
@@ -7109,12 +7104,12 @@ h6,
 }
 
 [client-theme] .giz-input-select .giz-input-select__dropdown .giz-list.giz-list--selectable .giz-list-item.active {
-  background: #373839;
+  background-color: #373839;
   color: #E4E6EB;
 }
 
 [client-theme] .giz-input-select .giz-input-select__dropdown .giz-list.giz-list--clickable .giz-list-item:hover {
-  background: rgba(250, 250, 250, 0.23);
+  background-color: rgba(250, 250, 250, 0.23);
 }
 
 [client-theme] .giz-button {
@@ -7131,7 +7126,7 @@ h6,
 }
 
 [client-theme] .giz-button__progress {
-  background: #3F8CFF;
+  background-color: #3F8CFF;
 }
 
 [client-theme] .giz-button__progress-wrapper {
@@ -7145,7 +7140,7 @@ h6,
 
 [client-theme] .giz-button--fill.disabled,
 [client-theme] .giz-button--fill[disabled] {
-  background: rgba(250, 250, 250, 0.16);
+  background-color: rgba(250, 250, 250, 0.16);
   color: rgba(255, 255, 255, 0.24);
 }
 
@@ -7163,11 +7158,11 @@ h6,
 }
 
 [client-theme] .giz-button--fill.secondary {
-  background: orange;
+  background-color: orange;
 }
 
 [client-theme] .giz-button--fill.info {
-  background: orange;
+  background-color: orange;
 }
 
 [client-theme] .giz-button--fill.danger {
@@ -7224,7 +7219,7 @@ h6,
 
 [client-theme] .giz-button--progress.disabled,
 [client-theme] .giz-button--progress[disabled] {
-  background: rgba(250, 250, 250, 0.16);
+  background-color: rgba(250, 250, 250, 0.16);
   color: rgba(255, 255, 255, 0.24);
 }
 
@@ -7242,11 +7237,11 @@ h6,
 }
 
 [client-theme] .giz-button--progress.secondary {
-  background: orange;
+  background-color: orange;
 }
 
 [client-theme] .giz-button--progress.info {
-  background: orange;
+  background-color: orange;
 }
 
 [client-theme] .giz-button--progress.accent:not(.disabled) {
@@ -7371,6 +7366,7 @@ h6,
 }
 
 [client-theme] .giz-dialog {
+  background-color: initial;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 30, 37, 0.8)), to(rgba(11, 17, 23, 0.9)));
   background: linear-gradient(180deg, rgba(22, 30, 37, 0.8) 0%, rgba(11, 17, 23, 0.9) 100%);
   -webkit-backdrop-filter: blur(1.5rem);
@@ -7382,7 +7378,7 @@ h6,
   text-align: center;
   z-index: 1002;
   border: thin solid orange;
-  background: orange;
+  background-color: orange;
   overflow: hidden;
 }
 
@@ -7391,6 +7387,7 @@ h6,
   left: 0;
   bottom: 0;
   content: "";
+  background-color: initial;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(90, 94, 107, 0)), color-stop(333.62%, rgba(37, 140, 246, 0.45)));
   background: linear-gradient(to bottom, rgba(90, 94, 107, 0) 0%, rgba(37, 140, 246, 0.45) 333.62%);
   height: 100%;
@@ -7415,11 +7412,11 @@ h6,
 }
 
 [client-theme] .giz-icon-button--fill {
-  background: rgba(0, 120, 210, 0.4);
+  background-color: rgba(0, 120, 210, 0.4);
 }
 
 [client-theme] .giz-icon-button--fill:hover {
-  background: rgba(0, 120, 210, 0.4);
+  background-color: rgba(0, 120, 210, 0.4);
 }
 
 [client-theme] .giz-icon-button--fill:active:not(.giz-button-shadow) {
@@ -7428,16 +7425,16 @@ h6,
 }
 
 [client-theme] .giz-icon-button--fill:active {
-  background: rgba(0, 120, 210, 0.4);
+  background-color: rgba(0, 120, 210, 0.4);
 }
 
 [client-theme] .giz-icon-button--outline {
-  background: orange;
+  background-color: orange;
   border: 0.1rem solid orange;
 }
 
 [client-theme] .giz-icon-button--outline:hover {
-  background: orange;
+  background-color: orange;
 }
 
 [client-theme] .giz-icon-button--outline:active:not(.giz-button-shadow) {
@@ -7446,17 +7443,17 @@ h6,
 }
 
 [client-theme] .giz-icon-button--outline:active {
-  background: orange;
+  background-color: orange;
 }
 
 [client-theme] .giz-icon-button--text {
-  background: none;
+  background-color: initial;
   border: none;
   color: #AAABAD;
 }
 
 [client-theme] .giz-icon-button--text:hover {
-  background: transparent;
+  background-color: transparent;
   color: #FFFFFF;
 }
 
@@ -7466,7 +7463,7 @@ h6,
 }
 
 [client-theme] .giz-icon-button--text:active {
-  background: transparent;
+  background-color: transparent;
   color: #FFFFFF;
 }
 
@@ -7519,17 +7516,17 @@ h6,
   border: 0.1rem solid orange;
   -webkit-box-shadow: 0px 5px 10px rgba(8, 8, 13, 0.3);
   box-shadow: 0px 5px 10px rgba(8, 8, 13, 0.3);
-  background: rgba(9, 11, 16, 0.9);
+  background-color: rgba(9, 11, 16, 0.9);
 }
 
 [client-theme] .giz-menu__dropdown .giz-list .giz-list-item {
   border-radius: unset;
-  background: unset;
+  background-color: unset;
   color: white;
 }
 
 [client-theme] .giz-menu__dropdown .giz-list .giz-list-item:hover {
-  background: orange;
+  background-color: orange;
 }
 
 [client-theme] .giz-checkbox input + label {
@@ -7543,7 +7540,7 @@ h6,
 [client-theme] .giz-checkbox input + label:before {
   width: 2.4rem;
   height: 2.4rem;
-  background: transparent;
+  background-color: transparent;
   border: 0.2rem solid #FAFAFA;
   border-radius: 0.4rem;
   margin-right: 0.8rem;
@@ -7552,12 +7549,12 @@ h6,
 }
 
 [client-theme] .giz-checkbox input:checked + label:before {
-  background: #3F8CFF;
+  background-color: #3F8CFF;
   border: 0.2rem solid #3F8CFF;
 }
 
 [client-theme] .giz-checkbox input:checked + label:after {
-  background: unset;
+  background-color: unset;
   left: 0.9rem;
   top: 0.5rem;
   width: 0.4rem;
@@ -7630,19 +7627,19 @@ h6,
   transform: translateY(-50%);
   width: 2.0rem;
   height: 2.0rem;
-  background: transparent;
+  background-color: transparent;
   border: 0.1rem solid rgba(246, 251, 253, 0.28);
   border-radius: 10.0rem;
 }
 
 [client-theme] .giz-radio input:checked + label:before {
-  background: transparent;
+  background-color: transparent;
   border-color: #0078D2;
 }
 
 [client-theme] .giz-radio input.disabled + label:before,
 [client-theme] .giz-radio input[disabled] + label:before {
-  background: #E6E8ED;
+  background-color: #E6E8ED;
 }
 
 [client-theme] .giz-radio input:checked + label:after {
@@ -7652,7 +7649,7 @@ h6,
   transform: translateY(-50%);
   width: 0.8rem;
   height: 0.8rem;
-  background: #0078D2;
+  background-color: #0078D2;
   border-radius: 10.0rem;
 }
 
@@ -7731,7 +7728,7 @@ h6,
 }
 
 [client-theme] .giz-combo-button .giz-combo-button__dropdown .giz-list {
-  background: #201F1F;
+  background-color: #201F1F;
   -webkit-box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
   box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
   border-radius: 0.8rem;
@@ -7750,17 +7747,17 @@ h6,
 }
 
 [client-theme] .giz-combo-button .giz-combo-button__dropdown .giz-list .giz-list-item.active {
-  background: #373839;
+  background-color: #373839;
   color: #E4E6EB;
 }
 
 [client-theme] .giz-combo-button .giz-combo-button__dropdown .giz-list.giz-list--selectable .giz-list-item.selected {
-  background: #373839;
+  background-color: #373839;
   color: #E4E6EB;
 }
 
 [client-theme] .giz-combo-button .giz-combo-button__dropdown .giz-list.giz-list--clickable .giz-list-item:hover {
-  background: #373839;
+  background-color: #373839;
   color: #E4E6EB;
 }
 

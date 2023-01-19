@@ -196,6 +196,15 @@ namespace Gizmo.Web.Components
                 }
             }
 
+            if (parameters.TryGetValue<ButtonColors>(nameof(Color), out var newColor))
+            {
+                var valueChanged = Color != newColor;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
             if (parameters.TryGetValue<ButtonVariants>(nameof(Variant), out var newVariant))
             {
                 var valueChanged = Variant != newVariant;
@@ -331,15 +340,15 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                _shouldRender = false;
-                await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
-            }
+        //protected override async Task OnAfterRenderAsync(bool firstRender)
+        //{
+        //    if (!firstRender)
+        //    {
+        //        _shouldRender = false;
+        //        await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
+        //    }
 
-            await base.OnAfterRenderAsync(firstRender);
-        }
+        //    await base.OnAfterRenderAsync(firstRender);
+        //}
     }
 }

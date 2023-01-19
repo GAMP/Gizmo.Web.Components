@@ -4,17 +4,17 @@
 .giz-data-grid {
     [light-theme] & {
         color: $secondary-color-theme-dark;
-        background: white;
+        background-color: white;
 
         & > thead td, & > thead th {
             color: $dim-color-theme-dark;
         }
 
         & > tbody > tr {
-            background: transparent;
+            background-color: transparent;
 
             &:hover {
-                background: $secondary-light-theme-dark;
+                background-color: $secondary-light-theme-dark;
                 color: black;
 
                 & > td {
@@ -32,7 +32,7 @@
             }
 
             &.selected {
-                background: $primary-light-color-theme-dark;
+                background-color: $primary-light-color-theme-dark;
 
                 & > td {
                     border-top: 1px solid $gray-dark-theme-dark;
@@ -48,7 +48,7 @@
                 }
 
                 &:hover {
-                    background: $primary-light-color-theme-dark;
+                    background-color: $primary-light-color-theme-dark;
 
                     & > td {
                         border-top: 1px solid $gray-dark-theme-dark;
@@ -67,7 +67,7 @@
 
             &.active {
                 border-color: #dddfe4;
-                background: $primary-light-color-theme-dark;
+                background-color: $primary-light-color-theme-dark;
             }
         }
     }
@@ -85,7 +85,7 @@
 
         .giz-data-grid-row--open {
             border-color: #dddfe4;
-            background: $primary-color-theme-dark;
+            background-color: $primary-color-theme-dark;
 
             & > td {
                 border-top: 1px solid $gray-dark-theme-dark;
@@ -108,7 +108,7 @@
         .giz-data-grid {
             & > thead td, & > thead th {
                 color: $secondary-color-theme-dark;
-                background: white;
+                background-color: white;
             }
         }
     }
@@ -129,7 +129,7 @@
             }
 
             &:hover:not(.selected) {
-                background: $dim-white-theme-dark;
+                background-color: $dim-white-theme-dark;
                 color: $dim-color-theme-dark;
             }
         }
@@ -140,7 +140,7 @@
             .giz-button {
                 &.selected {
                     color: $dim-ligh-theme-darkt;
-                    background: white;
+                    background-color: white;
                 }
             }
         }
@@ -170,12 +170,12 @@
                 }
 
                 &.disabled, &[disabled] {
-                    background: $gray-dark-theme-dark;
+                    background-color: $gray-dark-theme-dark;
                 }
             }
 
             &.disabled, &[disabled] {
-                background: $gray-dark-theme-dark;
+                background-color: $gray-dark-theme-dark;
                 color: $dim-ligh-theme-darkt;
             }
 
@@ -188,7 +188,7 @@
             }
 
             &--filled {
-                background: white;
+                background-color: white;
 
                 &:focus-within {
                 }
@@ -241,7 +241,7 @@
         //group button
         &--group-button {
             color: $gray-dark-theme-dark;
-            background: white;
+            background-color: white;
 
             /*svg {
                 color: $gray-dark-theme-dark;
@@ -251,7 +251,7 @@
         &--fill {
             &.disabled, &[disabled] {
                 color: white;
-                background: white;
+                background-color: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -260,13 +260,13 @@
             }
 
             &.primary {
-                background: $primary-color-theme-dark;
+                background-color: $primary-color-theme-dark;
                 color: white;
             }
 
             &.warning {
                 color: $gray-dark-theme-dark;
-                background: white;
+                background-color: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -277,7 +277,7 @@
             &.danger {
                 &.disabled, &[disabled] {
                     color: white;
-                    background: white;
+                    background-color: white;
                     border: 1px solid $gray-dark-theme-dark;
 
                     /*svg {
@@ -289,23 +289,23 @@
         //button outline variant
         &--outline {
             color: $gray-black-theme-dark;
-            background: white;
+            background-color: white;
             border: 1px solid $gray-light-color-theme-dark;
 
             &:hover {
-                background: white;
+                background-color: white;
                 color: $primary-color-theme-dark;
             }
 
             &:active {
-                background: white;
+                background-color: white;
                 border: 1px solid $primary-color-theme-dark;
                 color: $secondary-color-theme-dark;
             }
 
             &.disabled, &[disabled] {
                 color: $gray-dark-theme-dark;
-                background: white;
+                background-color: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -319,17 +319,17 @@
 
             &:hover {
                 color: $primary-color-theme-dark;
-                background: white;
+                background-color: white;
             }
 
             &:active {
-                background: white;
+                background-color: white;
                 box-shadow: $elevation-1-theme-dark;
             }
 
             &.disabled, &[disabled] {
                 color: $gray-dark-theme-dark;
-                background: white;
+                background-color: white;
                 border: 1px solid $gray-dark-theme-dark;
 
                 /*svg {
@@ -340,7 +340,7 @@
         //buton disable
         &.disabled, &[disabled] {
             color: $gray-dark-theme-dark;
-            background: white;
+            background-color: white;
             border: 1px solid $gray-dark-theme-dark;
 
             /*svg {
@@ -398,7 +398,7 @@
 // == divider == //
 .giz-divider {
     [light-theme] & {
-        background: $gray-dark-theme-dark;
+        background-color: $gray-dark-theme-dark;
     }
 }
 
@@ -448,7 +448,7 @@
         }
 
         &__header {
-            background: $secondary-light-theme-dark;
+            background-color: $secondary-light-theme-dark;
             border-bottom: 1px solid white;
 
             &-link {
@@ -463,7 +463,7 @@
 
         &-item {
             color: $secondary-color-theme-dark;
-            background: white;
+            background-color: white;
         }
     }
 }
@@ -476,7 +476,7 @@
         }
 
         &__ul {
-            background: $secondary-light-theme-dark;
+            background-color: $secondary-light-theme-dark;
             border-bottom: 1px solid white;
         }
 
@@ -494,7 +494,7 @@
 .giz-tab-content {
     [light-theme] & {
         color: $secondary-color-theme-dark;
-        background: white;
+        background-color: white;
     }
 }
 
@@ -523,12 +523,12 @@
     [light-theme] & {
         & input {
             & + label:before {
-                background: transparent;
+                background-color: transparent;
                 border: 1px solid $gray-color-theme-dark;
             }
 
             &.disabled + label:before, &[disabled] + label:before {
-                background: $gray-dark-theme-dark;
+                background-color: $gray-dark-theme-dark;
                 border-color: $gray-dark-theme-dark;
             }
         }
@@ -555,7 +555,7 @@
             border-color: #d4d6db;
 
             &:hover:not(.disabled), &.active {
-                background: #5a7ff2;
+                background-color: #5a7ff2;
                 border-color: #5a7ff2;
                 color: white;
             }
@@ -564,7 +564,7 @@
         &-btn {
             &.disabled {
                 color: $gray-dark-theme-dark;
-                background: white;
+                background-color: white;
                 border: 1px solid $gray-dark-theme-dark;
             }
         }

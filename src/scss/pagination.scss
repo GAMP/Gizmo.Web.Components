@@ -22,7 +22,7 @@
         align-items: center;
 
         &:hover:not(.disabled), &.active {
-            background: #5a7ff2;
+            background-color: #5a7ff2;
             border-color: #5a7ff2;
             color: white;
         }
@@ -31,7 +31,7 @@
     &-btn {
         &.disabled {
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             pointer-events: none;
         }
     }

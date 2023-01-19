@@ -18,7 +18,7 @@
         }
 
         &:hover:not(.selected) {
-            background: $dark-gray-theme-dark;
+            background-color: $dark-gray-theme-dark;
             color: $dim-white-theme-dark;
         }
     }
@@ -31,11 +31,11 @@
         .giz-button {
             &.selected {
                 color: $mid-gray-theme-dark;
-                background: $onyx-black-theme-dark;
+                background-color: $onyx-black-theme-dark;
             }
 
             &:focus:not(.selected) {
-                background: unset;
+                background-color: unset;
                 box-shadow: unset;
             }
         }

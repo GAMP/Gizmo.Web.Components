@@ -32,12 +32,12 @@
     //button fill variant
     &--fill {
         &:hover {
-            background: #4F5AD3;
+            background-color: #4F5AD3;
         }
 
         &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             pointer-events: none;
 
             svg {
@@ -49,10 +49,10 @@
             border: $border-0-theme-dark;
             outline: $outline-0;
             color: white;
-            background: $primary-color-theme-dark;
+            background-color: $primary-color-theme-dark;
 
             &:active {
-                background: $primary-color-theme-dark;
+                background-color: $primary-color-theme-dark;
                 box-shadow: 0px 0px 9px #4891FF;
             }
         }
@@ -61,20 +61,20 @@
             border: $border-0-theme-dark;
             outline: $outline-0;
             color: white;
-            background: $warning-color-theme-dark;
+            background-color: $warning-color-theme-dark;
 
             &:hover {
-                background: #e98950;
+                background-color: #e98950;
             }
 
             &:active {
-                background: $warning-color-theme-dark;
+                background-color: $warning-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
 
             &.disabled, &[disabled] {
                 color: $dark-gray-theme-dark;
-                background: $onyx-black-theme-dark;
+                background-color: $onyx-black-theme-dark;
                 pointer-events: none;
             }
 
@@ -87,20 +87,20 @@
             border: $border-0-theme-dark;
             outline: $outline-0;
             color: white;
-            background: $danger-color-theme-dark;
+            background-color: $danger-color-theme-dark;
 
             &:hover {
-                background: #e94554;
+                background-color: #e94554;
             }
 
             &:active {
-                background: $danger-color-theme-dark;
+                background-color: $danger-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
 
             &.disabled, &[disabled] {
                 color: $dark-gray-theme-dark;
-                background: $onyx-black-theme-dark;
+                background-color: $onyx-black-theme-dark;
                 pointer-events: none;
 
                 svg {
@@ -130,7 +130,7 @@
 
         &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
 
@@ -141,23 +141,23 @@
     }
     //button text variant
     &--text {
-        background: none;
+        background-color: initial;
         border: none;
         color: $gray-black-theme-dark;
 
         &:hover {
             color: $primary-color-theme-dark;
-            background: white;
+            background-color: white;
         }
 
         &:active {
-            background: white;
+            background-color: white;
             box-shadow: $elevation-1-theme-dark;
         }
 
         &.disabled, &[disabled] {
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             border: none;
             pointer-events: none;
 
@@ -202,7 +202,7 @@
     //buton disable
     &.disabled, &[disabled] {
         color: $dark-gray-theme-dark;
-        background: $onyx-black-theme-dark;
+        background-color: $onyx-black-theme-dark;
         border: none;
         pointer-events: none;
 

@@ -2,7 +2,6 @@
 
 .giz-chip-group {
     display: inline-block;
-    
     //Default Skin
 
     .giz-chip {
@@ -22,7 +21,7 @@
         .giz-chip {
             &.selected {
                 color: white;
-                background: $primary-color;
+                background-color: $primary-color;
                 box-shadow: $elevation-1;
             }
         }
@@ -32,7 +31,7 @@
         .giz-chip {
             &.selected {
                 color: white;
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
         }
     }
@@ -41,7 +40,7 @@
         .giz-chip {
             &.selected {
                 color: white;
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
         }
     }

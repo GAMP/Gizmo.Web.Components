@@ -15,7 +15,7 @@
     border-spacing: 0 0.2rem;
     color: $gray-black-theme-dark;
     font-size: $font-16-theme-dark;
-    background: $dark-gray-theme-dark;
+    background-color: $dark-gray-theme-dark;
 
     & > thead td, & > thead th {
         height: 5rem;
@@ -65,7 +65,7 @@
 
     & > tbody > tr:not(.giz-data-grid-row-detail) {
         height: 3.9rem;
-        background: transparent;
+        background-color: transparent;
         border-radius: $rounded-lg-theme-dark;
         margin-bottom: $spacer-12;
 
@@ -83,7 +83,7 @@
         }
 
         &:hover {
-            background: $dark-jungle-theme-dark;
+            background-color: $dark-jungle-theme-dark;
             color: white;
 
             & > td {
@@ -101,7 +101,7 @@
         }
 
         &.selected {
-            background: $dark-navy-theme-dark;
+            background-color: $dark-navy-theme-dark;
             cursor: pointer;
 
             & > td {
@@ -118,7 +118,7 @@
             }
 
             &:hover {
-                background: rgba(90,103,242,0.2);
+                background-color: rgba(90,103,242,0.2);
 
                 & > td {
                     border-top: 1px solid $onyx-black-theme-dark;
@@ -136,7 +136,7 @@
         }
         /*&.is-active {
             border-color: #453855;
-            background: $dark-light-color-theme-dark;
+            background-color: $dark-light-color-theme-dark;
             border-radius: 4px 4px 0 0;
             margin-bottom: $spacer-0;
         }*/
@@ -190,7 +190,7 @@
 .giz-data-grid-row {
     &-detail {
         display: none;
-        background: transparent;
+        background-color: transparent;
 
         &:hover {
             & > td {
@@ -220,7 +220,7 @@
 
     &--open {
         border-color: #453855;
-        background: $primary-color-theme-dark;
+        background-color: $primary-color-theme-dark;
         cursor: pointer;
         color: white;
 
@@ -252,7 +252,7 @@
             top: 0;
             z-index: 1;
             color: $gray-black-theme-dark;
-            background: $dark-gray-theme-dark;
+            background-color: $dark-gray-theme-dark;
         }
     }
 }

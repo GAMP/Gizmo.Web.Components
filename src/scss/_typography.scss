@@ -35,11 +35,11 @@ $font-weight-bold: 700;
 
 //theme background
 .giz-theme-background {
-    background: $dark-gray-theme-dark !important;
+    background-color: $dark-gray-theme-dark !important;
     color: white;
 
     [light-theme] & {
-        background: white !important;
+        background-color: white !important;
         color: black;
     }
 }
@@ -54,11 +54,11 @@ $font-weight-bold: 700;
 
 //theme surface
 .giz-theme-surface {
-    background: $dark-light-color-theme-dark !important;
+    background-color: $dark-light-color-theme-dark !important;
     color: white !important;
 
     [light-theme] & {
-        background: $secondary-light-theme-dark !important;
+        background-color: $secondary-light-theme-dark !important;
         color: black !important;
     }
 }

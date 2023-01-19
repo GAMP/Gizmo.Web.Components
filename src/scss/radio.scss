@@ -32,20 +32,20 @@
             transform: translateY(-50%);
             width: 2.4rem;
             height: 2.4rem;
-            background: transparent;
+            background-color: transparent;
             border: 1px solid $gray-color-theme-dark;
             border-radius: 100px;
         }
 
         &:checked + label:before {
             content: '';
-            background: $primary-color-theme-dark;
+            background-color: $primary-color-theme-dark;
             border-color: $primary-color-theme-dark;
         }
 
         &.disabled + label:before, &[disabled] + label:before {
             cursor: default;
-            background: $gray-color-theme-dark;
+            background-color: $gray-color-theme-dark;
         }
 
         &.disabled + label, &[disabled] + label {
@@ -60,7 +60,7 @@
             transform: translateY(-50%);
             width: 1.4rem;
             height: 1.4rem;
-            background: white;
+            background-color: white;
             border-radius: 100px;
         }
     }

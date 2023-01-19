@@ -41,7 +41,7 @@
     [client-theme] & {
         border-collapse: separate;
         border-spacing: 0;
-        background: #22272B;
+        background-color: #22272B;
         color: unset;
 
         & > thead td, & > thead th {
@@ -49,7 +49,7 @@
             padding: 1.1rem 0.8rem;
             height: unset;
             @include font-s($font-weight-light);
-            background: #22272B;
+            background-color: #22272B;
             border-bottom: 0.1rem solid rgba(246, 251, 253, 0.06);
         }
 
@@ -59,7 +59,7 @@
             @include font-m($font-weight-light);
 
             &:hover {
-                background: #22272B;
+                background-color: #22272B;
 
                 & > td {
                     &:first-child {
@@ -135,7 +135,7 @@
             }
 
             &.selected {
-                background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%);
+                //background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%);
             }
         }
     }
@@ -166,7 +166,7 @@
                 pointer-events: none;
                 //Default Theme
                 color: rgba(255, 255, 255, 0.6);
-                background: rgba(250, 250, 250, 0.16);
+                background-color: rgba(250, 250, 250, 0.16);
                 border: 0.1rem solid transparent;
             }
 
@@ -177,14 +177,14 @@
                     pointer-events: none;
                     color: rgba(255, 255, 255, 0.24);
                     //Default Theme
-                    //background: transparent;
-                    background: #0C0F11;
+                    //background-color: transparent;
+                    background-color: #0C0F11;
                 }
             }
 
             &--outline {
-                //background: transparent;
-                background: #0C0F11;
+                //background-color: transparent;
+                background-color: #0C0F11;
 
                 &:hover {
                     border: 0.2rem solid rgba(246, 251, 253, 0.52);
@@ -244,12 +244,12 @@
             }
 
             &--filled {
-                //background: transparent;
-                background: #0C0F11;
+                //background-color: transparent;
+                background-color: #0C0F11;
             }
 
             &--transparent {
-                background: transparent;
+                background-color: transparent;
             }
 
             &--small {
@@ -358,7 +358,7 @@
 .giz-input-select {
     [client-theme] & {
         .giz-input-select__dropdown {
-            background: #22272B;
+            background-color: #22272B;
             box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
             border-radius: 0.8rem;
             padding: 0.8rem;
@@ -366,7 +366,7 @@
 
             .giz-list {
                 padding: unset;
-                background: #22272B;
+                background-color: #22272B;
 
                 .giz-list-item {
                     padding: 0.9rem 1.6rem;
@@ -385,7 +385,7 @@
 
                         &.active {
                             //Default Theme
-                            background: #373839;
+                            background-color: #373839;
                             color: #E4E6EB;
                         }
                     }
@@ -395,7 +395,7 @@
                     .giz-list-item {
                         &:hover {
                             //Default Theme
-                            background: rgba(250, 250, 250, 0.23);
+                            background-color: rgba(250, 250, 250, 0.23);
                         }
                     }
                 }
@@ -417,7 +417,7 @@
         @include font-l($font-weight-regular);
 
         &__progress {
-            background: #3F8CFF;
+            background-color: #3F8CFF;
 
             &-wrapper {
                 border-radius: 0.8rem;
@@ -434,7 +434,7 @@
             }
 
             &.disabled, &[disabled] {
-                background: rgba(250, 250, 250, 0.16);
+                background-color: rgba(250, 250, 250, 0.16);
                 color: rgba(255, 255, 255, 0.24);
             }
 
@@ -454,11 +454,11 @@
             }
 
             &.secondary {
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
 
             &.info {
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
 
             &.danger {
@@ -523,7 +523,7 @@
             }
 
             &.disabled, &[disabled] {
-                background: rgba(250, 250, 250, 0.16);
+                background-color: rgba(250, 250, 250, 0.16);
                 color: rgba(255, 255, 255, 0.24);
             }
 
@@ -543,11 +543,11 @@
             }
 
             &.secondary {
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
 
             &.info {
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
 
             &.danger {
@@ -684,6 +684,7 @@
 // == dialog == //
 .giz-dialog {
     [client-theme] & {
+        background-color: initial;
         background: linear-gradient(180deg, rgba(22, 30, 37, 0.8) 0%, rgba(11, 17, 23, 0.9) 100%);
         backdrop-filter: blur(1.5rem);
         z-index: 1001;
@@ -692,7 +693,7 @@
             text-align: $text-align-center;
             z-index: 1002;
             border: thin solid $unknown-color;
-            background: $unknown-color;
+            background-color: $unknown-color;
             overflow: hidden;
 
             &::before {
@@ -700,6 +701,7 @@
                 left: 0;
                 bottom: 0;
                 content: "";
+                background-color: initial;
                 background: linear-gradient(to bottom, rgba(90, 94, 107, 0) 0%, rgba(37, 140, 246, 0.45) 333.62%);
                 height: 100%;
                 width: 100%;
@@ -731,10 +733,10 @@
         color: white;
 
         &--fill {
-            background: rgba(0, 120, 210, 0.4);
+            background-color: rgba(0, 120, 210, 0.4);
 
             &:hover {
-                background: rgba(0, 120, 210, 0.4);
+                background-color: rgba(0, 120, 210, 0.4);
             }
 
             &:active:not(.giz-button-shadow) {
@@ -743,7 +745,7 @@
             }
 
             &:active {
-                background: rgba(0, 120, 210, 0.4);
+                background-color: rgba(0, 120, 210, 0.4);
             }
 
             &.disabled, &[disabled] {
@@ -751,11 +753,11 @@
         }
 
         &--outline {
-            background: $unknown-color;
+            background-color: $unknown-color;
             border: 0.1rem solid $unknown-color;
 
             &:hover {
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
 
             &:active:not(.giz-button-shadow) {
@@ -764,17 +766,17 @@
             }
 
             &:active {
-                background: $unknown-color;
+                background-color: $unknown-color;
             }
         }
 
         &--text {
-            background: none;
+            background-color: initial;
             border: none;
             color: #AAABAD;
 
             &:hover {
-                background: transparent;
+                background-color: transparent;
                 color: #FFFFFF;
             }
 
@@ -784,7 +786,7 @@
             }
 
             &:active {
-                background: transparent;
+                background-color: transparent;
                 color: #FFFFFF;
             }
 
@@ -840,15 +842,15 @@
                 border-radius: unset;
                 border: 0.1rem solid $unknown-color;
                 box-shadow: $elevation-4;
-                background: rgba(9, 11, 16, 0.9);
+                background-color: rgba(9, 11, 16, 0.9);
 
                 .giz-list-item {
                     border-radius: unset;
-                    background: unset;
+                    background-color: unset;
                     color: white;
 
                     &:hover {
-                        background: $unknown-color;
+                        background-color: $unknown-color;
                     }
 
                     .giz-list-item-icon {
@@ -871,7 +873,7 @@
             & + label:before {
                 width: 2.4rem;
                 height: 2.4rem;
-                background: transparent;
+                background-color: transparent;
                 border: 0.2rem solid #FAFAFA;
                 border-radius: 0.4rem;
                 margin-right: 0.8rem;
@@ -879,12 +881,12 @@
             }
 
             &:checked + label:before {
-                background: #3F8CFF;
+                background-color: #3F8CFF;
                 border: 0.2rem solid #3F8CFF;
             }
 
             &:checked + label:after {
-                background: unset;
+                background-color: unset;
                 left: 0.9rem;
                 top: 0.5rem;
                 width: 0.4rem;
@@ -988,18 +990,18 @@
                 transform: translateY(-50%);
                 width: 2.0rem;
                 height: 2.0rem;
-                background: transparent;
+                background-color: transparent;
                 border: 0.1rem solid rgba(246, 251, 253, 0.28);
                 border-radius: 10.0rem;
             }
 
             &:checked + label:before {
-                background: transparent;
+                background-color: transparent;
                 border-color: #0078D2;
             }
 
             &.disabled + label:before, &[disabled] + label:before {
-                background: $gray-color-theme-dark;
+                background-color: $gray-color-theme-dark;
             }
 
             &.disabled + label, &[disabled] + label {
@@ -1011,7 +1013,7 @@
                 transform: translateY(-50%);
                 width: 0.8rem;
                 height: 0.8rem;
-                background: #0078D2;
+                background-color: #0078D2;
                 border-radius: 10.0rem;
             }
         }
@@ -1124,7 +1126,7 @@
             border: unset;
 
             .giz-list {
-                background: #201F1F;
+                background-color: #201F1F;
                 box-shadow: 0 0.4rem 2.0rem rgba(0, 0, 0, 0.08);
                 border-radius: 0.8rem;
                 color: #E4E6EB;
@@ -1137,7 +1139,7 @@
                     @include font-m($font-weight-light);
 
                     &.active {
-                        background: #373839;
+                        background-color: #373839;
                         color: #E4E6EB;
                     }
                 }
@@ -1146,7 +1148,7 @@
                     .giz-list-item {
                         &.selected {
                             //Default Theme
-                            background: #373839;
+                            background-color: #373839;
                             color: #E4E6EB;
                         }
                     }
@@ -1156,7 +1158,7 @@
                     .giz-list-item {
                         &:hover {
                             //Default Theme
-                            background: #373839;
+                            background-color: #373839;
                             color: #E4E6EB;
                         }
                     }

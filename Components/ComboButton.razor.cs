@@ -147,13 +147,23 @@ namespace Gizmo.Web.Components
             _isOpen = true;
         }
 
-        #region OVERRIDES
+		#region OVERRIDES
 
-        #endregion
+		//protected override async Task OnAfterRenderAsync(bool firstRender)
+		//{
+		//	if (!firstRender)
+		//	{
+		//		await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
+		//	}
 
-        #region CLASSMAPPERS
+		//	await base.OnAfterRenderAsync(firstRender);
+		//}
 
-        protected string ClassName => new ClassMapper()
+		#endregion
+
+		#region CLASSMAPPERS
+
+		protected string ClassName => new ClassMapper()
                  .Add("giz-combo-button")
                  .If("giz-combo-button--full-width", () => IsFullWidth)
                  .AsString();
@@ -171,16 +181,6 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
 
         public void Register(ISelectItem<int> selectItem, int value)
         {

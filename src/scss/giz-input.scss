@@ -37,12 +37,12 @@
         width: 20rem;
 
         &--transparent {
-            background: transparent;
+            background-color: transparent;
         }
 
         &--filled {
             //Default Theme
-            background: $dark-gray-theme-dark;
+            background-color: $dark-gray-theme-dark;
         }
 
         svg {
@@ -69,7 +69,7 @@
             width: 100%;
             border: none;
             outline: none;
-            background: inherit;
+            background-color: inherit;
             //Default Theme
             color: $gray-black-theme-dark;
 
@@ -81,7 +81,7 @@
                 pointer-events: none;
                 color: $dim-ligh-theme-darkt;
                 //Default Theme
-                background: $onyx-black-theme-dark;
+                background-color: $onyx-black-theme-dark;
             }
         }
 
@@ -96,7 +96,7 @@
         &.disabled, &[disabled] {
             pointer-events: none;
             //Default Theme
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             color: $mid-gray-theme-dark;
             /*border: 1px solid $onyx-black-theme-dark;*/
         }
@@ -150,7 +150,7 @@
             line-height: $line-height-24-theme-dark;
 
             &.disabled, &[disabled] {
-                background: $onyx-black-theme-dark;
+                background-color: $onyx-black-theme-dark;
                 color: white;
                 pointer-events: none;
             }
@@ -242,7 +242,7 @@
     display: none;
     position: absolute;
     z-index: 1;
-    background: $danger-color-theme-dark;
+    background-color: $danger-color-theme-dark;
     color: white;
     padding: 0 1rem;
     border-radius: 0.2rem;

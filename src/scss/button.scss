@@ -57,7 +57,6 @@
             //z-index: 1;
         }
     }
-
     //Default Skin?
 
     .giz-button-icon-left {
@@ -81,14 +80,14 @@
         border: $border-0-theme-dark;
         outline: $outline-0;
         color: white;
-        background: $primary-color-theme-dark;
+        background-color: $primary-color-theme-dark;
 
         &:hover {
-            background: #4F5AD3;
+            background-color: #4F5AD3;
         }
 
         &:active {
-            background: $primary-color-theme-dark;
+            background-color: $primary-color-theme-dark;
             box-shadow: 0px 0px 9px #4891FF;
         }
 
@@ -96,7 +95,7 @@
             pointer-events: none;
             //Default Skin
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             border: none;
             /*svg {
                 color: $dark-gray-theme-dark;
@@ -113,7 +112,7 @@
             pointer-events: none;
             //Default Skin
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             /*svg {
                 color: $dark-gray-theme-dark;
             }*/
@@ -123,10 +122,10 @@
             border: $border-0-theme-dark;
             outline: $outline-0;
             color: white;
-            background: $primary-color-theme-dark;
+            background-color: $primary-color-theme-dark;
 
             &:active {
-                background: $primary-color-theme-dark;
+                background-color: $primary-color-theme-dark;
                 box-shadow: 0px 0px 9px #4891FF;
             }
         }
@@ -135,14 +134,14 @@
             border: $border-0-theme-dark;
             outline: $outline-0;
             color: white;
-            background: $warning-color-theme-dark;
+            background-color: $warning-color-theme-dark;
 
             &:hover {
-                background: #e98950;
+                background-color: #e98950;
             }
 
             &:active {
-                background: $warning-color-theme-dark;
+                background-color: $warning-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
 
@@ -150,7 +149,7 @@
                 pointer-events: none;
                 //Default Skin
                 color: $dark-gray-theme-dark;
-                background: $onyx-black-theme-dark;
+                background-color: $onyx-black-theme-dark;
             }
             /*svg {
                 color: $dark-gray-theme-dark;
@@ -161,14 +160,14 @@
             border: $border-0-theme-dark;
             outline: $outline-0;
             color: white;
-            background: $danger-color-theme-dark;
+            background-color: $danger-color-theme-dark;
 
             &:hover {
-                background: #e94554;
+                background-color: #e94554;
             }
 
             &:active {
-                background: $danger-color-theme-dark;
+                background-color: $danger-color-theme-dark;
                 box-shadow: 0px 0px 9px #e98950;
             }
 
@@ -176,7 +175,7 @@
                 pointer-events: none;
                 //Default Skin
                 color: $dark-gray-theme-dark;
-                background: $onyx-black-theme-dark;
+                background-color: $onyx-black-theme-dark;
                 /*svg {
                     color: $dark-gray-theme-dark;
                 }*/
@@ -203,7 +202,7 @@
             pointer-events: none;
             //Default Skin
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             border: none;
             /*svg {
                 color: $dark-gray-theme-dark;
@@ -212,7 +211,7 @@
     }
     //button text variant
     &--text {
-        background: none;
+        background-color: initial;
         border: none;
         color: $gray-black-theme-dark;
 
@@ -226,7 +225,7 @@
             pointer-events: none;
             //Default Skin
             color: $dark-gray-theme-dark;
-            background: $onyx-black-theme-dark;
+            background-color: $onyx-black-theme-dark;
             border: none;
             /*svg {
                 color: $dark-gray-theme-dark;
@@ -263,7 +262,7 @@
         pointer-events: none;
         //Default Skin
         color: $dark-gray-theme-dark;
-        background: $onyx-black-theme-dark;
+        background-color: $onyx-black-theme-dark;
         border: none;
         /*svg {
             color: $dark-gray-theme-dark;

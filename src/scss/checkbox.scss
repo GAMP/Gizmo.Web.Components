@@ -32,7 +32,7 @@
             transform: translateY(-50%);*/
             width: 2.4rem;
             height: 2.4rem;
-            background: $dark-gray-theme-dark;
+            background-color: $dark-gray-theme-dark;
             border: 1px solid $onyx-black-theme-dark;
             border-radius: $rounded-theme-dark;
             margin-right: 0.75rem;
@@ -40,13 +40,13 @@
 
         &:checked + label:before {
             content: '';
-            background: $primary-color-theme-dark;
+            background-color: $primary-color-theme-dark;
             border-color: $primary-color-theme-dark;
         }
 
         &.disabled + label:before, &[disabled] + label:before {
             cursor: default;
-            background: $gray-dim-theme-dark;
+            background-color: $gray-dim-theme-dark;
             border-color: $gray-dim-theme-dark;
             pointer-events: none;
         }
@@ -72,12 +72,12 @@
         }
 
         &:indeterminate + label:before {
-            background: $primary-color-theme-dark;
+            background-color: $primary-color-theme-dark;
             border-color: $primary-color-theme-dark;
         }
 
         &:indeterminate.disabled + label:before, &:indeterminate[disabled] + label:before {
-            background: $gray-color-theme-dark;
+            background-color: $gray-color-theme-dark;
             border-color: $gray-color-theme-dark;
         }
 
@@ -91,7 +91,7 @@
             -webkit-transform: translateY(-50%);
             width: 0.8rem;
             height: 2px;
-            background: white;
+            background-color: white;
         }
     }
 }
