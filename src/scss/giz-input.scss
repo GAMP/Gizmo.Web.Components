@@ -171,6 +171,7 @@
         }
         //input outline
         &--outline {
+            transition: border-color 0.2s;
             outline-offset: -0.2rem;
             outline-width: 0.1rem;
             /*outline-style: groove;*/

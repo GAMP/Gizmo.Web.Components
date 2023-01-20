@@ -7,10 +7,7 @@
     //Default Skin
     font-size: $font-17-theme-dark;
     border-radius: $rounded-theme-dark;
-    transition: color 0.3s ease;
-    transition: background 0.3s ease;
-    transition: border 0.3s ease;
-    transition: box-shadow 0.3s ease;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     font-weight: $font-weight-600;
     letter-spacing: $letter-spacing-8-theme-dark;
     white-space: $nowrap-white-space;
@@ -24,7 +21,7 @@
         left: 0;
         height: 100%;
         //Default Skin
-        transition: width 0.3s;
+        transition: width 0.2s;
 
         &-wrapper {
             position: absolute;
