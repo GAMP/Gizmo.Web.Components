@@ -99,6 +99,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool CanClearValue { get; set; }
 
+        [Parameter]
+        public string PopupClass { get; set; }
+
         #endregion
 
         #region METHODS
@@ -340,6 +343,7 @@ namespace Gizmo.Web.Components
                  .Add("giz-input-multi-select__dropdown")
                  .If("giz-input-multi-select__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
                  .If("giz-input-multi-select__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .If(PopupClass, () => !string.IsNullOrEmpty(PopupClass))
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()
