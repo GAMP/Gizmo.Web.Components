@@ -27,12 +27,14 @@
         @if (!IsMultiLine)
         {
             <input id="@Id"
+                   @ref="_inputElement"
                    type="@Type"
                    value="@_text"
                    readonly="@IsReadOnly"
                    disabled="@IsDisabled"
                    placeholder="@Placeholder"
-                   @oninput="OnInputHandler"
+                   @onkeydown="OnInputKeyDownHandler"
+                   @onkeydown:preventDefault="true"
                    @onchange="OnChangeHandler"
                    @onclick="OnClickHandler"
                    @attributes="Attributes" />
@@ -40,12 +42,14 @@
         else
         {
             <textarea id="@Id"
+                      @ref="_inputElement"
                       type="@Type"
                       value="@_text"
                       readonly="@IsReadOnly"
                       disabled="@IsDisabled"
                       placeholder="@Placeholder"
-                      @oninput="OnInputHandler"
+                      @onkeydown="OnInputKeyDownHandler"
+                      @onkeydown:preventDefault="true"
                       @onchange="OnChangeHandler"
                       @onclick="OnClickHandler"
                       @attributes="Attributes" />

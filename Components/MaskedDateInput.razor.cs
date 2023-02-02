@@ -84,7 +84,17 @@ namespace Gizmo.Web.Components
                 return;
 
             if (args.Key == "Tab")
-                await InvokeVoidAsync("focusNext", _inputElement);
+            {
+                if (args.ShiftKey)
+                {
+                    await InvokeVoidAsync("focusPrevious", _inputElement);
+                }
+                else
+                {
+                    await InvokeVoidAsync("focusNext", _inputElement);
+                }
+                return;
+            }
 
             if (args.Key == _separator.ToString())
             {

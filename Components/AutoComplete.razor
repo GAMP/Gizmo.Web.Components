@@ -23,7 +23,8 @@
                       ValidationMessage="@_validationMessage"
                       RightSVGIcon="Icons.Search">
                 <div class="giz-input-wrapper">
-                    <input type="text"
+                    <input @ref="_inputElement"
+                           type="text"
                            value="@_text"
                            readonly="@IsReadOnly"
                            disabled="@IsDisabled"

@@ -2908,7 +2908,6 @@ h6,
 
 .giz-button--group-button {
   border: 0rem;
-  outline: 0rem;
   color: white;
   background-color: #5A67F2;
 }
@@ -2951,7 +2950,6 @@ h6,
 
 .giz-button--fill.primary {
   border: 0rem;
-  outline: 0rem;
   color: white;
   background-color: #5A67F2;
 }
@@ -2964,7 +2962,6 @@ h6,
 
 .giz-button--fill.warning {
   border: 0rem;
-  outline: 0rem;
   color: white;
   background-color: #F2935A;
   /*svg {
@@ -2991,7 +2988,6 @@ h6,
 
 .giz-button--fill.danger {
   border: 0rem;
-  outline: 0rem;
   color: white;
   background-color: #F25A68;
 }
@@ -4461,7 +4457,6 @@ h6,
 
 .giz-icon-button--fill.primary {
   border: 0rem;
-  outline: 0rem;
   color: white;
   background-color: #5A67F2;
 }
@@ -4474,7 +4469,6 @@ h6,
 
 .giz-icon-button--fill.warning {
   border: 0rem;
-  outline: 0rem;
   color: white;
   background-color: #F2935A;
 }
@@ -4502,7 +4496,6 @@ h6,
 
 .giz-icon-button--fill.danger {
   border: 0rem;
-  outline: 0rem;
   color: white;
   background-color: #F25A68;
 }
@@ -7112,7 +7105,6 @@ h6,
   border-radius: 0.8rem;
   color: white;
   border: none;
-  outline: 0rem;
   text-align: center;
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
