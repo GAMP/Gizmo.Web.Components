@@ -178,14 +178,92 @@ function getInputSelectionRange(element) {
     }
 }
 //
+function setInputCaretIndex(element, index) {
+    if (element) {
+        if (element.createTextRange) {
+            var range = element.createTextRange();
+            range.move('character', index);
+            range.select();
+        } else {
+            element.focus();
+            element.setSelectionRange(index, index);
+        }
+    }
+}
+//
+const focusableElementsSelector = "input:not([disabled]), textarea:not([disabled]), select:not([disabled]), button:not([disabled]), a[href]:not([disabled])";
+// [tabindex = "0"]?
+//
+function focusPrevious(element) {
+    if (element) {
+        var inputs = document.querySelectorAll(focusableElementsSelector);
+        if (inputs.length > 0) {
+            for (var i = 1; i < inputs.length; i++) {
+                if (inputs[i] == element) {
+                    //TODO: A
+                    inputs[i - 1].focus();
+                    return;
+                }
+            }
+            //If not found already and the selector is correct then the element is the first in the page. Start over again.
+            inputs[inputs.length - 1].focus();
+        }
+    }
+}
+//
 function focusNext(element) {
     if (element) {
-        var inputs = document.querySelectorAll('input');
-        for (var i = 0; i < inputs.length; i++) {
-            if (inputs[i] == element) {
-                //TODO: A
-                inputs[i + 1].focus();
+        var inputs = document.querySelectorAll(focusableElementsSelector);
+        if (inputs.length > 0) {
+            for (var i = 0; i < inputs.length - 1; i++) {
+                if (inputs[i] == element) {
+                    //TODO: A
+                    inputs[i + 1].focus();
+                    return;
+                }
+            }
+            //If not found already and the selector is correct then the element is the last in the page. Start over again.
+            inputs[0].focus();
+        }
+    }
+}
+//
+function focusTrapCheck(e) {
+    if (!(e.key == 'Tab' || e.keyCode == 9))
+        return;
+
+    console.log(e);
+
+    var dialog = e.target.closest('giz-dialog');
+
+    if (dialog) {
+        var inputs = dialog.querySelectorAll(focusableElementsSelector);
+
+        if (e.shiftKey) {
+            if (document.activeElement == inputs[0]) {
+                inputs[inputs.length - 1].focus();
+                e.preventDefault();
+            }
+        } else {
+            if (document.activeElement == lastFocusableEl) {
+                inputs[0].focus();
+                e.preventDefault();
             }
         }
+    }
+}
+//
+function focusTrap(element) {
+    if (element) {
+        console.log('focusTrap');
+        element.addEventListener('keydown', focusTrapCheck);
+        element.focus();
+    }
+}
+//
+function focusUntrap(element) {
+    if (element) {
+        console.log('focusUntrap');
+        element.removeEventListener('keydown', focusTrapCheck);
     }
 }

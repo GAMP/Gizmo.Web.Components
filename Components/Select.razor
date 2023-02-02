@@ -34,14 +34,15 @@
                 {
                     @if (@_selectedItem.ChildContent != null)
                     {
-                        <div class="giz-input-select__content">
+                        <div class="giz-input-select__content" tabindex="0" style="outline: none">
                             @_selectedItem.ChildContent
                         </div>
                     }
                     else
                     {
                         <div class="giz-input-wrapper">
-                            <input type="text"
+                            <input @ref="_inputElement"
+                                   type="text"
                                    value="@_selectedItem.Text"
                                    disabled="@IsDisabled"
                                    readonly
