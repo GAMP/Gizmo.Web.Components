@@ -22,6 +22,7 @@ namespace Gizmo.Web.Components
         private Dictionary<TValue, ISelectItem<TValue>> _items = new Dictionary<TValue, ISelectItem<TValue>>();
         private ISelectItem<TValue> _selectedItem;
         private List _popupContent;
+        private ElementReference _inputWrapperElement;
         private ElementReference _inputElement;
         private bool _isOpen;
         private double _popupX;
@@ -408,7 +409,7 @@ namespace Gizmo.Web.Components
                 var windowSize = await JsInvokeAsync<WindowSize>("getWindowSize");
                 var popupContentSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _popupContent.Ref);
 
-                var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _inputElement);
+                var inputSize = await JsInvokeAsync<BoundingClientRect>("getElementBoundingClientRect", _inputWrapperElement);
 
                 _popupX = inputSize.Left;
                 _popupWidth = inputSize.Width;

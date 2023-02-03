@@ -191,8 +191,7 @@ function setInputCaretIndex(element, index) {
     }
 }
 //
-const focusableElementsSelector = "input:not([disabled]), textarea:not([disabled]), select:not([disabled]), button:not([disabled]), a[href]:not([disabled])";
-// [tabindex = "0"]?
+const focusableElementsSelector = "input:not([disabled]), textarea:not([disabled]), select:not([disabled]), button:not([disabled]), a[href]:not([disabled]), [tabindex = \"0\"]";
 //
 function focusPrevious(element) {
     if (element) {
@@ -212,6 +211,7 @@ function focusPrevious(element) {
 }
 //
 function focusNext(element) {
+    console.log(element);
     if (element) {
         var inputs = document.querySelectorAll(focusableElementsSelector);
         if (inputs.length > 0) {
@@ -219,11 +219,13 @@ function focusNext(element) {
                 if (inputs[i] == element) {
                     //TODO: A
                     inputs[i + 1].focus();
+                    console.log(inputs[i + 1]);
                     return;
                 }
             }
             //If not found already and the selector is correct then the element is the last in the page. Start over again.
             inputs[0].focus();
+            console.log("start");
         }
     }
 }
@@ -232,9 +234,7 @@ function focusTrapCheck(e) {
     if (!(e.key == 'Tab' || e.keyCode == 9))
         return;
 
-    console.log(e);
-
-    var dialog = e.target.closest('giz-dialog');
+    var dialog = e.target.closest('.giz-dialog');
 
     if (dialog) {
         var inputs = dialog.querySelectorAll(focusableElementsSelector);
@@ -245,7 +245,7 @@ function focusTrapCheck(e) {
                 e.preventDefault();
             }
         } else {
-            if (document.activeElement == lastFocusableEl) {
+            if (document.activeElement == inputs[inputs.length - 1]) {
                 inputs[0].focus();
                 e.preventDefault();
             }
@@ -255,7 +255,6 @@ function focusTrapCheck(e) {
 //
 function focusTrap(element) {
     if (element) {
-        console.log('focusTrap');
         element.addEventListener('keydown', focusTrapCheck);
         element.focus();
     }
@@ -263,7 +262,6 @@ function focusTrap(element) {
 //
 function focusUntrap(element) {
     if (element) {
-        console.log('focusUntrap');
         element.removeEventListener('keydown', focusTrapCheck);
     }
 }

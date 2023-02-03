@@ -74,9 +74,6 @@ namespace Gizmo.Web.Components
 
                 if (EditContext != null)
                 {
-                    //var fieldName = ValueExpression != null ? ValueExpression.ToString() : "";
-                    //InvokeVoidAsync("writeLine", $"{_guid} OnParametersSet EditContext {fieldName}");
-
                     EditContext.OnValidationRequested += OnValidationRequested;
                     EditContext.OnValidationStateChanged += OnValidationStateChanged;
                     _lastEditContext = EditContext;

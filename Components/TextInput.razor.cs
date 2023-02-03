@@ -24,6 +24,8 @@ namespace Gizmo.Web.Components
 
         protected ElementReference _inputElement;
 
+        private bool _hasValidateFunction;
+
         #endregion
 
         #region PROPERTIES
@@ -115,8 +117,31 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
+        protected Task OnInputHandler(ChangeEventArgs args)
+        {
+            if (_hasValidateFunction)
+                return Task.CompletedTask;
+
+            if (UpdateOnInput)
+            {
+                var newText = args?.Value as string;
+
+                TValue newValue = _converter.GetValue(newText);
+
+                if (!EqualityComparer<TValue>.Default.Equals(Value, newValue))
+                {
+                    return SetValueAsync(newValue);
+                }
+            }
+
+            return Task.CompletedTask;
+        }
+
         protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
+            if (!_hasValidateFunction)
+                return;
+
             if (IsDisabled)
                 return;
 
@@ -148,16 +173,12 @@ namespace Gizmo.Web.Components
             switch (args.Key)
             {
                 case "Home":
-                    caretIndex = inputSelectionRange.SelectionStart;
-
                     caretIndex = 0;
                     await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
 
                     break;
 
                 case "End":
-                    caretIndex = inputSelectionRange.SelectionStart;
-
                     if (!string.IsNullOrEmpty(previousValue))
                     {
                         caretIndex = previousValue.Length;
@@ -429,6 +450,13 @@ namespace Gizmo.Web.Components
             await base.SetParametersAsync(parameters);
 
             UpdateText();
+        }
+
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            _hasValidateFunction = ValidateFunction != null;
         }
 
         #endregion
