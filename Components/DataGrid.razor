@@ -76,7 +76,7 @@
                                         OverscanCount="@OverscanCount"
                                         ItemsProvider="@ItemsProvider">
                                 <ItemContent>
-                                    <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                                    <DataGridRow @key="@dataItem.GetHashCode()" Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                                 </ItemContent>
                                 <Placeholder>
                                     @PlaceHolderTemplate
@@ -91,7 +91,7 @@
                                         OverscanCount="@OverscanCount"
                                         Items="@ItemSource">
                                 <ItemContent>
-                                    <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                                    <DataGridRow @key="@dataItem.GetHashCode()" Class="@RowClass" TItemType="@TItemType" Columns="@Columns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                                 </ItemContent>
                                 <Placeholder>
                                     @PlaceHolderTemplate
@@ -106,7 +106,7 @@
                         {
                             @foreach (var dataItem in GetSortedData())
                             {
-                                <DataGridRow Class="@RowClass" TItemType="@TItemType" Columns="@Columns" DetailTemplateCustomColumns="@DetailTemplateCustomColumns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
+                                <DataGridRow @key="@dataItem.GetHashCode()" Class="@RowClass" TItemType="@TItemType" Columns="@Columns" DetailTemplateCustomColumns="@DetailTemplateCustomColumns" IsSelectable="@IsSelectable" IsDropdown="@(DetailTemplate != null)" Item="dataItem" />
                             }
                         }
                     }

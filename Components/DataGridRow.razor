@@ -5,7 +5,6 @@
 
 <tr class="@Class @ClassName"
     style="@CustomStyle"
-    @key="Item.GetHashCode()"
     @onclick="@(async (e) => await OnClickEvent(e, Item))"
     @ondblclick="@(async (e) => await OnDoubleClickEvent(e, Item))"
     @oncontextmenu:preventDefault="true"
