@@ -91,16 +91,7 @@ namespace Gizmo.Web.Components
 
         #endregion
 
-        #region METHODS
-
-        #endregion
-
         #region OVERRIDES
-
-        //protected override bool ShouldRender()
-        //{
-        //    return _shouldRender;
-        //}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

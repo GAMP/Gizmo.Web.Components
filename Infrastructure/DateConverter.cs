@@ -53,15 +53,25 @@ namespace Gizmo.Web.Components
             {
                 // string
                 if (typeof(TValue) == typeof(string))
-                    return DateTime.Parse((string)(object)arg); //TODO: A FORMAT
-
+                {
+                    if (string.IsNullOrEmpty((string)(object)arg))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return DateTime.Parse((string)(object)arg); //TODO: A FORMAT
+                    }
+                }
                 // DateTime
                 else if (typeof(TValue) == typeof(DateTime))
+                {
                     return (DateTime)(object)arg;
-
+                }
                 else if (typeof(TValue) == typeof(DateTime?))
+                {
                     return (DateTime?)(object)arg;
-
+                }
                 // TimeSpan
                 else if (typeof(TValue) == typeof(TimeSpan))
                 {

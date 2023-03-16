@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using MessagePack.Resolvers;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -124,16 +123,7 @@ namespace Gizmo.Web.Components
 
                         if (_text.Length == _chars)
                         {
-                            DateTime? temp = _tempConverter.SetValue(_text);
-                            if (!_tempConverter.HasSetError)
-                            {
-                                await SetValueAsync(_converter.GetValue(temp));
-                            }
-                            else
-                            {
-                                _hasParsingErrors = true;
-                                _parsingErrors = "The field should be a date.";
-                            }
+                            await ValidateAndSetValue();
                         }
                         else
                         {
@@ -167,16 +157,7 @@ namespace Gizmo.Web.Components
 
                         if (_text.Length == _chars)
                         {
-                            DateTime? temp = _tempConverter.SetValue(_text);
-                            if (!_tempConverter.HasSetError)
-                            {
-                                await SetValueAsync(_converter.GetValue(temp));
-                            }
-                            else
-                            {
-                                _hasParsingErrors = true;
-                                _parsingErrors = "The field should be a date.";
-                            }
+                            await ValidateAndSetValue();
                         }
                         else
                         {
@@ -194,11 +175,18 @@ namespace Gizmo.Web.Components
                             return;
 
                         _text = _text.Substring(0, _text.Length - 1);
-                        //set value to null?
 
                         if (_mask[_text.Length] == _separator)
                         {
                             _text = _text.Substring(0, _text.Length - 1);
+                        }
+
+                        if (_text.Length == 0)
+                        {
+                            if (IsNullable())
+                            {
+                                await ValidateAndSetValue();
+                            }
                         }
 
                         break;
@@ -215,9 +203,36 @@ namespace Gizmo.Web.Components
             }
         }
 
+        protected Task OnFocusOutHandler(FocusEventArgs args)
+        {
+            return ValidateAndSetValue();
+        }
+
         #endregion
 
         #region METHODS
+
+        private bool IsNullable()
+        {
+            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
+                return true;
+
+            return false;
+        }
+
+        private async Task ValidateAndSetValue()
+        {
+            DateTime? temp = _tempConverter.SetValue(_text);
+            if (!_tempConverter.HasSetError)
+            {
+                await SetValueAsync(_converter.GetValue(temp));
+            }
+            else
+            {
+                _hasParsingErrors = true;
+                _parsingErrors = "The field should be a date."; //TODO: A TRANSLATE
+            }
+        }
 
         protected async Task SetValueAsync(TValue value)
         {
