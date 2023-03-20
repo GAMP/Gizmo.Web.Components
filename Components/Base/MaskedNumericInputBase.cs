@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Gizmo.Web.Components
         private int _chars = 0;
         private string _previousMask = string.Empty;
         private TValue _previousValue;
+        private bool _previousAllowMore;
 
         private StringConverter<TValue> _converter = new StringConverter<TValue>();
 
@@ -35,6 +37,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Mask { get; set; }
+
+        [Parameter]
+        public bool AllowMore { get; set; }
 
         #endregion
 
@@ -78,7 +83,7 @@ namespace Gizmo.Web.Components
                 case "8":
                 case "9":
 
-                    if (!string.IsNullOrEmpty(currentValue) && currentValue.Length >= _chars)
+                    if (!string.IsNullOrEmpty(currentValue) && ((currentValue.Length >= _chars && !AllowMore) || currentValue.Length >= _chars + 5 && AllowMore)) //TODO: A 5 CONST?
                         return;
 
                     currentValue += args.Key;
@@ -105,72 +110,105 @@ namespace Gizmo.Web.Components
         protected async Task SetValueAsync(TValue value)
         {
             Value = value;
-            UpdateText();
+            await UpdateText();
             await ValueChanged.InvokeAsync(Value);
             NotifyFieldChanged();
         }
 
-        private void UpdateText()
+        private async Task UpdateText()
         {
-            var maskChanged = _previousMask != Mask;
-            if (maskChanged)
+            try
             {
-                _shouldRender = true;
-                _previousMask = Mask;
-
-                _chars = Mask.Where(a => a == '#').Count();
-                _mask_left = Mask;
-            }
-
-            var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
-            if (valueChanged)
-            {
-                _shouldRender = true;
-                _previousValue = Value;
-
-                _text = string.Empty;
-
-                var temp = _converter.SetValue(Value);
-
-                if (!string.IsNullOrEmpty(temp) && temp.Length > 0)
+                var maskChanged = _previousMask != Mask;
+                if (maskChanged)
                 {
-                    int additionalCharacters = 0;
+                    _shouldRender = true;
+                    _previousMask = Mask;
 
-                    for (int i = 0; i < Mask.Length; i++)
-                    {
-                        if (i > temp.Length - 1 + additionalCharacters)
-                            break;
-
-                        if (Mask[i] == '#')
-                        {
-                            _text += temp[i - additionalCharacters];
-                        }
-                        else
-                        {
-                            _text += Mask[i];
-                            additionalCharacters += 1;
-                        }
-                    }
-
-                    _mask_left = Mask.Substring(temp.Length + additionalCharacters);
-                }
-                else
-                {
-                    _text = string.Empty;
+                    _chars = Mask.Where(a => a == '#').Count();
                     _mask_left = Mask;
                 }
 
-                //Validate new value.
-                if (!temp.All(char.IsDigit))
+                var allowMoreChanged = _previousAllowMore != AllowMore;
+
+                if (allowMoreChanged)
                 {
-                    _hasParsingErrors = true;
-                    _parsingErrors = "The field should be a number.";
+                    _previousAllowMore = AllowMore;
+
+                    var currentValue = _converter.SetValue(Value);
+
+                    if (!string.IsNullOrEmpty(currentValue) && currentValue.Length > _chars)
+                    {
+                        Value = _converter.GetValue(currentValue.Substring(0, _chars));
+                        await ValueChanged.InvokeAsync(Value);
+                    }
                 }
-                else
+
+                var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
+                if (valueChanged)
                 {
-                    _hasParsingErrors = false;
-                    _parsingErrors = string.Empty;
+                    _shouldRender = true;
+                    _previousValue = Value;
                 }
+
+                if (maskChanged || allowMoreChanged || valueChanged)
+                {
+                    _text = string.Empty;
+
+                    var currentValue = _converter.SetValue(Value);
+
+                    if (!string.IsNullOrEmpty(currentValue) && currentValue.Length > 0)
+                    {
+                        int additionalCharacters = 0;
+
+                        for (int i = 0; i < Mask.Length; i++)
+                        {
+                            if (i > currentValue.Length - 1 + additionalCharacters)
+                                break;
+
+                            if (Mask[i] == '#')
+                            {
+                                _text += currentValue[i - additionalCharacters];
+                            }
+                            else
+                            {
+                                _text += Mask[i];
+                                additionalCharacters += 1;
+                            }
+                        }
+
+                        if (AllowMore && currentValue.Length > Mask.Length - additionalCharacters)
+                        {
+                            _text += currentValue.Substring(Mask.Length - additionalCharacters - 1);
+                            _mask_left = string.Empty;
+                        }
+                        else
+                        {
+                            _mask_left = Mask.Substring(currentValue.Length + additionalCharacters);
+                        }
+                    }
+                    else
+                    {
+                        _text = string.Empty;
+                        _mask_left = Mask;
+                    }
+
+                    //Validate new value.
+                    if (!string.IsNullOrEmpty(currentValue) && !currentValue.All(char.IsDigit))
+                    {
+                        _hasParsingErrors = true;
+                        _parsingErrors = "The field should be a number."; //TODO: A TRANSLATE
+                    }
+                    else
+                    {
+                        _hasParsingErrors = false;
+                        _parsingErrors = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
@@ -192,7 +230,7 @@ namespace Gizmo.Web.Components
         {
             await base.SetParametersAsync(parameters);
 
-            UpdateText();
+            await UpdateText();
         }
 
         protected override void OnParametersSet()

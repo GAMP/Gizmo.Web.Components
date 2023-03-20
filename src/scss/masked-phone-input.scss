@@ -1,131 +1,57 @@
-//=============== gizmo masked-text-input classes ================//
+//=============== gizmo masked-phone-input classes ================//
 
 .giz-masked-phone-input {
-    &--open {
-        .giz-masked-phone-input__dropdown-button {
-            border: 2px solid #0091E6;
-        }
-    }
-
-    &__content_wrapper {
-        display: grid;
-        grid-template-columns: min-content 1fr;
-        align-items: end;
-    }
-
-    &__dropdown-button {
-        display: grid;
-        grid-template-columns: min-content min-content;
-        align-items: center;
-        gap: 14px;
-        border-radius: 8px;
-        border: 2px solid transparent;
-        padding: 12px;
-        cursor: pointer;
-
-        &:hover {
-            border: 2px solid rgba(246, 251, 253, 0.52);
-        }
-    }
-
-    &__dropdown {
-        background-color: #22272B;
-        box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.25);
-        border-radius: 8px;
-        padding: 8px;
-        border: unset;
-
-        &--full-width {
-            min-width: 100%;
-        }
-
-        &--cursor {
-            position: absolute;
-
-            & > .giz-list {
-                padding: unset;
-                right: 0;
-                left: 0;
-
-                .giz-nested-list {
-                    &.giz-list--right {
-                        //left: calc(100% + 8px);
-                    }
-
-                    &.giz-list--left {
-                    }
-
-                    &.giz-list--top {
-                    }
-                }
-            }
-        }
-
-        .giz-list {
-            .giz-divider {
-                margin: 8px;
-                border-color: rgba(255, 255, 255, 0.2);
-            }
-
-            .giz-list-item {
-                white-space: nowrap;
-                padding: 9px 16px;
-                border-radius: 8px;
-                color: #FAFAFA;
-                @include font-l($font-weight-light);
-            }
-
-            &.giz-list--clickable {
-                .giz-list-item {
-                    &:hover {
-                        //Default Theme
-                        background-color: rgba(246, 251, 253, 0.1);
-                        color: #FAFAFA;
-                    }
-                }
-            }
-        }
-    }
-
     input {
+        position: absolute;
         font-family: $font-family-text;
-        @include font-m($font-weight-light);
+        @include font-l($font-weight-light);
+    }
+
+    .giz-input-wrapper {
+        display: flex;
+        cursor: text;
+
+        .giz-phone-prefix {
+            margin-right: 0.5rem;
+            cursor: text;
+        }
+
+        .giz-phone-wrapper {
+            flex-grow: 1;
+            position: relative;
+        }
     }
 
     .giz-mask {
+        position: absolute;
         color: rgba(255, 255, 255, 0.35);
         display: flex;
         //FontF
         font-family: $font-family-text;
-        @include font-m($font-weight-light);
+        @include font-l($font-weight-light);
 
         &-done {
             visibility: hidden;
         }
     }
 
-    &--small {
-        .giz-masked-phone-input__dropdown-button {
-            //DESIGNER'S L
-            height: 40px;
-            padding: 10px 13px;
+    .giz-input-root {
+        &--small {
+            .giz-mask {
+                @include font-m($font-weight-light);
+            }
         }
-    }
 
-    &--medium {
-        .giz-masked-phone-input__dropdown-button {
-            //DESIGNER'S XL
-            height: 48px;
-            padding: 12px 13px;
+        &--medium {
+            .giz-mask {
+                @include font-l($font-weight-light);
+            }
         }
-    }
 
-    &--large {
-        .giz-masked-phone-input__dropdown-button {
-            //DESIGNER'S XXL
-            border-radius: 8px;
-            height: 52px;
-            padding: 14px 13px;
+        &--large {
+            .giz-mask {
+                @include font-l($font-weight-light);
+            }
         }
     }
 }

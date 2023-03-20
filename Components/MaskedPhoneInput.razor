@@ -3,116 +3,44 @@
 
 @typeparam TValue
 
-<div class="@Class @ClassName"
-     style="@Style"
-     id="@Id"
-     @ref="@Ref">
-        
-    <div class="giz-masked-phone-input__content_wrapper">
-        
-        <div class="giz-masked-phone-input__dropdown-button" @onclick="OnClickDropDownButtonHandler">
-            <div class="giz-icon-select-item__icon">
-                @if (SelectedCountry != null)
-                {
-                    <Icon Size="IconSizes.Small">
-                        @((MarkupString)SelectedCountry.Icon)
-                    </Icon>
-                }
+<GizInput Class="@ClassName"
+          Style="@Style"
+          Label="@Label"
+          ValidationErrorStyle="@ValidationErrorStyle"
+          IsReadOnly="@IsReadOnly"
+          IsDisabled="@IsDisabled"
+          IsFullWidth="@IsFullWidth"
+          Width="@Width"
+          HasOutline="@HasOutline"
+          HasShadow="@HasShadow"
+          IsTransparent="@IsTransparent"
+          Size="@Size"
+          IsValid="@IsValid"
+          ValidationMessage="@ValidationMessage"
+          LeftIcon="@LeftIcon"
+          RightIcon="@RightIcon"
+          LeftSVGIcon="@LeftSVGIcon"
+          RightSVGIcon="@RightSVGIcon">
+    <div class="giz-input-wrapper"
+         @onmousedown="OnMouseDownHandler"
+         @onmousedown:preventDefault="true">
+        <div class="giz-phone-prefix">@Prefix</div>
+        <div class="giz-phone-wrapper">
+            <input id="@Id"
+               @ref="_inputElement"
+               type="text"
+               value="@_text"
+               disabled="@IsDisabled"
+               placeholder="@Placeholder"
+               @onkeydown="OnInputKeyDownHandler"
+               @onkeydown:preventDefault="true"
+               @onpaste="OnPasteHandler"
+               @onpaste:preventDefault="true"
+               @attributes="Attributes" />
+            <div class="giz-mask">
+                <div class="giz-mask-done">@_text</div>
+                <div class="giz-mask-left">@_mask_left</div>
             </div>
-            <Icon Size="IconSizes.Small" SVGIcon="Icons.TriangleDown" />
         </div>
-
-        <GizInput Label="@Label"
-                  ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
-                  IsReadOnly="@IsReadOnly"
-                  IsDisabled="@IsDisabled"
-                  IsFullWidth="@IsFullWidth"
-                  Width="@Width"
-                  HasOutline="@HasOutline"
-                  HasShadow="@HasShadow"
-                  IsTransparent="@IsTransparent"
-                  Size="@Size"
-                  IsValid="@IsValid"
-                  ValidationMessage="@ValidationMessage"
-                  LeftIcon="@LeftIcon"
-                  RightIcon="@RightIcon"
-                  LeftSVGIcon="@LeftSVGIcon"
-                  RightSVGIcon="@RightSVGIcon">
-          
-            <div class="giz-input-wrapper">
-                <input id="@Id"
-                       @ref="_inputElement"
-                       type="text"
-                       value="@_text"
-                       disabled="@IsDisabled"
-                       placeholder="@Placeholder"
-                       @onkeydown="OnInputKeyDownHandler"
-                       @onkeydown:preventDefault="true"
-                       @onpaste="OnPasteHandler"
-                       @onpaste:preventDefault="true"
-                       @onmousedown="OnMouseDownHandler"
-                       @onmousedown:preventDefault="true"
-                       @attributes="Attributes" />
-                    <div class="giz-mask">
-                        <div class="giz-mask-done">@_text</div>
-                        <div class="giz-mask-left">@_mask_left</div>
-                    </div>
-            </div>
-
-        </GizInput>
-
-        <Popup MaximumHeight="@MaximumHeight"
-                @bind-IsOpen="_isOpen"
-                OpenDirection="@OpenDirection"
-                Class="@PopupClassName"
-                Style="@PopupStyleValue">
-            <List @ref="_popupContent"
-                  CanClick="true"
-                  MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
-                @if (Countries != null)
-                {
-                    @if (SelectedCountry != null)
-                    {
-                        <ListItem OnClick="@(() => SetSelectedCountry(SelectedCountry.Id))">
-                            <div class="giz-icon-select-item">
-                                <div class="giz-icon-select-item__icon">
-                                    <Icon Size="IconSizes.Small">
-                                        @((MarkupString)SelectedCountry.Icon)
-                                    </Icon>
-                                </div>
-                                <div>@($"{SelectedCountry.Text} (PhonePrefix)")</div>
-                                <Icon SVGIcon="Icons.Check" />
-                            </div>
-                        </ListItem>
-                        <Divider />
-                    }
-                    @foreach (var item in Countries)
-                    {
-                        @if (item != SelectedCountry)
-                        {
-                            <ListItem OnClick="@(() => SetSelectedCountry(item.Id))">
-                                <div class="giz-icon-select-item">
-                                    <div class="giz-icon-select-item__icon">
-                                        <Icon Size="IconSizes.Small">
-                                            @((MarkupString)item.Icon)
-                                        </Icon>
-                                    </div>
-                                    <div>@($"{item.Text} (PhonePrefix)")</div>
-                                </div>
-                            </ListItem>
-                        }
-                    }
-                }
-            </List>
-        </Popup>
-
     </div>
-    
-    @if (ValidationErrorStyle == ValidationErrorStyles.Label)
-    {
-        <div class="giz-input-validation-label">
-            @ValidationMessage
-        </div>
-    }
-
-</div>
+</GizInput>
