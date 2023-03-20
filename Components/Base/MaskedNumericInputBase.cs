@@ -141,6 +141,7 @@ namespace Gizmo.Web.Components
                     {
                         Value = _converter.GetValue(currentValue.Substring(0, _chars));
                         await ValueChanged.InvokeAsync(Value);
+                        NotifyFieldChanged();
                     }
                 }
 
@@ -226,13 +227,6 @@ namespace Gizmo.Web.Components
             base.OnInitialized();
         }
 
-        public override async Task SetParametersAsync(ParameterView parameters)
-        {
-            await base.SetParametersAsync(parameters);
-
-            await UpdateText();
-        }
-
         protected override void OnParametersSet()
         {
             if (EditContext != _lastEditContext && EditContext != null)
@@ -243,13 +237,23 @@ namespace Gizmo.Web.Components
             base.OnParametersSet();
         }
 
+        protected override async Task OnParametersSetAsync()
+        {
+            await UpdateText();
+
+            await base.OnParametersSetAsync();
+        }
+
         public override void Validate()
         {
-            _validationMessageStore.Clear();
-
-            if (_hasParsingErrors)
+            if (_validationMessageStore != null)
             {
-                _validationMessageStore.Add(_fieldIdentifier, _parsingErrors);
+                _validationMessageStore.Clear();
+
+                if (_hasParsingErrors)
+                {
+                    _validationMessageStore.Add(_fieldIdentifier, _parsingErrors);
+                }
             }
         }
 

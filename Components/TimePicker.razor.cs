@@ -293,11 +293,14 @@ namespace Gizmo.Web.Components
 
         public override void Validate()
         {
-            _validationMessageStore.Clear();
-
-            if (_hasParsingErrors)
+            if (_validationMessageStore != null)
             {
-                _validationMessageStore.Add(_fieldIdentifier, _parsingErrors);
+                _validationMessageStore.Clear();
+
+                if (_hasParsingErrors)
+                {
+                    _validationMessageStore.Add(_fieldIdentifier, _parsingErrors);
+                }
             }
         }
 
