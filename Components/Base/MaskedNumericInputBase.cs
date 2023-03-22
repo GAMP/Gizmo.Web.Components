@@ -15,7 +15,7 @@ namespace Gizmo.Web.Components
         private int _chars = 0;
         private string _previousMask = string.Empty;
         private TValue _previousValue;
-        private bool _previousAllowMore;
+        private bool _previousAllowMoreDigits;
 
         private StringConverter<TValue> _converter = new StringConverter<TValue>();
 
@@ -39,7 +39,10 @@ namespace Gizmo.Web.Components
         public string Mask { get; set; }
 
         [Parameter]
-        public bool AllowMore { get; set; }
+        public bool AllowMoreDigits { get; set; }
+
+        [Parameter]
+        public int ExtraDigits { get; set; } = 5;
 
         #endregion
 
@@ -83,10 +86,13 @@ namespace Gizmo.Web.Components
                 case "8":
                 case "9":
 
-                    if (!string.IsNullOrEmpty(currentValue) && ((currentValue.Length >= _chars && !AllowMore) || currentValue.Length >= _chars + 5 && AllowMore)) //TODO: A 5 CONST?
+                    if (!string.IsNullOrEmpty(currentValue) && ((currentValue.Length >= _chars && !AllowMoreDigits) || currentValue.Length >= _chars + ExtraDigits && AllowMoreDigits))
                         return;
 
+                    //Append previous value with pressed key.
                     currentValue += args.Key;
+
+                    //Update value, display text and raise events.
                     await SetValueAsync(_converter.GetValue(currentValue));
 
                     break;
@@ -96,7 +102,10 @@ namespace Gizmo.Web.Components
                     if (string.IsNullOrEmpty(currentValue) || currentValue.Length == 0)
                         return;
 
+                    //Remove the last character from value.
                     currentValue = currentValue.Substring(0, currentValue.Length - 1);
+
+                    //Update value, display text and raise events.
                     await SetValueAsync(_converter.GetValue(currentValue));
 
                     break;
@@ -109,8 +118,13 @@ namespace Gizmo.Web.Components
 
         protected async Task SetValueAsync(TValue value)
         {
+            //Update value.
             Value = value;
+
+            //Update display text.
             await UpdateText();
+
+            //Raise events.
             await ValueChanged.InvokeAsync(Value);
             NotifyFieldChanged();
         }
@@ -125,21 +139,27 @@ namespace Gizmo.Web.Components
                     _shouldRender = true;
                     _previousMask = Mask;
 
+                    //If Mask changed recalculate the number of digits.
                     _chars = Mask.Where(a => a == '#').Count();
                     _mask_left = Mask;
                 }
 
-                var allowMoreChanged = _previousAllowMore != AllowMore;
-
-                if (allowMoreChanged)
+                var allowMoreDigitsChanged = _previousAllowMoreDigits != AllowMoreDigits;
+                if (allowMoreDigitsChanged)
                 {
-                    _previousAllowMore = AllowMore;
+                    _shouldRender = true;
+                    _previousAllowMoreDigits = AllowMoreDigits;
 
                     var currentValue = _converter.SetValue(Value);
 
+                    //If AllowMoreDigits changed and the number of digits in current value is greater than the allowed number of digits,
+                    //we have to trim the value.
                     if (!string.IsNullOrEmpty(currentValue) && currentValue.Length > _chars)
                     {
+                        //Update the value.
                         Value = _converter.GetValue(currentValue.Substring(0, _chars));
+
+                        //Raise events.
                         await ValueChanged.InvokeAsync(Value);
                         NotifyFieldChanged();
                     }
@@ -152,7 +172,7 @@ namespace Gizmo.Web.Components
                     _previousValue = Value;
                 }
 
-                if (maskChanged || allowMoreChanged || valueChanged)
+                if (maskChanged || allowMoreDigitsChanged || valueChanged)
                 {
                     _text = string.Empty;
 
@@ -160,7 +180,7 @@ namespace Gizmo.Web.Components
 
                     if (!string.IsNullOrEmpty(currentValue) && currentValue.Length > 0)
                     {
-                        int additionalCharacters = 0;
+                        int additionalCharacters = 0; //Number of characters other than the '#' digit placeholder.
 
                         for (int i = 0; i < Mask.Length; i++)
                         {
@@ -178,9 +198,9 @@ namespace Gizmo.Web.Components
                             }
                         }
 
-                        if (AllowMore && currentValue.Length > Mask.Length - additionalCharacters)
+                        if (AllowMoreDigits && currentValue.Length > Mask.Length - additionalCharacters)
                         {
-                            _text += currentValue.Substring(Mask.Length - additionalCharacters - 1);
+                            _text += currentValue.Substring(Mask.Length - additionalCharacters);
                             _mask_left = string.Empty;
                         }
                         else
