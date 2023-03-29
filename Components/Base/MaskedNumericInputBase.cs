@@ -42,7 +42,7 @@ namespace Gizmo.Web.Components
         public bool AllowMoreDigits { get; set; }
 
         [Parameter]
-        public int ExtraDigits { get; set; } = 5;
+        public int ExtraDigits { get; set; } = 7;
 
         #endregion
 

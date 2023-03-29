@@ -75,9 +75,9 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected void SetSelectedCountry(int id)
+        protected void SetSelectedCountry(IconSelectItem value)
         {
-            SelectedCountry = Countries.Where(a => a.Id == id).FirstOrDefault();
+            SelectedCountry = value;
             _isOpen = false;
         }
 

@@ -139,9 +139,9 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        protected void SetSelectedItem(int id)
+        protected void SetSelectedItem(TValue value)
         {
-            SelectedItem = ItemSource.Where(a => a.Id == id).FirstOrDefault();
+            SelectedItem = value;
 
             if (SelectedItem != null)
                 _text = SelectedItem.Text;
@@ -242,7 +242,7 @@ namespace Gizmo.Web.Components
                     {
                         if (activeItemIndex >= 0 && activeItemIndex < _filteredItems.Count)
                         {
-                            SetSelectedItem(_filteredItems[activeItemIndex].Id);
+                            SetSelectedItem(_filteredItems[activeItemIndex]);
 
                             //Close the popup.
                             _isOpen = false;
@@ -310,6 +310,16 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDES
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
         protected override void OnParametersSet()
         {
             if (EditContext != _lastEditContext && EditContext != null)
@@ -352,7 +362,7 @@ namespace Gizmo.Web.Components
                 var selectedItem = ItemSource.Where(a => string.Compare(a.Text, _text, false) == 0).FirstOrDefault();
                 if (selectedItem != null)
                 {
-                    SetSelectedItem(selectedItem.Id);
+                    SetSelectedItem(selectedItem);
                 }
                 else
                 {

@@ -184,6 +184,16 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDES
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
         protected override async Task OnInitializedAsync()
         {
             NavigationManager.LocationChanged += NavigationManager_LocationChanged;
@@ -266,6 +276,5 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
-
     }
 }

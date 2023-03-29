@@ -318,16 +318,32 @@
                 &:hover {
                     border: 0.1rem solid $bg-alert;
 
+                    &.giz-input-root--small {
+                        padding: 0.8rem 1.3rem;
+                    }
+
                     &.giz-input-root--medium {
                         padding: 1.0rem 1.2rem;
+                    }
+
+                    &.giz-input-root--large {
+                        padding: 1.4rem 1.3rem;
                     }
                 }
 
                 &:focus-within {
                     border: 0.2rem solid $bg-alert;
 
+                    &.giz-input-root--small {
+                        padding: 0.7rem 1.2rem;
+                    }
+
                     &.giz-input-root--medium {
                         padding: 0.9rem 1.1rem;
+                    }
+
+                    &.giz-input-root--large {
+                        padding: 1.3rem 1.2rem;
                     }
                 }
             }
