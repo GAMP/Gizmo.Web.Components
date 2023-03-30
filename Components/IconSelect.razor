@@ -54,9 +54,7 @@
                         <div class="giz-list-item selected" @onclick="@(() => SetSelectedItem(SelectedItem))">
                             <div class="giz-icon-select-item">
                                 <div class="giz-icon-select-item__icon">
-                                    <Icon Size="IconSizes.Small">
-                                        @((MarkupString)SelectedItem.Icon)
-                                    </Icon>
+                                    <img src="@SelectedItem.Icon" />
                                 </div>
                                 <div>@($"{SelectedItem.Display}")</div>
                                 <Icon SVGIcon="Icons.Check" />
@@ -69,16 +67,7 @@
                     {
                         @if (item != SelectedItem)
                         {
-                            <ListItem @key="item" OnClick="@(() => SetSelectedItem(item))">
-                                <div class="giz-icon-select-item">
-                                    <div class="giz-icon-select-item__icon">
-                                        <Icon Size="IconSizes.Small">
-                                            @((MarkupString)item.Icon)
-                                        </Icon>
-                                    </div>
-                                    <div>@($"{item.Display}")</div>
-                                </div>
-                            </ListItem>
+                            <IconSelectListItem @key="item" Item="@item" OnClick="@(() => SetSelectedItem(item))" />
                         }
                     }
                 }

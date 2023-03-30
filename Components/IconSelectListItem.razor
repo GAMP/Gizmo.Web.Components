@@ -1,0 +1,11 @@
+﻿@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+<ListItem OnClick="@((args) => OnClick.InvokeAsync(args))">
+    <div class="giz-icon-select-item">
+        <div class="giz-icon-select-item__icon">
+            <img src="@Item.Icon" />
+        </div>
+        <div>@($"{Item.Display}")</div>
+    </div>
+</ListItem>

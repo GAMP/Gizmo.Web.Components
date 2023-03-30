@@ -423,6 +423,7 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
+                 .Add("giz-icon-select")
                  .Add("giz-input-select")
                  .If("giz-input-select--full-width", () => IsFullWidth)
                  .AsString();

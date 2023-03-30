@@ -184,44 +184,11 @@ namespace Gizmo.Web.Components
 
         #region OVERRIDES
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override void OnParametersSet()
         {
-            if (!firstRender)
-            {
-                await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
-            }
+            bool commandChanged = !EqualityComparer<ICommand>.Default.Equals(_previousCommand, Command);
 
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
-        protected override async Task OnInitializedAsync()
-        {
-            NavigationManager.LocationChanged += NavigationManager_LocationChanged;
-
-            if (Parent != null)
-            {
-                Parent.Register(this);
-
-                if (Href != null)
-                {
-                    if (IsActiveLink())
-                        await Parent.SetSelectedItem(this);
-                }
-                else
-                {
-                    if (_isSelected)
-                    {
-                        await Parent.SetSelectedItem(this);
-                    }
-                }
-            }
-        }
-
-        protected override async Task OnParametersSetAsync()
-        {
-            bool newCommand = !EqualityComparer<ICommand>.Default.Equals(_previousCommand, Command);
-
-            if (newCommand)
+            if (commandChanged)
             {
                 if (_previousCommand != null)
                 {
@@ -233,11 +200,34 @@ namespace Gizmo.Web.Components
                     //Add handler
                     Command.CanExecuteChanged += Command_CanExecuteChanged;
                 }
+
+                _previousCommand = Command;
             }
 
-            _previousCommand = Command;
+            base.OnParametersSet();
+        }
 
-            await base.OnParametersSetAsync();
+        protected override async Task OnInitializedAsync()
+        {
+            if (Parent != null)
+            {
+                Parent.Register(this);
+
+                if (Href != null)
+                {
+                    NavigationManager.LocationChanged += NavigationManager_LocationChanged;
+
+                    if (IsActiveLink())
+                        await Parent.SetSelectedItem(this);
+                }
+                else
+                {
+                    if (_isSelected)
+                    {
+                        await Parent.SetSelectedItem(this);
+                    }
+                }
+            }
         }
 
         public override void Dispose()

@@ -149,6 +149,7 @@ namespace Gizmo.Web.Components
                 }
             }
         }
+
         public override async Task SetParametersAsync(ParameterView parameters)
         {
             if (parameters.TryGetValue<string>(nameof(Value), out var newValue))
@@ -217,6 +218,69 @@ namespace Gizmo.Web.Components
             if (parameters.TryGetValue<bool>(nameof(IsDisabled), out var newIsDisabled))
             {
                 var valueChanged = IsDisabled != newIsDisabled;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<bool>(nameof(IsFullWidth), out var newIsFullWidth))
+            {
+                var valueChanged = IsFullWidth != newIsFullWidth;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<bool>(nameof(StopPropagation), out var newStopPropagation))
+            {
+                var valueChanged = StopPropagation != newStopPropagation;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<string>(nameof(Label), out var newLabel))
+            {
+                var valueChanged = Label != newLabel;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<string>(nameof(LeftIcon), out var newLeftIcon))
+            {
+                var valueChanged = LeftIcon != newLeftIcon;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<string>(nameof(RightIcon), out var newRightIcon))
+            {
+                var valueChanged = RightIcon != newRightIcon;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<Icons?>(nameof(LeftSVGIcon), out var newLeftSVGIcon))
+            {
+                var valueChanged = LeftSVGIcon != newLeftSVGIcon;
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                }
+            }
+
+            if (parameters.TryGetValue<Icons?>(nameof(RightSVGIcon), out var newRightSVGIcon))
+            {
+                var valueChanged = RightSVGIcon != newRightSVGIcon;
                 if (valueChanged)
                 {
                     _shouldRender = true;

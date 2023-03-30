@@ -2,8 +2,8 @@
 {
     public class IconSelectItem
     {
-        public string Icon { get; set; }
-        public string Text { get; set; }
-        public string Display { get; set; }
+        public string Icon { get; set; } = string.Empty;
+        public string Text { get; set; } = string.Empty;
+        public string Display { get; set; } = string.Empty;
     }
 }
