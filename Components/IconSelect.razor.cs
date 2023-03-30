@@ -144,6 +144,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool IsLoading { get; set; }
 
+        [Parameter]
+        public bool CanClearValue { get; set; }
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnClickClearValueButton { get; set; }
+
         #endregion
 
         #region METHODS
@@ -313,6 +319,12 @@ namespace Gizmo.Web.Components
 
             //StateHasChanged();
             return Task.CompletedTask;
+        }
+
+        public Task OnClickClearValueButtonHandler(MouseEventArgs args)
+        {
+            _clickHandled = true;
+            return OnClickClearValueButton.InvokeAsync(args);
         }
 
         #endregion

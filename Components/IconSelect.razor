@@ -42,6 +42,11 @@
 
             </div>
 
+            @if (CanClearValue && SelectedItem != null)
+            {
+                <IconButton Variant="ButtonVariants.Text" SVGIcon="@Icons.Close" Size="ButtonSizes.ExtraSmall" Class="giz-input-icon-right close-btn" @onclick="OnClickClearValueButtonHandler" />
+            }
+
         </GizInput>
 
         <Popup MaximumHeight="@MaximumHeight"
