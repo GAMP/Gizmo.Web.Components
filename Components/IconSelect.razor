@@ -49,25 +49,34 @@
                   MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
                 @if (ItemSource != null)
                 {
-                    @if (SelectedItem != null)
+                    @if (IsVirtualized)
                     {
-                        <div class="giz-list-item selected" @onclick="@(() => SetSelectedItem(SelectedItem))">
-                            <div class="giz-icon-select-item">
-                                <div class="giz-icon-select-item__icon">
-                                    <img src="@SelectedItem.Icon" />
-                                </div>
-                                <div>@($"{SelectedItem.Display}")</div>
-                                <Icon SVGIcon="Icons.Check" />
-                            </div>
-                        </div>
-                        <Divider />
-                    }
-
-                    @foreach (var item in _filteredItems)
-                    {
-                        @if (item != SelectedItem)
-                        {
+                        <Virtualize Items="_filteredItems" Context="item">
                             <IconSelectListItem @key="item" Item="@item" OnClick="@(() => SetSelectedItem(item))" />
+                        </Virtualize>
+                    }
+                    else
+                    {
+                        @if (SelectedItem != null)
+                        {
+                            <div class="giz-list-item selected" @onclick="@(() => SetSelectedItem(SelectedItem))">
+                                <div class="giz-icon-select-item">
+                                    <div class="giz-icon-select-item__icon">
+                                        <img src="@SelectedItem.Icon" />
+                                    </div>
+                                    <div>@($"{SelectedItem.Display}")</div>
+                                    <Icon SVGIcon="Icons.Check" />
+                                </div>
+                            </div>
+                            <Divider />
+                        }
+
+                        @foreach (var item in _filteredItems)
+                        {
+                            @if (item != SelectedItem)
+                            {
+                                <IconSelectListItem @key="item" Item="@item" OnClick="@(() => SetSelectedItem(item))" />
+                            }
                         }
                     }
                 }

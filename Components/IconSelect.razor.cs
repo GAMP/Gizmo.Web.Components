@@ -135,6 +135,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public int MinimumCharacters { get; set; } = 1;
 
+        /// <summary>
+        /// Gets or sets if virtualization is enabled.
+        /// </summary>
+        [Parameter]
+        public bool IsVirtualized { get; set; }
+
         #endregion
 
         #region METHODS
@@ -369,7 +375,7 @@ namespace Gizmo.Web.Components
                     SelectedItem = null;
 
                     _hasParsingErrors = true;
-                    _parsingErrors = "The field is invalid.";
+                    _parsingErrors = "The field is invalid."; //TODO: A TRANSLATE
                 }
             }
         }
@@ -423,9 +429,9 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-icon-select")
                  .Add("giz-input-select")
                  .If("giz-input-select--full-width", () => IsFullWidth)
+                 .If("giz-icon-select--virtualized", () => IsVirtualized)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
