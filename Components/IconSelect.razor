@@ -11,7 +11,7 @@
     <div class="giz-input-select__content_wrapper" @ref="_inputElement">
         <GizInput Label="@Label"
                   ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
-                  IsDisabled="@IsDisabled"
+                  IsDisabled="@(IsDisabled || IsLoading)"
                   IsFullWidth="@IsFullWidth"
                   Width="@Width"
                   HasOutline="@HasOutline"
@@ -25,13 +25,20 @@
                     
             <div class="giz-input-wrapper">
 
-                <input type="text"
-                       value="@_text"
-                       readonly="@IsReadOnly"
-                       disabled="@IsDisabled"
-                       placeholder="@Placeholder"
-                       @oninput="OnInputHandler"
-                       @onkeydown="OnInputKeyDownHandler" />
+                @if (IsLoading)
+                {
+                    <Spinner />
+                }
+                else
+                {
+                    <input type="text"
+                           value="@_text"
+                           readonly="@IsReadOnly"
+                           disabled="@IsDisabled"
+                           placeholder="@Placeholder"
+                           @oninput="OnInputHandler"
+                           @onkeydown="OnInputKeyDownHandler" />
+                }
 
             </div>
 

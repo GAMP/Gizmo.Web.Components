@@ -140,6 +140,9 @@ namespace Gizmo.Web.Components
         /// </summary>
         [Parameter]
         public bool IsVirtualized { get; set; }
+       
+        [Parameter]
+        public bool IsLoading { get; set; }
 
         #endregion
 
@@ -184,13 +187,13 @@ namespace Gizmo.Web.Components
                 return;
             }
 
-            if (!IsDisabled)
-            {
-                if (!_isOpen)
-                    await Open();
-                else
-                    _isOpen = false;
-            }
+            if (IsDisabled || IsLoading)
+                return;
+
+            if (!_isOpen)
+                await Open();
+            else
+                _isOpen = false;
         }
 
         protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
@@ -431,6 +434,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-input-select")
                  .If("giz-input-select--full-width", () => IsFullWidth)
+                 .If("disabled", () => IsDisabled || IsLoading)
                  .If("giz-icon-select--virtualized", () => IsVirtualized)
                  .AsString();
 

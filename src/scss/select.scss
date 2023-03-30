@@ -68,6 +68,12 @@
         }
     }
 
+    &.disabled, &[disabled] {
+        .giz-input-control {
+            cursor: default;
+        }
+    }
+
     .giz-popup {
         overflow-x: hidden;
         overflow-y: auto;
