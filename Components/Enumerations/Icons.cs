@@ -152,6 +152,7 @@
         Trash,
         Trash_Client,
         Trash2_Client,
+        Trash3_Client,
         TriangleDown,
         TriangleLeft,
         TriangleRight,
