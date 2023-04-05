@@ -64,11 +64,11 @@ function getElementScrollSize(element) {
     };
 }
 //
-function findElementIndexById(list, objRef) {
+function findElementIndexById(list, elementRef) {
     var objRefIndex = -1;
 
     list.forEach((item, index) => {
-        if (item._id == objRef._id)
+        if (item._id == elementRef._id)
             objRefIndex = index;
     });
 
@@ -77,16 +77,16 @@ function findElementIndexById(list, objRef) {
 //
 var globalResizeEventListener;
 var globalResizeEventListenerReferences = [];
-function addWindowResizeEventListener(objRef) {
+function addWindowResizeEventListener(elementRef) {
     if (!globalResizeEventListener) {
         globalResizeEventListener = window.addEventListener('resize', windowResizeHandler);
     }
 
-    globalResizeEventListenerReferences.push(objRef);
+    globalResizeEventListenerReferences.push(elementRef);
 }
-function removeWindowResizeEventListener(objRef) {
-    //not working var index = globalResizeEventListenerReferences.indexOf(objRef);
-    var index = findElementIndexById(globalResizeEventListenerReferences, objRef);
+function removeWindowResizeEventListener(elementRef) {
+    //not working var index = globalResizeEventListenerReferences.indexOf(elementRef);
+    var index = findElementIndexById(globalResizeEventListenerReferences, elementRef);
     if (index > -1) {
         globalResizeEventListenerReferences.splice(index, 1);
     }
@@ -99,16 +99,16 @@ function windowResizeHandler(event) {
 //
 var globalMouseDownEventListener;
 var globalMouseDownEventListenerReferences = [];
-function addWindowMouseDownEventListener(objRef) {
+function addWindowMouseDownEventListener(elementRef) {
     if (!globalMouseDownEventListener) {
         globalMouseDownEventListener = window.addEventListener('mousedown', windowMouseDownHandler);
     }
 
-    globalMouseDownEventListenerReferences.push(objRef);
+    globalMouseDownEventListenerReferences.push(elementRef);
 }
-function removeWindowMouseDownEventListener(objRef) {
-    //not working var index = globalMouseDownEventListenerReferences.indexOf(objRef);
-    var index = findElementIndexById(globalMouseDownEventListenerReferences, objRef);
+function removeWindowMouseDownEventListener(elementRef) {
+    //not working var index = globalMouseDownEventListenerReferences.indexOf(elementRef);
+    var index = findElementIndexById(globalMouseDownEventListenerReferences, elementRef);
     if (index > -1) {
         globalMouseDownEventListenerReferences.splice(index, 1);
     }
@@ -125,9 +125,9 @@ function writeLine(message) {
 
 var expansionPanelOperations = [];
 
-function expansionPanelToggle(element) {
-    if (element) {
-        var expander = element;
+function expansionPanelToggle(elementRef) {
+    if (elementRef) {
+        var expander = elementRef;
 
         if (expansionPanelOperations[expander])
             return;
@@ -143,6 +143,10 @@ function expansionPanelToggle(element) {
             var expansionPanelTimeout = setTimeout(function () {
                 expander.classList.remove('expanding');
                 expansionPanelOperations[expander] = null;
+
+                expansionPanelEventListenerReferences.forEach((item) => {
+                    item.invokeMethodAsync('OnExpansionPanelEvent', { Id: expander.id, IsCollapsed: false });
+                });
             }, 500, expander);
 
             expansionPanelOperations[expander] = expansionPanelTimeout;
@@ -158,6 +162,10 @@ function expansionPanelToggle(element) {
                 expander.classList.remove('expanded');
                 expander.classList.remove('collapsing');
                 expansionPanelOperations[expander] = null;
+
+                expansionPanelEventListenerReferences.forEach((item) => {
+                    item.invokeMethodAsync('OnExpansionPanelEvent', { Id: expander.id, IsCollapsed: true });
+                });
             }, 500, expander);
         }
     }
@@ -211,7 +219,7 @@ function focusPrevious(element) {
 }
 //
 function focusNext(element) {
-    console.log(element);
+    //console.log(element);
     if (element) {
         var inputs = document.querySelectorAll(focusableElementsSelector);
         if (inputs.length > 0) {
@@ -219,13 +227,13 @@ function focusNext(element) {
                 if (inputs[i] == element) {
                     //TODO: A
                     inputs[i + 1].focus();
-                    console.log(inputs[i + 1]);
+                    //console.log(inputs[i + 1]);
                     return;
                 }
             }
             //If not found already and the selector is correct then the element is the last in the page. Start over again.
             inputs[0].focus();
-            console.log("start");
+            //console.log("start");
         }
     }
 }
@@ -263,5 +271,41 @@ function focusTrap(element) {
 function focusUntrap(element) {
     if (element) {
         element.removeEventListener('keydown', focusTrapCheck);
+    }
+}
+
+var registeredExpansionPanels = [];
+
+function registerExpansionPanel(elementRef, isCollapsed) {
+    registeredExpansionPanels.push({
+        element: elementRef,
+        isCollapsed: isCollapsed
+    });
+}
+
+function unregisterExpansionPanel(elementRef) {
+    var objRefIndex = -1;
+
+    registeredExpansionPanels.forEach((item, index) => {
+        console.log(item);
+        if (item.element.id == elementRef.id)
+            objRefIndex = index;
+    });
+
+    if (objRefIndex > -1) {
+        expansionPanelEventListenerReferences.splice(index, 1);
+    }
+}
+
+var expansionPanelEventListenerReferences = [];
+
+function addExpansionPanelEventListener(elementRef) {
+    expansionPanelEventListenerReferences.push(elementRef);
+}
+
+function removeExpansionPanelEventListener(elementRef) {
+    var index = findElementIndexById(expansionPanelEventListenerReferences, elementRef);
+    if (index > -1) {
+        expansionPanelEventListenerReferences.splice(index, 1);
     }
 }

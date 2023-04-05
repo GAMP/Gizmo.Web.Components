@@ -1,7 +1,8 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="@ClassName expanded"
+<div class="@ClassName @(!IsCollapsed ? "expanded" : "")"
+     id="@Id"
      @ref="@Ref">
     <div class="giz-expansion-panel__header">
         <button class="giz-expansion-panel__header__content"
