@@ -287,13 +287,12 @@ function unregisterExpansionPanel(elementRef) {
     var objRefIndex = -1;
 
     registeredExpansionPanels.forEach((item, index) => {
-        console.log(item);
         if (item.element.id == elementRef.id)
             objRefIndex = index;
     });
 
     if (objRefIndex > -1) {
-        expansionPanelEventListenerReferences.splice(index, 1);
+        expansionPanelEventListenerReferences.splice(objRefIndex, 1);
     }
 }
 
