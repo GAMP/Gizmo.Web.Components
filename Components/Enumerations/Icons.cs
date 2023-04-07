@@ -37,6 +37,7 @@
         CreditCard,
         Cube,
         Deployment,
+        Deposit_Client,
         Dessert,
         DNS,
         Dollar,
