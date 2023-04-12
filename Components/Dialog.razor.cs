@@ -111,7 +111,7 @@ namespace Gizmo.Web.Components
             _isOpen = false;
             _isFadingOut = false;
 
-            StateHasChanged();
+            InvokeAsync(StateHasChanged);
 
             return IsOpenChanged.InvokeAsync(_isOpen);
         }
