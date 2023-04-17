@@ -2,9 +2,11 @@
 
 // == theme light components == //
 
+$light-theme-comp-attr: $light-theme;
+
 // == data-grid == //
 .giz-data-grid {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     color: $secondary-color-theme-dark;
     background-color: white;
 
@@ -77,7 +79,7 @@
 }
 
 .giz-data-grid-row {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     .giz-data-grid-row-detail {
       &-content {
         border-color: #dddfe4;
@@ -105,7 +107,7 @@
 }
 
 .giz-data-grid--sticky-header {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     .giz-data-grid {
       & > thead td,
       & > thead th {
@@ -118,7 +120,7 @@
 
 // == button group == //
 .giz-button-group {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     background-color: $secondary-light-theme-dark;
     border: 2px solid $secondary-light-theme-dark;
 
@@ -151,7 +153,7 @@
 
 //== giz input
 .giz-input-control {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     .giz-input-label {
       color: $dim-ligh-theme-darkt;
     }
@@ -230,7 +232,7 @@
 
 // == select == //
 .giz-input-select {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     .giz-input-select__dropdown {
       border: 1px solid $gray-dark-theme-dark;
     }
@@ -239,7 +241,7 @@
 
 // == button == //
 .giz-button {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     //group button
     &--group-button {
       color: $gray-dark-theme-dark;
@@ -359,7 +361,7 @@
 
 // == list == //
 .giz-list {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     background-color: white;
 
     .giz-list-item {
@@ -384,14 +386,14 @@
 
 // == card == //
 .giz-card {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     background-color: white;
   }
 }
 
 // == menu == //
 .giz-menu {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     &__dropdown {
       .giz-list {
         border: 1px solid $gray-dark-theme-dark;
@@ -402,14 +404,14 @@
 
 // == divider == //
 .giz-divider {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     background-color: $gray-dark-theme-dark;
   }
 }
 
 // == tooltip == //
 .giz-tooltip {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     background-color: white;
     border: 1px solid $gray-dark-theme-dark;
 
@@ -429,7 +431,7 @@
 
 // == tree-view == //
 .giz-tree-view {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     &-item {
       &__body {
         color: $secondary-color-theme-dark;
@@ -447,7 +449,7 @@
 
 // == simple-tab == //
 .giz-simple-tab {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     .active {
       color: black;
     }
@@ -475,7 +477,7 @@
 
 // == tab == //
 .giz-tab {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     &.active {
       color: black;
     }
@@ -497,7 +499,7 @@
 }
 
 .giz-tab-content {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     color: $secondary-color-theme-dark;
     background-color: white;
   }
@@ -505,7 +507,7 @@
 
 // == switch == //
 .giz-switch {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     &__slider {
       &__thumb {
         background-color: white;
@@ -516,7 +518,7 @@
 
 // == autocomplete == //
 .giz-input-autocomplete {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     .giz-input-autocomplete__dropdown {
       border: 1px solid $gray-dark-theme-dark;
     }
@@ -525,7 +527,7 @@
 
 // == checkbox == //
 .giz-checkbox {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     & input {
       & + label:before {
         background-color: transparent;
@@ -543,7 +545,7 @@
 
 // == calendar == //
 .giz-calendar {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     background-color: white;
 
     .giz-calendar-content {
@@ -555,7 +557,7 @@
 
 // == pagination == //
 .giz-pagination {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     & li {
       color: $secondary-color-theme-dark;
       border-color: #d4d6db;
@@ -580,7 +582,7 @@
 
 // == time-picker == //
 .giz-time-picker {
-  [light-theme] & {
+  [#{$light-theme-comp-attr}] & {
     .giz-time-picker-content {
       color: black;
       background-color: white;

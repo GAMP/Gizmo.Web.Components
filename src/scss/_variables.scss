@@ -1,39 +1,44 @@
+/** @format */
+
 //=============== gizmo @import font family (common component variables root-size 10px) ================//
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400%3b500%3b600%3b700%3b800&display=swap');
 
 //=============== gizmo common variable declare ================//
 
+// main theme attribute name
+$light-theme: 'light-theme';
+$dark-theme: 'client-theme';
 //== font family
 
 $font-family-theme-dark: 'Montserrat', sans-serif;
 
 //== common color
 
-$primary-color-theme-dark: #5A67F2;
-$primary-light-color-theme-dark: #F6FAFF;
-$secondary-color-theme-dark: #6E7689;
-$secondary-light-theme-dark: #FAFAFA;
+$primary-color-theme-dark: #5a67f2;
+$primary-light-color-theme-dark: #f6faff;
+$secondary-color-theme-dark: #6e7689;
+$secondary-light-theme-dark: #fafafa;
 $secondary-dark-theme-dark: #eee;
-$info-color-theme-dark: #68C9FF;
-$success-color-theme-dark: #32CF92;
-$warning-color-theme-dark: #F2935A;
+$info-color-theme-dark: #68c9ff;
+$success-color-theme-dark: #32cf92;
+$warning-color-theme-dark: #f2935a;
 $dark-color-theme-dark: #171c28;
 $dark-light-color-theme-dark: #1b212f;
-$dark-jungle-theme-dark: #1E2023;
-$dark-gray-theme-dark: #25282D;
+$dark-jungle-theme-dark: #1e2023;
+$dark-gray-theme-dark: #25282d;
 $onyx-black-theme-dark: #313439;
-$danger-color-theme-dark: #F25A68;
-$dim-white-theme-dark: #ECEFF7;
+$danger-color-theme-dark: #f25a68;
+$dim-white-theme-dark: #eceff7;
 $light-color-theme-dark: #eff0f2;
-$gray-color-theme-dark: #E6E8ED;
-$mid-gray-theme-dark: #5D6068;
-$gray-light-color-theme-dark: #CFD2D8;
-$gray-dark-theme-dark: #E7E9EE;
-$gray-black-theme-dark: #9095A0;
-$gray-dim-theme-dark: #3F4248;
-$dim-ligh-theme-darkt: #939DB5;
-$dim-color-theme-dark: #6E7689;
+$gray-color-theme-dark: #e6e8ed;
+$mid-gray-theme-dark: #5d6068;
+$gray-light-color-theme-dark: #cfd2d8;
+$gray-dark-theme-dark: #e7e9ee;
+$gray-black-theme-dark: #9095a0;
+$gray-dim-theme-dark: #3f4248;
+$dim-ligh-theme-darkt: #939db5;
+$dim-color-theme-dark: #6e7689;
 $border-color-theme-dark: #1f2637;
 $border-dark-color-theme-dark: #3b4150;
 $border-light-color-theme-dark: #c3c7ce;
@@ -77,7 +82,7 @@ $base-font-weight: 500;
 $base-line-height: 2.4rem;
 $base-letter-spacing: -0.08rem;
 $base-color: #000000;
-$base-background: #FAFAFA;
+$base-background: #fafafa;
 
 //heading typography
 $h-color: #000000;
@@ -145,7 +150,7 @@ $nowrap-text-overflow: ellipsis;
 $elevation-0-theme-dark: none;
 $elevation-1-theme-dark: 0px 0px 9px rgba(72, 145, 255, 0.5);
 $elevation-2-theme-dark: 0px 8px 56px rgba(0, 0, 0, 0.1);
-$elevation-3-theme-dark: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+$elevation-3-theme-dark: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 $elevation-4-theme-dark: 0px 4px 16px rgba(0, 0, 0, 0.08);
 
 //== height/width

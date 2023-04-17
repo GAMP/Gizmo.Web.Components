@@ -1,1190 +1,1207 @@
+/** @format */
+
 // == theme client components == //
+
+$dark-theme-comp-attr: $dark-theme;
 
 // == icon == //
 .giz-icon--extra-small {
-    [client-theme] & {
-        width: 1.0rem;
-        height: 1.0rem;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    width: 1rem;
+    height: 1rem;
+  }
 }
 
 .giz-icon--small {
-    [client-theme] & {
-        width: 1.8rem;
-        height: 1.8rem;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
 }
 
 .giz-icon--medium {
-    [client-theme] & {
-        width: 2.4rem;
-        height: 2.4rem;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
 }
 
 .giz-icon--large {
-    [client-theme] & {
-        width: 2.8rem;
-        height: 2.8rem;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
 }
 
 .giz-icon--extra-large {
-    [client-theme] & {
-        width: 3.8rem;
-        height: 3.8rem;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    width: 3.8rem;
+    height: 3.8rem;
+  }
 }
 
 // == data-grid == //
 .giz-data-grid {
-    [client-theme] & {
-        border-collapse: separate;
-        border-spacing: 0;
-        background-color: #22272B;
-        color: unset;
+  [#{$dark-theme-comp-attr}] & {
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #22272b;
+    color: unset;
 
-        & > thead td, & > thead th {
-            color: #AAABAD;
-            padding: 1.1rem 0.8rem;
-            height: unset;
-            @include font-s($font-weight-light);
-            background-color: #22272B;
-            border-bottom: 0.1rem solid rgba(246, 251, 253, 0.06);
-        }
-
-        & > tbody > tr:not(.giz-data-grid-row-detail) {
-            border-top: 0.1rem solid #22272B;
-            height: unset;
-            @include font-m($font-weight-light);
-
-            &:hover {
-                background-color: #22272B;
-
-                & > td {
-                    &:first-child {
-                        border-left: unset;
-                    }
-
-                    &:last-child {
-                        border-right: unset;
-                    }
-                }
-            }
-
-            &:last-child {
-                border-bottom: 0.1rem solid #22272B;
-            }
-
-            & > td {
-                padding: 1.1rem 0.8rem;
-                border-top: unset;
-                border-bottom: unset;
-
-                &:first-child {
-                    border-left: unset;
-                }
-
-                &:last-child {
-                    border-right: unset;
-                }
-            }
-        }
+    & > thead td,
+    & > thead th {
+      color: #aaabad;
+      padding: 1.1rem 0.8rem;
+      height: unset;
+      @include font-s($font-weight-light);
+      background-color: #22272b;
+      border-bottom: 0.1rem solid rgba(246, 251, 253, 0.06);
     }
+
+    & > tbody > tr:not(.giz-data-grid-row-detail) {
+      border-top: 0.1rem solid #22272b;
+      height: unset;
+      @include font-m($font-weight-light);
+
+      &:hover {
+        background-color: #22272b;
+
+        & > td {
+          &:first-child {
+            border-left: unset;
+          }
+
+          &:last-child {
+            border-right: unset;
+          }
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0.1rem solid #22272b;
+      }
+
+      & > td {
+        padding: 1.1rem 0.8rem;
+        border-top: unset;
+        border-bottom: unset;
+
+        &:first-child {
+          border-left: unset;
+        }
+
+        &:last-child {
+          border-right: unset;
+        }
+      }
+    }
+  }
 }
 
 //== stacked progress bar == //
 .giz-stacked-progress {
-    [client-theme] & {
-        display: inline-block;
-        overflow: hidden;
-        vertical-align: inherit;
+  [#{$dark-theme-comp-attr}] & {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: inherit;
 
-        position: relative;
+    position: relative;
 
-        .giz-stacked-bar {
-            &:last-child {
-                text-align: right;
-            }
-        }
+    .giz-stacked-bar {
+      &:last-child {
+        text-align: right;
+      }
     }
+  }
 }
 
 // == button group == //
 .giz-button-group {
-    [client-theme] & {
-        display: inline-flex;
-        background-color: unset;
-        border: 0.1rem solid rgba(246, 251, 253, 0.28);
-        border-radius: 0.8rem;
-        padding: unset;
+  [#{$dark-theme-comp-attr}] & {
+    display: inline-flex;
+    background-color: unset;
+    border: 0.1rem solid rgba(246, 251, 253, 0.28);
+    border-radius: 0.8rem;
+    padding: unset;
 
-        .giz-button {
-            text-transform: $text-uppercase;
-            color: white;
-            background-color: unset;
-            border-radius: unset;
-            letter-spacing: normal;
+    .giz-button {
+      text-transform: $text-uppercase;
+      color: white;
+      background-color: unset;
+      border-radius: unset;
+      letter-spacing: normal;
 
-            &:active {
-                box-shadow: unset;
-            }
+      &:active {
+        box-shadow: unset;
+      }
 
-            &:last-child {
-                border-right: none;
-            }
+      &:last-child {
+        border-right: none;
+      }
 
-            &.selected {
-                //background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%);
-            }
-        }
+      &.selected {
+        //background: linear-gradient(180deg, rgba(44, 124, 244, 0.25) 0%, rgba(13, 16, 23, 0) 100%);
+      }
     }
+  }
 }
 
 //== giz input == //
 .giz-input-control {
-    [client-theme] & {
-        .giz-input-label {
-            margin-bottom: 0.4rem;
-            @include font-m($font-weight-light);
-        }
-
-        .giz-input-root {
-            color: #D5D5D6;
-            width: 20.0rem;
-
-            &--full-width {
-                width: 100%;
-            }
-
-            svg {
-                color: #D5D5D6;
-                vertical-align: baseline;
-            }
-
-            &.disabled, &[disabled] {
-                pointer-events: none;
-                //Default Theme
-                color: rgba(255, 255, 255, 0.6);
-                background-color: rgba(250, 250, 250, 0.16);
-                border: 0.1rem solid transparent;
-            }
-
-            input {
-                color: #D5D5D6;
-
-                &.disabled, &[disabled] {
-                    pointer-events: none;
-                    color: rgba(255, 255, 255, 0.24);
-                    //Default Theme
-                    //background-color: transparent;
-                    //background-color: #0C0F11;
-                    background-color: initial;
-                }
-            }
-
-            &--outline {
-                //background-color: transparent;
-                background-color: #0C0F11;
-
-                &:hover {
-                    border: 0.2rem solid rgba(246, 251, 253, 0.52);
-
-                    &.giz-input-root--small {
-                        padding: 0.7rem 1.2rem;
-                    }
-
-                    &.giz-input-root--medium {
-                        padding: 0.9rem 1.1rem;
-                    }
-
-                    &.giz-input-root--large {
-                        padding: 1.3rem 1.2rem;
-                    }
-                }
-
-                &:focus-within {
-                    border: 0.2rem solid #0091E6;
-
-                    &.giz-input-root--small {
-                        padding: 0.7rem 1.2rem;
-                    }
-
-                    &.giz-input-root--medium {
-                        padding: 0.9rem 1.1rem;
-                    }
-
-                    &.giz-input-root--large {
-                        padding: 1.3rem 1.2rem;
-                    }
-                }
-            }
-
-            &--small {
-                @include font-m($font-weight-light);
-
-                input {
-                    @include font-m($font-weight-light);
-                }
-            }
-
-            &--medium {
-                @include font-l($font-weight-light);
-
-                input {
-                    @include font-l($font-weight-light);
-                }
-            }
-
-            &--large {
-                @include font-l($font-weight-light);
-
-                input {
-                    @include font-l($font-weight-light);
-                }
-            }
-
-            &--filled {
-                //background-color: transparent;
-                background-color: #0C0F11;
-            }
-
-            &--transparent {
-                background-color: transparent;
-            }
-
-            &--small {
-                //DESIGNER'S L
-                border-radius: 0.8rem;
-                height: 4.0rem;
-                padding: 0.8rem 1.3rem;
-
-                input {
-                }
-
-                .giz-input-icon-left, .giz-input-icon-right {
-                    .giz-icon {
-                        width: 2.0rem;
-                        height: 2.0rem;
-                    }
-                }
-            }
-
-            &--medium {
-                //DESIGNER'S XL
-                border-radius: 0.8rem;
-                height: 4.8rem;
-                padding: 1.0rem 1.2rem;
-
-                input {
-                }
-
-                .giz-input-icon-left, .giz-input-icon-right {
-                    .giz-icon {
-                        width: 2.4rem;
-                        height: 2.4rem;
-                    }
-                }
-            }
-
-            &--large {
-                //DESIGNER'S XXL
-                border-radius: 0.8rem;
-                height: 5.2rem;
-                padding: 1.4rem 1.3rem;
-
-                input {
-                }
-
-                .giz-input-icon-left, .giz-input-icon-right {
-                    .giz-icon {
-                        width: 2.4rem;
-                        height: 2.4rem;
-                    }
-                }
-            }
-        }
-
-        &--invalid {
-            color: $typo-alert;
-
-            input {
-                color: $typo-alert;
-            }
-
-            .giz-input-root--outline {
-                border: 0.1rem solid $bg-alert;
-
-                &:hover {
-                    border: 0.1rem solid $bg-alert;
-
-                    &.giz-input-root--small {
-                        padding: 0.8rem 1.3rem;
-                    }
-
-                    &.giz-input-root--medium {
-                        padding: 1.0rem 1.2rem;
-                    }
-
-                    &.giz-input-root--large {
-                        padding: 1.4rem 1.3rem;
-                    }
-                }
-
-                &:focus-within {
-                    border: 0.2rem solid $bg-alert;
-
-                    &.giz-input-root--small {
-                        padding: 0.7rem 1.2rem;
-                    }
-
-                    &.giz-input-root--medium {
-                        padding: 0.9rem 1.1rem;
-                    }
-
-                    &.giz-input-root--large {
-                        padding: 1.3rem 1.2rem;
-                    }
-                }
-            }
-
-            .giz-input-root--shadow {
-                box-shadow: unset;
-
-                &:hover {
-                    box-shadow: unset;
-                }
-
-                &:focus-within {
-                    box-shadow: unset;
-                }
-            }
-        }
+  [#{$dark-theme-comp-attr}] & {
+    .giz-input-label {
+      margin-bottom: 0.4rem;
+      @include font-m($font-weight-light);
     }
+
+    .giz-input-root {
+      color: #d5d5d6;
+      width: 20rem;
+
+      &--full-width {
+        width: 100%;
+      }
+
+      svg {
+        color: #d5d5d6;
+        vertical-align: baseline;
+      }
+
+      &.disabled,
+      &[disabled] {
+        pointer-events: none;
+        //Default Theme
+        color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(250, 250, 250, 0.16);
+        border: 0.1rem solid transparent;
+      }
+
+      input {
+        color: #d5d5d6;
+
+        &.disabled,
+        &[disabled] {
+          pointer-events: none;
+          color: rgba(255, 255, 255, 0.24);
+          //Default Theme
+          //background-color: transparent;
+          //background-color: #0C0F11;
+          background-color: initial;
+        }
+      }
+
+      &--outline {
+        //background-color: transparent;
+        background-color: #0c0f11;
+
+        &:hover {
+          border: 0.2rem solid rgba(246, 251, 253, 0.52);
+
+          &.giz-input-root--small {
+            padding: 0.7rem 1.2rem;
+          }
+
+          &.giz-input-root--medium {
+            padding: 0.9rem 1.1rem;
+          }
+
+          &.giz-input-root--large {
+            padding: 1.3rem 1.2rem;
+          }
+        }
+
+        &:focus-within {
+          border: 0.2rem solid #0091e6;
+
+          &.giz-input-root--small {
+            padding: 0.7rem 1.2rem;
+          }
+
+          &.giz-input-root--medium {
+            padding: 0.9rem 1.1rem;
+          }
+
+          &.giz-input-root--large {
+            padding: 1.3rem 1.2rem;
+          }
+        }
+      }
+
+      &--small {
+        @include font-m($font-weight-light);
+
+        input {
+          @include font-m($font-weight-light);
+        }
+      }
+
+      &--medium {
+        @include font-l($font-weight-light);
+
+        input {
+          @include font-l($font-weight-light);
+        }
+      }
+
+      &--large {
+        @include font-l($font-weight-light);
+
+        input {
+          @include font-l($font-weight-light);
+        }
+      }
+
+      &--filled {
+        //background-color: transparent;
+        background-color: #0c0f11;
+      }
+
+      &--transparent {
+        background-color: transparent;
+      }
+
+      &--small {
+        //DESIGNER'S L
+        border-radius: 0.8rem;
+        height: 4rem;
+        padding: 0.8rem 1.3rem;
+
+        input {
+        }
+
+        .giz-input-icon-left,
+        .giz-input-icon-right {
+          .giz-icon {
+            width: 2rem;
+            height: 2rem;
+          }
+        }
+      }
+
+      &--medium {
+        //DESIGNER'S XL
+        border-radius: 0.8rem;
+        height: 4.8rem;
+        padding: 1rem 1.2rem;
+
+        input {
+        }
+
+        .giz-input-icon-left,
+        .giz-input-icon-right {
+          .giz-icon {
+            width: 2.4rem;
+            height: 2.4rem;
+          }
+        }
+      }
+
+      &--large {
+        //DESIGNER'S XXL
+        border-radius: 0.8rem;
+        height: 5.2rem;
+        padding: 1.4rem 1.3rem;
+
+        input {
+        }
+
+        .giz-input-icon-left,
+        .giz-input-icon-right {
+          .giz-icon {
+            width: 2.4rem;
+            height: 2.4rem;
+          }
+        }
+      }
+    }
+
+    &--invalid {
+      color: $typo-alert;
+
+      input {
+        color: $typo-alert;
+      }
+
+      .giz-input-root--outline {
+        border: 0.1rem solid $bg-alert;
+
+        &:hover {
+          border: 0.1rem solid $bg-alert;
+
+          &.giz-input-root--small {
+            padding: 0.8rem 1.3rem;
+          }
+
+          &.giz-input-root--medium {
+            padding: 1rem 1.2rem;
+          }
+
+          &.giz-input-root--large {
+            padding: 1.4rem 1.3rem;
+          }
+        }
+
+        &:focus-within {
+          border: 0.2rem solid $bg-alert;
+
+          &.giz-input-root--small {
+            padding: 0.7rem 1.2rem;
+          }
+
+          &.giz-input-root--medium {
+            padding: 0.9rem 1.1rem;
+          }
+
+          &.giz-input-root--large {
+            padding: 1.3rem 1.2rem;
+          }
+        }
+      }
+
+      .giz-input-root--shadow {
+        box-shadow: unset;
+
+        &:hover {
+          box-shadow: unset;
+        }
+
+        &:focus-within {
+          box-shadow: unset;
+        }
+      }
+    }
+  }
 }
 
 .giz-input-validation-label {
-    [client-theme] & {
-        min-height: 2.2rem;
-        margin-top: 0.4rem;
-        @include font-m($font-weight-light);
-    }
+  [#{$dark-theme-comp-attr}] & {
+    min-height: 2.2rem;
+    margin-top: 0.4rem;
+    @include font-m($font-weight-light);
+  }
 }
 
 // == select == //
 .giz-input-select {
-    [client-theme] & {
-        .giz-input-select__dropdown {
-            background-color: #22272B;
-            box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
-            border-radius: 0.8rem;
-            padding: 0.8rem;
-            border: unset;
+  [#{$dark-theme-comp-attr}] & {
+    .giz-input-select__dropdown {
+      background-color: #22272b;
+      box-shadow: 0 0.2rem 1.6rem rgba(0, 0, 0, 0.25);
+      border-radius: 0.8rem;
+      padding: 0.8rem;
+      border: unset;
 
-            .giz-list {
-                padding: unset;
-                background-color: #22272B;
+      .giz-list {
+        padding: unset;
+        background-color: #22272b;
 
-                .giz-list-item {
-                    padding: 0.9rem 1.6rem;
-                    color: #E4E6EB;
-                    border-radius: 0.8rem;
-                    @include font-m($font-weight-light);
-                }
-
-                &.giz-list--selectable {
-                    .giz-list-item {
-                        &.selected {
-                            //Default Theme
-                            background-color: unset;
-                            color: #0F9FFF;
-                        }
-
-                        &.active {
-                            //Default Theme
-                            background-color: #373839;
-                            color: #E4E6EB;
-                        }
-                    }
-                }
-
-                &.giz-list--clickable {
-                    .giz-list-item {
-                        &:hover {
-                            //Default Theme
-                            background-color: rgba(250, 250, 250, 0.23);
-                        }
-                    }
-                }
-            }
+        .giz-list-item {
+          padding: 0.9rem 1.6rem;
+          color: #e4e6eb;
+          border-radius: 0.8rem;
+          @include font-m($font-weight-light);
         }
+
+        &.giz-list--selectable {
+          .giz-list-item {
+            &.selected {
+              //Default Theme
+              background-color: unset;
+              color: #0f9fff;
+            }
+
+            &.active {
+              //Default Theme
+              background-color: #373839;
+              color: #e4e6eb;
+            }
+          }
+        }
+
+        &.giz-list--clickable {
+          .giz-list-item {
+            &:hover {
+              //Default Theme
+              background-color: rgba(250, 250, 250, 0.23);
+            }
+          }
+        }
+      }
     }
+  }
 }
 
 // == button == //
 .giz-button {
-    [client-theme] & {
+  [#{$dark-theme-comp-attr}] & {
+    border-radius: 0.8rem;
+    color: white;
+    border: none;
+    //outline: $outline-0;
+    text-align: $text-align-center;
+    //FontF
+    font-family: $font-family-text;
+    @include font-l($font-weight-regular);
+
+    &__progress {
+      background-color: #3f8cff;
+
+      &-wrapper {
         border-radius: 0.8rem;
-        color: white;
-        border: none;
-        //outline: $outline-0;
-        text-align: $text-align-center;
-        //FontF
-        font-family: $font-family-text;
-        @include font-l($font-weight-regular);
-
-        &__progress {
-            background-color: #3F8CFF;
-
-            &-wrapper {
-                border-radius: 0.8rem;
-            }
-        }
-        //group button
-        &--group-button {
-        }
-        //button fill variant
-        &--fill {
-            &:active:not(.giz-button-shadow) {
-                //Remove shadow from default theme.
-                box-shadow: unset;
-            }
-
-            &.disabled, &[disabled] {
-                background-color: rgba(250, 250, 250, 0.16);
-                color: rgba(255, 255, 255, 0.24);
-            }
-
-            &.warning {
-            }
-
-            &.primary:not(.disabled) {
-                background-color: rgba(250, 250, 250, 0.16);
-
-                &:hover {
-                    background-color: #0091FF;
-                }
-
-                &.giz-button-shadow {
-                    box-shadow: $elevation-1;
-                }
-            }
-
-            &.secondary {
-                background-color: $unknown-color;
-            }
-
-            &.info {
-                background-color: $unknown-color;
-            }
-
-            &.danger {
-                background-color: #B81423;
-
-                &:hover {
-                    background-color: #E01325;
-                }
-
-                &.disabled, &[disabled] {
-                }
-            }
-
-            &.accent:not(.disabled) {
-                background-color: #0078D2;
-
-                &:hover {
-                    background-color: #0091FF;
-                }
-            }
-        }
-        //button outline variant
-        &--outline {
-            background-color: unset;
-            border: 0.2rem solid rgba(246, 251, 253, 0.28);
-            color: #FFFFFF;
-
-            &:hover {
-                border: 0.2rem solid #0091E6;
-                color: #0091E6;
-            }
-
-            &:active {
-            }
-
-            &.disabled, &[disabled] {
-                opacity: 0.3;
-                border: 0.2rem solid rgba(213, 213, 214, 0.5);
-            }
-        }
-        //button text variant
-        &--text {
-            background-color: unset;
-            color: #FFFFFF;
-
-            &:hover {
-                color: #0091FF;
-            }
-
-            &:active {
-            }
-
-            &.disabled, &[disabled] {
-                color: rgba(255, 255, 255, 0.24);
-            }
-        }
-        //button progress variant
-        &--progress {
-            &:active:not(.giz-button-shadow) {
-                //Remove shadow from default theme.
-                box-shadow: unset;
-            }
-
-            &.disabled, &[disabled] {
-                background-color: rgba(250, 250, 250, 0.16);
-                color: rgba(255, 255, 255, 0.24);
-            }
-
-            &.warning {
-            }
-
-            &.primary:not(.disabled) {
-                background-color: rgba(250, 250, 250, 0.16);
-
-                &:hover {
-                    background-color: #0091FF;
-                }
-
-                &.giz-button-shadow {
-                    box-shadow: $elevation-1;
-                }
-            }
-
-            &.secondary {
-                background-color: $unknown-color;
-            }
-
-            &.info {
-                background-color: $unknown-color;
-            }
-
-            &.danger {
-                &.disabled, &[disabled] {
-                }
-            }
-
-            &.accent:not(.disabled) {
-                background-color: rgba(63, 140, 255, 0.5);
-
-                &:hover {
-                    background-color: rgba(63, 140, 255, 0.5);
-                }
-            }
-        }
-        //buton disable
-        &.disabled, &[disabled] {
-        }
-
-        &--extra-small {
-            height: 2.4rem;
-            padding: 0.3rem;
-            border-radius: 0.4rem;
-            @include font-s($font-weight-regular);
-
-            .giz-icon--small {
-                width: 1.0rem;
-                height: 1.0rem;
-            }
-        }
-
-        &--small {
-            height: 3.2rem;
-            padding: 0.5rem;
-            border-radius: 0.8rem;
-            @include font-m($font-weight-regular);
-
-            .giz-icon--small {
-                width: 1.0rem;
-                height: 1.0rem;
-            }
-        }
-
-        &--medium {
-            height: 3.6rem;
-            padding: 0.7rem;
-            border-radius: 0.8rem;
-            @include font-m($font-weight-regular);
-
-            .giz-icon--medium {
-                width: 1.5rem;
-                height: 1.5rem;
-            }
-        }
-
-        &--large {
-            height: 4.0rem;
-            padding: 0.9rem;
-            border-radius: 0.8rem;
-            @include font-m($font-weight-regular);
-
-            .giz-icon--large {
-                width: 2.0rem;
-                height: 2.0rem;
-            }
-        }
-
-        &--extra-large {
-            height: 4.8rem;
-            padding: 1.1rem;
-            border-radius: 0.8rem;
-            @include font-l($font-weight-regular);
-
-            .giz-icon--extra-large {
-                width: 2.0rem;
-                height: 2.0rem;
-            }
-        }
+      }
     }
+    //group button
+    &--group-button {
+    }
+    //button fill variant
+    &--fill {
+      &:active:not(.giz-button-shadow) {
+        //Remove shadow from default theme.
+        box-shadow: unset;
+      }
+
+      &.disabled,
+      &[disabled] {
+        background-color: rgba(250, 250, 250, 0.16);
+        color: rgba(255, 255, 255, 0.24);
+      }
+
+      &.warning {
+      }
+
+      &.primary:not(.disabled) {
+        background-color: rgba(250, 250, 250, 0.16);
+
+        &:hover {
+          background-color: #0091ff;
+        }
+
+        &.giz-button-shadow {
+          box-shadow: $elevation-1;
+        }
+      }
+
+      &.secondary {
+        background-color: $unknown-color;
+      }
+
+      &.info {
+        background-color: $unknown-color;
+      }
+
+      &.danger {
+        background-color: #b81423;
+
+        &:hover {
+          background-color: #e01325;
+        }
+
+        &.disabled,
+        &[disabled] {
+        }
+      }
+
+      &.accent:not(.disabled) {
+        background-color: #0078d2;
+
+        &:hover {
+          background-color: #0091ff;
+        }
+      }
+    }
+    //button outline variant
+    &--outline {
+      background-color: unset;
+      border: 0.2rem solid rgba(246, 251, 253, 0.28);
+      color: #ffffff;
+
+      &:hover {
+        border: 0.2rem solid #0091e6;
+        color: #0091e6;
+      }
+
+      &:active {
+      }
+
+      &.disabled,
+      &[disabled] {
+        opacity: 0.3;
+        border: 0.2rem solid rgba(213, 213, 214, 0.5);
+      }
+    }
+    //button text variant
+    &--text {
+      background-color: unset;
+      color: #ffffff;
+
+      &:hover {
+        color: #0091ff;
+      }
+
+      &:active {
+      }
+
+      &.disabled,
+      &[disabled] {
+        color: rgba(255, 255, 255, 0.24);
+      }
+    }
+    //button progress variant
+    &--progress {
+      &:active:not(.giz-button-shadow) {
+        //Remove shadow from default theme.
+        box-shadow: unset;
+      }
+
+      &.disabled,
+      &[disabled] {
+        background-color: rgba(250, 250, 250, 0.16);
+        color: rgba(255, 255, 255, 0.24);
+      }
+
+      &.warning {
+      }
+
+      &.primary:not(.disabled) {
+        background-color: rgba(250, 250, 250, 0.16);
+
+        &:hover {
+          background-color: #0091ff;
+        }
+
+        &.giz-button-shadow {
+          box-shadow: $elevation-1;
+        }
+      }
+
+      &.secondary {
+        background-color: $unknown-color;
+      }
+
+      &.info {
+        background-color: $unknown-color;
+      }
+
+      &.danger {
+        &.disabled,
+        &[disabled] {
+        }
+      }
+
+      &.accent:not(.disabled) {
+        background-color: rgba(63, 140, 255, 0.5);
+
+        &:hover {
+          background-color: rgba(63, 140, 255, 0.5);
+        }
+      }
+    }
+    //buton disable
+    &.disabled,
+    &[disabled] {
+    }
+
+    &--extra-small {
+      height: 2.4rem;
+      padding: 0.3rem;
+      border-radius: 0.4rem;
+      @include font-s($font-weight-regular);
+
+      .giz-icon--small {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    &--small {
+      height: 3.2rem;
+      padding: 0.5rem;
+      border-radius: 0.8rem;
+      @include font-m($font-weight-regular);
+
+      .giz-icon--small {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    &--medium {
+      height: 3.6rem;
+      padding: 0.7rem;
+      border-radius: 0.8rem;
+      @include font-m($font-weight-regular);
+
+      .giz-icon--medium {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    &--large {
+      height: 4rem;
+      padding: 0.9rem;
+      border-radius: 0.8rem;
+      @include font-m($font-weight-regular);
+
+      .giz-icon--large {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    &--extra-large {
+      height: 4.8rem;
+      padding: 1.1rem;
+      border-radius: 0.8rem;
+      @include font-l($font-weight-regular);
+
+      .giz-icon--extra-large {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
 }
 
 // == avatar == //
 .giz-avatar {
-    [client-theme] & {
-        &--extra-small {
-            width: 2.4rem;
-            height: 2.4rem;
-        }
-
-        &--small {
-            width: 3.2rem;
-            height: 3.2rem;
-        }
-
-        &--medium {
-            width: 4.0rem;
-            height: 4.0rem;
-        }
-
-        &--large {
-            width: 5.6rem;
-            height: 5.6rem;
-        }
-
-        &--extra-large {
-            width: 11.2rem;
-            height: 11.2rem;
-        }
+  [#{$dark-theme-comp-attr}] & {
+    &--extra-small {
+      width: 2.4rem;
+      height: 2.4rem;
     }
+
+    &--small {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+
+    &--medium {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    &--large {
+      width: 5.6rem;
+      height: 5.6rem;
+    }
+
+    &--extra-large {
+      width: 11.2rem;
+      height: 11.2rem;
+    }
+  }
 }
 
 // == list == //
 .giz-list {
-    [client-theme] & {
-        .giz-divider {
-            margin: 0.8rem;
-            border-color: rgba(255, 255, 255, 0.2);
-        }
+  [#{$dark-theme-comp-attr}] & {
+    .giz-divider {
+      margin: 0.8rem;
+      border-color: rgba(255, 255, 255, 0.2);
     }
+  }
 }
 
 .giz-nested-list {
-    [client-theme] & {
-        margin-top: -4.5rem;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    margin-top: -4.5rem;
+  }
 }
 
 .giz-nested-list-expand-icon {
-    [client-theme] & {
-        margin-right: unset;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    margin-right: unset;
+  }
 }
 
 // == dialog == //
 .giz-dialog {
-    [client-theme] & {
+  [#{$dark-theme-comp-attr}] & {
+    background-color: initial;
+    background: linear-gradient(180deg, rgba(22, 30, 37, 0.8) 0%, rgba(11, 17, 23, 0.9) 100%);
+    backdrop-filter: blur(1.5rem);
+    z-index: 1001;
+
+    & > .giz-card {
+      text-align: $text-align-center;
+      z-index: 1002;
+      border: thin solid $unknown-color;
+      background-color: $unknown-color;
+      overflow: hidden;
+
+      &::before {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        content: '';
         background-color: initial;
-        background: linear-gradient(180deg, rgba(22, 30, 37, 0.8) 0%, rgba(11, 17, 23, 0.9) 100%);
-        backdrop-filter: blur(1.5rem);
-        z-index: 1001;
-
-        & > .giz-card {
-            text-align: $text-align-center;
-            z-index: 1002;
-            border: thin solid $unknown-color;
-            background-color: $unknown-color;
-            overflow: hidden;
-
-            &::before {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                content: "";
-                background-color: initial;
-                background: linear-gradient(to bottom, rgba(90, 94, 107, 0) 0%, rgba(37, 140, 246, 0.45) 333.62%);
-                height: 100%;
-                width: 100%;
-                z-index: -1;
-            }
-        }
+        background: linear-gradient(to bottom, rgba(90, 94, 107, 0) 0%, rgba(37, 140, 246, 0.45) 333.62%);
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+      }
     }
+  }
 }
 
 .giz-card {
-    [client-theme] & {
-        .giz-card-header {
-            padding: unset;
-        }
-
-        .giz-card-body {
-            padding: unset;
-        }
-
-        .giz-card-footer {
-            padding: unset;
-        }
+  [#{$dark-theme-comp-attr}] & {
+    .giz-card-header {
+      padding: unset;
     }
+
+    .giz-card-body {
+      padding: unset;
+    }
+
+    .giz-card-footer {
+      padding: unset;
+    }
+  }
 }
 
 // == icon button == //
 .giz-icon-button {
-    [client-theme] & {
-        color: white;
+  [#{$dark-theme-comp-attr}] & {
+    color: white;
 
-        &--fill {
-            background-color: rgba(0, 120, 210, 0.4);
+    &--fill {
+      background-color: rgba(0, 120, 210, 0.4);
 
-            &:hover {
-                background-color: rgba(0, 120, 210, 0.4);
-            }
+      &:hover {
+        background-color: rgba(0, 120, 210, 0.4);
+      }
 
-            &:active:not(.giz-button-shadow) {
-                //Remove shadow from default theme.
-                box-shadow: unset;
-            }
+      &:active:not(.giz-button-shadow) {
+        //Remove shadow from default theme.
+        box-shadow: unset;
+      }
 
-            &:active {
-                background-color: rgba(0, 120, 210, 0.4);
-            }
+      &:active {
+        background-color: rgba(0, 120, 210, 0.4);
+      }
 
-            &.disabled, &[disabled] {
-            }
-        }
-
-        &--outline {
-            background-color: $unknown-color;
-            border: 0.1rem solid $unknown-color;
-
-            &:hover {
-                background-color: $unknown-color;
-            }
-
-            &:active:not(.giz-button-shadow) {
-                //Remove shadow from default theme.
-                box-shadow: unset;
-            }
-
-            &:active {
-                background-color: $unknown-color;
-            }
-        }
-
-        &--text {
-            background-color: initial;
-            border: none;
-            color: #AAABAD;
-
-            &:hover {
-                background-color: transparent;
-                color: #FFFFFF;
-            }
-
-            &:active:not(.giz-button-shadow) {
-                //Remove shadow from default theme.
-                box-shadow: unset;
-            }
-
-            &:active {
-                background-color: transparent;
-                color: #FFFFFF;
-            }
-
-            &.disabled, &[disabled] {
-                border: none;
-                pointer-events: none;
-            }
-        }
-
-        &--extra-small {
-            width: 1.6rem;
-            height: 1.6rem;
-            min-width: 1.6rem;
-            min-height: 1.6rem;
-        }
-
-        &--small {
-            width: 3.0rem;
-            height: 3.0rem;
-            min-width: 3.0rem;
-            min-height: 3.0rem;
-        }
-
-        &--medium {
-            width: 4.9rem;
-            height: 4.9rem;
-            min-width: 4.9rem;
-            min-height: 4.9rem;
-        }
+      &.disabled,
+      &[disabled] {
+      }
     }
+
+    &--outline {
+      background-color: $unknown-color;
+      border: 0.1rem solid $unknown-color;
+
+      &:hover {
+        background-color: $unknown-color;
+      }
+
+      &:active:not(.giz-button-shadow) {
+        //Remove shadow from default theme.
+        box-shadow: unset;
+      }
+
+      &:active {
+        background-color: $unknown-color;
+      }
+    }
+
+    &--text {
+      background-color: initial;
+      border: none;
+      color: #aaabad;
+
+      &:hover {
+        background-color: transparent;
+        color: #ffffff;
+      }
+
+      &:active:not(.giz-button-shadow) {
+        //Remove shadow from default theme.
+        box-shadow: unset;
+      }
+
+      &:active {
+        background-color: transparent;
+        color: #ffffff;
+      }
+
+      &.disabled,
+      &[disabled] {
+        border: none;
+        pointer-events: none;
+      }
+    }
+
+    &--extra-small {
+      width: 1.6rem;
+      height: 1.6rem;
+      min-width: 1.6rem;
+      min-height: 1.6rem;
+    }
+
+    &--small {
+      width: 3rem;
+      height: 3rem;
+      min-width: 3rem;
+      min-height: 3rem;
+    }
+
+    &--medium {
+      width: 4.9rem;
+      height: 4.9rem;
+      min-width: 4.9rem;
+      min-height: 4.9rem;
+    }
+  }
 }
 
 // == menu == //
 .giz-menu {
-    [client-theme] & {
+  [#{$dark-theme-comp-attr}] & {
+    &__dropdown {
+      & > .giz-list.giz-list--right {
+        position: absolute;
+        left: 0;
+        width: max-content;
+      }
 
-        &__dropdown {
+      & > .giz-list.giz-list--left {
+        position: absolute;
+        right: 0;
+        width: max-content;
+      }
 
-            & > .giz-list.giz-list--right {
-                position: absolute;
-                left: 0;
-                width: max-content;
-            }
+      .giz-list {
+        padding: unset;
+        border-radius: unset;
+        border: 0.1rem solid $unknown-color;
+        box-shadow: $elevation-4;
+        background-color: rgba(9, 11, 16, 0.9);
 
-            & > .giz-list.giz-list--left {
-                position: absolute;
-                right: 0;
-                width: max-content;
-            }
+        .giz-list-item {
+          border-radius: unset;
+          background-color: unset;
+          color: white;
 
-            .giz-list {
-                padding: unset;
-                border-radius: unset;
-                border: 0.1rem solid $unknown-color;
-                box-shadow: $elevation-4;
-                background-color: rgba(9, 11, 16, 0.9);
+          &:hover {
+            background-color: $unknown-color;
+          }
 
-                .giz-list-item {
-                    border-radius: unset;
-                    background-color: unset;
-                    color: white;
-
-                    &:hover {
-                        background-color: $unknown-color;
-                    }
-
-                    .giz-list-item-icon {
-                    }
-                }
-            }
+          .giz-list-item-icon {
+          }
         }
+      }
     }
+  }
 }
 
 // == checkbox == //
 .giz-checkbox {
-    [client-theme] & {
-        & input {
-            & + label {
-                color: #FAFAFA;
-                @include font-m($font-weight-light);
-            }
+  [#{$dark-theme-comp-attr}] & {
+    & input {
+      & + label {
+        color: #fafafa;
+        @include font-m($font-weight-light);
+      }
 
-            & + label:before {
-                width: 2.4rem;
-                height: 2.4rem;
-                background-color: transparent;
-                border: 0.2rem solid #FAFAFA;
-                border-radius: 0.4rem;
-                margin-right: 0.8rem;
-                box-sizing: border-box;
-            }
+      & + label:before {
+        width: 2.4rem;
+        height: 2.4rem;
+        background-color: transparent;
+        border: 0.2rem solid #fafafa;
+        border-radius: 0.4rem;
+        margin-right: 0.8rem;
+        box-sizing: border-box;
+      }
 
-            &:checked + label:before {
-                background-color: #3F8CFF;
-                border: 0.2rem solid #3F8CFF;
-            }
+      &:checked + label:before {
+        background-color: #3f8cff;
+        border: 0.2rem solid #3f8cff;
+      }
 
-            &:checked + label:after {
-                background-color: unset;
-                left: 0.9rem;
-                top: 0.5rem;
-                width: 0.4rem;
-                height: 0.8rem;
-                border: solid white;
-                border-width: 0 0.2rem 0.2rem 0;
-                -webkit-transform: rotate(45deg);
-                -ms-transform: rotate(45deg);
-                transform: rotate(45deg);
-            }
+      &:checked + label:after {
+        background-color: unset;
+        left: 0.9rem;
+        top: 0.5rem;
+        width: 0.4rem;
+        height: 0.8rem;
+        border: solid white;
+        border-width: 0 0.2rem 0.2rem 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
 
-            &.disabled + label:before, &[disabled] + label:before {
-                border: 0.2rem solid rgba(246, 251, 253, 0.28);
-            }
+      &.disabled + label:before,
+      &[disabled] + label:before {
+        border: 0.2rem solid rgba(246, 251, 253, 0.28);
+      }
 
-            &.disabled + label, &[disabled] + label {
-                color: rgba(255, 255, 255, 0.24);
-            }
-        }
+      &.disabled + label,
+      &[disabled] + label {
+        color: rgba(255, 255, 255, 0.24);
+      }
     }
+  }
 }
 
 // == divider == //
 .giz-divider {
-    [client-theme] & {
-        border: none;
-        border-top: solid;
-        border-width: 0.1rem;
-        border-color: $unknown-color;
-    }
+  [#{$dark-theme-comp-attr}] & {
+    border: none;
+    border-top: solid;
+    border-width: 0.1rem;
+    border-color: $unknown-color;
+  }
 }
 
 // == badge == //
 .giz-badge {
-    [client-theme] & {
-        &.giz-badge--small {
-            .giz-badge__wrapper {
-                .giz-badge__badge {
-                    display: inline-block;
-                    line-height: 1;
-                    height: 0.6rem;
-                    min-width: 0.6rem;
-                    border-radius: 50%;
-                    padding: 0;
-                    inset: auto auto calc(100% - 0.3rem) calc(100% - 0.3rem);
-                    box-shadow: 0 0 0.5rem 0.2rem rgba(37, 140, 246, 0.6);
-                }
-            }
+  [#{$dark-theme-comp-attr}] & {
+    &.giz-badge--small {
+      .giz-badge__wrapper {
+        .giz-badge__badge {
+          display: inline-block;
+          line-height: 1;
+          height: 0.6rem;
+          min-width: 0.6rem;
+          border-radius: 50%;
+          padding: 0;
+          inset: auto auto calc(100% - 0.3rem) calc(100% - 0.3rem);
+          box-shadow: 0 0 0.5rem 0.2rem rgba(37, 140, 246, 0.6);
         }
+      }
     }
+  }
 }
 
 // == tooltip == //
 .giz-tooltip {
-    [client-theme] & {
-        background-color: $unknown-color;
+  [#{$dark-theme-comp-attr}] & {
+    background-color: $unknown-color;
 
-        &--top {
-            &::after {
-                border-color: $unknown-color transparent transparent transparent;
-            }
-        }
-
-        &--bottom {
-            &::after {
-                border-color: transparent transparent $unknown-color transparent;
-            }
-        }
+    &--top {
+      &::after {
+        border-color: $unknown-color transparent transparent transparent;
+      }
     }
+
+    &--bottom {
+      &::after {
+        border-color: transparent transparent $unknown-color transparent;
+      }
+    }
+  }
 }
 
 // == text-input == //
 .giz-input-text {
-    .giz-input-root {
-        textarea {
-            color: rgba(255, 255, 255, 0.35);
-            //FontF
-            font-family: $font-family-text;
-            @include font-m($font-weight-light);
-        }
+  .giz-input-root {
+    textarea {
+      color: rgba(255, 255, 255, 0.35);
+      //FontF
+      font-family: $font-family-text;
+      @include font-m($font-weight-light);
     }
+  }
 }
 
 // == radio == //
 .giz-radio {
-    [client-theme] & {
-        & input {
-            & + label {
-                //font-size: $font-15-theme-dark;
-                //color: $secondary-color-theme-dark;
-                padding-left: unset;
-                margin: unset;
-            }
+  [#{$dark-theme-comp-attr}] & {
+    & input {
+      & + label {
+        //font-size: $font-15-theme-dark;
+        //color: $secondary-color-theme-dark;
+        padding-left: unset;
+        margin: unset;
+      }
 
-            &:checked + label {
-            }
+      &:checked + label {
+      }
 
-            & + label:before {
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 2.0rem;
-                height: 2.0rem;
-                background-color: transparent;
-                border: 0.1rem solid rgba(246, 251, 253, 0.28);
-                border-radius: 10.0rem;
-            }
+      & + label:before {
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+        height: 2rem;
+        background-color: transparent;
+        border: 0.1rem solid rgba(246, 251, 253, 0.28);
+        border-radius: 10rem;
+      }
 
-            &:checked + label:before {
-                background-color: transparent;
-                border-color: #0078D2;
-            }
+      &:checked + label:before {
+        background-color: transparent;
+        border-color: #0078d2;
+      }
 
-            &.disabled + label:before, &[disabled] + label:before {
-                background-color: $gray-color-theme-dark;
-            }
+      &.disabled + label:before,
+      &[disabled] + label:before {
+        background-color: $gray-color-theme-dark;
+      }
 
-            &.disabled + label, &[disabled] + label {
-            }
+      &.disabled + label,
+      &[disabled] + label {
+      }
 
-            &:checked + label:after {
-                left: 0.7rem;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 0.8rem;
-                height: 0.8rem;
-                background-color: #0078D2;
-                border-radius: 10.0rem;
-            }
-        }
+      &:checked + label:after {
+        left: 0.7rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0.8rem;
+        height: 0.8rem;
+        background-color: #0078d2;
+        border-radius: 10rem;
+      }
     }
+  }
 }
 
 // == input password == //
 .giz-input-password {
-    [client-theme] & {
-        .giz-input-icon-right {
-            box-sizing: content-box;
-            width: 2.4rem;
-            height: 2.4rem;
-            min-width: 2.4rem;
-            min-height: 2.4rem;
-        }
-
-        input::-ms-reveal {
-            display: none;
-        }
+  [#{$dark-theme-comp-attr}] & {
+    .giz-input-icon-right {
+      box-sizing: content-box;
+      width: 2.4rem;
+      height: 2.4rem;
+      min-width: 2.4rem;
+      min-height: 2.4rem;
     }
+
+    input::-ms-reveal {
+      display: none;
+    }
+  }
 }
 
 //== giz circle progress bar ====//
 .giz-circle-progress {
-    [client-theme] & {
-        .giz-circle-progress-bar {
-            top: 0;
-        }
-
-        &.giz-circle-progress--extra-small {
-            width: 1.2rem;
-            height: 1.2rem;
-
-            &::after {
-                border-radius: 50%;
-                top: 0.1rem;
-                left: 0.1rem;
-                border-width: 0.16rem;
-                width: calc(100% - 0.2rem);
-                height: calc(100% - 0.2rem);
-                box-sizing: border-box;
-            }
-
-            & > .giz-circle-progress--left {
-
-                & > .giz-circle-progress-bar {
-                    border-top-right-radius: 0.6rem;
-                    border-bottom-right-radius: 0.6rem;
-                    border-width: 0.2rem;
-                }
-            }
-
-            & > .giz-circle-progress--right {
-
-                & > .giz-circle-progress-bar {
-                    border-top-left-radius: 0.6rem;
-                    border-bottom-left-radius: 0.6rem;
-                    border-width: 0.2rem;
-                }
-            }
-
-            & > .giz-circle-progress--value {
-                //font-size: 0.8rem;
-            }
-        }
-
-        &.giz-circle-progress--small {
-            width: 2.4rem;
-            height: 2.4rem;
-
-            &::after {
-                border-radius: 50%;
-                top: 0;
-                left: 0;
-                border-width: 0.4rem;
-                width: calc(100% - 0.8rem);
-                height: calc(100% - 0.8rem);
-            }
-
-            & > .giz-circle-progress--left {
-
-                & > .giz-circle-progress-bar {
-                    border-top-right-radius: 1.2rem;
-                    border-bottom-right-radius: 1.2rem;
-                    border-width: 0.4rem;
-                }
-            }
-
-            & > .giz-circle-progress--right {
-
-                & > .giz-circle-progress-bar {
-                    border-top-left-radius: 1.2rem;
-                    border-bottom-left-radius: 1.2rem;
-                    border-width: 0.4rem;
-                }
-            }
-
-            & > .giz-circle-progress--value {
-                //font-size: 0.8rem;
-            }
-        }
+  [#{$dark-theme-comp-attr}] & {
+    .giz-circle-progress-bar {
+      top: 0;
     }
+
+    &.giz-circle-progress--extra-small {
+      width: 1.2rem;
+      height: 1.2rem;
+
+      &::after {
+        border-radius: 50%;
+        top: 0.1rem;
+        left: 0.1rem;
+        border-width: 0.16rem;
+        width: calc(100% - 0.2rem);
+        height: calc(100% - 0.2rem);
+        box-sizing: border-box;
+      }
+
+      & > .giz-circle-progress--left {
+        & > .giz-circle-progress-bar {
+          border-top-right-radius: 0.6rem;
+          border-bottom-right-radius: 0.6rem;
+          border-width: 0.2rem;
+        }
+      }
+
+      & > .giz-circle-progress--right {
+        & > .giz-circle-progress-bar {
+          border-top-left-radius: 0.6rem;
+          border-bottom-left-radius: 0.6rem;
+          border-width: 0.2rem;
+        }
+      }
+
+      & > .giz-circle-progress--value {
+        //font-size: 0.8rem;
+      }
+    }
+
+    &.giz-circle-progress--small {
+      width: 2.4rem;
+      height: 2.4rem;
+
+      &::after {
+        border-radius: 50%;
+        top: 0;
+        left: 0;
+        border-width: 0.4rem;
+        width: calc(100% - 0.8rem);
+        height: calc(100% - 0.8rem);
+      }
+
+      & > .giz-circle-progress--left {
+        & > .giz-circle-progress-bar {
+          border-top-right-radius: 1.2rem;
+          border-bottom-right-radius: 1.2rem;
+          border-width: 0.4rem;
+        }
+      }
+
+      & > .giz-circle-progress--right {
+        & > .giz-circle-progress-bar {
+          border-top-left-radius: 1.2rem;
+          border-bottom-left-radius: 1.2rem;
+          border-width: 0.4rem;
+        }
+      }
+
+      & > .giz-circle-progress--value {
+        //font-size: 0.8rem;
+      }
+    }
+  }
 }
 
 //== giz combo-button ====//
 .giz-combo-button {
-    [client-theme] & {
-        .giz-popup {
-            padding-top: 0.4rem;
-        }
-
-        .giz-combo-button__dropdown {
-            border: unset;
-
-            .giz-list {
-                background-color: #201F1F;
-                box-shadow: 0 0.4rem 2.0rem rgba(0, 0, 0, 0.08);
-                border-radius: 0.8rem;
-                color: #E4E6EB;
-                padding: 0.8rem 0;
-
-                .giz-list-item {
-                    padding: 0.9rem 1.6rem;
-                    color: #E4E6EB;
-                    border-radius: 0;
-                    @include font-m($font-weight-light);
-
-                    &.active {
-                        background-color: #373839;
-                        color: #E4E6EB;
-                    }
-                }
-
-                &.giz-list--selectable {
-                    .giz-list-item {
-                        &.selected {
-                            //Default Theme
-                            background-color: #373839;
-                            color: #E4E6EB;
-                        }
-                    }
-                }
-
-                &.giz-list--clickable {
-                    .giz-list-item {
-                        &:hover {
-                            //Default Theme
-                            background-color: #373839;
-                            color: #E4E6EB;
-                        }
-                    }
-                }
-            }
-        }
+  [#{$dark-theme-comp-attr}] & {
+    .giz-popup {
+      padding-top: 0.4rem;
     }
+
+    .giz-combo-button__dropdown {
+      border: unset;
+
+      .giz-list {
+        background-color: #201f1f;
+        box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
+        border-radius: 0.8rem;
+        color: #e4e6eb;
+        padding: 0.8rem 0;
+
+        .giz-list-item {
+          padding: 0.9rem 1.6rem;
+          color: #e4e6eb;
+          border-radius: 0;
+          @include font-m($font-weight-light);
+
+          &.active {
+            background-color: #373839;
+            color: #e4e6eb;
+          }
+        }
+
+        &.giz-list--selectable {
+          .giz-list-item {
+            &.selected {
+              //Default Theme
+              background-color: #373839;
+              color: #e4e6eb;
+            }
+          }
+        }
+
+        &.giz-list--clickable {
+          .giz-list-item {
+            &:hover {
+              //Default Theme
+              background-color: #373839;
+              color: #e4e6eb;
+            }
+          }
+        }
+      }
+    }
+  }
 }
