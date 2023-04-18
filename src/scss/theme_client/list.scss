@@ -1,0 +1,22 @@
+//=============== List ================//
+
+.giz-list {
+    [#{$client-theme-comp-attr}] & {
+        .giz-divider {
+            margin: 0.8rem;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+
+.giz-nested-list {
+    [#{$client-theme-comp-attr}] & {
+        margin-top: -4.5rem;
+    }
+}
+
+.giz-nested-list-expand-icon {
+    [#{$client-theme-comp-attr}] & {
+        margin-right: unset;
+    }
+}

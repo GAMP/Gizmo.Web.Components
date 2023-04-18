@@ -1,18 +1,12 @@
-//=============== gizmo masked-text-input classes ================//
+//=============== MaskedDateInput ================//
 
 .giz-masked-date-input {
     input {
-        font-family: $font-family-text;
-        @include font-m($font-weight-light);
         user-select: none;
     }
 
     .giz-mask {
-        color: rgba(255, 255, 255, 0.35);
         display: flex;
-        //FontF
-        font-family: $font-family-text;
-        @include font-m($font-weight-light);
 
         &-done {
             visibility: hidden;

@@ -1,6 +1,5 @@
-//=============== gizmo autoComplete select classes ================//
+//=============== AutoComplete ================//
 
-//== giz-input autoComplete
 .giz-input-autocomplete {
     display: inline-block;
     position: relative;
@@ -14,9 +13,6 @@
     }
 
     .giz-input-autocomplete__dropdown {
-        box-shadow: $elevation-2-theme-dark;
-        border: 1px solid $border-color-theme-dark;
-
         &--full-width {
             width: 100%;
         }
@@ -32,17 +28,17 @@
 
         .giz-list {
             .giz-list-item {
-                padding-top: $spacer-16;
-                padding-bottom: $spacer-16;
-                padding-left: $spacer-20;
-                padding-right: $spacer-20;
+                padding-top: 1.6rem;
+                padding-bottom: 1.6rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
         }
     }
 
     .giz-input-control {
         .giz-input-root {
-            justify-content: $justify-space-between;
+            justify-content: space-between;
 
             input {
                 cursor: pointer;

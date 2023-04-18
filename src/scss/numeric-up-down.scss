@@ -1,4 +1,4 @@
-//=============== gizmo numeric-up-down classes ================//
+//=============== NumericUpDown ================//
 
 .giz-input-numeric-up-down {
     display: inline-block;
@@ -11,24 +11,6 @@
         .giz-input-icon-right {
             .giz-icon {
                 cursor: pointer;
-            }
-        }
-
-        &--small {
-            .giz-input-numeric-up-down__value {
-                line-height: 3.2rem;
-            }
-        }
-
-        &--medium {
-            .giz-input-numeric-up-down__value {
-                line-height: 3.9rem;
-            }
-        }
-
-        &--large {
-            .giz-input-numeric-up-down__value {
-                line-height: 6.4rem;
             }
         }
     }
@@ -44,8 +26,6 @@
         background-color: inherit;
         font-weight: 100;
         letter-spacing: normal;
-        //Default Theme
-        color: $gray-black-theme-dark;
     }
 
     &--formatted {

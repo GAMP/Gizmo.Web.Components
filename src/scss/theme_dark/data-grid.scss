@@ -1,0 +1,193 @@
+//=============== DataGrid ================//
+
+.giz-data-grid {
+    [#{$dark-theme-comp-attr}] & {
+        border-spacing: 0 0.2rem;
+        color: $gray-black-theme-dark;
+        font-size: $font-16-theme-dark;
+        background-color: $dark-gray-theme-dark;
+
+        & > thead td, & > thead th {
+            height: 5rem;
+            text-transform: uppercase;
+            font-size: $font-15-theme-dark;
+            color: $gray-black-theme-dark;
+            font-weight: 400;
+            padding: 0 0.5rem;
+            text-align: left;
+        }
+
+        & > tbody > tr:not(.giz-data-grid-row-detail) {
+            height: 3.9rem;
+            background-color: transparent;
+            border-radius: $rounded-lg-theme-dark;
+            margin-bottom: 1.2rem;
+
+            & > td {
+                border-top: 1px solid transparent;
+                border-bottom: 1px solid transparent;
+
+                &:first-child {
+                    border-left: 1px solid transparent;
+                }
+
+                &:last-child {
+                    border-right: 1px solid transparent;
+                }
+            }
+
+            &:hover {
+                background-color: $dark-jungle-theme-dark;
+                color: white;
+
+                & > td {
+                    border-top: 1px solid $onyx-black-theme-dark;
+                    border-bottom: 1px solid $onyx-black-theme-dark;
+
+                    &:first-child {
+                        border-left: 1px solid $onyx-black-theme-dark;
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid $onyx-black-theme-dark;
+                    }
+                }
+            }
+
+            &.selected {
+                background-color: $dark-navy-theme-dark;
+
+                & > td {
+                    border-top: 1px solid $onyx-black-theme-dark;
+                    border-bottom: 1px solid $onyx-black-theme-dark;
+
+                    &:first-child {
+                        border-left: 1px solid $onyx-black-theme-dark;
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid $onyx-black-theme-dark;
+                    }
+                }
+
+                &:hover {
+                    background-color: rgba(90,103,242,0.2);
+
+                    & > td {
+                        border-top: 1px solid $onyx-black-theme-dark;
+                        border-bottom: 1px solid $onyx-black-theme-dark;
+
+                        &:first-child {
+                            border-left: 1px solid $onyx-black-theme-dark;
+                        }
+
+                        &:last-child {
+                            border-right: 1px solid $onyx-black-theme-dark;
+                        }
+                    }
+                }
+            }
+            /*&.is-active {
+            border-color: #453855;
+            background-color: $dark-light-color-theme-dark;
+            border-radius: 4px 4px 0 0;
+            margin-bottom: 0;
+        }*/
+
+            & > td:first-child {
+                border-radius: 4px 0 0 4px;
+            }
+
+            & > td:last-child {
+                border-radius: 0 4px 4px 0;
+            }
+        }
+
+        & > tbody > tr > td {
+            vertical-align: middle;
+            padding: 0 0.5rem;
+
+            .giz-input-control {
+                margin: 0 -0.5rem;
+            }
+        }
+
+        & > tbody > tr.giz-data-grid-row-details > td {
+            padding: 0;
+        }
+    }
+}
+
+.column-selector {
+    [#{$dark-theme-comp-attr}] & {
+        top: 1.2rem;
+        right: 0;
+
+        &-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .giz-checkbox {
+            label {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.giz-data-grid-row {
+    [#{$dark-theme-comp-attr}] & {
+        &-detail {
+            display: none;
+            background-color: transparent;
+
+            &:hover {
+                & > td {
+                    border-color: transparent;
+                }
+            }
+
+            &-content {
+                border: 1px solid #292e39;
+                border-radius: $rounded-theme-dark;
+                border-top: $border-0-theme-dark;
+                padding: 1.2rem 0;
+                margin-top: -1.2rem;
+            }
+        }
+
+        &--open {
+            border-color: #453855;
+            background-color: $primary-color-theme-dark;
+            color: white;
+
+            & > td {
+                border-top: 1px solid $onyx-black-theme-dark;
+                border-bottom: 1px solid $onyx-black-theme-dark;
+
+                &:first-child {
+                    border-left: 1px solid $onyx-black-theme-dark;
+                }
+
+                &:last-child {
+                    border-right: 1px solid $onyx-black-theme-dark;
+                }
+            }
+        }
+    }
+}
+
+.giz-data-grid--sticky-header {
+    [#{$dark-theme-comp-attr}] & {
+        .giz-data-grid {
+            & > thead td, & > thead th {
+                color: $gray-black-theme-dark;
+                background-color: $dark-gray-theme-dark;
+            }
+        }
+    }
+}

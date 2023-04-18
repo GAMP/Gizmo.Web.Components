@@ -1,0 +1,39 @@
+//=============== CheckBox ================//
+
+.giz-checkbox {
+    [#{$dark-theme-comp-attr}] & {
+        & input {
+            & + label {
+                font-size: $font-15-theme-dark;
+                color: $secondary-color-theme-dark;
+                font-weight: 600;
+            }
+
+            & + label:before {
+                background-color: $dark-gray-theme-dark;
+                border: 1px solid $onyx-black-theme-dark;
+                border-radius: $rounded-theme-dark;
+            }
+
+            &:checked + label:before {
+                background-color: $primary-color-theme-dark;
+                border-color: $primary-color-theme-dark;
+            }
+
+            &.disabled + label:before, &[disabled] + label:before {
+                background-color: $gray-dim-theme-dark;
+                border-color: $gray-dim-theme-dark;
+            }
+
+            &:indeterminate + label:before {
+                background-color: $primary-color-theme-dark;
+                border-color: $primary-color-theme-dark;
+            }
+
+            &:indeterminate.disabled + label:before, &:indeterminate[disabled] + label:before {
+                background-color: $gray-color-theme-dark;
+                border-color: $gray-color-theme-dark;
+            }
+        }
+    }
+}

@@ -1,3 +1,5 @@
+//=============== ComboButton ================//
+
 .giz-combo-button {
     display: inline-flex;
     grid-template-columns: 1fr min-content;
@@ -30,9 +32,6 @@
     }
 
     &__dropdown {
-        box-shadow: $elevation-2-theme-dark;
-        border: 1px solid $border-color-theme-dark;
-
         &--full-width {
             min-width: 100%;
         }

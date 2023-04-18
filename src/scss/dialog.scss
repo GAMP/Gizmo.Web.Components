@@ -1,4 +1,4 @@
-//=============== gizmo dialog classes ================//
+//=============== Dialog ================//
 
 .giz-dialog {
     position: fixed;
@@ -14,7 +14,7 @@
     overflow-y: auto;
     z-index: 100;
     //Default Skin
-    outline: $outline-0;
+    outline: 0rem;
     background-color: rgba(230, 230, 230, 0.3);
     padding: 1rem;
 

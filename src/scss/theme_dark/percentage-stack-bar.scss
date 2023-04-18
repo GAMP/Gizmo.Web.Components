@@ -1,0 +1,12 @@
+//=============== PercentageStackBar ================//
+
+.giz-percentage-stack-bar {
+    [#{$dark-theme-comp-attr}] & {
+        background-color: transparent;
+        border-radius: $rounded-theme-dark;
+
+        .giz-stacked-bar {
+            background-color: #428bca;
+        }
+    }
+}

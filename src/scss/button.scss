@@ -1,27 +1,14 @@
-//=============== gizmo button classes ================//
+//=============== Button ================//
 
-//button (default button primary)
 .giz-button {
     position: relative;
     cursor: pointer;
-    //Default Skin
-    font-size: $font-17-theme-dark;
-    border-radius: $rounded-theme-dark;
-    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    font-weight: $font-weight-600;
-    letter-spacing: $letter-spacing-8-theme-dark;
-    white-space: $nowrap-white-space;
-    line-height: $line-height-22-theme-dark;
-    text-align: $text-align-center;
-    align-items: center;
 
     &__progress {
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
-        //Default Skin
-        transition: width 0.2s;
 
         &-wrapper {
             position: absolute;
@@ -30,9 +17,6 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
-            //Default Skin
-            //z-index: 0;
-            border-radius: $rounded-theme-dark;
         }
     }
 
@@ -40,7 +24,6 @@
         display: flex;
         overflow: hidden;
         text-overflow: ellipsis;
-        //Default Skin
         align-items: center;
         height: 100%;
 
@@ -49,220 +32,15 @@
             display: flex;
             height: 100%;
             overflow: hidden;
-            //Default Skin
             align-items: center;
-            //z-index: 1;
         }
     }
-    //Default Skin?
 
-    .giz-button-icon-left {
-        margin-right: $spacer-8;
-    }
-
-    .giz-button-icon-right {
-        float: right;
-        margin-left: $spacer-8;
-    }
-
-    &.giz-button-icon-right {
-        text-align: left;
+    &.disabled, &[disabled] {
+        pointer-events: none;
     }
 
     &.giz-button--full-width {
         width: 100%;
-    }
-    //group button
-    &--group-button {
-        border: $border-0-theme-dark;
-        //outline: $outline-0;
-        color: white;
-        background-color: $primary-color-theme-dark;
-
-        &:hover {
-            background-color: #4F5AD3;
-        }
-
-        &:active {
-            background-color: $primary-color-theme-dark;
-            box-shadow: 0px 0px 9px #4891FF;
-        }
-
-        &.disabled, &[disabled] {
-            pointer-events: none;
-            //Default Skin
-            color: $dark-gray-theme-dark;
-            background-color: $onyx-black-theme-dark;
-            border: none;
-            /*svg {
-                color: $dark-gray-theme-dark;
-            }*/
-        }
-    }
-    //button fill variant
-    &--fill {
-        &:hover {
-            box-shadow: inset 0px 0px 10rem rgba(0, 0, 0, 0.2);
-        }
-
-        &.disabled, &[disabled] {
-            pointer-events: none;
-            //Default Skin
-            color: $dark-gray-theme-dark;
-            background-color: $onyx-black-theme-dark;
-            /*svg {
-                color: $dark-gray-theme-dark;
-            }*/
-        }
-
-        &.primary {
-            border: $border-0-theme-dark;
-            //outline: $outline-0;
-            color: white;
-            background-color: $primary-color-theme-dark;
-
-            &:active {
-                background-color: $primary-color-theme-dark;
-                box-shadow: 0px 0px 9px #4891FF;
-            }
-        }
-
-        &.warning {
-            border: $border-0-theme-dark;
-            //outline: $outline-0;
-            color: white;
-            background-color: $warning-color-theme-dark;
-
-            &:hover {
-                background-color: #e98950;
-            }
-
-            &:active {
-                background-color: $warning-color-theme-dark;
-                box-shadow: 0px 0px 9px #e98950;
-            }
-
-            &.disabled, &[disabled] {
-                pointer-events: none;
-                //Default Skin
-                color: $dark-gray-theme-dark;
-                background-color: $onyx-black-theme-dark;
-            }
-            /*svg {
-                color: $dark-gray-theme-dark;
-            }*/
-        }
-
-        &.danger {
-            border: $border-0-theme-dark;
-            //outline: $outline-0;
-            color: white;
-            background-color: $danger-color-theme-dark;
-
-            &:hover {
-                background-color: #e94554;
-            }
-
-            &:active {
-                background-color: $danger-color-theme-dark;
-                box-shadow: 0px 0px 9px #e98950;
-            }
-
-            &.disabled, &[disabled] {
-                pointer-events: none;
-                //Default Skin
-                color: $dark-gray-theme-dark;
-                background-color: $onyx-black-theme-dark;
-                /*svg {
-                    color: $dark-gray-theme-dark;
-                }*/
-            }
-        }
-    }
-    //button outline variant
-    &--outline {
-        color: $dim-white-theme-dark;
-        background-color: $dark-gray-theme-dark;
-        border: 1px solid $onyx-black-theme-dark;
-
-        &:hover {
-            color: $dim-white-theme-dark;
-        }
-
-        &:active {
-            border: 1px solid $primary-color-theme-dark;
-            box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);
-            color: $dim-white-theme-dark;
-        }
-
-        &.disabled, &[disabled] {
-            pointer-events: none;
-            //Default Skin
-            color: $dark-gray-theme-dark;
-            background-color: $onyx-black-theme-dark;
-            border: none;
-            /*svg {
-                color: $dark-gray-theme-dark;
-            }*/
-        }
-    }
-    //button text variant
-    &--text {
-        background-color: initial;
-        border: none;
-        color: $gray-black-theme-dark;
-
-        &:hover {
-        }
-
-        &:active {
-        }
-
-        &.disabled, &[disabled] {
-            pointer-events: none;
-            //Default Skin
-            color: $dark-gray-theme-dark;
-            background-color: $onyx-black-theme-dark;
-            border: none;
-            /*svg {
-                color: $dark-gray-theme-dark;
-            }*/
-        }
-    }
-    // button extra large
-    &--extra-large {
-        font-size: $font-19-theme-dark;
-        height: 6.4rem;
-        font-weight: $font-weight-700;
-        padding: 0 4rem;
-    }
-    //button large
-    &--large {
-        height: 4.8rem;
-        font-size: $font-17-theme-dark;
-        padding: 0 2.4rem;
-    }
-    //button medium
-    &--medium {
-        height: 3.2rem;
-        font-size: $font-15-theme-dark;
-        padding: 0 1.6rem;
-    }
-    //button small
-    &--small {
-        height: 2.4rem;
-        font-size: $font-12-theme-dark;
-        padding: 0 1.2rem;
-    }
-    //buton disable
-    &.disabled, &[disabled] {
-        pointer-events: none;
-        //Default Skin
-        color: $dark-gray-theme-dark;
-        background-color: $onyx-black-theme-dark;
-        border: none;
-        /*svg {
-            color: $dark-gray-theme-dark;
-        }*/
     }
 }

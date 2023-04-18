@@ -1,3 +1,5 @@
+//=============== CheckBox ================//
+//TODO: A REVIEW
 .giz-checkbox {
     display: inline-flex;
 
@@ -6,18 +8,15 @@
         left: -9999px;
 
         & + label {
-            font-size: $font-15-theme-dark;
-            color: $secondary-color-theme-dark;
             position: relative;
             display: flex;
-            align-items: $align-center;
+            align-items: center;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
             cursor: pointer;
             margin: 4px 0;
-            font-weight: $font-weight-600;
         }
 
         &:checked + label {
@@ -26,28 +25,17 @@
 
         & + label:before {
             content: '';
-            /*position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);*/
             width: 2.4rem;
             height: 2.4rem;
-            background-color: $dark-gray-theme-dark;
-            border: 1px solid $onyx-black-theme-dark;
-            border-radius: $rounded-theme-dark;
             margin-right: 0.75rem;
         }
 
         &:checked + label:before {
             content: '';
-            background-color: $primary-color-theme-dark;
-            border-color: $primary-color-theme-dark;
         }
 
         &.disabled + label:before, &[disabled] + label:before {
             cursor: default;
-            background-color: $gray-dim-theme-dark;
-            border-color: $gray-dim-theme-dark;
             pointer-events: none;
         }
 
@@ -72,13 +60,9 @@
         }
 
         &:indeterminate + label:before {
-            background-color: $primary-color-theme-dark;
-            border-color: $primary-color-theme-dark;
         }
 
         &:indeterminate.disabled + label:before, &:indeterminate[disabled] + label:before {
-            background-color: $gray-color-theme-dark;
-            border-color: $gray-color-theme-dark;
         }
 
         &:indeterminate + label:after {

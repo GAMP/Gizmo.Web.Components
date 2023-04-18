@@ -1,0 +1,79 @@
+//=============== DatePicker ================//
+
+.giz-input-datepicker--popup {
+    [#{$dark-theme-comp-attr}] & {
+        .giz-input-datepicker__dropdown {
+            box-shadow: $elevation-3-theme-dark;
+        }
+    }
+}
+
+.giz-input-datepicker--dialog {
+    [#{$dark-theme-comp-attr}] & {
+        .giz-input-datepicker__dropdown {
+            background-color: #21212199;
+        }
+    }
+}
+
+// giz calendar (static/dialog)
+.giz-calendar {
+    [#{$dark-theme-comp-attr}] & {
+        border-radius: $rounded-theme-dark;
+        box-shadow: $elevation-3-theme-dark;
+        background-color: $dark-color-theme-dark;
+
+        .giz-calendar-header {
+            background-color: $primary-color-theme-dark;
+            color: white;
+        }
+
+        .giz-calendar-content {
+            background-color: $dark-color-theme-dark;
+            color: white;
+
+            .active {
+                background-color: $primary-color-theme-dark;
+                color: white;
+            }
+
+            .giz-calendar-title-switch {
+                .giz-calendar-title-slide:hover {
+                    font-weight: 600;
+                }
+            }
+
+            .giz-calendar-weekday {
+                color: $dim-light-theme-dark;
+                font-size: $font-12-theme-dark;
+            }
+
+            .giz-calendar-day {
+                .giz-calendar-day-count {
+                    font-size: $font-12-theme-dark;
+                }
+            }
+
+            .giz-calendar-month {
+                .giz-calendar-month-count {
+                    font-size: $font-16-theme-dark;
+                }
+            }
+
+            .giz-calendar-year {
+                font-size: $font-16-theme-dark;
+
+                .giz-calendar-year-count {
+                    &:hover:not(.active) {
+                        background-color: $light-color-theme-dark;
+                    }
+                }
+            }
+
+            .giz-calendar-action {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+}

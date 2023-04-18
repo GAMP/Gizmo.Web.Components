@@ -1,0 +1,17 @@
+//=============== gizmo menu classes ================//
+
+.giz-menu {
+    [#{$dark-theme-comp-attr}] & {
+        &__dropdown {
+            .giz-list {
+                border: 1px solid $onyx-black-theme-dark;
+                box-shadow: $elevation-2-theme-dark;
+                padding: 1.2rem 0.8rem;
+
+                .giz-list-item {
+                    padding: 0.4rem;
+                }
+            }
+        }
+    }
+}

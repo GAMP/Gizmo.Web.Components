@@ -1,0 +1,9 @@
+//=============== Avatar ================//
+
+.giz-avatar {
+    [#{$dark-theme-comp-attr}] & {
+        &.giz-avatar--rounded {
+            border-radius: $rounded-theme-dark;
+        }
+    }
+}

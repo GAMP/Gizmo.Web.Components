@@ -1,0 +1,16 @@
+//=============== Select ================//
+
+.giz-input-select {
+    [#{$dark-theme-comp-attr}] & {
+        &__dropdown {
+            box-shadow: $elevation-2-theme-dark;
+            border: 1px solid $border-color-theme-dark;
+
+            .giz-list {
+                .giz-list-item {
+                    padding: 1.6rem 2rem;
+                }
+            }
+        }
+    }
+}

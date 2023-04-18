@@ -1,0 +1,70 @@
+//=============== List ================//
+
+.giz-list {
+    [#{$dark-theme-comp-attr}] & {
+        border-radius: $rounded-theme-dark;
+        background-color: $dark-gray-theme-dark;
+
+        .giz-list-item {
+            color: $gray-black-theme-dark;
+            font-weight: 600;
+            font-size: $font-15-theme-dark;
+            line-height: $line-height-16-theme-dark;
+            letter-spacing: $letter-spacing-8-theme-dark;
+
+            &.disabled {
+                color: rgb(230, 230, 230);
+            }
+
+            &.active {
+                background-color: $primary-color-theme-dark;
+                color: white;
+            }
+
+            .giz-list-item-icon {
+                margin-right: 1.7rem;
+
+                &__placeholder {
+                    width: 2.4rem;
+                    height: 2.4rem;
+                    margin-right: 1.7rem
+                }
+            }
+        }
+
+        &.giz-list--clickable {
+            .giz-list-item {
+                &:hover {
+                    background-color: $dark-jungle-theme-dark;
+                    color: $primary-color-theme-dark;
+                }
+            }
+        }
+
+        &.giz-list--selectable {
+
+            .giz-list-item {
+
+                &.selected {
+                    background-color: $primary-color-theme-dark;
+                    color: white;
+                }
+            }
+        }
+
+        &.giz-list-with-header {
+            .giz-list-body {
+                padding-top: 0.5rem;
+            }
+        }
+    }
+}
+
+//== nested list
+
+.giz-nested-list-expand-icon {
+    [#{$dark-theme-comp-attr}] & {
+        margin-left: 1.2rem;
+        margin-right: 1.6rem;
+    }
+}

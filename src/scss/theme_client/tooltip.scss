@@ -1,0 +1,19 @@
+//=============== Tooltip ================//
+
+.giz-tooltip {
+    [#{$client-theme-comp-attr}] & {
+        background-color: $unknown-color;
+
+        &--top {
+            &::after {
+                border-color: $unknown-color transparent transparent transparent;
+            }
+        }
+
+        &--bottom {
+            &::after {
+                border-color: transparent transparent $unknown-color transparent;
+            }
+        }
+    }
+}

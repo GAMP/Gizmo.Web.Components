@@ -1,0 +1,59 @@
+//=============== RadioButton ================//
+
+.giz-radio {
+    [#{$dark-theme-comp-attr}] & {
+        display: inline-flex;
+
+        & input {
+            position: absolute;
+            left: -9999px;
+
+            & + label {
+                font-size: $font-15-theme-dark;
+                color: $secondary-color-theme-dark;
+                padding-left: 3.6rem;
+                margin: 5px 0;
+            }
+
+            &:checked + label {
+                overflow: visible;
+            }
+
+            & + label:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 2.4rem;
+                height: 2.4rem;
+                background-color: transparent;
+                border: 1px solid $gray-color-theme-dark;
+                border-radius: 100px;
+            }
+
+            &:checked + label:before {
+                content: '';
+                background-color: $primary-color-theme-dark;
+                border-color: $primary-color-theme-dark;
+            }
+
+            &.disabled + label:before, &[disabled] + label:before {
+                background-color: $gray-color-theme-dark;
+            }
+
+
+            &:checked + label:after {
+                content: '';
+                position: absolute;
+                left: 0.6rem;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1.4rem;
+                height: 1.4rem;
+                background-color: white;
+                border-radius: 100px;
+            }
+        }
+    }
+}

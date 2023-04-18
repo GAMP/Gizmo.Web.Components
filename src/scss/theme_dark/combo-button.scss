@@ -1,0 +1,10 @@
+//=============== ComboButton ================//
+
+.giz-combo-button {
+    [#{$dark-theme-comp-attr}] & {
+        &__dropdown {
+            box-shadow: $elevation-2-theme-dark;
+            border: 1px solid $border-color-theme-dark;
+        }
+    }
+}

@@ -1,6 +1,5 @@
-//=============== gizmo select classes ================//
+//=============== Select ================//
 
-//== giz-input select
 .giz-input-select {
     display: inline-block;
     position: relative;
@@ -24,10 +23,6 @@
     }
 
     &__dropdown {
-        //Default Skin
-        box-shadow: $elevation-2-theme-dark;
-        border: 1px solid $border-color-theme-dark;
-
         &--full-width {
             width: 100%;
         }
@@ -42,21 +37,14 @@
                 overflow: auto;
             }
         }
-
-        .giz-list {
-            .giz-list-item {
-                //Default Skin
-                padding: $spacer-16 $spacer-20;
-            }
-        }
     }
 
     .giz-input-control {
         cursor: pointer;
 
         .giz-input-root {
-            justify-content: $justify-space-between;
-            align-items: $align-center;
+            justify-content: space-between;
+            align-items: center;
 
             input {
                 cursor: pointer;

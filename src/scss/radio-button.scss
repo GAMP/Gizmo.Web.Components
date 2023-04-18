@@ -1,3 +1,5 @@
+//=============== RadioButton ================//
+
 .giz-radio {
     display: inline-flex;
 
@@ -6,18 +8,14 @@
         left: -9999px;
 
         & + label {
-            font-size: $font-15-theme-dark;
-            color: $secondary-color-theme-dark;
             position: relative;
-            padding-left: $spacer-36;
             display: flex;
-            align-items: $align-center;
+            align-items: center;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
             cursor: pointer;
-            margin: 5px 0;
         }
 
         &:checked + label {
@@ -33,19 +31,14 @@
             width: 2.4rem;
             height: 2.4rem;
             background-color: transparent;
-            border: 1px solid $gray-color-theme-dark;
             border-radius: 100px;
         }
 
         &:checked + label:before {
             content: '';
-            background-color: $primary-color-theme-dark;
-            border-color: $primary-color-theme-dark;
         }
 
         &.disabled + label:before, &[disabled] + label:before {
-            cursor: default;
-            background-color: $gray-color-theme-dark;
         }
 
         &.disabled + label, &[disabled] + label {

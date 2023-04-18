@@ -1,0 +1,7 @@
+//=============== Divider ================//
+
+.giz-divider {
+    [#{$dark-theme-comp-attr}] & {
+        background-color: $onyx-black-theme-dark;
+    }
+}

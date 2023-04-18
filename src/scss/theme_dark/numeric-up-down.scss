@@ -1,0 +1,29 @@
+//=============== NumericUpDown ================//
+
+.giz-input-numeric-up-down {
+    [#{$dark-theme-comp-attr}] & {
+        .giz-input-root {
+            &--small {
+                .giz-input-numeric-up-down__value {
+                    line-height: 3.2rem;
+                }
+            }
+
+            &--medium {
+                .giz-input-numeric-up-down__value {
+                    line-height: 3.9rem;
+                }
+            }
+
+            &--large {
+                .giz-input-numeric-up-down__value {
+                    line-height: 6.4rem;
+                }
+            }
+        }
+
+        &__value {
+            color: $gray-black-theme-dark;
+        }
+    }
+}

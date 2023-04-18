@@ -1,5 +1,4 @@
-
-//== tab.scss files == //
+//=============== Tab ================//
 
 .giz-tab.giz-tab--hidden {
     display: none;
@@ -43,9 +42,9 @@
     }
 
     &__ul {
-        list-style: $list-unstyled;
+        list-style: none;
         padding: 1.7rem 4.5rem;
-        padding: $spacer-0;
+        padding: 0;
         border-bottom: 1px solid $onyx-black-theme-dark;
     }
 

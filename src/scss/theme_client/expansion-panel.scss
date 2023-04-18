@@ -1,0 +1,13 @@
+//=============== ExpansionPanel ================//
+
+.giz-expansion-panel {
+    &__header {
+        &__content {
+            @include font-h5-theme-client($font-weight-bold-theme-client);
+            //Button
+            background-color: transparent;
+            border: none;
+            color: #FAFAFA;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+//=============== CircularProgressBar ================//
+
+.giz-circle-progress {
+    [#{$dark-theme-comp-attr}] & {
+        &--value {
+            border-radius: $rounded-circle-theme-dark;
+            font-weight: 400;
+        }
+
+        &.giz-circle-progress--extra-small {
+            &::after {
+                border-radius: $rounded-circle-theme-dark;
+                border-color: #ddd;
+            }
+        }
+
+        &.giz-circle-progress--small {
+            &::after {
+                border-radius: $rounded-circle-theme-dark;
+                border-color: #ddd;
+            }
+        }
+
+        &.giz-circle-progress--medium {
+            &::after {
+                border-radius: $rounded-circle-theme-dark;
+                border-color: #ddd;
+            }
+        }
+
+        &.giz-circle-progress--large {
+            &::after {
+                border-radius: $rounded-circle-theme-dark;
+                border-color: #ddd;
+            }
+        }
+
+        &.giz-circle-progress--extra-large {
+            &::after {
+                border-radius: $rounded-circle-theme-dark;
+                border-color: #ddd;
+            }
+        }
+    }
+}

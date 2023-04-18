@@ -1,25 +1,15 @@
-//== @import _partial.scss files == //
+//=============== Gizmo.Web.Components ================//
 
-@import "_variables";
-
-@import "theme_light";
-@import "theme_client";
-
-@import"_mixin";
-
-@import "_typography";
-
-//== @import component.scss files == //
-
-@import "autocomplete";
+@import "auto-complete";
 @import "avatar";
 @import "badge";
 @import "button";
 @import "button-group";
 @import "card";
-@import "checkbox";
+@import "check-box";
 @import "chip";
 @import "chip-group";
+@import "circular-progress-bar";
 @import "collapse";
 @import "combo-button";
 @import "data-grid";
@@ -29,6 +19,7 @@
 @import "expansion-panel";
 @import "file-input";
 @import "giz-input";
+@import "hierarchical-tree-view";
 @import "icon";
 @import "icon-button";
 @import "icon-select";
@@ -41,19 +32,27 @@
 @import "numeric-up-down";
 @import "overlay";
 @import "pagination";
+@import "password-input";
+@import "percentage-stack-bar";
+//@import "phone-input";
 @import "popup";
 @import "progress-bar";
-@import "radio";
+@import "radio-button";
 @import "rating";
 @import "select";
-@import "switch";
-@import "tab";
-@import "text-input";
-@import "time-picker";
-@import "tooltip";
-@import "tree-view";
+@import "simple-dialog";
 @import "simple-tab";
 @import "spinner";
+@import "switch";
+//@import "tab";
+@import "text-input";
+////@import "time-picker";
+////@import "tooltip";
+////@import "tree-view";
 
-@import "theme_light_components";
-@import "theme_client_components";
+
+@import "theme_dark/_theme_dark_components";
+
+@import "theme_light/_theme_light_components";
+
+@import "theme_client/_theme_client_components";

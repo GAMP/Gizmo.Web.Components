@@ -1,0 +1,88 @@
+//=============== Theme Dark Variables ================//
+
+$dark-theme-comp-attr: 'dark-theme';
+
+//=============== gizmo @import font family (common component variables root-size 10px) ================//
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400%3b500%3b600%3b700%3b800&display=swap');
+
+//== font family
+
+$font-family-theme-dark: 'Montserrat', sans-serif;
+
+//== common color
+
+$primary-color-theme-dark: #5A67F2;
+$primary-light-color-theme-dark: #F6FAFF;
+$secondary-color-theme-dark: #6E7689;
+$secondary-light-theme-dark: #FAFAFA;
+$secondary-dark-theme-dark: #eee;
+$info-color-theme-dark: #68C9FF;
+$success-color-theme-dark: #32CF92;
+$warning-color-theme-dark: #F2935A;
+$dark-color-theme-dark: #171c28;
+$dark-light-color-theme-dark: #1b212f;
+$dark-jungle-theme-dark: #1E2023;
+$dark-gray-theme-dark: #25282D;
+$onyx-black-theme-dark: #313439;
+$danger-color-theme-dark: #F25A68;
+$dim-white-theme-dark: #ECEFF7;
+$light-color-theme-dark: #eff0f2;
+$gray-color-theme-dark: #E6E8ED;
+$mid-gray-theme-dark: #5D6068;
+$gray-light-color-theme-dark: #CFD2D8;
+$gray-dark-theme-dark: #E7E9EE;
+$gray-black-theme-dark: #9095A0;
+$gray-dim-theme-dark: #3F4248;
+$dim-light-theme-dark: #939DB5;
+$dim-color-theme-dark: #6E7689;
+$border-color-theme-dark: #1f2637;
+$border-dark-color-theme-dark: #3b4150;
+$border-light-color-theme-dark: #c3c7ce;
+$border-dark-navy-theme-dark: #343539;
+$dark-navy-theme-dark: #293249;
+
+//font size
+$font-12-theme-dark: 1.2rem;
+$font-13-theme-dark: 1.3rem;
+$font-14-theme-dark: 1.4rem;
+$font-15-theme-dark: 1.5rem;
+$font-16-theme-dark: 1.6rem;
+$font-17-theme-dark: 1.7rem;
+$font-18-theme-dark: 1.8rem;
+$font-19-theme-dark: 1.9rem;
+$font-20-theme-dark: 2rem;
+
+//letter-spacing
+$letter-spacing-4-theme-dark: -0.04rem;
+$letter-spacing-8-theme-dark: -0.08rem;
+
+//line height
+$line-height-16-theme-dark: 1.6rem;
+$line-height-24-theme-dark: 2.4rem;
+$line-height-22-theme-dark: 2.2rem;
+
+//== box shadow (elevation)
+
+$elevation-0-theme-dark: none;
+$elevation-1-theme-dark: 0px 0px 9px rgba(72, 145, 255, 0.5);
+$elevation-2-theme-dark: 0px 8px 56px rgba(0, 0, 0, 0.1);
+$elevation-3-theme-dark: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+$elevation-4-theme-dark: 0px 4px 16px rgba(0, 0, 0, 0.08);
+
+//== border size
+
+$border-0-theme-dark: 0rem;
+$border-theme-dark: 1px solid #1f2637;
+$border-top-theme-dark: 1px solid #1f2637;
+$border-bottom-theme-dark: 1px solid #1f2637;
+$border-start-theme-dark: 1px solid #1f2637;
+$border-end-theme-dark: 1px solid #1f2637;
+
+//== border radius
+
+$rounded-circle-theme-dark: 50%;
+$rounded-pill-theme-dark: 9999px;
+$rounded-0-theme-dark: 0rem;
+$rounded-theme-dark: 0.4rem;
+$rounded-lg-theme-dark: 0.8rem;

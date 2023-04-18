@@ -1,4 +1,4 @@
-//=============== gizmo tooltip classes ================//
+//=============== Tooltip ================//
 
 .giz-tooltip-root {
     display: inline-block;
@@ -16,9 +16,9 @@
     position: absolute;
     z-index: 1;
     //Default Skin
-    text-align: $text-align-center;
+    text-align: center;
     padding: 0.438rem 0.563rem;
-    white-space: $nowrap-white-space;
+    white-space: nowrap;
     border-radius: $rounded-theme-dark;
 
     &--top {

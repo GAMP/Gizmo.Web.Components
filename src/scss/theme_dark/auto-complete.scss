@@ -1,0 +1,10 @@
+//=============== AutoComplete ================//
+
+.giz-input-autocomplete {
+    [#{$dark-theme-comp-attr}] & {
+        .giz-input-autocomplete__dropdown {
+            box-shadow: $elevation-2-theme-dark;
+            border: 1px solid $border-color-theme-dark;
+        }
+    }
+}

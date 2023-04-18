@@ -1,0 +1,211 @@
+//=============== Button ================//
+
+.giz-button {
+    [#{$dark-theme-comp-attr}] & {
+        font-size: $font-17-theme-dark;
+        border-radius: $rounded-theme-dark;
+        transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        font-weight: 600;
+        letter-spacing: $letter-spacing-8-theme-dark;
+        white-space: nowrap;
+        line-height: $line-height-22-theme-dark;
+        text-align: center;
+        align-items: center;
+
+        &__progress {
+            transition: width 0.2s;
+
+            &-wrapper {
+                border-radius: $rounded-theme-dark;
+            }
+        }
+        //group button
+        &--group-button {
+            border: $border-0-theme-dark;
+            //outline: $outline-0;
+            color: white;
+            background-color: $primary-color-theme-dark;
+
+            &:hover {
+                background-color: #4F5AD3;
+            }
+
+            &:active {
+                background-color: $primary-color-theme-dark;
+                box-shadow: 0px 0px 9px #4891FF;
+            }
+
+            &.disabled, &[disabled] {
+                pointer-events: none;
+                //Default Skin
+                color: $dark-gray-theme-dark;
+                background-color: $onyx-black-theme-dark;
+                border: none;
+                /*svg {
+                    color: $dark-gray-theme-dark;
+                }*/
+            }
+        }
+        //button fill variant
+        &--fill {
+            &:hover {
+                box-shadow: inset 0px 0px 10rem rgba(0, 0, 0, 0.2);
+            }
+
+            &.disabled, &[disabled] {
+                //Default Skin
+                color: $dark-gray-theme-dark;
+                background-color: $onyx-black-theme-dark;
+                /*svg {
+                    color: $dark-gray-theme-dark;
+                }*/
+            }
+
+            &.primary {
+                border: $border-0-theme-dark;
+                //outline: $outline-0;
+                color: white;
+                background-color: $primary-color-theme-dark;
+
+                &:active {
+                    background-color: $primary-color-theme-dark;
+                    box-shadow: 0px 0px 9px #4891FF;
+                }
+            }
+
+            &.warning {
+                border: $border-0-theme-dark;
+                //outline: $outline-0;
+                color: white;
+                background-color: $warning-color-theme-dark;
+
+                &:hover {
+                    background-color: #e98950;
+                }
+
+                &:active {
+                    background-color: $warning-color-theme-dark;
+                    box-shadow: 0px 0px 9px #e98950;
+                }
+
+                &.disabled, &[disabled] {
+                    pointer-events: none;
+                    //Default Skin
+                    color: $dark-gray-theme-dark;
+                    background-color: $onyx-black-theme-dark;
+                }
+                /*svg {
+                color: $dark-gray-theme-dark;
+            }*/
+            }
+
+            &.danger {
+                border: $border-0-theme-dark;
+                //outline: $outline-0;
+                color: white;
+                background-color: $danger-color-theme-dark;
+
+                &:hover {
+                    background-color: #e94554;
+                }
+
+                &:active {
+                    background-color: $danger-color-theme-dark;
+                    box-shadow: 0px 0px 9px #e98950;
+                }
+
+                &.disabled, &[disabled] {
+                    //Default Skin
+                    color: $dark-gray-theme-dark;
+                    background-color: $onyx-black-theme-dark;
+                    /*svg {
+                    color: $dark-gray-theme-dark;
+                }*/
+                }
+            }
+        }
+        //button outline variant
+        &--outline {
+            color: $dim-white-theme-dark;
+            background-color: $dark-gray-theme-dark;
+            border: 1px solid $onyx-black-theme-dark;
+
+            &:hover {
+                color: $dim-white-theme-dark;
+            }
+
+            &:active {
+                border: 1px solid $primary-color-theme-dark;
+                box-shadow: 0px 0px 9px rgba($primary-color-theme-dark, 0.5);
+                color: $dim-white-theme-dark;
+            }
+
+            &.disabled, &[disabled] {
+                //Default Skin
+                color: $dark-gray-theme-dark;
+                background-color: $onyx-black-theme-dark;
+                border: none;
+                /*svg {
+                color: $dark-gray-theme-dark;
+            }*/
+            }
+        }
+        //button text variant
+        &--text {
+            background-color: initial;
+            border: none;
+            color: $gray-black-theme-dark;
+
+            &:hover {
+            }
+
+            &:active {
+            }
+
+            &.disabled, &[disabled] {
+                //Default Skin
+                color: $dark-gray-theme-dark;
+                background-color: $onyx-black-theme-dark;
+                border: none;
+                /*svg {
+                color: $dark-gray-theme-dark;
+            }*/
+            }
+        }
+        // button extra large
+        &--extra-large {
+            font-size: $font-19-theme-dark;
+            height: 6.4rem;
+            font-weight: 700;
+            padding: 0 4rem;
+        }
+        //button large
+        &--large {
+            height: 4.8rem;
+            font-size: $font-17-theme-dark;
+            padding: 0 2.4rem;
+        }
+        //button medium
+        &--medium {
+            height: 3.2rem;
+            font-size: $font-15-theme-dark;
+            padding: 0 1.6rem;
+        }
+        //button small
+        &--small {
+            height: 2.4rem;
+            font-size: $font-12-theme-dark;
+            padding: 0 1.2rem;
+        }
+        //button disable
+        &.disabled, &[disabled] {
+            //Default Skin
+            color: $dark-gray-theme-dark;
+            background-color: $onyx-black-theme-dark;
+            border: none;
+            /*svg {
+                color: $dark-gray-theme-dark;
+            }*/
+        }
+    }
+}

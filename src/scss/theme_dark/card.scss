@@ -1,0 +1,42 @@
+//=============== Card ================//
+
+.giz-card {
+    [#{$dark-theme-comp-attr}] & {
+        background-color: $dark-gray-theme-dark;
+        border-radius: $rounded-theme-dark;
+        color: $secondary-color-theme-dark;
+        box-shadow: $elevation-2-theme-dark;
+
+        &.giz-card-outlined {
+            border: 1px solid $gray-light-color-theme-dark;
+        }
+
+        .giz-card-header {
+            display: flex;
+            padding: 1.6rem;
+            align-items: center;
+
+            .giz-card-header-content {
+                flex: 1 1 auto;
+            }
+
+            .giz-card-header-actions {
+                flex: 0 0 auto;
+                align-self: flex-start;
+                margin-top: -0.8rem;
+                margin-right: -0.8rem;
+            }
+        }
+
+        .giz-card-body {
+            padding: 1.6rem;
+            overflow: auto;
+        }
+
+        .giz-card-footer {
+            display: flex;
+            padding: 1.6rem;
+            align-items: center;
+        }
+    }
+}

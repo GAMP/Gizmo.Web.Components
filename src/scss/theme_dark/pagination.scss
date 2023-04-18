@@ -1,0 +1,33 @@
+//=============== Pagination ================//
+
+.giz-pagination {
+    [#{$dark-theme-comp-attr}] & {
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+
+        & li {
+            padding: 0 1.4rem;
+            margin: 0 0.6rem;
+            color: $secondary-color-theme-dark;
+            border-radius: $rounded-theme-dark;
+            border: 1px solid $border-dark-color-theme-dark;
+            font-weight: 600;
+            height: 3.2rem;
+
+            &:hover:not(.disabled), &.active {
+                background-color: #5a7ff2;
+                border-color: #5a7ff2;
+                color: white;
+            }
+        }
+
+        &-btn {
+            &.disabled {
+                color: $dark-gray-theme-dark;
+                background-color: $onyx-black-theme-dark;
+            }
+        }
+    }
+}

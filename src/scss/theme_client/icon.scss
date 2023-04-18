@@ -1,0 +1,36 @@
+//=============== Icon ================//
+
+.giz-icon--extra-small {
+    [#{$client-theme-comp-attr}] & {
+        width: 1.0rem;
+        height: 1.0rem;
+    }
+}
+
+.giz-icon--small {
+    [#{$client-theme-comp-attr}] & {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
+
+.giz-icon--medium {
+    [#{$client-theme-comp-attr}] & {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+}
+
+.giz-icon--large {
+    [#{$client-theme-comp-attr}] & {
+        width: 2.8rem;
+        height: 2.8rem;
+    }
+}
+
+.giz-icon--extra-large {
+    [#{$client-theme-comp-attr}] & {
+        width: 3.8rem;
+        height: 3.8rem;
+    }
+}
