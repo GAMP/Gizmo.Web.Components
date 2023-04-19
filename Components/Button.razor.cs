@@ -395,11 +395,11 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string ButtonIconLeft => new ClassMapper()
-                .If("giz-button-icon-left", () => ChildContent != null || !string.IsNullOrEmpty(RightIcon))
+                .If("giz-button__icon-left", () => ChildContent != null || !string.IsNullOrEmpty(RightIcon))
                 .AsString();
 
         protected string ButtonIconRight => new ClassMapper()
-                .Add("giz-button-icon-right")
+                .Add("giz-button__icon-right")
                 .AsString();
 
         #endregion

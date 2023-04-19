@@ -140,11 +140,11 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string IconLeft => new ClassMapper()
-                .Add("giz-input-icon-left")
+                .Add("giz-input__icon-left")
                 .AsString();
 
         protected string IconRight => new ClassMapper()
-                .Add("giz-input-icon-right")
+                .Add("giz-input__icon-right")
                 .AsString();
 
         protected string FieldClassName => new ClassMapper()
@@ -152,7 +152,6 @@ namespace Gizmo.Web.Components
                  .Add($"giz-input-root--{Size.ToDescriptionString()}")
                  .If("giz-input-root--outline", () => HasOutline)
                  .If("giz-input-root--shadow", () => HasShadow)
-                 .If("giz-input-root--filled", () => !IsTransparent)
                  .If("giz-input-root--transparent", () => IsTransparent)
                  .If("giz-input-root--full-width", () => IsFullWidth)
                  .AsString();
