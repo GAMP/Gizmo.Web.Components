@@ -10,17 +10,17 @@
 
     @if (!string.IsNullOrEmpty(Icon) || SVGIcon.HasValue)
     {
-        <Icon Source="@Icon" SVGIcon="SVGIcon" Class="giz-list-item-icon" />
+        <Icon Source="@Icon" SVGIcon="SVGIcon" Class="giz-list-item__icon" />
     }
     else
     {
         if (Parent.PreserveIconSpace)
         {
-            <div class="giz-list-item-icon__placeholder"></div>
+            <div class="giz-list-item__icon__placeholder"></div>
         }
     }
 
-    <div class="flex-grow-1 mr-auto">
+    <div class="giz-list-item__content">
         @ChildContent
     </div>
 
@@ -28,18 +28,18 @@
     {
         @if (IsExpanded)
         {
-            <Icon SVGIcon="Icons.TriangleUp" Class="giz-nested-list-expand-icon" />
+            <Icon SVGIcon="Icons.TriangleUp" Class="giz-list-nested-list-expand-icon" />
         }
         else
         {
-            <Icon SVGIcon="Icons.TriangleDown" Class="giz-nested-list-expand-icon" />
+            <Icon SVGIcon="Icons.TriangleDown" Class="giz-list-nested-list-expand-icon" />
         }
     }
 </div>
 @if (NestedList != null)
 {
     <Collapse Expanded="@IsExpanded">
-        <List Class="giz-nested-list" IsDisabled="@IsDisabled" ExpandBottomToTop="@(Parent?.ExpandBottomToTop ?? false)">
+        <List Class="giz-list-nested-list" IsDisabled="@IsDisabled" ExpandBottomToTop="@(Parent?.ExpandBottomToTop ?? false)">
             @NestedList
         </List>
     </Collapse>

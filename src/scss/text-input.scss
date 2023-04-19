@@ -1,7 +1,11 @@
-//=============== gizmo text-input classes ================//
+//=============== TextInput ================//
 
-.giz-input-text {
+.giz-text-input {
     display: inline-block;
+
+    &--full-width {
+        display: block;
+    }
 
     .giz-input-root {
         textarea {
@@ -11,13 +15,6 @@
             outline: none;
             background-color: inherit;
             height: 100%;
-            //Default Skin
-            color: white;
         }
-    }
-    //Default Skin
-
-    &--full-width {
-        display: block;
     }
 }

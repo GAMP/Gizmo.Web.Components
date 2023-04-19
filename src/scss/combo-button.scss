@@ -1,25 +1,8 @@
+//=============== ComboButton ================//
+
 .giz-combo-button {
     display: inline-flex;
-    grid-template-columns: 1fr min-content;
-    gap: 2px;
     position: relative;
-
-    & > .left-button {
-        border-bottom-right-radius: 0px !important;
-        border-top-right-radius: 0px !important;
-
-        .giz-button__progress {
-            &-wrapper {
-                border-bottom-right-radius: 0px !important;
-                border-top-right-radius: 0px !important;
-            }
-        }
-    }
-
-    & > .right-button {
-        border-bottom-left-radius: 0px !important;
-        border-top-left-radius: 0px !important;
-    }
 
     &--full-width {
         display: flex;
@@ -30,8 +13,7 @@
     }
 
     &__dropdown {
-        box-shadow: $elevation-2-theme-dark;
-        border: 1px solid $border-color-theme-dark;
+        background-color: white;
 
         &--full-width {
             min-width: 100%;
@@ -44,9 +26,8 @@
                 right: 0;
                 left: 0;
 
-                .giz-nested-list {
+                .giz-list-nested-list {
                     &.giz-list--right {
-                        //left: calc(100% + 8px);
                     }
 
                     &.giz-list--left {

@@ -461,14 +461,14 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-autocomplete")
-                 .If("giz-input-autocomplete--full-width", () => IsFullWidth)
+                 .Add("giz-auto-complete")
+                 .If("giz-auto-complete--full-width", () => IsFullWidth)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-autocomplete__dropdown")
-                 .If("giz-input-autocomplete__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-input-autocomplete__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .Add("giz-auto-complete__dropdown")
+                 .If("giz-auto-complete__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-auto-complete__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .AsString();
 
         protected string PopupStyleValue => new StyleMapper()

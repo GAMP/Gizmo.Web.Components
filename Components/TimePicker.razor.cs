@@ -309,14 +309,14 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-timepicker")
-                 .If("giz-input-timepicker--full-width", () => IsFullWidth)
-                 .Add("giz-input-timepicker--popup")
+                 .Add("giz-input-time-picker")
+                 .If("giz-input-time-picker--full-width", () => IsFullWidth)
+                 .Add("giz-input-time-picker--popup")
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-timepicker__dropdown")
-                 .If("giz-input-datepicker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .Add("giz-input-time-picker__dropdown")
+                 .If("giz-date-picker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
                  .If("giz-timepicker-dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .AsString();
 

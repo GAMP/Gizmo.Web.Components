@@ -1,55 +1,32 @@
-//=============== gizmo tooltip classes ================//
-
-.giz-tooltip-root {
-    display: inline-block;
-    position: relative;
-
-    &:hover {
-        .giz-tooltip {
-            visibility: visible;
-        }
-    }
-}
+//=============== Tooltip ================//
 
 .giz-tooltip {
     visibility: hidden;
     position: absolute;
     z-index: 1;
-    //Default Skin
-    text-align: $text-align-center;
-    padding: 0.438rem 0.563rem;
-    white-space: $nowrap-white-space;
-    border-radius: $rounded-theme-dark;
+    background-color: black;
+    color: white;
+
+    &-root {
+        display: inline-block;
+        position: relative;
+
+        &:hover {
+            .giz-tooltip {
+                visibility: visible;
+            }
+        }
+    }
 
     &--top {
         bottom: 100%;
         left: 50%;
-        transform: translate(-50%, calc(-10px));
-
-        &::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-        }
+        transform: translate(-50%, 0);
     }
 
     &--bottom {
         top: 100%;
         left: 50%;
-        transform: translate(-50%, calc(10px));
-
-        &::after {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-        }
+        transform: translate(-50%, 0);
     }
 }

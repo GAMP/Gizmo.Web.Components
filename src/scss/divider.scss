@@ -1,11 +1,8 @@
-//=============== gizmo divider classes ================//
+//=============== Divider ================//
 
 .giz-divider {
-    //Default Skin
-    background-color: $onyx-black-theme-dark;
-
     &--vertical {
-        width: 1px;
+        width: 0.1rem;
         height: auto;
         margin-block-start: 0;
         margin-block-end: 0;

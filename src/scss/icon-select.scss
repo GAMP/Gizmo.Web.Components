@@ -1,29 +1,35 @@
-.giz-icon-select--virtualized {
-    .giz-list-item {
-        white-space: nowrap;
-    }
-}
+//=============== IconSelect ================//
 
-.giz-icon-select-item {
-    display: grid;
-    grid-template-columns: min-content 1fr min-content;
-    align-items: center;
-    gap: 1.0rem;
-    width: 100%;
+.giz-icon-select {
+    display: inline-block;
 
-    &__icon {
-        display: flex;
+    &-item {
+        display: grid;
+        grid-template-columns: min-content 1fr min-content;
         align-items: center;
-        width: 2.4rem;
+        gap: 1.0rem;
+        width: 100%;
 
-        img {
-            width: 100%;
-            height: 100%;
+        &__icon {
+            display: flex;
+            align-items: center;
+            width: 2.4rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__display {
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
-    &__display {
-        overflow: hidden;
-        text-overflow: ellipsis;
+    &--virtualized {
+        .giz-list-item {
+            white-space: nowrap;
+        }
     }
 }

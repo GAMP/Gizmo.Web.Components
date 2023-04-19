@@ -8,7 +8,7 @@
         <span class="giz-time-picker-header--title">@(_hours.ToString().PadLeft(2, '0') ?? "00")</span>
         <div><span class="giz-time-picker-header--title">:</span></div>
         <span class="giz-time-picker-header--title">@(_minutes.ToString().PadLeft(2, '0') ?? "00")</span>
-        <div class="giz-time-picker-header--ampm ml-3">
+        <div class="giz-time-picker-header--ampm">
             <span class="giz-time-picker-header--label">@(_previewValue.HasValue ? _previewValue.Value.ToString("tt") : DateTime.Now.ToString("tt"))</span>
         </div>
     </div>

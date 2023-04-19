@@ -7,13 +7,13 @@
 
     <Card Style="@DialogStyleValue">
         <CardHeader>
-            <div class="d-flex align-center flex-grow-1">
-                <div class="flex-grow-1 ">
+            <div class="">
+                <div class="">
                     @DialogHeader
                 </div>
                 @if (ShowCloseButton)
                 {
-                    <div class="giz-dialog-close-button">
+                    <div class="giz-dialog__close-button">
                         <Button Size="ButtonSizes.Large" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Close" @onclick="OnClickButtonCloseHandler" />
                     </div>
                 }

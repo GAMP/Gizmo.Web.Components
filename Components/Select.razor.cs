@@ -446,15 +446,15 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-select")
-                 .If("giz-input-select--full-width", () => IsFullWidth)
+                 .Add("giz-select")
+                 .If("giz-select--full-width", () => IsFullWidth)
                  .If("open", () => _isOpen)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-select__dropdown")
-                 .If("giz-input-select__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-input-select__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .Add("giz-select__dropdown")
+                 .If("giz-select__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-select__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .If(PopupClass, () => !string.IsNullOrEmpty(PopupClass))
                  .AsString();
 

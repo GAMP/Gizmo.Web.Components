@@ -1,14 +1,11 @@
-//=============== gizmo select classes ================//
+//=============== Select ================//
 
-//== giz-input select
-.giz-input-select {
+.giz-select {
     display: inline-block;
     position: relative;
 
-    &.open {
-        .giz-input-icon-right {
-            transform: rotate(180deg);
-        }
+    &--full-width {
+        display: block;
     }
 
     &__content {
@@ -19,14 +16,8 @@
         }
     }
 
-    &--full-width {
-        display: block;
-    }
-
     &__dropdown {
-        //Default Skin
-        box-shadow: $elevation-2-theme-dark;
-        border: 1px solid $border-color-theme-dark;
+        background-color: white;
 
         &--full-width {
             width: 100%;
@@ -42,21 +33,14 @@
                 overflow: auto;
             }
         }
-
-        .giz-list {
-            .giz-list-item {
-                //Default Skin
-                padding: $spacer-16 $spacer-20;
-            }
-        }
     }
 
     .giz-input-control {
         cursor: pointer;
 
         .giz-input-root {
-            justify-content: $justify-space-between;
-            align-items: $align-center;
+            justify-content: space-between;
+            align-items: center;
 
             input {
                 cursor: pointer;

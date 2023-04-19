@@ -8,7 +8,7 @@
          style="@Style"
          id="@Id"
          @ref="@Ref">         
-        <div class="giz-input-multi-select__content_wrapper" @ref="_inputElement">
+        <div class="giz-multi-select__content_wrapper" @ref="_inputElement">
             <GizInput Label="@Label"
                       ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
                       IsDisabled="@IsDisabled"
@@ -23,7 +23,7 @@
                       RightSVGIcon="@(HandleSVGIcon.HasValue ? HandleSVGIcon.Value : Icons.TriangleDown)"
                       @onclick="OnClickInput">
 
-                <div class="giz-input-multi-select__content" tabindex="0" style="outline: none">
+                <div class="giz-multi-select__content" tabindex="0" style="outline: none">
                     @GetSelectedItemsText()
                 </div>
 
@@ -38,7 +38,7 @@
                    OpenDirection="@OpenDirection"
                    Class="@PopupClassName"
                    Style="@PopupStyleValue">
-                <div class="giz-input-multi-select-list" @ref="_popupContent">
+                <div class="giz-multi-select-list" @ref="_popupContent">
                     @ChildContent
                 </div>
             </Popup>

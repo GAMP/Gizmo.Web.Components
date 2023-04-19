@@ -13,7 +13,7 @@ else
          @ref="@Ref">
         <div class="giz-calendar-header">
             <div @onclick="OnClickButtonYearHandler"><span class="giz-calendar-year-title">@(_previousValue?.ToString("yyyy") ?? DateTime.Now.ToString("yyyy"))</span></div>
-            <div class="giz-calendar-title mt-3">@(_previousValue?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>
+            <div class="giz-calendar-title">@(_previousValue?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>
         </div>
         <div class="giz-calendar-content">
             @if (_showMonthPicker)
@@ -87,7 +87,7 @@ else
                 </div>
                 @if (ShowTime)
                 {
-                    <div class="d-flex justify-center pb-2">
+                    <div class="">
                         <IconButton SVGIcon="Icons.Time2" Variant="ButtonVariants.Text" @onclick="OnClickTimePickerHandler" />
                     </div>
                 }

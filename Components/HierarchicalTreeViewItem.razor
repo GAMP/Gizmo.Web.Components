@@ -9,11 +9,11 @@
      @ondblclick="OnDoubleClickEvent"
      @ondblclick:stopPropagation="true">
 
-    <div class="giz-tree-view-item__body"
+    <div class="giz-hierarchical-tree-view-item__body"
          @oncontextmenu:preventDefault="true"
          @oncontextmenu="ContextMenuHandler">
         <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(_hasSubItems ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickExpandButtonHandler" />
-        <div class="giz-tree-view-item__content">
+        <div class="giz-hierarchical-tree-view-item__content">
             @ChildContent
         </div>
     </div>

@@ -276,7 +276,7 @@ namespace Gizmo.Web.Components
                  .If("giz-list--top", () => ExpandBottomToTop)
                  .If("giz-list--clickable", () => CanClick)
                  .If("giz-list--selectable", () => CanSelect)
-                 .If("giz-list-with-header", () => ListHeader != null)
+                 .If("giz-list--with-header", () => ListHeader != null)
                  .AsString();
 
         protected string StyleValue => new StyleMapper()

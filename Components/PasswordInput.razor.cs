@@ -191,8 +191,8 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-password")
-                 .If("giz-input-password--full-width", () => IsFullWidth)
+                 .Add("giz-password-input")
+                 .If("giz-password-input--full-width", () => IsFullWidth)
                  .Add(Class)
                  .AsString();
 

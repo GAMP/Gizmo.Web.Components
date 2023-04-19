@@ -9,7 +9,7 @@
          style="@Style"
          id="@Id"
          @ref="@Ref">
-        <div class="giz-input-autocomplete__content" @ref="_inputElement">
+        <div class="giz-auto-complete__content" @ref="_inputElement">
             <GizInput Label="@Label"
                       ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
                       IsDisabled="@IsDisabled"
@@ -52,7 +52,7 @@
                             }
                             else
                             {
-                                <SelectItem TValue="@TValue" Value="@GetItemValue(item)" Text="@GetItemText(item)" />
+                                <SelectItem TValue="TValue" Value="@GetItemValue(item)" Text="@GetItemText(item)" />
                             }
                         }
                     }

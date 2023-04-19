@@ -121,9 +121,9 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-dialog")
                  .If("giz-dialog--open", () => IsOpen)
-                 .If("fade", () => Fade)
-                 .If("fade-in", () => IsOpen && Fade && !_isFadingOut)
-                 .If("fade-out", () => IsOpen && Fade && _isFadingOut)
+                 .If("giz-dialog--fade", () => Fade)
+                 .If("giz-dialog--fade-in", () => IsOpen && Fade && !_isFadingOut)
+                 .If("giz-dialog--fade-out", () => IsOpen && Fade && _isFadingOut)
                  .AsString();
 
         protected string DialogStyleValue => new StyleMapper()

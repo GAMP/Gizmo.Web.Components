@@ -184,9 +184,9 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-tree-view-item")
+                 .Add("giz-hierarchical-tree-view-item")
                  .If("selected", () => _isSelected)
-                 .If("giz-tree-view-item--expanded", () => IsExpanded)
+                 .If("giz-hierarchical-tree-view-item--expanded", () => IsExpanded)
                  .AsString();
 
         #endregion

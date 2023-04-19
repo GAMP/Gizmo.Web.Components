@@ -1,45 +1,8 @@
-//=============== gizmo card classes ================//
+//=============== Card ================//
 
 .giz-card {
     position: relative;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
-    //Default Skin
-    background-color: $dark-gray-theme-dark;
-    border-radius: $rounded-theme-dark;
-    color: $secondary-color-theme-dark;
-    box-shadow: $elevation-2-theme-dark;
-
-    &.giz-card-outlined {
-        border: 1px solid $gray-light-color-theme-dark;
-    }
-
-    .giz-card-header {
-        display: flex;
-        padding: $spacer-16;
-        align-items: $align-center;
-
-        .giz-card-header-content {
-            flex: $flex-fill;
-        }
-
-        .giz-card-header-actions {
-            flex: 0 0 auto;
-            align-self: $align-self-start;
-            margin-top: $spacer-n8;
-            margin-right: $spacer-n8;
-        }
-    }
-
-    .giz-card-body {
-        padding: $spacer-16;
-        overflow: auto;
-    }
-
-    .giz-card-footer {
-        display: flex;
-        padding: $spacer-16;
-        align-items: $align-center;
-    }
 }

@@ -220,7 +220,7 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-tree-view")
+                 .Add("giz-hierarchical-tree-view")
                  .AsString();
 
         #endregion

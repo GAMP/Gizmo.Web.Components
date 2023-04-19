@@ -1,6 +1,6 @@
-//=============== gizmo file-input classes ================//
+//=============== FileInput ================//
 
-.giz-input-file {
+.giz-file-input {
     display: inline-block;
     position: relative;
     pointer-events: none;
@@ -26,8 +26,6 @@
         pointer-events: all;
         cursor: pointer;
     }
-
-    //Default Skin
 
     &--full-width {
         display: block;

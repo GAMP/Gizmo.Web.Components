@@ -20,7 +20,7 @@
         {
             @foreach (var item in ItemSource)
             {
-                <HierarchicalTreeViewItem TItemType="@TItemType" Item="@item">
+                <HierarchicalTreeViewItem TItemType="TItemType" Item="@item">
                     @DataTemplate(item)
                 </HierarchicalTreeViewItem>
             }

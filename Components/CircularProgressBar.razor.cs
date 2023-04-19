@@ -58,8 +58,8 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-circle-progress")
-                 .Add($"giz-circle-progress--{Size.ToDescriptionString()}")
+                 .Add("giz-circular-progress-bar")
+                 .Add($"giz-circular-progress-bar--{Size.ToDescriptionString()}")
                  .AsString();
 
         #endregion

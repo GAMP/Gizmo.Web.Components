@@ -70,7 +70,7 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-radio")
+                 .Add("giz-radio-button")
                  .If("disabled", () => IsDisabled)
                  .AsString();
 

@@ -1,6 +1,7 @@
-//=============== gizmo avatar classes ================//
+//=============== Avatar ================//
 
 .giz-avatar {
+    display: inline-block;
     overflow: hidden;
 
     img {
@@ -8,28 +9,32 @@
         height: 100%;
     }
 
-    &.giz-avatar--circle {
+    &--circle {
         border-radius: 50%;
     }
 
-    //Default Skin
+    &--extra-small {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
 
-    &.giz-avatar--small {
+    &--small {
         width: 3.2rem;
         height: 3.2rem;
     }
 
-    &.giz-avatar--medium {
+    &--medium {
         width: 7.2rem;
         height: 7.2rem;
     }
 
-    &.giz-avatar--large {
+    &--large {
         width: 10.4rem;
         height: 10.4rem;
     }
 
-    &.giz-avatar--rounded {
-        border-radius: $rounded-theme-dark;
+    &--extra-large {
+        width: 11.2rem;
+        height: 11.2rem;
     }
 }

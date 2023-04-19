@@ -1,4 +1,4 @@
-//=============== gizmo expansion panel classes ================//
+//=============== ExpansionPanel ================//
 
 .giz-expansion-panel {
     &__header {
@@ -8,67 +8,11 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            //Default Skin
-            @include font-h5($font-weight-bold);
-            //Button
-            background-color: transparent;
-            border: none;
-            color: #FAFAFA;
         }
     }
 
     &__body {
         display: none;
         box-sizing: border-box;
-    }
-
-    &.expanded {
-        .giz-expansion-panel-arrow {
-            transform: rotate(180deg);
-        }
-
-        .giz-expansion-panel__body {
-            display: block;
-        }
-    }
-
-    &.expanding {
-        .giz-expansion-panel__body {
-            overflow: hidden;
-            animation-name: giz-expansion-panel-expanding-animation;
-            animation-timing-function: ease-in-out;
-            animation-duration: 0.4s;
-            animation-fill-mode: forwards;
-        }
-    }
-
-    &.collapsing {
-        .giz-expansion-panel__body {
-            overflow: hidden;
-            animation-name: giz-expansion-panel-collapsing-animation;
-            animation-timing-function: ease-in-out;
-            animation-duration: 0.4s;
-            animation-fill-mode: forwards;
-        }
-    }
-}
-
-@keyframes giz-expansion-panel-expanding-animation {
-    from {
-        height: 0;
-    }
-
-    to {
-        height: var(--abh);
-    }
-}
-
-@keyframes giz-expansion-panel-collapsing-animation {
-    from {
-        height: var(--abh);
-    }
-
-    to {
-        height: 0;
     }
 }

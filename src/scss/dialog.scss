@@ -1,4 +1,4 @@
-//=============== gizmo dialog classes ================//
+//=============== Dialog ================//
 
 .giz-dialog {
     position: fixed;
@@ -14,27 +14,24 @@
     overflow-y: auto;
     z-index: 100;
     //Default Skin
-    outline: $outline-0;
+    outline: 0rem;
     background-color: rgba(230, 230, 230, 0.3);
     padding: 1rem;
 
-    &__content {
-    }
-
-    &.giz-dialog--open {
+    &--open {
         visibility: visible;
     }
 
-    &.fade {
+    &.giz-dialog--fade {
         opacity: 0;
         transition: opacity ease-in-out 0.3s;
     }
 
-    &.fade-in {
+    &.giz-dialog--fade-in {
         opacity: 1;
     }
 
-    &.fade-out {
+    &.giz-dialog--fade-out {
         opacity: 0;
     }
 }

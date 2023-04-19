@@ -1,50 +1,9 @@
-//=============== gizmo chip group classes ================//
+//=============== ChipGroup ================//
 
 .giz-chip-group {
-    display: inline-block;
-    //Default Skin
-
-    .giz-chip {
-        margin-right: 1rem;
-
-        &:last-child {
-            margin-right: 0px;
-        }
-
-        &.disabled {
-            color: $unknown-color;
-            cursor: default;
-        }
-    }
-
-    &.primary {
-        .giz-chip {
-            &.selected {
-                color: white;
-                background-color: $primary-color;
-                box-shadow: $elevation-1;
-            }
-        }
-    }
-
-    &.secondary {
-        .giz-chip {
-            &.selected {
-                color: white;
-                background-color: $unknown-color;
-            }
-        }
-    }
-
-    &.info {
-        .giz-chip {
-            &.selected {
-                color: white;
-                background-color: $unknown-color;
-            }
-        }
-    }
+    display: inline-flex;
 
     &.disabled {
+        pointer-events: none;
     }
 }

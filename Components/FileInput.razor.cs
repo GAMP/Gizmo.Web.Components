@@ -22,8 +22,8 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-file")
-                 .If("giz-input-file--full-width", () => IsFullWidth)
+                 .Add("giz-file-input")
+                 .If("giz-file-input--full-width", () => IsFullWidth)
                  .Add(Class)
                  .AsString();
 

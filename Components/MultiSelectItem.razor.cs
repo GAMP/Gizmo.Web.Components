@@ -120,7 +120,7 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-multi-select-item")
+                 .Add("giz-multi-select-item")
                  .If("selected", () => _isSelected)
                  .If("disabled", () => IsDisabled)
                  .AsString();

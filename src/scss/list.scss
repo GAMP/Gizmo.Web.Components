@@ -1,102 +1,39 @@
-//== list.scss files == //
+//=============== List ================//
 
 .giz-list {
     position: relative;
-    //min-width: 15rem;
-    text-align: left;
-    //Default Theme
-    border-radius: $rounded-theme-dark;
-    background-color: $dark-gray-theme-dark;
 
     .giz-list-item {
         display: flex;
         align-items: center;
         cursor: pointer;
-        //Default Theme
-        color: $gray-black-theme-dark;
-        font-weight: $font-weight-600;
-        font-size: $font-15-theme-dark;
-        line-height: $line-height-16-theme-dark;
-        letter-spacing: $letter-spacing-8-theme-dark;
-        text-decoration: $text-decoration;
+        text-decoration: none;
 
         &.disabled {
-            color: rgb(230, 230, 230);
             cursor: default;
             pointer-events: none;
         }
-
-        &.active {
-            //Default Theme
-            background-color: $primary-color-theme-dark;
-            color: white;
-        }
-
-        .giz-list-item-icon {
-            margin-right: $spacer-17;
-
-            &__placeholder {
-                width: 2.4rem;
-                height: 2.4rem;
-                margin-right: 1.7rem
-            }
-        }
     }
 
-    &.giz-list--clickable {
-        .giz-list-item {
-            &:hover {
-                //Default Theme
-                background-color: $dark-jungle-theme-dark;
-                color: $primary-color-theme-dark;
-            }
-        }
-    }
-
-    &.giz-list--selectable {
-
-        .giz-list-item {
-
-            &.selected {
-                //Default Theme
-                background-color: $primary-color-theme-dark;
-                color: white;
-            }
-        }
-    }
-
-    &.giz-list-with-header {
+    &.giz-list--with-header {
         display: grid;
         grid-template-rows: auto 1fr;
+    }
 
-        .giz-list-body {
-            padding-top: 0.5rem;
+    &-nested-list {
+        position: absolute;
+        width: max-content;
+
+        &.giz-list--right {
+            left: 100%;
+        }
+
+        &.giz-list--left {
+            right: 100%;
+        }
+
+        &.giz-list--top {
+            bottom: 0;
         }
     }
-}
-
-//== nested list
-
-.giz-nested-list {
-    position: absolute;
-    margin-top: -50px;
-    width: max-content;
-
-    &.giz-list--right {
-        left: 100%;
-    }
-
-    &.giz-list--left {
-        right: 100%;
-    }
-
-    &.giz-list--top {
-        margin-top: unset;
-        bottom: 0;
-    }
-}
-
-.giz-nested-list-expand-icon {
-    margin-left: $spacer-12;
-    margin-right: $spacer-16;
 }

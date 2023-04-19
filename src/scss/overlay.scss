@@ -1,4 +1,4 @@
-//=============== gizmo overlay classes ================//
+//=============== Overlay ================//
 
 .giz-overlay {
     width: 100vw;
@@ -8,8 +8,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    //Default Skin
-    outline: $outline-0;
+    outline: 0;
 
     &--visible {
         display: flex;

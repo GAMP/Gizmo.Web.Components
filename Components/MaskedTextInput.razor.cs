@@ -22,8 +22,8 @@ namespace Gizmo.Web.Components
 
         protected string ClassName => new ClassMapper()
                  .Add("giz-masked-text-input")
-                 .Add("giz-input-text")
-                 .If("giz-input-text--full-width", () => IsFullWidth)
+                 .Add("giz-text-input")
+                 .If("giz-text-input--full-width", () => IsFullWidth)
                  .Add(Class)
                  .AsString();
 

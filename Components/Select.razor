@@ -8,7 +8,7 @@
          style="@Style"
          id="@Id"
          @ref="@Ref">         
-        <div class="giz-input-select__content_wrapper" @ref="_inputWrapperElement">
+        <div class="giz-select__content_wrapper" @ref="_inputWrapperElement">
             <GizInput Label="@Label"
                       ValidationErrorStyle="@(ValidationErrorStyle == ValidationErrorStyles.Label ? ValidationErrorStyles.BorderOnly : ValidationErrorStyle)"
                       IsDisabled="@IsDisabled"
@@ -26,7 +26,7 @@
 
                 @if (@_selectedItem == null)
                 {
-                    <div class="giz-input-select__content" tabindex="0" style="outline: none"
+                    <div class="giz-select__content" tabindex="0" style="outline: none"
                          @onkeydown="OnInputKeyDownHandler"
                          @onkeydown:preventDefault="true">
                         @Placeholder
@@ -36,7 +36,7 @@
                 {
                     @if (@_selectedItem.ChildContent != null)
                     {
-                        <div class="giz-input-select__content" tabindex="0" style="outline: none"
+                        <div class="giz-select__content" tabindex="0" style="outline: none"
                              @onkeydown="OnInputKeyDownHandler"
                              @onkeydown:preventDefault="true">
                             @_selectedItem.ChildContent

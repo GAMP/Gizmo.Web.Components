@@ -290,15 +290,15 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-datepicker")
-                 .If("giz-input-datepicker--full-width", () => IsFullWidth)
-                 .If("giz-input-datepicker--dialog", () => Variant == PickerVariants.Dialog)
-                 .If("giz-input-datepicker--popup", () => Variant == PickerVariants.Inline)
+                 .Add("giz-date-picker")
+                 .If("giz-date-picker--full-width", () => IsFullWidth)
+                 .If("giz-date-picker--dialog", () => Variant == PickerVariants.Dialog)
+                 .If("giz-date-picker--popup", () => Variant == PickerVariants.Inline)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-input-datepicker__dropdown")
-                 .If("giz-input-datepicker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .Add("giz-date-picker__dropdown")
+                 .If("giz-date-picker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
                  .If("giz-datepicker-dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .If("giz-popup--bottom", () => Variant == PickerVariants.Inline)
                  .If("giz-popup--offset", () => Variant == PickerVariants.Inline)

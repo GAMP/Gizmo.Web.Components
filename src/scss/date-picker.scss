@@ -1,7 +1,6 @@
-//=============== gizmo date picker classes ================//
+//=============== DatePicker ================//
 
-// date picker
-.giz-input-datepicker {
+.giz-date-picker {
     display: inline-block;
 
     &__content {
@@ -19,12 +18,8 @@
     }
 }
 
-.giz-input-datepicker--popup {
+.giz-date-picker--popup {
     position: relative;
-
-    .giz-input-datepicker__dropdown {
-        box-shadow: $elevation-3-theme-dark;
-    }
 
     .giz-popup {
         overflow-x: hidden;
@@ -32,15 +27,14 @@
     }
 }
 
-.giz-input-datepicker--dialog {
+.giz-date-picker--dialog {
 
-    .giz-input-datepicker__dropdown {
+    .giz-date-picker__dropdown {
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
         height: 100%;
         width: 100%;
-        background-color: #21212199;
     }
 
     .giz-calendar {
@@ -53,19 +47,14 @@
 
 // giz calendar (static/dialog)
 .giz-calendar {
-    border-radius: $rounded-theme-dark;
     width: 25rem;
     min-height: 1.6rem;
-    box-shadow: $elevation-3-theme-dark;
-    background-color: $dark-color-theme-dark;
 
     .giz-calendar-header {
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
-        background-color: $primary-color-theme-dark;
         padding: 3rem 2rem;
         cursor: default;
-        color: white;
 
         .giz-calendar-year-title {
             font-size: 2.56rem;
@@ -78,50 +67,36 @@
     }
 
     .giz-calendar-content {
-        background-color: $dark-color-theme-dark;
-        color: white;
         /*padding: 0.8rem 1rem;*/
 
         &_wrapper {
             padding: 0 1rem;
         }
 
-        .active {
-            background-color: $primary-color-theme-dark;
-            color: white;
-        }
-
         .giz-calendar-title-switch {
-            align-items: $align-center;
-            margin: $spacer-8 $spacer-0;
+            align-items: center;
+            margin: 0.8rem 0;
             display: flex;
-            justify-content: $justify-space-between;
+            justify-content: space-between;
 
             .giz-calendar-title-slide:hover {
                 cursor: pointer;
-                font-weight: $font-weight-600;
             }
         }
 
         .giz-calendar-weekday {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            color: $dim-ligh-theme-darkt;
             place-items: center;
-            margin-bottom: $spacer-8;
-            font-size: $font-12-theme-dark;
+            margin-bottom: 0.8rem;
         }
 
         .giz-calendar-day {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            align-items: $align-center;
+            align-items: center;
             grid-template-rows: repeat(6, 1fr);
             place-items: center;
-
-            .giz-calendar-day-count {
-                font-size: $font-12-theme-dark;
-            }
         }
 
         .giz-calendar-month {
@@ -130,30 +105,21 @@
             place-items: center;
             grid-row-gap: 0.8rem;
             grid-template-rows: auto;
-            margin-bottom: $spacer-8;
-
-            .giz-calendar-month-count {
-                font-size: $font-16-theme-dark;
-            }
+            margin-bottom: 0.8rem;
         }
 
         .giz-calendar-year {
             height: 30rem;
             overflow: auto;
-            font-size: $font-16-theme-dark;
 
             .giz-calendar-year-count {
                 text-align: center;
-
-                &:hover:not(.active) {
-                    background-color: $light-color-theme-dark;
-                }
             }
         }
 
         .giz-calendar-action {
             display: flex;
-            justify-content: $justify-end;
+            justify-content: flex-end;
         }
     }
 }

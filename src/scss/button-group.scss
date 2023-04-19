@@ -1,43 +1,9 @@
-//=============== gizmo button group classes ================//
+//=============== ButtonGroup ================//
 
 .giz-button-group {
-    display: inline-block;
-    //Default Skin
-    background-color: $dark-jungle-theme-dark;
-    padding: $spacer-4;
-    border-radius: $rounded-theme-dark;
-
-    .giz-button {
-        color: $gray-black-theme-dark;
-        background-color: $dark-jungle-theme-dark;
-
-        &.selected {
-            color: $primary-color-theme-dark;
-            background-color: $dark-gray-theme-dark;
-            box-shadow: $elevation-4-theme-dark;
-        }
-
-        &:hover:not(.selected) {
-            background-color: $dark-gray-theme-dark;
-            color: $dim-white-theme-dark;
-        }
-    }
+    display: inline-flex;
 
     &.disabled {
         pointer-events: none;
-        //Default Skin
-        color: $gray-dim-theme-dark;
-
-        .giz-button {
-            &.selected {
-                color: $mid-gray-theme-dark;
-                background-color: $onyx-black-theme-dark;
-            }
-
-            &:focus:not(.selected) {
-                background-color: unset;
-                box-shadow: unset;
-            }
-        }
     }
 }
