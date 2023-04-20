@@ -9,89 +9,87 @@
 }
 else
 {
-    <div class="giz-calendar"
+    <div class="giz-date-picker"
          @ref="@Ref">
-        <div class="giz-calendar-header">
-            <div @onclick="OnClickButtonYearHandler"><span class="giz-calendar-year-title">@(_previousValue?.ToString("yyyy") ?? DateTime.Now.ToString("yyyy"))</span></div>
-            <div class="giz-calendar-title">@(_previousValue?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>
+        <div class="giz-date-picker__header">
+            <div @onclick="OnClickButtonYearHandler"><span class="giz-date-picker__header__title__year">@(_previousValue?.ToString("yyyy") ?? DateTime.Now.ToString("yyyy"))</span></div>
+            <div class="giz-date-picker__header__title">@(_previousValue?.ToString("ddd, dd MMM") ?? DateTime.Now.ToString("ddd, dd MMM"))</div>
         </div>
-        <div class="giz-calendar-content">
-            @if (_showMonthPicker)
-            {
-                <div class="giz-calendar-content">
-                    <div class="giz-calendar-title-switch">
-                        <div>
-                            <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousYearHandler" SVGIcon="Icons.ArrowLeft" />
-                        </div>
-                        <div class="giz-calendar-title-slide" @onclick="OnClickButtonYearHandler">@CurrentVisibleMonth.ToString("yyyy")</div>
-                        <div>
-                            <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonNextYearHandler" SVGIcon="Icons.ArrowRight" />
-                        </div>
+        @if (_showMonthPicker)
+        {
+            <div class="giz-date-picker__content">
+                <div class="giz-date-picker__content__title-switch">
+                    <div>
+                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousYearHandler" SVGIcon="Icons.ArrowLeft" />
                     </div>
-                    <div class="giz-calendar-month">
-                        @for (int i = 1; i <= 12; i++)
-                        {
-                            var local_i = i;
-                            var monthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(local_i);
-                            <div>
-                                <Button Variant="ButtonVariants.Text" @onclick="@(() => OnClickButtonMonth(local_i))" class="@(local_i == CurrentVisibleMonth.Month ? "active" : "")"><span class="giz-calendar-month-count">@monthName</span></Button>
-                            </div>
-                        }
+                    <div class="giz-date-picker__content__title-slide" @onclick="OnClickButtonYearHandler">@CurrentVisibleMonth.ToString("yyyy")</div>
+                    <div>
+                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonNextYearHandler" SVGIcon="Icons.ArrowRight" />
                     </div>
                 </div>
-            }
-            else if (_showYearPicker)
-            {
-                <div class="giz-calendar-year">
-                    @for (int i = @CurrentVisibleMonth.Year - 100; i < @CurrentVisibleMonth.Year + 100; i++)
+                <div class="giz-date-picker__content__month">
+                    @for (int i = 1; i <= 12; i++)
                     {
                         var local_i = i;
-                        <div @onclick="@(() => OnClickButtonYear(local_i))" class="giz-calendar-year-count @(local_i == CurrentVisibleMonth.Year ? "active" : "")">@local_i</div>
+                        var monthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(local_i);
+                        <div>
+                            <Button Variant="ButtonVariants.Text" @onclick="@(() => OnClickButtonMonth(local_i))" class="@(local_i == CurrentVisibleMonth.Month ? "active" : "")"><span class="giz-date-picker__content__month-count">@monthName</span></Button>
+                        </div>
                     }
                 </div>
-            }
-            else
-            {
-                <div class="giz-calendar-content">
-                    <div class="giz-calendar-title-switch">
-                        <div>
-                            <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousMonthHandler" SVGIcon="Icons.ArrowLeft" />
-                        </div>
-                        <div class="giz-calendar-title-slide" @onclick="OnClickButtonMonthHandler">@CurrentVisibleMonth.ToString("MMM yyyy")</div>
-                        <div>
-                            <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonNextMonthHandler" SVGIcon="Icons.ArrowRight" />
-                        </div>
+            </div>
+        }
+        else if (_showYearPicker)
+        {
+            <div class="giz-date-picker__year_dropdown">
+                @for (int i = @CurrentVisibleMonth.Year - 100; i < @CurrentVisibleMonth.Year + 100; i++)
+                {
+                    var local_i = i;
+                    <div @onclick="@(() => OnClickButtonYear(local_i))" class="giz-date-picker__year_dropdown-count @(local_i == CurrentVisibleMonth.Year ? "active" : "")">@local_i</div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="giz-date-picker__content">
+                <div class="giz-date-picker__content__title-switch">
+                    <div>
+                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousMonthHandler" SVGIcon="Icons.ArrowLeft" />
                     </div>
-                    <div class="giz-calendar-weekday">
-                        <div>Sun</div>
-                        <div>Mon</div>
-                        <div>Tue</div>
-                        <div>Wed</div>
-                        <div>Thu</div>
-                        <div>Fri</div>
-                        <div>Sat</div>
-                    </div>
-                    <div class="giz-calendar-day">
-                        @for (int i = 0; i < _whiteSpaces; i++)
-                        {
-                            <div></div>
-                        }
-                        @for (int i = 1; i <= _monthDays; i++)
-                        {
-                            var local_i = i;
-                            <div>
-                                <IconButton Variant="ButtonVariants.Text" @onclick="@(() => OnClickButtonDay(local_i))" Class="@(IsCurrentDay(@CurrentVisibleMonth.Year, @CurrentVisibleMonth.Month, local_i) ? "active" : "")"><span class="giz-calendar-day-count">@local_i</span></IconButton>
-                            </div>
-                        }
+                    <div class="giz-date-picker__content__title-slide" @onclick="OnClickButtonMonthHandler">@CurrentVisibleMonth.ToString("MMM yyyy")</div>
+                    <div>
+                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonNextMonthHandler" SVGIcon="Icons.ArrowRight" />
                     </div>
                 </div>
-                @if (ShowTime)
-                {
-                    <div class="">
-                        <IconButton SVGIcon="Icons.Time2" Variant="ButtonVariants.Text" @onclick="OnClickTimePickerHandler" />
-                    </div>
-                }
+                <div class="giz-date-picker__content__weekday">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div class="giz-date-picker__content__day">
+                    @for (int i = 0; i < _whiteSpaces; i++)
+                    {
+                        <div></div>
+                    }
+                    @for (int i = 1; i <= _monthDays; i++)
+                    {
+                        var local_i = i;
+                        <div>
+                            <IconButton Variant="ButtonVariants.Text" @onclick="@(() => OnClickButtonDay(local_i))" Class="@(IsCurrentDay(@CurrentVisibleMonth.Year, @CurrentVisibleMonth.Month, local_i) ? "active" : "")"><span class="giz-date-picker__content__day-count">@local_i</span></IconButton>
+                        </div>
+                    }
+                </div>
+            </div>
+            @if (ShowTime)
+            {
+                <div class="giz-date-picker__time">
+                    <IconButton SVGIcon="Icons.Time2" Variant="ButtonVariants.Text" @onclick="OnClickTimePickerHandler" />
+                </div>
             }
-        </div>
+        }
     </div>
 }

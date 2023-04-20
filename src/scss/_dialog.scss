@@ -22,16 +22,34 @@
         visibility: visible;
     }
 
-    &.giz-dialog--fade {
+    &--fade {
         opacity: 0;
         transition: opacity ease-in-out 0.3s;
     }
 
-    &.giz-dialog--fade-in {
+    &--fade-in {
         opacity: 1;
     }
 
-    &.giz-dialog--fade-out {
+    &--fade-out {
         opacity: 0;
+    }
+
+    &__content {
+        position: relative;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+
+        &__header {
+            display: flex;
+
+            &__content {
+            }
+
+            &__close-button {
+                margin-left: auto;
+            }
+        }
     }
 }

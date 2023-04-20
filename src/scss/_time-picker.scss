@@ -1,0 +1,90 @@
+//=============== TimePicker ================//
+
+.giz-time-picker {
+    &__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+
+        &__title {
+        }
+
+        &__ampm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__label {
+        }
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+
+        &--icon-size {
+        }
+
+        &--timer {
+            .giz-input-root {
+                padding: 0;
+
+                input {
+                    width: 100%;
+                    text-align: center;
+                    border: none;
+
+                    &:focus {
+                        outline: none;
+                        border: none;
+                    }
+                }
+            }
+        }
+
+        &--separator {
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &-input {
+        display: inline-block;
+
+        &__content {
+            position: relative;
+
+            & > .giz-input-wrapper {
+                input {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &--full-width {
+            display: block;
+        }
+
+        .giz-input-control {
+            .giz-input-root {
+                cursor: pointer;
+            }
+        }
+
+        &--popup {
+            position: relative;
+
+            .giz-popup {
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+    }
+}
+

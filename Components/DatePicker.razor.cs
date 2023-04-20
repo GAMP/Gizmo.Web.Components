@@ -290,16 +290,16 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-date-picker")
-                 .If("giz-date-picker--full-width", () => IsFullWidth)
-                 .If("giz-date-picker--dialog", () => Variant == PickerVariants.Dialog)
-                 .If("giz-date-picker--popup", () => Variant == PickerVariants.Inline)
+                 .Add("giz-date-picker-input")
+                 .If("giz-date-picker-input--full-width", () => IsFullWidth)
+                 .If("giz-date-picker-input--dialog", () => Variant == PickerVariants.Dialog)
+                 .If("giz-date-picker-input--popup", () => Variant == PickerVariants.Inline)
                  .AsString();
 
         protected string PopupClassName => new ClassMapper()
-                 .Add("giz-date-picker__dropdown")
-                 .If("giz-date-picker__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
-                 .If("giz-datepicker-dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
+                 .Add("giz-date-picker-input__dropdown")
+                 .If("giz-date-picker-input__dropdown--cursor", () => OpenDirection == PopupOpenDirections.Cursor)
+                 .If("giz-date-picker-input__dropdown--full-width", () => OpenDirection != PopupOpenDirections.Cursor)
                  .If("giz-popup--bottom", () => Variant == PickerVariants.Inline)
                  .If("giz-popup--offset", () => Variant == PickerVariants.Inline)
                  .AsString();

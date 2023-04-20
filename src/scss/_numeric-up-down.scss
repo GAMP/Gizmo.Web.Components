@@ -1,6 +1,6 @@
 //=============== NumericUpDown ================//
 
-.giz-input-numeric-up-down {
+.giz-numeric-up-down {
     display: inline-block;
 
     &--full-width {
@@ -24,34 +24,32 @@
         height: 100%;
         overflow: hidden;
         background-color: inherit;
-        font-weight: 100;
-        letter-spacing: normal;
     }
 
     &--formatted {
-        input {
+        .giz-input-root .giz-input-wrapper > input {
             padding: 0;
-            height: 0 !important;
+            height: 0;
         }
 
         &:focus-within {
-            .giz-input-numeric-up-down__value {
-                height: 0 !important;
+            .giz-numeric-up-down__value {
+                height: 0;
             }
 
-            input {
-                height: 100% !important;
+            .giz-input-root .giz-input-wrapper > input {
+                height: 100%;
             }
         }
-    }
 
-    &--formatted-invalid {
-        .giz-input-numeric-up-down__value {
-            height: 0 !important;
-        }
+        &--invalid {
+            .giz-numeric-up-down__value {
+                height: 0;
+            }
 
-        input {
-            height: 100% !important;
+            .giz-input-root .giz-input-wrapper > input {
+                height: 100%;
+            }
         }
     }
 }

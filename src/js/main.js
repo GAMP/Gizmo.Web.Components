@@ -22,7 +22,7 @@ function scrollListItemIntoView(element) {
 }
 //
 function scrollDatePickerYear() {
-    var items = document.getElementsByClassName("giz-calendar-year-count active");
+    var items = document.getElementsByClassName("giz-date-picker-year-count active");
 
     for (var i = 0; i < items.length; i++) {
         items[i].scrollIntoView({ block: "center" });

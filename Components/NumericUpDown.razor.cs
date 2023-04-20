@@ -259,10 +259,10 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-input-numeric-up-down")
-                 .If("giz-input-numeric-up-down--full-width", () => IsFullWidth)
-                 .If("giz-input-numeric-up-down--formatted", () => !string.IsNullOrEmpty(Format) && !_converter.HasGetError)
-                 .If("giz-input-numeric-up-down--formatted-invalid", () => !string.IsNullOrEmpty(Format) && _converter.HasGetError)
+                 .Add("giz-numeric-up-down")
+                 .If("giz-numeric-up-down--full-width", () => IsFullWidth)
+                 .If("giz-numeric-up-down--formatted", () => !string.IsNullOrEmpty(Format) && !_converter.HasGetError)
+                 .If("giz-numeric-up-down--formatted--invalid", () => !string.IsNullOrEmpty(Format) && _converter.HasGetError)
                  .Add(Class)
                  .AsString();
 

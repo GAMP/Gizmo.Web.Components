@@ -17,7 +17,7 @@ namespace Gizmo.Web.Components
         #region PROPERTIES
 
         [Parameter]
-        public RenderFragment Header { get; set; }
+        public RenderFragment SimpleTabItemHeader { get; set; }
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }

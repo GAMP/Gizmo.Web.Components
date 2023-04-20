@@ -1,0 +1,104 @@
+//=============== DatePicker ================//
+
+.giz-date-picker {
+    &__header {
+        cursor: default;
+
+        &__title {
+        }
+
+        &__year {
+        }
+    }
+
+    &__year_dropdown {
+        .giz-date-picker-year-count {
+            text-align: center;
+        }
+    }
+
+    &__content {
+        &_wrapper {
+        }
+
+        &__title-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .giz-date-picker__content__title-slide:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__weekday {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            place-items: center;
+        }
+
+        &__day {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            align-items: center;
+            grid-template-rows: repeat(6, 1fr);
+            place-items: center;
+        }
+
+        &__month {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            place-items: center;
+            grid-template-rows: auto;
+        }
+    }
+
+    &-input {
+        display: inline-block;
+
+        &__content {
+            position: relative;
+        }
+
+        &--full-width {
+            display: block;
+        }
+
+        .giz-input-control {
+            .giz-input-root {
+                cursor: pointer;
+            }
+        }
+
+        &--popup {
+            position: relative;
+
+            .giz-popup {
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+            .giz-date-picker-input__dropdown {
+                background-color: white;
+            }
+        }
+
+        &--dialog {
+
+            .giz-date-picker-input__dropdown {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                height: 100%;
+                width: 100%;
+            }
+
+            .giz-date-picker {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}

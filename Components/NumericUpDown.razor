@@ -24,7 +24,7 @@
                @oninput="OnInputHandler" />
         @if (!string.IsNullOrEmpty(Format))
         {            
-            <div class="giz-input-numeric-up-down__value"
+            <div class="giz-numeric-up-down__value"
                  @onclick="@(() => _inputElement.FocusAsync())"
                  @oncontextmenu="@(() => _inputElement.FocusAsync())"
                  @oncontextmenu:preventDefault="true">

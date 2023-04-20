@@ -1,22 +1,21 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits CustomDOMComponentBase
 
-<div class="d-flex flex-column @Class">
-    <label for="@Id" class="control-label">@Label</label>
-
-    <label class="giz-switch">
-        <input type="checkbox"
-               id="@Id"
-               checked="@IsChecked"
-               disabled="@IsDisabled"
-               @onchange="OnChangeHandler">
-        <span class="giz-switch__slider giz-switch__slider--round">
-            <span class="giz-switch__slider__thumb">
+<div class="@ClassName @Class">
+    <input type="checkbox"
+           id="@Id"
+           checked="@IsChecked"
+           disabled="@IsDisabled"
+           @onchange="OnChangeHandler">
+    <div class="giz-switch__control">
+        <span class="giz-switch__control__slider">
+            <span class="giz-switch__control__slider__thumb">
                 @if (ThumbSVGIcon.HasValue)
                 {
                     <Icon SVGIcon="ThumbSVGIcon" />
                 }
             </span>
         </span>
-    </label>
+    </div>
+    <label for="@Id" class="giz-switch__label">@Label</label>
 </div>

@@ -53,5 +53,13 @@ namespace Gizmo.Web.Components
 
         #endregion
 
+        #region CLASSMAPPERS
+
+        protected string ClassName => new ClassMapper()
+                 .Add("giz-switch")
+                 .If("disabled", () => IsDisabled)
+                 .AsString();
+
+        #endregion
     }
 }

@@ -5,26 +5,24 @@
      style="@Style"
      @onclick="OnClickDialogHandler">
 
-    <Card Style="@DialogStyleValue">
-        <CardHeader>
-            <div class="">
-                <div class="">
-                    @DialogHeader
-                </div>
-                @if (ShowCloseButton)
-                {
-                    <div class="giz-dialog__close-button">
-                        <Button Size="ButtonSizes.Large" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Close" @onclick="OnClickButtonCloseHandler" />
-                    </div>
-                }
+    <div class="giz-dialog__content" Style="@DialogStyleValue">
+        <div class="giz-dialog__content__header">
+            <div class="giz-dialog__content__header__content">
+                @DialogHeader
             </div>
-        </CardHeader>
-        <CardBody>
+            @if (ShowCloseButton)
+            {
+                <div class="giz-dialog__content__header__close-button">
+                    <Button Size="ButtonSizes.Large" Variant="ButtonVariants.Text" LeftSVGIcon="Icons.Close" @onclick="OnClickButtonCloseHandler" />
+                </div>
+            }
+        </div>
+        <div class="giz-dialog__content__body">
             @DialogBody
-        </CardBody>
-        <CardFooter>
+        </div>
+        <div class="giz-dialog__content__footer">
             @DialogFooter
-        </CardFooter>
-    </Card>
+        </div>
+    </div>
 
 </div>
