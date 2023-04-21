@@ -1,5 +1,4 @@
-﻿using MessagePack.Resolvers;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
@@ -46,6 +45,8 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region FIELDS
+
+        private TValue _previousValue;
 
         private CultureInfo _culture;
         private string _format;
@@ -104,9 +105,9 @@ namespace Gizmo.Web.Components
                 {
                     if (_text.Length != nextSeparator)
                     {
-                        var len = nextSeparator - lastSeparator;
+                        var length = nextSeparator - lastSeparator;
                         var blockValue = _text.Substring(lastSeparator);
-                        blockValue = blockValue.PadLeft(len, '0');
+                        blockValue = blockValue.PadLeft(length, '0');
 
                         var previousBlocks = string.Empty;
                         if (lastSeparator > 0)
@@ -225,6 +226,9 @@ namespace Gizmo.Web.Components
             DateTime? temp = _tempConverter.SetValue(_text);
             if (!_tempConverter.HasSetError)
             {
+                _hasParsingErrors = false;
+                _parsingErrors = String.Empty;
+
                 await SetValueAsync(_converter.GetValue(temp));
             }
             else
@@ -236,16 +240,49 @@ namespace Gizmo.Web.Components
 
         protected async Task SetValueAsync(TValue value)
         {
-            _hasParsingErrors = false;
-            _parsingErrors = String.Empty;
-        
-            if (!EqualityComparer<TValue>.Default.Equals(Value, value))
-            {
-                Value = value;
+            //Update value.
+            Value = value;
 
-                await ValueChanged.InvokeAsync(Value);
-                NotifyFieldChanged();
+            //Update display text.
+            await UpdateText();
+
+            //Raise events.
+            await ValueChanged.InvokeAsync(Value);
+            NotifyFieldChanged();
+        }
+
+        private Task UpdateText()
+        {
+            try
+            {
+                var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
+                if (valueChanged)
+                {
+                    _shouldRender = true;
+                    _previousValue = Value;
+                
+                    _text = string.Empty;
+
+                    var currentValue = _converter.SetValue(Value);
+
+                    if (currentValue.HasValue)
+                    {
+                        _text = currentValue.Value.ToString(_mask);
+                        _mask_left = string.Empty;
+                    }
+                    else
+                    {
+                        _text = string.Empty;
+                        _mask_left = _mask;
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+
+            return Task.CompletedTask;
         }
 
         #endregion
@@ -260,6 +297,13 @@ namespace Gizmo.Web.Components
             }
 
             base.OnParametersSet();
+        }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            await UpdateText();
+
+            await base.OnParametersSetAsync();
         }
 
         public override void Validate()

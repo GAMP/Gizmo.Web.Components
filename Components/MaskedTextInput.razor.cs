@@ -1,23 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Components.Web;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-
-namespace Gizmo.Web.Components
+﻿namespace Gizmo.Web.Components
 {
     public partial class MaskedTextInput<TValue> : MaskedNumericInputBase<TValue>
     {
-        #region CONSTRUCTOR
-        public MaskedTextInput()
-        {
-        }
-        #endregion
-
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()

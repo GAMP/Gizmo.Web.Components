@@ -69,8 +69,7 @@
                    Style="@PopupStyleValue">
                 <List @ref="_popupContent"
                       CanClick="true"
-                      CanSelect="true"
-                      MaximumHeight="@(OpenDirection == PopupOpenDirections.Cursor ? MaximumHeight : null)">
+                      CanSelect="true">
                     @ChildContent
                 </List>
             </Popup>
