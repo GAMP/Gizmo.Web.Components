@@ -22,14 +22,14 @@
     {
         if (column.IsVisible && column.CellTemplate != null)
         {
-            <DataGridCell TItemType="@TItemType" Column="column" Item="@Item" IsEditMode="@_isEditMode" />
+            <DataGridCell TItemType="@TItemType" Column="column" Item="@Item" IsEditMode="@_isEditMode" Style="@column.Style" />
         }
     }
 </tr>
 
 @if (IsDropdown && !HideDetails)
 {
-    <DataGridDetailTemplate Columns="@(Columns.Count())" DetailTemplateCustomColumns="@DetailTemplateCustomColumns">
+    <DataGridDetailTemplate Columns="@(Columns.Count())" DetailTemplateCustomColumns="@DetailTemplateCustomColumns" Style="@Style">
         @Parent.DetailTemplate(Item)
     </DataGridDetailTemplate>
 }
