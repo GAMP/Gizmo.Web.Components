@@ -1,7 +1,7 @@
-﻿using Gizmo.Web.Components.Extensions;
+﻿using System.Threading.Tasks;
+using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
 {
@@ -43,6 +43,12 @@ namespace Gizmo.Web.Components
         /// </summary>
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Medium;
+        private IconSizes IconSize => Size switch
+        {
+            InputSizes.Small => IconSizes.Small,
+            InputSizes.Large => IconSizes.Large,
+            _ => IconSizes.Medium,
+        };
 
         /// <summary>
         /// Gets or sets if input has outline.
@@ -166,6 +172,5 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
-
     }
 }

@@ -11,9 +11,10 @@
     <div class="@FieldClassName" style="@FieldStyleValue" readonly="@IsReadOnly" disabled="@IsDisabled">
         @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
         {
-            <Icon Source="@LeftIcon"
-                  SVGIcon="@LeftSVGIcon"
-                  Class="@IconLeft" />
+            <Icon  Source="@LeftIcon"
+                        SVGIcon="@LeftSVGIcon"
+                        Class="@IconLeft"
+                        Size="@IconSize" />
         }
         
         @if (LeftContent != null)
@@ -31,8 +32,9 @@
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
             <div class="@IconRight">
-                <Icon Source="@RightIcon"
-                      SVGIcon="@RightSVGIcon" />
+                <Icon    Source="@RightIcon"
+                              SVGIcon="@RightSVGIcon"
+                              Size = "@IconSize"/>
             </div>
         }
 
