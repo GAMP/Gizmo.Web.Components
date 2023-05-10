@@ -31,11 +31,10 @@
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
-            <div class="@IconRight">
-                <Icon   Source="@RightIcon"
-                        Size="@RightIconSize"
-                        SVGIcon="@RightSVGIcon"/>
-            </div>
+            <Icon   Class="@IconRight"
+                    Source="@RightIcon"
+                    Size="@RightIconSize"
+                    SVGIcon="@RightSVGIcon"/>
         }
 
     </div>
