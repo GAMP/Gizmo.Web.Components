@@ -39,6 +39,9 @@ namespace Gizmo.Web.Components
         public string Placeholder { get; set; }
 
         [Parameter]
+        public string PlaceholderLabel { get; set; }
+
+        [Parameter]
         public string LeftIcon { get; set; }
 
         [Parameter]
