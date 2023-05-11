@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Gizmo.Web.Components
 {
@@ -30,6 +30,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Placeholder { get; set; }
+
+        [Parameter]
+        public string PlaceholderLabel { get; set; }
 
         [Parameter]
         public string LeftIcon { get; set; }

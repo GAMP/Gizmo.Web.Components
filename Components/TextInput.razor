@@ -20,10 +20,17 @@
           LeftContent="@LeftContent"
           RightContent="@RightContent"
           LeftIcon="@LeftIcon"
-          RightIcon="@RightIcon"
           LeftSVGIcon="@LeftSVGIcon"
-          RightSVGIcon="@RightSVGIcon">
+          LeftIconSize="@LeftIconSize"
+          RightIcon="@RightIcon"
+          RightSVGIcon="@RightSVGIcon"
+          RightIconSize="@RightIconSize">
     <div class="giz-input-wrapper">
+        @if(!string.IsNullOrEmpty(PlaceholderLabel))
+        {
+            <div class="giz-input-wrapper-placeholderlabel">@PlaceholderLabel</div>
+        }
+
         @if (!IsMultiLine)
         {
             <input id="@Id"

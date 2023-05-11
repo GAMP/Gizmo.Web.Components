@@ -30,7 +30,13 @@ namespace Gizmo.Web.Components
         public string LeftIcon { get; set; }
 
         [Parameter]
+        public IconSizes LeftIconSize { get; set; } = IconSizes.Medium;
+
+        [Parameter]
         public string RightIcon { get; set; }
+
+        [Parameter]
+        public IconSizes RightIconSize { get; set; } = IconSizes.Medium;
 
         [Parameter]
         public Icons? LeftSVGIcon { get; set; }
@@ -150,6 +156,8 @@ namespace Gizmo.Web.Components
         protected string FieldClassName => new ClassMapper()
                  .Add("giz-input-root")
                  .Add($"giz-input-root--{Size.ToDescriptionString()}")
+                 .If("giz-input-root--valid", () => IsValid)
+                 .If("giz-input-root--invalid", () => !IsValid)
                  .If("giz-input-root--outline", () => HasOutline)
                  .If("giz-input-root--shadow", () => HasShadow)
                  .If("giz-input-root--transparent", () => IsTransparent)

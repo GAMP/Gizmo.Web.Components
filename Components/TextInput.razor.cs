@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Gizmo.Web.Components
 {
@@ -39,10 +39,19 @@ namespace Gizmo.Web.Components
         public string Placeholder { get; set; }
 
         [Parameter]
+        public string PlaceholderLabel { get; set; }
+
+        [Parameter]
         public string LeftIcon { get; set; }
 
         [Parameter]
+        public IconSizes LeftIconSize { get; set; } = IconSizes.Medium;
+
+        [Parameter]
         public string RightIcon { get; set; }
+
+        [Parameter]
+        public IconSizes RightIconSize { get; set; } = IconSizes.Medium;
 
         [Parameter]
         public Icons? LeftSVGIcon { get; set; }
