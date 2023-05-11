@@ -28,7 +28,7 @@
     <div class="giz-input-wrapper">
         @if(!string.IsNullOrEmpty(PlaceholderLabel))
         {
-            <div class="giz-input-wrapper-placeholderlabel">@PlaceholderLabel</div>
+            <div class="@PlaceholderClassName">@PlaceholderLabel</div>
         }
 
         @if (!IsMultiLine)

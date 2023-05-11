@@ -478,6 +478,11 @@ namespace Gizmo.Web.Components
                  .Add(Class)
                  .AsString();
 
+        protected string PlaceholderClassName => new ClassMapper()
+                 .Add("giz-input-wrapper-placeholderlabel")
+                 .If("giz-input-wrapper-placeholderlabel--active", () => !string.IsNullOrWhiteSpace(PlaceholderLabel) && _text.Length > 0)
+                 .AsString();
+
         #endregion
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
