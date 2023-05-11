@@ -38,17 +38,11 @@
 
     @if (CanClearValue && IsNullable() && Value != null)
     {
-        <div class="giz-input__icon-right">
-            <Icon SVGIcon="@Icons.Close" @onclick="OnClickButtonClearValueHandler" />
-        </div>
+        <IconButton SVGIcon="@Icons.Close" Class="giz-input-button-clear" @onclick="OnClickButtonClearValueHandler" />
     }
 
-    <div class="giz-input__icon-right">
-        <Icon SVGIcon="@Icons.ArrowDown" @onclick="OnClickButtonDecreaseValueHandler" />
-    </div>
+    <IconButton SVGIcon="@Icons.ArrowDown" @onclick="OnClickButtonDecreaseValueHandler" />
 
-    <div class="giz-input__icon-right">
-        <Icon SVGIcon="@Icons.ArrowUp" @onclick="OnClickButtonIncreaseValueHandler" />
-    </div>
+    <IconButton SVGIcon="@Icons.ArrowUp" @onclick="OnClickButtonIncreaseValueHandler" />
 
 </GizInput>
