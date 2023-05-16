@@ -18,6 +18,8 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
+        private bool _isExpanded;
+
         private bool _isSelected;
         private bool _isActive;
         private bool _canExecute = true;
@@ -92,7 +94,25 @@ namespace Gizmo.Web.Components
             }
         }
 
-        public bool IsExpanded { get; set; }
+        [Parameter]
+        public bool IsExpanded
+        {
+            get
+            {
+                return _isExpanded;
+            }
+            set
+            {
+                if (_isExpanded == value)
+                    return;
+
+                _isExpanded = value;
+                _ = IsExpandedChanged.InvokeAsync(_isExpanded);
+            }
+        }
+
+        [Parameter]
+        public EventCallback<bool> IsExpandedChanged { get; set; }
 
         #endregion
 
