@@ -8,7 +8,7 @@
     <Button Class="right-button" Color="@Color" Size="@Size" Variant="@(Variant == ButtonVariants.Progress ? ButtonVariants.Fill : @Variant)" LeftSVGIcon="Icons.TriangleDown" @onclick="OnClickDropDownButtonHandler" />
 
     <Popup MaximumHeight="@MaximumHeight"
-           @bind-IsOpen="_isOpen"
+           @bind-IsOpen="IsOpen"
            OpenDirection="@OpenDirection"
            Class="@PopupClassName"
            Style="@PopupStyleValue">

@@ -79,6 +79,26 @@ namespace Gizmo.Web.Components
         [Parameter]
         public PopupOpenDirections OpenDirection { get; set; } = PopupOpenDirections.Bottom;
 
+        [Parameter]
+        public bool IsOpen
+        {
+            get
+            {
+                return _isOpen;
+            }
+            set
+            {
+                if (_isOpen == value)
+                    return;
+
+                _isOpen = value;
+                _ = IsOpenChanged.InvokeAsync(_isOpen);
+            }
+        }
+
+        [Parameter]
+        public EventCallback<bool> IsOpenChanged { get; set; }
+
         public ListDirections Direction { get; set; } = ListDirections.Right;
 
         #endregion
@@ -93,10 +113,10 @@ namespace Gizmo.Web.Components
 
             if (!IsDisabled)
             {
-                if (!_isOpen)
+                if (!IsOpen)
                     await Open();
                 else
-                    _isOpen = false;
+                    IsOpen = false;
             }
         }
 
@@ -144,7 +164,7 @@ namespace Gizmo.Web.Components
             int activeItemIndex = _popupContent.GetSelectedItemIndex();
             await _popupContent.SetActiveItemIndex(activeItemIndex);
 
-            _isOpen = true;
+            IsOpen = true;
         }
 
 		#region OVERRIDES
