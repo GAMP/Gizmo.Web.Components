@@ -9,12 +9,13 @@ namespace Gizmo.Web.Components
 {
     public abstract class CustomVirtualizedDOMComponentBase<T> : CustomDOMComponentBase where T : class, IViewState
     {
-        private const byte DefaultColumnsCount = 6;
+        private const int DefaultColumnsCount = 6;
 
         protected string _gridColumnsStyle;
 
         [Parameter]
-        public byte ColumnsCount { get; set; }
+        public int ColumnsCount { get; set; }
+
         [Parameter]
         public IEnumerable<T> Items { get; set; } = Enumerable.Empty<T>();
 
