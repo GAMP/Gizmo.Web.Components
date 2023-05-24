@@ -54,6 +54,7 @@
         EyeOpen_Client,
         EyeClose_Client,
         Facebook_Client,
+        FastFood_Client,
         File,
         Filters,
         Fire,
