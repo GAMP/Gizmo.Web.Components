@@ -11,6 +11,12 @@ namespace Gizmo.Web.Components
         Bottom,
 
         [Description("top")]
-        Top
+        Top,
+
+        [Description("left")]
+        Left,
+
+        [Description("right")]
+        Right
     }
 }
