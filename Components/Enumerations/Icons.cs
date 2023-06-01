@@ -80,6 +80,7 @@
         Home,
         Home_Client,
         Image,
+        Infinite,
         Info,
         Info_Client,
         Key,
