@@ -94,6 +94,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool ShowRevealButton { get; set; }
 
+        [Parameter]
+        public bool CanFocusRevealButton { get; set; }
+
         #endregion
 
         #region EVENTS
