@@ -30,9 +30,11 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
+        protected bool DisableDrop => (UpdateOnInput);
+
         #region IGizInput
 
-        [Parameter]
+       [Parameter]
         public string Label { get; set; }
 
         [Parameter]
@@ -420,6 +422,10 @@ namespace Gizmo.Web.Components
 
                 _text = _converter.SetValue(Value);
             }
+        }
+
+        protected void OnDropHandler()
+        {
         }
 
         #endregion
