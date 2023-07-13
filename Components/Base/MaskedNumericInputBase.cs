@@ -23,6 +23,8 @@ namespace Gizmo.Web.Components
         private string _parsingErrors;
         private ValidationMessageStore _validationMessageStore;
 
+        private bool _altPressed;
+
         #endregion
 
         #region PROPERTIES
@@ -69,6 +71,24 @@ namespace Gizmo.Web.Components
                 return;
             }
 
+            if (_altPressed)
+            {
+                if (!args.AltKey)
+                {
+                    _altPressed = false;
+                }
+            }
+            else
+            {
+                if (args.Key == "Alt")
+                {
+                    _altPressed = true;
+                }
+            }
+
+            if (_altPressed)
+                return;
+
             //var inputSelectionRange = await JsInvokeAsync<InputSelectionRange>("getInputSelectionRange");
 
             var currentValue = _converter.SetValue(Value);
@@ -110,6 +130,16 @@ namespace Gizmo.Web.Components
 
                     break;
             }
+        }
+
+        protected Task OnInputKeyUpHandler(KeyboardEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+
+        protected Task OnInputKeyPressHandler(KeyboardEventArgs args)
+        {
+            return Task.CompletedTask;
         }
 
         #endregion
@@ -231,6 +261,10 @@ namespace Gizmo.Web.Components
             {
 
             }
+        }
+
+        protected void OnDropHandler()
+        {
         }
 
         #endregion

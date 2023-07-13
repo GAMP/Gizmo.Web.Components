@@ -25,6 +25,7 @@ namespace Gizmo.Web.Components
         protected ElementReference _inputElement;
 
         private bool _hasValidateFunction;
+        private bool _altPressed;
 
         #endregion
 
@@ -171,6 +172,24 @@ namespace Gizmo.Web.Components
                 }
                 return;
             }
+
+            if (_altPressed)
+            {
+                if (!args.AltKey)
+                {
+                    _altPressed = false;
+                }
+            }
+            else
+            {
+                if (args.Key == "Alt")
+                {
+                    _altPressed = true;
+                }
+            }
+
+            if (_altPressed)
+                return;
 
             var previousValue = _converter.SetValue(Value);
 
@@ -377,6 +396,16 @@ namespace Gizmo.Web.Components
 
                     break;
             }
+        }
+
+        protected Task OnInputKeyUpHandler(KeyboardEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+
+        protected Task OnInputKeyPressHandler(KeyboardEventArgs args)
+        {
+            return Task.CompletedTask;
         }
 
         protected Task OnChangeHandler(ChangeEventArgs args)

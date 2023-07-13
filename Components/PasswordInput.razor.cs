@@ -23,10 +23,13 @@ namespace Gizmo.Web.Components
         protected ElementReference _inputElement;
 
         private bool _hasValidateFunction;
+        private bool _altPressed;
 
         #endregion
 
         #region PROPERTIES
+
+        protected bool DisableDrop => (UpdateOnInput);
 
         #region IGizInput
 
@@ -152,6 +155,24 @@ namespace Gizmo.Web.Components
                 }
                 return;
             }
+
+            if (_altPressed)
+            {
+                if (!args.AltKey)
+                {
+                    _altPressed = false;
+                }
+            }
+            else
+            {
+                if (args.Key == "Alt")
+                {
+                    _altPressed = true;
+                }
+            }
+
+            if (_altPressed)
+                return;
 
             var previousValue = Value;
 
@@ -360,6 +381,16 @@ namespace Gizmo.Web.Components
             }
         }
 
+        protected Task OnInputKeyUpHandler(KeyboardEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+
+        protected Task OnInputKeyPressHandler(KeyboardEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+
         protected Task OnChangeHandler(ChangeEventArgs args)
         {
             if (!UpdateOnInput)
@@ -409,6 +440,10 @@ namespace Gizmo.Web.Components
 
                 _text = Value;
             }
+        }
+
+        protected void OnDropHandler()
+        {
         }
 
         #endregion

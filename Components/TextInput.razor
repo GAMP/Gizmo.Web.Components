@@ -43,6 +43,10 @@
                    @oninput="OnInputHandler"
                    @onkeydown="OnInputKeyDownHandler"
                    @onkeydown:preventDefault="@_hasValidateFunction"
+                   @onkeyup="OnInputKeyUpHandler"
+                   @onkeyup:preventDefault="@_hasValidateFunction"
+                   @onkeypress="OnInputKeyPressHandler"
+                   @onkeypress:preventDefault="@_hasValidateFunction"
                    @onchange="OnChangeHandler"
                    @onclick="OnClickHandler"
                    @attributes="Attributes"
@@ -61,9 +65,15 @@
                       @oninput="OnInputHandler"
                       @onkeydown="OnInputKeyDownHandler"
                       @onkeydown:preventDefault="@_hasValidateFunction"
+                      @onkeyup="OnInputKeyUpHandler"
+                      @onkeyup:preventDefault="@_hasValidateFunction"
+                      @onkeypress="OnInputKeyPressHandler"
+                      @onkeypress:preventDefault="@_hasValidateFunction"
                       @onchange="OnChangeHandler"
                       @onclick="OnClickHandler"
-                      @attributes="Attributes" />
+                      @attributes="Attributes"
+                      @ondrop="OnDropHandler"
+                      @ondrop:preventDefault="@DisableDrop" />
         }
     </div>
 </GizInput>
