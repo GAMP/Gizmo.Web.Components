@@ -9,7 +9,21 @@ window.getWindowSize = function getWindowSize() {
 };
 //
 window.getElementBoundingClientRect = function getElementBoundingClientRect(element) {
-  return element.getBoundingClientRect();
+    if (element) {
+        return element.getBoundingClientRect();
+    } else {
+        console.log("Cannot read getBoundingClientRect of null element.");
+        return {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+        };
+    }
 };
 //
 window.scrollListItemIntoView = function scrollListItemIntoView(element) {
