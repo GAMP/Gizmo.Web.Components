@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 
 namespace Gizmo.Web.Components
 {
@@ -26,6 +27,13 @@ namespace Gizmo.Web.Components
 
         private bool _hasValidateFunction;
         private bool _altPressed;
+
+        [Inject()]
+        private ILogger<IGizInput> Logger 
+        { 
+            get; 
+            set; 
+        }
 
         #endregion
 
@@ -157,244 +165,256 @@ namespace Gizmo.Web.Components
             if (IsDisabled)
                 return;
 
-            if (args.Key == null)
-                return;
-
-            if (args.Key == "Tab")
+            try
             {
-                if (args.ShiftKey)
+
+                if (args.Key == null)
+                    return;
+
+                if (args.Key == "Tab")
                 {
-                    await InvokeVoidAsync("focusPrevious", _inputElement);
+                    if (args.ShiftKey)
+                    {
+                        await InvokeVoidAsync("focusPrevious", _inputElement);
+                    }
+                    else
+                    {
+                        await InvokeVoidAsync("focusNext", _inputElement);
+                    }
+                    return;
+                }
+
+                if (_altPressed)
+                {
+                    if (!args.AltKey)
+                    {
+                        _altPressed = false;
+                    }
                 }
                 else
                 {
-                    await InvokeVoidAsync("focusNext", _inputElement);
+                    if (args.Key == "Alt")
+                    {
+                        _altPressed = true;
+                    }
                 }
-                return;
-            }
 
-            if (_altPressed)
-            {
-                if (!args.AltKey)
+                if (_altPressed)
+                    return;
+
+                var previousValue = _converter.SetValue(Value);
+
+                var inputSelectionRange = await JsInvokeAsync<InputSelectionRange>("getInputSelectionRange", _inputElement);
+
+                int caretIndex = 0;
+
+                string part1 = string.Empty;
+                string part2 = string.Empty;
+
+                switch (args.Key)
                 {
-                    _altPressed = false;
-                }
-            }
-            else
-            {
-                if (args.Key == "Alt")
-                {
-                    _altPressed = true;
-                }
-            }
-
-            if (_altPressed)
-                return;
-
-            var previousValue = _converter.SetValue(Value);
-
-            var inputSelectionRange = await JsInvokeAsync<InputSelectionRange>("getInputSelectionRange", _inputElement);
-
-            int caretIndex = 0;
-
-            string part1 = string.Empty;
-            string part2 = string.Empty;
-
-            switch (args.Key)
-            {
-                case "Home":
-                    caretIndex = 0;
-                    await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
-
-                    break;
-
-                case "End":
-                    if (!string.IsNullOrEmpty(previousValue))
-                    {
-                        caretIndex = previousValue.Length;
+                    case "Home":
+                        caretIndex = 0;
                         await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
-                    }
 
-                    break;
+                        break;
 
-                case "ArrowLeft":
-                    caretIndex = inputSelectionRange.SelectionStart;
-
-                    if (caretIndex > 0)
-                    {
-                        caretIndex -= 1;
-                        await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
-                    }
-
-                    break;
-
-                case "ArrowRight":
-                    caretIndex = inputSelectionRange.SelectionStart;
-
-                    if (caretIndex < previousValue.Length)
-                    {
-                        caretIndex += 1;
-                        await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
-                    }
-
-                    break;
-
-                case "Backspace":
-
-                    caretIndex = inputSelectionRange.SelectionStart;
-
-                    if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
-                    {
-                        //If there is a selection.
-                        if (inputSelectionRange.SelectionStart > 0)
+                    case "End":
+                        if (!string.IsNullOrEmpty(previousValue))
                         {
-                            //Get part before selection.
-                            part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                            caretIndex = previousValue.Length;
+                            await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
                         }
 
-                        if (inputSelectionRange.SelectionEnd < previousValue.Length)
-                        {
-                            //Get part after selection.
-                            part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
-                        }
+                        break;
 
-                        //The selection is removed.
-                        TValue newValue = _converter.GetValue(part1 + part2);
-                        await SetValueAsync(newValue);
-                    }
-                    else
-                    {
-                        //If there is no selection.
-                        if (inputSelectionRange.SelectionStart > 0)
-                        {
-                            //Get part before caret -1 character.
-                            part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart - 1);
-                        }
-
-                        if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart < previousValue.Length)
-                        {
-                            //Get part after caret.
-                            part2 = previousValue.Substring(inputSelectionRange.SelectionStart, previousValue.Length - inputSelectionRange.SelectionStart);
-                        }
-
-                        TValue newValue = _converter.GetValue(part1 + part2);
-                        await SetValueAsync(newValue);
-
-                        caretIndex -= 1;
-                    }
-
-                    await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
-
-                    break;
-
-                case "Delete":
-
-                    caretIndex = inputSelectionRange.SelectionStart;
-
-                    if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
-                    {
-                        //If there is a selection.
-                        if (inputSelectionRange.SelectionStart > 0)
-                        {
-                            //Get part before selection.
-                            part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
-                        }
-
-                        if (inputSelectionRange.SelectionEnd < previousValue.Length)
-                        {
-                            //Get part after selection.
-                            part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
-                        }
-
-                        //The selection is removed.
-                        TValue newValue = _converter.GetValue(part1 + part2);
-                        await SetValueAsync(newValue);
-                    }
-                    else
-                    {
-                        //If there is no selection.
-                        if (inputSelectionRange.SelectionStart > 0)
-                        {
-                            //Get part before caret character.
-                            part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
-                        }
-
-                        if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart + 1 < previousValue.Length)
-                        {
-                            //Get part after caret + 1.
-                            part2 = previousValue.Substring(inputSelectionRange.SelectionStart + 1, previousValue.Length - (inputSelectionRange.SelectionStart + 1));
-                        }
-
-                        TValue newValue = _converter.GetValue(part1 + part2);
-                        await SetValueAsync(newValue);
-
-                        //caretIndex -= 1;
-                    }
-
-                    await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
-
-                    break;
-
-                default:
-
-                    if (args.Key.Length == 1 && !char.IsControl(args.Key[0]))
-                    {
+                    case "ArrowLeft":
                         caretIndex = inputSelectionRange.SelectionStart;
 
-                        bool isValidCharacter = true;
-
-                        if (ValidateFunction != null)
+                        if (caretIndex > 0)
                         {
-                            isValidCharacter = await ValidateFunction(args.Key[0]);
+                            caretIndex -= 1;
+                            await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
                         }
 
-                        if (isValidCharacter)
+                        break;
+
+                    case "ArrowRight":
+                        caretIndex = inputSelectionRange.SelectionStart;
+
+                        if (caretIndex < previousValue.Length)
                         {
-                            if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
-                            {
-                                //If there is a selection.
-                                if (inputSelectionRange.SelectionStart > 0)
-                                {
-                                    //Get part before selection.
-                                    part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
-                                }
-
-                                if (inputSelectionRange.SelectionEnd < previousValue.Length)
-                                {
-                                    //Get part after selection.
-                                    part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
-                                }
-
-                                //Replace selection with new character.
-                                TValue newValue = _converter.GetValue(part1 + args.Key + part2);
-                                await SetValueAsync(newValue);
-                            }
-                            else
-                            {
-                                //If there is no selection.
-                                if (inputSelectionRange.SelectionStart > 0)
-                                {
-                                    //Get part before caret.
-                                    part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
-                                }
-
-                                if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart < previousValue.Length)
-                                {
-                                    //Get part after caret.
-                                    part2 = previousValue.Substring(inputSelectionRange.SelectionStart, previousValue.Length - inputSelectionRange.SelectionStart);
-                                }
-
-                                //Insert new character between.
-                                TValue newValue = _converter.GetValue(part1 + args.Key + part2);
-                                await SetValueAsync(newValue);
-                            }
-
                             caretIndex += 1;
                             await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
                         }
-                    }
 
-                    break;
+                        break;
+
+                    case "Backspace":
+
+                        caretIndex = inputSelectionRange.SelectionStart;
+
+                        if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
+                        {
+                            //If there is a selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before selection.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                            }
+
+                            if (inputSelectionRange.SelectionEnd < previousValue.Length)
+                            {
+                                //Get part after selection.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
+                            }
+
+                            //The selection is removed.
+                            TValue newValue = _converter.GetValue(part1 + part2);
+                            await SetValueAsync(newValue);
+                        }
+                        else
+                        {
+                            //If there is no selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before caret -1 character.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart - 1);
+                            }
+
+                            if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart < previousValue.Length)
+                            {
+                                //Get part after caret.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionStart, previousValue.Length - inputSelectionRange.SelectionStart);
+                            }
+
+                            TValue newValue = _converter.GetValue(part1 + part2);
+                            await SetValueAsync(newValue);
+
+                            caretIndex -= 1;
+                        }
+
+                        await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+
+                        break;
+
+                    case "Delete":
+
+                        caretIndex = inputSelectionRange.SelectionStart;
+
+                        if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
+                        {
+                            //If there is a selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before selection.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                            }
+
+                            if (inputSelectionRange.SelectionEnd < previousValue.Length)
+                            {
+                                //Get part after selection.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
+                            }
+
+                            //The selection is removed.
+                            TValue newValue = _converter.GetValue(part1 + part2);
+                            await SetValueAsync(newValue);
+                        }
+                        else
+                        {
+                            //If there is no selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before caret character.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                            }
+
+                            if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart + 1 < previousValue.Length)
+                            {
+                                //Get part after caret + 1.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionStart + 1, previousValue.Length - (inputSelectionRange.SelectionStart + 1));
+                            }
+
+                            TValue newValue = _converter.GetValue(part1 + part2);
+                            await SetValueAsync(newValue);
+
+                            //caretIndex -= 1;
+                        }
+
+                        await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+
+                        break;
+
+                    default:
+
+                        if (args.Key.Length == 1 && !char.IsControl(args.Key[0]))
+                        {
+                            caretIndex = inputSelectionRange.SelectionStart;
+
+                            bool isValidCharacter = true;
+
+                            if (ValidateFunction != null)
+                            {
+                                isValidCharacter = await ValidateFunction(args.Key[0]);
+                            }
+
+                            if (isValidCharacter)
+                            {
+                                if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
+                                {
+                                    //If there is a selection.
+                                    if (inputSelectionRange.SelectionStart > 0)
+                                    {
+                                        //Get part before selection.
+                                        part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                                    }
+
+                                    if (inputSelectionRange.SelectionEnd < previousValue.Length)
+                                    {
+                                        //Get part after selection.
+                                        part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
+                                    }
+
+                                    //Replace selection with new character.
+                                    TValue newValue = _converter.GetValue(part1 + args.Key + part2);
+                                    await SetValueAsync(newValue);
+                                }
+                                else
+                                {
+                                    //If there is no selection.
+                                    if (inputSelectionRange.SelectionStart > 0)
+                                    {
+                                        //Get part before caret.
+                                        part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                                    }
+
+                                    if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart < previousValue.Length)
+                                    {
+                                        //Get part after caret.
+                                        part2 = previousValue.Substring(inputSelectionRange.SelectionStart, previousValue.Length - inputSelectionRange.SelectionStart);
+                                    }
+
+                                    //Insert new character between.
+                                    TValue newValue = _converter.GetValue(part1 + args.Key + part2);
+                                    await SetValueAsync(newValue);
+                                }
+
+                                caretIndex += 1;
+                                await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+                            }
+                        }
+
+                        break;
+                }
+            }
+            catch (NullReferenceException nullRef)
+            {
+                Logger.LogCritical(nullRef, "Null reference in input handler.");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogCritical(ex, "Error in input handler.");
             }
         }
 
