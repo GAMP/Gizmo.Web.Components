@@ -7,6 +7,9 @@ namespace Gizmo.Web.Components
     /// </summary>
     public enum InputSizes
     {
+        [Description("extrasmall")]
+        ExtraSmall = -1,
+
         [Description("small")]
         Small = 0,
 
@@ -14,6 +17,9 @@ namespace Gizmo.Web.Components
         Medium = 1,
 
         [Description("large")]
-        Large = 2
+        Large = 2,
+
+        [Description("extralarge")]
+        ExtraLarge = 3
     }
 }
