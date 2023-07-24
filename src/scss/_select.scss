@@ -1,67 +1,76 @@
+/** @format */
+
 //=============== Select ================//
 
 .giz-select {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
+
+  &--full-width {
+    display: block;
+  }
+
+  &__content {
+    cursor: pointer;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &_wrapper {
+      position: relative;
+    }
+  }
+
+  &__dropdown {
+    background-color: white;
 
     &--full-width {
-        display: block;
+      width: 100%;
     }
 
-    &__content {
+    &--cursor {
+      position: absolute;
+
+      & > .giz-list {
+        right: 0;
+        left: 0;
+      }
+    }
+  }
+
+  .giz-input-control {
+    cursor: pointer;
+
+    .giz-input-root {
+      justify-content: space-between;
+      align-items: center;
+
+      input {
         cursor: pointer;
-        flex-grow: 1;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+      }
 
-        &_wrapper {
-            position: relative;
-        }
+      .giz-input__icon-right {
+        cursor: pointer;
+      }
     }
+  }
 
-    &__dropdown {
-        background-color: white;
-
-        &--full-width {
-            width: 100%;
-        }
-
-        &--cursor {
-            position: absolute;
-
-            & > .giz-list {
-                right: 0;
-                left: 0;
-            }
-        }
-    }
-
+  &.disabled,
+  &[disabled] {
     .giz-input-control {
-        cursor: pointer;
-
-        .giz-input-root {
-            justify-content: space-between;
-            align-items: center;
-
-            input {
-                cursor: pointer;
-            }
-
-            .giz-input__icon-right {
-                cursor: pointer;
-            }
-        }
+      cursor: default;
     }
+  }
 
-    &.disabled, &[disabled] {
-        .giz-input-control {
-            cursor: default;
-        }
-    }
+  .giz-popup {
+    display: none;
 
-    .giz-popup {
-        overflow-x: hidden;
-        overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &--open {
+      display: block;
     }
+  }
 }
