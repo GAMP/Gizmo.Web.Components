@@ -1,63 +1,68 @@
+/** @format */
+
 //=============== Switch ================//
 
 .giz-switch {
-    display: inline-flex;
+  position: relative;
 
-    input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        cursor: pointer;
+  $size: 16px;
 
-        & ~ label {
-            position: relative;
-            display: flex;
-            align-items: center;
-            user-select: none;
-            cursor: pointer;
-            margin: 0.4rem 0;
-        }
+  width: $size * 2;
+  height: $size;
 
-        &:checked {
-            & ~ label {
-            }
+  user-select: none;
 
-            & ~ .giz-switch__control {
-                .giz-switch__control__slider__thumb {
-                    transform: translateX(2.4rem);
-                }
-            }
-        }
+  input {
+    opacity: 0;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  &__control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #65b8a7;
+    border-radius: $size;
+    transition: background-color 0.4s;
+
+    &__slider-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: $size;
+      overflow: hidden;
     }
 
-    &__control {
-        display: inline;
-        position: relative;
-        pointer-events: none;
-        width: 4.8rem;
-        height: 3.2rem;
-        margin-right: 0.75rem;
+    &__slider {
+      width: 100%;
+      height: 100%;
+      border-radius: $size;
+      transition: transform 0.4s;
 
-        &__slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: white;
-            transition: 0.4s;
-
-            &__thumb {
-                position: absolute;
-                width: 2.4rem;
-                height: 3.2rem;
-                background-color: black;
-                transition: 0.4s;
-            }
-        }
+      &__thumb {
+        width: $size;
+        height: $size;
+        background-color: black;
+        border-radius: 50%;
+        transition: transform 0.4s;
+      }
     }
+  }
+
+  input:checked + label {
+    .giz-switch__control {
+      background-color: #65b8a7;
+
+      &__slider-wrapper {
+        .giz-switch__control__slider {
+          transform: translateX($size);
+        }
+      }
+    }
+  }
 }
