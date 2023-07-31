@@ -2,18 +2,26 @@
 
 //=============== Switch ================//
 
+$switch-sizes: (
+  extra-small: 10px,
+  small: 12px,
+  medium: 14px,
+  large: 16px,
+  extra-large: 18px,
+);
+
 .giz-switch {
   position: relative;
-
-  $size: 16px;
-
-  width: $size * 2;
-  height: $size;
-
   user-select: none;
 
   input {
     opacity: 0;
+
+    &:checked + label {
+      .giz-switch__control {
+        background-color: transparent;
+      }
+    }
   }
 
   label {
@@ -26,41 +34,55 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #65b8a7;
-    border-radius: $size;
+    background-color: transparent;
     transition: background-color 0.4s;
-
-    &__slider-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: $size;
-      overflow: hidden;
-    }
+    outline: 1px solid black;
 
     &__slider {
       width: 100%;
       height: 100%;
-      border-radius: $size;
-      transition: transform 0.4s;
 
       &__thumb {
-        width: $size;
-        height: $size;
         background-color: black;
-        border-radius: 50%;
-        transition: transform 0.4s;
       }
     }
   }
 
-  input:checked + label {
-    .giz-switch__control {
-      background-color: #65b8a7;
+  // Set sizes
+  @each $size-name, $size-value in $switch-sizes {
+    $padding: 2px;
+    $radius: $size-value + $padding;
 
-      &__slider-wrapper {
+    &--#{$size-name} {
+      width: ($size-value + 2 * $padding) * 2;
+      height: $size-value + 2 * $padding;
+
+      .giz-switch {
+        &__control {
+          border-radius: $radius;
+
+          &__slider {
+            &-wrapper {
+              padding-top: $padding;
+              padding-left: $padding;
+            }
+
+            border-radius: $radius;
+            transition: transform 0.4s;
+
+            &__thumb {
+              width: $size-value;
+              height: $size-value;
+              border-radius: $radius;
+              transition: transform 0.4s;
+            }
+          }
+        }
+      }
+
+      input:checked + label {
         .giz-switch__control__slider {
-          transform: translateX($size);
+          transform: translateX($radius + $padding);
         }
       }
     }
