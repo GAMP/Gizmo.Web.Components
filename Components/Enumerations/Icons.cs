@@ -19,6 +19,7 @@
         ArrowRightLong,
         ArrowUp,
         Arrows,
+        Assistance_Client,
         Backspace,
         Balance,
         Ban,
