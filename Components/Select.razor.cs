@@ -447,6 +447,8 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-select")
                  .If("giz-select--full-width", () => IsFullWidth)
+                 .If("giz-select--valid", () => IsValid)
+                 .If("giz-select--invalid", () => !IsValid)
                  .If("open", () => _isOpen)
                  .AsString();
 
