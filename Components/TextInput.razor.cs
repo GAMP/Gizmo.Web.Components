@@ -133,6 +133,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public Func<char, Task<bool>> ValidateFunction { get; set; }
 
+        [Parameter]
+        public string InputClass { get; set; }
+
         #endregion
 
         #region EVENTS

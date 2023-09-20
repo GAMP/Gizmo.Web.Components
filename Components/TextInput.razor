@@ -51,7 +51,8 @@
                    @onclick="OnClickHandler"
                    @attributes="Attributes"
                    @ondrop="OnDropHandler"
-                   @ondrop:preventDefault="@DisableDrop" />
+                   @ondrop:preventDefault="@DisableDrop"
+                   class="@InputClass" />
         }
         else
         {
@@ -73,7 +74,8 @@
                       @onclick="OnClickHandler"
                       @attributes="Attributes"
                       @ondrop="OnDropHandler"
-                      @ondrop:preventDefault="@DisableDrop" />
+                      @ondrop:preventDefault="@DisableDrop"
+                      class="@InputClass"/>
         }
     </div>
 </GizInput>
