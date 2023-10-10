@@ -386,6 +386,7 @@ namespace Gizmo.Web.Components
                  .If("giz-button--progress", () => ButtonGroup == null && Variant == ButtonVariants.Progress)
                  .If("giz-button--full-width", () => IsFullWidth)
                  .If("giz-button--shadow", () => HasShadow)
+                 .If("giz-button--icon", () => ChildContent == null && string.IsNullOrEmpty(Text) && LeftSVGIcon.HasValue)
                  .If("disabled", () => IsDisabled || !_canExecute)
                  .If("selected", () => _selected)
                  .AsString();
