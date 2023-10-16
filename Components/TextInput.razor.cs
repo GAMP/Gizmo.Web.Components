@@ -136,9 +136,17 @@ namespace Gizmo.Web.Components
         [Parameter]
         public string InputClass { get; set; }
 
+        [Parameter]
+        public bool CanClearValue { get; set; }
+
         #endregion
 
         #region EVENTS
+
+        public Task OnClickButtonClearValueHandler(MouseEventArgs args)
+        {
+            return SetValueAsync(default(TValue));
+        }
 
         protected Task OnInputHandler(ChangeEventArgs args)
         {
@@ -457,6 +465,14 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        private bool IsNullable()
+        {
+            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
+                return true;
+
+            return false;
+        }
+
         protected async Task SetValueAsync(TValue value)
         {
             Value = value;
@@ -538,7 +554,7 @@ namespace Gizmo.Web.Components
 
         protected string PlaceholderClassName => new ClassMapper()
                  .Add("giz-input-wrapper-placeholderlabel")
-                 .If("giz-input-wrapper-placeholderlabel--active", () => !string.IsNullOrWhiteSpace(PlaceholderLabel) && _text.Length > 0)
+                 .If("giz-input-wrapper-placeholderlabel--active", () => !string.IsNullOrWhiteSpace(PlaceholderLabel) && _text?.Length > 0)
                  .AsString();
 
         #endregion

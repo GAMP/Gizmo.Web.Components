@@ -78,4 +78,9 @@
                       class="@InputClass"/>
         }
     </div>
+
+    @if (CanClearValue && IsNullable() && Value != null)
+    {
+        <IconButton SVGIcon="@Icons.Close" Class="giz-input-button-clear" @onclick="OnClickButtonClearValueHandler" />
+    }
 </GizInput>
