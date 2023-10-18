@@ -105,6 +105,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public decimal Progress { get; set; }
 
+        [Parameter]
+        public bool IsProgressIndeterminate { get; set; }
+
         #endregion
 
         #endregion
@@ -384,6 +387,7 @@ namespace Gizmo.Web.Components
                  .If("giz-button--outline", () => ButtonGroup == null && Variant == ButtonVariants.Outline)
                  .If("giz-button--text", () => ButtonGroup == null && Variant == ButtonVariants.Text)
                  .If("giz-button--progress", () => ButtonGroup == null && Variant == ButtonVariants.Progress)
+                 .If("giz-button--progress-indeterminate", () => ButtonGroup == null && IsProgressIndeterminate)
                  .If("giz-button--full-width", () => IsFullWidth)
                  .If("giz-button--shadow", () => HasShadow)
                  .If("giz-button--icon", () => ChildContent == null && string.IsNullOrEmpty(Text) && LeftSVGIcon.HasValue)

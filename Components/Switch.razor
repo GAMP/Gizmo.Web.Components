@@ -2,19 +2,15 @@
 @inherits CustomDOMComponentBase
 
 <div class="@ClassName @Class">
-    <input 
-        type="checkbox"
-        id="@Id"
-        checked="@IsChecked"
-        disabled="@IsDisabled"
-        @onchange="OnChangeHandler">
+    <input id="@Id"
+           type="checkbox"
+           checked="@IsChecked"
+           disabled="@IsDisabled"
+           @onchange="OnChangeHandler">
+    <div class="track">
+        <div class="thumb"></div>
+    </div>    
     <label for="@Id">
-        <div class="giz-switch__control">
-            <div class="giz-switch__control__slider-wrapper">
-                <div class="giz-switch__control__slider">
-                    <div class="giz-switch__control__slider__thumb"></div>
-                </div>
-            </div>
-        </div>
+        @Label
     </label>
 </div>

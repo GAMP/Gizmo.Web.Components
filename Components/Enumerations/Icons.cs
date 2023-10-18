@@ -29,6 +29,8 @@
         Calendar,
         Cash,
         Check,
+        ChevronDown_Manager,
+        ChevronLeft_Manager,
         Clock_Client,
         Close,
         Close_Client,
