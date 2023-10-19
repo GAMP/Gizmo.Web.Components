@@ -101,9 +101,19 @@ namespace Gizmo.Web.Components
                 // decimal
                 else if (typeof(TValue) == typeof(decimal) || typeof(TValue) == typeof(decimal?))
                 {
-                    if (decimal.TryParse(value, NumberStyles.Any, Culture, out var parsedValue))
-                        return (TValue)(object)parsedValue;
-                    UpdateGetError("The field should be a number.");
+                    if (InvariantDecimalPoint)
+                    {
+                        var tmpValue = value.Replace(',', '.');
+                        if (decimal.TryParse(tmpValue, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                            return (TValue)(object)parsedValue;
+                        UpdateGetError("The field should be a number.");
+                    }
+                    else
+                    {
+                        if (decimal.TryParse(value, NumberStyles.Any, Culture, out var parsedValue))
+                            return (TValue)(object)parsedValue;
+                        UpdateGetError("The field should be a number.");
+                    }
                 }
 
                 // guid

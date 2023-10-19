@@ -128,6 +128,9 @@ namespace Gizmo.Web.Components
         public bool IsMultiLine { get; set; }
 
         [Parameter]
+        public bool InvariantDecimalPoint { get; set; }
+
+        [Parameter]
         public CultureInfo Culture { get; set; }
 
         [Parameter]
@@ -502,6 +505,8 @@ namespace Gizmo.Web.Components
 
         protected override void OnInitialized()
         {
+            _converter.InvariantDecimalPoint = InvariantDecimalPoint;
+
             if (Culture != null)
             {
                 _converter.Culture = Culture;

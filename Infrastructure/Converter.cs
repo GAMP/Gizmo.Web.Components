@@ -1,10 +1,11 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace Gizmo.Web.Components
 {
     public class Converter<T, U>
     {
+        public bool InvariantDecimalPoint { get; set; }
+
         public CultureInfo Culture { get; set; } = CultureInfo.CurrentUICulture;
 
         public string Format { get; set; } = null;
