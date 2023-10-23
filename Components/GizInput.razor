@@ -8,13 +8,13 @@
     {
         <label for="@Id" class="giz-input-label">@Label</label>
     }
-    <div class="@FieldClassName" style="@FieldStyleValue" readonly="@IsReadOnly" disabled="@IsDisabled">
+    <div class="@FieldClassName" style="@FieldStyleValue" readonly="@IsReadOnly" disabled="@IsDisabled" @onclick="OnRootClickHandler">
         @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
         {
-            <Icon   Source="@LeftIcon"
-                    SVGIcon="@LeftSVGIcon"
-                    Size="@LeftIconSize"
-                    Class="@IconLeft" />
+            <Icon Source="@LeftIcon"
+                  SVGIcon="@LeftSVGIcon"
+                  Size="@LeftIconSize"
+                  Class="@IconLeft" />
         }
         
         @if (LeftContent != null)
@@ -31,10 +31,10 @@
 
         @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
         {
-            <Icon   Class="@IconRight"
-                    Source="@RightIcon"
-                    Size="@RightIconSize"
-                    SVGIcon="@RightSVGIcon"/>
+            <Icon Class="@IconRight"
+                  Source="@RightIcon"
+                  Size="@RightIconSize"
+                  SVGIcon="@RightSVGIcon"/>
         }
 
     </div>

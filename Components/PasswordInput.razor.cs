@@ -408,9 +408,18 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        protected async Task OnRootClickHandler(MouseEventArgs args)
+        {
+            await _inputElement.FocusAsync();
+
+            await OnClick.InvokeAsync(args);
+        }
+
         protected Task OnClickHandler(MouseEventArgs args)
         {
-            return OnClick.InvokeAsync(args);
+            //return OnClick.InvokeAsync(args);
+
+            return Task.CompletedTask;
         }
 
         public Task OnClickButtonEyeHandler(MouseEventArgs args)
@@ -483,6 +492,7 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-password-input")
                  .If("giz-password-input--full-width", () => IsFullWidth)
+                 .If("giz-password-input--internal-label", () => !string.IsNullOrWhiteSpace(PlaceholderLabel))
                  .Add(Class)
                  .AsString();
 

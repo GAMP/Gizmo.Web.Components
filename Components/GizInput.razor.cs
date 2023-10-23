@@ -115,6 +115,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnRootClick { get; set; }
+
         /// <summary>
         /// Gets or sets the content of the input.
         /// </summary>
@@ -133,6 +136,11 @@ namespace Gizmo.Web.Components
         protected Task OnClickHandler(MouseEventArgs args)
         {
             return OnClick.InvokeAsync(args);
+        }
+
+        protected Task OnRootClickHandler(MouseEventArgs args)
+        {
+            return OnRootClick.InvokeAsync(args);
         }
 
         #endregion

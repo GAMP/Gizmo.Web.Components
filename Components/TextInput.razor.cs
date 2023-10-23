@@ -50,7 +50,7 @@ namespace Gizmo.Web.Components
         public string Placeholder { get; set; }
 
         [Parameter]
-        public string PlaceholderLabel { get; set; }
+        public string InternalLabel { get; set; }
 
         [Parameter]
         public string LeftIcon { get; set; }
@@ -459,9 +459,18 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        protected async Task OnRootClickHandler(MouseEventArgs args)
+        {
+            await _inputElement.FocusAsync();
+
+            await OnClick.InvokeAsync(args);
+        }
+
         protected Task OnClickHandler(MouseEventArgs args)
         {
-            return OnClick.InvokeAsync(args);
+            //return OnClick.InvokeAsync(args);
+
+            return Task.CompletedTask;
         }
 
         #endregion
@@ -554,12 +563,13 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-text-input")
                  .If("giz-text-input--full-width", () => IsFullWidth)
+                 .If("giz-text-input--internal-label", () => !string.IsNullOrWhiteSpace(InternalLabel))
                  .Add(Class)
                  .AsString();
 
         protected string PlaceholderClassName => new ClassMapper()
                  .Add("giz-input-wrapper-placeholderlabel")
-                 .If("giz-input-wrapper-placeholderlabel--active", () => !string.IsNullOrWhiteSpace(PlaceholderLabel) && _text?.Length > 0)
+                 .If("giz-input-wrapper-placeholderlabel--active", () => !string.IsNullOrWhiteSpace(InternalLabel) && _text?.Length > 0)
                  .AsString();
 
         #endregion

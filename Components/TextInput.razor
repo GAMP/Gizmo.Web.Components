@@ -24,11 +24,12 @@
           LeftIconSize="@LeftIconSize"
           RightIcon="@RightIcon"
           RightSVGIcon="@RightSVGIcon"
-          RightIconSize="@RightIconSize">
+          RightIconSize="@RightIconSize"
+          OnRootClick="@OnRootClickHandler">
     <div class="giz-input-wrapper">
-        @if(!string.IsNullOrEmpty(PlaceholderLabel))
+        @if(!string.IsNullOrEmpty(InternalLabel))
         {
-            <div class="@PlaceholderClassName">@PlaceholderLabel</div>
+            <div class="@PlaceholderClassName">@InternalLabel</div>
         }
 
         @if (!IsMultiLine)
