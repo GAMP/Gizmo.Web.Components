@@ -28,14 +28,16 @@ namespace Gizmo.Web.Components
         private bool _hasValidateFunction;
         private bool _altPressed;
 
-        [Inject()]
-        private ILogger<IGizInput> Logger 
-        { 
-            get; 
-            set; 
-        }
+        private bool _hasFocus;
 
         #endregion
+
+        [Inject()]
+        private ILogger<IGizInput> Logger
+        {
+            get;
+            set;
+        }
 
         #region PROPERTIES
 
@@ -43,7 +45,7 @@ namespace Gizmo.Web.Components
 
         #region IGizInput
 
-       [Parameter]
+        [Parameter]
         public string Label { get; set; }
 
         [Parameter]
@@ -473,6 +475,16 @@ namespace Gizmo.Web.Components
             return Task.CompletedTask;
         }
 
+        public void OnFocusInHandler()
+        {
+            _hasFocus = true;
+        }
+
+        public void OnFocusOutHandler()
+        {
+            _hasFocus = false;
+        }
+
         #endregion
 
         #region METHODS
@@ -567,9 +579,9 @@ namespace Gizmo.Web.Components
                  .Add(Class)
                  .AsString();
 
-        protected string PlaceholderClassName => new ClassMapper()
-                 .Add("giz-input-wrapper-placeholderlabel")
-                 .If("giz-input-wrapper-placeholderlabel--active", () => !string.IsNullOrWhiteSpace(InternalLabel) && _text?.Length > 0)
+        protected string InternalLabelClassName => new ClassMapper()
+                 .Add("giz-input-wrapper__internal-label")
+                 .If("giz-input-wrapper__internal-label--active", () => !string.IsNullOrWhiteSpace(InternalLabel) && (_text?.Length > 0 || _hasFocus))
                  .AsString();
 
         #endregion

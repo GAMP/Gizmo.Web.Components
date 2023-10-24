@@ -9,8 +9,11 @@
            @onchange="OnChangeHandler">
     <div class="track">
         <div class="thumb"></div>
-    </div>    
-    <label for="@Id">
-        @Label
-    </label>
+    </div>
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@Id">
+            @Label
+        </label>
+    }
 </div>

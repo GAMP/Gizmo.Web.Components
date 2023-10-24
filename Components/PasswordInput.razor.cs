@@ -25,6 +25,8 @@ namespace Gizmo.Web.Components
         private bool _hasValidateFunction;
         private bool _altPressed;
 
+        private bool _hasFocus;
+
         #endregion
 
         #region PROPERTIES
@@ -40,7 +42,7 @@ namespace Gizmo.Web.Components
         public string Placeholder { get; set; }
 
         [Parameter]
-        public string PlaceholderLabel { get; set; }
+        public string InternalLabel { get; set; }
 
         [Parameter]
         public string LeftIcon { get; set; }
@@ -428,6 +430,16 @@ namespace Gizmo.Web.Components
             return IsPasswordVisibleChanged.InvokeAsync(IsPasswordVisible);
         }
 
+        public void OnFocusInHandler()
+        {
+            _hasFocus = true;
+        }
+
+        public void OnFocusOutHandler()
+        {
+            _hasFocus = false;
+        }
+
         #endregion
 
         #region METHODS
@@ -492,13 +504,13 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-password-input")
                  .If("giz-password-input--full-width", () => IsFullWidth)
-                 .If("giz-password-input--internal-label", () => !string.IsNullOrWhiteSpace(PlaceholderLabel))
+                 .If("giz-password-input--internal-label", () => !string.IsNullOrWhiteSpace(InternalLabel))
                  .Add(Class)
                  .AsString();
 
-        protected string PlaceholderClassName => new ClassMapper()
-             .Add("giz-input-wrapper-placeholderlabel")
-             .If("giz-input-wrapper-placeholderlabel--active", () => !string.IsNullOrWhiteSpace(PlaceholderLabel) && _text?.Length > 0)
+        protected string InternalLabelClassName => new ClassMapper()
+             .Add("giz-input-wrapper__internal-label")
+             .If("giz-input-wrapper__internal-label--active", () => !string.IsNullOrWhiteSpace(InternalLabel) && (_text?.Length > 0 || _hasFocus))
              .AsString();
 
         #endregion

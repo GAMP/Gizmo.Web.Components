@@ -29,7 +29,7 @@
     <div class="giz-input-wrapper">
         @if(!string.IsNullOrEmpty(InternalLabel))
         {
-            <div class="@PlaceholderClassName">@InternalLabel</div>
+            <div class="@InternalLabelClassName">@InternalLabel</div>
         }
 
         @if (!IsMultiLine)
@@ -53,6 +53,8 @@
                    @attributes="Attributes"
                    @ondrop="OnDropHandler"
                    @ondrop:preventDefault="@DisableDrop"
+                   @onfocusin="OnFocusInHandler"
+                   @onfocusout="OnFocusOutHandler"
                    class="@InputClass" />
         }
         else
@@ -76,6 +78,8 @@
                       @attributes="Attributes"
                       @ondrop="OnDropHandler"
                       @ondrop:preventDefault="@DisableDrop"
+                      @onfocusin="OnFocusInHandler"
+                      @onfocusout="OnFocusOutHandler"
                       class="@InputClass"/>
         }
     </div>
