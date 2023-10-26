@@ -21,7 +21,12 @@
         }
         else
         {
-            @Label
+            @if (!string.IsNullOrEmpty(Label))
+            {
+                <span>
+                    @Label
+                </span>
+            }
         }
     </label>
 </div>
