@@ -39,6 +39,8 @@ namespace Gizmo.Web.Components
 
         private BoundingClientRect _dataGridSize;
 
+        private bool _deselect = false;
+
         #region CONTEXT MENU
 
         private double _clientX;
@@ -893,11 +895,14 @@ namespace Gizmo.Web.Components
                     }
                     else
                     {
-                        //Clear selected items list and set selected property to false.
-                        SelectedItems?.Clear();
-                        item.SetSelected(false);
+                        if (_deselect)
+                        {
+                            //Clear selected items list and set selected property to false.
+                            SelectedItems?.Clear();
+                            item.SetSelected(false);
 
-                        _selectedItem = default;
+                            _selectedItem = default;
+                        }
                     }
                 }
                 else
