@@ -14,7 +14,7 @@ namespace Gizmo.Web.Components
         }
         #endregion
 
-        private bool _isCollapsed = false;
+        protected bool _shouldRender;
 
         #region PROPERTIES
 
@@ -25,21 +25,7 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public bool IsCollapsed
-        {
-            get
-            {
-                return _isCollapsed;
-            }
-            set
-            {
-                if (_isCollapsed == value)
-                    return;
-
-                _isCollapsed = value;
-                _ = IsCollapsedChanged.InvokeAsync(_isCollapsed);
-            }
-        }
+        public bool IsCollapsed { get; set; }
 
         [Parameter]
         public EventCallback<bool> IsCollapsedChanged { get; set; }
@@ -78,20 +64,30 @@ namespace Gizmo.Web.Components
                 ExpansionPanelEventInterop = new ExpansionPanelEventInterop(JsRuntime);
                 await ExpansionPanelEventInterop.SetupExpansionPanelEventCallback(args => ExpansionPanelHandler(args));
             }
+            else
+            {
+                _shouldRender = false;
+                await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
+            }
 
             await base.OnAfterRenderAsync(firstRender);
         }
 
         private ExpansionPanelEventInterop ExpansionPanelEventInterop { get; set; }
 
-        private Task ExpansionPanelHandler(ExpansionPanelEventArgs args)
+        private async Task ExpansionPanelHandler(ExpansionPanelEventArgs args)
         {
             if (args.Id == Id)
             {
-                IsCollapsed = args.IsCollapsed;
-            }
+                if (IsCollapsed != args.IsCollapsed)
+                {
+                    IsCollapsed = args.IsCollapsed;
+                    await IsCollapsedChanged.InvokeAsync(IsCollapsed);
 
-            return Task.CompletedTask;
+                    _shouldRender = true;
+                    await InvokeAsync(StateHasChanged);
+                }
+            }
         }
 
         public override void Dispose()
@@ -99,6 +95,11 @@ namespace Gizmo.Web.Components
             ExpansionPanelEventInterop?.Dispose();
 
             base.Dispose();
+        }
+
+        protected override bool ShouldRender()
+        {
+            return _shouldRender;
         }
 
         #region IAsyncDisposable
