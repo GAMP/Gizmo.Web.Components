@@ -77,6 +77,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool HasDisabledCursor { get; set; }
 
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnClickInsidePopup { get; set; }
+
         #endregion
 
         #region METHODS
@@ -118,10 +121,12 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        protected void ClickInsidePopup()
+        protected Task ClickInsidePopupHandler(MouseEventArgs args)
         {
             if (CloseOnClick)
                 IsOpen = false;
+
+            return OnClickInsidePopup.InvokeAsync(args);
         }
 
         protected void OnFocusOutHandler()

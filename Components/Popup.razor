@@ -6,7 +6,7 @@
     <div class="@Class @ClassName"
          style="@StyleValue @Style"
          @ref="@Ref"
-         @onclick="ClickInsidePopup"
+         @onclick="OnClickInsidePopup"
          @onfocusout="OnFocusOutHandler"
          tabindex="-1">
         @ChildContent
@@ -22,7 +22,7 @@ else
         <div class="@Class @ClassName"
              style="@StyleValue @Style"
              @ref="@Ref"
-             @onclick="ClickInsidePopup"
+             @onclick="OnClickInsidePopup"
              @onclick:stopPropagation="true"
              @onfocusout="OnFocusOutHandler"
              tabindex="-1">
