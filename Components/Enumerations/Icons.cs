@@ -31,6 +31,8 @@
         Check,
         ChevronDown_Manager,
         ChevronLeft_Manager,
+        CircleAdd_Manager,
+        CircleDismiss_Manager,
         Clear_Manager,
         Clock_Client,
         Close,
