@@ -57,6 +57,7 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public Icons? RightSVGIcon { get; set; }
+
         [Parameter]
         public InputSizes Size { get; set; } = InputSizes.Medium;
 

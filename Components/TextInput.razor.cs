@@ -144,6 +144,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool CanClearValue { get; set; }
 
+        [Parameter]
+        public EventCallback<KeyboardEventArgs> OnInputKeyDown { get; set; }
+
+        [Parameter]
+        public EventCallback<KeyboardEventArgs> OnInputKeyUp { get; set; }
+
         #endregion
 
         #region EVENTS
@@ -175,6 +181,8 @@ namespace Gizmo.Web.Components
 
         protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
+            await OnInputKeyDown.InvokeAsync(args);
+
             if (!_hasValidateFunction)
                 return;
 
@@ -183,7 +191,6 @@ namespace Gizmo.Web.Components
 
             try
             {
-
                 if (args.Key == null)
                     return;
 
@@ -436,7 +443,7 @@ namespace Gizmo.Web.Components
 
         protected Task OnInputKeyUpHandler(KeyboardEventArgs args)
         {
-            return Task.CompletedTask;
+            return OnInputKeyUp.InvokeAsync(args);
         }
 
         protected Task OnInputKeyPressHandler(KeyboardEventArgs args)
