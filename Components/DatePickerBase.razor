@@ -22,7 +22,10 @@ else
                     <div>
                         <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousYearHandler" SVGIcon="Icons.ArrowLeft" />
                     </div>
-                    <div class="giz-date-picker__content__title-slide" @onclick="OnClickButtonYearHandler">@CurrentVisibleMonth.ToString("yyyy")</div>
+                    <button class="giz-date-picker__content__title-slide"
+                            @onclick="OnClickButtonYearHandler">
+                        @CurrentVisibleMonth.ToString("yyyy")
+                    </button>
                     <div>
                         <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonNextYearHandler" SVGIcon="Icons.ArrowRight" />
                     </div>
@@ -32,9 +35,10 @@ else
                     {
                         var local_i = i;
                         var monthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(local_i);
-                        <div>
-                            <Button Variant="ButtonVariants.Text" @onclick="@(() => OnClickButtonMonth(local_i))" class="@(local_i == CurrentVisibleMonth.Month ? "active" : "")"><span class="giz-date-picker__content__month-count">@monthName</span></Button>
-                        </div>
+                        <button @onclick="@(() => OnClickButtonMonth(local_i))"
+                                class="@(local_i == CurrentVisibleMonth.Month ? "giz-date-picker-month-button active" : "giz-date-picker-month-button")">
+                            @monthName
+                        </button>
                     }
                 </div>
             </div>
@@ -45,7 +49,10 @@ else
                 @for (int i = @CurrentVisibleMonth.Year - 100; i < @CurrentVisibleMonth.Year + 100; i++)
                 {
                     var local_i = i;
-                    <div @onclick="@(() => OnClickButtonYear(local_i))" class="giz-date-picker__year_dropdown-count @(local_i == CurrentVisibleMonth.Year ? "active" : "")">@local_i</div>
+                    <button @onclick="@(() => OnClickButtonYear(local_i))"
+                            class="@(local_i == CurrentVisibleMonth.Year ? "giz-date-picker-year-button active" : "giz-date-picker-year-button")">
+                        @local_i
+                    </button>
                 }
             </div>
         }
@@ -53,22 +60,25 @@ else
         {
             <div class="giz-date-picker__content">
                 <div class="giz-date-picker__content__title-switch">
-                    <div>
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousMonthHandler" SVGIcon="Icons.ArrowLeft" />
-                    </div>
-                    <div class="giz-date-picker__content__title-slide" @onclick="OnClickButtonMonthHandler">@CurrentVisibleMonth.ToString("MMM yyyy")</div>
-                    <div>
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonNextMonthHandler" SVGIcon="Icons.ArrowRight" />
-                    </div>
+                    <IconButton Variant="ButtonVariants.Text"
+                                SVGIcon="Icons.ArrowLeft"
+                                @onclick="OnClickButtonPreviousMonthHandler" />
+                    <button class="giz-date-picker__content__title-slide"
+                            @onclick="OnClickButtonMonthHandler">
+                        @CurrentVisibleMonth.ToString("MMM yyyy")
+                    </button>
+                    <IconButton Variant="ButtonVariants.Text"
+                                SVGIcon="Icons.ArrowRight"
+                                @onclick="OnClickButtonNextMonthHandler" />
                 </div>
-                <div class="giz-date-picker__content__weekday">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
+                <div class="giz-date-picker__content__weekdays">
+                    <div class="giz-date-picker-weekday">Sun</div>
+                    <div class="giz-date-picker-weekday">Mon</div>
+                    <div class="giz-date-picker-weekday">Tue</div>
+                    <div class="giz-date-picker-weekday">Wed</div>
+                    <div class="giz-date-picker-weekday">Thu</div>
+                    <div class="giz-date-picker-weekday">Fri</div>
+                    <div class="giz-date-picker-weekday">Sat</div>
                 </div>
                 <div class="giz-date-picker__content__day">
                     @for (int i = 0; i < _whiteSpaces; i++)
@@ -78,16 +88,19 @@ else
                     @for (int i = 1; i <= _monthDays; i++)
                     {
                         var local_i = i;
-                        <div>
-                            <IconButton Variant="ButtonVariants.Text" @onclick="@(() => OnClickButtonDay(local_i))" Class="@(IsCurrentDay(@CurrentVisibleMonth.Year, @CurrentVisibleMonth.Month, local_i) ? "active" : "")"><span class="giz-date-picker__content__day-count">@local_i</span></IconButton>
-                        </div>
+                        <button class="@(IsCurrentDay(@CurrentVisibleMonth.Year, @CurrentVisibleMonth.Month, local_i) ? "giz-date-picker-day-button active" : "giz-date-picker-day-button")"
+                                @onclick="@(() => OnClickButtonDay(local_i))">
+                            @local_i
+                        </button>
                     }
                 </div>
             </div>
             @if (ShowTime)
             {
                 <div class="giz-date-picker__time">
-                    <IconButton SVGIcon="Icons.Time2" Variant="ButtonVariants.Text" @onclick="OnClickTimePickerHandler" />
+                    <IconButton Variant="ButtonVariants.Text"
+                                SVGIcon="Icons.Time2" 
+                                @onclick="OnClickTimePickerHandler" />
                 </div>
             }
         }

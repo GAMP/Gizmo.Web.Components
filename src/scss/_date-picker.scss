@@ -12,7 +12,7 @@
     }
 
     &__year_dropdown {
-        .giz-date-picker-year-count {
+        .giz-date-picker-year-button {
             text-align: center;
         }
     }
@@ -31,7 +31,7 @@
             }
         }
 
-        &__weekday {
+        &__weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             place-items: center;

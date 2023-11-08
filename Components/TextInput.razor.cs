@@ -498,8 +498,22 @@ namespace Gizmo.Web.Components
 
         private bool IsNullable()
         {
+            if (typeof(TValue) == typeof(string))
+                return true;
+
             if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
                 return true;
+
+            return false;
+        }
+
+        private bool IsNull()
+        {
+            if (Value == null)
+                return true;
+
+            if (typeof(TValue) == typeof(string))
+                return string.IsNullOrEmpty((string)(object)Value);
 
             return false;
         }
