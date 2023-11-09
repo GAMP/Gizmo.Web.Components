@@ -96,6 +96,9 @@ namespace Gizmo.Web.Components
         public TValue Value { get; set; }
 
         [Parameter]
+        public TValue Range { get; set; }
+
+        [Parameter]
         public bool OffsetY { get; set; }
 
         [Parameter]

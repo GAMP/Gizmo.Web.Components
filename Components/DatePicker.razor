@@ -57,7 +57,13 @@
     }
     else
     {
-        <DatePickerBase TValue="TValue" Value="@Value" ValueChanged="@DatePickerValueChanged" IsFullWidth="@IsFullWidth" Culture="@Culture" Format="@Format" />
+        <DatePickerBase TValue="TValue"
+                        Value="@Value"
+                        ValueChanged="@DatePickerValueChanged"
+                        Range="@Range"
+                        IsFullWidth="@IsFullWidth"
+                        Culture="@Culture"
+                        Format="@Format" />
     }
 
 </CascadingValue>

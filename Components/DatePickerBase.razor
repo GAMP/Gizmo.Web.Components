@@ -19,18 +19,20 @@ else
         {
             <div class="giz-date-picker__content">
                 <div class="giz-date-picker__content__title-switch">
-                    <div>
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonPreviousYearHandler" SVGIcon="Icons.ArrowLeft" />
-                    </div>
+                    <IconButton Variant="ButtonVariants.Text"
+                                SVGIcon="Icons.ArrowLeft"
+                                Class="giz-date-picker-navigation-button"
+                                @onclick="OnClickButtonPreviousYearHandler" />
                     <button class="giz-date-picker__content__title-slide"
                             @onclick="OnClickButtonYearHandler">
                         @CurrentVisibleMonth.ToString("yyyy")
                     </button>
-                    <div>
-                        <IconButton Variant="ButtonVariants.Text" @onclick="OnClickButtonNextYearHandler" SVGIcon="Icons.ArrowRight" />
-                    </div>
+                    <IconButton Variant="ButtonVariants.Text"
+                                SVGIcon="Icons.ArrowRight"
+                                Class="giz-date-picker-navigation-button"
+                                @onclick="OnClickButtonNextYearHandler" />
                 </div>
-                <div class="giz-date-picker__content__month">
+                <div class="giz-date-picker__content__months">
                     @for (int i = 1; i <= 12; i++)
                     {
                         var local_i = i;
@@ -45,8 +47,8 @@ else
         }
         else if (_showYearPicker)
         {
-            <div class="giz-date-picker__year_dropdown">
-                @for (int i = @CurrentVisibleMonth.Year - 100; i < @CurrentVisibleMonth.Year + 100; i++)
+            <div class="giz-date-picker__years">
+                @for (int i = @CurrentVisibleMonth.Year - 10; i < @CurrentVisibleMonth.Year + 10; i++)
                 {
                     var local_i = i;
                     <button @onclick="@(() => OnClickButtonYear(local_i))"
@@ -62,6 +64,7 @@ else
                 <div class="giz-date-picker__content__title-switch">
                     <IconButton Variant="ButtonVariants.Text"
                                 SVGIcon="Icons.ArrowLeft"
+                                Class="giz-date-picker-navigation-button"
                                 @onclick="OnClickButtonPreviousMonthHandler" />
                     <button class="giz-date-picker__content__title-slide"
                             @onclick="OnClickButtonMonthHandler">
@@ -69,26 +72,27 @@ else
                     </button>
                     <IconButton Variant="ButtonVariants.Text"
                                 SVGIcon="Icons.ArrowRight"
+                                Class="giz-date-picker-navigation-button"
                                 @onclick="OnClickButtonNextMonthHandler" />
                 </div>
                 <div class="giz-date-picker__content__weekdays">
-                    <div class="giz-date-picker-weekday">Sun</div>
-                    <div class="giz-date-picker-weekday">Mon</div>
-                    <div class="giz-date-picker-weekday">Tue</div>
-                    <div class="giz-date-picker-weekday">Wed</div>
-                    <div class="giz-date-picker-weekday">Thu</div>
-                    <div class="giz-date-picker-weekday">Fri</div>
-                    <div class="giz-date-picker-weekday">Sat</div>
+                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Sunday)</div>
+                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Monday)</div>
+                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Tuesday)</div>
+                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Wednesday)</div>
+                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Thursday)</div>
+                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Friday)</div>
+                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Saturday)</div>
                 </div>
-                <div class="giz-date-picker__content__day">
+                <div class="giz-date-picker__content__days">
                     @for (int i = 0; i < _whiteSpaces; i++)
                     {
-                        <div></div>
+                        <div class="giz-date-picker-day-button--empty"></div>
                     }
                     @for (int i = 1; i <= _monthDays; i++)
                     {
                         var local_i = i;
-                        <button class="@(IsCurrentDay(@CurrentVisibleMonth.Year, @CurrentVisibleMonth.Month, local_i) ? "giz-date-picker-day-button active" : "giz-date-picker-day-button")"
+                        <button class="@GetDayClass(local_i)"
                                 @onclick="@(() => OnClickButtonDay(local_i))">
                             @local_i
                         </button>

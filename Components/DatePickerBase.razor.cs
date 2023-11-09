@@ -60,6 +60,9 @@ namespace Gizmo.Web.Components
         public TValue Value { get; set; }
 
         [Parameter]
+        public TValue Range { get; set; }
+
+        [Parameter]
         public bool IsFullWidth { get; set; }
 
         [Parameter]
@@ -203,6 +206,47 @@ namespace Gizmo.Web.Components
         #endregion
 
         #region METHODS
+
+        private string GetDayClass(int day)
+        {
+            var result = "giz-date-picker-day-button";
+
+            if (IsCurrentDay(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day))
+            {
+                result += " active";
+
+                if (Range != null)
+                {
+                    DateTime? value = _converter.SetValue(Value);
+                    DateTime? range = _converter.SetValue(Range);
+
+                    if (range > value)
+                        result += " range-right";
+                    else
+                        result += " range-left";
+                }
+            }
+
+            if (Range != null)
+            {
+                DateTime? value = _converter.SetValue(Value);
+                DateTime? range = _converter.SetValue(Range);
+                DateTime currentDay = new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day);
+
+                if (range > value)
+                {
+                    if (currentDay > value && currentDay < range)
+                        result += " range-right";
+                }
+                else
+                {
+                    if (currentDay < value && currentDay > range)
+                        result += " range-left";
+                }
+            }
+
+            return result;
+        }
 
         protected async Task SetValueAsync(TValue value)
         {

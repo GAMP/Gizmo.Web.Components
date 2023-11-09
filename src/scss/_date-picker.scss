@@ -11,7 +11,7 @@
         }
     }
 
-    &__year_dropdown {
+    &__years {
         .giz-date-picker-year-button {
             text-align: center;
         }
@@ -37,7 +37,7 @@
             place-items: center;
         }
 
-        &__day {
+        &__days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             align-items: center;
@@ -45,7 +45,7 @@
             place-items: center;
         }
 
-        &__month {
+        &__months {
             display: grid;
             grid-template-columns: repeat(3,1fr);
             place-items: center;
