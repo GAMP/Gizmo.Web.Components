@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Gizmo.Web.Components
@@ -61,6 +62,12 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public TValue Range { get; set; }
+
+        [Parameter]
+        public TValue MinValue { get; set; }
+
+        [Parameter]
+        public TValue MaxValue { get; set; }
 
         [Parameter]
         public bool IsFullWidth { get; set; }
@@ -217,8 +224,8 @@ namespace Gizmo.Web.Components
 
                 if (Range != null)
                 {
-                    DateTime? value = _converter.SetValue(Value);
                     DateTime? range = _converter.SetValue(Range);
+                    DateTime? value = _converter.SetValue(Value);
 
                     if (range > value)
                         result += " range-right";
@@ -229,8 +236,8 @@ namespace Gizmo.Web.Components
 
             if (Range != null)
             {
-                DateTime? value = _converter.SetValue(Value);
                 DateTime? range = _converter.SetValue(Range);
+                DateTime? value = _converter.SetValue(Value);
                 DateTime currentDay = new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day);
 
                 if (range > value)
@@ -246,6 +253,33 @@ namespace Gizmo.Web.Components
             }
 
             return result;
+        }
+
+        private bool GetDayDisabled(int day)
+        {
+            DateTime currentDay = new DateTime(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day);
+
+            if (MinValue != null)
+            {
+                DateTime? minValue = _converter.SetValue(MinValue);
+
+                if (currentDay < minValue)
+                {
+                    return true;
+                }
+            }
+
+            if (MaxValue != null)
+            {
+                DateTime? maxValue = _converter.SetValue(MaxValue);
+
+                if (currentDay > maxValue)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         protected async Task SetValueAsync(TValue value)

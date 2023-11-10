@@ -99,6 +99,12 @@ namespace Gizmo.Web.Components
         public TValue Range { get; set; }
 
         [Parameter]
+        public TValue MinValue { get; set; }
+
+        [Parameter]
+        public TValue MaxValue { get; set; }
+
+        [Parameter]
         public bool OffsetY { get; set; }
 
         [Parameter]

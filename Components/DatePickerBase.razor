@@ -92,7 +92,8 @@ else
                     @for (int i = 1; i <= _monthDays; i++)
                     {
                         var local_i = i;
-                        <button class="@GetDayClass(local_i)"
+                        <button disabled="@GetDayDisabled(local_i)"
+                                class="@GetDayClass(local_i)"
                                 @onclick="@(() => OnClickButtonDay(local_i))">
                             @local_i
                         </button>
