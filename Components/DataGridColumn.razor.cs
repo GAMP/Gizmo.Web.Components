@@ -152,6 +152,22 @@ namespace Gizmo.Web.Components
                 Parent.OnHeaderRowMouseEvent(args, this);
         }
 
+        protected async Task ContextMenuHandler(MouseEventArgs args)
+        {
+            if (Parent != null)
+            {
+                if (args.Button == 2)
+                {
+                    await Parent.RightClickItem(default(TItemType));
+
+                    if (Parent.ContextMenu != null)
+                    {
+                        await Parent.OpenContextMenu(args.ClientX, args.ClientY);
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #endregion

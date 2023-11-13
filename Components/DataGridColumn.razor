@@ -8,7 +8,9 @@
         style="@StyleValue @Style"
         @ref="Ref"
         @attributes="Attributes"
-        @onclick="(e => OnHeaderMouseEvent(e))">
+        @onclick="(e => OnHeaderMouseEvent(e))"
+        @oncontextmenu:preventDefault="true"
+        @oncontextmenu="ContextMenuHandler">
         <div class="giz-data-grid-header" style="@HeaderStyleValue">
             <div>
                 @HeaderTemplate
