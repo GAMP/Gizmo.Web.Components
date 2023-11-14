@@ -12,7 +12,7 @@
     <div class="giz-hierarchical-tree-view-item__body"
          @oncontextmenu:preventDefault="true"
          @oncontextmenu="ContextMenuHandler">
-        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(_hasSubItems ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickExpandButtonHandler" />
+        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight_Manager)" Visibility="@(_hasSubItems ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickExpandButtonHandler" />
         <div class="giz-hierarchical-tree-view-item__content">
             @ChildContent
         </div>

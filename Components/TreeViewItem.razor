@@ -10,7 +10,7 @@
     <div class="giz-tree-view-item__body"
          @oncontextmenu:preventDefault="true"
          @oncontextmenu="ContextMenuHandler">
-        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight)" Visibility="@(NestedTreeView != null ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickExpandButtonHandler" />
+        <IconButton Variant="ButtonVariants.Text" SVGIcon="@(IsExpanded ? Icons.ArrowDown : Icons.ArrowRight_Manager)" Visibility="@(NestedTreeView != null ? Visibilities.Visible : Visibilities.Hidden)" @onclick="OnClickExpandButtonHandler" />
         <div class="giz-tree-view-item__content">
             @ChildContent
         </div>
