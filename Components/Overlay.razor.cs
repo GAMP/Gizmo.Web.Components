@@ -18,15 +18,27 @@ namespace Gizmo.Web.Components
         public bool Visible { get; set; }
 
         [Parameter]
-        public EventCallback<MouseEventArgs> OnClick { get; set; }
+        public EventCallback<MouseEventArgs> OnMouseDown { get; set; }
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnMouseUp { get; set; }
 
         #endregion
 
         #region EVENTS
 
-        protected Task OnClickOverlayHandler(MouseEventArgs args)
+        protected void OnClickHandler(MouseEventArgs args)
         {
-            return OnClick.InvokeAsync(args);
+        }
+
+        protected Task OnMouseDownHandler(MouseEventArgs args)
+        {
+            return OnMouseDown.InvokeAsync(args);
+        }
+
+        protected Task OnMouseUpHandler(MouseEventArgs args)
+        {
+            return OnMouseUp.InvokeAsync(args);
         }
 
         protected Task OnContextMenuHandler(MouseEventArgs args)

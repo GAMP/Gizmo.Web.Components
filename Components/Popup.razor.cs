@@ -80,6 +80,12 @@ namespace Gizmo.Web.Components
         [Parameter]
         public EventCallback<MouseEventArgs> OnClickInsidePopup { get; set; }
 
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnMouseDownOutsidePopup { get; set; }
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnMouseUpOutsidePopup { get; set; }
+
         #endregion
 
         #region METHODS
@@ -135,10 +141,17 @@ namespace Gizmo.Web.Components
                 IsOpen = false;
         }
 
-        protected void ClickOutsidePopup()
+        protected Task OnMouseDownOutsidePopupHandler(MouseEventArgs args)
         {
             if (!IsModal)
                 IsOpen = false;
+
+            return OnMouseDownOutsidePopup.InvokeAsync(args);
+        }
+
+        protected Task OnMouseUpOutsidePopupHandler(MouseEventArgs args)
+        {
+            return OnMouseUpOutsidePopup.InvokeAsync(args);
         }
 
         #endregion

@@ -13,12 +13,19 @@
     </div>
 
     <Overlay Visible="@IsOpen"
-             @onclick="ClickOutsidePopup">
+             OnMouseDown="@OnMouseDownOutsidePopupHandler"
+             OnMouseUp="@OnMouseUpOutsidePopupHandler">
     </Overlay>
 }
 else
 {
-    <div class="@PopupWrapperClassName" style="@PopupWrapperStyleValue" @onclick="ClickOutsidePopup">
+    <div class="@PopupWrapperClassName"
+         style="@PopupWrapperStyleValue">
+        <div class="giz-popup-overlay"
+             @onmousedown="@OnMouseDownOutsidePopupHandler"
+             @onmousedown:stopPropagation="true"
+             @onmouseup="@OnMouseUpOutsidePopupHandler"
+             @onmouseup:stopPropagation="true"></div>
         <div class="@Class @ClassName"
              style="@StyleValue @Style"
              @ref="@Ref"

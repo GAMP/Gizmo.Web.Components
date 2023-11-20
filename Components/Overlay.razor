@@ -2,10 +2,12 @@
 @inherits CustomDOMComponentBase
 
 <div class="@Class @ClassName"
-     @onclick="OnClickOverlayHandler"
+     @onclick="OnClickHandler"
      @onclick:stopPropagation="true"
-     @oncontextmenu="OnContextMenuHandler"
-     @oncontextmenu:preventDefault="true">
+     @onmousedown="OnMouseDownHandler"
+     @onmousedown:stopPropagation="true"
+     @onmouseup="OnMouseUpHandler"
+     @onmouseup:stopPropagation="true">
 
 </div>
 
