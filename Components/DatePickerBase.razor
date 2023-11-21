@@ -76,13 +76,16 @@ else
                                 @onclick="OnClickButtonNextMonthHandler" />
                 </div>
                 <div class="giz-date-picker__content__weekdays">
-                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Sunday)</div>
-                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Monday)</div>
-                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Tuesday)</div>
-                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Wednesday)</div>
-                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Thursday)</div>
-                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Friday)</div>
-                    <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName(DayOfWeek.Saturday)</div>
+                    @for (int i = (int)FirstDayOfWeek; i < 7; i++)
+                    {
+                        var local_i = i;
+                        <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName((DayOfWeek)local_i)</div>
+                    }
+                    @for (int i = 0; i < (int)FirstDayOfWeek; i++)
+                    {
+                        var local_i = i;
+                        <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName((DayOfWeek)local_i)</div>
+                    }
                 </div>
                 <div class="giz-date-picker__content__days">
                     @for (int i = 0; i < _whiteSpaces; i++)

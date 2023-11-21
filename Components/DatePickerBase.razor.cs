@@ -53,7 +53,18 @@ namespace Gizmo.Web.Components
                 _currentVisibleMonth = value;
 
                 _monthDays = DateTime.DaysInMonth(_currentVisibleMonth.Year, _currentVisibleMonth.Month);
-                _whiteSpaces = (int)_currentVisibleMonth.DayOfWeek;
+                if (FirstDayOfWeek == DayOfWeek.Sunday)
+                {
+                    _whiteSpaces = (int)_currentVisibleMonth.DayOfWeek;
+                }
+                else
+                {
+                    _whiteSpaces = (int)_currentVisibleMonth.DayOfWeek - (int)FirstDayOfWeek;
+                    if (_whiteSpaces < 0)
+                    {
+                        _whiteSpaces = 7 + _whiteSpaces;
+                    }
+                }
             }
         }
 
@@ -80,6 +91,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public string Format { get; set; }
+
+        [Parameter]
+        public DayOfWeek FirstDayOfWeek { get; set; } = DayOfWeek.Sunday;
 
         #endregion
 
