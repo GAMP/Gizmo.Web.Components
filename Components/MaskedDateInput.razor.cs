@@ -214,18 +214,23 @@ namespace Gizmo.Web.Components
                 _hasParsingErrors = false;
                 _parsingErrors = String.Empty;
 
-                //Update value.
-                Value = _converter.GetValue(temp);
+                var tmpValue = _converter.GetValue(temp);
 
-                //Update display text.
-                await UpdateText();
+                if (!EqualityComparer<TValue>.Default.Equals(tmpValue, Value))
+                {
+                    //Update value.
+                    Value = tmpValue;
 
-                //Refresh parsing validation message.
-                Validate();
+                    //Update display text.
+                    await UpdateText();
 
-                //Raise events.
-                await ValueChanged.InvokeAsync(Value);
-                NotifyFieldChanged();
+                    //Refresh parsing validation message.
+                    Validate();
+
+                    //Raise events.
+                    await ValueChanged.InvokeAsync(Value);
+                    NotifyFieldChanged();
+                }
             }
             else
             {
