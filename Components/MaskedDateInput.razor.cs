@@ -124,7 +124,7 @@ namespace Gizmo.Web.Components
 
                         if (_text.Length == _chars)
                         {
-                            await ValidateAndSetValue();
+                            await ValidateInputAndSetValue();
                         }
                         else
                         {
@@ -158,7 +158,7 @@ namespace Gizmo.Web.Components
 
                         if (_text.Length == _chars)
                         {
-                            await ValidateAndSetValue();
+                            await ValidateInputAndSetValue();
                         }
                         else
                         {
@@ -186,7 +186,7 @@ namespace Gizmo.Web.Components
                         {
                             if (IsNullable())
                             {
-                                await ValidateAndSetValue();
+                                await ValidateInputAndSetValue();
                             }
                         }
 
@@ -204,9 +204,42 @@ namespace Gizmo.Web.Components
             }
         }
 
-        protected Task OnFocusOutHandler(FocusEventArgs args)
+        protected async Task OnFocusOutHandler(FocusEventArgs args)
         {
-            return ValidateAndSetValue();
+            DateTime? temp = _tempConverter.SetValue(_text);
+            if (!_tempConverter.HasSetError)
+            {
+                //If there are no parsing errors update value and text.
+
+                _hasParsingErrors = false;
+                _parsingErrors = String.Empty;
+
+                //Update value.
+                Value = _converter.GetValue(temp);
+
+                //Update display text.
+                await UpdateText();
+
+                //Refresh parsing validation message.
+                Validate();
+
+                //Raise events.
+                await ValueChanged.InvokeAsync(Value);
+                NotifyFieldChanged();
+            }
+            else
+            {
+                //If there are parsing errors update text from previous value.
+
+                _hasParsingErrors = false;
+                _parsingErrors = String.Empty;
+
+                //Update display text.
+                await UpdateText(true);
+
+                //Refresh parsing validation message.
+                Validate();
+            }
         }
 
         #endregion
@@ -221,7 +254,7 @@ namespace Gizmo.Web.Components
             return false;
         }
 
-        private async Task ValidateAndSetValue()
+        private async Task ValidateInputAndSetValue()
         {
             DateTime? temp = _tempConverter.SetValue(_text);
             if (!_tempConverter.HasSetError)
@@ -229,38 +262,39 @@ namespace Gizmo.Web.Components
                 _hasParsingErrors = false;
                 _parsingErrors = String.Empty;
 
-                await SetValueAsync(_converter.GetValue(temp));
+                //Update value.
+                Value = _converter.GetValue(temp);
+
+                //Update display text.
+                await UpdateText();
+
+                //Refresh parsing validation message.
+                Validate();
+
+                //Raise events.
+                await ValueChanged.InvokeAsync(Value);
+
+                NotifyFieldChanged();
             }
             else
             {
                 _hasParsingErrors = true;
                 _parsingErrors = "The field should be a date."; //TODO: A TRANSLATE
+
+                //Refresh parsing validation message.
+                Validate();
             }
         }
 
-        protected async Task SetValueAsync(TValue value)
-        {
-            //Update value.
-            Value = value;
-
-            //Update display text.
-            await UpdateText();
-
-            //Raise events.
-            await ValueChanged.InvokeAsync(Value);
-            NotifyFieldChanged();
-        }
-
-        private Task UpdateText()
+        private Task UpdateText(bool forceUpdate = false)
         {
             try
             {
-                var valueChanged = !EqualityComparer<TValue>.Default.Equals(_previousValue, Value);
-                if (valueChanged)
+                if (!EqualityComparer<TValue>.Default.Equals(_previousValue, Value) || forceUpdate)
                 {
                     _shouldRender = true;
                     _previousValue = Value;
-                
+
                     _text = string.Empty;
 
                     var currentValue = _converter.SetValue(Value);
@@ -308,7 +342,7 @@ namespace Gizmo.Web.Components
 
         public override void Validate()
         {
-            if (_validationMessageStore != null)
+            if (_validationMessageStore != null && !_fieldIdentifier.Equals(default(FieldIdentifier)))
             {
                 _validationMessageStore.Clear();
 

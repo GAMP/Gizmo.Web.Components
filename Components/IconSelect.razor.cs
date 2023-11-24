@@ -139,7 +139,7 @@ namespace Gizmo.Web.Components
         /// </summary>
         [Parameter]
         public bool IsVirtualized { get; set; }
-       
+
         [Parameter]
         public bool IsLoading { get; set; }
 
@@ -410,7 +410,7 @@ namespace Gizmo.Web.Components
                     //Validate();
                     NotifyFieldChanged();
                 }
-            }            
+            }
         }
 
         private async Task Open()
@@ -464,6 +464,8 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-select")
                  .If("giz-select--full-width", () => IsFullWidth)
+                 .If("giz-select--valid", () => IsValid)
+                 .If("giz-select--invalid", () => !IsValid)
                  .If("disabled", () => IsDisabled || IsLoading)
                  .If("giz-icon-select--virtualized", () => IsVirtualized)
                  .AsString();

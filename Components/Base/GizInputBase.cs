@@ -107,7 +107,7 @@ namespace Gizmo.Web.Components
                     _isValid = true;
                     _validationMessage = null;
                 }
-               InvokeAsync(StateHasChanged);
+                InvokeAsync(StateHasChanged);
             }
         }
 
