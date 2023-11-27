@@ -125,6 +125,7 @@
         ModuleMonitoring_Manager,
         ModuleReports_Manager,
         ModuleLogs_Manager,
+        MonenyHand_Manager,
         Monitor,
         More_Client,
         Move,
