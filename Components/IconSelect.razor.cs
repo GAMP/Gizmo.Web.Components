@@ -1,5 +1,4 @@
-﻿using Gizmo.Web.Components.Extensions;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System;
@@ -140,7 +139,7 @@ namespace Gizmo.Web.Components
         /// </summary>
         [Parameter]
         public bool IsVirtualized { get; set; }
-       
+
         [Parameter]
         public bool IsLoading { get; set; }
 
@@ -149,6 +148,19 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClickClearValueButton { get; set; }
+
+        [Parameter]
+        public FieldIdentifier FieldIdentifier
+        {
+            get
+            {
+                return _fieldIdentifier;
+            }
+            set
+            {
+                _fieldIdentifier = value;
+            }
+        }
 
         #endregion
 
@@ -169,6 +181,9 @@ namespace Gizmo.Web.Components
             _parsingErrors = string.Empty;
 
             _isOpen = false;
+
+            //Validate();
+            NotifyFieldChanged();
         }
 
         #endregion
@@ -361,7 +376,7 @@ namespace Gizmo.Web.Components
 
         public override void Validate()
         {
-            if (_validationMessageStore != null)
+            if (_validationMessageStore != null && !_fieldIdentifier.Equals(default(FieldIdentifier)))
             {
                 _validationMessageStore.Clear();
 
@@ -391,6 +406,9 @@ namespace Gizmo.Web.Components
 
                     _hasParsingErrors = true;
                     _parsingErrors = "The field is invalid."; //TODO: A TRANSLATE
+
+                    //Validate();
+                    NotifyFieldChanged();
                 }
             }
         }
@@ -446,6 +464,8 @@ namespace Gizmo.Web.Components
         protected string ClassName => new ClassMapper()
                  .Add("giz-select")
                  .If("giz-select--full-width", () => IsFullWidth)
+                 .If("giz-select--valid", () => IsValid)
+                 .If("giz-select--invalid", () => !IsValid)
                  .If("disabled", () => IsDisabled || IsLoading)
                  .If("giz-icon-select--virtualized", () => IsVirtualized)
                  .AsString();

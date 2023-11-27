@@ -34,6 +34,8 @@ namespace Gizmo.Web.Components
 
         private bool _clickHandled = false;
 
+        private TValue _previousValue;
+
         #endregion
 
         #region PROPERTIES
@@ -246,32 +248,9 @@ namespace Gizmo.Web.Components
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (Value != null)
+            if (firstRender)
             {
-                if (_items.ContainsKey(Value))
-                {
-                    await SelectItem(false, string.Empty, _items[Value]);
-                }
-                else
-                {
-                    await SelectItem(true, "The field is required.", null);
-                }
-            }
-            else
-            {
-                await SelectItem(false, string.Empty, null);
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
-        public override async Task SetParametersAsync(ParameterView parameters)
-        {
-            await base.SetParametersAsync(parameters);
-
-            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
-            if (valueChanged)
-            {
+                //The _items list will be initialized after the first render.
                 if (Value != null)
                 {
                     if (_items.ContainsKey(Value))
@@ -280,7 +259,7 @@ namespace Gizmo.Web.Components
                     }
                     else
                     {
-                        await SelectItem(true, "The field is required.", null);
+                        await SelectItem(true, "The field is required!", null); //TODO: A TRANSLATE
                     }
                 }
                 else
@@ -288,6 +267,8 @@ namespace Gizmo.Web.Components
                     await SelectItem(false, string.Empty, null);
                 }
             }
+
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         protected override void OnParametersSet()
@@ -300,9 +281,34 @@ namespace Gizmo.Web.Components
             base.OnParametersSet();
         }
 
+        protected override async Task OnParametersSetAsync()
+        {
+            if (!EqualityComparer<TValue>.Default.Equals(_previousValue, Value))
+            {
+                _previousValue = Value;
+                if (Value != null)
+                {
+                    if (_items.ContainsKey(Value))
+                    {
+                        await SelectItem(false, string.Empty, _items[Value]);
+                    }
+                    else
+                    {
+                        await SelectItem(true, "The field is required!", null); //TODO: A TRANSLATE
+                    }
+                }
+                else
+                {
+                    await SelectItem(false, string.Empty, null);
+                }
+            }
+
+            await base.OnParametersSetAsync();
+        }
+
         public override void Validate()
         {
-            if (_validationMessageStore != null)
+            if (_validationMessageStore != null && !_fieldIdentifier.Equals(default(FieldIdentifier)))
             {
                 _validationMessageStore.Clear();
 
@@ -374,11 +380,11 @@ namespace Gizmo.Web.Components
 
             if (refresh)
             {
-                StateHasChanged();
+                await InvokeAsync(StateHasChanged);
             }
         }
 
-        public Task SetSelectedItem(ISelectItem<TValue> selectItem)
+        public async Task SetSelectedItem(ISelectItem<TValue> selectItem)
         {
             bool requiresRefresh = _isOpen;
 
@@ -387,9 +393,9 @@ namespace Gizmo.Web.Components
             if (_selectedItem == selectItem)
             {
                 if (requiresRefresh)
-                    StateHasChanged();
+                    await InvokeAsync(StateHasChanged);
 
-                return Task.CompletedTask;
+                return;
             }
 
             _selectedItem = selectItem;
@@ -397,12 +403,12 @@ namespace Gizmo.Web.Components
             _hasParsingErrors = false;
             _parsingErrors = String.Empty;
 
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
 
             if (selectItem != null)
-                return SetSelectedValue(selectItem.Value);
+                await SetSelectedValue(selectItem.Value);
             else
-                return SetSelectedValue(default(TValue));
+                await SetSelectedValue(default(TValue));
         }
 
         private async Task Open()
