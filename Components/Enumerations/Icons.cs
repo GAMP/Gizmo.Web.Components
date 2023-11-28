@@ -164,6 +164,7 @@
         Schedule_Client,
         Search,
         Search_Client,
+        Search_Manager,
         Select_Client,
         Server,
         Settings_Client,
