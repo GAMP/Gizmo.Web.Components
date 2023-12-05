@@ -2,6 +2,10 @@
 @inherits CustomDOMComponentBase
 
 <ul class="giz-pagination">
-    <li @onclick="OnClickPreviousHandler" class="@(!IsPreviousEnabled ? "disabled" : "")">Previous</li>
-    <li @onclick="OnClickNextHandler" class="@(!IsNextEnabled ? "disabled" : "")">Next</li>
+    <li @onclick="OnClickPreviousHandler" class="@(!IsPreviousEnabled ? "disabled" : "")">
+        <Icon SVGIcon="Icons.PaginationLeft_Manager" />
+    </li>
+    <li @onclick="OnClickNextHandler" class="@(!IsNextEnabled ? "disabled" : "")">
+        <Icon SVGIcon="Icons.PaginationRight_Manager"  />
+    </li>
 </ul>
