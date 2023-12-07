@@ -3,13 +3,4 @@
 .giz-pagination {
     position: relative;
     display: flex;
-    list-style-type: none;
-
-    & li {
-        cursor: pointer;
-
-        &.disabled {
-            pointer-events: none;
-        }
-    }
 }
