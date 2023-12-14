@@ -67,12 +67,6 @@ namespace Gizmo.Web.Components
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
-        public string LeftIcon { get; set; }
-
-        [Parameter]
-        public string RightIcon { get; set; }
-
-        [Parameter]
         public Icons? LeftSVGIcon { get; set; }
 
         [Parameter]
@@ -254,24 +248,6 @@ namespace Gizmo.Web.Components
                 }
             }
 
-            if (parameters.TryGetValue<string>(nameof(LeftIcon), out var newLeftIcon))
-            {
-                var valueChanged = LeftIcon != newLeftIcon;
-                if (valueChanged)
-                {
-                    _shouldRender = true;
-                }
-            }
-
-            if (parameters.TryGetValue<string>(nameof(RightIcon), out var newRightIcon))
-            {
-                var valueChanged = RightIcon != newRightIcon;
-                if (valueChanged)
-                {
-                    _shouldRender = true;
-                }
-            }
-
             if (parameters.TryGetValue<Icons?>(nameof(LeftSVGIcon), out var newLeftSVGIcon))
             {
                 var valueChanged = LeftSVGIcon != newLeftSVGIcon;
@@ -400,7 +376,7 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         protected string ButtonIconLeft => new ClassMapper()
-                .If("giz-button__icon-left", () => ChildContent != null || !string.IsNullOrEmpty(RightIcon))
+                .If("giz-button__icon-left", () => ChildContent != null)
                 .AsString();
 
         protected string ButtonIconRight => new ClassMapper()

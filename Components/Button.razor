@@ -1,7 +1,7 @@
 ﻿@namespace Gizmo.Web.Components
 @inherits ButtonBase
 
-<button class="@Class @ClassName @((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? ButtonIconRight : "")"
+<button class="@Class @ClassName"
         style="@StyleValue @Style"
         @onclick="@OnClickButtonHandler"
         @onclick:stopPropagation="@StopPropagation"
@@ -18,30 +18,33 @@
         <div class="giz-button__progress" style="width: @(Progress.ToString(System.Globalization.CultureInfo.InvariantCulture))%"></div>
     </div>
 
-    <div class="giz-button__content_wrapper" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "" : "justify-content: center")">
-        @if (!string.IsNullOrEmpty(LeftIcon) || LeftSVGIcon.HasValue)
+    <div class="giz-button__content_wrapper">
+        @if (LeftSVGIcon.HasValue)
         {
-            <Icon Source="@LeftIcon" SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" Size="@(Size == ButtonSizes.ExtraSmall ? IconSizes.ExtraSmall : 
+            <Icon SVGIcon="LeftSVGIcon" Class="@ButtonIconLeft" Size="@(Size == ButtonSizes.ExtraSmall ? IconSizes.ExtraSmall : 
                   (Size == ButtonSizes.Small ? IconSizes.Small :
                   (Size == ButtonSizes.Medium ? IconSizes.Medium :
                   (Size == ButtonSizes.Large ? IconSizes.Large :
                   IconSizes.ExtraLarge))))" />
         }
 
-        <div class="giz-button__content" style="@((!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue) ? "margin-right: auto;" : "")">
-            @if (ChildContent != null)
-            {
-                @ChildContent
-            }
-            else
-            {
-                @Text
-            }
-        </div>
-
-        @if (!string.IsNullOrEmpty(RightIcon) || RightSVGIcon.HasValue)
+        @if (ChildContent != null || !string.IsNullOrEmpty(Text))
         {
-            <Icon Source="@RightIcon" SVGIcon="RightSVGIcon" Class="@ButtonIconRight" Size="@(Size == ButtonSizes.ExtraSmall ? IconSizes.ExtraSmall : 
+            <div class="giz-button__content">
+                @if (ChildContent != null)
+                {
+                    @ChildContent
+                }
+                else
+                {
+                    @Text
+                }
+            </div>
+        }
+
+        @if (RightSVGIcon.HasValue)
+        {
+            <Icon SVGIcon="RightSVGIcon" Class="@ButtonIconRight" Size="@(Size == ButtonSizes.ExtraSmall ? IconSizes.ExtraSmall : 
                   (Size == ButtonSizes.Small ? IconSizes.Small :
                   (Size == ButtonSizes.Medium ? IconSizes.Medium :
                   (Size == ButtonSizes.Large ? IconSizes.Large :
