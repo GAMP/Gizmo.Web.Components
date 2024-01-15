@@ -21,23 +21,11 @@
                 }
                 else
                 {
-                    @if (!string.IsNullOrEmpty(Icon) || SVGIcon.HasValue)
-                    {
-                        <Button Variant="@Variant"
-                                Size="@Size"
-                                RightIcon="@Icon"
-                                RightSVGIcon="SVGIcon">
-                            @Label
-                        </Button>
-                    }
-                    else
-                    {
-                        <Button Variant="@Variant"
-                                Size="@Size"
-                                RightSVGIcon="@(IsOpen ? Icons.TriangleUp : Icons.TriangleDown)">
-                            @Label
-                        </Button>
-                    }
+                    <Button Variant="@Variant"
+                            Size="@Size"
+                            RightSVGIcon="@(HandleSVGIcon.HasValue ? HandleSVGIcon.Value : Icons.TriangleDown)">
+                        @Label
+                    </Button>
                 }
             </div>
         }

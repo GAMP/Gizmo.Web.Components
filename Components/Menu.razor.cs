@@ -42,10 +42,7 @@ namespace Gizmo.Web.Components
         public ButtonVariants Variant { get; set; } = ButtonVariants.Outline;
 
         [Parameter]
-        public string Icon { get; set; }
-
-        [Parameter]
-        public Icons? SVGIcon { get; set; }
+        public Icons? HandleSVGIcon { get; set; }
 
         [Parameter]
         public bool IsOpen
