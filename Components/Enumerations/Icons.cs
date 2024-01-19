@@ -31,6 +31,8 @@
         Check,
         ChevronDown_Manager,
         ChevronLeft_Manager,
+        ChevronRight_Manager,
+        ChevronUp_Manager,
         CircleAdd_Manager,
         CircleDismiss_Manager,
         Clear_Manager,
