@@ -13,7 +13,7 @@
             <div @onmousedown="OnMouseDownHandler"
                  @oncontextmenu="OnContextMenuHandler"
                  @oncontextmenu:preventDefault="@(ActivationEvent == MenuActivationEvents.RightClick)"
-                 >
+                 class="giz-menu-activator">
                  
                 @if (Activator != null)
                 {
