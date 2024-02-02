@@ -26,6 +26,7 @@
         Ban,
         Bell,
         Bell_Client,
+        Calculator_Manager,
         Calendar,
         Cash,
         Check,
