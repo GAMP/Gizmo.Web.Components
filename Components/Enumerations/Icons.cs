@@ -55,6 +55,7 @@
         Deployment,
         Deposit_Client,
         Dessert,
+        Diamond_Manager,
         Divide,
         DNS,
         Dollar,
