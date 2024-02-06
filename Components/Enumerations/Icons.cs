@@ -171,6 +171,7 @@
         Restart_Client,
         RFID,
         Rocket_Client,
+        Rollback_Manager,
         Sales,
         Save,
         Schedule_Client,
