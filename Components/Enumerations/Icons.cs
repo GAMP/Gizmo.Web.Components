@@ -222,6 +222,7 @@
         UpArrows,
         User,
         User_Client,
+        User_Manager,
         Users,
         Video_Client,
         WaitingLines,
