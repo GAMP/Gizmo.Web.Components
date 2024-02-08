@@ -87,6 +87,9 @@ namespace Gizmo.Web.Components
         public bool ShowTime { get; set; }
 
         [Parameter]
+        public bool CanSwitchToMonthAndYear { get; set; }
+
+        [Parameter]
         public CultureInfo Culture { get; set; }
 
         [Parameter]
@@ -130,49 +133,38 @@ namespace Gizmo.Web.Components
             await SetValueAsync(value);
         }
 
-        private Task OnClickButtonYearHandler(MouseEventArgs args)
+        private void OnClickButtonYearHandler(MouseEventArgs args)
         {
             _showMonthPicker = false;
             _showYearPicker = true;
 
             _requiresScrolling = true;
-
-            return Task.CompletedTask;
         }
 
-        private Task OnClickButtonMonthHandler(MouseEventArgs args)
+        private void OnClickButtonMonthHandler(MouseEventArgs args)
         {
-            _showMonthPicker = true;
-
-            return Task.CompletedTask;
+            if (CanSwitchToMonthAndYear)
+                _showMonthPicker = true;
         }
 
-        private Task OnClickButtonPreviousMonthHandler(MouseEventArgs args)
+        private void OnClickButtonPreviousMonthHandler(MouseEventArgs args)
         {
             CurrentVisibleMonth = CurrentVisibleMonth.AddMonths(-1);
-
-            return Task.CompletedTask;
         }
 
-        private Task OnClickButtonNextMonthHandler(MouseEventArgs args)
+        private void OnClickButtonNextMonthHandler(MouseEventArgs args)
         {
             CurrentVisibleMonth = CurrentVisibleMonth.AddMonths(1);
-
-            return Task.CompletedTask;
         }
 
-        private Task OnClickButtonPreviousYearHandler(MouseEventArgs args)
+        private void OnClickButtonPreviousYearHandler(MouseEventArgs args)
         {
             CurrentVisibleMonth = CurrentVisibleMonth.AddYears(-1);
-
-            return Task.CompletedTask;
         }
 
-        private Task OnClickButtonNextYearHandler(MouseEventArgs args)
+        private void OnClickButtonNextYearHandler(MouseEventArgs args)
         {
             CurrentVisibleMonth = CurrentVisibleMonth.AddYears(1);
-
-            return Task.CompletedTask;
         }
 
         private async Task OnClickButtonDay(int day)
@@ -192,21 +184,17 @@ namespace Gizmo.Web.Components
             await SetValueAsync(newValue);
         }
 
-        private Task OnClickButtonMonth(int month)
+        private void OnClickButtonMonth(int month)
         {
             CurrentVisibleMonth = new DateTime(CurrentVisibleMonth.Year, month, 1);
             _showMonthPicker = false;
-
-            return Task.CompletedTask;
         }
 
-        private Task OnClickButtonYear(int year)
+        private void OnClickButtonYear(int year)
         {
             CurrentVisibleMonth = new DateTime(year, CurrentVisibleMonth.Month, 1);
             _showYearPicker = false;
             _showMonthPicker = true;
-
-            return Task.CompletedTask;
         }
 
         private void OnClickTimePickerHandler(MouseEventArgs args)

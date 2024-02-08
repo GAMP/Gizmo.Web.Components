@@ -116,6 +116,14 @@ namespace Gizmo.Web.Components
                     }
                 }
 
+                // DateTime
+                else if (typeof(TValue) == typeof(DateTime) || typeof(TValue) == typeof(DateTime?))
+                {
+                    if (DateTime.TryParseExact(value, Format, Culture, DateTimeStyles.None, out var parsedValue))
+                        return (TValue)(object)parsedValue;
+                    UpdateGetError("The field should be a date.");
+                }
+
                 // guid
                 else if (typeof(TValue) == typeof(Guid) || typeof(TValue) == typeof(Guid?))
                 {
@@ -214,6 +222,12 @@ namespace Gizmo.Web.Components
                     return ((decimal)(object)arg).ToString(Format, Culture);
                 else if (typeof(TValue) == typeof(decimal?))
                     return ((decimal?)(object)arg).Value.ToString(Format, Culture);
+
+                // DateTime
+                else if (typeof(TValue) == typeof(DateTime))
+                    return ((DateTime)(object)arg).ToString(Format, Culture);
+                else if (typeof(TValue) == typeof(DateTime?))
+                    return ((DateTime?)(object)arg).Value.ToString(Format, Culture);
 
                 // guid
                 else if (typeof(TValue) == typeof(Guid))

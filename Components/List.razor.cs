@@ -1,6 +1,5 @@
 ﻿using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -127,7 +126,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        internal async Task SetSelectedItem(ListItem item)
+        public async Task SetSelectedItem(ListItem item)
         {
             if (IsDisabled)
                 return;
@@ -204,7 +203,7 @@ namespace Gizmo.Web.Components
             _childLists.Remove(child);
         }
 
-        internal int GetSelectedItemIndex()
+        public int GetSelectedItemIndex()
         {
             if (_selectedItem != null)
                 return _items.IndexOf(_selectedItem);
@@ -222,7 +221,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        internal int GetActiveItemIndex()
+        public int GetActiveItemIndex()
         {
             if (_activeItem != null)
                 return _items.IndexOf(_activeItem);
@@ -230,7 +229,7 @@ namespace Gizmo.Web.Components
                 return -1;
         }
 
-        internal async Task SetActiveItemIndex(int index)
+        public async Task SetActiveItemIndex(int index)
         {
             if (index >= 0 && index < _items.Count)
             {
@@ -240,7 +239,7 @@ namespace Gizmo.Web.Components
             }
         }
 
-        internal int GetListSize()
+        public int GetListSize()
         {
             return _items.Count;
         }

@@ -11,7 +11,5 @@ namespace Gizmo.Web.Components
         string Text { get; set; }
 
         RenderFragment ChildContent { get; set; }
-
-
     }
 }
