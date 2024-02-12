@@ -368,9 +368,10 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
+                 .Add("giz-date-picker")
+                 .If("disabled", () => IsDisabled)
                  .AsString();
 
         #endregion
-
     }
 }
