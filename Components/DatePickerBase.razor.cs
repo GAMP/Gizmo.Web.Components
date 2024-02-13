@@ -102,6 +102,18 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
+        private bool IsToday(int year, int month, int day)
+        {
+            DateTime now = DateTime.Now;
+
+            if (now.Year == year &&
+                now.Month == month &&
+                now.Day == day)
+                return true;
+
+            return false;
+        }
+
         private bool IsCurrentDay(int year, int month, int day)
         {
             DateTime? value = _converter.SetValue(Value);
@@ -216,9 +228,30 @@ namespace Gizmo.Web.Components
 
         #region METHODS
 
-        private string GetDayClass(int day)
+        private string GetDayTitleClass(int dayOfWeek)
+        {
+            var result = "giz-date-picker-weekday";
+
+            DateTime now = DateTime.Now;
+
+            if (now.Year == CurrentVisibleMonth.Year &&
+                now.Month == CurrentVisibleMonth.Month &&
+                now.DayOfWeek == (DayOfWeek)dayOfWeek)
+            {
+                result += " today";
+            }
+
+            return result;
+        }
+
+        private string GetDayButtonClass(int day)
         {
             var result = "giz-date-picker-day-button";
+
+            if (IsToday(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day))
+            {
+                result += " today";
+            }
 
             if (IsCurrentDay(CurrentVisibleMonth.Year, CurrentVisibleMonth.Month, day))
             {

@@ -79,12 +79,12 @@ else
                     @for (int i = (int)FirstDayOfWeek; i < 7; i++)
                     {
                         var local_i = i;
-                        <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName((DayOfWeek)local_i)</div>
+                        <div class="@GetDayTitleClass(local_i)">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName((DayOfWeek)local_i)</div>
                     }
                     @for (int i = 0; i < (int)FirstDayOfWeek; i++)
                     {
                         var local_i = i;
-                        <div class="giz-date-picker-weekday">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName((DayOfWeek)local_i)</div>
+                        <div class="@GetDayTitleClass(local_i)">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedDayName((DayOfWeek)local_i)</div>
                     }
                 </div>
                 <div class="giz-date-picker__content__days">
@@ -96,7 +96,7 @@ else
                     {
                         var local_i = i;
                         <button disabled="@GetDayDisabled(local_i)"
-                                class="@GetDayClass(local_i)"
+                                class="@GetDayButtonClass(local_i)"
                                 @onclick="@(() => OnClickButtonDay(local_i))">
                             @local_i
                         </button>
