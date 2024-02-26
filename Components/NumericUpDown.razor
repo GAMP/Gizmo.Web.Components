@@ -21,8 +21,13 @@
                value="@_text"
                disabled="@IsDisabled"
                @ref="_inputElement"
-               @oninput="OnInputHandler" />
-        @if (!string.IsNullOrEmpty(Format))
+               @onkeydown="OnInputKeyDownHandler"
+               @onkeydown:preventDefault="true"
+               @onkeyup="OnInputKeyUpHandler"
+               @onkeyup:preventDefault="true"
+               @onkeypress="OnInputKeyPressHandler"
+               @onkeypress:preventDefault="true" />
+        @* @if (!string.IsNullOrEmpty(Format))
         {            
             <div class="giz-numeric-up-down__value"
                  @onclick="@(() => _inputElement.FocusAsync())"
@@ -33,13 +38,16 @@
                     @_decimalValue.Value.ToString(Format)
                 }
             </div>
-        }
+        } *@
     </div>
 
-    @* @if (CanClearValue && IsNullable() && Value != null)
+    @if (CanClearValue && IsNullable() && Value != null)
     {
-        <IconButton SVGIcon="@Icons.Close" Class="giz-input-button-clear" @onclick="OnClickButtonClearValueHandler" />
-    } *@
+        <IconButton SVGIcon="@Icons.CircleDismiss_Manager"
+                    Size="ButtonSizes.ExtraSmall"
+                    Color="ButtonColors.Secondary"
+                    @onclick="OnClickButtonClearValueHandler" />
+    }
 
     <div class="giz-button-wrapper">
         <button @onclick="OnClickButtonIncreaseValueHandler">

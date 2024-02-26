@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -25,13 +26,21 @@ namespace Gizmo.Web.Components
         private CultureInfo _culture;
         private StringConverter<TValue> _converter;
         private string _text;
-        private decimal? _decimalValue;
         private ElementReference _inputElement;
         private ValidationMessageStore _validationMessageStore;
+
+        private bool _altPressed;
+
+        protected bool _shouldRender;
+
+        //private decimal? _decimalValue;
 
         #endregion
 
         #region PROPERTIES
+
+        [Inject]
+        private ILogger<NumericUpDown<TValue>> Logger { get; set; } = null!;
 
         [Parameter]
         public ValidationErrorStyles ValidationErrorStyle { get; set; } = ValidationErrorStyles.Label;
@@ -86,20 +95,305 @@ namespace Gizmo.Web.Components
 
         #region EVENTS
 
-        public Task OnInputHandler(ChangeEventArgs args)
+        protected async Task OnInputKeyDownHandler(KeyboardEventArgs args)
         {
-            var newText = args?.Value as string;
+            if (IsDisabled)
+                return;
 
-            TValue newValue = _converter.GetValue(newText);
-
-            if (!_converter.HasGetError)
+            try
             {
-                if (!EqualityComparer<TValue>.Default.Equals(Value, newValue))
+                if (args.Key == null)
+                    return;
+
+                if (args.Key == "Tab")
                 {
-                    return SetValueAsync(newValue);
+                    if (args.ShiftKey)
+                    {
+                        await InvokeVoidAsync("focusPrevious", _inputElement);
+                    }
+                    else
+                    {
+                        await InvokeVoidAsync("focusNext", _inputElement);
+                    }
+                    return;
+                }
+
+                if (_altPressed)
+                {
+                    if (!args.AltKey)
+                    {
+                        _altPressed = false;
+                    }
+                }
+                else
+                {
+                    if (args.Key == "Alt")
+                    {
+                        _altPressed = true;
+                    }
+                }
+
+                if (_altPressed)
+                    return;
+
+                var previousValue = _text; //_converter.SetValue(Value);
+
+                var inputSelectionRange = await JsInvokeAsync<InputSelectionRange>("getInputSelectionRange", _inputElement);
+
+                int caretIndex = 0;
+
+                string part1 = string.Empty;
+                string part2 = string.Empty;
+
+                switch (args.Key)
+                {
+                    case "Home":
+                        caretIndex = 0;
+                        await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+
+                        break;
+
+                    case "End":
+                        if (!string.IsNullOrEmpty(previousValue))
+                        {
+                            caretIndex = previousValue.Length;
+                            await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+                        }
+
+                        break;
+
+                    case "ArrowLeft":
+                        caretIndex = inputSelectionRange.SelectionStart;
+
+                        if (caretIndex > 0)
+                        {
+                            caretIndex -= 1;
+                            await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+                        }
+
+                        break;
+
+                    case "ArrowRight":
+                        caretIndex = inputSelectionRange.SelectionStart;
+
+                        if (caretIndex < previousValue.Length)
+                        {
+                            caretIndex += 1;
+                            await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+                        }
+
+                        break;
+
+                    case "Backspace":
+
+                        caretIndex = inputSelectionRange.SelectionStart;
+
+                        if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
+                        {
+                            //If there is a selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before selection.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                            }
+
+                            if (inputSelectionRange.SelectionEnd < previousValue.Length)
+                            {
+                                //Get part after selection.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
+                            }
+
+                            //The selection is removed.
+                            string tmp = part1 + part2;
+                            TValue newValue = _converter.GetValue(tmp);
+
+                            await SetValueAndTextAsync(newValue, tmp);
+                        }
+                        else
+                        {
+                            //If there is no selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before caret -1 character.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart - 1);
+                            }
+
+                            if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart < previousValue.Length)
+                            {
+                                //Get part after caret.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionStart, previousValue.Length - inputSelectionRange.SelectionStart);
+                            }
+
+                            string tmp = part1 + part2;
+                            TValue newValue = _converter.GetValue(tmp);
+
+                            await SetValueAndTextAsync(newValue, tmp);
+
+                            caretIndex -= 1;
+                        }
+
+                        _shouldRender = true;
+                        await InvokeAsync(StateHasChanged);
+
+                        await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+
+                        break;
+
+                    case "Delete":
+
+                        caretIndex = inputSelectionRange.SelectionStart;
+
+                        if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
+                        {
+                            //If there is a selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before selection.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                            }
+
+                            if (inputSelectionRange.SelectionEnd < previousValue.Length)
+                            {
+                                //Get part after selection.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
+                            }
+
+                            //The selection is removed.
+                            string tmp = part1 + part2;
+                            TValue newValue = _converter.GetValue(tmp);
+
+                            await SetValueAndTextAsync(newValue, tmp);
+                        }
+                        else
+                        {
+                            //If there is no selection.
+                            if (inputSelectionRange.SelectionStart > 0)
+                            {
+                                //Get part before caret character.
+                                part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                            }
+
+                            if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart + 1 < previousValue.Length)
+                            {
+                                //Get part after caret + 1.
+                                part2 = previousValue.Substring(inputSelectionRange.SelectionStart + 1, previousValue.Length - (inputSelectionRange.SelectionStart + 1));
+                            }
+
+                            string tmp = part1 + part2;
+                            TValue newValue = _converter.GetValue(tmp);
+
+                            await SetValueAndTextAsync(newValue, tmp);
+
+                            //caretIndex -= 1;
+                        }
+
+                        _shouldRender = true;
+                        await InvokeAsync(StateHasChanged);
+
+                        await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+
+                        break;
+
+                    default:
+
+                        if (args.Key.Length == 1 && !char.IsControl(args.Key[0]))
+                        {
+                            caretIndex = inputSelectionRange.SelectionStart;
+
+                            bool isValidCharacter = ValidateCharacterFunction(args.Key[0]);
+
+                            if (isValidCharacter)
+                            {
+                                if (inputSelectionRange.SelectionStart != inputSelectionRange.SelectionEnd)
+                                {
+                                    //If there is a selection.
+                                    if (inputSelectionRange.SelectionStart > 0)
+                                    {
+                                        //Get part before selection.
+                                        part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                                    }
+
+                                    if (inputSelectionRange.SelectionEnd < previousValue.Length)
+                                    {
+                                        //Get part after selection.
+                                        part2 = previousValue.Substring(inputSelectionRange.SelectionEnd, previousValue.Length - inputSelectionRange.SelectionEnd);
+                                    }
+
+                                    string tmp = part1 + args.Key + part2;
+
+                                    //Replace selection with new character.
+                                    TValue newValue = _converter.GetValue(part1 + args.Key + part2);
+
+                                    if (!_converter.HasGetError)
+                                    {
+                                        await SetValueAndTextAsync(newValue, tmp);
+                                    }
+                                    else
+                                    {
+                                        isValidCharacter = false;
+                                    }
+                                }
+                                else
+                                {
+                                    //If there is no selection.
+                                    if (inputSelectionRange.SelectionStart > 0)
+                                    {
+                                        //Get part before caret.
+                                        part1 = previousValue.Substring(0, inputSelectionRange.SelectionStart);
+                                    }
+
+                                    if (!string.IsNullOrEmpty(previousValue) && inputSelectionRange.SelectionStart < previousValue.Length)
+                                    {
+                                        //Get part after caret.
+                                        part2 = previousValue.Substring(inputSelectionRange.SelectionStart, previousValue.Length - inputSelectionRange.SelectionStart);
+                                    }
+
+                                    string tmp = part1 + args.Key + part2;
+
+                                    //Insert new character between.
+                                    TValue newValue = _converter.GetValue(tmp);
+
+                                    if (!_converter.HasGetError)
+                                    {
+                                        await SetValueAndTextAsync(newValue, tmp);
+                                    }
+                                    else
+                                    {
+                                        isValidCharacter = false;
+                                    }
+                                }
+
+                                if (isValidCharacter)
+                                {
+                                    _shouldRender = true;
+                                    await InvokeAsync(StateHasChanged);
+
+                                    caretIndex += 1;
+                                    await JsInvokeAsync<InputSelectionRange>("setInputCaretIndex", _inputElement, caretIndex);
+                                }
+                            }
+                        }
+
+                        break;
                 }
             }
+            catch (NullReferenceException nullRef)
+            {
+                Logger.LogCritical(nullRef, "Null reference in input handler.");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogCritical(ex, "Error in input handler.");
+            }
+        }
 
+        protected Task OnInputKeyUpHandler(KeyboardEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+
+        protected Task OnInputKeyPressHandler(KeyboardEventArgs args)
+        {
             return Task.CompletedTask;
         }
 
@@ -117,7 +411,9 @@ namespace Gizmo.Web.Components
             value -= Step;
 
             //Set new value
-            return SetValueAsync(_converter.GetValue(value.ToString()));
+            var tmpText = value.ToString();
+            var tmpValue = _converter.GetValue(tmpText);
+            return SetValueAndTextAsync(tmpValue, tmpText);
         }
 
         public Task OnClickButtonIncreaseValueHandler(MouseEventArgs args)
@@ -134,25 +430,41 @@ namespace Gizmo.Web.Components
             value += Step;
 
             //Set new value
-            return SetValueAsync(_converter.GetValue(value.ToString()));
+            var tmpText = value.ToString();
+            var tmpValue = _converter.GetValue(tmpText);
+            return SetValueAndTextAsync(tmpValue, tmpText);
         }
 
-        public Task OnClickButtonClearValueHandler(MouseEventArgs args)
+        public async Task OnClickButtonClearValueHandler(MouseEventArgs args)
         {
-            return SetValueAsync(default(TValue));
+            await SetValueAndTextAsync(default(TValue), string.Empty);
+
+            _shouldRender = true;
         }
 
         #endregion
 
         #region METHODS
 
-        protected async Task SetValueAsync(TValue value)
+        protected virtual async Task SetValueAndTextAsync(TValue value, string text)
         {
             Value = value;
-
-            _decimalValue = ValueToDecimal();
-
             await ValueChanged.InvokeAsync(Value);
+            NotifyFieldChanged();
+            _text = text;
+            //_decimalValue = ValueToDecimal();
+        }
+
+        public bool ValidateCharacterFunction(char character)
+        {
+            if (char.IsNumber(character))
+                return true;
+
+            if ((typeof(TValue) == typeof(decimal) || typeof(TValue) == typeof(decimal?)) &&
+                CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator.Equals(character.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                return true;
+
+            return false;
         }
 
         private decimal? ValueToDecimal()
@@ -183,19 +495,17 @@ namespace Gizmo.Web.Components
             return result;
         }
 
+        private bool IsNullable()
+        {
+            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
+                return true;
+
+            return false;
+        }
+
         #endregion
 
         #region OVERRIDES
-
-        protected override void OnInitialized()
-        {
-            if (Culture != null)
-            {
-                _converter.Culture = Culture;
-            }
-
-            base.OnInitialized();
-        }
 
         protected override void OnParametersSet()
         {
@@ -215,24 +525,17 @@ namespace Gizmo.Web.Components
                 _validationMessageStore = new ValidationMessageStore(EditContext);
             }
 
+            TValue previousValue = _converter.GetValue(_text);
+
+            if (!EqualityComparer<TValue>.Default.Equals(previousValue, Value))
+            {
+                _text = _converter.SetValue(Value); //TODO: A CURRENCY DECIMALS
+                //_decimalValue = ValueToDecimal();
+            }
+
             base.OnParametersSet();
         }
-
-        public override async Task SetParametersAsync(ParameterView parameters)
-        {
-            await base.SetParametersAsync(parameters);
-
-            var valueChanged = parameters.TryGetValue<TValue>(nameof(Value), out var newValue);
-            if (valueChanged)
-            {
-                _text = _converter.SetValue(Value);
-
-                _decimalValue = ValueToDecimal();
-
-                StateHasChanged();
-            }
-        }
-
+        
         public override void Validate()
         {
             if (_validationMessageStore != null)
@@ -246,12 +549,20 @@ namespace Gizmo.Web.Components
             }
         }
 
-        private bool IsNullable()
+        protected override bool ShouldRender()
         {
-            if (Nullable.GetUnderlyingType(typeof(TValue)) != null)
-                return true;
+            return _shouldRender;
+        }
 
-            return false;
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                _shouldRender = false;
+                //await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         #endregion
@@ -267,15 +578,5 @@ namespace Gizmo.Web.Components
                  .AsString();
 
         #endregion
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                //await InvokeVoidAsync("writeLine", $"Render {this.ToString()}");
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
     }
 }

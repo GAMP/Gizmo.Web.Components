@@ -145,6 +145,9 @@ namespace Gizmo.Web.Components
         public bool CanClearValue { get; set; }
 
         [Parameter]
+        public bool EnableAutoComplete { get; set; }
+
+        [Parameter]
         public EventCallback<KeyboardEventArgs> OnInputKeyDown { get; set; }
 
         [Parameter]
@@ -569,6 +572,13 @@ namespace Gizmo.Web.Components
 
             if (MaxLength > 0)
                 attributes["maxlength"] = MaxLength;
+
+            if (!EnableAutoComplete)
+            {
+                attributes["aria-autocomplete"] = "none";
+                attributes["autocomplete"] = "off";
+                attributes["autofill"] = "off";
+            }
 
             Attributes = attributes;
 
