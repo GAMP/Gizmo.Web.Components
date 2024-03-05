@@ -5,6 +5,8 @@ namespace Gizmo.Web.Components
 {
     public class ButtonBase : CustomDOMComponentBase
     {
+        protected bool _selected;
+
         #region PROPERTIES
 
         /// <summary>
@@ -50,5 +52,15 @@ namespace Gizmo.Web.Components
         public object CommandParameter { get; set; }
 
         #endregion
+
+        public virtual bool GetSelected()
+        {
+            return _selected;
+        }
+
+        public virtual void SetSelected(bool selected)
+        {
+            _selected = selected;
+        }
     }
 }

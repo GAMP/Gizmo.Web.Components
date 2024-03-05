@@ -18,7 +18,6 @@ namespace Gizmo.Web.Components
 
         #region FIELDS
 
-        private bool _selected;
         private bool _isSelected;
 
         private bool _canExecute = true;
