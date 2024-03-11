@@ -180,18 +180,21 @@ namespace Gizmo.Web.Components
                     _shouldRender = true;
                     _previousAllowMoreDigits = AllowMoreDigits;
 
-                    var currentValue = _converter.SetValue(Value);
-
-                    //If AllowMoreDigits changed and the number of digits in current value is greater than the allowed number of digits,
-                    //we have to trim the value.
-                    if (!string.IsNullOrEmpty(currentValue) && currentValue.Length > _chars)
+                    if (!AllowMoreDigits)
                     {
-                        //Update the value.
-                        Value = _converter.GetValue(currentValue.Substring(0, _chars));
+                        var currentValue = _converter.SetValue(Value);
 
-                        //Raise events.
-                        await ValueChanged.InvokeAsync(Value);
-                        NotifyFieldChanged();
+                        //If AllowMoreDigits changed to false and the number of digits in current value is greater than the allowed number of digits,
+                        //we have to trim the value.
+                        if (!string.IsNullOrEmpty(currentValue) && currentValue.Length > _chars)
+                        {
+                            //Update the value.
+                            Value = _converter.GetValue(currentValue.Substring(0, _chars));
+
+                            //Raise events.
+                            await ValueChanged.InvokeAsync(Value);
+                            NotifyFieldChanged();
+                        }
                     }
                 }
 
