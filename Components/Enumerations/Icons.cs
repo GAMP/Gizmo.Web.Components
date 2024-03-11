@@ -161,6 +161,7 @@
         PlusCircle_Manager,
         Power,
         Print_Manager,
+        PrintHover_Manager,
         QR,
         Receipt,
         Refresh,
