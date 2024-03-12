@@ -191,6 +191,7 @@
         Star,
         Star_Client,
         Star_Manager,
+        StarHover_Manager,
         Star2_Client,
         StoreApp_Client,
         Success_Client,
