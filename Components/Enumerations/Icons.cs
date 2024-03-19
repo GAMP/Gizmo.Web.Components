@@ -154,6 +154,7 @@
         Password,
         Pay,
         Payment_Manager,
+        PaymentPayLater_Manager,
         PersonAdd_Manager,
         Photo,
         Plus,
