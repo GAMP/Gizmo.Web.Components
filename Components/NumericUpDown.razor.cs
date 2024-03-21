@@ -531,6 +531,7 @@ namespace Gizmo.Web.Components
             {
                 _text = _converter.SetValue(Value); //TODO: A CURRENCY DECIMALS
                 //_decimalValue = ValueToDecimal();
+                _shouldRender = true;
             }
 
             base.OnParametersSet();
