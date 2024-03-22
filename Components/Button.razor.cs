@@ -316,15 +316,11 @@ namespace Gizmo.Web.Components
             return _shouldRender;
         }
 
-        #endregion
-
-        #region METHODS
-
         /// <summary>
         /// Called by the parent ButtonGroup to set the button's selected state.
         /// </summary>
         /// <param name="selected">The selected state of the button.</param>
-        internal void SetSelected(bool selected)
+        public override void SetSelected(bool selected)
         {
             if (IsDisabled || !_canExecute)
                 return;
@@ -344,7 +340,7 @@ namespace Gizmo.Web.Components
         /// Called by the parent ButtonGroup to get the button' selected state.
         /// </summary>
         /// <returns></returns>
-        internal bool GetSelected()
+        public override bool GetSelected()
         {
             return _selected;
         }
