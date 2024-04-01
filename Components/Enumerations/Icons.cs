@@ -104,6 +104,8 @@
         Infinite,
         Info,
         Info_Client,
+        Info_Manager,
+        InfoHover_Manager,
         Info2_Client,
         Key,
         Keyboard_Client,
