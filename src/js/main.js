@@ -207,6 +207,12 @@ window.getInputSelectionRange = function getInputSelectionRange(element) {
   }
 };
 //
+window.setInputSelectionAll = function setInputSelectionAll(element) {
+    if (element) {
+        element.select();
+    }
+};
+//
 window.setInputCaretIndex = function setInputCaretIndex(element, index) {
   if (element) {
     if (element.createTextRange) {
