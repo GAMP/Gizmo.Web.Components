@@ -175,6 +175,7 @@
         Reports,
         Reservations,
         Reset_Manager,
+        ResetScreen_Manager,
         Restart_Client,
         RFID,
         Rocket_Client,
@@ -237,6 +238,8 @@
         WaitingLines,
         Warning_Client,
         WiFi_Client,
-        WorkHistory_Client
+        WorkHistory_Client,
+        ZoomIn_Manager,
+        ZoomOut_Manager
     }
 }
