@@ -119,6 +119,7 @@
         HostStatusLocked_Manager,
         HostStatusOutOfOrder_Manager,
         HostStatusSecurityOff_Manager,
+        HostStatusReservedGuest_Manager,
         Image,
         Infinite,
         Info,
