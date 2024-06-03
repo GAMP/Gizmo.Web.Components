@@ -536,7 +536,14 @@ namespace Gizmo.Web.Components
 
             base.OnParametersSet();
         }
-        
+
+        protected override void OnInitialized()
+        {
+            _text = _converter.SetValue(Value); //TODO: A CURRENCY DECIMALS
+
+            base.OnInitialized();
+        }
+
         public override void Validate()
         {
             if (_validationMessageStore != null)
