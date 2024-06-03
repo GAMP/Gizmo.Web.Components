@@ -158,6 +158,8 @@
         ModulePOS_Manager,
         ModuleBooking_Manager,
         ModuleQueue_Manager,
+        ModuleQueueActive_Manager,
+        ModuleOrders_Manager,
         ModuleManage_Manager,
         ModuleDeployment_Manager,
         ModuleMonitoring_Manager,
