@@ -207,7 +207,7 @@
         QueueMoveUp_Manager,
         QueueMoveDown_Manager,
         QueueMoveToBottom_Manager,
-        QueueMoveRemoveAll_Manager,
+        QueueRemoveAll_Manager,
         Receipt,
         Refresh,
         Repair_Client,
