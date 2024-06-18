@@ -41,6 +41,13 @@
         } *@
     </div>
 
+    @if (RightContent != null)
+    {
+        <div class="giz-numeric-up-down__right-content">
+            @RightContent
+        </div>
+    }
+
     @if (CanClearValue && IsNullable() && Value != null)
     {
         <IconButton SVGIcon="@Icons.CircleDismiss_Manager"

@@ -87,6 +87,9 @@ namespace Gizmo.Web.Components
         [Parameter]
         public bool CanClearValue { get; set; }
 
+        [Parameter]
+        public RenderFragment RightContent { get; set; }
+
         public bool IsValid => _isValid && !_converter.HasGetError;
 
         public string ValidationMessage => _converter.HasGetError ? _converter.GetErrorMessage : _validationMessage;
