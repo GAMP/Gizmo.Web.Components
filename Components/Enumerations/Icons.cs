@@ -155,6 +155,7 @@
         Minus,
         MinusCircle,
         ModuleHosts_Manager,
+        ModuleHostsSettings_Manager,
         ModulePOS_Manager,
         ModuleBooking_Manager,
         ModuleQueue_Manager,
