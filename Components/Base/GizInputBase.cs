@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -122,7 +123,7 @@ namespace Gizmo.Web.Components
                 _lastEditContext.OnValidationRequested -= OnValidationRequested;
                 _lastEditContext.OnValidationStateChanged -= OnValidationStateChanged;
 
-                //TODO: A ??? ValidationMessageStore.Clear();
+                ClearValidationMessageStore();
             }
         }
 
@@ -144,6 +145,11 @@ namespace Gizmo.Web.Components
         }
 
         public virtual void Validate()
+        {
+
+        }
+
+        protected virtual void ClearValidationMessageStore()
         {
 
         }
