@@ -5,6 +5,7 @@
         AccountBalance_Client,
         AccountCircle_Client,
         ActivationOrder_Client,
+        Add_Manager,
         AdminModeOff_Manager,
         AdminModeOn_Manager,
         AllowTimeCredit_Manager,
