@@ -78,6 +78,7 @@
         Drink,
         Edit_Client,
         Edit_Manager,
+        EditHover_Manager,
         Error,
         Error_Client,
         Expand,
