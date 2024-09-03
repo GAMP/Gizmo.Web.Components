@@ -25,6 +25,7 @@
         Arrows,
         Assets_Manager,
         Assistance_Client,
+        Attach_Manager,
         Backspace,
         Backspace_Manager,
         Balance,
