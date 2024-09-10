@@ -35,6 +35,7 @@
         BillingOptions_Manager,
         Calculator_Manager,
         Calendar,
+        Calendar_Manager,
         Cash,
         Check,
         CheckIn_Manager,
