@@ -260,7 +260,7 @@ namespace Gizmo.Web.Components
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }
