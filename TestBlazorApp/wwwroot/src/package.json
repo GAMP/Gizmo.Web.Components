@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0"
+  },
+  "scripts": {
+    "build": "tsc && npm run copy-css",
+    "watch": "chokidar \"./ts/**/*.ts\" -c \"npm run build\""
+  }
+}
