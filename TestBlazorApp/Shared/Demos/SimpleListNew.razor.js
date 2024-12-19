@@ -4,6 +4,20 @@
 const sortableList = document.getElementById('sortable-list');
 // Store the dragged element
 let draggedItem = null;
+function getDragAfterElement(container, y) {
+    const draggableElements = Array.from(container.querySelectorAll('li:not(.dragging)'));
+    return draggableElements.reduce((closest, child) => {
+        var _a;
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2; // Distance from center
+        if (offset < 0 && offset > ((_a = closest === null || closest === void 0 ? void 0 : closest.getBoundingClientRect().top) !== null && _a !== void 0 ? _a : Number.NEGATIVE_INFINITY)) {
+            return child;
+        }
+        else {
+            return closest;
+        }
+    }, null);
+}
 // Event listeners for drag-and-drop
 sortableList.addEventListener('dragstart', (e) => {
     if (e.target && e.target instanceof HTMLLIElement) {
@@ -20,18 +34,18 @@ sortableList.addEventListener('dragend', (e) => {
 sortableList.addEventListener('dragover', (e) => {
     e.preventDefault();
     const afterElement = getDragAfterElement(sortableList, e.clientY);
-    if (draggedItem && afterElement.element && afterElement.element !== draggedItem) {
+    if (draggedItem && afterElement && afterElement !== draggedItem) {
         sortableList.querySelectorAll('li:not(.dragging)').forEach(item => {
             const li = item;
             li.style.transform = '';
         });
         const draggedIndex = Array.from(sortableList.children).indexOf(draggedItem);
-        const afterIndex = Array.from(sortableList.children).indexOf(afterElement.element);
+        const afterIndex = Array.from(sortableList.children).indexOf(afterElement);
         if (draggedIndex > afterIndex) {
-            afterElement.element.style.transform = 'translateY(20px)';
+            afterElement.style.transform = 'translateY(20px)';
         }
         else {
-            afterElement.element.style.transform = 'translateY(-20px)';
+            afterElement.style.transform = 'translateY(-20px)';
         }
     }
 });
@@ -45,11 +59,11 @@ sortableList.addEventListener('drop', (e) => {
     e.preventDefault();
     const afterElement = getDragAfterElement(sortableList, e.clientY);
     if (draggedItem) {
-        if (afterElement.element == null) {
+        if (afterElement == null) {
             sortableList.appendChild(draggedItem);
         }
         else {
-            sortableList.insertBefore(draggedItem, afterElement.element);
+            sortableList.insertBefore(draggedItem, afterElement);
         }
         // Reset transforms
         sortableList.querySelectorAll('li').forEach(item => {
@@ -60,16 +74,3 @@ sortableList.addEventListener('drop', (e) => {
         draggedItem = null;
     }
 });
-function getDragAfterElement(container, y) {
-    const draggableElements = Array.from(container.querySelectorAll('li:not(.dragging)'));
-    return draggableElements.reduce((closest, child) => {
-        const box = child.getBoundingClientRect();
-        const offset = y - box.top - box.height / 2; // Distance from center
-        if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: child };
-        }
-        else {
-            return closest;
-        }
-    }, { offset: Number.NEGATIVE_INFINITY, element: null });
-}

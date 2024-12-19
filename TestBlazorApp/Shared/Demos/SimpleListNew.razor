@@ -4,19 +4,18 @@
         <ExampleContent>
             <div class="columns">
                 <div class="column is-half">
-                    <ul id="sortable-list">
-                        <li draggable="true">Item 1</li>
-                        <li draggable="true">Item 2</li>
-                        <li draggable="true">Item 3</li>
-                        <li draggable="true">Item 4</li>
+                    <ul id="sortable-list" class="card has-border-light has-background-blazor has-text-white has-cursor-grab">
+                        @foreach(var item in _items)
+                        {
+                            <li draggable="true">
+                                <div class="card has-border-light has-background-blazor has-text-white has-cursor-grab">
+                                    <p class="is-size-4 p-2 ml-4">@item.Name</p>
+                                </div>
+                            </li>
+                        }
                     </ul>
-
                 </div>
             </div>
         </ExampleContent>
     </Tabs>
 </div>
-
-@code {
-
-}

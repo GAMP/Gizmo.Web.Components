@@ -12,11 +12,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\src\ts\SimpleListNew.razor.ts" />
+    <ProjectReference Include="..\Gizmo.Web.Components\Gizmo.Web.Components.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\src\css\SimpleListNew.css" />
+    <Folder Include="src\" />
   </ItemGroup>
+
+  <Target Name="NpmInstall" BeforeTargets="Build">
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+
+  <Target Name="NpmBuild" AfterTargets="NpmInstall">
+    <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" />
+  </Target>
 
 </Project>

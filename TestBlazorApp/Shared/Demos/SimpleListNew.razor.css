@@ -1,25 +1,7 @@
-﻿ul {
-    list-style: none;
-    padding: 0;
-    width: 250px;
-    margin: auto;
-}
-
-li {
-    padding: 12px;
-    margin-bottom: 8px;
-    cursor: grab;
-    user-select: none;
+﻿li {
     transition: transform 0.2s ease;
 }
 
-li {
-    background-color: #b32121;
-    border: 1px solid #ddd;
-}
-
 li.dragging {
-    opacity: 0.5;
-    background-color: #d0e7ff;
     transform: scale(1.05);
 }
