@@ -11,6 +11,12 @@
         cursor: pointer;
     }
 
+    &.disabled, &[disabled] {
+        input {
+            cursor: default;
+        }
+    }
+
     .track {
         display: inline-flex;
         position: relative;
