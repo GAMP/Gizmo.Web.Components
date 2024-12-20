@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace Gizmo.Web.Components
 {
@@ -34,6 +35,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsDisabled { get; set; }
+        
+        [Parameter]
+        public bool IsDraggable { get; set; }
 
         [Parameter]
         public bool CanClick { get; set; }
@@ -255,6 +259,15 @@ namespace Gizmo.Web.Components
                 ParentList.Register(this);
                 IsDisabled = ParentList.IsDisabled;
                 Direction = ParentList.Direction;
+            }
+        }
+        
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (IsDraggable && firstRender)
+            {
+                var module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Demos/GizmoList.razor.js");
+                await module.InvokeVoidAsync("gizmoInit", Id);
             }
         }
 

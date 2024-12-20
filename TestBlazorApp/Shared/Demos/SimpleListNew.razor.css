@@ -1,7 +1,0 @@
-﻿li {
-    transition: transform 0.2s ease;
-}
-
-li.dragging {
-    transform: scale(1.05);
-}
