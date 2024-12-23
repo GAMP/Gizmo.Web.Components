@@ -1,27 +1,29 @@
 ﻿function initDraggable(listId: string, dotnetObject: any) {
     const draggableList = document.getElementById(listId) as HTMLDivElement | null;
-    if (!draggableList) return;
+
+    if (!draggableList)
+    {
+        console.error(`Element with id ${listId} not found`);
+        return;
+    }
 
     let draggedItem: HTMLDivElement | null = null;
 
-    function getDragAfterElement(container: HTMLElement, y: number): HTMLElement | null {
-        const draggableElements = Array.from(container.querySelectorAll('div:not(.dragging)')) as HTMLElement[];
+    function getDragAfterElement(container: HTMLElement, clientY: number): HTMLElement | null {
+        const draggableElements = [...container.querySelectorAll('div:not(.dragging)')] as HTMLElement[];
         return draggableElements.reduce<HTMLElement | null>((closest, child) => {
-            const box = child.getBoundingClientRect();
-            const offset = y - box.top - box.height / 2;
-            if (offset < 0 && (!closest || offset > closest.offsetTop)) {
-                return child;
-            } else {
-                return closest;
-            }
+            const {top, height} = child.getBoundingClientRect();
+            const offset = clientY - top - height * 2;
+            return offset < 0 && (!closest || offset > closest.offsetTop) ? child : closest;
         }, null);
     }
 
     draggableList.addEventListener('dragstart', (e: DragEvent) => {
-        if (e.target instanceof HTMLDivElement) {
-            draggedItem = e.target;
-            e.target.classList.add('dragging');
-            requestAnimationFrame(() => (e.target as HTMLElement).style.opacity = '0.5');
+        const target = e.target as HTMLDivElement;
+        if (target) {
+            draggedItem = target;
+            target.classList.add('dragging');
+            requestAnimationFrame(() => target.style.opacity = '0.5');
         }
     });
 
@@ -34,34 +36,40 @@
     });
 
     draggableList.addEventListener('dragover', (e: DragEvent) => {
-        e.preventDefault();
-        if (!draggedItem) return;
-        const afterElement = getDragAfterElement(draggableList, e.clientY);
-        if (afterElement && afterElement !== draggedItem) {
-            draggableList.insertBefore(draggedItem, afterElement.nextSibling);
+        if (draggedItem) {
+            e.preventDefault();
+
+            const afterElement = getDragAfterElement(draggableList, e.clientY);
+
+            if (afterElement && afterElement !== draggedItem) {
+                draggableList.insertBefore(draggedItem, afterElement.nextSibling);
+            }
         }
     });
 
     draggableList.addEventListener('drop', async (e: DragEvent) => {
-        e.preventDefault();
-        if (!draggedItem) return;
-        draggedItem.style.opacity = '';
-
-        const afterElement = getDragAfterElement(draggableList, e.clientY);
-        const draggedItemId = draggedItem.getAttribute('id');
-        const targetItemId = afterElement?.getAttribute('id') ?? null;
-
-        if (draggedItemId) {
-            try {
-                await dotnetObject.invokeMethodAsync('HandleDragDrop', draggedItemId, targetItemId);
-            } catch (error) {
-                console.error('Error invoking HandleDragDrop:', error);
-            }
-        }
-
         if (draggedItem) {
-            draggedItem.classList.remove('dragging');
-            draggedItem = null;
+            e.preventDefault();
+
+            draggedItem.style.opacity = '';
+
+            const afterElement = getDragAfterElement(draggableList, e.clientY);
+            
+            const draggedItemId = draggedItem.getAttribute('id');
+            const targetItemId = afterElement?.getAttribute('id') ?? null;
+
+            if (draggedItemId) {
+                try {
+                    await dotnetObject.invokeMethodAsync('HandleDragDrop', draggedItemId, targetItemId);
+                } catch (error) {
+                    console.error('Error invoking HandleDragDrop:', error);
+                }
+            }
+
+            if (draggedItem) {
+                draggedItem.classList.remove('dragging');
+                draggedItem = null;
+            }
         }
     });
 }

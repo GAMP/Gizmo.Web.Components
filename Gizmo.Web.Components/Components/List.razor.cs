@@ -253,30 +253,23 @@ namespace Gizmo.Web.Components
         public async Task HandleDragDrop(string draggedItemId, string targetItemId)
         {
             var draggedItem = _items.FirstOrDefault(i => i.Id == draggedItemId);
-            var targetItem = _items.FirstOrDefault(i => i.Id == targetItemId);
 
             if (draggedItem is not null)
             {
                 _items.Remove(draggedItem);
                 
-                Console.WriteLine($@"Dragged item: {draggedItem.Id}");
+                var targetItem = _items.FirstOrDefault(i => i.Id == targetItemId);
 
                 if (targetItem is not null)
                 {
                     var targetIndex = _items.IndexOf(targetItem);
                     _items.Insert(targetIndex, draggedItem);
-                    
-                    Console.WriteLine($@"Target item: {targetItem.Id}");
                 }
                 else
                 {
                     _items.Add(draggedItem);
-                    
-                    Console.WriteLine($@"Target item: null");
-                    Console.WriteLine($@"Added to the end of the list {draggedItem.Id}");
                 }
 
-                StateHasChanged();
                 await OnClickItem.InvokeAsync(draggedItem);
             }
         }
