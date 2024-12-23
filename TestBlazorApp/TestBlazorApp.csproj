@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="src\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <Target Name="NpmInstall" BeforeTargets="Build">

@@ -266,8 +266,7 @@ namespace Gizmo.Web.Components
         {
             if (IsDraggable && firstRender)
             {
-                var module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Demos/GizmoList.razor.js");
-                await module.InvokeVoidAsync("gizmoInit", Id);
+                await JsRuntime.InvokeVoidAsync("initDraggable", Id);
             }
         }
 

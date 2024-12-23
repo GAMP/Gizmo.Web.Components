@@ -1,44 +1,47 @@
+/** @format */
+
 //=============== List ================//
 
 .giz-list {
-    position: relative;
+  position: relative;
 
-    .giz-list-item {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        text-decoration: none;
-        transition: transform 0.2s ease;
+  .giz-list-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.4s ease, background-color 0.4s ease;
 
-        &.disabled {
-            cursor: default;
-            pointer-events: none;
-        }
-        
-        &.dragging{
-            transform: scale(1.05);
-        }
+    &.disabled {
+      cursor: default;
+      pointer-events: none;
     }
 
-    &.giz-list--with-header {
-        display: grid;
-        grid-template-rows: auto 1fr;
+    &.dragging {
+      transform: scale(1.05);
+      background-color: #f0f0f0; // Optional: Change background color while dragging
+    }
+  }
+
+  &.giz-list--with-header {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  &-nested-list {
+    position: absolute;
+    width: max-content;
+
+    &.giz-list--right {
+      left: 100%;
     }
 
-    &-nested-list {
-        position: absolute;
-        width: max-content;
-
-        &.giz-list--right {
-            left: 100%;
-        }
-
-        &.giz-list--left {
-            right: 100%;
-        }
-
-        &.giz-list--top {
-            bottom: 0;
-        }
+    &.giz-list--left {
+      right: 100%;
     }
+
+    &.giz-list--top {
+      bottom: 0;
+    }
+  }
 }

@@ -10,7 +10,8 @@
     "build-ts": "tsc",
     "migrate-scss": "sass-migrator module ../Gizmo.Web.Components/src/scss/main.scss",
     "build-css": "sass ../Gizmo.Web.Components/src/scss/main.scss:wwwroot/css/main.css",
-    "build": "npm run build-ts && npm run migrate-scss && npm run build-css",
+    "copy-js": "copyfiles -f ../Gizmo.Web.Components/src/js/* wwwroot/js",
+    "build": "npm run build-ts && npm run migrate-scss && npm run build-css && npm run copy-js",
     "watch": "chokidar \"../src/ts/*.ts\" \"./css/*.css\" -c \"npm run build\""
   }
 }
