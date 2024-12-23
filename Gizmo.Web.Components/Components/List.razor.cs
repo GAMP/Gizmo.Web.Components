@@ -247,6 +247,23 @@ namespace Gizmo.Web.Components
         {
             return _items.Count;
         }
+        
+        [JSInvokable]
+        public async Task HandleDragDrop(string draggedItemId, string targetItemId)
+        {
+            var draggedItem = _items.FirstOrDefault(i => i.Id == draggedItemId);
+            var targetItem = _items.FirstOrDefault(i => i.Id == targetItemId);
+
+            if (draggedItem != null && targetItem != null)
+            {
+                _items.Remove(draggedItem);
+                var targetIndex = _items.IndexOf(targetItem);
+                _items.Insert(targetIndex, draggedItem);
+                StateHasChanged();
+
+                await OnClickItem.InvokeAsync(draggedItem);
+            }
+        }
 
         #endregion
 
