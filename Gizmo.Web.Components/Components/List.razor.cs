@@ -1,4 +1,5 @@
-﻿using Gizmo.Web.Components.Extensions;
+﻿using System;
+using Gizmo.Web.Components.Extensions;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
@@ -254,16 +255,32 @@ namespace Gizmo.Web.Components
             var draggedItem = _items.FirstOrDefault(i => i.Id == draggedItemId);
             var targetItem = _items.FirstOrDefault(i => i.Id == targetItemId);
 
-            if (draggedItem != null && targetItem != null)
+            if (draggedItem is not null)
             {
                 _items.Remove(draggedItem);
-                var targetIndex = _items.IndexOf(targetItem);
-                _items.Insert(targetIndex, draggedItem);
-                StateHasChanged();
+                
+                Console.WriteLine($@"Dragged item: {draggedItem.Id}");
 
+                if (targetItem is not null)
+                {
+                    var targetIndex = _items.IndexOf(targetItem);
+                    _items.Insert(targetIndex, draggedItem);
+                    
+                    Console.WriteLine($@"Target item: {targetItem.Id}");
+                }
+                else
+                {
+                    _items.Add(draggedItem);
+                    
+                    Console.WriteLine($@"Target item: null");
+                    Console.WriteLine($@"Added to the end of the list {draggedItem.Id}");
+                }
+
+                StateHasChanged();
                 await OnClickItem.InvokeAsync(draggedItem);
             }
         }
+
 
         #endregion
 
@@ -283,7 +300,7 @@ namespace Gizmo.Web.Components
         {
             if (IsDraggable && firstRender)
             {
-                await JsRuntime.InvokeVoidAsync("initDraggable", Id);
+                await JsRuntime.InvokeVoidAsync("initDraggable", Id, DotNetObjectReference.Create(this));
             }
         }
 

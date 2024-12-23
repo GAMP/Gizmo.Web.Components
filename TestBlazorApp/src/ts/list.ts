@@ -1,14 +1,15 @@
-﻿function initDraggable(listId: string) {
-    const gizmoSortableList = document.getElementById(listId) as HTMLDivElement;
-    let gizmoDraggedItem: HTMLDivElement | null = null;
-    let lastDragOverTime = 0;
+﻿function initDraggable(listId: string, dotnetObject: any) {
+    const draggableList = document.getElementById(listId) as HTMLDivElement | null;
+    if (!draggableList) return;
 
-    function getGizmoDragAfterElement(container: HTMLElement, y: number): HTMLElement | null {
+    let draggedItem: HTMLDivElement | null = null;
+
+    function getDragAfterElement(container: HTMLElement, y: number): HTMLElement | null {
         const draggableElements = Array.from(container.querySelectorAll('div:not(.dragging)')) as HTMLElement[];
         return draggableElements.reduce<HTMLElement | null>((closest, child) => {
             const box = child.getBoundingClientRect();
-            const offset = y - box.top - box.height / 3;
-            if (offset < 0 && offset > (closest?.getBoundingClientRect().top ?? Number.NEGATIVE_INFINITY)) {
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && (!closest || offset > closest.offsetTop)) {
                 return child;
             } else {
                 return closest;
@@ -16,61 +17,51 @@
         }, null);
     }
 
-    gizmoSortableList.addEventListener('dragstart', (e: DragEvent) => {
-        if (e.target && e.target instanceof HTMLDivElement) {
-            gizmoDraggedItem = e.target;
+    draggableList.addEventListener('dragstart', (e: DragEvent) => {
+        if (e.target instanceof HTMLDivElement) {
+            draggedItem = e.target;
             e.target.classList.add('dragging');
+            requestAnimationFrame(() => (e.target as HTMLElement).style.opacity = '0.5');
         }
     });
 
-    gizmoSortableList.addEventListener('dragend', (e: DragEvent) => {
-        if (gizmoDraggedItem) {
-            gizmoDraggedItem.classList.remove('dragging');
-            gizmoDraggedItem = null;
+    draggableList.addEventListener('dragend', () => {
+        if (draggedItem) {
+            draggedItem.classList.remove('dragging');
+            draggedItem.style.opacity = '';
+            draggedItem = null;
         }
     });
 
-    gizmoSortableList.addEventListener('dragover', (e: DragEvent) => {
+    draggableList.addEventListener('dragover', (e: DragEvent) => {
         e.preventDefault();
-        const now = Date.now();
-        if (now - lastDragOverTime < 700) return; // Debounce: limit to one update every 700ms
-        lastDragOverTime = now;
+        if (!draggedItem) return;
+        const afterElement = getDragAfterElement(draggableList, e.clientY);
+        if (afterElement && afterElement !== draggedItem) {
+            draggableList.insertBefore(draggedItem, afterElement.nextSibling);
+        }
+    });
 
-        const afterElement = getGizmoDragAfterElement(gizmoSortableList, e.clientY);
-        if (gizmoDraggedItem && afterElement && afterElement !== gizmoDraggedItem) {
-            gizmoSortableList.querySelectorAll('div:not(.dragging)').forEach(item => {
-                (item as HTMLDivElement).style.transform = '';
-            });
-            const draggedIndex = Array.from(gizmoSortableList.children).indexOf(gizmoDraggedItem);
-            const afterIndex = Array.from(gizmoSortableList.children).indexOf(afterElement);
-            if (draggedIndex > afterIndex) {
-                afterElement.style.transform = 'translateY(50px)';
-            } else {
-                afterElement.style.transform = 'translateY(-50px)';
+    draggableList.addEventListener('drop', async (e: DragEvent) => {
+        e.preventDefault();
+        if (!draggedItem) return;
+        draggedItem.style.opacity = '';
+
+        const afterElement = getDragAfterElement(draggableList, e.clientY);
+        const draggedItemId = draggedItem.getAttribute('id');
+        const targetItemId = afterElement?.getAttribute('id') ?? null;
+
+        if (draggedItemId) {
+            try {
+                await dotnetObject.invokeMethodAsync('HandleDragDrop', draggedItemId, targetItemId);
+            } catch (error) {
+                console.error('Error invoking HandleDragDrop:', error);
             }
         }
-    });
 
-    gizmoSortableList.addEventListener('dragleave', () => {
-        gizmoSortableList.querySelectorAll('div').forEach(item => {
-            (item as HTMLDivElement).style.transform = '';
-        });
-    });
-
-    gizmoSortableList.addEventListener('drop', (e: DragEvent) => {
-        e.preventDefault();
-        const afterElement = getGizmoDragAfterElement(gizmoSortableList, e.clientY);
-        if (gizmoDraggedItem) {
-            if (afterElement == null) {
-                gizmoSortableList.appendChild(gizmoDraggedItem);
-            } else if (gizmoSortableList.contains(afterElement)) {
-                gizmoSortableList.insertBefore(gizmoDraggedItem, afterElement);
-            }
-            gizmoSortableList.querySelectorAll('div').forEach(item => {
-                (item as HTMLDivElement).style.transform = '';
-            });
-            gizmoDraggedItem.classList.remove('dragging');
-            gizmoDraggedItem = null;
+        if (draggedItem) {
+            draggedItem.classList.remove('dragging');
+            draggedItem = null;
         }
     });
 }

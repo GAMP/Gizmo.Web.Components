@@ -10,7 +10,7 @@
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    transition: transform 0.4s ease, background-color 0.4s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease, opacity 0.3s ease;
 
     &.disabled {
       cursor: default;
@@ -18,8 +18,9 @@
     }
 
     &.dragging {
-      transform: scale(1.05);
-      background-color: #f0f0f0; // Optional: Change background color while dragging
+      transform: scale(1.03); // Subtle scaling for dragging feedback
+      background-color: #e8f5ff; // Improved background highlight during dragging
+      opacity: 0.8; // Semi-transparent for better feedback
     }
   }
 
