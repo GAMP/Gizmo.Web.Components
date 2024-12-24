@@ -29,7 +29,7 @@ function initDraggable(listId, dotnetObject) {
         let closest = { offset: Number.NEGATIVE_INFINITY, element: null };
         for (const child of children) {
             const rect = child.getBoundingClientRect();
-            const offset = clientY - (rect.top + rect.height * 2);
+            const offset = clientY - (rect.top + rect.height / 2);
             if (offset < 0 && offset > closest.offset) {
                 closest = { offset, element: child };
             }
@@ -56,7 +56,7 @@ function initDraggable(listId, dotnetObject) {
             e.preventDefault();
             const afterElement = getDragAfterElement(draggableList, e.clientY);
             if (afterElement && afterElement !== draggedItem) {
-                draggableList.insertBefore(draggedItem, afterElement.nextSibling);
+                draggableList.insertBefore(draggedItem, afterElement);
             }
         }
     });
