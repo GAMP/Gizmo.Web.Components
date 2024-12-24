@@ -11,9 +11,11 @@ namespace Gizmo.Web.Components
     public partial class List : CustomDOMComponentBase
     {
         #region CONSTRUCTOR
+
         public List()
         {
         }
+
         #endregion
 
         #region FIELDS
@@ -28,26 +30,19 @@ namespace Gizmo.Web.Components
 
         #region PROPERTIES
 
-        [CascadingParameter]
-        protected List ParentList { get; set; }
+        [CascadingParameter] protected List ParentList { get; set; }
 
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; }
 
-        [Parameter]
-        public bool IsDisabled { get; set; }
-        
-        [Parameter]
-        public bool IsDraggable { get; set; }
+        [Parameter] public bool IsDisabled { get; set; }
 
-        [Parameter]
-        public bool CanClick { get; set; }
+        [Parameter] public bool IsDraggable { get; set; }
 
-        [Parameter]
-        public bool CanSelect { get; set; }
+        [Parameter] public bool CanClick { get; set; }
 
-        [Parameter]
-        public bool PreserveIconSpace { get; set; }
+        [Parameter] public bool CanSelect { get; set; }
+
+        [Parameter] public bool PreserveIconSpace { get; set; }
 
         [Parameter]
         public ListItem SelectedItem
@@ -62,20 +57,14 @@ namespace Gizmo.Web.Components
             }
         }
 
-        [Parameter]
-        public EventCallback<ListItem> SelectedItemChanged { get; set; }
+        [Parameter] public EventCallback<ListItem> SelectedItemChanged { get; set; }
 
-        [Parameter]
-        public EventCallback<ListItem> OnClickItem { get; set; }
+        [Parameter] public EventCallback<ListItem> OnClickItem { get; set; }
 
         [Parameter]
         public ListDirections Direction
         {
-            get
-            {
-                return _direction;
-
-            }
+            get { return _direction; }
             set
             {
                 _direction = value;
@@ -87,24 +76,17 @@ namespace Gizmo.Web.Components
             }
         }
 
-        [Parameter]
-        public string MaximumHeight { get; set; }
+        [Parameter] public string MaximumHeight { get; set; }
 
-        [Parameter]
-        public RenderFragment ListHeader { get; set; }
+        [Parameter] public RenderFragment ListHeader { get; set; }
 
-        [Parameter]
-        public string BodyClass { get; set; }
+        [Parameter] public string BodyClass { get; set; }
 
-        [Parameter]
-        public bool ExpandBottomToTop { get; set; }
+        [Parameter] public bool ExpandBottomToTop { get; set; }
 
         public ListItem ActiveItem
         {
-            get
-            {
-                return _activeItem;
-            }
+            get { return _activeItem; }
             set
             {
                 if (_activeItem == value)
@@ -248,7 +230,7 @@ namespace Gizmo.Web.Components
         {
             return _items.Count;
         }
-        
+
         [JSInvokable]
         public async Task HandleDragDrop(string draggedItemId, string targetItemId)
         {
@@ -257,7 +239,7 @@ namespace Gizmo.Web.Components
             if (draggedItem is not null)
             {
                 _items.Remove(draggedItem);
-                
+
                 var targetItem = _items.FirstOrDefault(i => i.Id == targetItemId);
 
                 if (targetItem is not null)
@@ -274,7 +256,6 @@ namespace Gizmo.Web.Components
             }
         }
 
-
         #endregion
 
         #region OVERRIDES
@@ -288,7 +269,7 @@ namespace Gizmo.Web.Components
                 Direction = ParentList.Direction;
             }
         }
-        
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (IsDraggable && firstRender)
@@ -309,17 +290,17 @@ namespace Gizmo.Web.Components
         #region CLASSMAPPERS
 
         protected string ClassName => new ClassMapper()
-                 .Add("giz-list")
-                 .Add($"giz-list--{Direction.ToDescriptionString()}")
-                 .If("giz-list--top", () => ExpandBottomToTop)
-                 .If("giz-list--clickable", () => CanClick)
-                 .If("giz-list--selectable", () => CanSelect)
-                 .If("giz-list--with-header", () => ListHeader != null)
-                 .AsString();
+            .Add("giz-list")
+            .Add($"giz-list--{Direction.ToDescriptionString()}")
+            .If("giz-list--top", () => ExpandBottomToTop)
+            .If("giz-list--clickable", () => CanClick)
+            .If("giz-list--selectable", () => CanSelect)
+            .If("giz-list--with-header", () => ListHeader != null)
+            .AsString();
 
         protected string StyleValue => new StyleMapper()
-                 .If($"max-height: {MaximumHeight}", () => !string.IsNullOrEmpty(MaximumHeight))
-                 .AsString();
+            .If($"max-height: {MaximumHeight}", () => !string.IsNullOrEmpty(MaximumHeight))
+            .AsString();
 
         #endregion
     }

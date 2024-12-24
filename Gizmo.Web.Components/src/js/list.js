@@ -15,20 +15,33 @@ function initDraggable(listId, dotnetObject) {
         return;
     }
     let draggedItem = null;
+    function getVisibleDraggableChildren(container) {
+        return Array.from(container.children).filter((el) => {
+            const isElement = el instanceof HTMLElement;
+            const isVisible = isElement && el.style.display !== 'none';
+            const notDragging = isElement && !el.classList.contains('dragging');
+            const isDraggable = isElement && (el.draggable || el.getAttribute('draggable') !== 'false');
+            return isElement && isVisible && notDragging && isDraggable;
+        });
+    }
     function getDragAfterElement(container, clientY) {
-        const draggableElements = [...container.querySelectorAll('div:not(.dragging)')];
-        return draggableElements.reduce((closest, child) => {
-            const { top, height } = child.getBoundingClientRect();
-            const offset = clientY - top - height * 2;
-            return offset < 0 && (!closest || offset > closest.offsetTop) ? child : closest;
-        }, null);
+        const children = getVisibleDraggableChildren(container);
+        let closest = { offset: Number.NEGATIVE_INFINITY, element: null };
+        for (const child of children) {
+            const rect = child.getBoundingClientRect();
+            const offset = clientY - (rect.top + rect.height * 2);
+            if (offset < 0 && offset > closest.offset) {
+                closest = { offset, element: child };
+            }
+        }
+        return closest.element;
     }
     draggableList.addEventListener('dragstart', (e) => {
-        const target = e.target;
-        if (target) {
-            draggedItem = target;
-            target.classList.add('dragging');
-            requestAnimationFrame(() => target.style.opacity = '0.5');
+        const targetItem = e.target instanceof HTMLDivElement ? e.target : null;
+        if (targetItem) {
+            draggedItem = targetItem;
+            draggedItem.classList.add('dragging');
+            requestAnimationFrame(() => (draggedItem.style.opacity = '0.5'));
         }
     });
     draggableList.addEventListener('dragend', () => {
@@ -51,10 +64,12 @@ function initDraggable(listId, dotnetObject) {
         var _a;
         if (draggedItem) {
             e.preventDefault();
-            draggedItem.style.opacity = '';
             const afterElement = getDragAfterElement(draggableList, e.clientY);
             const draggedItemId = draggedItem.getAttribute('id');
             const targetItemId = (_a = afterElement === null || afterElement === void 0 ? void 0 : afterElement.getAttribute('id')) !== null && _a !== void 0 ? _a : null;
+            draggedItem.style.opacity = '';
+            draggedItem.classList.remove('dragging');
+            draggedItem = null;
             if (draggedItemId) {
                 try {
                     yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedItemId, targetItemId);
@@ -62,10 +77,6 @@ function initDraggable(listId, dotnetObject) {
                 catch (error) {
                     console.error('Error invoking HandleDragDrop:', error);
                 }
-            }
-            if (draggedItem) {
-                draggedItem.classList.remove('dragging');
-                draggedItem = null;
             }
         }
     }));
