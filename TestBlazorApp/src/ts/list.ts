@@ -20,29 +20,28 @@
 
     function getTargetElement(container: HTMLElement, clientY: number): HTMLElement | null {
         const children = getVisibleDraggableElements(container);
-        let closest = {
+        let closest: { offset: number; element: HTMLElement | null } = {
             offset: Number.NEGATIVE_INFINITY,
-            element: null as HTMLElement | null
+            element: null
         };
 
-        for (const element of children) {
+        children.forEach(element => {
             const rect = element.getBoundingClientRect();
             const offset = clientY - (rect.top + rect.height / 2);
 
             if (offset < 0 && offset > closest.offset) {
                 closest = {offset, element};
             }
-        }
+        });
 
-        // If no element is found (e.g., cursor is below all elements), return the last child
         if (!closest.element && children.length > 0) {
             const lastElement = children[children.length - 1];
             const lastRect = lastElement.getBoundingClientRect();
             if (clientY > lastRect.bottom) {
-                return null; // Place below the last element
+                return null;
             }
         }
-        
+
         return closest.element;
     }
 
@@ -68,9 +67,10 @@
             e.preventDefault();
 
             const targetElement = getTargetElement(draggableList, e.clientY);
+
             if (targetElement && targetElement !== draggedElement) {
                 draggableList.insertBefore(draggedElement, targetElement);
-            } else if (!targetElement) {
+            } else {
                 draggableList.appendChild(draggedElement);
             }
         }
