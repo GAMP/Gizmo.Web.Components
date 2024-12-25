@@ -14,8 +14,8 @@ function initDraggable(listId, dotnetObject) {
         console.error(`Element with id ${listId} not found`);
         return;
     }
-    let draggedItem = null;
-    function getVisibleDraggableChildren(container) {
+    let draggedElement = null;
+    function getVisibleDraggableElements(container) {
         return Array.from(container.children).filter((el) => {
             const isElement = el instanceof HTMLElement;
             const isVisible = isElement && el.style.display !== 'none';
@@ -24,14 +24,17 @@ function initDraggable(listId, dotnetObject) {
             return isElement && isVisible && notDragging && isDraggable;
         });
     }
-    function getDragAfterElement(container, clientY) {
-        const children = getVisibleDraggableChildren(container);
-        let closest = { offset: Number.NEGATIVE_INFINITY, element: null };
-        for (const child of children) {
-            const rect = child.getBoundingClientRect();
+    function getTargetElement(container, clientY) {
+        const children = getVisibleDraggableElements(container);
+        let closest = {
+            offset: Number.NEGATIVE_INFINITY,
+            element: null
+        };
+        for (const element of children) {
+            const rect = element.getBoundingClientRect();
             const offset = clientY - (rect.top + rect.height / 2);
             if (offset < 0 && offset > closest.offset) {
-                closest = { offset, element: child };
+                closest = { offset, element };
             }
         }
         return closest.element;
@@ -39,40 +42,40 @@ function initDraggable(listId, dotnetObject) {
     draggableList.addEventListener('dragstart', (e) => {
         const targetItem = e.target instanceof HTMLDivElement ? e.target : null;
         if (targetItem) {
-            draggedItem = targetItem;
-            draggedItem.classList.add('dragging');
-            requestAnimationFrame(() => (draggedItem.style.opacity = '0.5'));
+            draggedElement = targetItem;
+            draggedElement.classList.add('dragging');
+            requestAnimationFrame(() => (draggedElement.style.opacity = '0.5'));
         }
     });
     draggableList.addEventListener('dragend', () => {
-        if (draggedItem) {
-            draggedItem.classList.remove('dragging');
-            draggedItem.style.opacity = '';
-            draggedItem = null;
+        if (draggedElement) {
+            draggedElement.classList.remove('dragging');
+            draggedElement.style.opacity = '';
+            draggedElement = null;
         }
     });
     draggableList.addEventListener('dragover', (e) => {
-        if (draggedItem) {
+        if (draggedElement) {
             e.preventDefault();
-            const afterElement = getDragAfterElement(draggableList, e.clientY);
-            if (afterElement && afterElement !== draggedItem) {
-                draggableList.insertBefore(draggedItem, afterElement);
+            const targetElement = getTargetElement(draggableList, e.clientY);
+            if (targetElement && targetElement !== draggedElement) {
+                draggableList.insertBefore(draggedElement, targetElement);
             }
         }
     });
     draggableList.addEventListener('drop', (e) => __awaiter(this, void 0, void 0, function* () {
         var _a;
-        if (draggedItem) {
+        if (draggedElement) {
             e.preventDefault();
-            const afterElement = getDragAfterElement(draggableList, e.clientY);
-            const draggedItemId = draggedItem.getAttribute('id');
-            const targetItemId = (_a = afterElement === null || afterElement === void 0 ? void 0 : afterElement.getAttribute('id')) !== null && _a !== void 0 ? _a : null;
-            draggedItem.style.opacity = '';
-            draggedItem.classList.remove('dragging');
-            draggedItem = null;
-            if (draggedItemId) {
+            const targetElement = getTargetElement(draggableList, e.clientY);
+            const targetElementId = (_a = targetElement === null || targetElement === void 0 ? void 0 : targetElement.getAttribute('id')) !== null && _a !== void 0 ? _a : null;
+            const draggedElementId = draggedElement.getAttribute('id');
+            draggedElement.style.opacity = '';
+            draggedElement.classList.remove('dragging');
+            draggedElement = null;
+            if (draggedElementId) {
                 try {
-                    yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedItemId, targetItemId);
+                    yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElementId, targetElementId);
                 }
                 catch (error) {
                     console.error('Error invoking HandleDragDrop:', error);
