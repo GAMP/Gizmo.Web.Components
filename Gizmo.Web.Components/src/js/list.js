@@ -37,6 +37,14 @@ function initDraggable(listId, dotnetObject) {
                 closest = { offset, element };
             }
         }
+        // If no element is found (e.g., cursor is below all elements), return the last child
+        if (!closest.element && children.length > 0) {
+            const lastElement = children[children.length - 1];
+            const lastRect = lastElement.getBoundingClientRect();
+            if (clientY > lastRect.bottom) {
+                return null; // Place below the last element
+            }
+        }
         return closest.element;
     }
     draggableList.addEventListener('dragstart', (e) => {
@@ -60,6 +68,9 @@ function initDraggable(listId, dotnetObject) {
             const targetElement = getTargetElement(draggableList, e.clientY);
             if (targetElement && targetElement !== draggedElement) {
                 draggableList.insertBefore(draggedElement, targetElement);
+            }
+            else if (!targetElement) {
+                draggableList.appendChild(draggedElement);
             }
         }
     });

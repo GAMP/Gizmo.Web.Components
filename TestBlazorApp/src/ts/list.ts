@@ -1,6 +1,4 @@
-﻿type Direction = "down" | "up";
-
-function initDraggable(listId: string, dotnetObject: any) {
+﻿function initDraggable(listId: string, dotnetObject: any) {
     const draggableList = document.getElementById(listId) as HTMLDivElement | null;
 
     if (!draggableList) {
@@ -35,6 +33,16 @@ function initDraggable(listId: string, dotnetObject: any) {
                 closest = {offset, element};
             }
         }
+
+        // If no element is found (e.g., cursor is below all elements), return the last child
+        if (!closest.element && children.length > 0) {
+            const lastElement = children[children.length - 1];
+            const lastRect = lastElement.getBoundingClientRect();
+            if (clientY > lastRect.bottom) {
+                return null; // Place below the last element
+            }
+        }
+        
         return closest.element;
     }
 
@@ -62,6 +70,8 @@ function initDraggable(listId: string, dotnetObject: any) {
             const targetElement = getTargetElement(draggableList, e.clientY);
             if (targetElement && targetElement !== draggedElement) {
                 draggableList.insertBefore(draggedElement, targetElement);
+            } else if (!targetElement) {
+                draggableList.appendChild(draggedElement);
             }
         }
     });
