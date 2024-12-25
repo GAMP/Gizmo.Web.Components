@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
+using Microsoft.JSInterop;
 
 namespace Gizmo.Web.Components
 {
@@ -34,6 +36,9 @@ namespace Gizmo.Web.Components
 
         [Parameter]
         public bool IsDisabled { get; set; }
+
+        [Parameter] 
+        public bool IsDraggable { get; set; }
 
         [Parameter]
         public bool CanClick { get; set; }
@@ -244,6 +249,31 @@ namespace Gizmo.Web.Components
             return _items.Count;
         }
 
+        [JSInvokable]
+        public async Task HandleDragDrop(string draggedItemId, string targetItemId)
+        {
+            var draggedItem = _items.FirstOrDefault(i => i.Id == draggedItemId);
+
+            if (draggedItem is not null)
+            {
+                _items.Remove(draggedItem);
+
+                var targetItem = _items.FirstOrDefault(i => i.Id == targetItemId);
+
+                if (targetItem is not null)
+                {
+                    var targetIndex = _items.IndexOf(targetItem);
+                    _items.Insert(targetIndex, draggedItem);
+                }
+                else
+                {
+                    _items.Add(draggedItem);
+                }
+
+                await OnClickItem.InvokeAsync(draggedItem);
+            }
+        }
+
         #endregion
 
         #region OVERRIDES
@@ -255,6 +285,14 @@ namespace Gizmo.Web.Components
                 ParentList.Register(this);
                 IsDisabled = ParentList.IsDisabled;
                 Direction = ParentList.Direction;
+            }
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (IsDraggable && firstRender)
+            {
+                await JsRuntime.InvokeVoidAsync("initDraggable", Id, DotNetObjectReference.Create(this));
             }
         }
 
