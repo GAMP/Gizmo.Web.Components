@@ -1,5 +1,4 @@
-namespace TestBlazorApp;
-
+namespace SortableListStartup;
 
 public class Item
 {

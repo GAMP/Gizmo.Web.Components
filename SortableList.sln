@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gizmo.Web.Components", "Giz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gizmo.Shared", "Gizmo.Shared\Gizmo.Shared.csproj", "{0A4F2E4A-ABE0-4FB2-B86D-8153959E152F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBlazorApp", "TestBlazorApp\TestBlazorApp.csproj", "{994BAD5A-1974-49F8-80A0-F98F29CA8B20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortableListStartup", "SortableListStartup\SortableListStartup.csproj", "{994BAD5A-1974-49F8-80A0-F98F29CA8B20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

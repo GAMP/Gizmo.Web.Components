@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace TestBlazorApp.Shared.Demos;
+namespace SortableListStartup.Shared.Demos;
 
 public partial class GizmoList : ComponentBase
 {
