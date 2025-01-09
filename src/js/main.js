@@ -9,21 +9,21 @@ window.getWindowSize = function getWindowSize() {
 };
 //
 window.getElementBoundingClientRect = function getElementBoundingClientRect(element) {
-    if (element) {
-        return element.getBoundingClientRect();
-    } else {
-        console.log("Cannot read getBoundingClientRect of null element.");
-        return {
-            "x": 0,
-            "y": 0,
-            "width": 0,
-            "height": 0,
-            "top": 0,
-            "right": 0,
-            "bottom": 0,
-            "left": 0
-        };
-    }
+  if (element) {
+    return element.getBoundingClientRect();
+  } else {
+    console.log('Cannot read getBoundingClientRect of null element.');
+    return {
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    };
+  }
 };
 //
 window.scrollListItemIntoView = function scrollListItemIntoView(element) {
@@ -208,9 +208,9 @@ window.getInputSelectionRange = function getInputSelectionRange(element) {
 };
 //
 window.setInputSelectionAll = function setInputSelectionAll(element) {
-    if (element) {
-        element.select();
-    }
+  if (element) {
+    element.select();
+  }
 };
 //
 window.setInputCaretIndex = function setInputCaretIndex(element, index) {
@@ -226,7 +226,8 @@ window.setInputCaretIndex = function setInputCaretIndex(element, index) {
   }
 };
 //
-const focusableElementsSelector = 'input:not([disabled]), textarea:not([disabled]), select:not([disabled]), button:not([disabled]), a[href]:not([disabled]), [tabindex = "0"]';
+const focusableElementsSelector =
+  'input:not([disabled]), textarea:not([disabled]), select:not([disabled]), button:not([disabled]), a[href]:not([disabled]), [tabindex = "0"]';
 //
 window.focusPrevious = function focusPrevious(element) {
   if (element) {
@@ -376,6 +377,7 @@ window.initDraggable = function initDraggable(listId, dotnetObject) {
     return;
   }
   let draggedElement = null;
+  let targetElement = null;
   function getVisibleDraggableElements(container) {
     return Array.from(container.children).filter(el => {
       const isElement = el instanceof HTMLElement;
@@ -385,7 +387,7 @@ window.initDraggable = function initDraggable(listId, dotnetObject) {
       return isElement && isVisible && notDragging && isDraggable;
     });
   }
-  function getTargetElement(container, clientY) {
+  function getTargetItem(container, clientY) {
     const children = getVisibleDraggableElements(container);
     let closest = {
       offset: Number.NEGATIVE_INFINITY,
@@ -408,9 +410,9 @@ window.initDraggable = function initDraggable(listId, dotnetObject) {
     return closest.element;
   }
   draggableList.addEventListener('dragstart', e => {
-    const targetItem = e.target instanceof HTMLDivElement ? e.target : null;
-    if (targetItem) {
-      draggedElement = targetItem;
+    const draggedItem = e.target instanceof HTMLDivElement ? e.target : null;
+    if (draggedItem) {
+      draggedElement = draggedItem;
       draggedElement.classList.add('dragging');
       requestAnimationFrame(() => (draggedElement.style.opacity = '0.5'));
     }
@@ -423,38 +425,35 @@ window.initDraggable = function initDraggable(listId, dotnetObject) {
     }
   });
   draggableList.addEventListener('dragover', e => {
+    var _a;
     if (draggedElement) {
       e.preventDefault();
-      const targetElement = getTargetElement(draggableList, e.clientY);
-      if (targetElement && targetElement !== draggedElement) {
-        draggableList.insertBefore(draggedElement, targetElement);
+      const targetItem = getTargetItem(draggableList, e.clientY);
+      if (targetItem && targetItem !== draggedElement) {
+        let element = draggableList.insertBefore(draggedElement, targetItem);
+        targetElement = (_a = element.previousElementSibling) !== null && _a !== void 0 ? _a : element.nextElementSibling;
       } else {
-        draggableList.appendChild(draggedElement);
+        const element = draggableList.appendChild(draggedElement);
+        targetElement = element.previousElementSibling;
       }
     }
   });
   draggableList.addEventListener('drop', e =>
     __awaiter(this, void 0, void 0, function* () {
-      var _a;
       if (draggedElement) {
         e.preventDefault();
-        const targetElement = getTargetElement(draggableList, e.clientY);
-        const targetElementId =
-          (_a = targetElement === null || targetElement === void 0 ? void 0 : targetElement.getAttribute('id')) !== null &&
-          _a !== void 0
-            ? _a
-            : null;
-        const draggedElementId = draggedElement.getAttribute('id');
         draggedElement.style.opacity = '';
         draggedElement.classList.remove('dragging');
-        draggedElement = null;
-        if (draggedElementId) {
-          try {
-            yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElementId, targetElementId);
-          } catch (error) {
-            console.error('Error invoking HandleDragDrop:', error);
-          }
+        try {
+          yield dotnetObject.invokeMethodAsync(
+            'HandleDragDrop',
+            draggedElement.id,
+            targetElement === null || targetElement === void 0 ? void 0 : targetElement.id,
+          );
+        } catch (error) {
+          console.error('Error invoking HandleDragDrop:', error);
         }
+        draggedElement = null;
       }
     }),
   );

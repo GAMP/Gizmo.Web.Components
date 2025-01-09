@@ -9,6 +9,7 @@ function initDraggable(listId: string, dotnetObject: any) {
   }
 
   let draggedElement: HTMLDivElement | null = null;
+  let targetElement: HTMLDivElement | null = null;
 
   function getVisibleDraggableElements(container: HTMLElement): HTMLElement[] {
     return Array.from(container.children).filter(el => {
@@ -20,7 +21,7 @@ function initDraggable(listId: string, dotnetObject: any) {
     }) as HTMLElement[];
   }
 
-  function getTargetElement(container: HTMLElement, clientY: number): HTMLElement | null {
+  function getTargetItem(container: HTMLElement, clientY: number): HTMLElement | null {
     const children = getVisibleDraggableElements(container);
     let closest: { offset: number; element: HTMLElement | null } = {
       offset: Number.NEGATIVE_INFINITY,
@@ -48,9 +49,9 @@ function initDraggable(listId: string, dotnetObject: any) {
   }
 
   draggableList.addEventListener('dragstart', (e: DragEvent) => {
-    const targetItem = e.target instanceof HTMLDivElement ? e.target : null;
-    if (targetItem) {
-      draggedElement = targetItem;
+    const draggedItem = e.target instanceof HTMLDivElement ? e.target : null;
+    if (draggedItem) {
+      draggedElement = draggedItem;
       draggedElement.classList.add('dragging');
       requestAnimationFrame(() => (draggedElement!.style.opacity = '0.5'));
     }
@@ -68,12 +69,14 @@ function initDraggable(listId: string, dotnetObject: any) {
     if (draggedElement) {
       e.preventDefault();
 
-      const targetElement = getTargetElement(draggableList, e.clientY);
+      const targetItem = getTargetItem(draggableList, e.clientY);
 
-      if (targetElement && targetElement !== draggedElement) {
-        draggableList.insertBefore(draggedElement, targetElement);
+      if (targetItem && targetItem !== draggedElement) {
+        let element = draggableList.insertBefore(draggedElement, targetItem);
+        targetElement = (element.previousElementSibling ?? element.nextElementSibling) as HTMLDivElement;
       } else {
-        draggableList.appendChild(draggedElement);
+        const element = draggableList.appendChild(draggedElement);
+        targetElement = element.previousElementSibling as HTMLDivElement;
       }
     }
   });
@@ -82,21 +85,16 @@ function initDraggable(listId: string, dotnetObject: any) {
     if (draggedElement) {
       e.preventDefault();
 
-      const targetElement = getTargetElement(draggableList, e.clientY);
-      const targetElementId = targetElement?.getAttribute('id') ?? null;
-      const draggedElementId = draggedElement.getAttribute('id');
-
       draggedElement.style.opacity = '';
       draggedElement.classList.remove('dragging');
-      draggedElement = null;
 
-      if (draggedElementId) {
-        try {
-          await dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElementId, targetElementId);
-        } catch (error) {
-          console.error('Error invoking HandleDragDrop:', error);
-        }
+      try {
+        await dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElement.id, targetElement?.id);
+      } catch (error) {
+        console.error('Error invoking HandleDragDrop:', error);
       }
+
+      draggedElement = null;
     }
   });
 }
