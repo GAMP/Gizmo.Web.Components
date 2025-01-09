@@ -54,7 +54,6 @@ function initDraggable(listId, dotnetObject) {
             draggedElement.classList.add('dragging');
             requestAnimationFrame(() => (draggedElement.style.opacity = '0.5'));
         }
-        console.log(Array.from(draggableList.children).map(child => child.id).join('\n'));
     });
     draggableList.addEventListener('dragend', () => {
         if (draggedElement) {
@@ -62,7 +61,6 @@ function initDraggable(listId, dotnetObject) {
             draggedElement.style.opacity = '';
             draggedElement = null;
         }
-        console.log(Array.from(draggableList.children).map(child => child.id).join('\n'));
     });
     draggableList.addEventListener('dragover', (e) => {
         var _a;
