@@ -55,13 +55,21 @@ function initDraggable(listId, dotnetObject) {
             requestAnimationFrame(() => (draggedElement.style.opacity = '0.5'));
         }
     });
-    draggableList.addEventListener('dragend', () => {
+    draggableList.addEventListener('dragend', () => __awaiter(this, void 0, void 0, function* () {
         if (draggedElement) {
             draggedElement.classList.remove('dragging');
             draggedElement.style.opacity = '';
+            if (targetElement) {
+                try {
+                    yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElement.id, targetElement.id);
+                }
+                catch (error) {
+                    console.error('Error invoking HandleDragDrop:', error);
+                }
+            }
             draggedElement = null;
         }
-    });
+    }));
     draggableList.addEventListener('dragover', (e) => {
         var _a;
         if (draggedElement) {
@@ -77,19 +85,12 @@ function initDraggable(listId, dotnetObject) {
             }
         }
     });
-    draggableList.addEventListener('drop', (e) => __awaiter(this, void 0, void 0, function* () {
+    draggableList.addEventListener('drop', (e) => {
         if (draggedElement) {
             e.preventDefault();
             draggedElement.style.opacity = '';
             draggedElement.classList.remove('dragging');
-            try {
-                yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElement.id, targetElement === null || targetElement === void 0 ? void 0 : targetElement.id);
-            }
-            catch (error) {
-                console.error('Error invoking HandleDragDrop:', error);
-            }
-            draggedElement = null;
         }
-    }));
+    });
 }
 window.initDraggable = initDraggable;
