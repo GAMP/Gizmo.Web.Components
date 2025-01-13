@@ -1,0 +1,20 @@
+﻿@using Gizmo.Web.Components
+
+<div class="container">
+    <h1 class="title is-size-1 has-text-centered">Gizmo New List</h1>
+    <Tabs>
+        <ExampleContent>
+            <div class="columns">
+                <div class="column is-half">
+                    <NewSortableList @key="Guid.NewGuid()" Items="_items.OrderBy(a => a.DisplayOrder).ToList()" OnUpdate="OnUpdateHandler" Context="item">
+                        <SortableItemTemplate>
+                            <div id="@item.Id" draggable="true" class="card has-border-light has-background-blazor has-text-white has-cursor-grab">
+                                <p class="is-size-4 p-2 ml-4">@item.Name</p>
+                            </div>
+                        </SortableItemTemplate>
+                    </NewSortableList>
+                </div>
+            </div>
+        </ExampleContent>
+    </Tabs>
+</div>

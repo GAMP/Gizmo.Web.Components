@@ -1,0 +1,15 @@
+@using Gizmo.Web.Components
+
+@inherits CustomDOMComponentBase
+
+@typeparam T
+
+<div id="@Id">
+    @foreach (var item in Items)
+    {
+        if (SortableItemTemplate is not null)
+        {
+            @SortableItemTemplate(item)
+        }
+    }
+</div>
