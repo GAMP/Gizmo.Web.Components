@@ -16,6 +16,7 @@ function initDraggable(listId, dotnetObject) {
     }
     let draggedElement = null;
     let targetElement = null;
+    let shiftY = 0;
     function getVisibleDraggableElements(container) {
         return Array.from(container.children).filter((el) => {
             const isElement = el instanceof HTMLElement;
@@ -61,7 +62,7 @@ function initDraggable(listId, dotnetObject) {
             draggedElement.style.opacity = '';
             if (targetElement) {
                 try {
-                    yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElement.id, targetElement.id);
+                    yield dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElement.id, targetElement.id, shiftY);
                 }
                 catch (error) {
                     console.error('Error invoking HandleDragDrop:', error);
@@ -71,17 +72,24 @@ function initDraggable(listId, dotnetObject) {
         }
     }));
     draggableList.addEventListener('dragover', (e) => {
-        var _a;
         if (draggedElement) {
             e.preventDefault();
             const targetItem = getTargetItem(draggableList, e.clientY);
             if (targetItem && targetItem !== draggedElement) {
-                let element = draggableList.insertBefore(draggedElement, targetItem);
-                targetElement = ((_a = element.previousElementSibling) !== null && _a !== void 0 ? _a : element.nextElementSibling);
+                const element = draggableList.insertBefore(draggedElement, targetItem);
+                if (element.previousElementSibling) {
+                    targetElement = element.previousElementSibling;
+                    shiftY = 1;
+                }
+                else if (element.nextElementSibling) {
+                    targetElement = element.nextElementSibling;
+                    shiftY = 0;
+                }
             }
             else {
                 const element = draggableList.appendChild(draggedElement);
                 targetElement = element.previousElementSibling;
+                shiftY = 1;
             }
         }
     });

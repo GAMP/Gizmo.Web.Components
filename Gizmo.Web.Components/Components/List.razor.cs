@@ -232,28 +232,27 @@ namespace Gizmo.Web.Components
         }
 
         [JSInvokable]
-        public async Task HandleDragDrop(string draggedItemId, string targetItemId)
+        public async Task HandleDragDrop(string draggedItemId, string targetItemId, int shiftY)
         {
-            var draggedItem = _items.FirstOrDefault(i => i.Id == draggedItemId);
+            if (string.IsNullOrWhiteSpace(draggedItemId))
+                throw new ArgumentNullException(nameof(draggedItemId));
 
-            if (draggedItem is not null)
-            {
-                _items.Remove(draggedItem);
+            if (string.IsNullOrWhiteSpace(targetItemId))
+                throw new ArgumentNullException(nameof(targetItemId));
 
-                var targetItem = _items.FirstOrDefault(i => i.Id == targetItemId);
+            var draggedItem =
+                _items.SingleOrDefault(i => i.Id == draggedItemId)
+                ?? throw new InvalidOperationException($"Dragged item with ID {draggedItemId} not found.");
 
-                if (targetItem is not null)
-                {
-                    var targetIndex = _items.IndexOf(targetItem);
-                    _items.Insert(targetIndex, draggedItem);
-                }
-                else
-                {
-                    _items.Add(draggedItem);
-                }
+            var targetItem =
+                _items.SingleOrDefault(i => i.Id == targetItemId)
+                ?? throw new InvalidOperationException($"Target item with ID {targetItemId} not found.");
 
-                await OnClickItem.InvokeAsync(draggedItem);
-            }
+            _items.Remove(draggedItem);
+            var targetIndex = _items.IndexOf(targetItem) + shiftY;
+            _items.Insert(targetIndex, draggedItem);
+
+            await OnClickItem.InvokeAsync(draggedItem);
         }
 
         #endregion

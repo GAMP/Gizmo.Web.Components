@@ -8,6 +8,7 @@
 
     let draggedElement: HTMLDivElement | null = null;
     let targetElement: HTMLDivElement | null = null;
+    let shiftY: number = 0;
 
     function getVisibleDraggableElements(container: HTMLElement): HTMLElement[] {
         return Array.from(container.children).filter((el) => {
@@ -62,7 +63,7 @@
 
             if (targetElement) {
                 try {
-                    await dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElement.id, targetElement.id);
+                    await dotnetObject.invokeMethodAsync('HandleDragDrop', draggedElement.id, targetElement.id, shiftY);
                 } catch (error) {
                     console.error('Error invoking HandleDragDrop:', error);
                 }
@@ -79,11 +80,18 @@
             const targetItem = getTargetItem(draggableList, e.clientY);
 
             if (targetItem && targetItem !== draggedElement) {
-                let element = draggableList.insertBefore(draggedElement, targetItem)
-                targetElement = (element.previousElementSibling ?? element.nextElementSibling) as HTMLDivElement;
+                const element = draggableList.insertBefore(draggedElement, targetItem);
+                if (element.previousElementSibling) {
+                    targetElement = element.previousElementSibling as HTMLDivElement;
+                    shiftY = 1;
+                } else if (element.nextElementSibling) {
+                    targetElement = element.nextElementSibling as HTMLDivElement;
+                    shiftY = 0;
+                }
             } else {
                 const element = draggableList.appendChild(draggedElement);
                 targetElement = element.previousElementSibling as HTMLDivElement;
+                shiftY = 1;
             }
         }
     });
