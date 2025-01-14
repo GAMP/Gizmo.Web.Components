@@ -10,6 +10,7 @@
                         @foreach (var item in _items)
                         {
                             <ListItem
+                                DisplayOrder="@item.DisplayOrder"
                                 Class="card has-border-light has-background-blazor has-text-white has-cursor-grab">
                                 <p class="is-size-4 p-2 ml-4">@item.Name</p>
                             </ListItem>
