@@ -8,14 +8,11 @@ namespace SortableListStartup.Shared
     {
         private DotNetObjectReference<NewSortableList<T>>? _selfReference;
 
-        [Parameter]
-        public RenderFragment<T>? SortableItemTemplate { get; set; }
+        [Parameter] public RenderFragment<T>? SortableItemTemplate { get; set; }
 
-        [Parameter, AllowNull]
-        public List<T> Items { get; set; }
+        [Parameter, AllowNull] public List<T> Items { get; set; }
 
-        [Parameter]
-        public EventCallback<SortableListUpdateEventArgs> OnUpdate { get; set; }
+        [Parameter] public EventCallback<SortableListUpdateEventArgs> OnUpdate { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -28,7 +25,6 @@ namespace SortableListStartup.Shared
                 }
                 catch (Exception ex)
                 {
-
                 }
             }
         }
@@ -41,12 +37,13 @@ namespace SortableListStartup.Shared
         }
 
         [JSInvokable]
-        public Task HandleDragDrop(string draggedItemId, string targetItemId)
+        public Task HandleDragDrop(string draggedItemId, string targetItemId, int targetItemOffset)
         {
             return OnUpdate.InvokeAsync(new SortableListUpdateEventArgs()
             {
-                DraggedItemIdOrPreviousDisplayOrder = draggedItemId,
-                NewDisplayOrder = targetItemId
+                DraggedItemId = draggedItemId,
+                TargetItemId = targetItemId,
+                TargetItemOffset = targetItemOffset
             });
         }
     }

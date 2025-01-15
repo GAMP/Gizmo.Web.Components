@@ -2,7 +2,8 @@
 {
     public class SortableListUpdateEventArgs : EventArgs
     {
-        public string DraggedItemIdOrPreviousDisplayOrder { get; set; } = string.Empty;
-        public string NewDisplayOrder { get; set; } = string.Empty;
+        public string DraggedItemId { get; init; } = string.Empty;
+        public string TargetItemId { get; init; } = string.Empty;
+        public int TargetItemOffset { get; init; }
     }
 }

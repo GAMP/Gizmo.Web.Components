@@ -6,7 +6,7 @@
         <ExampleContent>
             <div class="columns">
                 <div class="column is-half">
-                    <NewSortableList @key="Guid.NewGuid()" Items="_items.OrderBy(a => a.DisplayOrder).ToList()" OnUpdate="OnUpdateHandler" Context="item">
+                    <NewSortableList @key="Guid.NewGuid()" Items="_items.OrderBy(a => a.DisplayOrder).ToList()" OnUpdate="OnUpdateHandler2" Context="item">
                         <SortableItemTemplate>
                             <div id="@item.Id" draggable="true" class="card has-border-light has-background-blazor has-text-white has-cursor-grab">
                                 <p class="is-size-4 p-2 ml-4">@item.Name</p>

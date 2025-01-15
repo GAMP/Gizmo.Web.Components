@@ -5,15 +5,17 @@ namespace SortableListStartup.Shared.Demos;
 
 public partial class GizmoNewList : ComponentBase
 {
-    [Inject]
-    private IJSRuntime JsRuntime { get; set; } = null!;
+    [Inject] private IJSRuntime JsRuntime { get; set; } = null!;
 
-    private readonly List<Item> _items = Enumerable.Range(1, 10).Select(i => new Item { Id = i, Name = $"Item {i}", DisplayOrder = i }).ToList();
+    private readonly List<Item> _items = Enumerable.Range(1, 10).Select(i => new Item { Id = i, Name = $"Item {i}", DisplayOrder = i })
+        .ToList();
 
     private async Task OnUpdateHandler(SortableListUpdateEventArgs args)
     {
-        int draggedItemIdOrPreviousDisplayOrder = int.Parse(args.DraggedItemIdOrPreviousDisplayOrder); //I need the Id or the display order of the dragged item so I can identify it in the list.
-        int newDisplayOrder = int.Parse(args.NewDisplayOrder); //I need the new display order so I can update the display order of all item in between the old location and the new location.
+        int draggedItemIdOrPreviousDisplayOrder =
+            int.Parse(args.DraggedItemId); //I need the Id or the display order of the dragged item so I can identify it in the list.
+        int newDisplayOrder =
+            int.Parse(args.TargetItemId); //I need the new display order so I can update the display order of all item in between the old location and the new location.
 
         var draggedItem = _items.Where(a => a.Id == draggedItemIdOrPreviousDisplayOrder).FirstOrDefault();
 
@@ -42,5 +44,36 @@ public partial class GizmoNewList : ComponentBase
 
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    public async Task OnUpdateHandler2(SortableListUpdateEventArgs args)
+    {
+        if (string.IsNullOrWhiteSpace(args.DraggedItemId))
+            throw new ArgumentNullException(nameof(args.DraggedItemId));
+
+        if (string.IsNullOrWhiteSpace(args.TargetItemId))
+            throw new ArgumentNullException(nameof(args.TargetItemId));
+
+        var draggedItem =
+            _items.SingleOrDefault(i => i.Id.ToString() == args.DraggedItemId)
+            ?? throw new InvalidOperationException($"Dragged item with ID {args.DraggedItemId} not found.");
+
+        var targetItem =
+            _items.SingleOrDefault(i => i.Id.ToString() == args.TargetItemId)
+            ?? throw new InvalidOperationException($"Target item with ID {args.TargetItemId} not found.");
+
+        Console.WriteLine($"Items before:\n{string.Join("\n", _items.Select(i => $"Id: {i.Id} - DisplayOrder: {i.DisplayOrder}"))}");
+
+        _items.Remove(draggedItem);
+        _items.Insert(_items.IndexOf(targetItem) + args.TargetItemOffset, draggedItem);
+
+        var minDisplayOrder = _items.Min(i => i.DisplayOrder);
+
+        for (var i = 0; i < _items.Count; i++)
+            _items[i].DisplayOrder = minDisplayOrder + i;
+
+        Console.WriteLine($"Items after:\n{string.Join("\n", _items.Select(i => $"Id: {i.Id} - DisplayOrder: {i.DisplayOrder}"))}");
+
+        await InvokeAsync(StateHasChanged);
     }
 }

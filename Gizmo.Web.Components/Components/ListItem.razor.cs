@@ -43,9 +43,6 @@ namespace Gizmo.Web.Components
         public bool IsDisabled { get; set; }
         
         [Parameter]
-        public int DisplayOrder { get; set; }
-
-        [Parameter]
         public string Icon { get; set; }
 
         [Parameter]

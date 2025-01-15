@@ -232,7 +232,7 @@ namespace Gizmo.Web.Components
         }
 
         [JSInvokable]
-        public async Task HandleDragDrop(string draggedItemId, string targetItemId, int shiftY)
+        public async Task HandleDragDrop(string draggedItemId, string targetItemId, int targetItemOffset)
         {
             if (string.IsNullOrWhiteSpace(draggedItemId))
                 throw new ArgumentNullException(nameof(draggedItemId));
@@ -244,32 +244,12 @@ namespace Gizmo.Web.Components
                 _items.SingleOrDefault(i => i.Id == draggedItemId)
                 ?? throw new InvalidOperationException($"Dragged item with ID {draggedItemId} not found.");
 
-            var draggedDisplayOrder = draggedItem.DisplayOrder;
-            
             var targetItem =
                 _items.SingleOrDefault(i => i.Id == targetItemId)
                 ?? throw new InvalidOperationException($"Target item with ID {targetItemId} not found.");
-            
-            var targetDisplayOrder = targetItem.DisplayOrder;
-            
-            Console.WriteLine($"Items before:\n{string.Join("\n", _items.Select(i => $"Id: {i.Id} - DisplayOrder: {i.DisplayOrder}"))}");
 
             _items.Remove(draggedItem);
-            var targetIndex = _items.IndexOf(targetItem) + shiftY;
-            _items.Insert(targetIndex, draggedItem);
-            
-            
-            
-            
-            var draggedItem1 = _items.Single(i => i.Id == draggedItemId);
-            var draggedItemIndex = _items.IndexOf(draggedItem1);
-            var targetItem1 = _items.Single(i => i.Id == targetItemId);
-            var targetItemIndex = _items.IndexOf(targetItem1);
-            
-            _items[draggedItemIndex].DisplayOrder = targetDisplayOrder;
-            _items[targetItemIndex].DisplayOrder = targetDisplayOrder;
-            
-            Console.WriteLine($"Items after:\n{string.Join("\n", _items.Select(i => $"Id: {i.Id} - DisplayOrder: {i.DisplayOrder}"))}");
+            _items.Insert(_items.IndexOf(targetItem) + targetItemOffset, draggedItem);
 
             await OnClickItem.InvokeAsync(draggedItem);
         }
