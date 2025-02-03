@@ -13,12 +13,12 @@
 
         public bool Overlaps(BoundingClientRect rect)
         {
-            if (this.Left >= rect.Right || rect.Left >= this.Right)
+            if (this.Left > rect.Right || rect.Left > this.Right)
             {
                 return false;
             }
 
-            if (this.Top >= rect.Bottom || rect.Top >= this.Bottom)
+            if (this.Top > rect.Bottom || rect.Top > this.Bottom)
             {
                 return false;
             }
