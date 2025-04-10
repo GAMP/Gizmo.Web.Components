@@ -4,12 +4,6 @@
     &-control {
         position: relative;
         overflow: hidden;
-
-        &:hover {
-            .giz-input-validation-tooltip {
-                display: block;
-            }
-        }
     }
 
     &-label {
