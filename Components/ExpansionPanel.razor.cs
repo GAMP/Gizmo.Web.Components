@@ -67,7 +67,7 @@ namespace Gizmo.Web.Components
             else
             {
                 _shouldRender = false;
-                await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
+                //await InvokeVoidAsync("writeLine", $"ReRender {this.ToString()}");
             }
 
             await base.OnAfterRenderAsync(firstRender);
