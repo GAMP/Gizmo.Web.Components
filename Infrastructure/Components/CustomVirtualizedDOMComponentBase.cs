@@ -21,7 +21,7 @@ namespace Gizmo.Web.Components
 
         protected override void OnInitialized()
         {
-            ColumnsCount = ColumnsCount < 4 || ColumnsCount > 10 ? DefaultColumnsCount : ColumnsCount;
+            ColumnsCount = ColumnsCount < 2 || ColumnsCount > 10 ? DefaultColumnsCount : ColumnsCount;
 
             _gridColumnsStyle = $"grid-template-columns: repeat({ColumnsCount}, 1fr)";
 
