@@ -146,6 +146,7 @@
         Star,
         Star_Client,
         Star2_Client,
+        Steam,
         StoreApp_Client,
         Success_Client,
         Terminate_Client,
