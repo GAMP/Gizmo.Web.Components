@@ -2,6 +2,7 @@
 {
     public enum Icons
     {
+        Achievement,
         AccountBalance_Client,
         AccountCircle_Client,
         ActivationOrder_Client,
@@ -162,6 +163,7 @@
         TimeSession2_Client,
         Tool,
         Toolbox,
+        Tournament,
         Trash,
         Trash_Client,
         Trash2_Client,
@@ -181,6 +183,7 @@
         Video_Client,
         WaitingLines,
         Warning_Client,
+        Web,
         WiFi_Client,
         WorkHistory_Client
     }
