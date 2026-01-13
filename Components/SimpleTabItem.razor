@@ -1,9 +1,0 @@
-﻿@namespace Gizmo.Web.Components
-@inherits CustomDOMComponentBase
-
-<div class="@Class @ClassName">
-    @if (ChildContent != null && (Parent?.RenderOnlyActive == false || _isSelected))
-    {
-        @ChildContent
-    }
-</div>
