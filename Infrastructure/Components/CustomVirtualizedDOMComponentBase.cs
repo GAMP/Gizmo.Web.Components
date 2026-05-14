@@ -19,13 +19,13 @@ namespace Gizmo.Web.Components
         [Parameter]
         public IEnumerable<T> Items { get; set; } = Enumerable.Empty<T>();
 
-        protected override void OnInitialized()
+        protected override void OnParametersSet()
         {
-            ColumnsCount = ColumnsCount < 2 || ColumnsCount > 10 ? DefaultColumnsCount : ColumnsCount;
+            var resolved = ColumnsCount < 2 || ColumnsCount > 10 ? DefaultColumnsCount : ColumnsCount;
 
-            _gridColumnsStyle = $"grid-template-columns: repeat({ColumnsCount}, 1fr)";
+            _gridColumnsStyle = $"grid-template-columns: repeat({resolved}, 1fr)";
 
-            base.OnInitialized();
+            base.OnParametersSet();
         }
     }
 }
