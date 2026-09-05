@@ -1,0 +1,16 @@
+@namespace Gizmo.Web.Components
+@inherits CustomDOMComponentBase
+
+@if (IsVisible)
+{
+    <div class="@ClassName" style="@StyleValue" id="@Id">
+        @foreach (var line in TitleLines)
+        {
+            <div class="giz-chart-tooltip__title">@line</div>
+        }
+        @foreach (var line in BodyLines)
+        {
+            <div class="giz-chart-tooltip__body">@line</div>
+        }
+    </div>
+}

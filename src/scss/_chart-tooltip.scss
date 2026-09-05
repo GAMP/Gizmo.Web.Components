@@ -1,0 +1,20 @@
+// Geometry only. Colours, typography and the horizontal anchor belong to the consuming
+// application: this library is shared between products with different palettes, and every chart
+// has a different shape to stay inside. The component publishes the caret position as
+// --giz-chart-tooltip-x / --giz-chart-tooltip-y for the consumer to anchor against.
+.giz-chart-tooltip {
+    // Fixed, not absolute: the tooltip is rendered once at the layout root and positioned in
+    // viewport coordinates, so no chart container can clip it.
+    position: fixed;
+    left: var(--giz-chart-tooltip-x);
+    top: var(--giz-chart-tooltip-y);
+    // Sits above the page but below dialogs.
+    z-index: 900;
+    transform: translate(-50%, calc(-100% - 0.8rem));
+    // Without max-content an absolutely positioned box is shrink-to-fit against the space left in
+    // its parent, which collapses the text into a column when the parent is narrow.
+    width: max-content;
+    white-space: normal;
+    // Must never sit between the pointer and the canvas, or the chart's hover detection flickers.
+    pointer-events: none;
+}
