@@ -12,6 +12,7 @@
 		<PackageIconUrl />
 		<RepositoryUrl>https://github.com/GAMP/Gizmo.Web.Components</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<Version>1.0</Version>
 		
 		<!--Fixes duplicate file error on publish (.NET6 BUG)-->
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
@@ -33,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Gizmo.Shared\Gizmo.Shared.csproj" />
+	  <PackageReference Include="Gizmo.Shared" Version="1.0.17" />
 	</ItemGroup>
 	
 </Project>
