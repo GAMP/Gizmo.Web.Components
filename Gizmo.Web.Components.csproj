@@ -36,10 +36,5 @@
 	<ItemGroup>
 	  <PackageReference Include="Gizmo.Shared" Version="1.0.17" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<!-- Sibling bundles import this file from src\js, so it stays there and is exposed as a linked static web asset. -->
-		<Content Include="src\js\chart-tooltip.js" Link="wwwroot\js\chart-tooltip.js" />
-	</ItemGroup>
 	
 </Project>
